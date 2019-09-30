@@ -1,0 +1,190 @@
+%%
+%% This is file `beamerouterthemeemctria.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% beamerouterthemeemctria.dtx  (with options: `package')
+%% ---------------------------------------------------------------------------
+%% Copyright 2015 Matthias Vogelgesang and the LaTeX community. A full list of
+%% contributors can be found at
+%% 
+%%     https://github.com/matze/mtheme/graphs/contributors
+%% 
+%% and the original template was based on the HSRM theme by Benjamin Weiss.
+%% 
+%% This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
+%% International License (https://creativecommons.org/licenses/by-sa/4.0/).
+%% ---------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerouterthemeemctria}[2017/01/23 emctria outer theme]
+\RequirePackage{etoolbox}
+\RequirePackage{calc}
+\RequirePackage{pgfopts}
+\pgfkeys{
+  /emctria/outer/numbering/.cd,
+    .is choice,
+    none/.code=\setbeamertemplate{frame numbering}[none],
+    counter/.code=\setbeamertemplate{frame numbering}[counter],
+    fraction/.code=\setbeamertemplate{frame numbering}[fraction],
+}
+\pgfkeys{
+  /emctria/outer/progressbar/.cd,
+    .is choice,
+    none/.code={%
+      \setbeamertemplate{headline}[plain]
+      \setbeamertemplate{frametitle}[plain]
+      \setbeamertemplate{footline}[plain]
+    },
+    head/.code={\pgfkeys{/emctria/outer/progressbar=none}
+      \addtobeamertemplate{headline}{}{%
+        \usebeamertemplate*{progress bar in head/foot}
+      }
+    },
+    frametitle/.code={\pgfkeys{/emctria/outer/progressbar=none}
+      \addtobeamertemplate{frametitle}{}{%
+        \usebeamertemplate*{progress bar in head/foot}
+      }
+    },
+    foot/.code={\pgfkeys{/emctria/outer/progressbar=none}
+      \addtobeamertemplate{footline}{}{%
+        \usebeamertemplate*{progress bar in head/foot}%
+      }
+    },
+}
+\newcommand{\emctria@outer@setdefaults}{
+  \pgfkeys{/emctria/outer/.cd,
+    numbering=counter,
+    progressbar=none,
+  }
+}
+\setbeamertemplate{navigation symbols}{}
+\defbeamertemplate{frame footer}{none}{}
+\defbeamertemplate{frame footer}{custom}[1]{ #1 }
+\defbeamertemplate{frame numbering}{none}{}
+\defbeamertemplate{frame numbering}{counter}{\insertframenumber}
+\defbeamertemplate{frame numbering}{fraction}{
+  \insertframenumber/\inserttotalframenumber
+}
+\defbeamertemplate{headline}{plain}{}
+\defbeamertemplate{footline}{plain}{%
+  \begin{beamercolorbox}[wd=\textwidth, sep=3ex]{footline}%
+    \usebeamerfont{page number in head/foot}%
+    \usebeamertemplate*{frame footer}
+    \hfill%
+    \usebeamertemplate*{frame numbering}
+  \end{beamercolorbox}%
+}
+\newlength{\emctria@frametitle@padding}
+\newlength{\emctria@framesubtitle@padding}
+\setlength{\emctria@frametitle@padding}{2.1ex}
+\setlength{\emctria@framesubtitle@padding}{1.7ex}
+\newlength{\emctria@frametitle@leftskip}
+\setlength{\emctria@frametitle@leftskip}{6.2ex}
+\newcommand{\emctria@frametitlestrut@start}{
+  \rule{0pt}{\emctria@frametitle@padding - 0.1ex +%
+    \totalheightof{%
+      \ifcsdef{emctria@frametitleformat}{\emctria@frametitleformat X}{X}%
+    }%
+  }%
+}
+\newcommand{\emctria@framesubtitlestrut@start}{
+	\rule{0pt}{\emctria@framesubtitle@padding - 0.1ex +%
+		\totalheightof{%
+			\ifcsdef{emctria@frametitleformat}{\emctria@frametitleformat X}{X}%
+		}%
+	}%
+}
+\newcommand{\emctria@frametitlestrut@end}{
+  \rule[-\emctria@frametitle@padding]{0pt}{\emctria@frametitle@padding}
+}
+\newcommand{\emctria@framesubtitlestrut@end}{
+	\rule[-\emctria@framesubtitle@padding]{0pt}{\emctria@framesubtitle@padding}
+}
+\defbeamertemplate{frametitle}{plain}{%
+\ifx\insertframesubtitle\@empty%
+  \nointerlineskip%
+  \begin{beamercolorbox}[%
+      wd=\paperwidth,%
+      sep=0pt,%
+      leftskip=\emctria@frametitle@leftskip,%
+      rightskip=\emctria@frametitle@padding,%
+    ]{frametitle}%
+  \emctria@frametitlestrut@start%
+  \insertframetitle%
+  \nolinebreak%
+  \emctria@frametitlestrut@end%
+  \end{beamercolorbox}%
+\else% subtitle
+  \begin{beamercolorbox}[%
+      wd=\paperwidth,%
+      sep=0pt,%
+      leftskip=\emctria@frametitle@leftskip,%
+      rightskip=\emctria@frametitle@padding,%
+    ]{frametitle}%
+  \emctria@framesubtitlestrut@start%
+  \insertframetitle%
+  \\
+  {\color{emclblue}\insertframesubtitle}
+  \nolinebreak%
+  \emctria@framesubtitlestrut@end%
+  \end{beamercolorbox}%
+\fi%  subtitle or not
+\begin{tikzpicture}[overlay, remember picture]
+\path[color=fg, draw, fill=fg,  line width=1pt] (current page.north west)
+  -- ++(6ex,0)
+  -- ++(-6ex,-6ex) 
+  -- cycle;
+\end{tikzpicture}
+}
+
+\setbeamertemplate{frametitle continuation}{%
+  \usebeamerfont{frametitle}
+  \romannumeral \insertcontinuationcount
+}
+
+
+% environment for titleframe
+\newenvironment{titleframe}
+{\begin{frame}[plain]
+	\begin{tikzpicture}[remember picture,overlay]
+	\path[draw, path image] (current page.south east) 
+	-- ++(-\pageheight,0) 
+	-- ++(\pageheight,\pageheight) 
+	-- cycle;
+	\end{tikzpicture}
+	\maketitle
+}
+{\end{frame}}
+
+
+\newlength{\emctria@progressinheadfoot}
+\newlength{\emctria@progressinheadfoot@linewidth}
+\setlength{\emctria@progressinheadfoot@linewidth}{0.4pt}
+\setbeamertemplate{progress bar in head/foot}{
+  \nointerlineskip
+  \setlength{\emctria@progressinheadfoot}{%
+    \paperwidth * \ratio{\insertframenumber pt}{\inserttotalframenumber pt}%
+  }%
+  \begin{beamercolorbox}[wd=\paperwidth]{progress bar in head/foot}
+    \tikzexternaldisable%
+    \begin{tikzpicture}
+      \fill[bg] (0,0) rectangle (\paperwidth, \emctria@progressinheadfoot@linewidth);
+      \fill[fg] (0,0) rectangle (\emctria@progressinheadfoot, \emctria@progressinheadfoot@linewidth);
+    \end{tikzpicture}%
+    \tikzexternalenable%
+  \end{beamercolorbox}
+}
+\AtBeginDocument{%
+  \apptocmd{\appendix}{%
+    \pgfkeys{%
+      /emctria/outer/.cd,
+      numbering=none,
+      progressbar=none}
+    }{}{}
+}
+\emctria@outer@setdefaults
+\ProcessPgfPackageOptions{/emctria/outer}
+\endinput
+%%
+%% End of file `beamerouterthemeemctria.sty'.

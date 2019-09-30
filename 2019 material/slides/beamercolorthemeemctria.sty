@@ -1,0 +1,182 @@
+%%
+%% This is file `beamercolorthemeemctria.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% beamercolorthemeemctria.dtx  (with options: `package')
+%% ---------------------------------------------------------------------------
+%% Copyright 2015 Matthias Vogelgesang and the LaTeX community. A full list of
+%% contributors can be found at
+%% 
+%%     https://github.com/matze/mtheme/graphs/contributors
+%% 
+%% and the original template was based on the HSRM theme by Benjamin Weiss.
+%% 
+%% This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
+%% International License (https://creativecommons.org/licenses/by-sa/4.0/).
+%% ---------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamercolorthemeemctria}[2017/01/23 emctria color theme]
+\RequirePackage{pgfopts}
+\pgfkeys{
+  /emctria/color/block/.cd,
+    .is choice,
+    transparent/.code=\emctria@block@transparent,
+    fill/.code=\emctria@block@fill,
+}
+\pgfkeys{
+  /emctria/color/background/.cd,
+    .is choice,
+    dark/.code=\emctria@colors@dark,
+    light/.code=\emctria@colors@light,
+}
+\newcommand{\emctria@color@setdefaults}{
+  \pgfkeys{/emctria/color/.cd,
+    background=light,
+    block=transparent,
+  }
+}
+\definecolor{emclblue}  {RGB}  {126, 207, 226}
+\definecolor{emcdblue}  {RGB}  {12,  32,  116}
+\definecolor{emcgrey}   {RGB}  {182, 188, 213}
+\definecolor{emcpink}   {RGB}  {247, 197, 168} % used on webpage
+\definecolor{emcyellow} {RGB}  {168, 176,  47} % used on webpage
+\definecolor{emcred}    {RGB}  {249,  44,  22} % used on webpage
+\definecolor{emcfadedblue}{RGB}{207, 236, 249}
+
+
+\definecolor{nihesdgreen}{RGB}{0,   35,  39}
+\definecolor{niheslgreen}{RGB}{51, 191, 103}
+
+
+\definecolor{orange}        {RGB}{230,  159,  0}   % chosen from a cb-proof palette
+\definecolor{bueischgreen}  {RGB}{0,  158,  115}   % chosen from a cb-proof palette
+\definecolor{bueischgreen}  {RGB}{0,  158,  115}   % chosen from a cb-proof palette
+\definecolor{cb-blue-green} {RGB}{  0,  073,  073}
+\definecolor{cb-green-sea}  {RGB}{  0, 146, 146}
+\definecolor{cb-rose}       {RGB}{255, 109, 182}
+\definecolor{cb-salmon-pink}{RGB}{255, 182, 119}
+\definecolor{cb-purple}     {RGB}{ 73,   0, 146}
+\definecolor{cb-blue}       {RGB}{ 0, 109, 219}
+\definecolor{cb-lilac}      {RGB}{182, 109, 255}
+\definecolor{cb-blue-sky}   {RGB}{109, 182, 255}
+\definecolor{cb-blue-light} {RGB}{182, 219, 255}
+\definecolor{cb-burgundy}   {RGB}{146,   0,   0}
+\definecolor{cb-brown}      {RGB}{146,  73,   0}
+\definecolor{cb-clay}       {RGB}{219, 209,   0}
+\definecolor{cb-green-lime} {RGB}{ 36, 255,  36}
+\definecolor{cb-yellow} {RGB}{255, 255, 109}
+
+\newcommand{\emctria@colors@dark}{
+  \setbeamercolor{normal text}{%
+    fg=white,
+    bg=emcdblue
+  }
+  \usebeamercolor[fg]{normal text}
+}
+\newcommand{\emctria@colors@light}{
+  \setbeamercolor{normal text}{%
+    fg=emcdblue,
+    bg=white
+  }
+}
+\setbeamercolor{alerted text}{%
+  fg=emcred
+}
+\setbeamercolor{example text}{%
+  fg=niheslgreen
+}
+\setbeamercolor{titlelike}{use=normal text, parent=normal text, fg=emcdblue}
+\setbeamercolor{author}{use=normal text, parent=normal text}
+\setbeamercolor{date}{use=normal text, parent=normal text, fg=emclblue}
+\setbeamercolor{institute}{use=normal text, parent=normal text, fg=emclblue}
+\setbeamercolor{structure}{use=normal text, fg=normal text.fg}
+\setbeamercolor{palette primary}{%
+  use=normal text,
+  fg=normal text.fg,
+  bg=normal text.bg
+}
+\setbeamercolor{palette secondary}{%
+  fg=white,
+  bg=emcdblue
+}
+\setbeamercolor{palette tertiary}{%
+  fg=white,
+  bg=emclblue
+}
+\setbeamercolor{palette quaternary}{%
+  fg=emcdblue,
+  bg=emclblue
+}
+\setbeamercolor{frametitle}{%
+  use=normal text,
+  parent=normal text,
+  fg=normal text.fg,
+  bg=normal text.bg
+}
+\setbeamercolor{progress bar}{%
+  use=emclblue,
+  fg=emclblue,
+  bg=emclblue!50!black!30
+}
+\setbeamercolor{title separator}{
+  use=progress bar,
+  parent=progress bar
+}
+\setbeamercolor{progress bar in head/foot}{%
+  use=progress bar,
+  parent=progress bar
+}
+\setbeamercolor{progress bar in section page}{
+  use=progress bar,
+  parent=progress bar
+}
+\newcommand{\emctria@block@transparent}{
+  \setbeamercolor{block title}{%
+    use=normal text,
+    parent=normal text,
+    fg=white,
+    bg=emcdblue
+  }
+  \setbeamercolor{block body}{
+    use=normal text,
+    parent=normal text,
+    bg=emclblue
+  }
+}
+\newcommand{\emctria@block@fill}{
+  \setbeamercolor{block title}{%
+    use=normal text,
+    fg=normal text.fg,
+    bg=normal text.bg!80!fg
+  }
+  \setbeamercolor{block body}{
+    use={block title, normal text},
+    bg=block title.bg!50!normal text.bg
+  }
+}
+\setbeamercolor{block title alerted}{%
+    use={block title, alerted text},
+    bg=block title.bg,
+    fg=alerted text.fg
+}
+\setbeamercolor{block title example}{%
+    use={block title, example text},
+    bg=block title.bg,
+    fg=example text.fg
+}
+\setbeamercolor{block body alerted}{use=block body, parent=block body}
+\setbeamercolor{block body example}{use=block body, parent=block body}
+\setbeamercolor{footnote}{fg=normal text.fg!90}
+\setbeamercolor{footnote mark}{fg=.}
+\setbeamercolor{bibliography entry author}{fg=, bg=}
+\setbeamercolor{bibliography entry title}{fg=, bg=}
+\setbeamercolor{bibliography entry location}{fg=, bg=}
+\setbeamercolor{bibliography entry note}{fg=, bg=}
+\emctria@color@setdefaults
+\ProcessPgfPackageOptions{/emctria/color}
+\mode<all>
+\endinput
+%%
+%% End of file `beamercolorthemeemctria.sty'.

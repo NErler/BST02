@@ -1,0 +1,115 @@
+\usepackage{adjustbox}
+\usepackage{xcolor}
+\usepackage{adjustbox}
+\usepackage{verbatim}
+\usepackage{listings}
+
+\setlength{\unitlength}{1cm}
+\newcommand{\ba}{\mbox{{\boldmath $a$}}}
+\newcommand{\bA}{\mbox{{\boldmath $A$}}}
+\newcommand{\bb}{\mbox{{\boldmath $b$}}}
+\newcommand{\bB}{\mbox{{\boldmath $B$}}}
+\newcommand{\bc}{\mbox{{\boldmath $c$}}}
+\newcommand{\bC}{\mbox{{\boldmath $C$}}}
+\newcommand{\bd}{\mbox{{\boldmath $d$}}}
+\newcommand{\bD}{\mbox{{\boldmath $D$}}}
+\newcommand{\be}{\mbox{{\boldmath $e$}}}
+\newcommand{\bE}{\mbox{{\boldmath $E$}}}
+\newcommand{\bbf}{\mbox{{\boldmath $f$}}}
+\newcommand{\bF}{\mbox{{\boldmath $F$}}}
+\newcommand{\bg}{\mbox{{\boldmath $g$}}}
+\newcommand{\bG}{\mbox{{\boldmath $G$}}}
+\newcommand{\bh}{\mbox{{\boldmath $h$}}}
+\newcommand{\bH}{\mbox{{\boldmath $H$}}}
+\newcommand{\bi}{\mbox{{\boldmath $i$}}}
+\newcommand{\bI}{\mbox{{\boldmath $I$}}}
+\newcommand{\bfI}{\mathbf{I}}
+\newcommand{\bj}{\mbox{{\boldmath $j$}}}
+\newcommand{\bJ}{\mbox{{\boldmath $J$}}}
+\newcommand{\bk}{\mbox{{\boldmath $k$}}}
+\newcommand{\bK}{\mbox{{\boldmath $K$}}}
+\newcommand{\bl}{\mbox{{\boldmath $l$}}}
+\newcommand{\bL}{\mbox{{\boldmath $L$}}}
+\newcommand{\bm}{\mbox{{\boldmath $m$}}}
+\newcommand{\bM}{\mbox{{\boldmath $M$}}}
+\newcommand{\bn}{\mbox{{\boldmath $n$}}}
+\newcommand{\bN}{\mbox{{\boldmath $N$}}}
+\newcommand{\bo}{\mbox{{\boldmath $o$}}}
+\newcommand{\bO}{\mbox{{\boldmath $O$}}}
+\newcommand{\bp}{\mbox{{\boldmath $p$}}}
+\newcommand{\bP}{\mbox{{\boldmath $P$}}}
+\newcommand{\bq}{\mbox{{\boldmath $q$}}}
+\newcommand{\bQ}{\mbox{{\boldmath $Q$}}}
+\newcommand{\br}{\mbox{{\boldmath $r$}}}
+\newcommand{\bR}{\mbox{{\boldmath $R$}}}
+\newcommand{\bs}{\mbox{{\boldmath $s$}}}
+\newcommand{\bS}{\mbox{{\boldmath $S$}}}
+\newcommand{\bt}{\mbox{{\boldmath $t$}}}
+\newcommand{\bT}{\mbox{{\boldmath $T$}}}
+\newcommand{\bu}{\mbox{{\boldmath $u$}}}
+\newcommand{\bU}{\mbox{{\boldmath $U$}}}
+\newcommand{\bv}{\mbox{{\boldmath $v$}}}
+\newcommand{\bV}{\mbox{{\boldmath $V$}}}
+\newcommand{\bw}{\mbox{{\boldmath $w$}}}
+\newcommand{\bW}{\mbox{{\boldmath $W$}}}
+\newcommand{\bx}{\mbox{{\boldmath $x$}}}
+\newcommand{\bX}{\mbox{{\boldmath $X$}}}
+\newcommand{\by}{\mbox{{\boldmath $y$}}}
+\newcommand{\bY}{\mbox{{\boldmath $Y$}}}
+\newcommand{\bz}{\mbox{{\boldmath $z$}}}
+\newcommand{\bZ}{\mbox{{\boldmath $Z$}}}
+
+\newcommand{\bfalpha}{\mbox{{\boldmath $\alpha$}}}
+\newcommand{\bfbeta}{\mbox{{\boldmath $\beta$}}}
+\newcommand{\bfgamma}{\mbox{{\boldmath $\gamma$}}}
+\newcommand{\bfdelta}{\mbox{{\boldmath $\delta$}}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\bfeps}{\mbox{{\boldmath $\varepsilon$}}}
+\newcommand{\bfeta}{\mbox{{\boldmath $\eta$}}}
+\newcommand{\bftheta}{\mbox{{\boldmath $\theta$}}}
+\newcommand{\bfmu}{\mbox{{\boldmath $\mu$}}}
+\newcommand{\bfpi}{\mbox{{\boldmath $\pi$}}}
+\newcommand{\bfsigma}{\mbox{{\boldmath $\sigma$}}}
+\newcommand{\bfomega}{\mbox{{\boldmath $\omega$}}}
+\newcommand{\bfPi}{\mbox{{\boldmath $\Pi$}}}
+\newcommand{\bfSigma}{\mbox{{\boldmath $\Sigma$}}}
+\newcommand{\bfPhi}{\mbox{{\boldmath $\Phi$}}}
+
+
+\newcommand{\logit}{\mbox{logit}}
+\newcommand{\expit}{\mbox{expit}}
+
+\newcommand{\code}[1]{\textcolor{blue}{\texttt{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\redbf}[1]{\textcolor{red}{\textbf{#1}}}
+\newcommand{\bluebf}[1]{\textcolor{blue}{\textbf{#1}}}
+\newcommand{\magentabf}[1]{\textcolor{magenta}{\textbf{#1}}}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\rightarrowP}{\operatornamewithlimits{\rightarrow}}
+\newcommand{\etal}{{\it et al., }}
+\newcommand{\Rnsp}{\textsf{R}}
+\newcommand{\R}{{\textsf{R} }}
+
+
+\newcommand{\nl}{{\vspace{1ex} }}
+
+\tikzset{bubble/.style={rectangle, draw=gray,rounded corners,fill=#1,align = flush center,minimum height=1cm,minimum width=1.75cm}}
+
+\tikzfading [name=arrowfading, top color=transparent!0, bottom color=transparent!95]
+\tikzset{arrowfill/.style={top color=red!20, bottom color=red, general shadow={fill=black, shadow yshift=-0.8ex, path fading=arrowfading}}}
+\tikzset{arrowstyle/.style={draw=red!10,arrowfill, single arrow,minimum height=#1, single arrow,
+    single arrow head extend=.4cm,}}
+
+\newenvironment{code11}%
+{\par\noindent\adjustbox{margin=1ex,bgcolor=emclblue!20,%
+		margin=0ex \medskipamount}\bgroup\varwidth\linewidth\verbatim}%
+{\endverbatim\endvarwidth\egroup}
+
+\date{25 February - 1 March 2019}
+
+%\let \nl = \vspace{1ex}
+
+%\renewcommand{\arraystretch}{2}
+
+%\addtolength{\oddsidemargin}{1cm}

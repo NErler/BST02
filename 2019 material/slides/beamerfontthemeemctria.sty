@@ -1,0 +1,350 @@
+%%
+%% This is file `beamerfontthemeemctria.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% beamerfontthemeemctria.dtx  (with options: `package')
+%% ---------------------------------------------------------------------------
+%% Copyright 2015 Matthias Vogelgesang and the LaTeX community. A full list of
+%% contributors can be found at
+%% 
+%%     https://github.com/matze/mtheme/graphs/contributors
+%% 
+%% and the original template was based on the HSRM theme by Benjamin Weiss.
+%% 
+%% This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
+%% International License (https://creativecommons.org/licenses/by-sa/4.0/).
+%% ---------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerfontthemeemctria}[2017/01/23 emctria font theme]
+\RequirePackage{etoolbox}
+\RequirePackage{ifxetex}
+\RequirePackage{ifluatex}
+\RequirePackage{pgfopts}
+\ifboolexpr{bool {xetex} or bool {luatex}}{
+  \@ifpackageloaded{fontspec}{
+    \PassOptionsToPackage{no-math}{fontspec}
+  }{
+    \RequirePackage[no-math]{fontspec}
+  }
+  \newcounter{fontsnotfound}
+  \newcommand{\checkfont}[1]{%
+    \suppressfontnotfounderror=1%
+    \font\x = "#1" at 10pt
+    \selectfont
+    \ifx\x\nullfont%
+      \stepcounter{fontsnotfound}%
+    \fi%
+    \suppressfontnotfounderror=0%
+  }
+
+  \newcommand{\iffontsavailable}[3]{%
+    \setcounter{fontsnotfound}{0}%
+    \expandafter\forcsvlist\expandafter%
+    \checkfont\expandafter{#1}%
+    \ifnum\value{fontsnotfound}=0%
+      #2%
+    \else%
+      #3%
+    \fi%
+  }
+  
+  \newfontfamily{\montserratfont}[Scale=0.9, Path=fonts/,
+     ItalicFont=Montserrat-Italic,
+     BoldFont=Montserrat-Bold,
+     BoldItalicFont=Montserrat-BoldItalic,
+     FontFace={k}{n}{Montserrat-ExtraBold},
+     FontFace={k}{it}{Montserrat-ExtraBoldItalic}
+     ]{Montserrat-Regular}
+  \iffontsavailable{Arial}%
+  {%
+    \setsansfont[Scale=0.9, ItalicFont={Arial Italic},%
+                 BoldFont={Arial Bold},%
+                 BoldItalicFont={Arial Bold Italic},
+                 FontFace={k}{n}{Arial Black},
+                 FontFace={eb}{n}{Arial Black}]%
+                {Arial}%
+  }{%
+    \iffontsavailable{Fira Sans Light OT,%
+                      Fira Sans Light Italic OT,%
+                      Fira Sans OT,%
+                      Fira Sans Italic OT}%
+    {%
+      \setsansfont[ItalicFont={Fira Sans Light Italic OT},%
+                   BoldFont={Fira Sans OT},%
+                   BoldItalicFont={Fira Sans Italic OT}]%
+                  {Fira Sans Light OT}%
+    }{%
+      \PackageWarning{beamerthemeemctria}{%
+        Could not find Fira Sans fonts%
+      }
+    }
+  }
+  \iffontsavailable{Fira Mono, Fira Mono Bold}{%
+    \setmonofont[Scale=0.85, BoldFont={Fira Mono Medium}]{Fira Mono}%
+  }{%
+    \IfFileExists{fonts/FiraMono-Medium.otf}{%
+      \setmonofont[Scale=0.85, Path=fonts/, BoldFont={FiraMono-Medium.otf}]{FiraMono-Regular.otf}%
+    }{%
+      \PackageWarning{beamerthemeemctria}{%
+        Could not find Fira Mono fonts%
+      }
+    }
+  }
+  \AtBeginEnvironment{tabular}{%
+    \addfontfeature{Numbers={Monospaced}}%
+  }
+}{%
+  \PackageWarning{beamerthemeemctria}{%
+    You need to compile with XeLaTeX or LuaLaTeX to use the Fira fonts%
+  }
+}
+
+
+% Use TheSerif
+ \IfFileExists{TSeOf7__.ttf}{%
+\setromanfont[Scale=0.9, Path=fonts/,
+BoldFont=TSeOf7__.ttf,
+ItalicFont=TSeOf5i_.ttf,
+BoldItalicFont=TSeOf7i_.ttf,
+]{TSeOf5__.ttf}
+}{%
+% Do nothing
+}
+
+\strongfontdeclare{\bfseries,\fontseries{k}\selectfont}
+
+\setbeamerfont{title}{size=\LARGE,%
+                      series=\kseries}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{section title}{size=\LARGE,%
+                              series=\kseries}
+\setbeamerfont{block title}{size=\normalsize,%
+                            series=\bfseries}
+\setbeamerfont{block title alerted}{size=\normalsize,%
+                                    series=\bfseries}
+\setbeamerfont*{subtitle}{size=\large, series=\bfseries}
+\setbeamerfont{frametitle}{size=\large,%
+                           series=\bfseries}
+\setbeamerfont{caption}{size=\small}
+\setbeamerfont{caption name}{series=\bfseries}
+\setbeamerfont{description item}{series=\bfseries}
+\setbeamerfont{page number in head/foot}{size=\scriptsize}
+\setbeamerfont{bibliography entry author}{size=\normalsize,%
+                                          series=\normalfont}
+\setbeamerfont{bibliography entry title}{size=\normalsize,%
+                                         series=\bfseries}
+\setbeamerfont{bibliography entry location}{size=\normalsize,%
+                                            series=\normalfont}
+\setbeamerfont{bibliography entry note}{size=\small,%
+                                        series=\normalfont}
+\setbeamerfont{standout}{size=\Large,%
+                         series=\bfseries}
+\pgfkeys{
+  /emctria/font/titleformat title/.cd,
+    .is choice,
+    regular/.code={%
+      \let\emctria@titleformat\@empty%
+      \setbeamerfont{title}{shape=\normalfont}%
+    },
+    smallcaps/.code={%
+      \let\emctria@titleformat\@empty%
+      \setbeamerfont{title}{shape=\scshape}%
+    },
+    allsmallcaps/.code={%
+      \let\emctria@titleformat\lowercase%
+      \setbeamerfont{title}{shape=\scshape}%
+      \PackageWarning{beamerthemeemctria}{%
+        Be aware that titleformat title=allsmallcaps can lead to problems%
+      }
+    },
+    allcaps/.code={%
+      \let\emctria@titleformat\uppercase%
+      \setbeamerfont{title}{shape=\normalfont}
+      \PackageWarning{beamerthemeemctria}{%
+        Be aware that titleformat title=allcaps can lead to problems%
+      }
+    },
+}
+\pgfkeys{
+  /emctria/font/titleformat subtitle/.cd,
+    .is choice,
+    regular/.code={%
+      \let\emctria@subtitleformat\@empty%
+      \setbeamerfont{subtitle}{shape=\normalfont}%
+    },
+    smallcaps/.code={%
+      \let\emctria@subtitleformat\@empty%
+      \setbeamerfont{subtitle}{shape=\scshape}%
+    },
+    allsmallcaps/.code={%
+      \let\emctria@subtitleformat\lowercase%
+      \setbeamerfont{subtitle}{shape=\scshape}%
+      \PackageWarning{beamerthemeemctria}{%
+        Be aware that titleformat subtitle=allsmallcaps can lead to problems%
+      }
+    },
+    allcaps/.code={%
+      \let\emctria@subtitleformat\uppercase%
+      \setbeamerfont{subtitle}{shape=\normalfont}%
+      \PackageWarning{beamerthemeemctria}{%
+        Be aware that titleformat subtitle=allcaps can lead to problems%
+      }
+    },
+}
+\pgfkeys{
+  /emctria/font/titleformat section/.cd,
+    .is choice,
+    regular/.code={%
+      \let\emctria@sectiontitleformat\@empty%
+      \setbeamerfont{section title}{shape=\normalfont}%
+    },
+    smallcaps/.code={%
+      \let\emctria@sectiontitleformat\@empty%
+      \setbeamerfont{section title}{shape=\scshape}%
+    },
+    allsmallcaps/.code={%
+      \let\emctria@sectiontitleformat\MakeLowercase%
+      \setbeamerfont{section title}{shape=\scshape}%
+      \PackageWarning{beamerthemeemctria}{%
+        Be aware that titleformat section=allsmallcaps can lead to problems%
+      }
+    },
+    allcaps/.code={%
+      \let\emctria@sectiontitleformat\MakeUppercase%
+      \setbeamerfont{section title}{shape=\normalfont}%
+      \PackageWarning{beamerthemeemctria}{%
+        Be aware that titleformat section=allcaps can lead to problems%
+      }
+    },
+}
+\pgfkeys{
+  /emctria/font/titleformat frame/.cd,
+    .is choice,
+    regular/.code={%
+      \let\emctria@frametitleformat\@empty%
+      \setbeamerfont{frametitle}{shape=\normalfont}%
+    },
+    smallcaps/.code={%
+      \let\emctria@frametitleformat\@empty%
+      \setbeamerfont{frametitle}{shape=\scshape}%
+    },
+    allsmallcaps/.code={%
+      \let\emctria@frametitleformat\MakeLowercase%
+      \setbeamerfont{frametitle}{shape=\scshape}%
+      \PackageWarning{beamerthemeemctria}{%
+        Be aware that titleformat frame=allsmallcaps can lead to problems%
+      }
+    },
+    allcaps/.code={%
+      \let\emctria@frametitleformat\MakeUppercase%
+      \setbeamerfont{frametitle}{shape=\normalfont}
+      \PackageWarning{beamerthemeemctria}{%
+        Be aware that titleformat frame=allcaps can lead to problems%
+      }
+    },
+}
+\pgfkeys{
+  /emctria/font/.cd,
+  titleformattitle/.code=\pgfkeysalso{titleformat title=#1},
+  titleformatsubtitle/.code=\pgfkeysalso{titleformat subtitle=#1},
+  titleformatsection/.code=\pgfkeysalso{titleformat section=#1},
+  titleformatframe/.code=\pgfkeysalso{titleformat frame=#1},
+}
+\newcommand{\emctria@font@setdefaults}{
+  \pgfkeys{/emctria/font/.cd,
+    titleformat title=regular,
+    titleformat subtitle=regular,
+    titleformat section=regular,
+    titleformat frame=regular,
+  }
+}
+
+\def\emctria@titleformat#1{#1}
+\def\emctria@subtitleformat#1{#1}
+\def\emctria@sectiontitleformat#1{#1}
+\def\emctria@frametitleformat#1{#1}
+\patchcmd{\beamer@title}%
+  {\def\inserttitle{#2}}%
+  {\def\inserttitle{\emctria@titleformat{#2}}}%
+  {}%
+  {\PackageError{beamerfontthemeemctria}{Patching title failed}\@ehc}
+\patchcmd{\beamer@subtitle}%
+  {\def\insertsubtitle{#2}}%
+  {\def\insertsubtitle{\emctria@subtitleformat{#2}}}%
+  {}%
+  {\PackageError{beamerfontthemeemctria}{Patching subtitle failed}\@ehc}
+\patchcmd{\sectionentry}
+  {\def\insertsectionhead{#2}}
+  {\def\insertsectionhead{\emctria@sectiontitleformat{#2}}}
+  {}
+  {\PackageError{beamerfontthemeemctria}{Patching section title failed}\@ehc}
+\@tempswafalse
+\patchcmd{\beamer@section}
+  {\edef\insertsectionhead{\noexpand\hyperlink{Navigation\the\c@page}{\unexpanded{#1}}}}
+  {\edef\insertsectionhead{\noexpand\hyperlink{Navigation\the\c@page}{%
+    \noexpand\emctria@sectiontitleformat{\unexpanded{#1}}}}}
+  {\@tempswatrue}
+  {}
+\patchcmd{\beamer@section}
+  {\def\insertsectionhead{\hyperlink{Navigation\the\c@page}{#1}}}
+  {\def\insertsectionhead{\hyperlink{Navigation\the\c@page}{%
+    \emctria@sectiontitleformat{#1}}}}
+  {\@tempswatrue}
+  {}
+\patchcmd{\beamer@section}
+  {\protected@edef\insertsectionhead{\noexpand\hyperlink{Navigation\the\c@page}{#1}}}
+  {\protected@edef\insertsectionhead{\noexpand\hyperlink{Navigation\the\c@page}{%
+    \noexpand\emctria@sectiontitleformat{#1}}}}
+  {\@tempswatrue}
+  {}
+\if@tempswa\else
+  \PackageError{beamerfontthemeemctria}{Patching section title failed}\@ehc
+\fi
+\@tempswafalse
+\patchcmd{\beamer@subsection}
+  {\edef\insertsubsectionhead{\noexpand\hyperlink{Navigation\the\c@page}{\unexpanded{#1}}}}
+  {\edef\insertsubsectionhead{\noexpand\hyperlink{Navigation\the\c@page}{%
+    \noexpand\emctria@sectiontitleformat{\unexpanded{#1}}}}}
+  {\@tempswatrue}
+  {}
+\patchcmd{\beamer@subsection}
+  {\def\insertsubsectionhead{\hyperlink{Navigation\the\c@page}{#1}}}
+  {\def\insertsubsectionhead{\hyperlink{Navigation\the\c@page}{%
+    \emctria@sectiontitleformat{#1}}}}
+  {\@tempswatrue}
+  {}
+\patchcmd{\beamer@subsection}
+  {\protected@edef\insertsubsectionhead{\noexpand\hyperlink{Navigation\the\c@page}{#1}}}
+  {\protected@edef\insertsubsectionhead{\noexpand\hyperlink{Navigation\the\c@page}{%
+    \noexpand\emctria@sectiontitleformat{#1}}}}
+  {\@tempswatrue}
+  {}
+\if@tempswa\else
+  \PackageError{beamerfontthemeemctria}{Patching section title failed}\@ehc
+\fi
+\patchcmd{\beamer@@frametitle}
+  {{%
+      \gdef\insertframetitle{{#2\ifnum\beamer@autobreakcount>0\relax{}\space%
+      \usebeamertemplate*{frametitle continuation}\fi}}%
+    \gdef\beamer@frametitle{#2}%
+    \gdef\beamer@shortframetitle{#1}%
+    }}
+  {{%
+      \gdef\insertframetitle{{\emctria@frametitleformat{#2}\ifnum%
+      \beamer@autobreakcount>0\relax{}\space%
+      \usebeamertemplate*{frametitle continuation}\fi}}%
+    \gdef\beamer@frametitle{#2}%
+    \gdef\beamer@shortframetitle{#1}%
+    }}
+  {}
+  {\PackageError{beamerfontthemeemctria}{Patching frame title failed}\@ehc}
+    \DeclareRobustCommand{\kseries}{\fontseries{eb}\selectfont}
+  \DeclareTextFontCommand{\textk}{\kseries}
+\emctria@font@setdefaults
+\ProcessPgfPackageOptions{/emctria/font}
+\endinput
+%%
+%% End of file `beamerfontthemeemctria.sty'.

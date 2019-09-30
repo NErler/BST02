@@ -1,0 +1,19 @@
+\frametitle{9. Functions (cont'd)}
+Define function:\\
+{\small
+\begin{Verbatim}[commandchars=\\\[\]]
+myfunction <- function(arg1, opt2=2, ...){
+
+ \fbox[\blue[functionbody] ]
+
+ return(...)
+}
+\end{Verbatim}
+}
+Use the function:
+{\small
+\begin{verbatim}
+myfunction(1, 2)  myfunction(1, opt2=2)  myfunction(1)
+\end{verbatim}
+}
+% Back to \hyperlink{functions}{\beamerbutton{functions}}.

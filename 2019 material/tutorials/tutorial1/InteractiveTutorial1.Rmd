@@ -1,0 +1,513 @@
+---
+title: "Using R for Statistics in Medical Research"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(JM)
+library(memisc)
+library(foreign)
+pregdata <- read.spss('www/pregdata.sav',to.data.frame = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Practical Examples 
+
+### Load packages {data-progressive=TRUE}
+
+*It is important to load all necessery packages before starting.*
+
+ Load the `JM` and `memisc` package. Press the 'Run Code' button when you are done. Click the 'Solution' button when you want to see the answers.
+
+```{r loadPackages, exercise=TRUE, exercise.eval = TRUE}
+
+```
+
+<div style="color: blue; font-size: small">
+**NB:** Loading these packages does not generate any output. 
+</div>
+
+```{r loadPackages-solution}
+library(JM)
+library(memisc)
+```
+
+### Print data {data-progressive=TRUE}
+
+*Always check your data.*
+
+ Explore the pbc2.id and the pbc2 data sets (print the first six and last six rows). Again press the 'Run Code' button when you are done.
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the functions `head(...)` and `tail(...)` to investigate the data set. Replace the dots with the name of the data set.
+</div>
+
+```{r datasets, exercise = TRUE, exercise.lines = 5}
+
+```
+
+
+```{r datasets-solution}
+head(pbc2.id)
+head(pbc2)
+tail(pbc2.id)
+tail(pbc2)
+```
+
+
+
+
+### Basic questions {data-progressive=TRUE}
+
+ Calculate the mean and median age from the pbc2.id data set. 
+
+ 
+```{r datasets2, exercise = TRUE, exercise.lines = 3}
+
+```
+
+
+```{r datasets2-solution}
+mean(pbc2.id$age)
+median(pbc2.id$age)
+```
+
+ <div style="color: blue; font-size: small">
+**Hint:** Use the functions `mean(...)` and `median(...)` to investigate the data set. Replace the dots with the name of the data set and the variable name separated by a dollar sign. For example `mean(pbc2.id$age)`.
+</div>
+
+## QUIZ - Practical Examples 
+
+*Some questions have more than one correct answers.*
+
+```{r Q1 quiz}
+quiz(
+  question("The primary R system is available from the:",
+    answer("GNU"),
+    answer("GitHub"),
+    answer("CRAN", correct = TRUE),
+    answer("All of the above")
+  ),
+  question("Which program other do I need to install in order to use R?",
+    answer("None", correct = TRUE),
+    answer("Rstudio", message = "RStudio is very useful when you work with R. It is not absolutely required however."),
+    answer("RWinEdt"),
+    answer("Rstudio and WinEdt")
+  ),
+  question("The interface of Rstudio consists of several panes (sections of the program window). How many panes do we have at most (hint: This maximum is also the usual number that we see once we have opened an .R file.)",
+    answer("1"),
+    answer("2"),
+    answer("3"),
+    answer("4", correct = TRUE),
+    answer("5"),
+    answer("6"),
+    answer("More than 6")
+    ),
+  question("With which of the following functions can we load packages?",
+    answer("library()", correct = TRUE),
+    answer("install.packages()", message = "install.packages() can be used to install packages. You still need to load them using library() or require() however"),
+    answer("require()", correct = TRUE),
+    answer("None of the above")
+  )
+)
+```
+
+
+## Data Transformation and Exploration
+
+### Transformation {data-progressive=TRUE}
+
+*Sometimes data transformation is needed.*
+
+ Categorize serum bilirubin as low_val: [0.3 until 3.2) and high_val: [3.2 until 28]. Give this variable the name "serBilCat". Print the first 6 rows of the data:
+
+```{r serBilCat, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 3}
+
+```
+
+
+
+```{r serBilCat-solution}
+pbc2.id$serBilCat <- as.numeric(pbc2.id$serBilir >= 3.2)
+pbc2.id$serBilCat <- factor(pbc2.id$serBilCat, levels = c(0, 1), labels = c("low_val", "high_val"))
+head(pbc2.id)
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the function `factor(...)` to create a categorical variable. Use the function `as.numeric(...)` to convert a variable to a numeric variable. 
+</div>
+
+
+ Categorize serum bilirubin as low_val: [minimum serum Bilirubin until mean serum Bilirubin) and high_val: [mean serum Bilirubin until maximum serum Bilirubin). Give this variable the name "serBilCat2". Print the first 6 rows of the data:
+
+```{r serBilCat2, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 4}
+
+```
+
+
+
+```{r serBilCat2-solution}
+pbc2.id$serBilCat2 <- as.numeric(pbc2.id$serBilir >= mean(pbc2.id$serBilir))
+pbc2.id$serBilCat2 <- factor(pbc2.id$serBilCat2, levels = c(0, 1), labels = c("low_val", "high_val"))
+head(pbc2.id)
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the function `factor(...)` to create a categorical variable. Use the function `as.numeric(...)` to convert a variable to a numeric variable. 
+</div>
+
+
+ Categorize serum bilirubin as follows: <br>
+- low_val: [minimum serum Bilirubin until 2)<br>
+- med_val: [2 until 4)<br>
+- high_val: [4 until maximum serum bilirubin)<br> 
+Give this variable the name "serBilCat3". Print the first 6 rows of the data:
+
+```{r serBilCat3, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 4}
+
+```
+
+
+```{r serBilCat3-solution}
+pbc2.id$serBilCat3 <- cut(pbc2.id$serBilir, c(min(pbc2.id$serBilir), 2, 4, max(pbc2.id$serBilir)), right = FALSE)
+pbc2.id$serBilCat3 <- factor(pbc2.id$serBilCat3, levels = c("[0.3,2)", "[2,4)", "[4,28)"), labels = c("low_val", "med_val", "high_val"))
+head(pbc2.id)
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the function `factor(...)` to create a categorical variable. Use the function `cut(..., right = FALSE)` to convert a continuous variable to a categorical variable. If needed consult the documentation for the `cut` function using `?cut`.
+</div>
+
+
+ Check whether the variable "hepatomegaly" consists of missing values:
+
+```{r hepaMiss, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 2}
+
+```
+
+```{r hepaMiss-solution}
+sum(is.na(pbc2.id$hepatomegaly)) # or any(is.na(pbc2.id$hepatomegaly))
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the function `is.na(...)` to investigate if a vector has missing values.
+</div>
+
+
+### Exploration {data-progressive=TRUE}
+
+*Explore the data.*
+
+ Obtain the mean and sd for the follow-up years in females:
+
+```{r meanSDyearsF, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 2}
+
+```
+
+
+```{r meanSDyearsF-solution}
+mean(pbc2$years[pbc2$sex == "female"])
+sd(pbc2$years[pbc2$sex == "female"])
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the functions `mean(...), sd(...)` to obtain descriptive statistics. Take a subset of the data set using `pbc2$years[pbc2$sex == "female"]`.
+</div>
+
+
+ Obtain the median and interquartile range for age in 2 decimals:
+
+```{r medianIQRage, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 2}
+
+```
+
+
+```{r medianIQRage-solution}
+round(median(pbc2.id$age), digits = 2)
+round(IQR(pbc2.id$age), digits = 2)
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the functions `median(...), IQR(...)` to obtain descriptive statistics. Use the function `round(...)` to round a numerical variable.
+</div>
+
+
+ Obtain the mean and sd for the baseline serum bilirubin:
+
+```{r meanSDserBil, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 2}
+
+```
+
+
+```{r meanSDserBil-solution}
+mean(pbc2.id$serBilir)
+sd(pbc2.id$serBilir)
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the functions `mean(...), sd(...)` to obtain descriptive statistics.
+</div>
+
+
+ Obtain the percentage of drug and placebo:
+
+```{r percDrug, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 1}
+
+```
+
+
+```{r percDrug-solution}
+percent(pbc2.id$drug)
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the function `percent(...)` to obtain descriptive statistics. The function `percent` is part of the `memisc` package and has already been loaded.
+</div>
+
+
+
+## QUIZ - Data Transformation and Exploration
+
+*Some questions have more than one correct answers.*
+
+```{r Q2 quiz}
+quiz(
+  question("Which functions can we use to obtain the means and standard deviation:",
+    answer("mean(...) and sd(...)", correct = TRUE),
+    answer("Mean(...) and SD(...)"),
+    answer("mean_val(...) and Sd_val(...)"),
+    answer("The two first options")
+  ),
+  question("Which is a useful function to explore subset of data?",
+    answer("library(...)"),
+    answer("tapply(...)", correct = TRUE),
+    answer("percent(...)", correct = TRUE),
+    answer("combination of tapply(...) and functions such as mean(...)")
+  )
+)
+```
+
+## QUIZ -Data types
+
+In the next quiz you can test your knowledge about Rs data types.
+
+```{r Qdatatypes quiz}
+quiz( 
+question("Which of the following are Rs elementary data types (multiple answers are possible.)",
+    answer("numeric", correct= TRUE),
+    answer("vector"),
+    answer("character", correct=TRUE),
+    answer("logical", correct = TRUE)
+  ),
+   question('For which of the following objects all elements have to be of the same type? (multiple answers are possible.)',
+    answer("vector", correct= TRUE),
+    answer("list"),
+    answer("matrix", correct=TRUE),
+    answer("data.frame")
+  )
+)
+```
+
+## Indexing
+
+*Understanding how indexing works.*
+
+### Basic columns, rows and patients selection {data-progressive=TRUE}
+
+ Select the first row of the pbc2.id data set:
+
+```{r selectA, exercise=TRUE, exercise.lines = 2}
+
+```
+
+```{r selectA-solution}
+pbc2.id[1, ]
+```
+
+ Select the first column of the pbc2.id data set:
+
+```{r selectB, exercise=TRUE, exercise.lines = 2}
+
+```
+
+```{r selectB-solution}
+pbc2.id[, 1]
+```
+
+
+ Select column "id" from the pbc2.id data set:
+
+```{r selectC, exercise=TRUE, exercise.lines = 1}
+
+```
+
+```{r selectC-solution}
+pbc2.id["id"] # OR pbc2.id[["id"]] OR pbc2.id[,"id"]
+```
+
+
+ Select only the patients that received the active treatment from the pbc2.id data set:
+
+```{r selectD, exercise=TRUE, exercise.lines = 1}
+
+```
+
+```{r selectD-solution}
+pbc2.id[pbc2.id$drug == "D-penicil", ]
+```
+
+### fFurther questrions about indexing {data-progressive=TRUE}
+
+ Select the sex of the 10th patient:
+
+```{r select1, exercise=TRUE, exercise.lines = 1}
+
+```
+
+```{r select1-solution}
+pbc2.id$sex[10]
+```
+
+ Select the baseline details of the 5th patient:
+
+```{r select2, exercise=TRUE, exercise.lines = 1}
+
+```
+
+```{r select2-solution}
+pbc2.id[5, ]
+```
+
+ Select the serum cholesterol values for all males (use the long format data set):
+
+```{r select3, exercise=TRUE, exercise.lines = 1}
+
+```
+
+```{r select3-solution}
+pbc2$serChol[pbc2$sex == "male"]
+```
+
+ Select only the baseline details for females:
+
+```{r select4, exercise=TRUE, exercise.lines = 1}
+
+```
+
+```{r select4-solution}
+pbc2.id[pbc2.id$sex == "female", ]
+```
+
+ Select the age for patients that have serum bilirubin more than 2 (use the short format data set):
+
+```{r select5, exercise=TRUE, exercise.lines = 1}
+
+```
+
+```{r select5-solution}
+pbc2.id$age[pbc2.id$serBilir > 2]
+```
+
+ Select the follow-up years for female patients that have serum bilirubin more than 1 at the end of the study:
+
+```{r select6, exercise=TRUE, exercise.lines = 1}
+
+```
+
+```{r select6-solution}
+pbc2.id$years[pbc2.id$serBilir > 1 & pbc2.id$sex == "female"]
+```
+
+ Select patients that have no missing values in serum cholesterol at the end of the study:
+
+```{r select7, exercise=TRUE, exercise.lines = 1}
+
+```
+
+```{r select7-solution}
+pbc2.id[!is.na(pbc2.id$serChol), ]
+```
+
+### Indexing using sequences {data-progressive=TRUE}
+
+ Create a vector x that takes values from -20 to 10 with step 1. Select a) the elements of x that are larger than 0 and smaller or equal than 8 and b) the elements of x that are larger than 5 or smaller than -5:
+
+
+```{r select8, exercise=TRUE, exercise.lines = 3}
+
+```
+
+```{r select8-solution}
+x <- -20:10
+x[x > 0 & x <= 8]
+x[x > 5 | x < -5]
+```
+
+
+
+ Create a vector x that takes values from -20 to 10 with step 1. Select all the elements that are not zero:
+
+
+```{r select9, exercise=TRUE, exercise.lines = 2}
+
+```
+
+```{r select9-solution}
+x <- -20:10
+x[x != 0]
+```
+
+ Create a matrix with the name mat that takes values from 1 to 6 with the first column as c(1, 2, 3). Select a) the first and second rows and b) the first and second columns:
+
+
+```{r select10, exercise=TRUE, exercise.lines = 3}
+
+```
+
+```{r select10-solution}
+mat <- matrix(1:6, 3, 3)
+mat[1:2, ]
+mat[ , 1:2]
+```
+
+ Create a vector x that takes values from -20 to 10 with step 1.  Create a matrix with the name mat that takes values from 1 to 6 with the first column as c(1, 2, 3). Create a list (with the name myList) that included as elements the vector x and the matrix mat. Select a) the first element of the list and b) the first and second columns from the second element of the list:
+
+
+```{r select11, exercise=TRUE, exercise.lines = 5}
+
+```
+
+```{r select11-solution}
+x <- -20:10
+mat <- matrix(1:6, 3, 3)
+myList <- list(x, mat)
+myList[[1]]
+myList[[2]][, 1:2]
+```
+
+## QUIZ - Indexing
+
+*Some questions have more than one correct answers.*
+
+```{r Q3 quiz}
+quiz(
+  question("How can we select the first row and first column of the pbc2.id data set?",
+    answer("pbc2.id[c(1,2), ]"),
+    answer("pbc2.id[1, 1]", correct = TRUE),
+    answer("pbc2.id[[c(1,2)]]"),
+    answer("pbc2.id[[1]][1]", correct = TRUE)
+  ),
+  question("Which of the following code will print the age of the patients that received the placebo?",
+    answer("pbc2.id[pbc2.id$drug == \"placebo\", 5]", correct = TRUE),
+    answer("pbc2.id$age[pbc2.id$drug == \"placebo\"]", correct = TRUE),
+    answer("pbc2.id[pbc2.id$drug == \"placebo\", \"age\"]", correct = TRUE),
+    answer("pbc2.id[[\"age\"]][pbc2.id$drug == \"placebo\"]", correct = TRUE)
+  )
+)
+```

@@ -1,0 +1,286 @@
+% !TeX spellcheck = en_US
+% !TeX program = lualatex
+\documentclass[14pt, aspectratio=169, sectionpage=simple, xclolor=table]{beamer}
+\usetheme{emctria}
+\usepackage{colortbl}
+\usepackage{fancyvrb}
+\usepackage[autostyle]{csquotes}
+\usetikzlibrary{calc,fadings,shapes.arrows,shadows,backgrounds, positioning}
+\input{macros.tex}
+
+
+\title{Using R for Statistics in \\ Medical Research}
+\author{{\large \textbf{Elrozy Andrinopoulou}}\\
+	\small{\texttt{e.andrinopoulou@erasmusmc.nl}} \vspace*{1ex} \\
+	\and 
+	{\large 	\textbf{Sten Willemsen}}\\
+	\small{\texttt{s.willemsen@erasmusmc.nl}}}
+\institute{Department of Biostatistics, Erasmus University Medical Center}
+
+\newenvironment{code12}%
+{\par\noindent\adjustbox{margin=1ex,bgcolor=emclblue,margin=0ex \medskipamount}\bgroup\verbatim}%
+{\endverbatim\egroup}
+
+\begin{document}
+	
+	%\subtitle{}
+	%\logo{}
+	%\institute{}
+	%\date{}
+	%\subject{}
+	%\setbeamercovered{transparent}
+	%\setbeamertemplate{navigation symbols}{}
+	
+\begin{titleframe}
+\end{titleframe}
+%======================================================
+%======================================================
+\section{Practical 1}
+%======================================================
+\begin{frame}{Practical 1.1}
+\begin{itemize}
+\item Create 2 vectors of size 50
+\begin{itemize}
+\item Sex: takes 2 values 0 and 1 (hint: use \code{sample()})
+\item Age: takes values from 20 till 80 (hint: use \code{sample()} to sample from 20:80)
+\item convert \enquote{Sex} to a factor with levels 0: \enquote{female} and 1: \enquote{male}
+\item define the new variable \enquote{AgeCat} as dichotomous with \enquote{Age}$<=$50 to be 0 and 1 otherwise
+\item convert \enquote{AgeCat} to a factor with levels 0: \enquote{young} and 1: \enquote{old}
+\item overwrite \enquote{Age} variable by $\frac{Age-mean(Age)}{sd(Age)}$
+\end{itemize}
+\end{itemize}
+\mbox{\redbf{Save your code}}
+\end{frame}
+
+\begin{frame}{Practical 1.2}
+\begin{itemize}
+\item Create a data.frame with the name \enquote{DF}
+\begin{itemize}
+\item including the following vectors: \enquote{Sex,} \enquote{Age}, \enquote{AgeCat}
+\item with names: \enquote{Gender}, \enquote{StandardizedAge}, \enquote{DichotomousAge}
+\item What are the dimensions of the data.frame (hint: use \code{dim()})?
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Practical 1.2.1 \redbf{-extra}}
+\begin{itemize}
+\item Create 2 vectors of size 150
+\begin{itemize}
+\item Treatment: takes 2 values 1 and 2
+\item Weight: takes values from 50 till 100
+\item convert \enquote{Treatment} to a factor with levels 1: \enquote{no} and 2: \enquote{yes}
+\item overwrite \enquote{Weight} variable by \enquote{Weight}$*1000$
+\item create a data.frame including \enquote{Treatment} and \enquote{Weight}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Practical 1.2.2 \redbf{-extra}}
+\begin{itemize}
+\item Create a list called \enquote{my\_list} with the following:
+\begin{itemize}
+\item let: \enquote{$a$} to \enquote{$i$} (hint: use \code{letters})
+\item mat: matrix $\binom{1\hspace{0.4cm}2}{3\hspace{0.3cm}4}$
+\item sex: factor taking the values \enquote{males} and \enquote{females} and length 50
+\end{itemize}
+\end{itemize}
+\end{frame}
+%======================================================
+\section{Practical 2}
+%======================================================
+\begin{frame}{Practical 2.1}
+\begin{itemize}
+\item Using the data.frame \enquote{DF} from Practical 1
+\begin{itemize}
+\item calculate the mean of the variable \enquote{StandardizedAge}
+\item calculate the standard deviation of the variable \enquote{StandardizedAge}
+\item calculate the frequencies of the variable \enquote{Gender} (hint: use function  \code{length()} or \code{table()})
+\item calculate the frequencies of the variable \enquote{DichotomousAge}
+\end{itemize}
+\end{itemize}
+\end{frame}
+%======================================================
+\begin{frame}{Practical 2.2}
+\begin{itemize}
+\item Using the data.frame \enquote{DF} from Practical 1
+\begin{itemize}
+\item calculate the mean of the variable \enquote{StandardizedAge} for males and females
+\item show the crosstab including \enquote{Gender} and \enquote{DichotomousAge} (hint: use function \code{table()})
+\item select all males that are young
+\item select all females or old patients
+\end{itemize}
+\end{itemize}
+\end{frame}
+%======================================================
+\begin{frame}{Practical 2.2.1 \redbf{-extra}}
+\begin{itemize}
+\item Using the data.frame \enquote{DF} from Practical 1
+\begin{itemize}
+\item calculate the median of the variable \enquote{StandardizedAge}
+\item calculate the median of the variable \enquote{StandardizedAge} for males and females
+\item show the 2nd column of DF
+\end{itemize}
+\end{itemize}
+\end{frame}
+%======================================================
+\section{Practical 3}
+%=====================================
+\begin{frame}{Practical 3.1}
+\begin{itemize}
+\item Create a function with the name \enquote{Descriptives} that
+\begin{itemize}
+\item takes as values 2 vectors
+\item calculates the min, median, max, mean, sd and length of both vectors
+\item returns a matrix where rows indicate the statistic and columns the vectors (hind: to name the rows of the matrix use \code{rownames()})
+\end{itemize}
+\item Use the function for the following vectors
+\begin{itemize}
+\item vec1: sample \enquote{age} from 20 till 80 and with n = 100
+\item vec2: sample \enquote{weight} from 60 till 100 and with n = 200
+\end{itemize}
+\end{itemize}
+\end{frame}
+%======================================================
+\begin{frame}{Practical 3.1.1 \redbf{-extra}}
+\begin{itemize}
+\item Create a function with the name \enquote{Summaries} that
+\begin{itemize}
+\item takes as value a data.frame that includes 2 columns: 1st categorical, 2nd continuous
+\item calculates the mean and median per group (variable in 1st column) for the variable in the 2nd column
+\item returns a matrix where rows indicate the mean/median and columns the groups
+\end{itemize}
+\item Use the function for the data.frame that includes the following
+\begin{itemize}
+\item vec1: sample \enquote{age} from 20 till 80 and with n = 100
+\item vec2: sample \enquote{sex} takes 0 and 1, with n = 100 (convert also to a factor)
+\end{itemize}
+\end{itemize}
+\end{frame}
+%======================================================
+\section{Practical 4}
+%======================================================
+\begin{frame}{Practical 4.1}
+\begin{itemize}
+\item Import the spss dataset: Cancer.sav
+\begin{itemize}
+\item we are interested in testing if there is a difference in the average age between the 2 treatment groups (t-test)
+\item we obtained the result, but it was nowhere saved! Save the result of the t-test in an object named 'res' for post processing
+\item using indexing extract the p-value
+\item using indexing extract the 95\% CI
+\end{itemize}
+\end{itemize}
+\end{frame}
+%======================================================
+\begin{frame}{Practical 4.2}
+\begin{itemize}
+\item We want to save those results for reporting in our paper. Create a data.frame with the name \enquote{Restest}, with columns
+\begin{itemize}
+\item mean1: mean for TRT = 0
+\item mean2: mean for TRT = 1
+\item diffres: difference of the means
+\item lowCI: lower limit of confidence interval
+\item upCI: upper limit of confidence interval
+\item pVal: p-value of the test
+\end{itemize}
+\end{itemize}
+\end{frame}
+%======================================================
+\begin{frame}{Practical 4.3}
+\begin{itemize}
+\item Using the dataset: Cancer.sav
+\begin{itemize}
+\item create a dichotomous variable for \enquote{WEIGHIN}: 0 if \enquote{WEIGHIN} $<$ mean(\enquote{WEIGHIN}) and 1 otherwise. Use the name \enquote{WEIGHINcat}
+\item perform a t-test comparing \enquote{AGE} between the \enquote{TRT} groups
+\item perform a t-test comparing \enquote{AGE} between the \enquote{WEIGHINcat} groups
+\item create a vector with the name \enquote{results}, including the p-values of the above tests
+\item calculate the significance level after the bonferroni correction. Use the name \enquote{bonf.corr\_alpha}
+\item using an if statement, print whether the null hypothesis is rejected or not
+\end{itemize}
+\end{itemize}
+\end{frame}
+%======================================================
+\begin{frame}{Practical 4.4}
+\begin{itemize}
+\item Using the Cancer.sav dataset
+\begin{itemize}
+\item perform a regression analysis with dependent variable: WEIGHIN and independent: TRT - use the name fm1
+\item perform a regression analysis with dependent variable: WEIGHIN and independent: TRT + STAGE - use the name fm2
+\item compare the 2 models
+\item perform a regression analysis with dependent variable: WEIGHIN and independent: TRT + STAGE + AGE - use the name fm3
+\item include an interaction term of AGE and STAGE in the previous model - use the name fm4
+\end{itemize}
+\end{itemize}
+\end{frame}
+%======================================================
+\begin{frame}{Practical 4.5}
+\begin{itemize}
+\item Using the Cancer.sav dataset
+\begin{itemize}
+\item create a function with the name \enquote{Pred} that takes as values: the treatment, stage and age of a new patient and returns the predicted weight using model fm4
+\begin{itemize}
+\item[-] Predict the weight of a new patient: treatment = 1, stage = 2 and age = 77
+\end{itemize}
+\item plot the weight vs the age per treatment group (xyplot with 2 figures). The x-axis will have the name \enquote{age}, the y-axis will have the name \enquote{weight} and the main title will be \enquote{weight vs age}
+\end{itemize}
+\end{itemize}
+\end{frame}
+%======================================================
+\begin{frame}{Practical 4.5.1 \redbf{-extra}}
+\begin{itemize}
+\item Create the following vectors of size 100
+\begin{itemize}
+\item sex: takes 2 values 1 and 2
+\item tr: takes 4 values 1 to 4
+\item score: normal distribution with mean 20 and sd 5
+\end{itemize}
+\item Create boxplots of score per sex and tr groups
+\item Replace the above vectors using n = 20 instead of 100
+\item Create new boxplots of score per sex and tr groups
+\item What can you say about the distrubution?
+\end{itemize}
+\end{frame}
+%======================================================
+\begin{frame}{Practical 4.5.2 \redbf{-extra}}
+\begin{itemize}
+\item Using the Cancer.sav dataset
+\begin{itemize}
+\item what is the Pearson correlation between \enquote{WEIGHIN} and \enquote{AGE}?
+\item perform the test, what is hypothesis and the decision?
+\item create a scatterplot to support your findings
+\item create a boxplot and investigate the col argument
+\end{itemize}
+\end{itemize}
+\end{frame}
+%======================================================
+\section{Practical 5}
+%======================================================
+\begin{frame}{Practical 5.1}
+\begin{itemize}
+\item Using the Cancer.sav dataset, create a function \enquote{uniRegr} that
+\begin{itemize}
+\item takes a data.frame and a vector with the names of the independent covariates as c(\enquote{ }, \enquote{ }, \enquote{ }, \dots)
+\item performs univariable regression analysis of the outcome:\enquote{WEIGHIN} and each covariate (hint: use \code{as.formula()} and \code{paste()})
+\item returns the estimate, std error and the p-values as a data.frame
+\end{itemize}
+\item Using the Cancer.sav dataset, perform univariable regression analysis using the covariates \enquote{AGE}, \enquote{STAGE} and \enquote{TRT}
+\item Save the results as \enquote{results\_regr}
+\end{itemize}
+\end{frame}
+%======================================================
+\begin{frame}{Practical 5.1.1 \redbf{-extra}}
+\begin{itemize}
+\item Using the Cancer.sav dataset, create a function \enquote{uniLogRegr} that
+\begin{itemize}
+\item takes a data.frame and a vector with the names of the independent covariates as c(\enquote{ }, \enquote{ }, \enquote{ }, \dots)
+\item performs univariable \bluebf{logistic} regression analysis of the outcome:\enquote{TRT} and each covariate (hint: use \code{as.formula()} and \code{paste()})
+\item returns the estimate, std error and the p-values as a data.frame
+\end{itemize}
+\item Using the Cancer.sav dataset, perform univariable logistic regression analysis using the covariates \enquote{AGE}, \enquote{STAGE} and \enquote{WEIGHIN}
+\item Save the results as \enquote{results\_log\_regr}
+\end{itemize}
+\end{frame}
+
+
+\label{einde document}
+\end{document}

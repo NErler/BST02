@@ -1,0 +1,737 @@
+---
+title: "Using R for Statistics in Medical Research"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(JM)
+library(memisc)
+library(foreign)
+#data("pain", package = "BST02R")
+pain <- readRDS('www/pain.Rds' )
+pregdata <- read.spss('www/pregdata.sav',to.data.frame = TRUE, max.value.labels=8, stringsAsFactors=FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+## Descriptive statistics
+
+In the next couple of question we will examine a data set called `pregdata`. It is loaded and available at the beginning of this excersize. To get to know the contents of this data set. Look at the first couple of observations (using e.g. pregdata[1:4,] or the head function).
+
+```{r, eval = TRUE, echo = FALSE, results = 'asis'}
+cat(
+# <p style="border:1px; border-style:solid; padding: 1em; border-color:#D11450">
+# **NB:**
+'- In practice we have to load a data set before we can use it. The way in which we can do this depends on the format of the data set. It it is an SPSS data set we can use the `read.spss()` function from the `foreign` package.
+ - In RStudio we can also inspect the contents of a data set using the`View()` function
+ - Press the hint button if you need help. The last hint reveals the answer.'
+# </p>
+)
+```
+
+
+```{r headpregdata, exercise = TRUE}
+# Inspect the first few observations
+
+```
+
+```{r headpregdata-hint-1}
+# Read the question again and fill in the dots of either line below.
+pregdata[...,]
+head(...)
+
+```
+
+```{r headpregdata-hint-2, echo=FALSE}
+pregdata[1:4,]
+head(pregdata)
+```
+
+If we just want to know the variable names of the variables in the `data.frame` we can also use the function `names()`. If we also want to know about the variables typeswe can use the function `str()`. PLease try this out yourself.
+
+
+```{r namespregdata, exercise = TRUE}
+# which variables are in the data set?
+
+```
+
+```{r namespregdata-hint-1}
+# Read the question again and fill in the dots of either line below.names(...)
+str(...)
+
+```
+
+```{r namespregdata-hint-2}
+names(pregdata)
+str(pregdata)
+```
+
+### Mean and standard deviation
+
+We will now examine the BMI of the mothers (the variable is called `BMI_Mo`). Let's store the BMIs in a separate variable using the statement `bmi <- pregdata$BMI_Mo`. We can check the number of observations in this vector using the function `length()`.
+
+
+```{r bmipregdata, exercise = TRUE}
+# Try it out yourself
+
+```
+
+
+```{r bmipregdata-solution, solution = TRUE}
+bmi <- pregdata$BMI_Mo
+length(bmi)
+```
+
+Using the function `mean()` we can compute the mean of the vector (i.e. of the BMIs). In the same way  the function `sd()` gives us the standard deviation. Try it out.  
+
+```{r prepare-meanpregdata}
+bmi <- pregdata$BMI_Mo
+```
+
+
+```{r meanpregdata, exercise = TRUE, exercise.setup="prepare-meanpregdata" }
+# Compute the mean and the standard deviation of the BMIs
+```
+
+```{r meanpregdata-hint-1}
+# Read the question again and fill in the dots of either line below.names(...)
+mean(...) # compute the mean
+sd(...) # compute the standard deviation
+
+```
+
+```{r meanpregdata-hint-2}
+mean(bmi) # compute the mean
+sd(bmi) # compute the standard deviation
+```
+
+Note that you can read the documentation on any function Using the function `help`. For example `help('sd')` gives you the documentation on the `sd` function.
+
+Actually it is not really needed to make a new variable  we also could have directly used `mean(pregdata$BMI_Mo)` and `sd(pregdata$BMI_Mo)`. Do this yourself below. Also do this for the age of the mother (`AgeMother`).
+
+```{r prepare-meanpregdata2}
+bmi <- pregdata$BMI_Mo
+```
+
+
+```{r meanpregdata2, exercise = TRUE, exercise.setup="prepare-meanpregdata2" }
+# compute the mean and sd of bmi and age without making extra variables
+
+```
+
+```{r meanpregdata2-hint-1}
+
+mean(pregdata$BMI_Mo) # mean
+sd(pregdata$BMI_Mo) # sd
+mean(...)
+sd(...)
+```
+
+```{r meanpregdata2-hint-2}
+mean(pregdata$BMI_Mo) # mean
+sd(pregdata$BMI_Mo) # sd
+mean(pregdata$AgeMother)
+sd(pregdata$AgeMother)
+```
+
+
+### A selection
+
+We will now focus on mothers that give birth to a boy. Make the selection using: 
+`sel <- pregdata[pregdata$Sex=='2=boy',].`
+
+
+
+```{r selpregdata, exercise = TRUE, exercise.setup="prepare-meanpregdata" }
+
+```
+
+
+```{r selpregdata-solution, solution = TRUE}
+sel <- pregdata[pregdata$Sex=='2=boy',]
+```
+
+How many mothers are included in this selection. Wat is their average age?
+
+
+```{r prepare-selmeanpregdata}
+bmi <- pregdata$BMI_Mo
+sel <- pregdata[pregdata$Sex=='2=boy',]
+```
+
+
+```{r selmeanpregdata, exercise = TRUE, exercise.setup="prepare-selmeanpregdata" }
+
+```
+
+```{r selmeanpregdata-hint-1}
+
+length(...) # or use nrow or dim()
+mean(...) 
+
+```
+
+```{r selmeanpregdata-hint-2}
+length(sel$AgeMother) # or use nrow or dim()
+mean(sel$AgeMother) 
+
+```
+
+### Minimum, Maximum and median
+
+What are the  minimum, the maximum and the median BMI of the women that give birth to a girl? Use the functions `min`, `max` and `median`.
+
+
+```{r minmaxmedianpregdata, exercise = TRUE, exercise.setup="prepare-selmeanpregdata" }
+
+```
+
+```{r minmaxmedianpregdata-hint-1 }
+#sel <- pregdata[pregdata$Sex==...,]
+#min(...)
+#max(...)
+#median(...)
+```
+
+
+```{r minmaxmedianpregdata-hint-2}
+sel <- pregdata[pregdata$Sex=='1=girl',]
+min(sel[,'BMI_Mo'])
+max(sel[,'BMI_Mo'])
+median(sel[,'BMI_Mo'])
+```
+
+## Sorting
+
+### Sorting a vector
+
+To sort a vector in R you can use the function `sort`. Use `decreasing = TRUE` to sort in reverse order. Try sorting the BMIs in `pregdata`.
+
+```{r sorting1, exercise.setup="prepare-selmeanpregdata" }
+
+```
+
+
+```{r sorting1-solution}
+sort(pregdata$BMI_Mo)
+```
+
+### Sorting a data.frame
+
+Sorting a `data.frame` is slightly more complicated. We need to use the function `order`. The result of this function is a permutation that, when used as an index, puts the data.frame in the correct order. Try out what the function `order` does using `pregdata` below
+
+
+```{r sorting2, exercise.setup="prepare-selmeanpregdata", exercise=TRUE}
+o <- order(pregdata$BMI_Mo)
+print(o)
+sorted <- pregdata[o, ]
+head(sorted)
+tail(sorted)
+```
+
+The function sort can also be used on multiple columns. Try sorting `pregdata` on ethnicity (`MoWestern`) and Sex.
+
+```{r sorting3, exercise.setup="prepare-selmeanpregdata", exercise=TRUE}
+
+```
+
+
+```{r sorting3-solution, exercise.setup="prepare-selmeanpregdata"}
+o <- order(pregdata$MoWestern, pregdata$Sex)
+sorted <- pregdata[o, ]
+head(sorted)
+tail(sorted)
+
+```
+
+### ranking
+
+A function that is related to `order` is `rank`. This function gives the sample ranks of an input vector. So 1 for the smallest element, 2 for the next smallest and so on. See if you understand the next example
+
+```{r sorting4, exercise.setup="prepare-selmeanpregdata", exercise=TRUE}
+
+rank(c(8,5,4,2))
+
+```
+
+Now use the `rank` function to find the sample rank of the age of the first mother in the `pregdata` data set.
+
+```{r sorting5, exercise.setup="prepare-selmeanpregdata", exercise=TRUE}
+
+
+
+```
+
+```{r sorting5-solution}
+
+rank(pregdata$AgeMother)[1]
+
+```
+
+## Sequences
+
+If you have to enter a vector with many elements working with `c` becomes tiresome. However if the values follow a  (regular) sequence it is onteneasy to create them by using the function `seq`.
+
+```{r seq1, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 5}
+seq(1, 10)
+seq(1, 10, by = 2)
+seq(1, 10, length.out = 5)
+2:5   # same as seq(2,5)
+```
+
+Let's use a sequence to plot a function. create a sequence of length 100 from -5 to to 5 and call this x. Now calculate sin(x) and call this y. Finally plot x vs y.
+
+```{r seq2,  exercise=TRUE, exercise.eval=TRUE, exercise.lines = 5}
+# Calculate x and y as described above
+# plot(x=x, y=y)
+```
+
+
+```{r seq2-solution}
+# Calculate x and y as described above
+x <- seq(-5, 5, length.out = 100)
+y <- sin(x)
+plot(x=x, y=y)
+```
+
+We will discuss plots in more detail later on in the course.
+
+When you want to repeat a vector multiple times the `rep` function can help. Try it out below.
+
+```{r seq3, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 5}
+rep(c('Active', 'Control'), times=4)
+rep(c('Active', 'Control'), length.out=6)
+rep(c('Active', 'Control'), each=5)
+rep(c('Active', 'Control'), c(1,3))
+```
+
+
+## Working with text data
+
+In this course we mainly work with numerical data (or factors). Sometimes however, we also have to work with text data (type `character` in R, also sometimes called 'strings'). When you want to combine `character` variables you can use the `paste` or `paste0` functions.
+
+
+```{r text1, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 5}
+paste(c('foo', 'bar'), c('A', 'B'))
+paste(c('foo', 'bar'), c('A', 'B'), sep='-')
+paste(c('foo', 'bar'), c('A', 'B'), sep='-', collapse = '_')
+paste0(c('foo', 'bar'), c('A', 'B'))
+```
+
+When you want to extract some of the characters of a `character` variable you can use the `substr` or `strsplit` functions.
+
+
+
+```{r text2, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 5}
+substr(c('foo-delete this', 'bar-this should be removed'), start=1, stop=3)
+strsplit(c('foo-delete this', 'bar-this should be removed'),split = '-')
+```
+
+Now use the `substr` function together with `as.numeric` to convert the patient id variable of `pregdata` to numeric format.
+
+```{r text3, exercise=TRUE, exercise.lines = 5}
+
+```
+
+
+```{r text3-solution}
+pregdata$newid <- as.numeric(substr(pregdata$id,3,5))
+```
+
+If you need to work a lot with `character` data, take a look at the `stringr` library.
+
+## Statistical distributions
+
+If you want to generate random normally distributed numbers (for example for a statistical simulation) you can use the function `rnorm`. Try it out yourself.
+
+```{r statdist1, exercise=TRUE}
+rnorm(5)
+x <- rnorm(1000)
+mean(x)
+sd(x)
+x <- rnorm(1000, mean = 8, sd = 2)
+mean(x)
+sd(x)
+```
+
+In the same way we can generate data from other statistical distributions using e.g. `rt`, `rbinom`, `rpois`, `rchisq`, etc...
+
+```{r statdist2, exercise=TRUE}
+rt(5, df=3)
+rbinom(5, size = 1, prob = 0.4)
+rbinom(5, size = 5, prob = 0.4)
+```
+
+Besides these function for generating random numbers. R also contains functions for the, density cumulative distribution and quantile functions for these distributions. Here the r at the beginning of the function names needs to be replaced by 'd', 'p' and 'q' respectively. 
+
+Use the qnorm function to find the 95th percentile of the normal distribution
+
+```{r statdist3, exercise=TRUE}
+
+
+```
+
+```{r statdist3-hint-1}
+qnorm(p=)
+
+```
+
+```{r statdist3-hint-2}
+qnorm(p=0.95) 
+
+```
+
+The probability of the number of 'heads' on n coin tosses with a fair coin can be calculated using the binomial probability withparameter `prob` set to 0.5.
+Now try to use the `dbinom` function to find the probability of 2 heads in 4 tosses. Use `?binom` if needed.
+
+```{r statdist4, exercise=TRUE}
+
+
+```
+
+```{r statdist4-hint-1}
+dbinom(x = , prob = , size = )
+
+```
+
+```{r statdist4-hint-2}
+dbinom(x =2 , prob =0.5 , size = 4)
+
+```
+
+
+## Creating your own functions
+
+We want to create a function that takes a data frame as input and selects all rows for which a certain variable ('age' by default) inside the data set is above a cutoff value (65 by default).
+
+Complete the function:
+```{r P1, exercise=TRUE, exercise.lines = 16, eval=FALSE}
+myfn <-
+function(dataset, varname='age', cutoff=65){
+
+  return(rv)  
+}
+myfn(pain, 'age')
+```
+
+```{r P1-hint-1}
+myfn <-
+function(dataset, varname='age', cutoff=65){
+  rv <- dataset[..., ]  # figure out what should be on the ...
+  return(rv)
+}
+myfn(pain, 'age')
+```
+```{r P1-hint-2}
+myfn <-
+function(dataset, varname='age', cutoff=65){
+  rv <- dataset[dataset[,...]>..., ]  
+  # figure out what should be on the ...
+  return(rv)
+}
+myfn(pain, 'age')
+```
+
+
+```{r P1-hint-3}
+# Use:
+myfn <- 
+function(dataset, varname='age', cutoff=65){
+  rv <- dataset[dataset[,varname] > cutoff , ]
+  return(rv)
+}
+```
+
+
+## Loop, Apply, Merge
+
+*Understanding how loops, apply, merge work.*
+  
+### Basic loops {data-progressive=TRUE}
+  
+ Implement a simple version of guess the number game using a while loop. The user should guess a number between 1 and 10. The loop should stop if the user guesses 5. Print all the numbers:
+
+
+```{r ex1loop, exercise=TRUE, exercise.lines = 5}
+
+```
+
+```{r ex1loop-solution}
+x <- sample(1:10, 1)
+while (x != 5){
+  x <- sample(1:10, 1)
+  print(x)
+}
+```
+
+<div style="color: blue; font-size: small">
+**Hint:**  Use the function `while(...)`. To print use the function `print(...)`.
+</div>
+  
+ Use a for loop to simulate the flip a coin twenty times, keeping track of the individual outcomes (1 = heads, 0 = tails) in a vector that you preallocate (y):
+  
+  
+  
+```{r ex2loop, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 4}
+
+```
+
+```{r ex2loop-solution}
+y <- numeric(20)
+for (i in 1:20) {
+  y[i] <- sample(0:1, 1)
+}
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** To preallocate use the function `numeric(...)`. To sample use the function `sample(...)`.
+</div>
+  
+  
+ Write a while loop that prints out standard random normal numbers but stops if you get a number bigger than 1. Print all the numbers:
+  
+  
+```{r ex3loop, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 5}
+
+```
+
+```{r ex3loop-solution}
+x <- rnorm(1)
+while(x <= 1) {
+  x <- rnorm(1)
+  print(x)
+}
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** To sample a normal number use the function `rnorm(...)`. Use the function `print(...)` to print.
+</div>
+  
+### Apply family {data-progressive=TRUE}
+  
+ Create the matrix `dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))` and find the row means of dataset1:
+  
+  
+```{r apply1, exercise=TRUE, exercise.lines = 2}
+
+```
+
+
+```{r apply1-solution}
+dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))
+apply(dataset1, 1, mean)
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the `apply(...)` function.
+</div>
+
+
+
+ Create the matrix `dataset2 <- data.frame(A = 1:30, B = sample(1:100, 30), C = sample(0:1, 30, replace = TRUE))` and find the mean of variable A per group (indicated in the C column) of dataset2:
+
+
+```{r apply2, exercise=TRUE, exercise.lines = 2}
+
+```
+
+
+```{r apply2-solution}
+dataset2 <- data.frame(A = 1:30, B = sample(1:100, 30), C = sample(0:1, 30, replace = TRUE))
+tapply(dataset2$A, dataset2$C, mean)
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the `tapply(...)` function.
+</div>
+
+
+
+ Create a list with the name myList2 which consists of four matrices as given below. Extract the second column from each element (from each single matrix) : <br>
+<font face = "Courier" size = "3">first = matrix(38:67, 3)<br>
+  second = matrix(56:91, 3)<br>
+  third = matrix(82:147, 3)<br>
+  fourth = matrix(46:95, 5)<br>
+  myList2 = list(first, second, third, fourth)</font><br>
+
+  
+  
+```{r apply3, exercise=TRUE, exercise.lines = 6}
+
+```
+
+
+```{r apply3-solution}
+first = matrix(38:67, 3)
+second = matrix(56:91, 3)
+third = matrix(82:147, 3)
+fourth = matrix(46:95, 5)
+myList2 = list(first, second, third, fourth)
+lapply(myList2,"[", , 2)
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the `lapply(...)` function.
+</div>
+
+
+
+ Create the following function `DerivativeFunction <- function(x) {log10(x) + 10}`. Apply the "DerivativeFunction" to `dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))`, with simplified output:
+  
+```{r apply4, exercise=TRUE, exercise.lines = 3}
+
+```
+
+
+```{r apply4-solution}
+DerivativeFunction <- function(x) {log10(x) + 10}
+dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))
+sapply(dataset1, DerivativeFunction)
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the `sapply(...)` function.
+</div>
+
+
+
+ Create the following function `DerivativeFunction <- function(x) {log10(x) + 10}`. Apply the "DerivativeFunction" to `dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))`. The output should be a list:
+  
+```{r apply5, exercise=TRUE, exercise.lines = 3}
+
+```
+
+
+```{r apply5-solution}
+DerivativeFunction <- function(x) {log10(x) + 10}
+dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))
+lapply(dataset1, DerivativeFunction)
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the `lapply(...)` function.
+</div>
+
+
+
+
+### Merge examples {data-progressive=TRUE}
+
+ Assuming the following data sets:<br>
+<font face = "Courier" size = "3">
+  Patients <- data.frame(id = c(1, 1, 1, 2, 2, 3), time = c(0, 1, 2, 0, 1, 0), blood_value = c(30, 55, 34, 13, 62, 87)) <br>
+  Hospital <- data.frame(id = c(1, 2, 3), hosp = c("EMC", "LUMC", "VUMC"))
+</font><br>
+ Merge the columns of the two data frames by the id variable:
+  
+```{r merge1, exercise=TRUE, exercise.lines = 3}
+
+```
+
+
+```{r merge1-solution}
+Patients <- data.frame(id = c(1, 1, 1, 2, 2, 3), time = c(0, 1, 2, 0, 1, 0), blood_value = c(30, 55, 34, 13, 62, 87))
+Hospital <- data.frame(id = c(1, 2, 3), hosp = c("EMC", "LUMC", "VUMC"))
+merge(Patients, Hospital)
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** Use the `merge(...)` function.
+</div>
+
+
+ Assuming the following datasets:<br>
+<font face = "Courier" size = "3">
+  Patients <- data.frame(id = c(1, 1, 1, 2, 2, 3), time = c(0, 1, 2, 0, 1, 0), blood_value = c(30, 55, 34, 13, 62, 87)) <br>
+  Hospitals <- data.frame(id = c(1, 1, 3, 3), hosp = c("EMC","EMC", "VUMC", "VUMC"), department = c("Cardiology", "Thoracic surgery", "Cardiology", "Thoracic surgery"))</font><br>
+ Merge the columns of the two data frames that are only available in the data set Hospitals:
+  
+```{r merge2, exercise=TRUE, exercise.lines = 3}
+
+```
+
+  
+```{r merge2-solution}
+Patients <- data.frame(id = c(1, 1, 1, 2, 2, 3), time = c(0, 1, 2, 0, 1, 0), blood_value = c(30, 55, 34, 13, 62, 87))
+Hospitals <- data.frame(id = c(1, 1, 3, 3), hosp = c("EMC","EMC", "VUMC", "VUMC"), department = c("Cardiology", "Thoracic surgery","Cardiology", "Thoracic surgery")) 
+merge(Patients, Hospitals, all.y = TRUE)
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** To merge the rows that are only available in the data set Hospital use `merge(...,  all.y = TRUE)`.
+</div>
+
+
+
+ Assuming the following datasets:<br>
+<font face = "Courier" size = "3">
+  Patients <- data.frame(id = c(1, 1, 1, 2, 2, 3), time = c(0, 1, 2, 0, 1, 0), blood_value = c(30, 55, 34, 13, 62, 87)) <br>
+  Hospitals <- data.frame(Id = c(1, 1, 3, 3), hosp = c("EMC","EMC", "VUMC", "VUMC"), department = c("Cardiology", "Thoracic surgery", "Cardiology", "Thoracic surgery"))</font><br>
+  Merge the columns of the two data frames by the first variable of the data sets:
+  
+```{r merge3, exercise=TRUE, exercise.lines = 3}
+
+```
+
+  
+```{r merge3-solution}
+Patients <- data.frame(id = c(1, 1, 1, 2, 2, 3), time = c(0, 1, 2, 0, 1, 0), blood_value = c(30, 55, 34, 13, 62, 87))
+Hospitals <- data.frame(Id = c(1, 1, 3, 3), hosp = c("EMC","EMC", "VUMC", "VUMC"), department = c("Cardiology", "Thoracic surgery","Cardiology", "Thoracic surgery")) 
+merge(Patients, Hospitals, by.x = "id", by.y = "Id")
+```
+
+
+## QUIZ - Loop, Apply, Merge
+
+*Some questions have more than one correct answers.*
+
+```{r Q4 quiz}
+quiz(
+  question("What is the output of the following program? for (i in seq(1, 10, by = 2)) print(i + 1)",
+    answer("1, 3, 5, 7, 9"),
+    answer("2, 4, 6, 8, 10", correct = TRUE),
+    answer("1, 2, 3, 4, 5, 6, 7, 8, 9, 10"),
+    answer("2, 3, 4, 5, 6, 9")
+  ),
+  question("What is the output of the following program? for (i in seq(1, 10, by = 2)) if (i > 5) print(2*i + 1)",
+    answer("15, 19", correct = TRUE),
+    answer("3, 7, 11, 15, 19"),
+    answer("Na"),
+    answer("8, 10")
+  ),
+  question("What is the output of the following code? lapply(list(1:20, 20:40, 40:80), mean)",
+    answer("Output 1: <br> Na"),
+    answer("Output 2: <br> [[1]]<br>
+    [1] 10.5<br>
+    [[2]]<br>
+    [1] 30<br>
+    [[3]]<br>
+    [1] 60", correct = TRUE),
+    answer("Output 3: <br> [1] 10.5 30.0 60.0"),
+    answer("Output 4: <br> [[1]]<br>
+    [1] 210<br>
+    [[2]]<br>
+    [1] 630<br>
+    [[3]]<br>
+    [1] 2460")
+  ),
+  question("Which of the following statements is wrong",
+    answer("The sapply() function behaves similarly to lapply()"),
+    answer("lapply() returns a list"),
+    answer("apply() can be used to apply a function in subgroups", correct = TRUE),
+    answer("All of the mentioned")
+  ),
+  question("Suppose there are 2 dataframes data1 and data2. data1 has blood information about 3 patients and data2 has hospital information of 2 other patients. What will the number of rows be in the resultant data frame after running the following command? merge(data1 ,data2 , by = 'id')",
+    answer("<0 rows>", correct = TRUE),
+    answer("3"),
+    answer("2"),
+    answer("5")
+  )
+)
+```

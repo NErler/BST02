@@ -1,0 +1,69 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# ggplot2
+
+## Introduction
+
+`ggplot2` is an R package to make various kinds of plots. In many ways it functions as a alternative to base R plots or plots from lattice. `ggplot` is based on the book 'The Grammar of Graphics' by Wilkinson (hence the `gg` in the name of the package). This books presents a abstract language (or grammar) in which graphs can be described in a systematic way. `ggplot` implements this language in R.
+
+The main function of the `ggplot2` package is the function `ggplot`. It allows us to build a plot in a stepwise manner by adding the various components that make up the plot one by one. 
+In the grammar of graphics these fundamental parts of the plot are:
+
+  * *Aesthetics*: The role the different variables play in the plot (for example as x-coordinate, y-coordinate, to indicate the color, etc)
+  * *Geom*: Which geometric objects are used (lines, points, circles, etc.)
+  * *Statistics*: Sometimes a summary of the data is plotted. Like a regression line instead of a cloud of points (see below for more details)
+  * *Scales*: An indication of the legend
+  * *Facets*: Different groups for which we make to graphic
+  * *Coordinate systems*: How are the coordinates specified. (Usually the default (Carthesian) system is used but see below) 
+
+It is understandable if not all of the terms above are clear right now.  It is perhaps easiest to understand how this works by looking at a few examples:
+
+```{r exampleggplot1}
+library(ggplot2)
+d <- data.frame(height=rnorm(30, mean = 175, sd = 10),
+                weight=rnorm(30, 68, 12),
+                casecontr=gl(2, 15, labels = c("Control", "Treat")))
+ggplot(data=d) +
+  geom_point(mapping=aes(x=height, y=weight))
+```
+We first create an example data set `d`. We then call the `ggplot` function to set up the plot and indicate that we want to use this data set.  In the next line we indicate that we want to use the point geom to specify that we want to add points to the plot. To to this we need to use the `mapping` parameter to specify that we want to use `height` on the x-axis and the variable `weight` on the y-axis. In ggplot setting these aesthethic properties is done using the `aes` function. This completes the plot (nothing else is added to it) and it is printed. 
+Let's try to map some further aesthetic elements to the plot. For example if we want to distinguish cases from controls by the color we can use the following syntax:
+```{r}
+ggplot(data=d) +
+  geom_point(mapping=aes(x=height, y=weight, color=casecontr))
+```
+
+Note that a legend is added to the plot automatically. If we want to use the shape of the points instead we can use:
+```{r}
+ggplot(data=d) +
+  geom_point(mapping=aes(x=height, y=weight, shape=casecontr))
+```
+
+Sometimes we want to set certain aesthetic properties of a plot without mapping them to a variable. this can be done by adding them as arguments to the geom.
+
+
+```{r}
+ggplot(data=d) +
+  geom_point(mapping=aes(x=height, y=weight), color='blue',
+             size=6,
+             shape=21,
+             fill='red',
+             alpha=0.5)
+
+```
+
+Here we used the point geom to make a scatter plot but there a many types of geoms that you can use. In this data set, for example, it might be usefull to make a boxplot of the weights of the cases and the controls. To do this we use `geom_box`. Let's say that we want to have the case/control group on the x-axis and the weight on the y-axis. We could then use the following syntax:  
+```{r}
+ggplot(data=d) +
+  geom_boxplot(mapping=aes(x=casecontr, y=weight))
+```
+
+```{r}
+ggplot(data=d) +
+  geom_histogram(mapping=aes(x=weight), binwidth=5)
+```
+
+An overview over all the different geoms and matching aesthetic properties is provided on the RStudio ['Data Visualization with ggplot2 cheathsheet'](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf). 

@@ -1,0 +1,556 @@
+---
+title: "Using R for Statistics in Medical Research"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(JM)
+library(memisc)
+library(foreign)
+pregdata <- read.spss('www/pregdata.sav',to.data.frame = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+## Statistical Tests and Models
+
+*Commonly used statistical tests and models.*
+
+### Statistical tests {data-progressive=TRUE}
+
+
+ Investigate the distributions of the variables serum bilirubin and serum cholesterol with histograms using the pbc2.id data set. Then perform the appropriate test(s) to investigate the differences between the groups placebo and D-penicil. Finally, extract the p-value of the tests:
+  
+```{r stattest1, exercise=TRUE, exercise.lines = 6}
+
+```
+
+```{r stattest1-solution}
+hist(pbc2.id$serBilir)
+hist(pbc2.id$serChol)
+test_serBilir <- wilcox.test(pbc2.id$serBilir ~ pbc2.id$drug)
+test_serChol <- t.test(pbc2.id$serChol ~ pbc2.id$drug)
+test_serBilir$p.value
+test_serChol$p.value
+```
+
+ Using the same data set, investigate the association between sex and drug. Extract the statistic:
+  
+```{r stattest2, exercise=TRUE, exercise.lines = 3}
+
+```
+
+```{r stattest2-solution}
+tbl <- table(pbc2.id$sex, pbc2.id$drug)
+sexDrug_test <- chisq.test(tbl)
+sexDrug_test$statistic
+```
+
+### Regression models {data-progressive=TRUE}
+
+ Using the same data set, perform a univariable and multivariable regression analysis using as outcome the variable serum bilirubin and predictions the variables sex, drug, age, ascites, hepatomegaly, spiders, edema. Print the summary of the models:
+
+```{r regr1, exercise=TRUE, exercise.lines = 8}
+
+```
+
+```{r regr1-solution}
+fm1a <- lm(serBilir ~ sex, data = pbc2.id)
+fm1b <- lm(serBilir ~ drug, data = pbc2.id)
+fm1c <- lm(serBilir ~ age, data = pbc2.id)
+fm1d <- lm(serBilir ~ ascites, data = pbc2.id)
+fm1e <- lm(serBilir ~ hepatomegaly, data = pbc2.id)
+fm1f <- lm(serBilir ~ spiders, data = pbc2.id)
+fm2 <- lm(serBilir ~ sex + drug + age + ascites + hepatomegaly + spiders, data = pbc2.id)
+lapply(list(fm1a, fm1b, fm1c, fm1d, fm1e, fm1f, fm2), function(x) summary(x))
+```
+
+ Use a scatterplot to investigate the association between serBilir and age (pbc2.id data set). Assuming the multivariable model from the previous question, investigate whether a linear or a nonlinear age is needed. For the nonlinear assume a quadratic and a cubic term:
+
+```{r regr2, exercise=TRUE, exercise.lines = 4}
+
+```
+
+```{r regr2-solution}
+plot(pbc2.id$serBilir, pbc2.id$age)
+fm2 <- lm(serBilir ~ age + drug + sex + ascites + hepatomegaly + spiders, data = pbc2.id)
+fm2_nonlinear <- lm(serBilir ~ age + I(age^2) + I(age^3) + drug + sex + ascites + hepatomegaly + spiders, data = pbc2.id)
+anova(fm2, fm2_nonlinear)
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** To compare models use the function `anova(...)`.
+</div>
+
+
+ Assuming the pbc2.id data set, create a new categorical variable (serCholCat) for serum cholesterol as low = [minimum serum cholesterol until median serum cholesterol) and high = [median serum cholesterol until maximum serum cholesterol]. Fit a logistic regression assuming serCholCat as the outcome and age, sex and their interaction as the covariates. Extract the coeficients and p-values:
+
+```{r regr3, exercise=TRUE, exercise.lines = 5}
+
+```
+
+```{r regr3-solution}
+pbc2.id$serCholCat <- as.numeric(pbc2.id$serChol >= median(pbc2.id$serChol, na.rm = TRUE))
+pbc2.id$serCholCat <- factor(pbc2.id$serCholCat, levels = c(0, 1), labels = c("low", "high"))
+gm1 <- glm(serBilir ~ age * sex, data = pbc2.id)
+res <- summary(gm1)
+res$coefficients[, c(1, 4)]
+```
+
+<div style="color: blue; font-size: small">
+**Hint:** To investigate the options you can extract, save the summary on a new object and use `$`.
+</div>
+
+
+ Perform a multivariable regression analysis using as outcome the variable serum bilirubin and predictions the variables sex, drug, age (pbc2.id data set). Obtain the sum of squared errors:
+
+```{r regr4, exercise=TRUE, exercise.lines = 2}
+
+```
+
+```{r regr4-solution}
+fm3 <- lm(serBilir ~ age + sex + drug, data = pbc2.id)
+sum(resid(fm3)^2)
+```
+
+
+<div style="color: blue; font-size: small">
+**Hint:** Sum of squared errors is $\sum_{i=1}^n \epsilon_i^2$.
+</div>
+
+Use linear regression to examine the relation between the BMI of mothers and birthweight assuming the pregdata:
+
+```{r lm, exercise = TRUE, exercise.lines=1}
+
+
+```
+
+
+```{r lm-solution, solution = TRUE}
+lm(BW ~ BMI_Mo, data = pregdata)
+```
+
+R only gives you the parameter estimates of the intercept and the slope by default. Often we also want to see the p-values and confidence intervals. For this we first store the result of the regression analysis performed previously in a variable. Now we can use the functions `confint` and `summary` on thus newly created variable. 
+
+```{r lm2, exercise = TRUE,  exercise.lines=3 }
+
+```
+
+```{r lm2-hint-1}
+lm1 <- lm(BW ~ BMI_Mo, data = pregdata)
+confint()
+summary()
+```
+
+```{r lm2-hint-2, solution = TRUE, exercise.lines=20}
+lm1 <- lm(BW ~ BMI_Mo, data = pregdata)
+confint(lm1)
+summary(lm1)
+```
+
+
+
+## QUIZ - Statistical Tests and Models
+
+*Some questions have more than one correct answers.*
+
+```{r Q5 quiz}
+quiz(
+  question("Which of the following excludes the intercept?",
+    answer("lm(y ~ x1 + x2, data = data)"),
+    answer("lm(y ~ x1 * x2 - 1, data = data)", correct = TRUE),
+    answer("lm(y ~ -1 + x1 * x2, data = data)", correct = TRUE),
+    answer("lm(y ~ -1 + x1 + x2, data = data)", correct = TRUE)
+  ),
+  question("Which of the following codes will investigate the association of the explanatory variable age (as a continuous variable) with sex (as response variable) accounting for drug from the pbc2.id data set?",
+    answer("glm(sex ~ age + drug, data = pbc2.id)", correct = TRUE),
+    answer("glm(sex ~ age, data = pbc2.id)"),
+    answer("lm(age ~ sex + drug, data = pbc2.id)"),
+    answer("glm(sex ~ age + drug + sex, data = pbc2.id)")
+  ),
+  question("We want to fit a linear model in which we model y with the main effects and the interaction of treatment arm and time. All variables are included in the data.frame df. Which of the following codes does this correctly?",
+    answer("lm(y ~ time - arm,  data = df)"),
+    answer("lm(y ~ time * arm, data = df)", correct = TRUE),
+    answer("lm(y ~ time + arm, data = df)"),
+    answer("lm(y ~ time + arm + time : arm, data = df)", correct = TRUE)
+  ),
+  question("Examine the following code in R: 'fm1 <- lm(height ~ age:sex, data = dat)'. What does this code do?",
+    answer("Performs a linear regression including the main effects of age and sex"),
+    answer("Performs a linear regression including the interaction term of age and sex", correct = TRUE),
+    answer("Performs a linear regression including the main effects of age and sex and their interaction term"),
+    answer("Performs a logistic regression including the interaction term of age and sex")
+  )
+)
+```
+
+## Quiz
+
+### Functies
+
+The questions below test your knowledge on the creation of functions.
+
+
+```{r quiz1}
+quiz(
+  question("How can a function with two parameters that calculates the sum of those parameters be defined?",
+    answer("`vector fn(x, y){x + y}`"),
+    answer("`function fn(x, y){return(x + y)}`"),
+    answer("`fn<-function(x, y){x + y}`", correct=TRUE),
+    answer("`fn(x, y)<-function{return(x + y)}`"),
+    answer("None of the above.")
+    )
+)
+```
+
+Consider the following code:
+ 
+```{r func, results='hide', echo=TRUE}
+x<-3
+fn <- function(y=3){
+  return(x/y)
+  x<-9
+}
+x<- 6
+fn()
+```
+ 
+
+```{r quiz2}
+quiz(
+  question("What is the return value of the function call?",
+    answer("1"),
+    answer("2", correct=TRUE),
+    answer("3"),
+    answer("9"),
+    answer("Some other number"),
+    answer("The function does not run because it has an error.")
+    )
+)
+```
+
+
+## Writing functions 
+
+We will now write our own functions that help in the analysis of the `pregdata` dataset. 
+
+### Onderzoek data
+
+Again the data is available as the `data.frame` `pregdata`. Use the `summary` function to get a quick overview of the variables in the dataset. Also use the summary function to just look at the Age of the Mothers.
+
+```{r sumpregdata, exercise = TRUE}
+
+```
+
+```{r sumpregdata-hint}
+summary(...)
+summary(...$...)
+```
+
+```{r sumpregdata-solution, solution = TRUE}
+summary(pregdata)
+summary(pregdata$AgeMother)
+```
+
+We will try and make a function that gives a simular overview of a data set. TheWe zullen in deze opgave proberen ook een functie te maken die een soortgelijke samenvatting van de data set geeft. Like the summary function of R we want to make the type of output dependant on the type of the input.  When we use a categorical variable we see a frequency table of the different categories and when we use a contineous variable we see the mean and some quantiles. When a whole `data.frame` is used we get information about all variables in the `data.frame`.  
+
+### Types of variable
+
+We can see whether an object is a data.frame using the function `is.data.frame`. To check whether an object is a factor we can use `is.factor` and with `is.numeric` we check if we are dealing with a numeric variable. (Be carefull, the function `is.vector` does not behave in the same way it checks if an object is *only* a vector and does not have any other attributes such as a class, so `is.vector(as.factor(c(1,2,3)))` returns FALSE.)
+Try out these functions on some of the variables in the `data.frame`.
+```{r namestypespregdata, exercise = TRUE}
+
+```
+
+```{r namestypespregdata-hint-1}
+# Try out these functions on some of the variables in the data.frame
+is.data.frame(...)
+is.factor(...)
+is.numeric(...)
+```
+
+```{r namestypespregdata-hint-2}
+is.data.frame(pregdata)
+is.data.frame(pregdata$BMI_Mo)
+is.factor(pregdata$Sex)
+is.factor(pregdata$BMI_Mo)
+is.numeric(pregdata$Sex)
+```
+
+### Writing our own function
+
+To start  with our own `summary` variant we Om te beginnen aan onze eigen variant op summary, we define a function with one parameter (let's call it `x`) that checks  if it is a `data.frame` a `factor` or a numeric variable. Use the `if` statement for this. When you want to display results from within the function you have to use the `print` function explicitly.
+
+
+```{r ifelse, exercise = TRUE, exercise.lines=20}
+mysummary <- function(x){
+  
+}
+
+```
+
+
+```{r ifelse-hint-1}
+mysummary <- function(x){
+  if(...){
+    print('A data.frame')
+  }else if(...){
+    print('This is a factor')
+  }else if(...){
+    print('This variabele is numeric')
+  }
+}
+
+```
+
+
+
+```{r ifelse-hint-2}
+mysummary <- function(x){
+  if(is.data.frame(x)){
+    print('A data.frame')
+  }else if(is.factor(x)){
+    print('This is a factor')
+  }else if(is.numeric(x)){
+    print('This variabele is numeric')
+  }
+}
+```
+
+### Descriptive statistics categorical and continuous variables
+ 
+We now have a function that tells us what kind of input variable we have. However, we wanted to make a function that gives us some descriptive statistics. We therefore modify the function in such a way that a frequency table is given for factors and the mean and sd are given for numeric data. Use the functions  `table(.)`, `mean(.)` and `sd(.)`for this.
+
+
+```{r descpregdata, exercise = TRUE,  exercise.lines=20 }
+mysummary <- function(x){
+  if(is.data.frame(x)){
+    print('A data.frame')
+  }else if(is.factor(x)){
+    print('This is a factor')
+  }else if(is.numeric(x)){
+    print('This variabele is numeric')
+  }
+}
+```
+
+```{r descpregdata-hint-1}
+# Complete the syntax below
+mysummary <- function(x){
+  if(is.data.frame(x)){
+    print('A data.frame')
+    print('No summary yet')
+  }else if(is.factor(x)){
+    # calculate summary for categorical variable
+    print('This is a factor')
+    print(the_summary_cat)
+  }else if(is.numeric(x)){
+    #calculate the summary for the numeric variable
+    print(the_summary_cont)
+  }
+}
+```
+
+```{r descpregdata-hint-2, exercise.lines=30}
+mysummary <- function(x){
+  if(is.data.frame(x)){
+    print('A data.frame')
+    print('Not yet implemented')
+  }else if(is.factor(x)){
+    print('This is afactor')
+    print(table(x))
+  }else if(is.numeric(x)){
+    print('This variabele is numeric')
+    print('mean')
+    print(mean(x))
+    print('sd')
+    print(sd(x))
+  }
+}
+mysummary(pregdata$CRL.1)
+```
+
+<div style="color: blue; font-size: small">
+**Note:** There are other ways of making functions do different things depending on the class of the arguments using object oriented programming we will not discuss that here.
+</div>
+
+
+### Descriptive statistics for a data.frame
+
+
+Our function still does not do anything usefull when we apply it on the whole `data.frame`. This can be solved in the following way: whenever the function is called using a `data.frame` as argument we use a `for` loop to loop over its columns. Within this loop we let the function call itself but now using the column as argument. Try this below:
+
+```{r meanpregdata20, exercise = TRUE, exercise.lines=30 }
+mysummary <- function(x){
+  if(is.data.frame(x)){
+    print('Een data.frame')
+    
+  }else if(is.factor(x)){
+    print('dit is een factor')
+    print(table(x))
+  }else if(is.numeric(x)){
+    print('deze variabele is numeriek')
+    print('mean')
+    print(mean(x))
+    print('sd')
+    print(sd(x))
+  }
+  
+}
+
+mysummary(pregdata)
+
+```  
+
+
+<div style="color: blue; font-size: small">
+**Note:** Functions that call themselves are called recursive functions.
+</div>
+
+
+
+
+```{r meanpregdata20-hint-1}
+
+mysummary <- function(x){
+  if(is.data.frame(x)){
+    print('A data.frame')
+    for( )){
+      
+    }     
+  }else if(is.factor(x)){
+    print('A factor')
+    print(table(x))
+  }else if(is.numeric(x)){
+    print('This variable is numeric')
+    print('mean')
+    print(mean(x))
+    print('sd')
+    print(sd(x))
+  }
+}
+
+mysummary(pregdata)
+```
+
+```{r meanpregdata20-hint-2, solution = TRUE}
+mysummary <- function(x){
+  if(is.data.frame(x)){
+    print('A data.frame')
+    for(i in 1:NCOL(x)){
+      print(names(x)[i])
+      mysummary(x[,i])
+    }     
+  }else if(is.factor(x)){
+    print('A factor')
+    print(table(x))
+  }else if(is.numeric(x)){
+    print('This variabele is numeric')
+    print('mean')
+    print(mean(x))
+    print('sd')
+    print(sd(x))
+  }
+}
+mysummary(pregdata)
+```
+
+
+
+
+## Visualisation and inferential statistics 
+
+Here we will learn more about making graphics and performing regression analysis
+
+## Histograms and boxplots
+
+One way to look at the distribution of a variable is by making a histigram. You can do this using the function `hist`. 
+
+Make a histogram of the BMI of the mothers (`BMI_Mo`)
+
+```{r sumpregdatabp, exercise = TRUE}
+
+```
+
+```{r sumpregdatabp-hint}
+# Complete the syntax below
+hist(...)
+
+```
+
+```{r sumpregdatabp-solution, solution = TRUE}
+hist(pregdata$BMI_Mo)
+```
+
+We can make the graph more beautifull by adding a title and replacing the x-axis by something more usefull. For this you can use the parameters `main` and `xlab`. Try it out below. 
+
+
+```{r plaatjetitel, exercise = TRUE}
+
+```
+
+```{r plaatjetitel-hint-1, solution = TRUE}
+hist(pregdata$BMI_Mo,
+     main=,
+     xlab= )
+```
+
+
+```{r plaatjetitel-hint-2, solution = TRUE}
+hist(pregdata$BMI_Mo,
+     main='Histogram of the mothers BMI',
+     xlab='BMI' )
+```
+
+
+When you have categorical data you can make a bar plot. In R this can be done by the function  `barplot`. It's easiests to make a frequency table first and use that as the argument to the `barplot`  function. Please try it out yourself. 
+
+```{r plaatjetitel2, exercise = TRUE}
+
+```
+
+```{r plaatjetitel2-hint-1}
+tab <- table(...)
+barplot(...)
+```
+
+
+```{r plaatjetitel2-hint-2}
+tab <- table(pregdata$Sex)
+barplot(tab)
+     
+```
+
+## Scatterplots
+
+When you want to look at the relation between two continuous variables we can make a scatter plot. In R this is done with the function `plot`. This function can be used in several ways but here we simply use the parameters `x` and `y` for to specify the variables we want to plot on the x and y axis respectively. 
+Try it out and make a scatterplot with the BMI of the mother on the x-axis and the birthweight on the y-axis. 
+
+```{r scatter, exercise = TRUE}
+plot(x=, y=)
+```
+
+```{r scatter-solution, solution = TRUE}
+
+plot(x = pregdata$BMI_Mo, y = pregdata$ppGeboortegewicht)
+```
+
+An other way in which we can use the `plot` function is by using a `formula`. This is a frequently used notation common to many R-functions. First the dependant variable is specified, followed by a  `~` sign, finally the independant variable are specified. For example `BW ~ 
+BMI_Mo`. Er wordt een aparte parameter data gebruikt om aan te geven weklke data set gebruikt wordt. Probeer dit hieronder uit.
+
+```{r scatter2, exercise = TRUE}
+plot(,)
+```
+
+```{r scatter2-solution, solution = TRUE}
+
+plot(BW ~ BMI_Mo, data = pregdata)
+```
+
+It is possible to specify your own labels for the x and y-axis using the parameters `xlab` en `ylab`. The title can be specified using `main`. The colors and symbols that are used to plot the observations can be changed using `col` (try 'orange' ) en `pch` (try and set this to 2).  
+

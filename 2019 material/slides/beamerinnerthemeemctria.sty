@@ -1,0 +1,398 @@
+%%
+%% This is file `beamerinnerthemeemctria.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% beamerinnerthemeemctria.dtx  (with options: `package')
+%% ---------------------------------------------------------------------------
+%% Copyright 2015 Matthias Vogelgesang and the LaTeX community. A full list of
+%% contributors can be found at
+%% 
+%%     https://github.com/matze/mtheme/graphs/contributors
+%% 
+%% and the original template was based on the HSRM theme by Benjamin Weiss.
+%% 
+%% This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
+%% International License (https://creativecommons.org/licenses/by-sa/4.0/).
+%% ---------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerinnerthemeemctria}[2017/01/23 emctria inner theme]
+\RequirePackage{etoolbox}
+\RequirePackage{keyval}
+\RequirePackage{calc}
+\RequirePackage{pgfopts}
+\RequirePackage{tikz}
+\RequirePackage[customcolors]{dynblocks}
+\pgfkeys{
+  /emctria/inner/sectionpage/.cd,
+    .is choice,
+    none/.code=\emctria@disablesectionpage,
+    simple/.code={\emctria@enablesectionpage
+                  \setbeamertemplate{section page}[simple]},
+    progressbar/.code={\emctria@enablesectionpage
+                       \setbeamertemplate{section page}[progressbar]},
+}
+\pgfkeys{
+  /emctria/inner/subsectionpage/.cd,
+    .is choice,
+    none/.code=\emctria@disablesubsectionpage,
+    simple/.code={\emctria@enablesubsectionpage
+                  \setbeamertemplate{section page}[simple]},
+    progressbar/.code={\emctria@enablesubsectionpage
+                       \setbeamertemplate{section page}[progressbar]},
+}
+\newcommand{\emctria@inner@setdefaults}{
+  \pgfkeys{/emctria/inner/.cd,
+    sectionpage=progressbar,
+    subsectionpage=none
+  }
+}
+
+\tikzset{
+  path image/.style={
+    path picture={
+      \node at (path picture bounding box.center) {
+        \includegraphics[height=\pageheight, trim={57mm 0 0 1mm}, clip]{images/eebuildingdbluelogo.jpg}};}},
+  path tikzimage/.style={
+    path picture={
+      \node at (path picture bounding box.center)
+      [circle, fill=blue!50, scale=2, text=yellow]{Bravo};}}
+}
+
+\setbeamertemplate{title page}{
+  \begin{minipage}[b][\paperheight]{\textwidth}
+    \ifx\inserttitlegraphic\@empty\else\usebeamertemplate*{title graphic}\fi
+    \vfill%
+    \ifx\inserttitle\@empty\else\usebeamertemplate*{title}\fi
+    \ifx\insertsubtitle\@empty\else\usebeamertemplate*{subtitle}\fi
+    %\usebeamertemplate*{title separator}
+    \ifx\beamer@shortauthor\@empty\else\usebeamertemplate*{author}\fi
+    \ifx\insertdate\@empty\else\usebeamertemplate*{date}\fi
+    \ifx\insertinstitute\@empty\else\usebeamertemplate*{institute}\fi
+    \vfill
+    \vspace*{3mm}
+  \end{minipage}
+}
+
+\def\maketitle{%
+  \ifbeamer@inframe
+    \titlepage
+  \else
+    \frame[plain,noframenumbering]{\titlepage}
+  \fi
+}
+\def\titlepage{%
+  \usebeamertemplate{title page}
+}
+\setbeamertemplate{title graphic}{
+  \vbox to 0pt {
+    \vspace*{2em}
+    \inserttitlegraphic%
+  }%
+  \nointerlineskip%
+}
+\setbeamertemplate{title}{
+  \raggedright%
+  \linespread{1.0}%
+  \inserttitle%
+  \par%
+  \vspace*{0.25em}
+}
+\setbeamertemplate{subtitle}{
+  \raggedright%
+  \insertsubtitle%
+  \par%
+  \vspace*{0.25em}
+}
+\newlength{\emctria@titleseparator@linewidth}
+\setlength{\emctria@titleseparator@linewidth}{0.4pt}
+\setbeamertemplate{title separator}{
+  \tikzexternaldisable%
+  \begin{tikzpicture}
+    \fill[fg] (0,0) rectangle (\textwidth, \emctria@titleseparator@linewidth);
+  \end{tikzpicture}%
+  \tikzexternalenable%
+  \par%
+}
+\setbeamertemplate{author}{
+  \vspace*{2em}
+  \insertauthor%
+  \par%
+  \vspace*{0.25em}
+}
+\setbeamertemplate{date}{
+  \insertdate%
+  \par%
+}
+\setbeamertemplate{institute}{
+  \vspace*{3mm}
+  \insertinstitute%
+  \par%
+}
+\defbeamertemplate{section page}{simple}{
+  \begin{center}
+    \usebeamercolor[fg]{section title}
+    \usebeamerfont{section title}
+    \insertsectionhead\par
+    \ifx\insertsubsectionhead\@empty\else
+      \usebeamercolor[fg]{subsection title}
+      \usebeamerfont{subsection title}
+      \insertsubsectionhead
+    \fi
+  \end{center}
+    \begin{tikzpicture}[remember picture,overlay]
+\path[draw, fill=emclblue] (current page.south east) 
+-- ++(-12ex,0) 
+-- ++(12ex,12ex) 
+-- cycle;
+\end{tikzpicture}
+
+}
+\defbeamertemplate{section page}{progressbar}{
+  \centering
+  \begin{minipage}{22em}
+    \raggedright
+    \usebeamercolor[fg]{section title}
+    \usebeamerfont{section title}
+    \insertsectionhead\\[-1ex]
+    %\usebeamertemplate*{progress bar in section page}
+    \par
+    \ifx\insertsubsectionhead\@empty\else%
+      \usebeamercolor[fg]{subsection title}%
+      \usebeamerfont{subsection title}%
+      \insertsubsectionhead
+    \fi
+  \end{minipage}
+  \par
+  \vspace{\baselineskip}
+      \begin{tikzpicture}[remember picture,overlay]
+  \path[draw=emclblue, fill=emclblue] (current page.south east) 
+  -- ++(-12ex,0) 
+  -- ++(12ex,12ex) 
+  -- cycle;
+  \end{tikzpicture}
+}
+\newcommand{\emctria@disablesectionpage}{
+  \AtBeginSection{
+    % intentionally empty
+  }
+}
+\newcommand{\emctria@enablesectionpage}{
+  \AtBeginSection{
+    \ifbeamer@inframe
+      \sectionpage
+    \else
+      \frame[plain,c,noframenumbering]{\sectionpage}
+    \fi
+  }
+}
+\setbeamertemplate{subsection page}{%
+  \usebeamertemplate*{section page}
+}
+\newcommand{\emctria@disablesubsectionpage}{
+  \AtBeginSubsection{
+    % intentionally empty
+  }
+}
+\newcommand{\emctria@enablesubsectionpage}{
+  \AtBeginSubsection{
+    \ifbeamer@inframe
+      \subsectionpage
+    \else
+      \frame[plain,c,noframenumbering]{\subsectionpage}
+    \fi
+  }
+}
+\newlength{\emctria@progressonsectionpage}
+\newlength{\emctria@progressonsectionpage@linewidth}
+\setlength{\emctria@progressonsectionpage@linewidth}{0.4pt}
+\setbeamertemplate{progress bar in section page}{
+  \setlength{\emctria@progressonsectionpage}{%
+    \textwidth * \ratio{\insertframenumber pt}{\inserttotalframenumber pt}%
+  }%
+  \tikzexternaldisable%
+  \begin{tikzpicture}
+    \fill[bg] (0,0) rectangle (\textwidth, \emctria@progressonsectionpage@linewidth);
+    \fill[fg] (0,0) rectangle (\emctria@progressonsectionpage, \emctria@progressonsectionpage@linewidth);
+  \end{tikzpicture}%
+  \tikzexternalenable%
+}
+\def\inserttotalframenumber{100}
+\newlength{\emctria@blocksep}
+\newlength{\emctria@blockadjust}
+\setlength{\emctria@blocksep}{0.75ex}
+\setlength{\emctria@blockadjust}{0.25ex}
+\providecommand{\emctria@strut}{%
+  \vphantom{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz()}%
+}
+\newcommand{\emctria@block}[1]{
+  \par\vskip\medskipamount%
+  \setlength{\parskip}{0pt}
+  \ifbeamercolorempty[bg]{block title#1}{%
+    \begin{beamercolorbox}[rightskip=0pt plus 4em]{block title#1}}{%
+  \ifbeamercolorempty[bg]{block title}{%
+    \begin{beamercolorbox}[rightskip=0pt plus 4em]{block title#1}%
+  }%
+  {%
+    \begin{beamercolorbox}[
+      sep=\dimexpr\emctria@blocksep-\emctria@blockadjust\relax,
+      leftskip=\emctria@blockadjust,
+      rightskip=\dimexpr\emctria@blockadjust plus 4em\relax
+    ]{block title#1}%
+  }}%
+      \usebeamerfont*{block title#1}%
+      \emctria@strut%
+      \insertblocktitle%
+      \emctria@strut%
+  \end{beamercolorbox}%
+  \nointerlineskip%
+  \ifbeamercolorempty[bg]{block body#1}{%
+    \begin{beamercolorbox}[vmode]{block body#1}}{
+  \ifbeamercolorempty[bg]{block body}{%
+    \begin{beamercolorbox}[vmode]{block body#1}%
+  }{%
+    \begin{beamercolorbox}[sep=\emctria@blocksep, vmode]{block body#1}%
+    \vspace{-\emctria@parskip}
+  }}%
+      \usebeamerfont{block body#1}%
+      \setlength{\parskip}{\emctria@parskip}%
+}
+\setbeamertemplate{block begin}{\emctria@block{}}
+\setbeamertemplate{block alerted begin}{\emctria@block{ alerted}}
+\setbeamertemplate{block example begin}{\emctria@block{ example}}
+\setbeamertemplate{block end}{\end{beamercolorbox}\vspace*{0.2ex}}
+\setbeamertemplate{block alerted end}{\end{beamercolorbox}\vspace*{0.2ex}}
+\setbeamertemplate{block example end}{\end{beamercolorbox}\vspace*{0.2ex}}
+\setbeamertemplate{itemize items}{\textbullet}
+\setbeamertemplate{caption label separator}{: }
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{footnote}{%
+  \parindent 0em\noindent%
+  \raggedright
+  \usebeamercolor{footnote}\hbox to 0.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
+\newlength{\emctria@parskip}
+\setlength{\emctria@parskip}{0.5em}
+\setlength{\parskip}{\emctria@parskip}
+\linespread{1.15}
+\define@key{beamerframe}{c}[true]{% centered
+  \beamer@frametopskip=0pt plus 1fill\relax%
+  \beamer@framebottomskip=0pt plus 1fill\relax%
+  \beamer@frametopskipautobreak=0pt plus .4\paperheight\relax%
+  \beamer@framebottomskipautobreak=0pt plus .6\paperheight\relax%
+  \def\beamer@initfirstlineunskip{}%
+}
+\providebool{emctria@standout}
+\define@key{beamerframe}{standout}[true]{%
+  \booltrue{emctria@standout}
+  \begingroup
+    \setkeys{beamerframe}{c}
+    \setkeys{beamerframe}{noframenumbering}
+    \ifbeamercolorempty[bg]{palette tertiary}{
+      \setbeamercolor{background canvas}{
+        use=palette primary,
+        bg=emclblue,
+        fg=emcdblue
+      }
+    }{
+      \setbeamercolor{background canvas}{
+        use=palette primary,
+        bg=palette primary.fg,
+        fg=palette primary.bg
+      }
+     \setbeamercolor{frametitle}{
+      use=palette primary,
+      bg=palette primary.fg,
+      fg=palette primary.bg
+    }
+    }
+    \setbeamercolor{local structure}{
+      fg=palette primary.fg,
+      bg=palette primary.bg
+    }
+    \usebeamercolor[fg]{palette primary.fg}
+    \usebeamercolor[bg]{palette primary.bg}
+}
+  \pretocmd{\beamer@reseteecodes}{%
+    \ifbool{emctria@standout}{
+      \endgroup
+      \boolfalse{emctria@standout}
+    }{}
+  }{}{}
+  \AtBeginEnvironment{beamer@frameslide}{
+    \ifbool{emctria@standout}{
+      \centering
+      \usebeamerfont{standout}
+    }{}
+  }
+
+
+
+\providebool{emctria@lbslide}
+\define@key{beamerframe}{lbslide}[true]{%
+  \booltrue{emctria@lbslide}
+  \begingroup
+  \setkeys{beamerframe}{c}
+  \setbeamercolor{normal text}{
+    bg=emclblue,
+    fg=emcdblue
+  }
+    \setbeamercolor{background canvas}{
+      use=nor5mal text,
+      bg=emclblue,
+      fg=emcdblue
+    }
+    \setbeamercolor{frametitle}{
+      bg=emclblue,
+      fg=emcdblue
+    }
+  \setbeamercolor{local structure}{
+    fg=emcdblue,
+    bg=emcdblue
+  }
+  \usebeamercolor[fg]{palette primary.fg}
+  \usebeamercolor[bg]{palette primary.bg}
+}
+\pretocmd{\beamer@reseteecodes}{%
+  \ifbool{emctria@lbslide}{
+    \endgroup
+    \boolfalse{emctria@lbslide}
+  }{}
+}{}{}
+
+ 
+  \newenvironment{attentionenv}{\begin{altenv}%
+    {\usebeamertemplate{attention text begin}\usebeamercolor[fg]{palette tertiary}\usebeamerfont{alerted text}}
+    {\usebeamertemplate{attention text end}}{\color{.}}{}}{\end{altenv}} 
+  
+\defbeamertemplate{blocknt begin}{rounded}[1][shadow=false]
+{
+  \par\vskip\medskipamount%
+  \begin{beamerboxesrounded}[upper=block title,lower=block body,#1]%
+    {\raggedright\usebeamerfont*{block title}\insertblocktitle}%
+    \raggedright%
+    \usebeamerfont{block body}\usebeamercolor{palette secondary}%
+  }
+  \defbeamertemplate{blocknt end}{rounded}[1][]
+  {\end{beamerboxesrounded}\vskip\smallskipamount} 
+
+\newenvironment<>{blocknotitle}[1]{%
+  \begin{actionenv}#2%
+    \def\insertblocktitle{#1}%
+    \par%
+    \usebeamertemplate{blocknt begin}}
+  {\par%
+    \usebeamertemplate{blocknt end}%
+\end{actionenv}}
+
+
+
+\setbeamertemplate{sections/subsections in toc}[square]
+\setbeamertemplate{items}[square]
+
+\emctria@inner@setdefaults
+\ProcessPgfPackageOptions{/emctria/inner}
+\endinput
+%%
+%% End of file `beamerinnerthemeemctria.sty'.

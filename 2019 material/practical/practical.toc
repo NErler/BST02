@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{Practical 1}{2}{0}{1}
+\beamer@sectionintoc {2}{Practical 2}{7}{0}{2}
+\beamer@sectionintoc {3}{Practical 3}{11}{0}{3}
+\beamer@sectionintoc {4}{Practical 4}{14}{0}{4}
+\beamer@sectionintoc {5}{Practical 5}{22}{0}{5}
