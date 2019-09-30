@@ -1,0 +1,512 @@
+---
+title: 'Multiple Imputation with the "mice" Package'
+output: 
+  html_document:
+    code_folding: show
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+    number_sections: false
+    theme: spacelab
+    highlight: tango
+    includes:
+      after_body: ../footerNE.html
+    css: ../style.css
+---
+
+```{r, echo = FALSE, purl = FALSE}
+knitr::knit_hooks$set(purl = knitr::hook_purl)
+
+options(purl = FALSE)
+
+knitr::opts_chunk$set(purl = FALSE)
+```
+
+```{r, include = FALSE}
+knitr::opts_hooks$set(eval = function(opt) {
+  if (any(opt$exercise))
+    opt$eval <- opt$include <- FALSE
+  
+  opt
+})
+
+
+static <- TRUE
+
+options(width = 100)
+
+```
+
+
+```{r packages, include = FALSE}
+library(kableExtra)
+library(knitr)
+```
+
+
+```{r load_data, context="data", include=FALSE}
+load("../data/NHANES2_for_practicals.RData")
+load("../data/imps.RData")
+
+library(mice)
+```
+
+
+## Preface {data-progressive=FALSE}
+### R packages
+In this practical, a number of R packages are used.
+The packages used (with versions that were used to generate the solutions) are:
+
+* `r R.version.string`
+* `mice` (version: `r packageVersion("mice")`)
+* (not essential) `JointAI` (version: `r packageVersion("JointAI")`)
+
+
+### Dataset 
+
+For this practical, we will use the **NHANES2** dataset, a subset of the data we
+have seen in the lecture slides.
+
+To load this dataset, you can use the command `file.choose()` which opens the
+explorer and allows you to navigate to the location of the file
+`NHANES2_for_practicals.RData` on your computer.
+If you know the path to the file, you can also use `load("<path>/NHANES2_for_practicals.RData")`.
+RStudio users can also just click on the file in the "Files" pane/tab to load
+it.
+
+## Preparing for imputation
+### Set-up run {.tabset .tabset-fade .tabset-pills}
+Imputation needs to be tailored to the dataset at hand and, hence, using
+the function `mice()` well requires several arguments to be specified.
+To make the specification easier it is useful to do a dry-run which will
+create the default versions of everything that needs to be specified. 
+
+These default settings can then be adapted to our data.
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Do the set-up run of `mice()` with the NHANES2 data without any iterations (`maxit = 0`).
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution\\n")
+```
+
+```{r imp0-solution, solution = TRUE}
+# Note: This command will not produce any output.
+library(mice)
+imp0 <- mice(NHANES2, maxit = 0)
+```
+
+### Imputation method {.tabset .tabset-fade .tabset-pills}
+There are many imputation methods available in **mice**. You can find the list in
+the help page of the 
+[`mice()` function](https://www.rdocumentation.org/packages/mice/topics/mice).
+We will focus here on the following ones:
+
+```{r, echo = F}
+tab <- rbind(
+  c("pmm", "any", "Predictive mean matching"),
+  c("norm", "numeric", "Bayesian linear regression"),
+  c("logreg", "binary", "Logistic regression"),
+  c("polr", "ordered", "Proportional odds model"),
+  c("polyreg", "unordered", "Polytomous logistic regression")
+)
+
+colnames(tab) <- c("name", "variable type", "description")
+
+knitr::kable(tab, row.names = FALSE) %>%
+  kable_styling(full_width = FALSE)
+  
+```
+
+The default imputation methods that `mice()` selects can be specified in the
+argument `defaultMethod`. 
+
+If unspecified, `mice` will use 
+
+* `pmm` for numerical columns,
+* `logreg` for factor columns with two categories, 
+* `polyreg` for columns with unordered and 
+* `polr` for columns with ordered factors with more than two categories.
+
+In the `NHANES2` data we have the following variables: 
+```{r, fig.width = 8, fig.height = 6}
+par(mar = c(2,3,2,1), mgp = c(2, 0.6, 0))
+JointAI::plot_all(NHANES2, nclass = 30)
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 1\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+When a normal imputation model seems to be appropriate for most of the 
+continuous covariates, you may want to specify `norm` as
+the default method in the setup run. Let's do that:
+
+```{r imp0v2_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#imp0v2">Hint</button>
+<div id = "imp0v2" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+The order of the types of variable is: continuous, binary, factor, ordered factor.
+</div>')
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 1\\n")
+```
+
+
+```{r imp0v2-hint-2, solution = TRUE, purl = TRUE}
+imp0 <- mice(NHANES2, maxit = 0, 
+             defaultMethod = c("norm", 'logreg', 'polyreg', 'polr'))
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+In the plot of the `NHANES2` data shown above we can see that the variable
+`creat` has a skewed distribution, hence, 
+using a normal imputation model may not work well. 
+
+* Extract the default settings of `meth` from `imp0`.
+* Change the imputation method for `creat` so that this variable will be imputed
+  using predictive mean matching.
+* Check that all specified imputation methods are correct. When no imputation 
+  method is specified (`""`) the variable will not be imputed.
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r changeimpmod-solution, solution = TRUE, purl = TRUE}
+meth <- imp0$meth
+meth["creat"] <- "pmm"
+meth
+```
+
+
+### Predictor matrix {.tabset .tabset-fade .tabset-pills}
+The predictor matrix specifies which variables are used in the linear predictors
+of each of the imputation models. 
+
+A value of `1` specifies that the variable given in the column name is used in the model
+to impute the variable given in the row name (and `0` specifies that this variable
+is not used in that model).
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 1\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Get the `predictorMatrix` from `imp0`. Notice that **mice** has already set
+some of the values to `0`. Do you understand why?
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 1\\n")
+```
+
+```{r predmat-solution, solution = TRUE, purl = TRUE}
+pred <- imp0$predictorMatrix
+pred
+```
+
+The column corresponding to the variable `cohort` is set to `0` which means 
+that this variable is not used in any of the imputation models.
+`cohort` has the same value for all observations, so it would not be useful as a covariate.
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Because BMI is calculated from height (`hgt`) and weight (`wgt`), and there are
+cases where only one of these two variables is missing, we want to impute 
+`hgt` and `wgt` separately. `BMI` should be imputed using *passive imputation*.
+
+To avoid multicollinearity (which may lead to problems during imputation),
+imputation models should not include all three variables as predictor variables.
+In this example, we will use `BMI` to impute the other variables.
+
+Moreover, we need to exclude waist circumference (`WC`) from the imputation model
+for `wgt` because the high correlation between `WC`, `BMI` and `wgt` would 
+otherwise lead to problems during imputation. (In practie you would first try
+to leave it in and only exclude it if it causes problems.)
+
+And since `HyperMed` does not give us a lot more information than `hypten`, but
+has a lot more missing values, we do not want to use it as a predictor variable.
+
+Apply the necessary changes to  `pred` and `meth`.
+
+```{r changepred_hint1, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#changepred">Hint</button>
+<div id = "changepred" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+For passive imputation, you need to specify the formula used to calculate BMI in meth using `"~I(...)"`.
+</div>')
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r changepred-solution, solution = TRUE, purl = TRUE}
+# BMI will not be used as predictor of height and weight
+pred[c("hgt", "wgt"), "BMI"] <- 0
+# height and weight will not be used as predictor in any model
+pred[, c("hgt", "wgt")] <- 0
+# height and weight will be used as predictors for each other
+pred["hgt", "wgt"] <- 1
+pred["wgt", "hgt"] <- 1
+
+# WC is not used as predictor for weight
+pred["wgt", "WC"] <- 0
+
+# HyperMed will not be used as predictor in any model
+pred[, "HyperMed"] <- 0
+
+# hypchol will not be used as predictor in the imputation model for chol
+pred["chol", "hypchol"] <- 0
+
+# BMI will be imputed passively
+meth["BMI"] <- "~I(wgt/hgt^2)"
+# HyperMed will not be imputed
+meth["HyperMed"] <- ""
+```
+
+### Visit sequence {.tabset .tabset-fade .tabset-pills}
+The visit sequence specifies the order in which the variables are imputed.
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+
+To be sure that the imputed values of `BMI` match the imputed values of `hgt`
+and `wgt`, `BMI` needs to be imputed after `hgt` and `wgt`.
+
+* Get the `visitSequence` from `imp0`, and
+* change it if necessary.
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution\\n")
+```
+
+```{r changevisseq-solution, solution = TRUE, purl = TRUE}
+visSeq <- imp0$visitSequence
+visSeq
+
+# find "BMI" in the visit sequence
+which_BMI <- match("BMI", visSeq)
+# move "BMI" to the end of the sequence
+visSeq <- c(visSeq[-which_BMI], visSeq[which_BMI])
+```
+
+
+## Imputation
+### Running the imputation  {.tabset .tabset-fade .tabset-pills}
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+With the changes that we have made to the `predictorMatrix`, `method` and `visitSequence`,
+we can now perform the imputation. 
+For now, use no more then `m = 5` and `maxit = 10` (to save some time).
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution\\n")
+```
+
+```{r runimp-solution, solution = TRUE, eval = FALSE}
+imp <- mice(NHANES2, method = meth, predictorMatrix = pred, visitSequence = visSeq,
+            maxit = 10, m = 5, seed = 2019)
+```
+
+```{r saveimp, include = FALSE, eval = FALSE}
+savedimps_imp <- mice(NHANES2, method = meth, predictorMatrix = pred,
+                      visitSequence = visSeq,
+                      maxit = 10, m = 5,
+                      seed = 2019)
+
+savedimps_imp30 <- mice(NHANES2, method = meth, predictorMatrix = pred,
+                      visitSequence = visSeq,
+                      maxit = 30, m = 5,
+                      seed = 2019)
+
+savedimps_impnaive <- mice(NHANES2, maxit = 30, m = 5, seed = 2019)
+
+save(savedimps_imp,
+     savedimps_imp30,
+     savedimps_impnaive, file = "../data/imps.RData")
+```
+
+`mice()` prints the name of the variable being imputed for each
+iteration and imputation. If you run `mice()` on your own computer the output
+will show up continuously. There, you may notice that imputation is slowest for 
+categorical variables, especially when they have many categories.
+
+You can hide the lengthy output by specifying
+`printFlag = FALSE`.
+
+### What does mice return? {.tabset .tabset-fade .tabset-pills}
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task \\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+`mice()` does not return a `data.frame`. 
+Find out the class of the object returned by `mice()` function using the 
+function `class()` and `names()`, and take a look at the [help file](https://www.rdocumentation.org/packages/mice/versions/2.46.0/topics/mids-class) for this class.
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution\\n")
+```
+
+```{r, include = FALSE}
+imp <- savedimps_imp
+```
+
+```{r findclass-solution, solution = TRUE}
+class(imp)
+names(imp)
+```
+
+We see that `imp` is an object of class `mids`.
+
+The [help file](https://www.rdocumentation.org/packages/mice/topics/mids-class) tells us that a `mids` object is a list with several elements:
+
+```{r, echo = FALSE}
+midsdf <- rbind(
+  c("`data`:", "Original (incomplete) data set."),
+  c("`imp`:",
+    paste0("The imputed values: A list of `ncol(data)` components, ",
+           "each list component is a matrix with `nmis[j]` rows and `m` columns.")),
+  c("`m`:",
+    "The number of imputations."),
+  c("`where`:", "The missingness indicator matrix."),
+ c("`blocks`", "The blocks argument of the `mice()` function."),  
+  c("`call`:", "The call that created the `mids` object."),
+  c("`nmis`:",
+    "The number of missing observations per variable."),
+  c("`method`:",
+    "The vector imputation methods."),
+  c("`predictorMatrix`:",
+    "The predictor matrix."),
+  c("`visitSequence`:", 
+    "The sequence in which columns are visited during imputation."),
+ c("`formulas`", "A named list of formulas corresponding the the imputed variables (blocks)."),
+  c("`post`:",
+    "A vector of strings of length `length(blocks)` with commands for post-processing."),
+ # c("`blots`", ""),
+  c("`seed`:",
+    "The seed value of the solution."),
+  c("`iteration`:", 
+    "The number of iterations."),
+  c("`lastSeedValue`:",
+    "The most recent seed value."),
+  c("`chainMean:`", 
+    paste0("The mean of imputed values per variable and iteration: ",
+           "a list of `m` components. Each component is a matrix with `maxit`",
+           "columns and `length(visitSequence)` rows.")),
+  c("`chainVar`:",
+    paste0("The variances of imputed values per variable and iteration" ,
+           "(same structure as `chainMean`).")),
+  c("`loggedEvents`:",
+    paste0("A `data.frame` with the record of automatic corrective actions and warnings; ",
+           "(`NULL` if no action was made).")),
+  # c("`pad`:",
+  #   paste0("A list containing the internally used version of the `data`,",
+  #          "`method`, `predictorMatrix`, `visitSequence`, `post` and dummy coding.")
+ c("`version`", "Version number of the **mice** package that created the object."),
+ c("`date`", "Date at which the object was created.")
+) %>% as.data.frame
+
+names(midsdf) <- c(" ", " ")
+
+midsdf %>% kable(format = 'html') %>%
+  kable_styling()
+  # row_spec(c(4:10, 12:16), background = "#f2f2f2")
+```
+
+
+
+**Details of the `loggedEvents`:**
+
+`mice()` does some pre-processing of the data:
+
+  * variables containing missing values, that are not imputed but used as
+    predictor are removed
+  * constant variables are removed
+  * collinear variables are removed
+  
+  
+Furthermore, during each iteration
+
+  * variables (or dummy variables) that are linearly dependent are removed
+  * `polr` imputation that does not converge is replaced by `polyreg`. 
+  
+The `data.frame` in `loggedEvents` has the following columns:
+```{r, echo = FALSE}
+rbind(
+  c("`it`", "iteration number"), 
+  c("`im`", "imputation number"),
+  c("`dep`", "name of the name of the variable being imputed"),
+  c("`meth`", "imputation method used"),
+  c("`out`", "character vector with names of altered/removed predictors")
+) %>%
+  kable(format = "html") %>%
+  kable_styling(full_width = FALSE)
+
+```
+
+
