@@ -1,0 +1,146 @@
+---
+title: "BST02: Using R for Statistics\\ in Medical Research"
+subtitle: "Part C: Functions and Loops"
+author: "Nicole Erler"
+institute: "Department of Biostatistics, Erasmus Medical Center"
+date: "24 - 28 February 2020"
+email: "n.erler@erasmusmc.nl"
+output:
+  beamer_presentation: 
+    template: mytemplate.latex
+    includes:
+      in_header: SlideTemplate.tex
+    keep_tex: yes
+    incremental: false
+classoption: aspectratio=169
+---
+
+```{r setup, include=FALSE}
+knitr::knit_hooks$set(
+  nospace = function(before, options, envir) {
+    if (before) {
+      knitr::asis_output("\\vspace*{-1.5ex}")
+    }
+  }
+)
+
+knitr::opts_chunk$set(echo = TRUE, nospace = TRUE, nospaceafter = TRUE)
+
+```
+
+## Functions
+
+Sometimes we want to perform the same action / manipulation on several objects.
+
+* Option 1: copy & paste
+  - a lot of work
+  - susceptible to mistakes
+  
+* Option 2: functions
+  
+
+### What are functions?
+* a group of (organized) R commands
+* a (small) programm with flexible (= not pre-specified) input
+
+\vspace*{3ex}
+
+**Almost all commands in R are functions!**
+
+## Functions
+
+### Some examples:
+\begincols[t]
+\begincol{0.3\linewidth}
+
+* `mean()`
+* `sum()`
+* `plot()`
+* ...
+
+\endcol
+\begincol{0.65\linewidth}
+```{r, collapse=TRUE, nospace = TRUE}
+class(mean)
+class(sum)
+class(plot)
+```
+\endcol
+\endcols\vspace*{3ex}
+Even `class()` is a function:
+```{r}
+class(class)
+```
+
+## Functions
+To write your own function
+```{r, eval = FALSE}
+myfun <- function(arguments) {
+  syntax
+}
+```
+
+For example
+```{r}
+square <- function(x) {
+  x^2
+}
+```
+
+```{r}
+square(3)
+```
+
+## Functions
+Functions do not always need an argument
+```{r}
+random <- function() {
+  rnorm(1)
+}
+```
+```{r, collapse = TRUE}
+random()
+random()
+random()
+```
+
+## Functions
+Functions can use multiple arguments
+```{r}
+substract <- function(x, y) {
+  x - y
+}
+```
+```{r}
+substract(x = 5.2, y = 3.3)
+```
+
+Multiple arguments are interpretet in the pre-defined order, unless they are named:
+```{r}
+substract(5.2, 1.2)
+substract(y = 5.2, x = 1.2)
+```
+
+## Functions
+We can also define default values for arguments
+```{r}
+multiply <- function(x, y = 2) {
+  x * y
+}
+```
+```{r}
+multiply(x = 3, y = 3)
+multiply(x = 3)
+```
+
+## Functions
+Go to Demo_Functions01.R
+
+
+# New topic
+## Control Flow
+* `if() ... else()`
+* `ifelse()`
+
+
+
