@@ -1,0 +1,121 @@
+% set font theme
+\usefonttheme{structurebold}
+
+\usepackage{tikz}
+% \RequirePackage{pgfopts}
+% \RequirePackage{etoolbox}
+\usepackage{fontawesome}
+
+
+% color definitions for template -----------------------------------------------
+\usepackage{xcolor}
+% \definecolor{EMCdark}{RGB}{12, 32, 116}
+% \definecolor{EMClight}{RGB}{134, 210, 237}
+% \definecolor{darkred}{RGB}{204,0,0}
+\definecolor{EMCdark}{HTML}{0c2074}
+\definecolor{EMC80}{HTML}{3d4d90}
+\definecolor{EMC60}{HTML}{6d79ac}
+\definecolor{EMC40}{HTML}{9ea6c7}
+\definecolor{EMC20}{HTML}{ced2e3}
+
+
+\setbeamercolor{frametitle}{%
+  use=normal text,
+  parent=normal text,
+  fg=EMCdark,
+  bg=white
+}
+
+\setbeamercolor*{structure}{bg=white,fg=EMCdark}
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=structure.fg}
+
+
+% font settings ----------------------------------------------------------------
+\usepackage[defaultfam,tabular,lining]{montserrat}
+\usepackage[T1]{fontenc}
+\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+% end of font settings ---------------------------------------------------------
+
+% settings title page ----------------------------------------------------------
+
+\makeatletter
+\def\email{\@dblarg\beamer@email}
+\long\def\beamer@email[#1]#2{%
+  \def\insertemail{#2}%
+  \def\beamer@shortemail{#1}%
+  }
+\makeatother
+
+\setbeamerfont{title}{size = \LARGE, series=\bfseries}
+\setbeamerfont{subtitle}{size = \Large, series=\bfseries}
+
+
+\setbeamercolor{title}{fg = EMCdark}
+\setbeamercolor{subtitle}{fg = EMCdark}
+\setbeamercolor{author}{fg = EMCdark}
+
+
+\setbeamertemplate{title page}{
+\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=west] (topdots) at ([xshift=-10.1pt, yshift=-5pt]current page.north west)
+    {\includegraphics[width=1.013\paperwidth]{TemplateGraphics/blokjes.png}};
+
+\node[anchor=north] 
+  at ([yshift=-20pt]topdots.south) (title)
+  {\parbox{\linewidth}{\centering
+  \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}};
+\node[anchor=center] 
+  at ([yshift=-20pt]title.south) (subtitle)
+  {\parbox{\linewidth}{\centering
+  \usebeamerfont{subtitle}\usebeamercolor[fg]{title}\insertsubtitle}};
+    
+\node[anchor=center]
+  at ([yshift=-25pt]subtitle.south) (author)
+  {\usebeamerfont{author}\usebeamercolor[fg]{title}\insertauthor};
+  
+\node[anchor=center] 
+  at ([yshift=-10pt]author.south) (institute)
+  {\usebeamerfont{institute}{\insertinstitute}};
+
+\node[anchor=center]
+  at ([yshift=-10pt]institute.south) (email)
+  {\usebeamerfont{institute}{\insertemail}};
+
+
+\node[anchor=east] at ([yshift=15pt]current page.south east)
+    {\includegraphics[width=0.153\paperwidth]{TemplateGraphics/logo-erasmusmc-rgb-uk.png}};
+\node[anchor=west] at ([xshift=-5.1pt, yshift=15pt]current page.south west) (bottomdots)
+    {\includegraphics[width=0.85\paperwidth]{TemplateGraphics/blokjes4.png}};
+
+\node[anchor=center] 
+  at ([yshift=50pt]current page.south) (date)
+  {\usebeamerfont{date}\usebeamercolor[fg]{title}\insertdate};
+\end{tikzpicture}
+}
+
+
+% end of title page definition -------------------------------------------------
+
+% add frame number to footline
+\setbeamertemplate{footline}{
+  \hfill%
+  \usebeamercolor[fg]{page number in head/foot}%
+  \usebeamerfont{page number in head/foot}%
+  \setbeamertemplate{page number in head/foot}[framenumber]%
+  \usebeamertemplate*{page number in head/foot}\kern1em\vskip2pt%
+}
+
+
+
+
+% commands for columns --------------------------------------------------------
+\def\begincols{\begin{columns}}
+\def\begincol{\begin{column}}
+\def\endcol{\end{column}}
+\def\endcols{\end{columns}}
+
+
+\usepackage{etoolbox} 
+\makeatletter 
+\preto{\@verbatim}{\topsep=0pt \partopsep=0pt } 
+\makeatother
