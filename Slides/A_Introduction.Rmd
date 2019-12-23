@@ -1,33 +1,232 @@
 ---
-title: "Untitled"
-output: beamer_presentation
+title: "BST02: Using R for Statistics\\ in Medical Research"
+subtitle: "Part A: Introduction"
+author: "Eleni-Rosalina Andrinopoulou"
+institute: "Department of Biostatistics, Erasmus Medical Center"
+date: "24 - 28 February 2020"
+email: "e.andrinopoulou@erasmusmc.nl"
+output:
+  beamer_presentation: 
+    template: mytemplate.latex
+    includes:
+      in_header: SlideTemplate.tex
+    keep_tex: yes
+    incremental: false
+classoption: aspectratio=169
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
+## What is this Course About
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+* Statistics have flourished in the recent years mainly due to the possibility of doing complex analysis using computers
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+* The most valuable tool of a modern quantitative researcher is his/her personal computer
+  - Many statistical software exist to do simple and specialized analysis
 
-## Slide with Bullets
+* Analysts must not only learn how to use the software but also the ideas behind it
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
 
-## Slide with R Output
+## What is this Course About (cont’d)
 
-```{r cars, echo = TRUE}
-summary(cars)
-```
+Therefore, the aim of this course is:
 
-## Slide with Plot
+* **Aim A**: General Introduction
+  - how does the programming language **R** work
+* **Aim B**: Basic use of **R**
+  - getting started with a data set, data visualizations
+* **Aim C**: Programming
+  - using and writing functions, popular functions which you will later need for the more advanced courses such as Repeated **Measurements (CE08)**, **Bayesian Statistics (CE09)**, etc.
+* **Aim D**: Statistics with **R**
+  - basic statistical tests, regression analysis 
+* **Aim E**: tools
+  - some interesting tools for reporting data analyses in a reproducible manner
 
-```{r pressure}
-plot(pressure)
-```
 
+## Agenda
+
+* **Part A**:
+  - What does R look like ?
+  - What is R ?
+  - A brief history of R
+  - Why learn R ?
+  - Where do I get R ?
+  - How does R work ?
+  - How to get help in R ?
+  - Disadvantages of R
+
+## Agenda
+
+* **Part B**:
+  - Using R
+  - In practice examples
+  - Basics in R
+  - Common R objetcs
+  - Importing data and saving your work
+  - Data transformation
+  - Data Exploration
+  - Visualization of data
+  - Indexing
+  
+  
+## Agenda
+
+* **Part C**:
+  - Merging data sets
+  - Functions
+  - Loops
+  - The apply family
+  - Combine everything we learned
+  
+  
+## Agenda
+
+* **Part D**:
+  - Statistical tests
+  - Regression models
+  - Dummies, interaction and nonlinear effects
+  - Survival models
+  - Visualization of results
+  
+  
+## Agenda
+
+* **Part E**
+  - Markdown
+  - Creating reports
+  
+  
+## Schedule
+
+* February 24: 10h00 - 13h00, 14h00 - 17h00
+* February 25: 10h00 - 13h00, 14h00 - 17h00
+* February 26: 10h00 - 13h00, 14h00 - 17h00
+* February 27: 10h00 - 13h00, 14h00 - 17h00
+* February 28: 10h00 - 13h00, 14h00 - 17h00
+  
+  
+## Exams
+
+* Date: February 28
+
+\vspace*{3ex}
+
+* Format: Assignment
+
+\vspace*{3ex}
+
+* Open-book
+
+
+## Structure & Material
+
+* Lectures: slides interchanged with live **R** sessions
+* Practicals in-between the lectures 
+  - you will be asked to perform small and big tasks
+  - solutions of the practicals available beforehand
+* Material
+  - slides
+  - **R** code with the output
+  - **more than what we are going to cover!**
+  
+  
+## Structure & Material (cont'd)
+
+* You are welcome to try along
+* You are welcome to interrupt and ask questions
+
+
+## References
+
+* More books that use R (or S) can be found at:
+
+http://www.r-project.org/doc/bib/R-books.html, or
+http://www.r-project.org/doc/bib/R-jabref.html
+
+* R ships with a number of helpful manuals (illustrated later)
+
+* Other manuals and helpful material are available on-line via
+CRAN: 
+http://cran.r-project.org/other-docs.html
+
+
+## What does R look like ?
+
+![alt text here](A_Introduction_files\\figure-beamer\\SS_R.PNG)
+
+
+## What is R
+
+  - is a software environment for statistical computing and graphics.
+  - Unlike SPSS, R is purely command driven
+  
+
+## A brief history of R
+
+* **1993**: University of Auckland, New Zealand by Ross Ihaka and Robert Gentleman
+* **1997**: R core Team was formed (20 members)
+* **2000**: R 1.0.0 released
+* **2004**: First international user conference in Vienna
+* **2013**: 5026 packages available
+* **2017**: 10875 packages available
+  
+  
+## Why learn R ?
+
+* R is a free software environment for statistical computing and graphics
+* It compiles and runs on LINUX, Windows and MacOS
+* Open source language
+* Users are allowed to modify and redistribute the code
+* Advanced statistical language
+* Supports extensions
+* Related to other languages
+* **Flexible and fun!**
+  
+
+## Where do I get R ?
+  - http://cran.r-project.org
+  - choose your platform, e.g., Windows, Linux
+  - e.g., for Windows: Windows $\rightarrow$ base $\rightarrow$ Download R 3.6.2 for Windows
+  - Install . . .
+  
+  
+## How does R work ?
+
+  - Packaged built for specific tasks
+  - Download R packages from the CRAN web site $\rightarrow$ within R
+    + Packages
+    + Install package(s) . . .
+    + make you choice(s)
+    + load the package using \textcolor{blue}{library()} (\textcolor{red}{note}: install does not mean load)
+    
+    
+## How to get help in R
+
+* Within R 
+  - \textcolor{blue}{help.search("topic")} or \textcolor{blue}{??"topic"} (depends on the installed packages)
+  - \textcolor{blue}{RSiteSearch("topic")} (requires internet connection)
+  - \textcolor{blue}{help()} or \textcolor{blue}{?} invoke the on-line help file for the specified function
+  - checking the FAQ
+* Online
+  - R-help (https://stat.ethz.ch/mailman/listinfo/r-help – mailing list)
+  - R-seek (http://www.rseek.org – Google-like searched engine)
+  - R-wiki (http://rwiki.sciviews.org/doku.php)
+  - CRAN Task Views (http://cran.r-project.org/web/views/ – categorization of packages)
+  - Crantastic (http://crantastic.org/ – categorization of packages + reviews)
+  - Equalis (http://www.equalis.com/forums/ – R forum)
+  - R4stats (http://www.r4stats.com/ – examples of basic R programs)
+  - R related Blogs (http://www.r-bloggers.com/ – many useful illustrations of R and R packages)
+
+
+## Disadvantages of R
+
+* appears intimidating to the first-time user
+* output is not so nice looking (but there are some alternatives)
+* exporting output is more difficult
+* cannot easily handle very big data sets (depends on the installed RAM)
+* a lot of things are available but it is sometimes hard to find your way
+* the quality of the available packages is greatly varying
+    
+    
