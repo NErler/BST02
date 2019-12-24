@@ -40,7 +40,7 @@ library(dplyr)
 
 ## Using R (cont'd)
 
-* Strongly advisable to use a suitable text editor – Some available options:
+* Strongly advisable to use a suitable text editor - Some available options:
   - RWinEdt (for Windows; you also need WinEdt installed)
   - Tinn-R (for Windows; http://sciviews.org/Tinn-R/)
   - Rkward (for Linux)
@@ -50,7 +50,7 @@ library(dplyr)
   - for more check http://www.sciviews.org/_rgui/projects/Editors.html
   
   
-##  Using R (cont’d)
+##  Using R (cont'd)
 
 * For this course: Rstudio (http://www.rstudio.org/)
   - free
@@ -58,7 +58,7 @@ library(dplyr)
   - helpful with errors
   
   
-##  Using R (cont’d)
+##  Using R (cont'd)
 
 * Can I use R without Rstudio?
 * Can I use Rstudio without R?
@@ -75,7 +75,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 ```
 
 
-## Practical Examples (cont’d)
+## Practical Examples (cont'd)
 
 * \textbf{\textcolor{red}{id}}:	case number
 * \textbf{\textcolor{red}{time}}:	number of days between registration and the earlier of death, transplantion, or study analysis in July, 1986
@@ -89,7 +89,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 More details: https://stat.ethz.ch/R-manual/R-devel/library/survival/html/pbc.html
 
 
-## Practical Examples (cont’d)
+## Practical Examples (cont'd)
 
 * What is a \textcolor{red}{scalar}/vector/matrix
 
@@ -114,7 +114,7 @@ kable_styling(position = "center", full_width = F)
 ```
 
 
-## Practical Examples (cont’d)
+## Practical Examples (cont'd)
 
 * What is a scalar/\textcolor{red}{vector}/matrix
 
@@ -126,7 +126,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 ```
 
 
-## Practical Examples (cont’d)
+## Practical Examples (cont'd)
 
 * What is a scalar/\textcolor{red}{vector}/matrix
 
@@ -138,7 +138,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 ```
 
 
-## Practical Examples (cont’d)
+## Practical Examples (cont'd)
 
 * What is a scalar/vector/\textcolor{red}{matrix}
 
@@ -150,7 +150,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 ```
 
 
-## Practical Examples (cont’d)
+## Practical Examples (cont'd)
 
 * What is a scalar/vector/\textcolor{red}{matrix}
 
@@ -162,7 +162,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 ```
 
 
-## Practical Examples (cont’d)
+## Practical Examples (cont'd)
 
 * Common questions
    - What is the average age?
@@ -181,7 +181,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 
 * An \textbf{\textcolor{red}{expression}} given as command is evaluated printed and discarded
 
-* An \textbf{\textcolor{blue}{assignment}} evaluates an expression and passes the value to a variable – the result is not automatically printed
+* An \textbf{\textcolor{blue}{assignment}} evaluates an expression and passes the value to a variable - the result is not automatically printed
 
 
 ## Basics in R (cont'd)
@@ -255,7 +255,7 @@ kable(dt, "latex", booktabs = T, digits = 2) %>%
 
 ## Common R Objects (cont'd)
 
-* in R Everything (data, results, …) is an object
+* in R Everything (data, results, ...) is an object
 
 * In order to list the created variables use objects() or ls()
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
@@ -380,7 +380,7 @@ list1
 \vspace*{3ex}    
     
 * Specialized functions for importing data from other statistical packages
-  - packages: \textbf{\textcolor{red}{foreign}}, \textbf{\textcolor{red}{Hmisc}} & \textbf{\textcolor{red}{readxl}}
+  - packages: \textbf{\textcolor{red}{foreign}}, \textbf{\textcolor{red}{Hmisc}} and \textbf{\textcolor{red}{readxl}}
   - \textbf{\textcolor{red}{read.spss()}}, \textbf{\textcolor{red}{read.csv()}}, \textbf{\textcolor{red}{read.dta()}}, \textbf{\textcolor{red}{sas.get()}}, \textbf{\textcolor{red}{read_excel()}}, etc.
 
 
@@ -626,3 +626,19 @@ Categorical variables
 pbc$status <- factor(pbc$status, levels = c(0, 1, 2), labels = c("censored", "transplant", "dead"))
 pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
 ``` 
+
+
+## Indexing/Sudsetting
+
+* When transforming and analyzing data we often need to select specific observations or variables.
+  - Examples: Select ...
+      * the 3rd element for vector age
+      * the 3rd column of the pbc data set
+      * the sex of the 10th patient
+      * the baseline details of the 5th patient
+      * the serum cholesterol for all males
+      * the age for male patients or patients that have serum bilirubin more than 3
+      * first measurement per patient
+    
+    
+
