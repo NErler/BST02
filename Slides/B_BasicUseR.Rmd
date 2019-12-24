@@ -1,0 +1,628 @@
+---
+title: "BST02: Using R for Statistics\\ in Medical Research"
+subtitle: "Part B: Basic use of **R**"
+author: "Eleni-Rosalina Andrinopoulou"
+institute: "Department of Biostatistics, Erasmus Medical Center"
+date: "24 - 28 February 2020"
+email: "e.andrinopoulou@erasmusmc.nl"
+output:
+  beamer_presentation: 
+    template: mytemplate.latex
+    includes:
+      in_header: SlideTemplate.tex
+    keep_tex: yes
+    incremental: false
+classoption: aspectratio=169
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment=NA)
+
+library(survival)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+```
+
+
+## Using R
+
+* R is a command-based procedural language
+  - write and execute commands
+  - use and define functions
+  
+* You may write the commands in the R console (Windows) or in a shell (Linux)
+
+\vspace*{3ex}
+
+**You will become more familiar with the syntax as you use it** 
+
+
+## Using R (cont'd)
+
+* Strongly advisable to use a suitable text editor – Some available options:
+  - RWinEdt (for Windows; you also need WinEdt installed)
+  - Tinn-R (for Windows; http://sciviews.org/Tinn-R/)
+  - Rkward (for Linux)
+  - Emacs (w. ESS, all platforms)
+  - Visual Studio (for Windows)
+  - Rstudio (all major platforms; http://www.rstudio.org/) 
+  - for more check http://www.sciviews.org/_rgui/projects/Editors.html
+  
+  
+##  Using R (cont’d)
+
+* For this course: Rstudio (http://www.rstudio.org/)
+  - free
+  - works fine in Windows, MacOS and Linux
+  - helpful with errors
+  
+  
+##  Using R (cont’d)
+
+* Can I use R without Rstudio?
+* Can I use Rstudio without R?
+
+
+## Practical Examples
+
+* **Package \textcolor{blue}{survival} - pbc data set**
+
+```{r example data, include=TRUE}
+dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
+kable(dt, "latex", booktabs = T, align = "c") %>%
+ kable_styling(full_width = F) 
+```
+
+
+## Practical Examples (cont’d)
+
+* \textbf{\textcolor{red}{id}}:	case number
+* \textbf{\textcolor{red}{time}}:	number of days between registration and the earlier of death, transplantion, or study analysis in July, 1986
+* \textbf{\textcolor{red}{status}}:	status at endpoint, 0/1/2 for censored, transplant, dead
+* \textbf{\textcolor{red}{trt}}:	1/2/NA for D-penicillmain, placebo, not randomised
+* \textbf{\textcolor{red}{age}}:	in years
+* \textbf{\textcolor{red}{sex}}:	m/f
+* \textbf{\textcolor{red}{bili}}:	serum bilirunbin (mg/dl)
+* \textbf{\textcolor{red}{chol}}:	serum cholesterol (mg/dl)
+
+More details: https://stat.ethz.ch/R-manual/R-devel/library/survival/html/pbc.html
+
+
+## Practical Examples (cont’d)
+
+* What is a \textcolor{red}{scalar}/vector/matrix
+
+```{r example data b, include=TRUE}
+dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
+dt <- format(dt, digits = 7)
+dt %>%
+ mutate(
+   dt = row.names(.),
+   age = cell_spec(age, "latex", color = ifelse(age >= 70, "red", "black"), bold = ifelse(age >= 70, "TRUE", "FALSE"), align = c("c", rep("c", 4))),
+   time = cell_spec(time, align = c("c", rep("c", 4))),
+   id = cell_spec(id, align = c("c", rep("c", 4))),
+   sex = cell_spec(sex, align = c("c", rep("c", 4))),
+   status = cell_spec(status, align = c("c", rep("l", 4))),
+   trt = cell_spec(trt, align = c("c", rep("c", 4))),
+   bili = cell_spec(bili, align = c("c", rep("c", 4))),
+   chol = cell_spec(chol, align = c("c", rep("c", 4))),
+   )%>%
+select(id, time, status, trt, age, sex, bili, chol) %>%
+kable("latex", escape = F, booktabs = T, align = "c")  %>%
+kable_styling(position = "center", full_width = F)
+```
+
+
+## Practical Examples (cont’d)
+
+* What is a scalar/\textcolor{red}{vector}/matrix
+
+```{r example data c, include=TRUE}
+dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
+kable(dt, "latex", booktabs = T, align = "c") %>%
+ kable_styling(full_width = F) %>%
+ column_spec(3, bold = TRUE, color = "red")
+```
+
+
+## Practical Examples (cont’d)
+
+* What is a scalar/\textcolor{red}{vector}/matrix
+
+```{r example data d, include=TRUE}
+dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
+kable(dt, "latex", booktabs = T, align = "c") %>%
+ kable_styling(full_width = F) %>%
+ column_spec(2, bold = TRUE, color = "red")
+```
+
+
+## Practical Examples (cont’d)
+
+* What is a scalar/vector/\textcolor{red}{matrix}
+
+```{r example data e, include=TRUE}
+dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
+kable(dt, "latex", booktabs = T, align = "c") %>%
+ kable_styling(full_width = F) %>%
+ column_spec(2:3, bold = TRUE, color = "red")
+```
+
+
+## Practical Examples (cont’d)
+
+* What is a scalar/vector/\textcolor{red}{matrix}
+
+```{r example data f, include=TRUE}
+dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
+kable(dt, "latex", booktabs = T, align = "c") %>%
+ kable_styling(full_width = F) %>%
+ column_spec(7:8, bold = TRUE, color = "red")
+```
+
+
+## Practical Examples (cont’d)
+
+* Common questions
+   - What is the average age?
+   - What is the average bili?
+   - What is the average chol?
+   - What is the percentsage of females?
+   
+  \vspace*{3ex}
+  
+   - \textbf{\textcolor{red}{What is the average bili and chol?}}
+   
+   
+## Basics in R
+
+* Elementary commands: \textbf{\textcolor{red}{expressions}} and \textbf{\textcolor{blue}{assignments}}
+
+* An \textbf{\textcolor{red}{expression}} given as command is evaluated printed and discarded
+
+* An \textbf{\textcolor{blue}{assignment}} evaluates an expression and passes the value to a variable – the result is not automatically printed
+
+
+## Basics in R (cont'd)
+
+Expression is given as a command,
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+103473
+```
+
+\vspace*{3ex}
+
+ - However, it cannot be viewed again unless the command is rerun.
+ 
+\vspace*{3ex}
+
+ In order to store information, the expression should assign the command
+ 
+ ```{r, eval = TRUE, include = TRUE, echo = TRUE}
+x <- 103473
+x
+```
+
+
+## Basics in R (cont'd)
+
+* Basic arithmetics
+ ```{r, eval = FALSE, include = TRUE, echo = TRUE}
++, -, *, /, ^
+```
+
+* Complicated arithmetics
+ ```{r, eval = FALSE, include = TRUE, echo = TRUE}
+%*%, t(), %/%
+```
+
+
+## Basics in R (cont'd)
+
+* R is case sensitive, e.g.,
+  - \textbf{\textcolor{blue}{"sex"}} is different than \textbf{\textcolor{blue}{"Sex"}}
+* Commands are separated by a semi-colon or by a newline
+* Comments can be put anywhere, starting with a hashmark \textbf{\textcolor{blue}{\#}}: everything to the end of the line is a comment
+* Assign a value to an object by \textbf{\textcolor{blue}{<-}} or \textbf{\textcolor{blue}{=}}
+
+
+## Basics in R (cont'd)
+
+* Missing values
+  - are coded as \textbf{\textcolor{blue}{NA}} (i.e., not available) \textbf{\textcolor{blue}{is.na()}}
+* Infinity
+  - is coded as \textbf{\textcolor{blue}{Inf}} (plus infinity) or \textbf{\textcolor{blue}{-Inf}} (minus infinity) \textbf{\textcolor{blue}{is.finite()}}
+* Not a number
+  - is coded as \textbf{\textcolor{blue}{NaN}} (Not a Number). Example: 
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+0/0
+```
+
+
+## Common R Objects
+
+* There are different kinds of variables
+
+\vspace*{3ex}
+
+```{r example data g, include=TRUE}
+dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
+kable(dt, "latex", booktabs = T, digits = 2) %>%
+ kable_styling(full_width = F) 
+```
+
+
+## Common R Objects (cont'd)
+
+* in R Everything (data, results, …) is an object
+
+* In order to list the created variables use objects() or ls()
+```{r, eval = FALSE, include = TRUE, echo = TRUE}
+objects()
+```
+
+  - In order to remove everything:
+```{r, eval = FALSE, include = TRUE, echo = TRUE}
+rm(list=ls(all=TRUE))
+```
+
+
+## Common R Objects (cont'd)
+
+* To investigate a specific object (e.g. pbc)
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+str(pbc[,c("id", "time", "status", "trt", "age", "sex", "bili", "chol")])
+```
+
+
+## Common R Objects (cont'd)
+
+The simplest data structures are:
+
+* \textbf{\textcolor{red}{numeric}} : quantitative data
+* \textbf{\textcolor{red}{character}} : qualitative data
+* \textbf{\textcolor{red}{integer}} : whole numbers
+* \textbf{\textcolor{red}{logical}} : TRUE or FALSE
+
+To find out what type of vector you have you can use the mode function
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+mode(pbc$age)
+```
+
+
+## Common R Objects (cont'd)
+
+* Every object in R has a class
+
+  - \textbf{\textcolor{red}{Vectors}} have the same type of elements 
+  - \textbf{\textcolor{red}{Matrices}} have the same type of elements 
+  - \textbf{\textcolor{red}{Data.frames}} and lists do not need to have the same type of elements 
+  - \textbf{\textcolor{red}{Lists}} may have elements of different length and type
+
+
+## Common R Objects (cont'd)
+
+* Differences between \textbf{\textcolor{red}{Vector}}, Martices, Data.frames and Lists
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+pbc[1:6, c("age")]
+```
+
+## Common R Objects (cont'd)
+
+* Differences between Vector, \textbf{\textcolor{red}{Matrices}}, Data.frames and Lists
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+pbc[1:6, c("age", "bili", "chol")]
+```
+
+
+## Common R Objects (cont'd)
+
+* Differences between Vector, Matrices, \textbf{\textcolor{red}{Data.frames}} and Lists
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+pbc[1:6, c("id", "sex", "bili", "chol")]
+```
+
+
+## Common R Objects (cont'd)
+
+* Differences between Vector, Matrices, Data.frames and \textbf{\textcolor{red}{Lists}}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+list(pbc[1:6, c("sex")], pbc[1:2, c("sex", "bili")], pbc$age[1:4])
+```
+
+
+## Common R Objects (cont'd)
+Create a vector
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+vec <- c(1, 2, 3, 4, 5)
+vec
+vec <- c(1:5)
+vec
+```
+
+
+## Common R Objects (cont'd)
+Create a matrix
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+vec <- c(1, 2, 3, 4, 5, 6)
+mat <- matrix(vec, 3, 3)
+mat 
+mat <- matrix(vec, 3, 3, byrow = TRUE)
+mat
+```
+
+
+## Common R Objects (cont'd)
+Create a data frame
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+dtf <- data.frame(pbc$sex, pbc$age)
+dtf[1:3,]
+dtf <- data.frame(Gender = pbc$sex, Age = pbc$age)
+dtf[1:3,]
+```
+
+
+## Common R Objects (cont'd)
+Create a list
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+list1 <- list(vec = c(1:5), mat = pbc[1:2, c("age", "sex")])
+list1
+```
+
+## Importing Data and Saving your Work
+
+* \textbf{\textcolor{red}{read.table()}} and its variants
+  - note: use forward slashes or double backward slashes in the file names, e.g., \
+    "C:/Documents and Settings/User/Data/file.txt" or \
+    "C:\\Documents and Settings\\User\\Data\\file.txt"
+    
+\vspace*{3ex}    
+    
+* Specialized functions for importing data from other statistical packages
+  - packages: \textbf{\textcolor{red}{foreign}}, \textbf{\textcolor{red}{Hmisc}} & \textbf{\textcolor{red}{readxl}}
+  - \textbf{\textcolor{red}{read.spss()}}, \textbf{\textcolor{red}{read.csv()}}, \textbf{\textcolor{red}{read.dta()}}, \textbf{\textcolor{red}{sas.get()}}, \textbf{\textcolor{red}{read_excel()}}, etc.
+
+
+## Importing Data and Saving your Work (cont'd)
+
+* \textbf{\textcolor{red}{ls()}} lists R objects in a session 
+* \textbf{\textcolor{red}{save()}}
+  - can be used to save a list of R objects
+  - a binary file with all the objects available in your last R session
+  - platform independent
+* You can load your saved R objects using \textbf{\textcolor{red}{load()}}
+  - be careful about overwriting
+* Using \textbf{\textcolor{red}{saveRDS}} and \textbf{\textcolor{red}{readRDS}} you can save and read a single R object
+  - The result has to be assigned to a variable
+
+
+## Importing Data and Saving your Work (cont'd)
+
+* Create a csv, xls or text file from an R object
+```{r, eval = FALSE, include = TRUE, echo = TRUE}
+write.csv(mydata, "c:/mydata.txt")
+write.table(mydata, "c:/mydata.txt", sep="\t")
+library(xlsx)
+write.xlsx(mydata, "c:/mydata.xlsx")
+```
+
+
+## Data Transformation
+
+* Round continuous variables
+* textbf{\textcolor{red}{numeric}} variables to textbf{\textcolor{red}{factors}}
+* Compute new variables
+  - transform variables
+* Matrices of wide $\Longleftrightarrow$ long format
+* Missing values and outliers
+
+
+## Data Transformation (cont'd)
+
+Round continuous variables
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+DF <- format(pbc[,c("id", "time", "status", "trt", "age", 
+                    "sex", "bili", "chol")], digits = 2)
+head(DF)
+```
+
+
+## Data Transformation (cont'd)
+
+textbf{\textcolor{red}{numeric}} variables to textbf{\textcolor{red}{factors}}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+DF <- pbc[,c("id", "time", "status", "trt", "age", 
+                    "sex", "bili", "chol")]
+DF$trt <- factor(DF$trt, levels = c(1, 2), 
+                 labels = c("D-penicillmain", "placebo"))
+head(DF)
+```
+
+
+## Data Transformation (cont'd)
+
+* Compute new variables
+  - transform variables
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+DF <- pbc[,c("id", "time", "status", "trt", "age", 
+                    "sex", "bili", "chol")]
+DF$time <- DF$time/30
+DF$time_years <- DF$time/12
+head(DF)
+``` 
+  
+  
+## Data Transformation (cont'd)
+
+* Matrices of \textbf{\textcolor{red}{wide}} $\Longleftrightarrow$ long format  
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+head(pbc[,c("id", "time", "status", "trt", "age", 
+                    "sex", "bili", "chol")])
+```  
+  
+  
+## Data Transformation (cont'd)
+
+* Matrices of wide $\Longleftrightarrow$ \textbf{\textcolor{red}{long}} format  
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
+                    "sex", "bili", "chol")])
+```  
+  
+  
+## Data Transformation (cont'd)
+
+* textbf{\textcolor{red}{Missing values}} and outliers
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+head(pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
+                                    "trt", "age", "sex", 
+                                    "bili", "chol")])
+```  
+
+
+## Data Transformation (cont'd)
+
+* Missing values and textbf{\textcolor{red}{outliers}}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+head(pbc[pbc$bili > 25, c("id", "time", "status", 
+                          "trt", "age", "sex", "bili", "chol")])
+```  
+
+
+## Data Exploration
+
+* Common questions
+  - What is the mean and sd for age?
+  - What is the mean and sd for time?
+  - What is the median and interquartile range for age?
+  - What is the percentage of placebo patients?
+  - What is the percentage of females?
+  - What is the mean and sd for age in males?
+  - What is the mean and sd for baseline serum bilirubin?
+
+
+## Data Exploration (cont'd)
+
+* Common questions: \textbf{\textcolor{red}{Hints}}
+
+\vspace*{3ex}  
+
+  - Check functions: \textbf{\textcolor{blue}{mean(...)}}, \textbf{\textcolor{blue}{sd(...)}}, \textbf{\textcolor{blue}{percent(...)}}, \textbf{\textcolor{blue}{median(...)}}, \textbf{\textcolor{blue}{IQR(...)}}
+
+
+## Data Visualization
+
+* It is important to investigate each data set using plots
+  - Descriptive statistics for continuous and categorical variables
+  
+  - Distributions of variables
+  - Distributions of variables per group
+  - Outliers
+  - Linear/nonlinear evolutions
+  
+  
+## Data Visualization (cont'd)
+
+* R has very powerful graphics capabilities
+* Some good references are
+  - Murrel, P. (2005) R Graphics. Boca Raton: Chapman & Hall/CRC.
+  - Sarkar, D. (2008) Lattice Multivariate Data Visualization with R. New York: Springer-Verlag.
+
+
+## Data Visualization (cont'd)
+
+* Traditional graphics system
+  - package \textbf{\textcolor{blue}{graphics}}
+* Trellis graphics system
+  - package \textbf{\textcolor{blue}{lattice}} (which is based on package grid)
+* Grammar of Graphics implementation (i.e., Wilkinson, L. (1999) The Grammar of Graphics. New York: Springer-Verlag)
+  - packages \textbf{\textcolor{blue}{ggplot}} & \textbf{\textcolor{blue}{ggplot2}}
+
+
+## Data Visualization (cont'd)
+
+Continuous variables
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+plot(pbc$age, pbc$bili)
+```
+
+
+## Data Visualization (cont'd)
+
+Important plotting functions
+* \textbf{\textcolor{blue}{plot()}}: scatter plot (and others)
+* \textbf{\textcolor{blue}{barplot()}}: bar plots
+* \textbf{\textcolor{blue}{boxplot()}}: box-and-whisker plots
+* \textbf{\textcolor{blue}{dotchart()}}: dot plots
+* \textbf{\textcolor{blue}{hist()}}: histograms
+* \textbf{\textcolor{blue}{pie()}}: pie charts
+* \textbf{\textcolor{blue}{qqnorm()}}, \textbf{\textcolor{blue}{qqline()}}, \textbf{\textcolor{blue}{qqplot()}}: distribution plots
+* \textbf{\textcolor{blue}{pairs()}}: for multivariate data
+
+
+## Data Visualization (cont'd)
+
+Continuous variables
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+plot(pbc$age, pbc$bili, xlab = "age", ylab = "bili", 
+     cex.lab = 1.9, cex.axis = 1.5)
+```  
+
+
+## Data Visualization (cont'd)
+
+Continuous variables
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+plot(pbc$age, pbc$bili, xlab = "age", ylab = "bili", 
+     cex.lab = 1.9, cex.axis = 1.5, col = "red")
+```  
+
+## Data Visualization (cont'd)
+
+Continuous variables per group
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+boxplot(pbc$age ~ pbc$sex, xlab = "sex", ylab = "age", 
+     cex.lab = 1.9, cex.axis = 1.5)
+```  
+
+
+## Data Visualization (cont'd)
+
+Continuous variables per group
+```{r, eval = FALSE, include = TRUE, echo = TRUE, fig.height = 3.5, fig.width = 15}
+pbc_male_bili <- pbc$bili[pbc$sex == "m"]
+pbc_female_bili <- pbc$bili[pbc$sex == "f"]
+plot(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
+     main = "Density plots", xlab = "age", ylab = "")
+polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), border = "blue")
+lines(density(pbc_female_bili), col = rgb(1,0,0,0.5))
+polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), border = "red")
+legend(20,0.03, c("male", "female"), 
+       col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)
+```  
+
+
+## Data Visualization (cont'd)
+
+Continuous variables per group
+```{r, eval = TRUE, include = TRUE, echo = FALSE, fig.height = 6, fig.width = 15}
+pbc_male_bili <- pbc$bili[pbc$sex == "m"]
+pbc_female_bili <- pbc$bili[pbc$sex == "f"]
+plot(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
+     main = "Density plots", xlab = "age", ylab = "")
+polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), border = "blue")
+lines(density(pbc_female_bili), col = rgb(1,0,0,0.5))
+polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), border = "red")
+legend(20,0.03, c("male", "female"), 
+       col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)
+``` 
+
+
+## Data Visualization (cont'd)
+
+Categorical variables 
+```{r, eval = TRUE, include = TRUE, echo = FALSE, fig.height = 8, fig.width = 15}
+pbc$status <- factor(pbc$status, levels = c(0, 1, 2), labels = c("censored", "transplant", "dead"))
+pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
+``` 

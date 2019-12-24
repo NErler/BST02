@@ -5,8 +5,8 @@
 
 Slides/A_Introduction.tex
 Slides/A_Introduction_files
-Slides/B_BasicR.tex
-Slides/B_BasicR_files
+Slides/B_BasicUseR.tex
+Slides/B_BasicUseR_files
 Slides/C_FunctionsAndLoops.tex
 Slides/C_FunctionsAndLoops_files
 
@@ -18,5 +18,6 @@ Slides/*.toc
 Slides/*.nav
 Slides/*.aux
 
-
+Demos/*/*.html
+Demos/*/*.RData
 
