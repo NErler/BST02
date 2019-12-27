@@ -4,62 +4,110 @@ author: "Eleni-Rosalina Andrinopoulou"
 date: "`r Sys.setenv(LANG = 'en_US.UTF-8'); format(Sys.Date(), '%d %B %Y')`"
 output:
   word_document: default
+  html_document:
+    df_print: paged
 ---
+
+# Introduction
+
+The aim of this study is to investigate whether an association exists between serum bilirubin with sex, age, serum cholesterol and blood vessel malformations in the skin
 
 # Statistical Analysis
 
 * We are going to used the pbc data set from the survival library. 
 
-* Continuous data are presented as mean and standard deviation while categorical variables as counts and percentages. Differences between groups were analyzed by the unpaired Student's t tests for continuous variables while.... To investigate the association between serum bilirubin with sex, age and time, a linear regression was performed... A p-value <0.05 was considered statistically significant.
+* Continuous data are presented as mean and standard deviation while categorical variables as counts and percentages. Differences between males and females were analyzed by the unpaired Student's t tests for continuous variables. To investigate the association between serum bilirubin with sex, age, treatment and standardised blood clotting time a linear regression was performed. A p-value <0.05 was considered statistically significant and no correction for multiple testing was performed.
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, warning = FALSE, message = FALSE}
 library(lattice)
 library(knitr)
 library(survival)
 library(effects)
+library(arsenal)
 ```
 
-```{r, results='asis', echo=T}
+```{r, results='asis', echo=TRUE, warning = FALSE}
 R.Version()$version.string
 packageVersion("lattice")
 packageVersion("knitr")
 packageVersion("survival")
+packageVersion("effects")
+packageVersion("arsenal")
 ```
 
-The t-test comparing the differences in serum bilirubin in males and females gave up a p-value of:
+# Results
 
-```{r, echo=FALSE}
-t.test(pbc$bili ~ pbc$sex)$p.value
+Table 1 presents descriptive statistics with the results of the t-test analysis.
+
+```{r, echo=FALSE, include=TRUE, results = 'asis'}
+pbc$trt <- factor(pbc$trt, levels = c(1, 2, NA), 
+                  labels = c("D-penicillmain", "placebo"))
+tab1 <- tableby(sex ~ bili + chol + age + spiders, data = pbc)
+kable(summary(tab1), caption = "Table 1: Descriptive statistics with test")
 ```
 
+Figure 1 represents the desnity plots of serum bilirubin per gender.
+
+```{r, echo=FALSE, include=TRUE, fig.cap = "Figure 1: Density plots of serum bilirubin per gender"}
+pbc_male_bili <- pbc$bili[pbc$sex == "m"]
+pbc_female_bili <- pbc$bili[pbc$sex == "f"]
+plot(density(pbc_male_bili), col = rgb(0,0,1,0.5), ylim = c(0,0.40), main = "Density plots", xlab = "bili", ylab = "")
+polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), border = "blue")
+lines(density(pbc_female_bili), col = rgb(1,0,0,0.5))
+polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), border = "red")
+legend(20,0.03, c("male", "female"), 
+       col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)
+```
+
+
+## Regression analysis {.tabset .tabset-fade}
+
+The results of the regression analysis are presented in Table 2. Both a regression without interaction and with interaction were assumed.
+
+### Linear regression without interactions
 ```{r, echo=FALSE}
-fm1 <- lm(bili ~ sex + age + time, data = pbc)
+fm1 <- lm(bili ~ sex + age + trt + protime, data = pbc)
 tab <- summary(fm1)$coefficients
+kable(tab[, c(1,2,4)], dig = 4, caption = "Table 2: The coefficients, standard errors and p-values")
 ```
 
-```{r, echo=FALSE} 
-kable(tab, dig = 4)
-```
-
-## Predict weight for 2 male patients with min and max BMI at different ages
-```{r, echo=TRUE}
-plot(effect(fm1))
-```
-
-```{r, echo=FALSE, include=TRUE}
-plot(pbc$bili, pbc$time, xlab = "time", ylab = "bili")
-```
-
+### Linear regression with interactions
 ```{r, echo=FALSE}
-xyplot(pred ~ age | time, type = "l", lty = c(1, 2, 2), cex = 1.8,  col = 1, lwd = 2, main = "age vs bili per time group", xlab = "age", ylab = "bili", data = newdata)
+fm2 <- lm(bili ~ age * (sex + trt + protime), data = pbc)
+tab <- summary(fm2)$coefficients
+kable(tab[, c(1,2,4)], dig = 4, caption = "Table 2: The coefficients, standard errors and p-values")
 ```
+
+## Effect plots {.tabset .tabset-fade}
+
+### Serum bilirubin with age
+```{r, echo=TRUE, message = FALSE, warning = FALSE}
+plot(effect("age", fm2))
+```
+
+### Serum bilirubin with spiders
+```{r, echo=TRUE, message = FALSE, warning = FALSE}
+plot(effect("trt", fm2))
+```
+
+### Serum bilirubin with standardised blood clotting time
+```{r, echo=TRUE, message = FALSE, warning = FALSE}
+plot(effect("protime", fm2))
+```
+
+### Serum bilirubin with standardised blood clotting time and sex
+```{r, echo=TRUE, message = FALSE, warning = FALSE}
+plot(effect(c("protime", "sex"), fm2))
+```
+
+
 
 
 # Conclusions
 
 We may conclude that:
 
-* A strong association was found between time and serum bilirubin
+* A strong association was found between serum cholesterol, spiders and serum bilirubin
 * A weak association was found between sex and serum bilirubin
   * The same holds for age
 
