@@ -22,7 +22,7 @@ library(survival)
 ```
 
 
-## The apply Family
+##  What is the apply Family
 
 * Manipulate slices of data from matrices, arrays, lists and dataframes in a repetitive way avoiding explicit use of loop constructs
   - An aggregating function, like for example the mean, or the sum
@@ -30,7 +30,7 @@ library(survival)
   - Other vectorized functions, which return more complex structures like lists, vectors, matrices and arrays
   
   
-## The apply Family (cont'd)
+## What is the apply Family (cont'd)
 
 \textbf{\textcolor{blue}{apply(), lapply() , sapply(), tapply(), mapply()}}
 
@@ -39,9 +39,7 @@ library(survival)
 \textbf{But how and when should we use these?}
 
 
-## The apply Family (cont'd)
-
-\textbf{\textcolor{blue}{How To Use apply() in R}}
+## How To Use apply() in R
 
 * Operates on Matrices and Data Frames
 
@@ -66,9 +64,7 @@ apply(mat, 1, sum)
 \endcols
 
 
-## The apply Family (cont'd)
-
-\textbf{\textcolor{blue}{How To Use apply() in R}}
+## How To Use apply() in R (cont'd)
 
 * Operates on Matrices and Data Frames
 
@@ -93,9 +89,7 @@ apply(mat, 1, mean)
 \endcols
 
 
-## The apply Family (cont'd)
-
-\textbf{\textcolor{blue}{How To Use apply() in R}}
+## How To Use apply() in R (cont'd)
 
 * You can also apply your functions
 
@@ -122,9 +116,7 @@ apply(mat, 1, function(x)
 \endcols
 
 
-## The apply Family (cont'd)
-
-\textbf{\textcolor{blue}{How To Use lapply() in R}}
+## How To Use lapply() in R 
 
 * Apply a given function to every element of a list and obtain a list as result
 * The difference with apply():
@@ -132,9 +124,7 @@ apply(mat, 1, function(x)
   - The output returned is a list
 
 
-## The apply Family (cont'd)
-
-\textbf{\textcolor{blue}{How To Use lapply() in R}}
+## How To Use lapply() in R (cont'd)
 
 \begincols[t]
 \begincol{0.5\linewidth}
@@ -160,9 +150,7 @@ lapply(myList, length)
 \endcols
 
 
-## The apply Family (cont'd)
-
-\textbf{\textcolor{blue}{How To Use lapply() in R}}
+## How To Use lapply() in R (cont'd)
 
 \begincols[t]
 \begincol{0.5\linewidth}
@@ -188,16 +176,9 @@ lapply(myList, median)
 \endcols
 
 
-## The apply Family (cont'd)
-
-\textbf{\textcolor{blue}{How To Use sapply() in R}}
+## How To Use sapply() in R 
 
 * sapply() is similar to lapply(), but it tries to simplify the output
-
-
-## The apply Family (cont'd)
-
-\textbf{\textcolor{blue}{How To Use sapply() in R}}
 
 \begincols[t]
 \begincol{0.5\linewidth}
@@ -224,9 +205,7 @@ sapply(myList, median)
 \endcols
 
 
-## The apply Family (cont'd)
-
-\textbf{\textcolor{blue}{How To Use tapply() in R}}
+## How To Use tapply() in R
 
 * Apply a function to subsets of a vector and the subsets are defined by some other vector, usually a factor
 
@@ -236,9 +215,7 @@ tapply(pbc$age, pbc$sex, median)
 ```
 
 
-## The apply Family (cont'd)
-
-\textbf{\textcolor{blue}{How To Use tapply() in R}}
+## How To Use tapply() in R (cont'd)
 
 * You can also apply your functions
 
@@ -247,9 +224,7 @@ tapply(pbc$bili, pbc$sex, function(x) sum(x)/(length(x)-1))
 ```
 
 
-## The apply Family (cont'd)
-
-\textbf{\textcolor{blue}{How To Use mapply() in R}}
+## How To Use mapply() in R
 
 * Multivariate apply
 * Its purpose is to be able to vectorize arguments to a function that is not usually accepting vectors as arguments
@@ -260,9 +235,8 @@ mapply(length, pbc)
 ```
 
 
-## The apply Family (cont'd)
+## How To Use mapply() in R (cont'd)
 
-\textbf{\textcolor{blue}{How To Use mapply() in R}}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 myList <- list(x <- c(1:6), 
                y = c("m", "f"), 
