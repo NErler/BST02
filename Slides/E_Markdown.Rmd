@@ -1,0 +1,374 @@
+---
+title: "BST02: Using R for Statistics\\ in Medical Research"
+subtitle: "Part E: Markdown"
+author: "Eleni-Rosalina Andrinopoulou"
+institute: "Department of Biostatistics, Erasmus Medical Center"
+date: "24 - 28 February 2020"
+email: "e.andrinopoulou@erasmusmc.nl"
+output:
+  beamer_presentation: 
+    template: mytemplate.latex
+    includes:
+      in_header: SlideTemplate.tex
+    keep_tex: yes
+    incremental: false
+classoption: aspectratio=169
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment=NA)
+
+library(survival)
+```
+
+
+## What is Markdown
+
+* R Markdown is a format for writing \textbf{\textcolor{red}{reproducible}}, \textbf{\textcolor{red}{dynamic reports}} with R
+
+\vspace*{3ex}  
+
+* Use it to \textbf{\textcolor{red}{embed R code and results}} into slideshows, pdfs, html documents, Word files and more
+
+
+
+## Where to find Markdown
+
+* In \textbf{\textcolor{red}{Rstudio}}
+  - File $\rightarrow$ New File $\rightarrow$ R Markdown...
+  - Insert title and author
+  - Select format
+
+
+## Getting started with Markdown
+
+* Writing-part: 
+   \textbf{\textcolor{blue}{Header}}
+  
+\begincols[t]
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Input
+
+\vspace*{3ex} 
+
+```{r, eval = FALSE, include = TRUE, echo = TRUE}
+# Methods
+## Data selection
+## Statistical analysis
+# Results
+```
+
+\endcol
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Output
+
+\vspace*{3ex} 
+
+\large Methods \
+\normalsize Data selection \
+\normalsize Statistical analysis \
+\large Results
+
+\endcol
+\endcols
+
+
+## Getting started with Markdown (cont'd)
+
+* Writing-part: 
+   \textbf{\textcolor{blue}{Emphasis}}
+  
+\begincols[t]
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Input
+
+\vspace*{3ex} 
+
+```{r, eval = FALSE, include = TRUE, echo = TRUE}
+*Methods*
+_Methods_
+**Methods**
+__Methods__
+```
+
+\endcol
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Output
+
+\vspace*{3ex} 
+
+*Methods* \
+_Methods_ \
+**Methods** \
+__Methods__
+
+\endcol
+\endcols
+
+
+## Getting started with Markdown (cont'd)
+
+* Writing-part: 
+   \textbf{\textcolor{blue}{Bullets}}
+  
+\begincols[t]
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Input
+
+\vspace*{3ex} 
+
+```{r, eval = FALSE, include = TRUE, echo = TRUE}
+* Method 1
+- Method 2
++ Method 3
+  - Method a
+```
+
+\endcol
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Output
+
+\vspace*{3ex} 
+
+* Method 1 
+- Method 2 
++ Method 3
+  - Method a
+
+\endcol
+\endcols
+
+
+## Getting started with Markdown (cont'd)
+
+* Writing-part: 
+   \textbf{\textcolor{blue}{Links}}
+  
+\begincols[t]
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Input
+
+\vspace*{3ex} 
+
+```{r, eval = FALSE, include = TRUE, echo = TRUE}
+[link](https://cran.r-project.org/)
+```
+
+\endcol
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Output
+
+\vspace*{4ex} 
+
+\ \ \ \ \ \ [link](https://cran.r-project.org/)
+
+\endcol
+\endcols
+
+
+## Getting started with Markdown (cont'd)
+
+* Writing-part: 
+   \textbf{\textcolor{blue}{Images}}
+  
+\begincols[t]
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Input
+
+\vspace*{3ex} 
+
+```{r, eval = FALSE, include = TRUE, echo = TRUE}
+![Rsymbol](Rsymbol.png)
+```
+
+\endcol
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Output
+
+\vspace*{4ex} 
+
+![Rsymbol](E_Markdown_files\\figure-beamer\\Rsymbol.png)
+
+\endcol
+\endcols
+
+
+## Getting started with Markdown (cont'd)
+
+* Writing-part: 
+   \textbf{\textcolor{blue}{Images}}
+  
+\begincols[t]
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Input
+
+\vspace*{3ex} 
+
+```{r, eval = FALSE, include = TRUE, echo = TRUE}
+![Rsymbol](Rsymbol.png){width=10%}
+```
+
+\endcol
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Output
+
+\vspace*{4ex} 
+
+![Rsymbol](E_Markdown_files\\figure-beamer\\Rsymbol.png){width=10%}
+
+\endcol
+\endcols
+
+
+
+## Getting started with Markdown (cont'd)
+
+* Writing-part: 
+   \textbf{\textcolor{blue}{Horizontal rules}}
+  
+\begincols[t]
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Input
+
+\vspace*{3ex} 
+
+```{r, eval = FALSE, include = TRUE, echo = TRUE}
+---
+```
+
+\endcol
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Output
+
+\vspace*{4ex} 
+
+\hrule
+
+\endcol
+\endcols
+
+
+## Getting started with Markdown (cont'd)
+
+* Writing-part: 
+   \textbf{\textcolor{blue}{Escaping}}
+  
+\begincols[t]
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Input
+
+\vspace*{3ex} 
+
+```{r, eval = FALSE, include = TRUE, echo = TRUE}
+\*Method\*
+```
+
+\endcol
+\begincol{0.5\linewidth}
+
+\vspace*{3ex} 
+
+* Output
+
+\vspace*{4ex} 
+
+\*Method\*
+
+\endcol
+\endcols
+
+
+## Getting started with Markdown (cont'd)
+
+* R-part (Global options chunks)
+  - \textbf{\textcolor{blue}{eval}}: If FALSE, knitr will not run the code in the code chunk.
+  - \textbf{\textcolor{blue}{include}}: If FALSE, knitr will run the chunk but not include the chunk in the final document.
+
+
+## Getting started with Markdown (cont'd)
+* R-part (Global options chunks) 
+  - \textbf{\textcolor{blue}{echo}}: If FALSE, knitr will not display the code in the code chunk above it’s results in the final document.
+  - \textbf{\textcolor{blue}{results}}: If 'hide', knitr will not display the codes results in the final document. If 'hold', knitr will delay displaying all output until the end of the chunk. If 'asis', knitr will pass through results without reformatting them (useful if results return raw HTML, etc.)
+  - \textbf{\textcolor{blue}{error}}: If FALSE, knitr will not display any error messages generated by code.
+  - \textbf{\textcolor{blue}{message}}: If FALSE, knitr will not display any messages.
+  - \textbf{\textcolor{blue}{warning}}: If FALSE, knitr will not display any warning messages.
+
+
+## Getting started with Markdown (cont'd)
+* R-part (Global options chunks) 
+  - \textbf{\textcolor{blue}{cache}}: If TRUE, knitr will cache the results to reuse in future knits. Knitr will reuse the results until the code chunk is altered.
+  - \textbf{\textcolor{blue}{cache.comments}}: If FALSE, knitr will not rerun the chunk if only a code comment has changed.
+
+
+## Getting started with Markdown (cont'd)
+* R-part (Global options chunks) 
+  - \textbf{\textcolor{blue}{fig.cap}}: A character string to be used as a figure caption in LaTex.
+  - \textbf{\textcolor{blue}{fig.height}}, \textbf{\textcolor{blue}{fig.width}}: The width and height to use in R for plots created by the chunk (in inches).
+
+\vspace*{3ex} 
+
+https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf
+
+
+## A simplified version
+
+* Sometimes you:
+  - Want to create pdf / html /doc files from R
+  - Do not want to make a .Rmd file
+
+\vspace*{3ex} 
+
+With \textbf{\textcolor{blue}{spinr}} we can do this!
+
+\vspace*{3ex}
+
+* spinr syntax
+  - When you want a line to be interpreted as markdown prepend it with \textcolor{blue}{\#'}
+  - When you want start a new code chunk (with different options) use \textcolor{blue}{\#+}
+  
+  
