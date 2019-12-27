@@ -1,8 +1,9 @@
 ---
 title: "Report for the paper ..."
 author: "The Author"
-date: 28-02-2019
+date: "28-02-2019"
 output:
+  word_document: default
   pdf_document: default
   html_document:
     df_print: paged
@@ -50,11 +51,11 @@ X <- model.matrix(~ sex + age + time, data = newdata)
 betas <- summary(fm1)$coefficients[, 1]
 newdata$pred <- c(X %*% betas)
 
-newdata$time <- factor(newdata$time, labels = c("min BMI","max BMI"))
+newdata$time <- factor(newdata$time, labels = c("min time","max time"))
 ```
 
 ```{r, echo=FALSE, include=TRUE}
-plot(pbc$bili, pbc$time, xlab = "weight", ylab = "BMI")
+plot(pbc$bili, pbc$time, xlab = "time", ylab = "bili")
 ```
 
 ```{r, echo=FALSE}

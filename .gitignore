@@ -23,4 +23,8 @@ Slides/*.aux
 
 Demos/*/*.html
 Demos/*/*.RData
+Demos/*/*.log
+Demos/*/*.docx
+Demos/*/*.tex
 
+/2019 material
