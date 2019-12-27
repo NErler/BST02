@@ -1,12 +1,9 @@
 ---
-title: "Report for the paper ..."
-author: "The Author"
-date: "28-02-2019"
+title: "Statistical Report"
+author: "Eleni-Rosalina Andrinopoulou"
+date: "`r Sys.setenv(LANG = 'en_US.UTF-8'); format(Sys.Date(), '%d %B %Y')`"
 output:
   word_document: default
-  pdf_document: default
-  html_document:
-    df_print: paged
 ---
 
 # Statistical Analysis
@@ -19,6 +16,7 @@ output:
 library(lattice)
 library(knitr)
 library(survival)
+library(effects)
 ```
 
 ```{r, results='asis', echo=T}
@@ -28,6 +26,11 @@ packageVersion("knitr")
 packageVersion("survival")
 ```
 
+The t-test comparing the differences in serum bilirubin in males and females gave up a p-value of:
+
+```{r, echo=FALSE}
+t.test(pbc$bili ~ pbc$sex)$p.value
+```
 
 ```{r, echo=FALSE}
 fm1 <- lm(bili ~ sex + age + time, data = pbc)
@@ -40,18 +43,7 @@ kable(tab, dig = 4)
 
 ## Predict weight for 2 male patients with min and max BMI at different ages
 ```{r, echo=TRUE}
-newdata <- with(pbc, data.frame(
-  sex = rep(1, each = 40),
-  age = rep(seq(min(pbc$age), max(pbc$age), length = 20), each = 2),
-  time = rep(c(min(pbc$time), max(pbc$time)), 20)
-))
-
-X <- model.matrix(~ sex + age + time, data = newdata)
-
-betas <- summary(fm1)$coefficients[, 1]
-newdata$pred <- c(X %*% betas)
-
-newdata$time <- factor(newdata$time, labels = c("min time","max time"))
+plot(effect(fm1))
 ```
 
 ```{r, echo=FALSE, include=TRUE}
@@ -67,16 +59,13 @@ xyplot(pred ~ age | time, type = "l", lty = c(1, 2, 2), cex = 1.8,  col = 1, lwd
 
 We may conclude that:
 
-* Conclusion 1
-* Conclusion 2
-  * Note 2b
-* Conclusion 3  
+* A strong association was found between time and serum bilirubin
+* A weak association was found between sex and serum bilirubin
+  * The same holds for age
 
 
 Strengths and weknesses of our study are:
 
-1. It is really strong
-2. I mean *really*, really strong
+1. Small sample size
+2. No simulation study was performed
 
-(a) And __not__ weak at all
-(b) because it is strong
