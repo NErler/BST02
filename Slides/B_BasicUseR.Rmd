@@ -639,7 +639,7 @@ pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
       * the baseline details of the 5th patient
       * the serum cholesterol for all males
       * the age for male patients or patients that have serum bilirubin more than 3
-      * first measurement per patient
+      * the first measurement per patient
     
 
 ## Indexing/Sudsetting (cont'd)
