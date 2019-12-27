@@ -610,10 +610,11 @@ Continuous variables per group
 pbc_male_bili <- pbc$bili[pbc$sex == "m"]
 pbc_female_bili <- pbc$bili[pbc$sex == "f"]
 plot(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
-     main = "Density plots", xlab = "age", ylab = "")
+     main = "Density plots", xlab = "age", ylab = "", ylim = c(0,0.4))
 polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), border = "blue")
 lines(density(pbc_female_bili), col = rgb(1,0,0,0.5))
-polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), border = "red")
+polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), 
+        border = "red")
 legend(20,0.03, c("male", "female"), 
        col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)
 ``` 
@@ -640,5 +641,245 @@ pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
       * the age for male patients or patients that have serum bilirubin more than 3
       * first measurement per patient
     
-    
 
+## Indexing/Sudsetting (cont'd)
+
+* This can be done using square bracket (\textbf{\textcolor{blue}{[ ]}}) notation and indices.
+* Three basic types
+  - position indexing
+  - logical indexing
+  - name indexing
+  
+  
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Position indexing with vectors}}:
+
+* Use a \textbf{\textcolor{red}{positive}} value to select an element
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+x <- c(6:17)
+x
+x[2]
+```
+
+* Use multiple positive values to select multiple elements
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+x[c(2,3,4)]
+```
+
+
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Position indexing with vectors}}:
+
+* Use dublicated positive values to select the same elements
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+x <- c(6:17)
+x
+x[c(2,2,2)]
+```
+
+
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Position indexing with vectors}}:
+
+* Use a \textbf{\textcolor{red}{negative}} value to remove an element
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+x <- c(6:17)
+x
+x[-5]
+```
+
+\vspace*{3ex}  
+
+* \textbf{Positive and negative indices cannot be combined}
+
+
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Logical indexing with vectors}}:
+
+* Use logical index of the same length to select elements where the value is \textbf{\textcolor{red}{TRUE}}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+x <- c(6:10)
+y <- c(TRUE, FALSE, FALSE, FALSE, FALSE)
+x[y]
+```
+
+
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Logical indexing with vectors}}:
+
+* Logical indexing is often used in combination with conditions
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+x <- c(6:10)
+x[x > 7]
+x[x > 7 & x > 9]
+x[x > 7 | x > 9]
+```
+
+
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Name/character indexing with vectors}}:
+
+* When a vector has been named the element names can be used as indices 
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+x <- c(foo=5, bar=4, one=7, two=12, three=2)
+x[c('foo', 'one')]
+```
+
+* Use the function \textcolor{blue}{names} to obtain the names
+
+
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Indexing with Matrices}}:
+
+* Indexing matrices as similar to indexing vectors but with double index
+
+  - The first position denotes the rows
+  - The first position denotes the columns
+
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+mat <- matrix(1:6, 3, 3)
+mat
+mat[2, 2]
+```  
+  
+  
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Indexing with Matrices}}:
+
+* When we leave a position blank all elements are selected
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+mat <- matrix(1:6, 3, 3)
+mat
+mat[2, ]
+```  
+
+
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+
+* When you use a single index the data.frame acts like a list of variables
+
+\begincols[t]
+\begincol{0.5\linewidth}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+DF <- data.frame(x = 1:4, 
+          y = c(35, 23, 14, 45))
+DF
+```  
+
+\endcol
+\begincol{0.5\linewidth}
+
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+DF <- data.frame(x = 1:4, 
+          y = c(35, 23, 14, 45))
+DF[2]
+```  
+\endcol
+\endcols
+
+
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+
+\begincols[t]
+\begincol{0.5\linewidth}
+* When you using a double index, indexing works like a matrix
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+DF <- data.frame(x = 1:4, 
+          y = c(35, 23, 14, 45))
+DF
+DF[4, 2]
+```  
+
+\endcol
+\begincol{0.5\linewidth}
+
+* When you using a double index, indexing works like a matrix
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+DF <- data.frame(x = 1:4, 
+          y = c(35, 23, 14, 45))
+DF
+DF[DF$y < 30, ]
+```  
+\endcol
+\endcols
+
+
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+
+* Logical indexing in data frame
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+pbcDF <- data.frame(pbc)
+head(pbc[pbc$sex == "m", 1:7])
+```  
+
+
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+
+* Logical indexing in data frame
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+pbcDF <- data.frame(pbc)
+head(pbc[pbc$age > 30 | pbc$sex == "f", 1:7])
+```  
+
+
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+
+* Logical indexing in data frame
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+pbcDF <- data.frame(pbc)
+head(pbc[pbc$age > 30 & pbc$sex == "f", 1:7])
+``` 
+
+
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Indexing with Lists}}:
+
+* Lists can be subsetted in the same way as vectors using - Note that the output is a list
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
+mylist
+mylist[2]
+```  
+
+
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Indexing with Lists}}:
+
+* Double square brackets can be also used - Note that the output is a vector
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
+mylist
+mylist[[2]]
+```  
+
+
+## Indexing/Sudsetting (cont'd)
+
+\textbf{\textcolor{blue}{Indexing with Lists}}:
+
+* textcolor{blue}{$} provides a convinient notation to extract an element by name - Note that the output is a vector
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
+mylist
+mylist$y
+```  
