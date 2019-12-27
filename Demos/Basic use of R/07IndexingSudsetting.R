@@ -9,9 +9,7 @@
 
 #' Load packages
 #' If you are using the package for the first time, you will have to first install it:
-# install.packages("xlsx") 
-# install.packages("lattice")
-# install.packages("ggplot2")
+# install.packages("survival") 
 library(survival)
 
 #' Select the 3rd element for vector age
