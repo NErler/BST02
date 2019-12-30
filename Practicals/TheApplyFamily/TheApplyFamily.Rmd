@@ -60,7 +60,7 @@ The packages used (with versions that were used to generate the solutions) are:
 
 
 
-### Dataset {.tabset .tabset-fade .tabset-pills}
+### Datasets 
 
 For this practical, we will use the **heart** and **retinopathy** data sets from the `survival` package. More details about the data sets can be found in:
 
@@ -71,45 +71,9 @@ https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
 Always check your data.
 
 
-```{r, eval = static, echo = FALSE}
-asis_output("#### Task\\n")
-```
+## The Apply Family 
 
-```{r, eval = static, echo = FALSE}
-asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
-```
-
-Explore the **heart** and **retinopathy** data sets - print the first six and last six rows. 
-
-```{r data_hint, eval = static, results = 'asis', echo = FALSE}
-cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#data">Hint</button>
-<div id = "data" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use the functions head(...) and tail(...) to investigate the data set. Replace the dots with the name of the data set.
-</div>')
-```
-
-
-```{r, eval = static, echo = FALSE}
-asis_output("</div>")
-
-asis_output("#### Solution\\n")
-```
-
-```{r data-solution, solution = TRUE}
-library(survival)
-head(heart)
-tail(heart)
-head(retinopathy)
-tail(retinopathy)
-```
-
-## Common R Objects
-
-It is important to distinguish the different object in R.
-
-### Vectors {.tabset .tabset-fade .tabset-pills}
-
-Let's create some vectors.
+### apply {.tabset .tabset-fade .tabset-pills}
 
 ```{r, eval = static, echo = FALSE}
 asis_output("#### Task 1\\n")
@@ -119,14 +83,8 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-View the vectors `event` and `age` from the **heart** data set.
-
-```{r vec_hint, eval = static, results = 'asis', echo = FALSE}
-cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#vec">Hint</button>
-<div id = "vec" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use the dollar sign to select the variables.
-</div>')
-```
+* Obtain the mean of the columns `start`, `stop`, `event`, `age`, `year`, `surgery` of the **heart** data set. \
+* Obtain the mean of the columns `age`, `futime`, `risk` and **retinopathy** data sets. 
 
 
 ```{r, eval = static, echo = FALSE}
@@ -135,9 +93,59 @@ asis_output("</div>")
 asis_output("#### Solution 1\\n")
 ```
 
-```{r vec-solution, solution = TRUE}
-heart$event
-heart$age
+```{r apply1-solution, solution = TRUE}
+apply(heart[, c("start", "stop", "event", "age", "year", "surgery")], 2, mean)
+apply(retinopathy[, c("age", "futime", "risk")], 2, mean)
+```
+
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Create the matrix `dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))` and find the row medians of `dataset1`.
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r apply2-solution, solution = TRUE}
+dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))
+apply(dataset1, 1, median)
+```
+
+
+### lapply {.tabset .tabset-fade .tabset-pills}
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 1\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Create the following function `DerivativeFunction <- function(x) {log10(x) + 10}`. Apply the `DerivativeFunction` to `dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))`.
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 1\\n")
+```
+
+```{r lapply1-solution, solution = TRUE}
+DerivativeFunction <- function(x) {log10(x) + 10}
+dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))
+lapply(dataset1, DerivativeFunction)
 ```
 
 
@@ -150,15 +158,8 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-View the vectors `eye` and `risk` from the **retinopathy** data set.
-
-```{r vec2_hint, eval = static, results = 'asis', echo = FALSE}
-cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#vec2">Hint</button>
-<div id = "vec2" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use the dollar sign to select the variables.
-</div>')
-```
-
+* Create a list that consist of the variables `age` and `year` from the **heart** data set and the variable `risk` from the **retinopathy** data set. Give the name `list1` to this list. \
+* Obtain the median of each element of the list.
 
 ```{r, eval = static, echo = FALSE}
 asis_output("</div>")
@@ -166,10 +167,111 @@ asis_output("</div>")
 asis_output("#### Solution 2\\n")
 ```
 
-```{r vec2-solution, solution = TRUE}
-retinopathy$eye
-retinopathy$risk
+```{r lapply2-solution, solution = TRUE}
+list1 <- list(heart$age, heart$year, retinopathy$risk)
+lapply(list1, median)
 ```
 
 
 
+### sapply {.tabset .tabset-fade .tabset-pills}
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 1\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Create the following function `Function2 <- function(x) {exp(x) + 0.1}`. Apply the `Function2` to `dataset2 <- cbind(A = c(1:10), B = rnorm(10, 0, 1))`. The output should be simplified.
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 1\\n")
+```
+
+```{r sapply1-solution, solution = TRUE}
+Function2 <- function(x) {exp(x) + 0.1}
+dataset2 <- cbind(A = c(1:10), B = rnorm(10, 0, 1))
+sapply(dataset2, Function2)
+```
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+* Create a list that consist of the variable `transplant` from the **heart** data set and the variables `status` from the **retinopathy** data set. Give the name `list2` to this list. \
+* Obtain the percentages of 0 of each element of the list in a simplified output (as a vector).
+* Obtain the percentages of 1 of each element of the list in a simplified output (as a vector).
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r sapply2-solution, solution = TRUE}
+list2 <- list(heart$transplant, retinopathy$status)
+sapply(list2, function(x) table(x)[1]/length(x))
+sapply(list2, function(x) table(x)[2]/length(x))
+```
+
+
+
+
+
+### tapply {.tabset .tabset-fade .tabset-pills}
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 1\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+* Obtain the median `year` per `transplant` group using the **heart** data set. \
+* Obtain the median `futime` per `status` group using the **retinopathy** data set. \
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 1\\n")
+```
+
+```{r tapply1-solution, solution = TRUE}
+tapply(heart$year, heart$transplant, median)
+tapply(retinopathy$futime, retinopathy$status, median)
+```
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+* Apply the function `Fun1 <- function(x) {mean(x)/(length(x) - 2)}` to `year` per `transplant` and `surgery` group using the **heart** data set. \
+* Obtain the mean `futime` per `status`, `type` and `trt` group using the **retinopathy** data set. \
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r tapply2-solution, solution = TRUE}
+tapply(heart$year, list(heart$transplant, heart$surgery), function(x) {mean(x)/(length(x) - 2)})
+tapply(retinopathy$futime, list(retinopathy$status, retinopathy$type, retinopathy$trt), mean)
+```
