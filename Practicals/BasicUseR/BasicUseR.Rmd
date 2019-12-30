@@ -119,7 +119,7 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-View the vectors `event` and `age` from the `heart` data set.
+View the vectors `event` and `age` from the **heart** data set.
 
 ```{r vec_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#vec">Hint</button>
@@ -150,7 +150,7 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-View the vectors `eye` and `risk` from the `retinopathy` data set.
+View the vectors `eye` and `risk` from the **retinopathy** data set.
 
 ```{r vec2_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#vec2">Hint</button>
@@ -283,7 +283,7 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Create a matrix using the vectors `id` and `age` from the `heart` data set. This matrix should have 2 columns where each column represents each variable.
+Create a matrix using the vectors `id` and `age` from the **heart** data set. This matrix should have 2 columns where each column represents each variable.
 
 ```{r mat_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#mat">Hint</button>
@@ -313,7 +313,7 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Create a data frame using the vectors `id`, `type` and `trt` from the `retinopathy` data set. This data frame should have 3 columns where each column represents each variable.
+Create a data frame using the vectors `id`, `type` and `trt` from the **retinopathy** data set. This data frame should have 3 columns where each column represents each variable.
 
 ```{r df_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#df">Hint</button>
@@ -347,7 +347,7 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Create a list using the vectors `stop` from the `heart` data set and `id`, `risk` from the `retinopathy` data set. Give the names `stop_heart`, `id_reti` and `risk_reti`.
+Create a list using the vectors `stop` from the **heart** data set and `id`, `risk` from the **retinopathy** data set. Give the names `stop_heart`, `id_reti` and `risk_reti`.
 
 ```{r list_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#list">Hint</button>
@@ -507,7 +507,7 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-* As mentioned in the manual of the `heart` data set, `age` is equal to `age` - 48. Let's bring `age` back to the normal scale. Do not overwrite the variable `age`, but create a new variable with the name `age_orig`. \
+* As mentioned in the manual of the **heart** data set, `age` is equal to `age` - 48. Let's bring `age` back to the normal scale. Do not overwrite the variable `age`, but create a new variable with the name `age_orig`. \
 * Convert the variable `surgery` into a factor with levels 0: `no` and 1: `yes`.
 
 ```{r, eval = static, echo = FALSE}
@@ -532,7 +532,7 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Categorize as as `young`: [minimum `age` until mean `age`) and `old`: [mean `age` until maximum `age`). Give this variable the name `ageCat`. Print the first 6 rows of the data set `retinopathy`.
+Categorize as as `young`: [minimum `age` until mean `age`) and `old`: [mean `age` until maximum `age`). Give this variable the name `ageCat`. Print the first 6 rows of the data set **retinopathy**.
 
 ```{r man2_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#man2">Hint</button>
@@ -564,7 +564,7 @@ asis_output("#### Task 3\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Categorize `futime` from data set `retinopathy` as follows: \
+Categorize `futime` from data set **retinopathy** as follows: \
 * `short`: [minimum `futime` until 2). \
 * `medium`: [25 until 45). \
 * `long`: [45 until maximum `futime`). Give this variable the name `futimeCat`. \
@@ -764,7 +764,7 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Obtain the mean and sd for `age` only for transplanted patients using the data set `heart.`
+Obtain the mean and sd for `age` only for transplanted patients using **heart** the data set.
 
 ```{r exp1_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#exp1">Hint</button>
@@ -794,8 +794,9 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-* Obtain the median and interquartile range for `age` from the `retinopathy` data set. \ 
-* Obtain the percentage per `type` from the `retinopathy` data set. \
+Unimg the **retinopathy** data set:
+* Obtain the median and interquartile range for `age`. \ 
+* Obtain the percentage per `type`. \
 * Check whether there are missing values in the variable `age`.
 
 ```{r exp2_hint, eval = static, results = 'asis', echo = FALSE}
@@ -871,7 +872,7 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-* Create a scatterplot with the variables `age` and `year` using the data set `heart.` \
+* Create a scatterplot with the variables `age` and `year` using the **heart** data set. \
 * Change the labels of the axis. In particular, give the name `Age` for the x-axis and `Year of acceptance` for the y-axis. \
 * Give a different color to the patients that had a transplant. \
 * Add a legend.
@@ -906,7 +907,7 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-* Create a boxplot of `age` per `status` using the `retinopathy` data set. \
+* Create a boxplot of `age` per `status` using the **retinopathy** data set. \
 * Change the color to blue and green respectively.
 
 ```{r plot2_hint, eval = static, results = 'asis', echo = FALSE}
@@ -936,8 +937,9 @@ asis_output("#### Task 3\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-* Create a smooth plot or `age` and `risk` using the `retinopathy` data set. \
-* Create a density plot or `age` per `type` group using the `retinopathy` data set.
+Using the **retinopathy** data set: \
+* Create a smooth plot or `age` and `risk`. \
+* Create a density plot or `age` per `type` group.
 
 ```{r plot3_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#plot3">Hint</button>
@@ -968,14 +970,14 @@ Sometimes we want to obtain a subset of the data sets before investigating the d
 ### Indexing {.tabset .tabset-fade .tabset-pills}
 
 ```{r, eval = static, echo = FALSE}
-asis_output("#### Task 1\\n")
+asis_output("#### Task\\n")
 ```
 
 ```{r, eval = static, echo = FALSE}
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Using the `heart` data set: \
+Using the **heart** data set: \
 * Select the first row. \
 * Select the first column. \
 * Select the column `surgery`.
@@ -984,7 +986,7 @@ Using the `heart` data set: \
 ```{r, eval = static, echo = FALSE}
 asis_output("</div>")
 
-asis_output("#### Solution 1\\n")
+asis_output("#### Solution\\n")
 ```
 
 ```{r ind1-solution, solution = TRUE}
@@ -1006,12 +1008,10 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Using the `retinopathy` data set: \
+Using the **retinopathy** data set: \
 * Select the `futime` for all `adult` patients. \
 * Select all the variables for patients that received treatment. \
-* Select the `age` for patients that have `futime` more than 20. \
-* Select the `age` for patients that have `futime` more than 20 and are adults. \
-* Select patients that have no missing values in age.
+
 
 
 ```{r, eval = static, echo = FALSE}
@@ -1020,9 +1020,33 @@ asis_output("</div>")
 asis_output("#### Solution 1\\n")
 ```
 
-```{r sub2-solution, solution = TRUE}
+```{r sub1-solution, solution = TRUE}
 retinopathy$futime[retinopathy$type == "adult"]
 retinopathy[retinopathy$trt == 1, ]
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Using the **retinopathy** data set: \
+* Select the `age` for patients that have `futime` more than 20. \
+* Select the `age` for patients that have `futime` more than 20 and are adults. \
+* Select patients that have no missing values in age.
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r sub2-solution, solution = TRUE}
 retinopathy$age[retinopathy$futime > 20]
 retinopathy$age[retinopathy$futime > 20 & retinopathy$type == "adult"]
 retinopathy[!is.na(retinopathy$age), ]
@@ -1030,3 +1054,24 @@ retinopathy[!is.na(retinopathy$age), ]
 
 
 
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 3\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Using the **retinopathy** data set: \
+* Select patients that have no missing values in age.
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 3\\n")
+```
+
+```{r sub3-solution, solution = TRUE}
+retinopathy[!is.na(retinopathy$age), ]
+```
