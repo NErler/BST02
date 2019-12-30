@@ -15,6 +15,11 @@ library(survival)
 
 #' Most frequently used objects 
 
+#' Create vectors
+vec1 <- c(1:100)
+vec2 <- c(2, 32, 14, 23, 54, 13, 45)
+vec3 <- c("male", "female", "female", "male", "female", "female")
+
 #' Create matrices
 matrix(1:4, 2, 2)
 matrix(1:4, 2, 2, byrow = TRUE)
