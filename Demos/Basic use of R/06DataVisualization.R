@@ -46,6 +46,8 @@ hist(pbc$alk.phos, prob=T)
 #' Barchart
 barchart(pbc$sex)
 
+plot(pbc$sex)
+
 #' Boxplot
 boxplot(pbc$age ~ pbc$sex, ylab = "Age", xlab = "Gender")
 

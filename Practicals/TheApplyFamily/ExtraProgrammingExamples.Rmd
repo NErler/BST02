@@ -1,0 +1,685 @@
+---
+title: 'Extra Programming Examples'
+output: 
+  html_document:
+    code_folding: show
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+    number_sections: false
+    theme: spacelab
+    highlight: tango
+    includes:
+      after_body: ../footerEA.html
+    css: ../style.css
+---
+
+```{r, echo = FALSE, purl = FALSE}
+knitr::knit_hooks$set(purl = knitr::hook_purl)
+
+options(purl = FALSE)
+
+knitr::opts_chunk$set(purl = FALSE)
+```
+
+```{r, include = FALSE}
+knitr::opts_hooks$set(eval = function(opt) {
+  if (any(opt$exercise))
+    opt$eval <- opt$include <- FALSE
+  
+  opt
+})
+
+
+static <- TRUE
+
+options(width = 100)
+
+```
+
+
+```{r packages, include = FALSE}
+library(kableExtra)
+library(knitr)
+```
+
+
+```{r load_data, context="data", include=FALSE}
+library(survival)
+```
+
+
+## Preface {data-progressive=FALSE}
+### R packages
+In this practical, a number of R packages are used.
+The packages used (with versions that were used to generate the solutions) are:
+
+* `r R.version.string`
+* `survival` (version: `r packageVersion("mice")`)
+
+
+
+### Datasets 
+
+For this practical, we will use the **heart** and **retinopathy** data sets from the `survival` package. More details about the data sets can be found in:
+
+https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html
+
+https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
+
+Always check your data.
+
+
+## Combinations of Functions and Loops
+
+### Common R Objects {.tabset .tabset-fade .tabset-pills}
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 1\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Examine the following code in R.
+```{r, eval = FALSE, echo = TRUE}
+h <- function(k){
+       if (k <= 20){
+        3 * k
+      } else {
+      2 * k
+    }
+}
+```
+Investigate what this code takes as an input (e.g. scalar, vector, matrix, data.frame, list) and what the output will be in every case.
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 1\\n")
+```
+
+```{r fun1-solution, solution = TRUE}
+h <- function(k){
+       if (k <= 20){
+        3 * k
+      } else {
+      2 * k
+    }
+}
+scalar_test <- 10
+vec_test <- c(1:10)
+mat_test <- matrix(1:6, 3, 3)
+df_test <- data.frame(v1 = 1:10, v2 = sample(0:1, 10, replace = TRUE))
+list_test <- list(l1 = 1:30, l2 = c("m", "f"), l3 = c(TRUE, TRUE, FALSE, FALSE, FALSE))
+# h(scalar_test)
+# h(vec_test)
+# h(mat_test)
+# h(df_test)
+# h(list_test)
+```
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Examine the following code in R.
+```{r, eval = FALSE, echo = TRUE}
+h <- function(k){
+  for(i in 1:length(k)){
+    k[i]<- if (k[i] <= 20){
+      3 * k[i]
+    } else {
+      2 * k[i] 
+    }
+  }
+  k
+}
+```
+Investigate what this code takes as an input (e.g. scalar, vector, matrix, data.frame, list) and what the output will be in every case.
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r fun2-solution, solution = TRUE}
+h <- function(k){
+  for(i in 1:length(k)){
+    k[i]<- if (k[i] <= 20){
+      3 * k[i]
+    } else {
+      2 * k[i] 
+    }
+  }
+  k
+}
+scalar_test <- 10
+vec_test <- c(1:10)
+mat_test <- matrix(1:6, 3, 3)
+df_test <- data.frame(v1 = 1:10, v2 = sample(0:1, 10, replace = TRUE))
+list_test <- list(l1 = 1:30, l2 = c("m", "f"), l3 = c(TRUE, TRUE, FALSE, FALSE, FALSE))
+# h(scalar_test)
+# h(vec_test)
+# h(mat_test)
+# h(df_test)
+# h(list_test)
+```
+
+
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 3\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Define a function (with the name `mysummary`) that takes one parameter (let’s call it `x`) that investigates if it is a data frame a factor or a numeric variable and returm the message "This is a data.frame" if `x` is a data frame, "This is a factor" is `x` is a factor and "This is numeric" if `x` is numeric.  
+
+
+```{r fun3_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun3">Hint</button>
+<div id = "fun3" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use an if statement. When you want to display results from the function you cant to use the print(...) function.
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 3\\n")
+```
+
+```{r fun3-solution, solution = TRUE}
+mysummary <- function(x){
+  if(is.data.frame(x)){
+    print('This is a data.frame')
+  }else if(is.factor(x)){
+    print('This is a factor')
+  }else if(is.numeric(x)){
+    print('This is numeric')
+  }
+}
+df_test <- data.frame(v1 = 1:10, v2 = sample(0:1, 10, replace = TRUE))
+vec1_test <- as.factor(c("y", "n", "n", "n"))
+vec2_test <- 1:10
+mysummary(df_test)
+mysummary(vec1_test)
+mysummary(vec2_test)
+```
+
+
+
+
+### Data Exploration {.tabset .tabset-fade .tabset-pills}
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 1\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Extend the previous function `mysummary` to take again one parameter (let’s call it `x`) but to return also some descriptive statistics. We therefore modify the function in such a way that a frequency table is given for factors and the mean and sd are given for numeric data.
+
+```{r fun4_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun4">Hint</button>
+<div id = "fun4" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use the functions table(...), mean(...) and sd(...).
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 1\\n")
+```
+
+```{r fun4-solution, solution = TRUE}
+mysummary <- function(x){
+  if(is.data.frame(x)){
+    print('A data.frame')
+    print('Not yet implemented')
+  }else if(is.factor(x)){
+    print('This is afactor')
+    print(table(x))
+  }else if(is.numeric(x)){
+    print('This variabele is numeric')
+    print('mean')
+    print(mean(x))
+    print('sd')
+    print(sd(x))
+  }
+}
+df_test <- data.frame(v1 = 1:10, v2 = sample(0:1, 10, replace = TRUE))
+vec1_test <- as.factor(c("y", "n", "n", "n"))
+vec2_test <- 1:10
+mysummary(df_test)
+mysummary(vec1_test)
+mysummary(vec2_test)
+```
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+The previous function `mysummary` still does not do anything usefull when we apply it on the whole data.frame. Extend the function to take again one parameter (let’s call it `x`) but to return also some descriptive statistics for the data frame. 
+
+```{r fun5_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun5">Hint</button>
+<div id = "fun5" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+This can be solved in the following way: whenever the function is called using a data.frame as argument, we use a for loop to loop over its columns. Within this loop we let the function call itself but now using the column as argument. 
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r fun5-solution, solution = TRUE}
+mysummary <- function(x){
+  if(is.data.frame(x)){
+    print('A data.frame')
+    for(i in 1:ncol(x)){
+      print(names(x)[i])
+      mysummary(x[,i])
+    }     
+  }else if(is.factor(x)){
+    print('A factor')
+    print(table(x))
+  }else if(is.numeric(x)){
+    print('This variabele is numeric')
+    print('mean')
+    print(mean(x))
+    print('sd')
+    print(sd(x))
+  }
+}
+df1_test <- data.frame(v1 = 1:10, v2 = sample(0:1, 10, replace = TRUE))
+df2_test <- data.frame(v1 = 1:10, v2 = sample(c("no", "yes"), 10, replace = TRUE))
+mysummary(df1_test)
+mysummary(df2_test)
+```
+
+
+### Data Manipulation {.tabset .tabset-fade .tabset-pills}
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+
+Create a function with the name `std_num` that takes as input a data frame (let's call it `DF`), standardizes all the numerical variables and returns the new data frame. Apply this function to the **heart** data set.
+
+
+```{r fun6_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun6">Hint</button>
+<div id = "fun6" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use an if statement and a for loop. Note that you will have to transform some variables to factors first.
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution\\n")
+```
+
+```{r fun6-solution, solution = TRUE}
+heart$event <- as.factor(heart$event)
+heart$surgery <- as.factor(heart$surgery)
+heart$transplant <- as.factor(heart$transplant)
+heart$id <- as.factor(heart$id)
+
+std_num <- function(DF){
+  for (j in 1:dim(DF)[2]){
+    if (is.numeric(DF[,j])){
+      DF[colnames(DF)[j]] <- (DF[colnames(DF)[j]] - mean(DF[[colnames(DF)[j]]]))/sd(DF[[colnames(DF)[j]]])
+    }
+  }
+  DF
+}
+std_num(heart)
+```
+
+
+
+### Data Visualization {.tabset .tabset-fade .tabset-pills}
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 1\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+
+Create a for loop that goes through the columns of the **retinopathy** data set and plots each column. If the column is a numerical variable then use a density plot, if the column is categorical variable then use a barchart. Create a plot with multiple panel
+
+
+```{r fun7_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun7">Hint</button>
+<div id = "fun7" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use an if statement. Use the function par(mfrow = ...) to create multiple plots. Note that you will have to transform some variables to factors first.
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 1\\n")
+```
+
+```{r fun7-solution, solution = TRUE}
+retinopathy$trt <- as.factor(retinopathy$trt)
+retinopathy$status <- as.factor(retinopathy$status)
+
+par(mfrow = c(3, 3))
+for (j in 1:dim(retinopathy)[2]){
+  if (is.numeric(retinopathy[,j])){
+    plot(density(retinopathy[,j]), col = rgb(0,0,1,0.5))
+    polygon(density(retinopathy[,j]), col = rgb(0,0,1,0.5), border = "blue")
+  } else if (is.factor(retinopathy[,j])){
+    plot(retinopathy[,j])
+  }
+}
+```
+
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+
+Create a function that applies the previous code in any data set. The name of the function will be `plot_summary` and it will take as input a data frame (let's call it `dt`) and the dimension of the panel that include the plots. In particular, `dim_row` represents the rows and `dim_col` the columns. The function will return a plot for each column. If the column is a numerical variable then use a density plot, if the column is categorical variable then use a barchart. Apply this function to the **retinopathy** data set.
+
+
+```{r fun8_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun8">Hint</button>
+<div id = "fun8" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use an if statement and a for loop. Use the function par(mfrow = ...) to create multiple plots. Note that you will have to transform some variables to factors first.
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r fun8-solution, solution = TRUE}
+retinopathy$trt <- as.factor(retinopathy$trt)
+retinopathy$status <- as.factor(retinopathy$status)
+
+plot_summary <- function(dt, dim_row, dim_col){
+  par(mfrow = c(dim_row, dim_col))
+  for (j in 1:dim(dt)[2]){
+    if (is.numeric(dt[,j])){
+      plot(density(dt[,j]), col = rgb(0,0,1,0.5))
+      polygon(density(dt[,j]), col = rgb(0,0,1,0.5), border = "blue")
+    } else if (is.factor(dt[,j])){
+      plot(dt[,j])
+    }
+  }
+}
+plot_summary(retinopathy, 3, 3)
+```
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 3\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+
+Extend the previous function `plot_summary` to include also plot titles indicating the variable. Apply this function to the **retinopathy** data set.
+
+
+```{r fun9_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun9">Hint</button>
+<div id = "fun9" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use the paste0(...) function.
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 3\\n")
+```
+
+```{r fun9-solution, solution = TRUE}
+retinopathy$trt <- as.factor(retinopathy$trt)
+retinopathy$status <- as.factor(retinopathy$status)
+
+plot_summary <- function(dt, dim_row, dim_col){
+  par(mfrow = c(dim_row, dim_col))
+  for (j in 1:dim(dt)[2]){
+    if (is.numeric(dt[,j])){
+      plot(density(dt[,j]), col = rgb(0,0,1,0.5), main = paste0(colnames(dt)[j]))
+      polygon(density(dt[,j]), col = rgb(0,0,1,0.5), border = "blue")
+    } else if (is.factor(dt[,j])){
+      plot(dt[,j], main = paste0(colnames(dt)[j]))
+    }
+  }
+}
+plot_summary(retinopathy, 3, 3)
+```
+
+
+
+
+### Subsetting {.tabset .tabset-fade .tabset-pills}
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 1\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+
+For each data set (**heart** and **retinopathy**), select only the patients that had an event.
+
+
+```{r fun10_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun10">Hint</button>
+<div id = "fun10" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Note that the variable name of the events is diffent for the two data sets.
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 1\\n")
+```
+
+```{r fun10-solution, solution = TRUE}
+heart[heart$event == 1, ]
+retinopathy[retinopathy$status == 1, ]
+```
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+
+Create a function with the name `dt_events` that takes as input a list with data sets (let's call it `dt_list`) and a vector indicating the name of the event variable for each data set (let's call it `event_name`). The function will return a list consisting of each data set but including only the patients that had an event. Create a list that consists of the data sets **heart** and **retinopathy** and apply the function.
+
+
+```{r fun11_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun11">Hint</button>
+<div id = "fun11" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use a for loop. Note that the variable name of the events is diffent for the two data sets.
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r fun11-solution, solution = TRUE}
+dt_events <- function(dt_lists, event_name){
+  new_dt <- list()
+  for (k in 1:length(dt_lists)) {
+      dt <- dt_lists[[k]]
+      new_dt[[k]] <- dt[dt[[event_name[k]]] == 1, ]
+  }
+  new_dt
+}
+
+dt_events(dt_lists = list(heart, retinopathy), event_name = c("event", "status"))
+```
+
+
+### The Apply family {.tabset .tabset-fade .tabset-pills}
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 1\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+
+For each data set (**heart** and **retinopathy**), obtain the mean age per event status.
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 1\\n")
+```
+
+```{r fun12-solution, solution = TRUE}
+tapply(heart$age, heart$event, mean)
+tapply(retinopathy$age, retinopathy$status, mean)
+```
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+
+Create a function with the name `summary_list` that takes as input a list with data sets (let's call it `dt_list`), a vector with the names of the continuous variables (let's call it `dt_cont`) and a vector with the names of the categorical variables (let's call it `dt_cat`) and returns the mean of the continuous variable per group for each data set. Apply the function to the **heart** and **retinopathy** data sets. In particular, use the continuous variables `year` (from the **heart** data set) and `risk` (from the **retinopathy** data set) and the categorical variabless `surgery` (from the **heart** data set) and `type` (from the **retinopathy** data set).
+
+```{r fun13_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun13">Hint</button>
+<div id = "fun13" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use a for loop. 
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r fun13-solution, solution = TRUE}
+summary_list <- function(dt_list, dt_cont, dt_cat){
+  for (i in 1:length(dt_list)){
+    dt <- dt_list[[i]]
+    print(tapply(dt[[dt_cont[i]]], dt[[dt_cat[i]]], mean))
+  }
+}
+
+summary_list(dt_list = list(heart, retinopathy), dt_cont = c("year", "risk"), dt_cat = c("surgery", "type"))
+```
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 3\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+
+Extend the previous function to include the mean as input argument (let's call it `calc`). Therefore, the user can decide which function to use.
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 3\\n")
+```
+
+```{r fun14-solution, solution = TRUE}
+summary_list <- function(dt_list, dt_cont, dt_cat, calc){
+  for (i in 1:length(dt_list)){
+    dt <- dt_list[[i]]
+    print(tapply(dt[[dt_cont[i]]], dt[[dt_cat[i]]], calc))
+  }
+}
+
+summary_list(dt_list = list(heart, retinopathy), dt_cont = c("year", "risk"), dt_cat = c("surgery", "type"), calc = median)
+```
