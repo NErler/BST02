@@ -102,7 +102,18 @@
   \usebeamercolor[fg]{page number in head/foot}%
   \usebeamerfont{page number in head/foot}%
   \setbeamertemplate{page number in head/foot}[framenumber]%
-  \usebeamertemplate*{page number in head/foot}\kern1em\vskip2pt%
+  \usebeamertemplate*{page number in head/foot}\kern1em\vskip5pt%
+}
+
+\setbeamertemplate{headline}{\vskip3pt}
+
+\setbeamertemplate{frametitle}{%
+    \usebeamerfont{frametitle}\insertframetitle%
+    \vphantom{g}% To avoid fluctuations per frame
+    \vspace*{2pt}
+    {\color{EMC20}\hrule}%
+    \par%
+    \hspace*{-\dimexpr0.5\paperwidth-0.5\textwidth}% <-- calculation of left margin width
 }
 
 
