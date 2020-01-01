@@ -630,7 +630,7 @@ pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
 ``` 
 
 
-## Indexing/Sudsetting
+## Indexing/Subsetting
 
 * When transforming and analyzing data we often need to select specific observations or variables.
   - Examples: Select ...
@@ -643,7 +643,7 @@ pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
       * the first measurement per patient
     
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 * This can be done using square bracket (\textbf{\textcolor{blue}{[ ]}}) notation and indices.
 * Three basic types
@@ -652,7 +652,7 @@ pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
   - name indexing
   
   
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Position indexing with vectors}}:
 
@@ -669,7 +669,7 @@ x[c(2,3,4)]
 ```
 
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Position indexing with vectors}}:
 
@@ -681,7 +681,7 @@ x[c(2,2,2)]
 ```
 
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Position indexing with vectors}}:
 
@@ -697,7 +697,7 @@ x[-5]
 * \textbf{Positive and negative indices cannot be combined}
 
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Logical indexing with vectors}}:
 
@@ -709,7 +709,7 @@ x[y]
 ```
 
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Logical indexing with vectors}}:
 
@@ -722,7 +722,7 @@ x[x > 7 | x > 9]
 ```
 
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Name/character indexing with vectors}}:
 
@@ -735,7 +735,7 @@ x[c('foo', 'one')]
 * Use the function \textcolor{blue}{names} to obtain the names
 
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Indexing with Matrices}}:
 
@@ -751,7 +751,7 @@ mat[2, 2]
 ```  
   
   
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Indexing with Matrices}}:
 
@@ -763,7 +763,7 @@ mat[2, ]
 ```  
 
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Indexing with Data Frames}}:
 
@@ -789,7 +789,7 @@ DF[2]
 \endcols
 
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Indexing with Data Frames}}:
 
@@ -817,7 +817,7 @@ DF[DF$y < 30, ]
 \endcols
 
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Indexing with Data Frames}}:
 
@@ -828,7 +828,7 @@ head(pbc[pbc$sex == "m", 1:7])
 ```  
 
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Indexing with Data Frames}}:
 
@@ -839,7 +839,7 @@ head(pbc[pbc$age > 30 | pbc$sex == "f", 1:7])
 ```  
 
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Indexing with Data Frames}}:
 
@@ -850,7 +850,7 @@ head(pbc[pbc$age > 30 & pbc$sex == "f", 1:7])
 ``` 
 
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Indexing with Lists}}:
 
@@ -862,7 +862,7 @@ mylist[2]
 ```  
 
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Indexing with Lists}}:
 
@@ -874,7 +874,7 @@ mylist[[2]]
 ```  
 
 
-## Indexing/Sudsetting (cont'd)
+## Indexing/Subsetting (cont'd)
 
 \textbf{\textcolor{blue}{Indexing with Lists}}:
 
