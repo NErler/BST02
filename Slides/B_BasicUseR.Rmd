@@ -551,6 +551,7 @@ plot(pbc$age, pbc$bili)
 ## Data Visualization (cont'd)
 
 Important plotting functions
+
 * \textbf{\textcolor{blue}{plot()}}: scatter plot (and others)
 * \textbf{\textcolor{blue}{barplot()}}: bar plots
 * \textbf{\textcolor{blue}{boxplot()}}: box-and-whisker plots
