@@ -878,7 +878,7 @@ mylist[[2]]
 
 \textbf{\textcolor{blue}{Indexing with Lists}}:
 
-* textcolor{blue}{$} provides a convinient notation to extract an element by name - Note that the output is a vector
+* \textcolor{blue}{$} provides a convinient notation to extract an element by name - Note that the output is a vector
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
 mylist
