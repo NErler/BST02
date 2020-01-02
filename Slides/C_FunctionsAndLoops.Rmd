@@ -9,8 +9,7 @@ output:
   beamer_presentation: 
     template: mytemplate.latex
     includes:
-      in_header: SlideTemplate.tex
-    keep_tex: yes
+      in_header: [SlideTemplate.tex, defs_Nicole.tex]
     incremental: false
 classoption: aspectratio=169
 ---
@@ -28,6 +27,101 @@ knitr::opts_chunk$set(echo = TRUE, nospace = TRUE, nospaceafter = TRUE)
 
 ```
 
+## Recap Part B
+\begin{columns}[onlytextwidth,T]
+\begin{column}{0.2\linewidth}
+\blue{Objects}
+\begin{itemize}
+\item \texttt{vector}
+\item \texttt{matrix}
+\item \texttt{data.frame}
+\item \texttt{list}
+\end{itemize}
+
+\bigskip
+
+\blue{Operators}
+\begin{itemize}
+\item \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/}
+\item \texttt{<-}, \texttt{=}
+\item \texttt{<}, \texttt{>}, \texttt{==}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.25\linewidth}
+\blue{Data Structures}
+\begin{itemize}
+\item \texttt{numeric}
+\item \texttt{character}
+\item \texttt{integer}
+\item \texttt{logical}
+\item \texttt{factor}
+\end{itemize}
+
+\bigskip
+
+\blue{Special Values}
+\begin{itemize}
+\item \texttt{NA}
+\item \texttt{NaN}
+\item \texttt{Inf}, \texttt{-Inf}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\linewidth}
+\blue{Data Transformations}
+\begin{itemize}
+\item rounding (\texttt{format()})
+\item convert to factor (\texttt{factor()})
+\end{itemize}
+
+\bigskip
+
+\blue{Data Exploration}
+\begin{itemize}
+\item \texttt{mean()}, \texttt{median()}, \texttt{sd()}, \texttt{IQR()}, \ldots
+\end{itemize}
+
+\bigskip
+
+\blue{Data Visualizations}
+\begin{itemize}
+\item plotting packages
+\item plot types (\texttt{plot()}, \texttt{barplot()}, ...)
+\end{itemize}
+
+\bigskip
+
+\blue{Subsetting}
+\begin{itemize}
+\item \texttt{[[...]]}, \texttt{[...]}, \ldots
+\end{itemize}
+
+\end{column}
+\end{columns}
+
+
+## In this Section
+
+* What are functions?
+
+* Useful functions for data exploration
+  * Demo
+  * Practical
+  
+* Useful functions for data manipulations
+  * Demo
+  * Practical
+  
+* Writing functions
+  * Demo
+  * Practical
+
+* Control-flow constructs
+  * Demo
+  * Practical
+
+
 ## Functions
 
 Sometimes we want to perform the same action / manipulation on several objects.
@@ -36,8 +130,9 @@ Sometimes we want to perform the same action / manipulation on several objects.
   - a lot of work
   - susceptible to mistakes
   
-* Option 2: functions
-  
+* Option 2: \blue{functions}
+
+\pause
 
 ### What are functions?
 * a group of (organized) R commands
@@ -67,20 +162,157 @@ class(plot)
 ```
 \endcol
 \endcols\vspace*{3ex}
+
+\pause
+
 Even `class()` is a function:
 ```{r}
 class(class)
 ```
 
-## Functions
-To write your own function
+## Useful Functions for Data Exploration
+Link to Demo: Functions_DataExploration.R
+
+
+
+Link to Practical:
+
+
+
+## Useful Functions for Data Exploration
+\begin{columns}[onlytextwidth,T]
+\begin{column}{0.28\linewidth}
+\blue{Dimension}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{dim()}
+\item \texttt{nrow()}, \texttt{ncol()}
+\item \texttt{length()}
+\end{itemize}
+
+\bigskip
+
+\blue{Data Structure}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{str()}
+\item \texttt{names()}, 
+\item \texttt{head()}, \texttt{tail()}
+\item \texttt{is.data.frame()}, \texttt{is.list()}, \texttt{is.matrix()}
+      \texttt{is.numeric()}, \texttt{is.ordered()}, \ldots
+\end{itemize}
+
+\end{column}
+
+\begin{column}{0.32\linewidth}
+\blue{Descriptives for Continuous Variables}
+\begin{itemize}\vspace*{-1ex}
+\item \texttt{summary()}
+\item \texttt{min()}, \texttt{max()}, \texttt{range()}
+\item \texttt{mean()}, \texttt{median()}, \texttt{quantile()}, \texttt{IQR()}
+\item \texttt{sd()}, \texttt{var()}
+\item \texttt{ave()}
+\end{itemize}
+
+\bigskip
+
+\blue{Tables}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{table()}, \texttt{prop.table()}
+\item \texttt{addmargins()}, \texttt{ftable()}
+\end{itemize}
+\end{column}
+
+
+\begin{column}{0.36\linewidth}
+\blue{for \texttt{matrix} \& \texttt{data.frame}}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{summary()}
+\item \texttt{var()}, \texttt{cor()}, \texttt{cov2cor()}
+\item \texttt{colSums()}, \texttt{colMeans()}, \texttt{rowSums()}, \texttt{rowMeans()}
+\end{itemize}
+
+\bigskip
+
+\blue{Duplicates \& Comparison}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{duplicated()}, \texttt{unique()}
+\item \texttt{all.equal()}, \texttt{identical()}
+\end{itemize}
+
+\end{column}
+\end{columns}
+
+## Useful functions for Data Manipulation
+
+Link to Demo: Functions_DataManipulation.R
+
+Link to practical
+
+## Useful functions for Data Manipulation
+\begin{columns}[onlytextwidth,T]
+\begin{column}{0.35\linewidth}
+\blue{Transformations}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{log()}, \texttt{log2()}, \texttt{log10()}
+\item \texttt{exp()}, \texttt{sqrt()}, \texttt{plogis()}
+\end{itemize}
+
+\bigskip
+
+\blue{Splitting \& Combining}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{split()}, \texttt{cut()}
+\item \texttt{cbind()}, \texttt{rbind()}
+\item \texttt{merge()}
+\item \texttt{subset()}
+\item \texttt{c()}
+\item \texttt{paste()}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.35\linewidth}
+\blue{repetition \& sequence}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{rep()}, \texttt{seq()}
+\item \texttt{expand.grid()}
+\end{itemize}
+
+\bigskip
+
+\blue{Transformation for objects}
+\begin{itemize}
+\item \texttt{t()}
+\item \texttt{unlist()}, \texttt{unname()}
+\item \texttt{as.numeric()}, \texttt{as.matrix()}, \texttt{as.data.frame()}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.3\linewidth}
+\blue{Sorting}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{sort()}, \texttt{order()}, \texttt{rev()}, \texttt{rank()}
+\end{itemize}
+
+\bigskip
+
+\blue{matrices}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{\%*\%}
+\item \texttt{diag()}, \texttt{det()}, \texttt{solve()}
+\item \texttt{upper.tri()}, \texttt{lower.tri()}
+\end{itemize}
+
+\end{column}
+\end{columns}
+
+## Writing Functions
+To write your own function:
 ```{r, eval = FALSE}
 myfun <- function(arguments) {
   syntax
 }
 ```
 
-For example
+For example:
 ```{r}
 square <- function(x) {
   x^2
@@ -91,8 +323,8 @@ square <- function(x) {
 square(3)
 ```
 
-## Functions
-Functions do not always need an argument
+## Writing Functions
+Functions do not always need an argument:
 ```{r}
 random <- function() {
   rnorm(1)
@@ -104,43 +336,55 @@ random()
 random()
 ```
 
-## Functions
-Functions can use multiple arguments
+## Writing Functions
+Functions can use multiple arguments:
 ```{r}
-substract <- function(x, y) {
+subtract <- function(x, y) {
   x - y
 }
 ```
 ```{r}
-substract(x = 5.2, y = 3.3)
+subtract(x = 5.2, y = 3.3)
 ```
 
+
+## Writing Functions
 Multiple arguments are interpretet in the pre-defined order, unless they are named:
 ```{r}
-substract(5.2, 1.2)
-substract(y = 5.2, x = 1.2)
+subtract(5.2, 1.2)
+subtract(y = 5.2, x = 1.2)
 ```
 
-## Functions
-We can also define default values for arguments
+## Writing Functions
+We can also define default values for arguments.
 ```{r}
 multiply <- function(x, y = 2) {
   x * y
 }
 ```
+
+The default value is used when the user does not specify a value for that argument:
 ```{r}
 multiply(x = 3, y = 3)
 multiply(x = 3)
 ```
 
-## Functions
-Go to Demo_Functions01.R
+
+## Writing Functions
+Link to Demo
+
+Link to Practical
 
 
-# New topic
-## Control Flow
-* `if() ... else()`
+## Control-flow constructs
+
+* `if(cond) expr`
+* `if(cond) cons.expr else (alt.expr)`
 * `ifelse()`
-
+* `for`
+* `while`
+* `repeat`
+* `break`
+* `next`
 
 
