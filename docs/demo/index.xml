@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Demos on BST02: Using R for Statistics in Medical Research</title>
-    <link>/BST02/demo/</link>
+    <link>https://nerler.github.io/BST02/demo/</link>
     <description>Recent content in Demos on BST02: Using R for Statistics in Medical Research</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
     <copyright>&amp;copy; 2020. All rights reserved.</copyright>
     
-	<atom:link href="/BST02/demo/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://nerler.github.io/BST02/demo/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Basic use of R</title>
-      <link>/BST02/demo/basic-use-of-r/</link>
+      <title>Functions and Loops</title>
+      <link>https://nerler.github.io/BST02/demo/basic-use-of-r/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/BST02/demo/basic-use-of-r/</guid>
+      <guid>https://nerler.github.io/BST02/demo/basic-use-of-r/</guid>
       <description> 01BasicR [R] [html] 02CommonRobjects [R] [html] 03ImportingSaving [R] [html] 04DataTransformation [R] [html] 05DataExploration [R] [html] 06DataVisualization [R] [html] 07IndexingSudsetting [R] [html]  </description>
     </item>
     
     <item>
       <title>Functions and Loops</title>
-      <link>/BST02/demo/functions-and-loops/</link>
+      <link>https://nerler.github.io/BST02/demo/functions-and-loops/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/BST02/demo/functions-and-loops/</guid>
-      <description> Demo_Functions01 [R] [html] Functions_DataExploration [R] [html] Functions_DataManipulation [R] [html]  </description>
+      <guid>https://nerler.github.io/BST02/demo/functions-and-loops/</guid>
+      <description> Demo Functions01 [R] [html] Functions for Data Exploration [R] [html] Functions for Data Manipulation [R] [html]  </description>
     </item>
     
     <item>
-      <title>Markdown</title>
-      <link>/BST02/demo/markdown/</link>
+      <title>Functions and Loops</title>
+      <link>https://nerler.github.io/BST02/demo/markdown/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/BST02/demo/markdown/</guid>
+      <guid>https://nerler.github.io/BST02/demo/markdown/</guid>
       <description> 01MarkdownCode.Rmd [R] [html]  </description>
     </item>
     
     <item>
-      <title>The Apply Family</title>
-      <link>/BST02/demo/the-apply-family/</link>
+      <title>Functions and Loops</title>
+      <link>https://nerler.github.io/BST02/demo/the-apply-family/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/BST02/demo/the-apply-family/</guid>
+      <guid>https://nerler.github.io/BST02/demo/the-apply-family/</guid>
       <description> 01TheApplyFamily [R] [html] 02ExtraProgrammingExamples [R] [html]  </description>
     </item>
     
