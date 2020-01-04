@@ -8,43 +8,8 @@
   </url>
   
   <url>
-    <loc>/BST02/practical/miconvert/</loc>
-    <lastmod>2019-05-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/BST02/practical/minonlin/</loc>
-    <lastmod>2019-04-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/BST02/practical/milong/</loc>
-    <lastmod>2019-04-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/BST02/practical/misurv/</loc>
-    <lastmod>2019-04-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/BST02/practical/quiz/</loc>
     <lastmod>2019-04-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/BST02/practical/mimice/</loc>
-    <lastmod>2019-04-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/BST02/practical/micheck/</loc>
-    <lastmod>2019-04-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/BST02/practical/analysismi/</loc>
-    <lastmod>2019-04-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -63,19 +28,31 @@
   </url>
   
   <url>
-    <loc>/BST02/practical/incompletedata/</loc>
-    <lastmod>2019-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/BST02/</loc>
     <lastmod>2020-01-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>/BST02/demo/basic-use-of-r/</loc>
+  </url>
+  
+  <url>
+    <loc>/BST02/demo/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/BST02/demo/functions-and-loops/</loc>
+  </url>
+  
+  <url>
+    <loc>/BST02/demo/markdown/</loc>
+  </url>
+  
+  <url>
     <loc>/BST02/practical/</loc>
-    <lastmod>2019-05-14T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -88,6 +65,10 @@
   <url>
     <loc>/BST02/tags/</loc>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/BST02/demo/the-apply-family/</loc>
   </url>
   
   <url>

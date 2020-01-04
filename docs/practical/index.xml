@@ -7,46 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
     <copyright>&amp;copy; 2020. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 14 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/BST02/practical/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Work with Multiply Imputed Data in Different Formats</title>
-      <link>/BST02/practical/miconvert/</link>
-      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/miconvert/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>05 - Imputation with Non-linear Effects</title>
-      <link>/BST02/practical/minonlin/</link>
-      <pubDate>Sun, 28 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/minonlin/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>06 - Imputation of Longitudinal Data</title>
-      <link>/BST02/practical/milong/</link>
-      <pubDate>Sun, 28 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/milong/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>07 - Imputation of Survival Data</title>
-      <link>/BST02/practical/misurv/</link>
-      <pubDate>Sun, 28 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/misurv/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Quiz</title>
@@ -58,48 +22,12 @@
     </item>
     
     <item>
-      <title>02 - Multiple Imputation using MICE</title>
-      <link>/BST02/practical/mimice/</link>
-      <pubDate>Wed, 24 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/mimice/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>03 - Checks after Multiple Imputation</title>
-      <link>/BST02/practical/micheck/</link>
-      <pubDate>Wed, 24 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/micheck/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>04 - Analysis of Multiply Imputed Data</title>
-      <link>/BST02/practical/analysismi/</link>
-      <pubDate>Wed, 24 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/analysismi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Data</title>
       <link>/BST02/practical/data/</link>
       <pubDate>Wed, 24 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/BST02/practical/data/</guid>
       <description> NHANES_for_practicals.RData NHANES_for_practicals_2.RData pbclong.RData pbcdat.RData  </description>
-    </item>
-    
-    <item>
-      <title>01 - Getting to Know Incomplete Data</title>
-      <link>/BST02/practical/incompletedata/</link>
-      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/incompletedata/</guid>
-      <description></description>
     </item>
     
   </channel>

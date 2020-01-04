@@ -24,74 +24,11 @@ Some more info&amp;hellip;</description>
     </item>
     
     <item>
-      <title>Work with Multiply Imputed Data in Different Formats</title>
-      <link>/BST02/practical/miconvert/</link>
-      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/miconvert/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>05 - Imputation with Non-linear Effects</title>
-      <link>/BST02/practical/minonlin/</link>
-      <pubDate>Sun, 28 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/minonlin/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>06 - Imputation of Longitudinal Data</title>
-      <link>/BST02/practical/milong/</link>
-      <pubDate>Sun, 28 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/milong/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>07 - Imputation of Survival Data</title>
-      <link>/BST02/practical/misurv/</link>
-      <pubDate>Sun, 28 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/misurv/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Quiz</title>
       <link>/BST02/practical/quiz/</link>
       <pubDate>Sun, 28 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/BST02/practical/quiz/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>02 - Multiple Imputation using MICE</title>
-      <link>/BST02/practical/mimice/</link>
-      <pubDate>Wed, 24 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/mimice/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>03 - Checks after Multiple Imputation</title>
-      <link>/BST02/practical/micheck/</link>
-      <pubDate>Wed, 24 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/micheck/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>04 - Analysis of Multiply Imputed Data</title>
-      <link>/BST02/practical/analysismi/</link>
-      <pubDate>Wed, 24 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/BST02/practical/analysismi/</guid>
       <description></description>
     </item>
     
@@ -123,12 +60,39 @@ Some more info&amp;hellip;</description>
     </item>
     
     <item>
-      <title>01 - Getting to Know Incomplete Data</title>
-      <link>/BST02/practical/incompletedata/</link>
-      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
+      <title>Basic use of R</title>
+      <link>/BST02/demo/basic-use-of-r/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/BST02/practical/incompletedata/</guid>
-      <description></description>
+      <guid>/BST02/demo/basic-use-of-r/</guid>
+      <description> 01BasicR [R] [html] 02CommonRobjects [R] [html] 03ImportingSaving [R] [html] 04DataTransformation [R] [html] 05DataExploration [R] [html] 06DataVisualization [R] [html] 07IndexingSudsetting [R] [html]  </description>
+    </item>
+    
+    <item>
+      <title>Functions and Loops</title>
+      <link>/BST02/demo/functions-and-loops/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/BST02/demo/functions-and-loops/</guid>
+      <description> Demo_Functions01 [R] [html] Functions_DataExploration [R] [html] Functions_DataManipulation [R] [html]  </description>
+    </item>
+    
+    <item>
+      <title>Markdown</title>
+      <link>/BST02/demo/markdown/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/BST02/demo/markdown/</guid>
+      <description> 01MarkdownCode.Rmd [R] [html]  </description>
+    </item>
+    
+    <item>
+      <title>The Apply Family</title>
+      <link>/BST02/demo/the-apply-family/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/BST02/demo/the-apply-family/</guid>
+      <description> 01TheApplyFamily [R] [html] 02ExtraProgrammingExamples [R] [html]  </description>
     </item>
     
   </channel>
