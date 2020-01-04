@@ -1,5 +1,5 @@
 ---
-title: Basic use of R
+title: Functions and Loops
 ---
 
  * 01BasicR [[R]](/demo/Basic use of R/01BasicR.R) [[html]](/demo/Basic use of R/01BasicR.html)
