@@ -1,6 +1,7 @@
 # Notes
 
 * Explain difference between `Error`, `Warning` and `Message`?
+* In which part do we practice with logical operators (`&`, `|`, `&&`, `==`, ...)?
 
 ## Part B
 ### Data Structures
