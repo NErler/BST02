@@ -1,0 +1,20 @@
+{{ partial "header.html" . }}
+
+<div class="header">
+  <h1>{{ .Title }}</h1>
+</div>
+
+
+<div class="article-style" itemprop="articleBody">
+    {{ .Content }}
+</div>
+  
+  <div class="grid-container">
+  {{ range .Pages }}
+  {{ partial "cardempty.html" . }}
+  {{end}}
+  </div>
+
+
+{{ partial "footer.html" . }}
+
