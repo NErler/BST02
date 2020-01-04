@@ -234,8 +234,8 @@ Link to Practical:
 
 \blue{Duplicates \& Comparison}
 \begin{itemize}\vspace*{-0.5ex}
-\item \texttt{duplicated()}, \texttt{unique()}
-\item \texttt{all.equal()}, \texttt{identical()}
+\item \texttt{duplicated()}
+\item \texttt{unique()}
 \end{itemize}
 
 \end{column}
