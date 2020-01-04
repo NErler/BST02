@@ -1,6 +1,5 @@
 #' ---
 #' title: "Demo: Functions for exploring data"
-#' subtitle: "NIHES BST02"
 #' author: "Nicole Erler, Department of Biostatistics, Erasmus Medical Center"
 #' date: "`r Sys.setenv(LANG = 'en_US.UTF-8'); format(Sys.Date(), '%d %B %Y')`"
 #' output: 
@@ -86,6 +85,20 @@ min(x)
 min(x, na.rm = TRUE)
 
 
+#' Another helpful function to summarize continuous data is `ave()`. It calculates
+#' a summary measure of a continuous variable per group, that are defined by one
+#' or more categorical variables:
+esoph$av_case_by_age <- ave(esoph$ncases, esoph$agegp)
+esoph[12:22, ]
+
+#' `ave()` also works with other functions than the mean:
+esoph$med_case_by_age <- ave(esoph$ncases, esoph$agegp, FUN = median)
+esoph[28:36, ]
+
+#' And we can split the data by multiple categorical variables:
+ave(esoph$ncases, esoph$agegp, esoph$alcgp, FUN = median)
+
+
 #' ## Tables
 #' The above summaries were all for continuous variables. 
 #' For categorical variables we may be interested to see the different categories
@@ -143,42 +156,81 @@ ftable(table(esoph[, 1:3]), row.vars = c(3, 2))
 
 
 
-#' Another helpful function `ave()`:
-# calculate the average number of cases per age group:
-esoph$av_case_by_age <- ave(esoph$ncases, esoph$agegp)
-esoph[12:22, ]
-
-#' `ave()` also works with other functions:
-esoph$med_case_by_age <- ave(esoph$ncases, esoph$agegp, FUN = median)
-esoph[28:36, ]
-
-#' And we can split the data by multiple categorical variables:
-ave(esoph$ncases, esoph$agegp, esoph$alcgp, FUN = median)
-
-
 #' ## Functions for matrices
-# var, cor, cov2cor
-# colSums
-# colMeans
-# rowSums
-# rowMeans
-
+#' ### Sums and Means
+#' The function `colMeans()` allows us to calculate the mean for each column 
+#' in a `matrix` or `data.frame`:
 colMeans(swiss)
-#' we can't use `colMeans` on the `esoph` data because not all variables are numeric:
+#' We can't use `colMeans()` on the `esoph` data because there not all variables 
+#' are numeric:
 #+ error = TRUE
 colMeans(esoph)
 
-#' also availabe (but maybe not so usefull for a dataset)
+#' The functions `colSums()`, `rowMeans()` and `rowSums()` work correspondingly,
+#' but are usually less useful to summarize a whole dataset.
 colSums(swiss)
+rowMeans(swiss)
 
-#' To use other functions (like `min`, `max`, `median`, `sd`, ...) we need some
+#' To use other functions (like `min`, `max`, `median`, `sd`, ...) on a whole
+#' `matrix` or `data.frame` we need some
 #' more programming and the help of  `if (...)`, `for (...)` and/or `apply()`
+#' (will be covered later).
 #' 
+
+#' ### Variance, Covariance and Correlation
+#' The functions `var`, and `cov` return the variance-covariance matrix when 
+#' used on a `matrix` or `data.frame`:
+var(swiss)
+
+#' This of course only gives meaningful resuls when the data are continuous:
+#+ error = TRUE
+cov(esoph)
+
+#' When there are missing values in the data:
+#' Specify the argument `use = "pairs"` to exclude missing values (which would 
+#' otherwise result in a `NA` value for the (co)variance)
 #' 
+#' A (co)variance matrix can be converted to a (pearson) correlation matrix with the help
+#' of the function `cov2cor()`:
+cov2cor(var(swiss))
+
+#' The correlation matrix can be obtained directly using `cor()`. The argument 
+#' `method` allows the choice of pearson", "kendall" or "spearman" correation.
+cor(swiss, method = 'kendall')
+
 
 
 #' ## Duplicates and Comparison
-# duplicated()
-# unique()
-# all.equal()
-# identical()
+#' To find duplicates in a `data.frame`, `matrix` or a `vector` we can use the 
+#' function `duplicated()`:
+duplicated(esoph)
+
+(x <- sample(LETTERS[1:5], 10, replace = TRUE))
+duplicated(x)
+#' Let's set the original variable and the duplication indicator next to each 
+#' other to see what is happening:
+cbind(x, duplicated(x))
+
+#' (We will get to know the function `cbind()` later).
+#' 
+#' Using the argument `fromLast = TRUE` checks for duplicates starting from
+#' the last value:
+cbind(x,
+      duplFirst = duplicated(x),
+      duplLast = duplicated(x, fromLast = TRUE))
+
+#' Return only the unique values:
+unique(x)
+#' This also works for `data.frame` and `matrix`.
+
+(dat <- data.frame(x = x,
+                  y = rbinom(length(x), size = 1, prob = 0.5))
+)
+unique(dat)
+
+(mat <- as.matrix(dat))
+unique(mat)
+
+#' With the function `data.frame()` we create a `data.frame` and the function
+#' `as.matrix()` allows us to convert an object to a `matrix`. 
+
