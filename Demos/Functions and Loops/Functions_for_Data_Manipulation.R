@@ -9,7 +9,12 @@
 #'     toc_float:
 #'       collapsed: false
 #' ---
-#' 
+
+#+  echo = FALSE
+# This is not part of the demo. 
+# It just allows the output to be wider (to make the html look nicer)
+options(width = 105)
+
 
 #' ## Dataset
 #' We will work with the datasets `swiss` and `esoph` (both automatically availabe in R).
@@ -67,16 +72,18 @@ cut(x, breaks = c(-Inf, -1, 0, 1, Inf), include.lowest = TRUE)
 cut(x, breaks = c(-Inf, -1, 0, 1, Inf), labels = c('lowest', 'low', 'high', 'highest'))
 #' 
  
-#' ### Splitting a `data.frame`, `matrix` or `vector` by one or more categorical
-#' variables
-
+#' ### Splitting a `data.frame`, `matrix` or `vector`
+#' The function `split()` splits a `data.frame`, `matrix` or `vector` by one 
+#' or more categorical variables:
 split(swiss, f = swiss$Education > 10)
-#' This creates a list with one element per category of `f`. When the splitting
-#' factor has more categories, the list has more elemets:
+#' This creates a list with one element per category of `f`.
+ 
+#' When the splitting factor has more categories, the list has more elemets:
 split(swiss, f = cut(swiss$Education, c(0, 5, 10, 15, 20)))
 #' Note that cases with Education > 20 are now excluded (because we set the highest
-#' breakpoint in `cut()` to 20). To include the "category" `NA`, we can use the
-#' function `addNA()`:
+#' breakpoint in `cut()` to 20).
+
+#' To include the "category" `NA`, we can use the function `addNA()`:
 split(swiss, f = addNA(cut(swiss$Education, c(0, 5, 10, 15, 20))))
 
 #' The list elements will always have the same class as the original object,
@@ -84,7 +91,7 @@ split(swiss, f = addNA(cut(swiss$Education, c(0, 5, 10, 15, 20))))
 split(x, x > 0)
 
 
-#' ### Combining things
+#' ### Combining `vectors` etc.
 #' The function `c()` allows us to combine values into a `vector` or a `list`,
 #' the functions `cbind()` and `rbind()` combine objects (usually vectors,
 #' matrices or data.frames) by column or row, respectively.
@@ -101,6 +108,7 @@ rbind(x, y)
 rbind(X,Y)
 cbind(X,Y)
 #' When combining matrices or data.frames, the dimensions must match.
+
 #' When combining vectors, the shorter object is repeated up to the length of
 #' the longer vector:
 (z <- 1:9)
@@ -115,9 +123,9 @@ c(list1, list(LETTERS[4:7]))
 #' The function `paste()` (and it's special case `paste0()`) 
 #' allows us to combine objects into strings:
 paste0("The mean of x is ", mean(x), ".")
+
 #' `paste()` has arguments `sep` and `collapse` that control how the different
 #' objects and elements of the objects are combined:
-
 paste("This", "is", "a", "sentence.", sep = " +++ ")
 paste(c("This", "is", "a", "sentence."), collapse = " +++ ")
 
@@ -125,27 +133,92 @@ paste(c("This", "is", "a", "sentence."), collapse = " +++ ")
 #' The function `subset()` helps us to get a subset of a `data.frame`.
 #' Its arguments `subset` and `select` are used to specify which cases and which
 #' variables shouls be selected:
-
 subset(swiss, 
        subset = Education > 15,
        select = c(Fertility, Education, Infant.Mortality))
-
 #' Note that here we can use the variable names without quotes.
 
 #' ### Merging data
 #' The function `merge()` allows us to merge two datasets.
+dat1 <- swiss
+dat1$id <- rownames(swiss)
+dat2 <- data.frame(id = c(paste0('newid', 1:5), rownames(swiss)[1:30]),
+                   x = rnorm(35))
 
+head(dat1)
+head(dat2)
 
-# merge
-# 
+mdat <- merge(dat1, dat2)
+head(mdat)
+dim(mdat)
+
+#' The arguments `all`, `all.x` and `all.y` allow us to specify what happens with
+#' cases that are only found in one of the two datasets:
+mdat_all <- merge(dat1, dat2, all = TRUE)
+mdat_x <- merge(dat1, dat2, all.x = TRUE)
+mdat_y <- merge(dat1, dat2, all.y = TRUE)
+
+dim(mdat_all)
+head(mdat_all)
+
+dim(mdat_x)
+dim(mdat_y)
+
+#' By default, `merge()` will take all identical column names to merge by.
+#' Arguments `by.x` and `by.y` allow us to specify the names of variables
+#' in each of the datasets to use for merging. This is also possible when 
+#' variable names differ:
+dat2$z <- sample(1:10, size = nrow(dat2), replace = TRUE) # we add a new variable to the data
+dat2$Examination <- dat1$Examination[match(dat2$id, dat1$id)]
+mdat3 <- merge(dat1, dat2, by.x = c('id', 'Education'), by.y = c('id', 'z'),
+               all = TRUE)
+
+head(mdat3) 
+#' * We now have two rows per `id` (for most `id`s), because the values in the
+#'   merging variable `Education` (and `z`) differed between `dat1` and `dat2`.
+#' * The variable `Examination`, which existed in both datasets, got the suffix
+#'   `.x` and `.y` in is now duplicated. The suffix can be changed using the
+#'   argument `suffixes`.
+
+#' The function `match()` returns the positions of the (first) matches of its
+#' first argument in its second argument.
+(a <- c('G', 'A', 'D', 'B', 'Z'))
+(b <- LETTERS[1:8])
+match(a, b)
 
 #' ## repetition and sequence
-# rep
-# seq
-# expand.grid
+#' The function `rep()` replicates elements of vectors or lists.
+rep(c('A', 'B'), 4)
+rep(c('A', 'B'), each = 4)
+rep(c('A', 'B'), c(2, 4))
 
-#' ## ransofrmations for objects
-# t
+rep(list(a = 4, s = "This is a string.", b = c('A', 'B', 'C')), 
+    c(1, 3, 1))
+
+#' `seq()` generates a sequace
+seq(from = 2, to = 5, by = 1)
+seq(from = 2, to = 5, by = 0.5)
+seq(from = 2, to = 5, length = 8)
+
+seq_along(a)
+
+#' The function `expand.grid()` creates a `data.frame` with all combinations of
+#' the supplied variables:
+expand.grid(x = c(1, 2, 3),
+            a = c('a', 'b'))
+
+
+#' ## Transformations for objects
+#' The function `t()` transposes a `matrix` or a `data.frame`:
+(M <- matrix(nrow = 3, ncol = 2, data = 1:6))
+t(M)
+#' A `data.frame` is first converted to a `matrix`, then transposed.
+#' A `vector` is seen as a column vector, i.e., transposing it will result in a 
+#' `matrix` with one row:
+(x <- c(1, 2, 3))
+t(x)
+t(t(x))
+
 # unlist 
 # unname
 # as.numeric
@@ -160,10 +233,33 @@ subset(swiss,
 # rank
 
 
-#' ## Functions for matrices
-# %*%
-# diag
-# det
-# solve
-# upper.tri
-# lower.tri
+
+#' ## Matrix Algebra
+#' ### Matrix multiplication
+(A <- matrix(nrow = 2, ncol = 2, data = 1:4))
+(B <- matrix(nrow = 2, ncol = 3, data = seq(0, 2.5, by = 0.5)))
+A %*% B
+
+#'### Diagonal (of a) Matrix
+#' The function `diag()` allows us to extract the diagonal of a matrix, or to 
+#' create a identity matrix:
+A <- matrix(nrow = 3, ncol = 3, data = 1:9)
+diag(A)
+diag(5)
+
+#' The function `det()` calculates the determinant of  a matrix:
+det(A)
+
+#' The function `solve()`solves a syste of equations, and allows us to invert a
+#' square matrix:
+(X <- matrix(nrow = 3, ncol = 3, data = c(1, 2, 3, 1, 2, 5, 1, 5, 4)))
+solve(X)
+
+#' The functions `upper.tri()` and `lower.tri()` identify the upper and lower
+#' triangle of a matrix:
+upper.tri(X)
+lower.tri(X)
+
+#' The argument `diag` decides if the diagonal is included:
+upper.tri(X, diag = TRUE)
+

@@ -14,6 +14,7 @@
 #' We will explore the datasets `swiss` and `esoph` (both automatically availabe in R).
 #' 
 
+# ------------------------------------------------------------------------------
 #' ## What type of object do I have?
 class(swiss)
 
@@ -27,6 +28,7 @@ ncol(swiss)
 
 #' Be carefull:
 length(swiss)
+
 #' Why is that?
 #' Because a `data.frame` is also a `list`:
 is.list(swiss)
@@ -51,11 +53,15 @@ head(swiss, n = 10)
 str(swiss)
 #' The function `str` has many arguments to customize the output, 
 #' but we will skip that here.
-#' 
 
+
+
+# ------------------------------------------------------------------------------
 #' ## Descriptive Statistics
 #' ### Summary of a `data.frame` or `matrix`
 summary(esoph)
+
+
 
 #' ### Summaries per variable
 #' We can also get the summary of a single variable
@@ -85,9 +91,9 @@ min(x)
 min(x, na.rm = TRUE)
 
 
-#' Another helpful function to summarize continuous data is `ave()`. It calculates
-#' a summary measure of a continuous variable per group, that are defined by one
-#' or more categorical variables:
+#' Another helpful function to summarize continuous data is `ave()`.
+#' It calculates a summary measure of a continuous variable per group, that are
+#' defined by one or more categorical variables:
 esoph$av_case_by_age <- ave(esoph$ncases, esoph$agegp)
 esoph[12:22, ]
 
@@ -99,11 +105,12 @@ esoph[28:36, ]
 ave(esoph$ncases, esoph$agegp, esoph$alcgp, FUN = median)
 
 
+
+# ------------------------------------------------------------------------------
 #' ## Tables
 #' The above summaries were all for continuous variables. 
 #' For categorical variables we may be interested to see the different categories
 #' and how many observations there are per category:
-
 levels(esoph$agegp)
 table(esoph$agegp)
 
@@ -121,23 +128,29 @@ table(esoph$agegp, esoph$alcgp, dnn = c("age", "alc"))
 table(age = esoph$agegp, alc = esoph$alcgp)
 
 
+
+
 #' ### Tables: Margins
 #' To add summaries (e.g. the sum) for each column and/or row:
 tab <- table(age = esoph$agegp, alc = esoph$alcgp)
 addmargins(tab)
 addmargins(tab, margin = 1)
 addmargins(tab, margin = 2, FUN = mean)
+
 #' It is also possible to use different functions per margin:
 addmargins(tab, FUN = c(mean, sum))
 
 #' ### Tables: Proportions
 #' To turn the table to proportions:
 prop.table(tab)
+
 #' Here, the sum over all cells is 1:
 sum(prop.table(tab)) 
 
-#' The argument `margin` allows us to get proportions relative to the row- or column sum:
+#' The argument `margin` allows us to get proportions relative to the row- or 
+#' column sum:
 prop.table(tab, margin = 1)
+
 #' In the above table, the sum in each row is equal to 1:
 addmargins(prop.table(tab, margin = 1))
 
@@ -155,12 +168,13 @@ ftable(table(esoph[, 1:3]), row.vars = c(1))
 ftable(table(esoph[, 1:3]), row.vars = c(3, 2))
 
 
-
+# ------------------------------------------------------------------------------
 #' ## Functions for matrices
 #' ### Sums and Means
 #' The function `colMeans()` allows us to calculate the mean for each column 
 #' in a `matrix` or `data.frame`:
 colMeans(swiss)
+
 #' We can't use `colMeans()` on the `esoph` data because there not all variables 
 #' are numeric:
 #+ error = TRUE
@@ -177,6 +191,8 @@ rowMeans(swiss)
 #' (will be covered later).
 #' 
 
+
+
 #' ### Variance, Covariance and Correlation
 #' The functions `var`, and `cov` return the variance-covariance matrix when 
 #' used on a `matrix` or `data.frame`:
@@ -189,7 +205,7 @@ cov(esoph)
 #' When there are missing values in the data:
 #' Specify the argument `use = "pairs"` to exclude missing values (which would 
 #' otherwise result in a `NA` value for the (co)variance)
-#' 
+
 #' A (co)variance matrix can be converted to a (pearson) correlation matrix with the help
 #' of the function `cov2cor()`:
 cov2cor(var(swiss))
@@ -200,6 +216,8 @@ cor(swiss, method = 'kendall')
 
 
 
+
+# ------------------------------------------------------------------------------
 #' ## Duplicates and Comparison
 #' To find duplicates in a `data.frame`, `matrix` or a `vector` we can use the 
 #' function `duplicated()`:
@@ -207,12 +225,13 @@ duplicated(esoph)
 
 (x <- sample(LETTERS[1:5], 10, replace = TRUE))
 duplicated(x)
+
 #' Let's set the original variable and the duplication indicator next to each 
 #' other to see what is happening:
 cbind(x, duplicated(x))
 
 #' (We will get to know the function `cbind()` later).
-#' 
+
 #' Using the argument `fromLast = TRUE` checks for duplicates starting from
 #' the last value:
 cbind(x,
@@ -221,8 +240,8 @@ cbind(x,
 
 #' Return only the unique values:
 unique(x)
-#' This also works for `data.frame` and `matrix`.
 
+#' This also works for `data.frame` and `matrix`.
 (dat <- data.frame(x = x,
                   y = rbinom(length(x), size = 1, prob = 0.5))
 )
