@@ -19,5 +19,11 @@
 ### Functions for exploring data
 * Have the students already practiced subsetting in Part B?
 * Should `subset()` go into Part B (subsetting) or Part C (functions)?
+* Do we really need the matrix algebra?
+* Add a section for creating objects (`matrix`, `data.frame`, ...)
+* For practical "Summarizing Data" students need to know the functions `factor()`, 
+  `sqrt()` and `^`.
+* Not yet in practical for data exploration:
+  Correlation, covariance, duplicates, function `ave()`
 
 * Link to [https://rstudio.com/resources/cheatsheets/](https://rstudio.com/resources/cheatsheets/)?
