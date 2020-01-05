@@ -1,0 +1,301 @@
+---
+title: 'Summarizing Data'
+output: 
+  html_document:
+    code_folding: show
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+    number_sections: false
+    theme: spacelab
+    highlight: tango
+    includes:
+      after_body: ../footerNE.html
+    css: ../style.css
+---
+
+```{r, echo = FALSE, purl = FALSE}
+library(knitr)
+
+knit_hooks$set(purl = hook_purl)
+
+options(purl = FALSE)
+
+opts_chunk$set(purl = FALSE)
+```
+
+```{r, include = FALSE}
+opts_hooks$set(eval = function(opt) {
+  if (any(opt$exercise))
+    opt$eval <- opt$include <- FALSE
+  
+  opt
+})
+
+
+static <- TRUE
+
+options(width = 100)
+
+
+hint <- function(text) {
+  id <- paste0('hint_', sample.int(1e10, size = 1))
+    cat(
+    paste0('\n',
+      '<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" ',
+      'data-target="#', id, '">Hint</button>',
+      '<div id = "', id, '" class="collapse" style="border:1px; ',
+      'border-style:solid; padding: 1em; border-color:#1F78B4">',
+      text, '</div>')
+  )
+}
+```
+
+
+## Dataset 
+For this practical, we will use the **lung** dataset from the **survival** package.
+
+You can either load the survival package to get access to this dataset
+```{r}
+library(survival)
+```
+or make a copy of this data
+```{r}
+lung <- survival::lung
+```
+
+
+## Getting to know the data
+### Data dimensions {.tabset .tabset-fade .tabset-pills}
+#### Taks
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Find out the class and dimension of the **lung** data.
+```{r, echo = FALSE, results = 'asis'}
+hint('Use the functions `class()`, `dim()`, `nrow()` and `ncol()`.')
+```
+</div>
+
+#### Solution
+```{r}
+dim(lung)
+nrow(lung)
+ncol(lung)
+```
+
+
+### Data Structure {.tabset .tabset-fade .tabset-pills}
+#### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Now investigate the structure of the data.
+
+* Which variables does the data contain?
+* What types of variables are these?
+* Are there missing values
+```{r, echo = FALSE, results = 'asis'}
+hint('Use the functions `str()`, `head()`, `names()` and `summary()`.')
+```
+</div>
+
+#### Solution 1
+```{r}
+head(lung)
+names(lung)
+str(lung)
+```
+
+#### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+
+All variables are coded as `numeric`.
+
+* Do you think some of them should be factores?
+* Explore how many distrinct values the variables have that may not actually be
+  continuous.
+```{r, echo = FALSE, results = 'asis'}
+hint('The functions `unique()`, `table()` and `length()` are useful here.')
+```
+</div>
+
+#### Solution 2
+
+* Looking at the output of `str(lung)` we can see that `status`, `sex` and 
+  `ph.ecog` may only have values 0, 1 and 2
+* Also `inst`, `ph.karno`, `pat.karno`, and `wt.loss` could be categorical.
+
+To confirm that `status`, `sex` and `ph.ecog` only have very few levels, `unique()`
+or `table()` can be used:
+```{r}
+unique(lung$status)
+table(lung$sex, exclude = NULL)
+table(lung$ph.ecog, exclude = NULL)
+```
+
+To prevent lengthy output for the other variables we could first check how many
+different vaues there are:
+```{r}
+length(unique(lung$inst))
+length(unique(lung$ph.karno))
+length(unique(lung$pat.karno))
+length(unique(lung$wt.loss))
+```
+
+
+## Re-coding
+### Turning continuous values into factors {.tabset .tabset-pills .tabset-fade}
+#### Task
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+
+* Re-code `status`, `sex` and `ph.ecog` as factors.
+* Use meaningful factor labels for `status` (1 = censored, 2 = dead) and
+  `sex` (1 = male, 2 = female).
+* Check that the resulting variables are indeed of class `factor` and that they
+  have the correct levels.
+
+```{r, echo = FALSE, results = 'asis'}
+hint('Use the function `factor()`.')
+hint('To make sure that the correct categories get the correct labels, specify 
+     not only the argument `labels`, but also `levels`.')
+hint('To check the class, use the function `class()`.
+      To check levels, you can either use `levels()` or use a `table()`.')
+```
+</div>
+
+#### Solution
+```{r}
+# For ph.ecog, just convert to a factor
+lung$ph.ecog <- factor(lung$ph.ecog)
+
+# For the other two, use levels and labels
+lung$sex <- factor(lung$sex, levels = c(1, 2), labels = c('male', 'female'))
+lung$status <- factor(lung$status, levels = c(1, 2), labels = c('censored', 'dead'))
+
+# Confirm the class, either with
+class(lung$ph.ecog)
+class(lung$sex)
+class(lung$status)
+# or just use (str(lung))
+ 
+levels(lung$ph.ecog)
+table(lung$ph.ecog)
+table(lung$sex)
+table(lung$status)
+```
+
+## Descriptive Statistics
+### Summary {.tabset .tabset-pills .tabset-fade}
+#### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Get the summary of the **lung** data.
+</div>
+
+#### Solution 1
+```{r}
+summary(lung)
+```
+
+#### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+* Calculate each of the values of this summary for the variables `ph.karno` 
+and `ph.ecog` "by hand" (i.e., using other functions).
+* Also calculate the inter-quartile range for `ph.karno`.
+
+```{r, echo = FALSE, results = 'asis'}
+hint('You can use the functions `min()`, `max()`, `quantile()` for the 
+     continuous variable (but there are other options), 
+     and `table()` for the categorical variable.')
+hint('There are missin values in both variables: 
+     remember to set `na.rm = TRUE` or `exclude = NULL`.')
+```
+</div>
+
+#### Solution 2
+```{r}
+min(lung$ph.karno, na.rm = TRUE)
+max(lung$ph.karno, na.rm = TRUE)
+# alternatively: range(lung$ph.karno, na.rm = TRUE)
+
+quantile(lung$ph.karno, probs = c(0.25, 0.5, 0.75), na.rm = TRUE)
+# alternatively: median(lung$ph.karno, na.rm = TRUE)
+
+IQR(lung$ph.karno, na.rm = TRUE)
+
+table(lung$ph.ecog, exclude = NULL)
+```
+
+### Variance and Standard Deviation {.tabset .tabset-pills .tabset-fade}
+#### Task
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+* Calculate the variance of `meal.cal`.
+* Calculate the standard devition of `meal.cal`.
+* Check that the standard deviation is indeed the square root of the variance.
+* Check that the variance is indeed the square of the standard deviation.
+```{r, echo = FALSE, results = 'asis'}
+hint('Use the functions `sd()` and `var()`.')
+hint('To calculate the square root, use the function `sqrt()`.')
+hint('To calculate the square, use `^2`.')
+```
+</div>
+
+#### Solution
+```{r}
+cal_sd <- sd(lung$meal.cal, na.rm = TRUE); cal_sd
+cal_var <- var(lung$meal.cal, na.rm = TRUE); cal_var
+
+sqrt(cal_var)
+cal_sd^2
+```
+
+
+### Tables {.tabset .tabset-pills .tabset-fade}
+#### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+* Get a table of `sex` and `status`.
+* Also calculate the probabilities for each combination:
+  * relative to the total number of subjects
+  * relative to `sex`
+```{r, echo = FALSE, results = 'asis'}
+hint('To get the probabilities, use the function `prop.table()`.')
+hint('Use the argument `margin` to specify if the probabilities are relative to
+the whole sample size or only one of the two variables.')
+```
+</div>
+
+#### Solution 1
+```{r}
+# 2x2 table of status and sex:
+tab <- table(lung$status, lung$sex)
+
+# probabilities, relative to the total number of subjects:
+prop.table(tab)
+
+# probabilities, relative to sex:
+prop.table(tab, margin = 2)
+# Make sure choose the correct margin. When sex is in the rows, you need margin = 1.
+# Check that the table shows the correct numbers by roughly adding the proportions
+# per sex in your head.
+```
+
+#### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+* Get a table of `sex` and `ph.ecog` per `status`.
+* Experiment with the effect the order of the variables in `table()` has.
+* Convert this 3-dimensional table into a flat table.
+```{r, echo = FALSE, results = 'asis'}
+hint('To get a flat table, use `ftable()`.')
+```
+</div>
+
+#### Solution 2
+```{r}
+tab <- table(lung$sex, lung$ph.ecog, lung$status, exclude = NULL)
+tab
+
+# The first variable specifies the rows, the second the columns, and the 
+# third variables the third dimension:
+table(lung$ph.ecog, lung$status, lung$sex, exclude = NULL)
+
+# Convert to a flat table:
+ftable(tab, exclude = NULL)
+```
+
