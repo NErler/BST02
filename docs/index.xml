@@ -24,24 +24,6 @@ Some more info&amp;hellip;</description>
     </item>
     
     <item>
-      <title>Quiz</title>
-      <link>https://nerler.github.io/BST02/practical/quiz/</link>
-      <pubDate>Sun, 28 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://nerler.github.io/BST02/practical/quiz/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Data</title>
-      <link>https://nerler.github.io/BST02/practical/data/</link>
-      <pubDate>Wed, 24 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://nerler.github.io/BST02/practical/data/</guid>
-      <description> NHANES_for_practicals.RData NHANES_for_practicals_2.RData pbclong.RData pbcdat.RData  </description>
-    </item>
-    
-    <item>
       <title>About</title>
       <link>https://nerler.github.io/BST02/about/</link>
       <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
@@ -60,12 +42,30 @@ Some more info&amp;hellip;</description>
     </item>
     
     <item>
-      <title>Functions and Loops</title>
+      <title>Basic use of R</title>
       <link>https://nerler.github.io/BST02/demo/basic-use-of-r/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/basic-use-of-r/</guid>
       <description> 01BasicR [R] [html] 02CommonRobjects [R] [html] 03ImportingSaving [R] [html] 04DataTransformation [R] [html] 05DataExploration [R] [html] 06DataVisualization [R] [html] 07IndexingSudsetting [R] [html]  </description>
+    </item>
+    
+    <item>
+      <title>BasicUseR</title>
+      <link>https://nerler.github.io/BST02/practical/basicuser/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nerler.github.io/BST02/practical/basicuser/</guid>
+      <description> BasicUseR [html]  </description>
+    </item>
+    
+    <item>
+      <title>ExamplePractical</title>
+      <link>https://nerler.github.io/BST02/practical/examplepractical/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nerler.github.io/BST02/practical/examplepractical/</guid>
+      <description> MImice [html]  </description>
     </item>
     
     <item>
@@ -79,6 +79,15 @@ Some more info&amp;hellip;</description>
     
     <item>
       <title>Functions and Loops</title>
+      <link>https://nerler.github.io/BST02/practical/functions-and-loops/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nerler.github.io/BST02/practical/functions-and-loops/</guid>
+      <description> Exploring and Summarizing Data [html] SayHello [html]  </description>
+    </item>
+    
+    <item>
+      <title>Markdown</title>
       <link>https://nerler.github.io/BST02/demo/markdown/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -87,12 +96,39 @@ Some more info&amp;hellip;</description>
     </item>
     
     <item>
-      <title>Functions and Loops</title>
+      <title>Statistics with R</title>
+      <link>https://nerler.github.io/BST02/demo/statistics-with-r/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nerler.github.io/BST02/demo/statistics-with-r/</guid>
+      <description> Statistical Tests [R] [html]  </description>
+    </item>
+    
+    <item>
+      <title>Statistics with R</title>
+      <link>https://nerler.github.io/BST02/practical/statistics-with-r/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nerler.github.io/BST02/practical/statistics-with-r/</guid>
+      <description> [html]  </description>
+    </item>
+    
+    <item>
+      <title>The Apply Family</title>
       <link>https://nerler.github.io/BST02/demo/the-apply-family/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/the-apply-family/</guid>
       <description> 01TheApplyFamily [R] [html] 02ExtraProgrammingExamples [R] [html]  </description>
+    </item>
+    
+    <item>
+      <title>TheApplyFamily</title>
+      <link>https://nerler.github.io/BST02/practical/theapplyfamily/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nerler.github.io/BST02/practical/theapplyfamily/</guid>
+      <description> ExtraProgrammingExamples [html] TheApplyFamily [html]  </description>
     </item>
     
   </channel>

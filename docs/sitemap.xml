@@ -8,16 +8,6 @@
   </url>
   
   <url>
-    <loc>https://nerler.github.io/BST02/practical/quiz/</loc>
-    <lastmod>2019-04-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nerler.github.io/BST02/practical/data/</loc>
-    <lastmod>2019-04-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://nerler.github.io/BST02/about/</loc>
     <lastmod>2019-02-09T00:00:00+00:00</lastmod>
   </url>
@@ -34,12 +24,20 @@
   </url>
   
   <url>
+    <loc>https://nerler.github.io/BST02/demo/basic-use-of-r/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nerler.github.io/BST02/practical/basicuser/</loc>
+  </url>
+  
+  <url>
     <loc>https://nerler.github.io/BST02/demo/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://nerler.github.io/BST02/demo/basic-use-of-r/</loc>
+    <loc>https://nerler.github.io/BST02/practical/examplepractical/</loc>
   </url>
   
   <url>
@@ -47,16 +45,15 @@
   </url>
   
   <url>
+    <loc>https://nerler.github.io/BST02/practical/functions-and-loops/</loc>
+  </url>
+  
+  <url>
     <loc>https://nerler.github.io/BST02/demo/markdown/</loc>
   </url>
   
   <url>
-    <loc>https://nerler.github.io/BST02/demo/the-apply-family/</loc>
-  </url>
-  
-  <url>
     <loc>https://nerler.github.io/BST02/practical/</loc>
-    <lastmod>2019-04-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -67,8 +64,24 @@
   </url>
   
   <url>
+    <loc>https://nerler.github.io/BST02/demo/statistics-with-r/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nerler.github.io/BST02/practical/statistics-with-r/</loc>
+  </url>
+  
+  <url>
     <loc>https://nerler.github.io/BST02/tags/</loc>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://nerler.github.io/BST02/demo/the-apply-family/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nerler.github.io/BST02/practical/theapplyfamily/</loc>
   </url>
   
   <url>
