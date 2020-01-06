@@ -1,5 +1,5 @@
 ---
-title: Functions and Loops
+title: The Apply Family
 ---
 
  * 01TheApplyFamily [[R]](/demo/The Apply Family/01TheApplyFamily.R) [[html]](/demo/The Apply Family/01TheApplyFamily.html)
