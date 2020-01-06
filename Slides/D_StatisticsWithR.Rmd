@@ -1,0 +1,187 @@
+---
+title: "BST02: Using R for Statistics\\ in Medical Research"
+subtitle: "Part D: Statistics with R"
+author: "Nicole Erler"
+institute: "Department of Biostatistics, Erasmus Medical Center"
+date: "24 - 28 February 2020"
+email: "n.erler@erasmusmc.nl"
+output:
+  beamer_presentation: 
+    template: mytemplate.latex
+    includes:
+      in_header: [SlideTemplate.tex, defs_Nicole.tex]
+    incremental: false
+classoption: aspectratio=169
+---
+
+```{r setup, include=FALSE}
+knitr::knit_hooks$set(
+  nospace = function(before, options, envir) {
+    if (before) {
+      knitr::asis_output("\\vspace*{-1.5ex}")
+    }
+  }
+)
+
+knitr::opts_chunk$set(echo = TRUE, nospace = TRUE, nospaceafter = TRUE)
+
+```
+
+## t-test: `t.test()`
+\blue{One-sample t-test}
+
+* compares the mean of a sample with a fixed value $\mu$
+
+\blue{Two sample / independent samples t-test}
+
+* compares the difference between the means of two samples with a fixed value $\mu$
+
+\blue{Related samples t-test}
+
+* compares the mean of the difference between related observations with a fixed value $\mu$
+  (same as one-sample t-test)
+
+## Wilcoxon Test: `wilcox.test()`
+\blue{Wilcoxon Signed Rank Test}
+
+* tests if one sample (or the differences between two paired samples) is/are 
+  symmetric about $\mu$
+
+
+\blue{Wilcoxon Rank Sum Test / Mann-Whitney test}
+
+* test for a location shift between the distributions of two independent samples
+
+See also [BBR Sections 7.2 & 7.3 (http://hbiostat.org/doc/bbr.pdf)](http://hbiostat.org/doc/bbr.pdf)
+
+
+## Kruskal-Wallis Rank Sum Test: `kruskal.test()`
+
+* This is an extension of the Wilcoxon rank sum test for more than two groups
+* Test for a difference in location of a continuous variable between multiple groups
+* The Wilcoxon rank sum test is a special case of the Kruskal-Wallis rank sum test
+
+
+## Other tests for continuous data
+
+* \blue{Kolmogoriv-Smirnov Test:} `ks.test()`\newline
+  tests if two samples are drawn from the same continuous distribution
+  
+* \blue{Shapiro-Wilk Normality Test:} `shapiro.test()`
+
+* \blue{Friedman Rank Sum Test:} `friedman.test()`\newline
+  non-parametric test for 2 or more related samples
+  
+* ...
+
+## Tests for Categorical Data / Proportions
+
+\blue{One-sample Proportion Test}
+
+* tests if the proportion in one sample is equal to a fixed value $p$
+* `prop.test()` and `binom.test()`
+
+\blue{Tests for Proportions in Multiple (independent) Groups}
+
+* tests if the proportion in several samples are equal
+* `chisq.test()` and `fisher.test()` (when there are cells with 0)
+
+\vfill
+
+See also [BBR Sections 5.7 & 6 (http://hbiostat.org/doc/bbr.pdf)](http://hbiostat.org/doc/bbr.pdf)
+
+## Tests for Categorical Data / Proportions
+\blue{Related Samples: McNemar Test}
+ * Tests for symmetry in a $2\times 2$ table
+ * `mcnemar.test()`
+
+\blue{3-Dimensional Contingency Table}
+* $\chi^2$ test for independence of two nominal variables in each stratum
+* Cochrane-Mantel-Haenszel Test
+
+
+## Statistical Tests
+\begin{columns}[onlytextwidth,T]
+\begin{column}{0.3\linewidth}
+
+\blue{Continuous Outcomes}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{t.test()}
+\item \texttt{wilcox.test()}
+\item \texttt{kruskal.test()}
+\item \texttt{ks.test()}
+\item \texttt{friedman.test()}
+\item \texttt{shapiro.test()}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.4\linewidth}
+\blue{Categorical Outcomes}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{prop.test()}
+\item \texttt{binom.test()}
+\item \texttt{chisq.test()}
+\item \texttt{fisher.test()}
+\item \texttt{mcnemar.test()}
+\item \texttt{mantelhaen.test()}
+\end{itemize}
+
+\bigskip
+
+\blue{Pairwise tests}
+\begin{itemize}
+\item \texttt{pairwise.prop.test()}
+\item \texttt{pairwise.t.test()}
+\item \texttt{pairwise.wilcox.test()}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.3\linewidth}
+\blue{Variance and Correlation}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{cor.test()}
+\item \texttt{bartlett.test()}
+\item \texttt{var.test()}
+\end{itemize}
+\end{column}
+\end{columns}
+
+## Regression
+\begin{columns}[onlytextwidth,T]
+\begin{column}{0.5\linewidth}
+
+\blue{Regression Models}
+\begin{itemize}
+\item \texttt{lm()}
+\item \texttt{glm()}
+\end{itemize}
+
+\bigskip
+
+\blue{Regression Results}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{summary()}
+\item \texttt{coef()}, \texttt{confint()}
+\item \texttt{fitted()}, \texttt{residuals()}
+\item \texttt{AIC()}, \texttt{BIC()}
+\item \texttt{anova()}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\linewidth}
+\blue{Plots}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{plot()}
+\item \texttt{qqnorm()}, \texttt{qqline()}, \texttt{qqplot()}
+\end{itemize}
+
+\bigskip
+
+\blue{Topic}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{ns()}, \texttt{bs()}, \texttt{I()}
+\item \texttt{p.adjust()}
+\end{itemize}
+
+\end{column}
+\end{columns}
