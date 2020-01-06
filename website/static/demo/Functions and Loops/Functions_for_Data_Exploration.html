@@ -11,7 +11,7 @@
 
 <meta name="author" content="Nicole Erler, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-01-04" />
+<meta name="date" content="2020-01-05" />
 
 <title>Demo: Functions for exploring data</title>
 
@@ -1518,7 +1518,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Demo: Functions for exploring data</h1>
 <h4 class="author">Nicole Erler, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">04 January 2020</h4>
+<h4 class="date">05 January 2020</h4>
 
 </div>
 
@@ -1670,11 +1670,11 @@ str(swiss)</code></pre>
 <pre><code>## [1] 156.0425</code></pre>
 <p>All the above functions (<code>min</code>, <code>max</code>, <code>range</code>, <code>mean</code>, <code>median</code>, <code>quantile</code>, <code>sd</code>, <code>var</code>) have an argument <code>na.rm</code> which is by default set to <code>FALSE</code>.</p>
 <pre class="r"><code>(x &lt;- c(rnorm(5), NA))</code></pre>
-<pre><code>## [1] -1.0783022 -0.1241843  0.4089262 -0.1502047 -0.8839220         NA</code></pre>
+<pre><code>## [1] -0.0472999  0.7417734 -0.3862392  0.6266843 -0.2997216         NA</code></pre>
 <pre class="r"><code>min(x)</code></pre>
 <pre><code>## [1] NA</code></pre>
 <pre class="r"><code>min(x, na.rm = TRUE)</code></pre>
-<pre><code>## [1] -1.078302</code></pre>
+<pre><code>## [1] -0.3862392</code></pre>
 <p>Another helpful function to summarize continuous data is <code>ave()</code>. It calculates a summary measure of a continuous variable per group, that are defined by one or more categorical variables:</p>
 <pre class="r"><code>esoph$av_case_by_age &lt;- ave(esoph$ncases, esoph$agegp)
 esoph[12:22, ]</code></pre>
@@ -1724,16 +1724,16 @@ esoph[28:36, ]</code></pre>
 <p>By default, table only shows observations. The argument <code>exclude</code>can be set to <code>NULL</code> to also include missing values:</p>
 <pre class="r"><code>(x &lt;- factor(c(NA, sample(LETTERS[1:3], size = 10, replace = TRUE)),
              levels = LETTERS[1:5]))</code></pre>
-<pre><code>##  [1] &lt;NA&gt; B    A    C    C    C    B    B    A    C    C   
+<pre><code>##  [1] &lt;NA&gt; A    B    C    B    B    C    B    C    A    C   
 ## Levels: A B C D E</code></pre>
 <pre class="r"><code>table(x)</code></pre>
 <pre><code>## x
 ## A B C D E 
-## 2 3 5 0 0</code></pre>
+## 2 4 4 0 0</code></pre>
 <pre class="r"><code>table(x, exclude = NULL)</code></pre>
 <pre><code>## x
 ##    A    B    C    D    E &lt;NA&gt; 
-##    2    3    5    0    0    1</code></pre>
+##    2    4    4    0    0    1</code></pre>
 <p>We can also get tables for multiple variables. There, the argument <code>dnn</code> (dimension names) can be useful:</p>
 <pre class="r"><code>table(esoph$agegp, esoph$alcgp, dnn = c(&quot;age&quot;, &quot;alc&quot;))</code></pre>
 <pre><code>##        alc
@@ -2006,8 +2006,7 @@ addmargins(tab)</code></pre>
 <p>This of course only gives meaningful resuls when the data are continuous:</p>
 <pre class="r"><code>cov(esoph)</code></pre>
 <pre><code>## Error in cov(esoph): is.numeric(x) || is.logical(x) is not TRUE</code></pre>
-<p>When there are missing values in the data: Specify the argument <code>use = &quot;pairs&quot;</code> to exclude missing values (which would otherwise result in a <code>NA</code> value for the (co)variance)</p>
-<p>A (co)variance matrix can be converted to a (pearson) correlation matrix with the help of the function <code>cov2cor()</code>:</p>
+<p>When there are missing values in the data: Specify the argument <code>use = &quot;pairs&quot;</code> to exclude missing values (which would otherwise result in a <code>NA</code> value for the (co)variance) A (co)variance matrix can be converted to a (pearson) correlation matrix with the help of the function <code>cov2cor()</code>:</p>
 <pre class="r"><code>cov2cor(var(swiss))</code></pre>
 <pre><code>##                   Fertility Agriculture Examination   Education   Catholic
 ## Fertility         1.0000000  0.35307918  -0.6458827 -0.66378886  0.4636847
@@ -2054,84 +2053,87 @@ addmargins(tab)</code></pre>
 ## [73] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [85] FALSE FALSE FALSE FALSE</code></pre>
 <pre class="r"><code>(x &lt;- sample(LETTERS[1:5], 10, replace = TRUE))</code></pre>
-<pre><code>##  [1] &quot;C&quot; &quot;C&quot; &quot;D&quot; &quot;D&quot; &quot;C&quot; &quot;D&quot; &quot;C&quot; &quot;B&quot; &quot;A&quot; &quot;C&quot;</code></pre>
+<pre><code>##  [1] &quot;D&quot; &quot;E&quot; &quot;A&quot; &quot;B&quot; &quot;E&quot; &quot;A&quot; &quot;A&quot; &quot;C&quot; &quot;B&quot; &quot;C&quot;</code></pre>
 <pre class="r"><code>duplicated(x)</code></pre>
-<pre><code>##  [1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE</code></pre>
 <p>Let’s set the original variable and the duplication indicator next to each other to see what is happening:</p>
 <pre class="r"><code>cbind(x, duplicated(x))</code></pre>
 <pre><code>##       x          
-##  [1,] &quot;C&quot; &quot;FALSE&quot;
-##  [2,] &quot;C&quot; &quot;TRUE&quot; 
-##  [3,] &quot;D&quot; &quot;FALSE&quot;
-##  [4,] &quot;D&quot; &quot;TRUE&quot; 
-##  [5,] &quot;C&quot; &quot;TRUE&quot; 
-##  [6,] &quot;D&quot; &quot;TRUE&quot; 
-##  [7,] &quot;C&quot; &quot;TRUE&quot; 
-##  [8,] &quot;B&quot; &quot;FALSE&quot;
-##  [9,] &quot;A&quot; &quot;FALSE&quot;
+##  [1,] &quot;D&quot; &quot;FALSE&quot;
+##  [2,] &quot;E&quot; &quot;FALSE&quot;
+##  [3,] &quot;A&quot; &quot;FALSE&quot;
+##  [4,] &quot;B&quot; &quot;FALSE&quot;
+##  [5,] &quot;E&quot; &quot;TRUE&quot; 
+##  [6,] &quot;A&quot; &quot;TRUE&quot; 
+##  [7,] &quot;A&quot; &quot;TRUE&quot; 
+##  [8,] &quot;C&quot; &quot;FALSE&quot;
+##  [9,] &quot;B&quot; &quot;TRUE&quot; 
 ## [10,] &quot;C&quot; &quot;TRUE&quot;</code></pre>
-<p>(We will get to know the function <code>cbind()</code> later).</p>
-<p>Using the argument <code>fromLast = TRUE</code> checks for duplicates starting from the last value:</p>
+<p>(We will get to know the function <code>cbind()</code> later). Using the argument <code>fromLast = TRUE</code> checks for duplicates starting from the last value:</p>
 <pre class="r"><code>cbind(x,
       duplFirst = duplicated(x),
       duplLast = duplicated(x, fromLast = TRUE))</code></pre>
 <pre><code>##       x   duplFirst duplLast
-##  [1,] &quot;C&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
-##  [2,] &quot;C&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
-##  [3,] &quot;D&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
-##  [4,] &quot;D&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
-##  [5,] &quot;C&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
-##  [6,] &quot;D&quot; &quot;TRUE&quot;    &quot;FALSE&quot; 
-##  [7,] &quot;C&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
-##  [8,] &quot;B&quot; &quot;FALSE&quot;   &quot;FALSE&quot; 
-##  [9,] &quot;A&quot; &quot;FALSE&quot;   &quot;FALSE&quot; 
+##  [1,] &quot;D&quot; &quot;FALSE&quot;   &quot;FALSE&quot; 
+##  [2,] &quot;E&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
+##  [3,] &quot;A&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
+##  [4,] &quot;B&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
+##  [5,] &quot;E&quot; &quot;TRUE&quot;    &quot;FALSE&quot; 
+##  [6,] &quot;A&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
+##  [7,] &quot;A&quot; &quot;TRUE&quot;    &quot;FALSE&quot; 
+##  [8,] &quot;C&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
+##  [9,] &quot;B&quot; &quot;TRUE&quot;    &quot;FALSE&quot; 
 ## [10,] &quot;C&quot; &quot;TRUE&quot;    &quot;FALSE&quot;</code></pre>
 <p>Return only the unique values:</p>
 <pre class="r"><code>unique(x)</code></pre>
-<pre><code>## [1] &quot;C&quot; &quot;D&quot; &quot;B&quot; &quot;A&quot;</code></pre>
+<pre><code>## [1] &quot;D&quot; &quot;E&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot;</code></pre>
 <p>This also works for <code>data.frame</code> and <code>matrix</code>.</p>
 <pre class="r"><code>(dat &lt;- data.frame(x = x,
                   y = rbinom(length(x), size = 1, prob = 0.5))
 )</code></pre>
 <pre><code>##    x y
-## 1  C 0
-## 2  C 1
-## 3  D 1
-## 4  D 0
-## 5  C 0
-## 6  D 1
-## 7  C 0
-## 8  B 0
-## 9  A 1
-## 10 C 0</code></pre>
+## 1  D 0
+## 2  E 1
+## 3  A 0
+## 4  B 0
+## 5  E 0
+## 6  A 1
+## 7  A 1
+## 8  C 0
+## 9  B 0
+## 10 C 1</code></pre>
 <pre class="r"><code>unique(dat)</code></pre>
-<pre><code>##   x y
-## 1 C 0
-## 2 C 1
-## 3 D 1
-## 4 D 0
-## 8 B 0
-## 9 A 1</code></pre>
+<pre><code>##    x y
+## 1  D 0
+## 2  E 1
+## 3  A 0
+## 4  B 0
+## 5  E 0
+## 6  A 1
+## 8  C 0
+## 10 C 1</code></pre>
 <pre class="r"><code>(mat &lt;- as.matrix(dat))</code></pre>
 <pre><code>##       x   y  
-##  [1,] &quot;C&quot; &quot;0&quot;
-##  [2,] &quot;C&quot; &quot;1&quot;
-##  [3,] &quot;D&quot; &quot;1&quot;
-##  [4,] &quot;D&quot; &quot;0&quot;
-##  [5,] &quot;C&quot; &quot;0&quot;
-##  [6,] &quot;D&quot; &quot;1&quot;
-##  [7,] &quot;C&quot; &quot;0&quot;
-##  [8,] &quot;B&quot; &quot;0&quot;
-##  [9,] &quot;A&quot; &quot;1&quot;
-## [10,] &quot;C&quot; &quot;0&quot;</code></pre>
+##  [1,] &quot;D&quot; &quot;0&quot;
+##  [2,] &quot;E&quot; &quot;1&quot;
+##  [3,] &quot;A&quot; &quot;0&quot;
+##  [4,] &quot;B&quot; &quot;0&quot;
+##  [5,] &quot;E&quot; &quot;0&quot;
+##  [6,] &quot;A&quot; &quot;1&quot;
+##  [7,] &quot;A&quot; &quot;1&quot;
+##  [8,] &quot;C&quot; &quot;0&quot;
+##  [9,] &quot;B&quot; &quot;0&quot;
+## [10,] &quot;C&quot; &quot;1&quot;</code></pre>
 <pre class="r"><code>unique(mat)</code></pre>
 <pre><code>##      x   y  
-## [1,] &quot;C&quot; &quot;0&quot;
-## [2,] &quot;C&quot; &quot;1&quot;
-## [3,] &quot;D&quot; &quot;1&quot;
-## [4,] &quot;D&quot; &quot;0&quot;
-## [5,] &quot;B&quot; &quot;0&quot;
-## [6,] &quot;A&quot; &quot;1&quot;</code></pre>
+## [1,] &quot;D&quot; &quot;0&quot;
+## [2,] &quot;E&quot; &quot;1&quot;
+## [3,] &quot;A&quot; &quot;0&quot;
+## [4,] &quot;B&quot; &quot;0&quot;
+## [5,] &quot;E&quot; &quot;0&quot;
+## [6,] &quot;A&quot; &quot;1&quot;
+## [7,] &quot;C&quot; &quot;0&quot;
+## [8,] &quot;C&quot; &quot;1&quot;</code></pre>
 <p>With the function <code>data.frame()</code> we create a <code>data.frame</code> and the function <code>as.matrix()</code> allows us to convert an object to a <code>matrix</code>.</p>
 </div>
 

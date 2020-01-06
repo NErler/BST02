@@ -11,7 +11,7 @@
 
 <meta name="author" content="Nicole Erler, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-01-04" />
+<meta name="date" content="2020-01-06" />
 
 <title>Demo: Functions for Manipulating Data</title>
 
@@ -1519,7 +1519,7 @@ div.tocify {
 <h1 class="title toc-ignore">Demo: Functions for Manipulating Data</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Nicole Erler, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">04 January 2020</h4>
+<h4 class="date">06 January 2020</h4>
 
 </div>
 
@@ -1534,82 +1534,72 @@ div.tocify {
 <h3>The logarithm</h3>
 <p>In R, <code>log()</code> by default calculates the natural logarithm, i.e., the following two commands are equal:</p>
 <pre class="r"><code>log(swiss$Fertility)</code></pre>
-<pre><code>##  [1] 4.384524 4.420045 4.527209 4.452019 4.342506 4.332048 4.428433 4.526127
-##  [9] 4.411585 4.417635 4.467057 4.160444 4.203199 4.232656 4.122284 4.223910
-## [17] 4.272491 4.019980 3.994524 4.175925 4.182050 4.174387 4.036009 4.050044
-## [25] 4.283587 4.306764 4.276666 4.102643 4.065602 4.180522 4.324133 4.238445
-## [33] 4.347694 4.255613 4.374498 4.174387 4.523960 4.373238 4.254193 4.185099
-## [41] 4.286341 4.165114 4.351567 4.213608 3.555348 3.799974 3.756538</code></pre>
+<pre><code>##  [1] 4.384524 4.420045 4.527209 4.452019 4.342506 4.332048 4.428433 4.526127 4.411585 4.417635 4.467057
+## [12] 4.160444 4.203199 4.232656 4.122284 4.223910 4.272491 4.019980 3.994524 4.175925 4.182050 4.174387
+## [23] 4.036009 4.050044 4.283587 4.306764 4.276666 4.102643 4.065602 4.180522 4.324133 4.238445 4.347694
+## [34] 4.255613 4.374498 4.174387 4.523960 4.373238 4.254193 4.185099 4.286341 4.165114 4.351567 4.213608
+## [45] 3.555348 3.799974 3.756538</code></pre>
 <pre class="r"><code>log(swiss$Fertility, base = exp(1))</code></pre>
-<pre><code>##  [1] 4.384524 4.420045 4.527209 4.452019 4.342506 4.332048 4.428433 4.526127
-##  [9] 4.411585 4.417635 4.467057 4.160444 4.203199 4.232656 4.122284 4.223910
-## [17] 4.272491 4.019980 3.994524 4.175925 4.182050 4.174387 4.036009 4.050044
-## [25] 4.283587 4.306764 4.276666 4.102643 4.065602 4.180522 4.324133 4.238445
-## [33] 4.347694 4.255613 4.374498 4.174387 4.523960 4.373238 4.254193 4.185099
-## [41] 4.286341 4.165114 4.351567 4.213608 3.555348 3.799974 3.756538</code></pre>
+<pre><code>##  [1] 4.384524 4.420045 4.527209 4.452019 4.342506 4.332048 4.428433 4.526127 4.411585 4.417635 4.467057
+## [12] 4.160444 4.203199 4.232656 4.122284 4.223910 4.272491 4.019980 3.994524 4.175925 4.182050 4.174387
+## [23] 4.036009 4.050044 4.283587 4.306764 4.276666 4.102643 4.065602 4.180522 4.324133 4.238445 4.347694
+## [34] 4.255613 4.374498 4.174387 4.523960 4.373238 4.254193 4.185099 4.286341 4.165114 4.351567 4.213608
+## [45] 3.555348 3.799974 3.756538</code></pre>
 <p>For other commonly used bases we can use separate functions, e.g. <code>log2()</code> or <code>log10</code>. The argument <code>base</code> allows us to change the base of the logarithm to any value:</p>
 <pre class="r"><code>log(swiss$Fertility, base = 2)</code></pre>
-<pre><code>##  [1] 6.325530 6.376777 6.531381 6.422906 6.264912 6.249825 6.388878 6.529821
-##  [9] 6.364572 6.373300 6.444601 6.002252 6.063934 6.106432 5.947199 6.093814
-## [17] 6.163901 5.799605 5.762880 6.024586 6.033423 6.022368 5.822730 5.842979
-## [25] 6.179909 6.213347 6.169925 5.918863 5.865424 6.031219 6.238405 6.114783
-## [33] 6.272397 6.139551 6.311067 6.022368 6.526695 6.309249 6.137504 6.037821
-## [41] 6.183883 6.008989 6.277985 6.078951 5.129283 5.482203 5.419539</code></pre>
+<pre><code>##  [1] 6.325530 6.376777 6.531381 6.422906 6.264912 6.249825 6.388878 6.529821 6.364572 6.373300 6.444601
+## [12] 6.002252 6.063934 6.106432 5.947199 6.093814 6.163901 5.799605 5.762880 6.024586 6.033423 6.022368
+## [23] 5.822730 5.842979 6.179909 6.213347 6.169925 5.918863 5.865424 6.031219 6.238405 6.114783 6.272397
+## [34] 6.139551 6.311067 6.022368 6.526695 6.309249 6.137504 6.037821 6.183883 6.008989 6.277985 6.078951
+## [45] 5.129283 5.482203 5.419539</code></pre>
 <pre class="r"><code>log2(swiss$Fertility)</code></pre>
-<pre><code>##  [1] 6.325530 6.376777 6.531381 6.422906 6.264912 6.249825 6.388878 6.529821
-##  [9] 6.364572 6.373300 6.444601 6.002252 6.063934 6.106432 5.947199 6.093814
-## [17] 6.163901 5.799605 5.762880 6.024586 6.033423 6.022368 5.822730 5.842979
-## [25] 6.179909 6.213347 6.169925 5.918863 5.865424 6.031219 6.238405 6.114783
-## [33] 6.272397 6.139551 6.311067 6.022368 6.526695 6.309249 6.137504 6.037821
-## [41] 6.183883 6.008989 6.277985 6.078951 5.129283 5.482203 5.419539</code></pre>
+<pre><code>##  [1] 6.325530 6.376777 6.531381 6.422906 6.264912 6.249825 6.388878 6.529821 6.364572 6.373300 6.444601
+## [12] 6.002252 6.063934 6.106432 5.947199 6.093814 6.163901 5.799605 5.762880 6.024586 6.033423 6.022368
+## [23] 5.822730 5.842979 6.179909 6.213347 6.169925 5.918863 5.865424 6.031219 6.238405 6.114783 6.272397
+## [34] 6.139551 6.311067 6.022368 6.526695 6.309249 6.137504 6.037821 6.183883 6.008989 6.277985 6.078951
+## [45] 5.129283 5.482203 5.419539</code></pre>
 <pre class="r"><code>log(swiss$Fertility, base = 10)</code></pre>
-<pre><code>##  [1] 1.904174 1.919601 1.966142 1.933487 1.885926 1.881385 1.923244 1.965672
-##  [9] 1.915927 1.918555 1.940018 1.806858 1.825426 1.838219 1.790285 1.834421
-## [17] 1.855519 1.745855 1.734800 1.813581 1.816241 1.812913 1.752816 1.758912
-## [25] 1.860338 1.870404 1.857332 1.781755 1.765669 1.815578 1.877947 1.840733
-## [33] 1.888179 1.848189 1.899821 1.812913 1.964731 1.899273 1.847573 1.817565
-## [41] 1.861534 1.808886 1.889862 1.829947 1.544068 1.650308 1.631444</code></pre>
+<pre><code>##  [1] 1.904174 1.919601 1.966142 1.933487 1.885926 1.881385 1.923244 1.965672 1.915927 1.918555 1.940018
+## [12] 1.806858 1.825426 1.838219 1.790285 1.834421 1.855519 1.745855 1.734800 1.813581 1.816241 1.812913
+## [23] 1.752816 1.758912 1.860338 1.870404 1.857332 1.781755 1.765669 1.815578 1.877947 1.840733 1.888179
+## [34] 1.848189 1.899821 1.812913 1.964731 1.899273 1.847573 1.817565 1.861534 1.808886 1.889862 1.829947
+## [45] 1.544068 1.650308 1.631444</code></pre>
 <pre class="r"><code>log10(swiss$Fertility)</code></pre>
-<pre><code>##  [1] 1.904174 1.919601 1.966142 1.933487 1.885926 1.881385 1.923244 1.965672
-##  [9] 1.915927 1.918555 1.940018 1.806858 1.825426 1.838219 1.790285 1.834421
-## [17] 1.855519 1.745855 1.734800 1.813581 1.816241 1.812913 1.752816 1.758912
-## [25] 1.860338 1.870404 1.857332 1.781755 1.765669 1.815578 1.877947 1.840733
-## [33] 1.888179 1.848189 1.899821 1.812913 1.964731 1.899273 1.847573 1.817565
-## [41] 1.861534 1.808886 1.889862 1.829947 1.544068 1.650308 1.631444</code></pre>
+<pre><code>##  [1] 1.904174 1.919601 1.966142 1.933487 1.885926 1.881385 1.923244 1.965672 1.915927 1.918555 1.940018
+## [12] 1.806858 1.825426 1.838219 1.790285 1.834421 1.855519 1.745855 1.734800 1.813581 1.816241 1.812913
+## [23] 1.752816 1.758912 1.860338 1.870404 1.857332 1.781755 1.765669 1.815578 1.877947 1.840733 1.888179
+## [34] 1.848189 1.899821 1.812913 1.964731 1.899273 1.847573 1.817565 1.861534 1.808886 1.889862 1.829947
+## [45] 1.544068 1.650308 1.631444</code></pre>
 </div>
 <div id="other-transformations" class="section level3">
 <h3>Other transformations</h3>
 <p>Exponential function</p>
 <pre class="r"><code>exp(swiss$Fertility)</code></pre>
-<pre><code>##  [1] 6.767331e+34 1.229905e+36 1.486756e+40 1.830065e+37 2.496006e+33
-##  [6] 1.121528e+33 2.476724e+36 1.345272e+40 6.107526e+35 1.006961e+36
-## [11] 6.715052e+37 6.890905e+27 1.133185e+29 8.373168e+29 6.251288e+26
-## [16] 4.595292e+29 1.376938e+31 1.549539e+24 3.821117e+23 1.873142e+28
-## [21] 2.794400e+28 1.694889e+28 3.811252e+24 8.482098e+24 3.064432e+31
-## [26] 1.677454e+32 1.858672e+31 1.882852e+26 2.086259e+25 2.528478e+28
-## [31] 6.155075e+32 1.249130e+30 3.723604e+33 4.147257e+30 3.040758e+34
-## [36] 1.694889e+28 1.101416e+40 2.751392e+34 3.752594e+30 3.413088e+28
-## [41] 3.742905e+31 9.301749e+27 5.026339e+33 2.281954e+29 1.586013e+15
-## [46] 2.587994e+19 3.870828e+18</code></pre>
+<pre><code>##  [1] 6.767331e+34 1.229905e+36 1.486756e+40 1.830065e+37 2.496006e+33 1.121528e+33 2.476724e+36
+##  [8] 1.345272e+40 6.107526e+35 1.006961e+36 6.715052e+37 6.890905e+27 1.133185e+29 8.373168e+29
+## [15] 6.251288e+26 4.595292e+29 1.376938e+31 1.549539e+24 3.821117e+23 1.873142e+28 2.794400e+28
+## [22] 1.694889e+28 3.811252e+24 8.482098e+24 3.064432e+31 1.677454e+32 1.858672e+31 1.882852e+26
+## [29] 2.086259e+25 2.528478e+28 6.155075e+32 1.249130e+30 3.723604e+33 4.147257e+30 3.040758e+34
+## [36] 1.694889e+28 1.101416e+40 2.751392e+34 3.752594e+30 3.413088e+28 3.742905e+31 9.301749e+27
+## [43] 5.026339e+33 2.281954e+29 1.586013e+15 2.587994e+19 3.870828e+18</code></pre>
 <p>Square root</p>
 <pre class="r"><code>sqrt(swiss$Fertility)</code></pre>
-<pre><code>##  [1] 8.955445 9.115920 9.617692 9.262829 8.769265 8.723531 9.154234 9.612492
-##  [9] 9.077445 9.104944 9.332738 8.006248 8.179242 8.300602 7.854935 8.264381
-## [17] 8.467585 7.463243 7.368853 8.068457 8.093207 8.062258 7.523297 7.576279
-## [25] 8.514693 8.613942 8.485281 7.778175 7.635444 8.087027 8.689074 8.324662
-## [33] 8.792042 8.396428 8.910668 8.062258 9.602083 8.905055 8.390471 8.105554
-## [41] 8.526429 8.024961 8.809086 8.221922 5.916080 6.685806 6.542171</code></pre>
+<pre><code>##  [1] 8.955445 9.115920 9.617692 9.262829 8.769265 8.723531 9.154234 9.612492 9.077445 9.104944 9.332738
+## [12] 8.006248 8.179242 8.300602 7.854935 8.264381 8.467585 7.463243 7.368853 8.068457 8.093207 8.062258
+## [23] 7.523297 7.576279 8.514693 8.613942 8.485281 7.778175 7.635444 8.087027 8.689074 8.324662 8.792042
+## [34] 8.396428 8.910668 8.062258 9.602083 8.905055 8.390471 8.105554 8.526429 8.024961 8.809086 8.221922
+## [45] 5.916080 6.685806 6.542171</code></pre>
 <p>Absolute value</p>
 <pre class="r"><code>(x &lt;- rnorm(10))</code></pre>
-<pre><code>##  [1]  2.2781457  0.7346138 -1.1684341  0.1108756 -0.8317110  1.1849897
-##  [7]  0.1604897 -1.3403135 -1.4363831 -1.1750847</code></pre>
+<pre><code>##  [1]  0.09375301  0.80112042  0.70331330 -2.72084264  0.73795209  0.04805089 -0.84594633 -0.34555461
+##  [9]  0.18005741 -0.51764417</code></pre>
 <pre class="r"><code>abs(x)</code></pre>
-<pre><code>##  [1] 2.2781457 0.7346138 1.1684341 0.1108756 0.8317110 1.1849897 0.1604897
-##  [8] 1.3403135 1.4363831 1.1750847</code></pre>
+<pre><code>##  [1] 0.09375301 0.80112042 0.70331330 2.72084264 0.73795209 0.04805089 0.84594633 0.34555461 0.18005741
+## [10] 0.51764417</code></pre>
 <p>Distribution function of the logistic distribution: this function is for instance useful to convert the linear predictor of a logistic model to the probability scale.</p>
 <pre class="r"><code>plogis(x)</code></pre>
-<pre><code>##  [1] 0.9070508 0.6758169 0.2371381 0.5276905 0.3032834 0.7658438 0.5400365
-##  [8] 0.2074585 0.1921061 0.2359371</code></pre>
+<pre><code>##  [1] 0.52342110 0.69021410 0.66892196 0.06175462 0.67654787 0.51201041 0.30028390 0.41446083 0.54489313
+## [10] 0.37340327</code></pre>
 </div>
 </div>
 <div id="splitting-combining" class="section level2">
@@ -1618,232 +1608,136 @@ div.tocify {
 <h3>Dividing a (continuous) variable into a <code>factor</code></h3>
 <p>The function <code>cut()</code> allows us to convert a numeric variable to a factor. The arguments <code>breaks</code> is used to specify the cutoffs for the categories.</p>
 <pre class="r"><code>(x &lt;- rnorm(20))</code></pre>
-<pre><code>##  [1]  0.9281732 -0.4400933 -0.2767172  0.7705976  0.8358489 -0.2646546
-##  [7] -0.3313670  0.1518107 -0.2697171 -1.3495175 -0.2674174  2.1608225
-## [13]  0.6929416 -1.3222154 -1.2336500  0.7915903  1.6932831  1.2776701
-## [19]  0.9340468  2.5012673</code></pre>
+<pre><code>##  [1]  0.78834578  0.39704667 -1.04054446 -0.75230174 -0.19434850  0.88874020 -2.55422103  1.13328165
+##  [9] -0.99828082  0.74682621 -1.40757164 -0.42869614  0.64874246 -0.20079478 -0.66014528 -1.18864340
+## [17] -0.75514054 -0.20288022  0.97596384  0.05955358</code></pre>
 <pre class="r"><code>cut(x, breaks = c(-1, 0, 1))</code></pre>
-<pre><code>##  [1] (0,1]  (-1,0] (-1,0] (0,1]  (0,1]  (-1,0] (-1,0] (0,1]  (-1,0] &lt;NA&gt;  
-## [11] (-1,0] &lt;NA&gt;   (0,1]  &lt;NA&gt;   &lt;NA&gt;   (0,1]  &lt;NA&gt;   &lt;NA&gt;   (0,1]  &lt;NA&gt;  
+<pre><code>##  [1] (0,1]  (0,1]  &lt;NA&gt;   (-1,0] (-1,0] (0,1]  &lt;NA&gt;   &lt;NA&gt;   (-1,0] (0,1]  &lt;NA&gt;   (-1,0] (0,1]  (-1,0]
+## [15] (-1,0] &lt;NA&gt;   (-1,0] (-1,0] (0,1]  (0,1] 
 ## Levels: (-1,0] (0,1]</code></pre>
 <p>Note that values outside the smallest and largest “break” are set to <code>NA</code>. To prevent that we can include <code>-Inf</code> and <code>Inf</code>:</p>
 <pre class="r"><code>cut(x, breaks = c(-Inf, -1, 0, 1, Inf))</code></pre>
-<pre><code>##  [1] (0,1]     (-1,0]    (-1,0]    (0,1]     (0,1]     (-1,0]    (-1,0]   
-##  [8] (0,1]     (-1,0]    (-Inf,-1] (-1,0]    (1, Inf]  (0,1]     (-Inf,-1]
-## [15] (-Inf,-1] (0,1]     (1, Inf]  (1, Inf]  (0,1]     (1, Inf] 
+<pre><code>##  [1] (0,1]     (0,1]     (-Inf,-1] (-1,0]    (-1,0]    (0,1]     (-Inf,-1] (1, Inf]  (-1,0]    (0,1]    
+## [11] (-Inf,-1] (-1,0]    (0,1]     (-1,0]    (-1,0]    (-Inf,-1] (-1,0]    (-1,0]    (0,1]     (0,1]    
 ## Levels: (-Inf,-1] (-1,0] (0,1] (1, Inf]</code></pre>
 <p>By default, the lower bound of each interval is excluded, the upper bound is included. We can include the lowest bound by setting <code>include.lowest = TRUE</code>.</p>
 <pre class="r"><code>cut(x, breaks = c(-Inf, -1, 0, 1, Inf), include.lowest = TRUE)</code></pre>
-<pre><code>##  [1] (0,1]     (-1,0]    (-1,0]    (0,1]     (0,1]     (-1,0]    (-1,0]   
-##  [8] (0,1]     (-1,0]    [-Inf,-1] (-1,0]    (1, Inf]  (0,1]     [-Inf,-1]
-## [15] [-Inf,-1] (0,1]     (1, Inf]  (1, Inf]  (0,1]     (1, Inf] 
+<pre><code>##  [1] (0,1]     (0,1]     [-Inf,-1] (-1,0]    (-1,0]    (0,1]     [-Inf,-1] (1, Inf]  (-1,0]    (0,1]    
+## [11] [-Inf,-1] (-1,0]    (0,1]     (-1,0]    (-1,0]    [-Inf,-1] (-1,0]    (-1,0]    (0,1]     (0,1]    
 ## Levels: [-Inf,-1] (-1,0] (0,1] (1, Inf]</code></pre>
 <p>Note that this only changes the lower bound of the lowest interval. The argument <code>right</code> specifies that the right bound of each interval is included, this chan be changed by setting <code>right = FALSE</code>. By default, the resulting factor is unordered. With the argument <code>ordered_result = TRUE</code> we can change this.</p>
 <p>To set custom labels for the categories, the argument <code>labels</code> can be used:</p>
 <pre class="r"><code>cut(x, breaks = c(-Inf, -1, 0, 1, Inf), labels = c(&#39;lowest&#39;, &#39;low&#39;, &#39;high&#39;, &#39;highest&#39;))</code></pre>
-<pre><code>##  [1] high    low     low     high    high    low     low     high    low    
-## [10] lowest  low     highest high    lowest  lowest  high    highest highest
-## [19] high    highest
+<pre><code>##  [1] high    high    lowest  low     low     high    lowest  highest low     high    lowest  low    
+## [13] high    low     low     lowest  low     low     high    high   
 ## Levels: lowest low high highest</code></pre>
 </div>
-<div id="splitting-a-data.frame-matrix-or-vector-by-one-or-more-categorical" class="section level3">
-<h3>Splitting a <code>data.frame</code>, <code>matrix</code> or <code>vector</code> by one or more categorical</h3>
-<p>variables</p>
+<div id="splitting-a-data.frame-matrix-or-vector" class="section level3">
+<h3>Splitting a <code>data.frame</code>, <code>matrix</code> or <code>vector</code></h3>
+<p>The function <code>split()</code> splits a <code>data.frame</code>, <code>matrix</code> or <code>vector</code> by one or more categorical variables:</p>
 <pre class="r"><code>split(swiss, f = swiss$Education &gt; 10)</code></pre>
 <pre><code>## $`FALSE`
-##              Fertility Agriculture Examination Education Catholic
-## Delemont          83.1        45.1           6         9    84.84
-## Franches-Mnt      92.5        39.7           5         5    93.40
-## Moutier           85.8        36.5          12         7    33.77
-## Porrentruy        76.1        35.3           9         7    90.57
-## Broye             83.8        70.2          16         7    92.85
-## Glane             92.4        67.8          14         8    97.16
-## Gruyere           82.4        53.3          12         7    97.67
-## Veveyse           87.1        64.5          14         6    98.61
-## Aubonne           66.9        67.5          14         7     2.27
-## Cossonay          61.7        69.3          22         5     2.82
-## Echallens         68.3        72.6          18         2    24.20
-## Grandson          71.7        34.0          17         8     3.30
-## Lavaux            65.1        73.0          19         9     2.84
-## Morges            65.5        59.8          22        10     5.23
-## Moudon            65.0        55.1          14         3     4.52
-## Orbe              57.4        54.1          20         6     4.20
-## Oron              72.5        71.2          12         1     2.40
-## Payerne           74.2        58.1          14         8     5.23
-## Paysd&#39;enhaut      72.0        63.5           6         3     2.56
-## Rolle             60.5        60.8          16        10     7.72
-## Yverdon           65.4        49.5          15         8     6.10
-## Conthey           75.5        85.9           3         2    99.71
-## Entremont         69.3        84.9           7         6    99.68
-## Herens            77.3        89.7           5         2   100.00
-## Martigwy          70.5        78.2          12         6    98.96
-## Monthey           79.4        64.9           7         3    98.22
-## St Maurice        65.0        75.9           9         9    99.06
-## Sierre            92.2        84.6           3         3    99.46
-## Val de Ruz        77.6        37.6          15         7     4.97
-## ValdeTravers      67.6        18.7          25         7     8.65
-##              Infant.Mortality
-## Delemont                 22.2
-## Franches-Mnt             20.2
-## Moutier                  20.3
-## Porrentruy               26.6
-## Broye                    23.6
-## Glane                    24.9
-## Gruyere                  21.0
-## Veveyse                  24.5
-## Aubonne                  19.1
-## Cossonay                 18.7
-## Echallens                21.2
-## Grandson                 20.0
-## Lavaux                   20.0
-## Morges                   18.0
-## Moudon                   22.4
-## Orbe                     15.3
-## Oron                     21.0
-## Payerne                  23.8
-## Paysd&#39;enhaut             18.0
-## Rolle                    16.3
-## Yverdon                  22.5
-## Conthey                  15.1
-## Entremont                19.8
-## Herens                   18.3
-## Martigwy                 19.4
-## Monthey                  20.2
-## St Maurice               17.8
-## Sierre                   16.3
-## Val de Ruz               20.0
-## ValdeTravers             19.5
+##              Fertility Agriculture Examination Education Catholic Infant.Mortality
+## Delemont          83.1        45.1           6         9    84.84             22.2
+## Franches-Mnt      92.5        39.7           5         5    93.40             20.2
+## Moutier           85.8        36.5          12         7    33.77             20.3
+## Porrentruy        76.1        35.3           9         7    90.57             26.6
+## Broye             83.8        70.2          16         7    92.85             23.6
+## Glane             92.4        67.8          14         8    97.16             24.9
+## Gruyere           82.4        53.3          12         7    97.67             21.0
+## Veveyse           87.1        64.5          14         6    98.61             24.5
+## Aubonne           66.9        67.5          14         7     2.27             19.1
+## Cossonay          61.7        69.3          22         5     2.82             18.7
+## Echallens         68.3        72.6          18         2    24.20             21.2
+## Grandson          71.7        34.0          17         8     3.30             20.0
+## Lavaux            65.1        73.0          19         9     2.84             20.0
+## Morges            65.5        59.8          22        10     5.23             18.0
+## Moudon            65.0        55.1          14         3     4.52             22.4
+## Orbe              57.4        54.1          20         6     4.20             15.3
+## Oron              72.5        71.2          12         1     2.40             21.0
+## Payerne           74.2        58.1          14         8     5.23             23.8
+## Paysd&#39;enhaut      72.0        63.5           6         3     2.56             18.0
+## Rolle             60.5        60.8          16        10     7.72             16.3
+## Yverdon           65.4        49.5          15         8     6.10             22.5
+## Conthey           75.5        85.9           3         2    99.71             15.1
+## Entremont         69.3        84.9           7         6    99.68             19.8
+## Herens            77.3        89.7           5         2   100.00             18.3
+## Martigwy          70.5        78.2          12         6    98.96             19.4
+## Monthey           79.4        64.9           7         3    98.22             20.2
+## St Maurice        65.0        75.9           9         9    99.06             17.8
+## Sierre            92.2        84.6           3         3    99.46             16.3
+## Val de Ruz        77.6        37.6          15         7     4.97             20.0
+## ValdeTravers      67.6        18.7          25         7     8.65             19.5
 ## 
 ## $`TRUE`
-##              Fertility Agriculture Examination Education Catholic
-## Courtelary        80.2        17.0          15        12     9.96
-## Neuveville        76.9        43.5          17        15     5.16
-## Sarine            82.9        45.2          16        13    91.38
-## Aigle             64.1        62.0          21        12     8.52
-## Avenches          68.9        60.7          19        12     4.43
-## Lausanne          55.7        19.4          26        28    12.11
-## La Vallee         54.3        15.2          31        20     2.15
-## Nyone             56.6        50.9          22        12    15.14
-## Vevey             58.3        26.8          25        19    18.46
-## Sion              79.3        63.1          13        13    96.83
-## Boudry            70.4        38.4          26        12     5.62
-## La Chauxdfnd      65.7         7.7          29        11    13.79
-## Le Locle          72.7        16.7          22        13    11.22
-## Neuchatel         64.4        17.6          35        32    16.92
-## V. De Geneve      35.0         1.2          37        53    42.34
-## Rive Droite       44.7        46.6          16        29    50.43
-## Rive Gauche       42.8        27.7          22        29    58.33
-##              Infant.Mortality
-## Courtelary               22.2
-## Neuveville               20.6
-## Sarine                   24.4
-## Aigle                    16.5
-## Avenches                 22.7
-## Lausanne                 20.2
-## La Vallee                10.8
-## Nyone                    16.7
-## Vevey                    20.9
-## Sion                     18.1
-## Boudry                   20.3
-## La Chauxdfnd             20.5
-## Le Locle                 18.9
-## Neuchatel                23.0
-## V. De Geneve             18.0
-## Rive Droite              18.2
-## Rive Gauche              19.3</code></pre>
+##              Fertility Agriculture Examination Education Catholic Infant.Mortality
+## Courtelary        80.2        17.0          15        12     9.96             22.2
+## Neuveville        76.9        43.5          17        15     5.16             20.6
+## Sarine            82.9        45.2          16        13    91.38             24.4
+## Aigle             64.1        62.0          21        12     8.52             16.5
+## Avenches          68.9        60.7          19        12     4.43             22.7
+## Lausanne          55.7        19.4          26        28    12.11             20.2
+## La Vallee         54.3        15.2          31        20     2.15             10.8
+## Nyone             56.6        50.9          22        12    15.14             16.7
+## Vevey             58.3        26.8          25        19    18.46             20.9
+## Sion              79.3        63.1          13        13    96.83             18.1
+## Boudry            70.4        38.4          26        12     5.62             20.3
+## La Chauxdfnd      65.7         7.7          29        11    13.79             20.5
+## Le Locle          72.7        16.7          22        13    11.22             18.9
+## Neuchatel         64.4        17.6          35        32    16.92             23.0
+## V. De Geneve      35.0         1.2          37        53    42.34             18.0
+## Rive Droite       44.7        46.6          16        29    50.43             18.2
+## Rive Gauche       42.8        27.7          22        29    58.33             19.3</code></pre>
 <p>This creates a list with one element per category of <code>f</code>. When the splitting factor has more categories, the list has more elemets:</p>
 <pre class="r"><code>split(swiss, f = cut(swiss$Education, c(0, 5, 10, 15, 20)))</code></pre>
 <pre><code>## $`(0,5]`
-##              Fertility Agriculture Examination Education Catholic
-## Franches-Mnt      92.5        39.7           5         5    93.40
-## Cossonay          61.7        69.3          22         5     2.82
-## Echallens         68.3        72.6          18         2    24.20
-## Moudon            65.0        55.1          14         3     4.52
-## Oron              72.5        71.2          12         1     2.40
-## Paysd&#39;enhaut      72.0        63.5           6         3     2.56
-## Conthey           75.5        85.9           3         2    99.71
-## Herens            77.3        89.7           5         2   100.00
-## Monthey           79.4        64.9           7         3    98.22
-## Sierre            92.2        84.6           3         3    99.46
-##              Infant.Mortality
-## Franches-Mnt             20.2
-## Cossonay                 18.7
-## Echallens                21.2
-## Moudon                   22.4
-## Oron                     21.0
-## Paysd&#39;enhaut             18.0
-## Conthey                  15.1
-## Herens                   18.3
-## Monthey                  20.2
-## Sierre                   16.3
+##              Fertility Agriculture Examination Education Catholic Infant.Mortality
+## Franches-Mnt      92.5        39.7           5         5    93.40             20.2
+## Cossonay          61.7        69.3          22         5     2.82             18.7
+## Echallens         68.3        72.6          18         2    24.20             21.2
+## Moudon            65.0        55.1          14         3     4.52             22.4
+## Oron              72.5        71.2          12         1     2.40             21.0
+## Paysd&#39;enhaut      72.0        63.5           6         3     2.56             18.0
+## Conthey           75.5        85.9           3         2    99.71             15.1
+## Herens            77.3        89.7           5         2   100.00             18.3
+## Monthey           79.4        64.9           7         3    98.22             20.2
+## Sierre            92.2        84.6           3         3    99.46             16.3
 ## 
 ## $`(5,10]`
-##              Fertility Agriculture Examination Education Catholic
-## Delemont          83.1        45.1           6         9    84.84
-## Moutier           85.8        36.5          12         7    33.77
-## Porrentruy        76.1        35.3           9         7    90.57
-## Broye             83.8        70.2          16         7    92.85
-## Glane             92.4        67.8          14         8    97.16
-## Gruyere           82.4        53.3          12         7    97.67
-## Veveyse           87.1        64.5          14         6    98.61
-## Aubonne           66.9        67.5          14         7     2.27
-## Grandson          71.7        34.0          17         8     3.30
-## Lavaux            65.1        73.0          19         9     2.84
-## Morges            65.5        59.8          22        10     5.23
-## Orbe              57.4        54.1          20         6     4.20
-## Payerne           74.2        58.1          14         8     5.23
-## Rolle             60.5        60.8          16        10     7.72
-## Yverdon           65.4        49.5          15         8     6.10
-## Entremont         69.3        84.9           7         6    99.68
-## Martigwy          70.5        78.2          12         6    98.96
-## St Maurice        65.0        75.9           9         9    99.06
-## Val de Ruz        77.6        37.6          15         7     4.97
-## ValdeTravers      67.6        18.7          25         7     8.65
-##              Infant.Mortality
-## Delemont                 22.2
-## Moutier                  20.3
-## Porrentruy               26.6
-## Broye                    23.6
-## Glane                    24.9
-## Gruyere                  21.0
-## Veveyse                  24.5
-## Aubonne                  19.1
-## Grandson                 20.0
-## Lavaux                   20.0
-## Morges                   18.0
-## Orbe                     15.3
-## Payerne                  23.8
-## Rolle                    16.3
-## Yverdon                  22.5
-## Entremont                19.8
-## Martigwy                 19.4
-## St Maurice               17.8
-## Val de Ruz               20.0
-## ValdeTravers             19.5
+##              Fertility Agriculture Examination Education Catholic Infant.Mortality
+## Delemont          83.1        45.1           6         9    84.84             22.2
+## Moutier           85.8        36.5          12         7    33.77             20.3
+## Porrentruy        76.1        35.3           9         7    90.57             26.6
+## Broye             83.8        70.2          16         7    92.85             23.6
+## Glane             92.4        67.8          14         8    97.16             24.9
+## Gruyere           82.4        53.3          12         7    97.67             21.0
+## Veveyse           87.1        64.5          14         6    98.61             24.5
+## Aubonne           66.9        67.5          14         7     2.27             19.1
+## Grandson          71.7        34.0          17         8     3.30             20.0
+## Lavaux            65.1        73.0          19         9     2.84             20.0
+## Morges            65.5        59.8          22        10     5.23             18.0
+## Orbe              57.4        54.1          20         6     4.20             15.3
+## Payerne           74.2        58.1          14         8     5.23             23.8
+## Rolle             60.5        60.8          16        10     7.72             16.3
+## Yverdon           65.4        49.5          15         8     6.10             22.5
+## Entremont         69.3        84.9           7         6    99.68             19.8
+## Martigwy          70.5        78.2          12         6    98.96             19.4
+## St Maurice        65.0        75.9           9         9    99.06             17.8
+## Val de Ruz        77.6        37.6          15         7     4.97             20.0
+## ValdeTravers      67.6        18.7          25         7     8.65             19.5
 ## 
 ## $`(10,15]`
-##              Fertility Agriculture Examination Education Catholic
-## Courtelary        80.2        17.0          15        12     9.96
-## Neuveville        76.9        43.5          17        15     5.16
-## Sarine            82.9        45.2          16        13    91.38
-## Aigle             64.1        62.0          21        12     8.52
-## Avenches          68.9        60.7          19        12     4.43
-## Nyone             56.6        50.9          22        12    15.14
-## Sion              79.3        63.1          13        13    96.83
-## Boudry            70.4        38.4          26        12     5.62
-## La Chauxdfnd      65.7         7.7          29        11    13.79
-## Le Locle          72.7        16.7          22        13    11.22
-##              Infant.Mortality
-## Courtelary               22.2
-## Neuveville               20.6
-## Sarine                   24.4
-## Aigle                    16.5
-## Avenches                 22.7
-## Nyone                    16.7
-## Sion                     18.1
-## Boudry                   20.3
-## La Chauxdfnd             20.5
-## Le Locle                 18.9
+##              Fertility Agriculture Examination Education Catholic Infant.Mortality
+## Courtelary        80.2        17.0          15        12     9.96             22.2
+## Neuveville        76.9        43.5          17        15     5.16             20.6
+## Sarine            82.9        45.2          16        13    91.38             24.4
+## Aigle             64.1        62.0          21        12     8.52             16.5
+## Avenches          68.9        60.7          19        12     4.43             22.7
+## Nyone             56.6        50.9          22        12    15.14             16.7
+## Sion              79.3        63.1          13        13    96.83             18.1
+## Boudry            70.4        38.4          26        12     5.62             20.3
+## La Chauxdfnd      65.7         7.7          29        11    13.79             20.5
+## Le Locle          72.7        16.7          22        13    11.22             18.9
 ## 
 ## $`(15,20]`
 ##           Fertility Agriculture Examination Education Catholic Infant.Mortality
@@ -1852,96 +1746,53 @@ div.tocify {
 <p>Note that cases with Education &gt; 20 are now excluded (because we set the highest breakpoint in <code>cut()</code> to 20). To include the “category” <code>NA</code>, we can use the function <code>addNA()</code>:</p>
 <pre class="r"><code>split(swiss, f = addNA(cut(swiss$Education, c(0, 5, 10, 15, 20))))</code></pre>
 <pre><code>## $`(0,5]`
-##              Fertility Agriculture Examination Education Catholic
-## Franches-Mnt      92.5        39.7           5         5    93.40
-## Cossonay          61.7        69.3          22         5     2.82
-## Echallens         68.3        72.6          18         2    24.20
-## Moudon            65.0        55.1          14         3     4.52
-## Oron              72.5        71.2          12         1     2.40
-## Paysd&#39;enhaut      72.0        63.5           6         3     2.56
-## Conthey           75.5        85.9           3         2    99.71
-## Herens            77.3        89.7           5         2   100.00
-## Monthey           79.4        64.9           7         3    98.22
-## Sierre            92.2        84.6           3         3    99.46
-##              Infant.Mortality
-## Franches-Mnt             20.2
-## Cossonay                 18.7
-## Echallens                21.2
-## Moudon                   22.4
-## Oron                     21.0
-## Paysd&#39;enhaut             18.0
-## Conthey                  15.1
-## Herens                   18.3
-## Monthey                  20.2
-## Sierre                   16.3
+##              Fertility Agriculture Examination Education Catholic Infant.Mortality
+## Franches-Mnt      92.5        39.7           5         5    93.40             20.2
+## Cossonay          61.7        69.3          22         5     2.82             18.7
+## Echallens         68.3        72.6          18         2    24.20             21.2
+## Moudon            65.0        55.1          14         3     4.52             22.4
+## Oron              72.5        71.2          12         1     2.40             21.0
+## Paysd&#39;enhaut      72.0        63.5           6         3     2.56             18.0
+## Conthey           75.5        85.9           3         2    99.71             15.1
+## Herens            77.3        89.7           5         2   100.00             18.3
+## Monthey           79.4        64.9           7         3    98.22             20.2
+## Sierre            92.2        84.6           3         3    99.46             16.3
 ## 
 ## $`(5,10]`
-##              Fertility Agriculture Examination Education Catholic
-## Delemont          83.1        45.1           6         9    84.84
-## Moutier           85.8        36.5          12         7    33.77
-## Porrentruy        76.1        35.3           9         7    90.57
-## Broye             83.8        70.2          16         7    92.85
-## Glane             92.4        67.8          14         8    97.16
-## Gruyere           82.4        53.3          12         7    97.67
-## Veveyse           87.1        64.5          14         6    98.61
-## Aubonne           66.9        67.5          14         7     2.27
-## Grandson          71.7        34.0          17         8     3.30
-## Lavaux            65.1        73.0          19         9     2.84
-## Morges            65.5        59.8          22        10     5.23
-## Orbe              57.4        54.1          20         6     4.20
-## Payerne           74.2        58.1          14         8     5.23
-## Rolle             60.5        60.8          16        10     7.72
-## Yverdon           65.4        49.5          15         8     6.10
-## Entremont         69.3        84.9           7         6    99.68
-## Martigwy          70.5        78.2          12         6    98.96
-## St Maurice        65.0        75.9           9         9    99.06
-## Val de Ruz        77.6        37.6          15         7     4.97
-## ValdeTravers      67.6        18.7          25         7     8.65
-##              Infant.Mortality
-## Delemont                 22.2
-## Moutier                  20.3
-## Porrentruy               26.6
-## Broye                    23.6
-## Glane                    24.9
-## Gruyere                  21.0
-## Veveyse                  24.5
-## Aubonne                  19.1
-## Grandson                 20.0
-## Lavaux                   20.0
-## Morges                   18.0
-## Orbe                     15.3
-## Payerne                  23.8
-## Rolle                    16.3
-## Yverdon                  22.5
-## Entremont                19.8
-## Martigwy                 19.4
-## St Maurice               17.8
-## Val de Ruz               20.0
-## ValdeTravers             19.5
+##              Fertility Agriculture Examination Education Catholic Infant.Mortality
+## Delemont          83.1        45.1           6         9    84.84             22.2
+## Moutier           85.8        36.5          12         7    33.77             20.3
+## Porrentruy        76.1        35.3           9         7    90.57             26.6
+## Broye             83.8        70.2          16         7    92.85             23.6
+## Glane             92.4        67.8          14         8    97.16             24.9
+## Gruyere           82.4        53.3          12         7    97.67             21.0
+## Veveyse           87.1        64.5          14         6    98.61             24.5
+## Aubonne           66.9        67.5          14         7     2.27             19.1
+## Grandson          71.7        34.0          17         8     3.30             20.0
+## Lavaux            65.1        73.0          19         9     2.84             20.0
+## Morges            65.5        59.8          22        10     5.23             18.0
+## Orbe              57.4        54.1          20         6     4.20             15.3
+## Payerne           74.2        58.1          14         8     5.23             23.8
+## Rolle             60.5        60.8          16        10     7.72             16.3
+## Yverdon           65.4        49.5          15         8     6.10             22.5
+## Entremont         69.3        84.9           7         6    99.68             19.8
+## Martigwy          70.5        78.2          12         6    98.96             19.4
+## St Maurice        65.0        75.9           9         9    99.06             17.8
+## Val de Ruz        77.6        37.6          15         7     4.97             20.0
+## ValdeTravers      67.6        18.7          25         7     8.65             19.5
 ## 
 ## $`(10,15]`
-##              Fertility Agriculture Examination Education Catholic
-## Courtelary        80.2        17.0          15        12     9.96
-## Neuveville        76.9        43.5          17        15     5.16
-## Sarine            82.9        45.2          16        13    91.38
-## Aigle             64.1        62.0          21        12     8.52
-## Avenches          68.9        60.7          19        12     4.43
-## Nyone             56.6        50.9          22        12    15.14
-## Sion              79.3        63.1          13        13    96.83
-## Boudry            70.4        38.4          26        12     5.62
-## La Chauxdfnd      65.7         7.7          29        11    13.79
-## Le Locle          72.7        16.7          22        13    11.22
-##              Infant.Mortality
-## Courtelary               22.2
-## Neuveville               20.6
-## Sarine                   24.4
-## Aigle                    16.5
-## Avenches                 22.7
-## Nyone                    16.7
-## Sion                     18.1
-## Boudry                   20.3
-## La Chauxdfnd             20.5
-## Le Locle                 18.9
+##              Fertility Agriculture Examination Education Catholic Infant.Mortality
+## Courtelary        80.2        17.0          15        12     9.96             22.2
+## Neuveville        76.9        43.5          17        15     5.16             20.6
+## Sarine            82.9        45.2          16        13    91.38             24.4
+## Aigle             64.1        62.0          21        12     8.52             16.5
+## Avenches          68.9        60.7          19        12     4.43             22.7
+## Nyone             56.6        50.9          22        12    15.14             16.7
+## Sion              79.3        63.1          13        13    96.83             18.1
+## Boudry            70.4        38.4          26        12     5.62             20.3
+## La Chauxdfnd      65.7         7.7          29        11    13.79             20.5
+## Le Locle          72.7        16.7          22        13    11.22             18.9
 ## 
 ## $`(15,20]`
 ##           Fertility Agriculture Examination Education Catholic Infant.Mortality
@@ -1949,30 +1800,23 @@ div.tocify {
 ## Vevey          58.3        26.8          25        19    18.46             20.9
 ## 
 ## $&lt;NA&gt;
-##              Fertility Agriculture Examination Education Catholic
-## Lausanne          55.7        19.4          26        28    12.11
-## Neuchatel         64.4        17.6          35        32    16.92
-## V. De Geneve      35.0         1.2          37        53    42.34
-## Rive Droite       44.7        46.6          16        29    50.43
-## Rive Gauche       42.8        27.7          22        29    58.33
-##              Infant.Mortality
-## Lausanne                 20.2
-## Neuchatel                23.0
-## V. De Geneve             18.0
-## Rive Droite              18.2
-## Rive Gauche              19.3</code></pre>
+##              Fertility Agriculture Examination Education Catholic Infant.Mortality
+## Lausanne          55.7        19.4          26        28    12.11             20.2
+## Neuchatel         64.4        17.6          35        32    16.92             23.0
+## V. De Geneve      35.0         1.2          37        53    42.34             18.0
+## Rive Droite       44.7        46.6          16        29    50.43             18.2
+## Rive Gauche       42.8        27.7          22        29    58.33             19.3</code></pre>
 <p>The list elements will always have the same class as the original object, i.e., when we split a vector, we obtain a list of vectors:</p>
 <pre class="r"><code>split(x, x &gt; 0)</code></pre>
 <pre><code>## $`FALSE`
-## [1] -0.4400933 -0.2767172 -0.2646546 -0.3313670 -0.2697171 -1.3495175 -0.2674174
-## [8] -1.3222154 -1.2336500
+##  [1] -1.0405445 -0.7523017 -0.1943485 -2.5542210 -0.9982808 -1.4075716 -0.4286961 -0.2007948 -0.6601453
+## [10] -1.1886434 -0.7551405 -0.2028802
 ## 
 ## $`TRUE`
-##  [1] 0.9281732 0.7705976 0.8358489 0.1518107 2.1608225 0.6929416 0.7915903
-##  [8] 1.6932831 1.2776701 0.9340468 2.5012673</code></pre>
+## [1] 0.78834578 0.39704667 0.88874020 1.13328165 0.74682621 0.64874246 0.97596384 0.05955358</code></pre>
 </div>
-<div id="combining-things" class="section level3">
-<h3>Combining things</h3>
+<div id="combining-vectors-etc." class="section level3">
+<h3>Combining <code>vectors</code> etc.</h3>
 <p>The function <code>c()</code> allows us to combine values into a <code>vector</code> or a <code>list</code>, the functions <code>cbind()</code> and <code>rbind()</code> combine objects (usually vectors, matrices or data.frames) by column or row, respectively.</p>
 <pre class="r"><code>(x &lt;- 1:5)</code></pre>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
@@ -2017,8 +1861,7 @@ div.tocify {
 <pre class="r"><code>(z &lt;- 1:9)</code></pre>
 <pre><code>## [1] 1 2 3 4 5 6 7 8 9</code></pre>
 <pre class="r"><code>cbind(x, z)</code></pre>
-<pre><code>## Warning in cbind(x, z): number of rows of result is not a multiple of vector
-## length (arg 1)</code></pre>
+<pre><code>## Warning in cbind(x, z): number of rows of result is not a multiple of vector length (arg 1)</code></pre>
 <pre><code>##       x z
 ##  [1,] 1 1
 ##  [2,] 2 2
@@ -2090,20 +1933,159 @@ div.tocify {
 ## Rive Droite       44.7        29             18.2
 ## Rive Gauche       42.8        29             19.3</code></pre>
 <p>Note that here we can use the variable names without quotes. ### Merging data The function <code>merge()</code> allows us to merge two datasets.</p>
-<pre class="r"><code># merge
-# </code></pre>
+<pre class="r"><code>dat1 &lt;- swiss
+dat1$id &lt;- rownames(swiss)
+dat2 &lt;- data.frame(id = c(paste0(&#39;newid&#39;, 1:5), rownames(swiss)[1:30]),
+                   x = rnorm(35))
+
+head(dat1)</code></pre>
+<pre><code>##              Fertility Agriculture Examination Education Catholic Infant.Mortality           id
+## Courtelary        80.2        17.0          15        12     9.96             22.2   Courtelary
+## Delemont          83.1        45.1           6         9    84.84             22.2     Delemont
+## Franches-Mnt      92.5        39.7           5         5    93.40             20.2 Franches-Mnt
+## Moutier           85.8        36.5          12         7    33.77             20.3      Moutier
+## Neuveville        76.9        43.5          17        15     5.16             20.6   Neuveville
+## Porrentruy        76.1        35.3           9         7    90.57             26.6   Porrentruy</code></pre>
+<pre class="r"><code>head(dat2)</code></pre>
+<pre><code>##           id          x
+## 1     newid1 -0.6122847
+## 2     newid2 -0.8177807
+## 3     newid3  1.5031726
+## 4     newid4  1.1169073
+## 5     newid5 -2.2585415
+## 6 Courtelary -0.2623260</code></pre>
+<pre class="r"><code>mdat &lt;- merge(dat1, dat2)
+head(mdat)</code></pre>
+<pre><code>##           id Fertility Agriculture Examination Education Catholic Infant.Mortality          x
+## 1      Aigle      64.1        62.0          21        12     8.52             16.5 -0.6833889
+## 2    Aubonne      66.9        67.5          14         7     2.27             19.1 -1.3593890
+## 3   Avenches      68.9        60.7          19        12     4.43             22.7  0.7265648
+## 4      Broye      83.8        70.2          16         7    92.85             23.6  0.5915109
+## 5   Cossonay      61.7        69.3          22         5     2.82             18.7  2.3831011
+## 6 Courtelary      80.2        17.0          15        12     9.96             22.2 -0.2623260</code></pre>
+<pre class="r"><code>dim(mdat)</code></pre>
+<pre><code>## [1] 30  8</code></pre>
+<p>The arguments <code>all</code>, <code>all.x</code> and <code>all.y</code> allow us to specify what happens with cases that are only found in one of the two datasets:</p>
+<pre class="r"><code>mdat_all &lt;- merge(dat1, dat2, all = TRUE)
+mdat_x &lt;- merge(dat1, dat2, all.x = TRUE)
+mdat_y &lt;- merge(dat1, dat2, all.y = TRUE)
+
+dim(mdat_all)</code></pre>
+<pre><code>## [1] 52  8</code></pre>
+<pre class="r"><code>head(mdat_all)</code></pre>
+<pre><code>##         id Fertility Agriculture Examination Education Catholic Infant.Mortality          x
+## 1    Aigle      64.1        62.0          21        12     8.52             16.5 -0.6833889
+## 2  Aubonne      66.9        67.5          14         7     2.27             19.1 -1.3593890
+## 3 Avenches      68.9        60.7          19        12     4.43             22.7  0.7265648
+## 4   Boudry      70.4        38.4          26        12     5.62             20.3         NA
+## 5    Broye      83.8        70.2          16         7    92.85             23.6  0.5915109
+## 6  Conthey      75.5        85.9           3         2    99.71             15.1         NA</code></pre>
+<pre class="r"><code>dim(mdat_x)</code></pre>
+<pre><code>## [1] 47  8</code></pre>
+<pre class="r"><code>dim(mdat_y)</code></pre>
+<pre><code>## [1] 35  8</code></pre>
+<p>By default, <code>merge()</code> will take all identical column names to merge by. Arguments <code>by.x</code> and <code>by.y</code> allow us to specify the names of variables in each of the datasets to use for merging. This is also possible when variable names differ:</p>
+<pre class="r"><code>dat2$z &lt;- sample(1:10, size = nrow(dat2), replace = TRUE) # we add a new variable to the data
+dat2$Examination &lt;- dat1$Examination[match(dat2$id, dat1$id)]
+mdat3 &lt;- merge(dat1, dat2, by.x = c(&#39;id&#39;, &#39;Education&#39;), by.y = c(&#39;id&#39;, &#39;z&#39;),
+               all = TRUE)
+
+head(mdat3) </code></pre>
+<pre><code>##         id Education Fertility Agriculture Examination.x Catholic Infant.Mortality          x
+## 1    Aigle         1        NA          NA            NA       NA               NA -0.6833889
+## 2    Aigle        12      64.1        62.0            21     8.52             16.5         NA
+## 3  Aubonne         3        NA          NA            NA       NA               NA -1.3593890
+## 4  Aubonne         7      66.9        67.5            14     2.27             19.1         NA
+## 5 Avenches         2        NA          NA            NA       NA               NA  0.7265648
+## 6 Avenches        12      68.9        60.7            19     4.43             22.7         NA
+##   Examination.y
+## 1            21
+## 2            NA
+## 3            14
+## 4            NA
+## 5            19
+## 6            NA</code></pre>
+<ul>
+<li>We now have two rows per <code>id</code> (for most <code>id</code>s), because the values in the merging variable <code>Education</code> (and <code>z</code>) differed between <code>dat1</code> and <code>dat2</code>.</li>
+<li>The variable <code>Examination</code>, which existed in both datasets, got the suffix <code>.x</code> and <code>.y</code> in is now duplicated. The suffix can be changed using the argument <code>suffixes</code>. The function <code>match()</code> returns the positions of the (first) matches of its first argument in its second argument.</li>
+</ul>
+<pre class="r"><code>(a &lt;- c(&#39;G&#39;, &#39;A&#39;, &#39;D&#39;, &#39;B&#39;, &#39;Z&#39;))</code></pre>
+<pre><code>## [1] &quot;G&quot; &quot;A&quot; &quot;D&quot; &quot;B&quot; &quot;Z&quot;</code></pre>
+<pre class="r"><code>(b &lt;- LETTERS[1:8])</code></pre>
+<pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot;</code></pre>
+<pre class="r"><code>match(a, b)</code></pre>
+<pre><code>## [1]  7  1  4  2 NA</code></pre>
 </div>
 </div>
 <div id="repetition-and-sequence" class="section level2">
 <h2>repetition and sequence</h2>
-<pre class="r"><code># rep
-# seq
-# expand.grid</code></pre>
+<p>The function <code>rep()</code> replicates elements of vectors or lists.</p>
+<pre class="r"><code>rep(c(&#39;A&#39;, &#39;B&#39;), 4)</code></pre>
+<pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot;</code></pre>
+<pre class="r"><code>rep(c(&#39;A&#39;, &#39;B&#39;), each = 4)</code></pre>
+<pre><code>## [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
+<pre class="r"><code>rep(c(&#39;A&#39;, &#39;B&#39;), c(2, 4))</code></pre>
+<pre><code>## [1] &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
+<pre class="r"><code>rep(list(a = 4, s = &quot;This is a string.&quot;, b = c(&#39;A&#39;, &#39;B&#39;, &#39;C&#39;)), 
+    c(1, 3, 1))</code></pre>
+<pre><code>## $a
+## [1] 4
+## 
+## $s
+## [1] &quot;This is a string.&quot;
+## 
+## $s
+## [1] &quot;This is a string.&quot;
+## 
+## $s
+## [1] &quot;This is a string.&quot;
+## 
+## $b
+## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot;</code></pre>
+<p><code>seq()</code> generates a sequace</p>
+<pre class="r"><code>seq(from = 2, to = 5, by = 1)</code></pre>
+<pre><code>## [1] 2 3 4 5</code></pre>
+<pre class="r"><code>seq(from = 2, to = 5, by = 0.5)</code></pre>
+<pre><code>## [1] 2.0 2.5 3.0 3.5 4.0 4.5 5.0</code></pre>
+<pre class="r"><code>seq(from = 2, to = 5, length = 8)</code></pre>
+<pre><code>## [1] 2.000000 2.428571 2.857143 3.285714 3.714286 4.142857 4.571429 5.000000</code></pre>
+<pre class="r"><code>seq_along(a)</code></pre>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<p>The function <code>expand.grid()</code> creates a <code>data.frame</code> with all combinations of the supplied variables:</p>
+<pre class="r"><code>expand.grid(x = c(1, 2, 3),
+            a = c(&#39;a&#39;, &#39;b&#39;))</code></pre>
+<pre><code>##   x a
+## 1 1 a
+## 2 2 a
+## 3 3 a
+## 4 1 b
+## 5 2 b
+## 6 3 b</code></pre>
 </div>
-<div id="ransofrmations-for-objects" class="section level2">
-<h2>ransofrmations for objects</h2>
-<pre class="r"><code># t
-# unlist 
+<div id="transformations-for-objects" class="section level2">
+<h2>Transformations for objects</h2>
+<p>The function <code>t()</code> transposes a <code>matrix</code> or a <code>data.frame</code>:</p>
+<pre class="r"><code>(M &lt;- matrix(nrow = 3, ncol = 2, data = 1:6))</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6</code></pre>
+<pre class="r"><code>t(M)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6</code></pre>
+<p>A <code>data.frame</code> is first converted to a <code>matrix</code>, then transposed. A <code>vector</code> is seen as a column vector, i.e., transposing it will result in a <code>matrix</code> with one row:</p>
+<pre class="r"><code>(x &lt;- c(1, 2, 3))</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<pre class="r"><code>t(x)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3</code></pre>
+<pre class="r"><code>t(t(x))</code></pre>
+<pre><code>##      [,1]
+## [1,]    1
+## [2,]    2
+## [3,]    3</code></pre>
+<pre class="r"><code># unlist 
 # unname
 # as.numeric
 # as.matrix
@@ -2117,14 +2099,68 @@ div.tocify {
 # rev
 # rank</code></pre>
 </div>
-<div id="functions-for-matrices" class="section level2">
-<h2>Functions for matrices</h2>
-<pre class="r"><code># %*%
-# diag
-# det
-# solve
-# upper.tri
-# lower.tri</code></pre>
+<div id="matrix-algebra" class="section level2">
+<h2>Matrix Algebra</h2>
+<div id="matrix-multiplication" class="section level3">
+<h3>Matrix multiplication</h3>
+<pre class="r"><code>(A &lt;- matrix(nrow = 2, ncol = 2, data = 1:4))</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4</code></pre>
+<pre class="r"><code>(B &lt;- matrix(nrow = 2, ncol = 3, data = seq(0, 2.5, by = 0.5)))</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  0.0  1.0  2.0
+## [2,]  0.5  1.5  2.5</code></pre>
+<pre class="r"><code>A %*% B</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  1.5  5.5  9.5
+## [2,]  2.0  8.0 14.0</code></pre>
+</div>
+<div id="diagonal-of-a-matrix" class="section level3">
+<h3>Diagonal (of a) Matrix</h3>
+<p>The function <code>diag()</code> allows us to extract the diagonal of a matrix, or to create a identity matrix:</p>
+<pre class="r"><code>A &lt;- matrix(nrow = 3, ncol = 3, data = 1:9)
+diag(A)</code></pre>
+<pre><code>## [1] 1 5 9</code></pre>
+<pre class="r"><code>diag(5)</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    0    0    0    0
+## [2,]    0    1    0    0    0
+## [3,]    0    0    1    0    0
+## [4,]    0    0    0    1    0
+## [5,]    0    0    0    0    1</code></pre>
+<p>The function <code>det()</code> calculates the determinant of a matrix:</p>
+<pre class="r"><code>det(A)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p>The function <code>solve()</code>solves a syste of equations, and allows us to invert a square matrix:</p>
+<pre class="r"><code>(X &lt;- matrix(nrow = 3, ncol = 3, data = c(1, 2, 3, 1, 2, 5, 1, 5, 4)))</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    1    1
+## [2,]    2    2    5
+## [3,]    3    5    4</code></pre>
+<pre class="r"><code>solve(X)</code></pre>
+<pre><code>##            [,1]       [,2] [,3]
+## [1,]  2.8333333 -0.1666667 -0.5
+## [2,] -1.1666667 -0.1666667  0.5
+## [3,] -0.6666667  0.3333333  0.0</code></pre>
+<p>The functions <code>upper.tri()</code> and <code>lower.tri()</code> identify the upper and lower triangle of a matrix:</p>
+<pre class="r"><code>upper.tri(X)</code></pre>
+<pre><code>##       [,1]  [,2]  [,3]
+## [1,] FALSE  TRUE  TRUE
+## [2,] FALSE FALSE  TRUE
+## [3,] FALSE FALSE FALSE</code></pre>
+<pre class="r"><code>lower.tri(X)</code></pre>
+<pre><code>##       [,1]  [,2]  [,3]
+## [1,] FALSE FALSE FALSE
+## [2,]  TRUE FALSE FALSE
+## [3,]  TRUE  TRUE FALSE</code></pre>
+<p>The argument <code>diag</code> decides if the diagonal is included:</p>
+<pre class="r"><code>upper.tri(X, diag = TRUE)</code></pre>
+<pre><code>##       [,1]  [,2] [,3]
+## [1,]  TRUE  TRUE TRUE
+## [2,] FALSE  TRUE TRUE
+## [3,] FALSE FALSE TRUE</code></pre>
+</div>
 </div>
 
 
