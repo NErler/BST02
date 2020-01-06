@@ -6,7 +6,7 @@ write_Demos_md <- function(x) {
   filenames <- gsub("\\_", " ", files)
   cat(
     paste0("---\n",
-           "title: ", title, "\n",
+           "title: ", x, "\n",
            "---\n\n"
     ),
     paste0(
