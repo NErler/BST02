@@ -1,5 +1,5 @@
 #' ---
-#' title: "Demo: Tests for continuous variables"
+#' title: "Demo: Statistical Tests"
 #' subtitle: "NIHES BST02"
 #' author: "Nicole Erler, Department of Biostatistics, Erasmus Medical Center"
 #' date: "`r Sys.setenv(LANG = 'en_US.UTF-8'); format(Sys.Date(), '%d %B %Y')`"
@@ -109,7 +109,7 @@ wilcox.test(x, y, correct = TRUE, conf.int = TRUE)
 
 
 #-------------------------------------------------------------------------------
-#' ## Kruskal-Walis Rank Sum Test
+#' ## Kruskal-Wallis Rank Sum Test
 #' This test is an extension to the Wilcoxon rank sum test to more than two groups
 
 #' We can povide the data as a `list()`:

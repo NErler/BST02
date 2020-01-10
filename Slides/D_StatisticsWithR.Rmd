@@ -77,12 +77,10 @@ See also [BBR Sections 7.2 & 7.3 (http://hbiostat.org/doc/bbr.pdf)](http://hbios
 ## Tests for Categorical Data / Proportions
 
 \blue{One-sample Proportion Test}
-
 * tests if the proportion in one sample is equal to a fixed value $p$
 * `prop.test()` and `binom.test()`
 
 \blue{Tests for Proportions in Multiple (independent) Groups}
-
 * tests if the proportion in several samples are equal
 * `chisq.test()` and `fisher.test()` (when there are cells with 0)
 
@@ -96,8 +94,9 @@ See also [BBR Sections 5.7 & 6 (http://hbiostat.org/doc/bbr.pdf)](http://hbiosta
  * `mcnemar.test()`
 
 \blue{3-Dimensional Contingency Table}
-* $\chi^2$ test for independence of two nominal variables in each stratum
 * Cochrane-Mantel-Haenszel Test
+* $\chi^2$ test for independence of two nominal variables in each stratum
+* `mantelhaen.test()`
 
 
 ## Statistical Tests
@@ -146,6 +145,167 @@ See also [BBR Sections 5.7 & 6 (http://hbiostat.org/doc/bbr.pdf)](http://hbiosta
 \end{column}
 \end{columns}
 
+
+## Linear Regression
+
+A standard linear regression model has the form
+$$ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p + \varepsilon
+\qquad \text{with } \varepsilon \sim N(0, \sigma^2)$$
+
+
+where
+
+* \blue{$y$} is the \blue{outcome} variable ("dependent variable")
+* \blue{$x_1, \ldots, x_p$} are the \blue{covariates} ("independent variables")
+* \blue{$\beta_0, \ldots, \beta_p$} are the \blue{regression coefficients}
+  * $\beta_0$ is the intercept
+  * $\beta_1, \ldots, \beta_p$ estimate the effects of the covariates
+* \blue{$\varepsilon$} is a vector of \blue{residuals}, which we assume to be
+  (approximately) normally distributed.
+
+
+## Linear Regression 
+
+To fit a \blue{linear regression} in R we use the function \blue{\texttt{lm()}}.
+
+The most important arguments are
+
+* \blue{\texttt{formula}}:\newline a `formula` object
+* \blue{\texttt{data}}: \newline a `data.frame` (optional, but usually needed)
+* \blue{\texttt{subset}}:\newline a `vector` specifying which observations should be used (optional)
+
+
+## Model Formula
+A `formula` object has the form
+```{r, eval = FALSE}
+outcome ~ linear predictor
+```
+for example
+```{r, eval = FALSE}
+y ~ x1 + x2 + x3
+```
+
+* Variables are separated by "\texttt{\blue{+}}" signs.
+* An intercept is automatically included.
+* one-sided formulas (omitting the outcome) are possible\newline
+  (used for random effects specification)
+
+## Model Formula: Interactions
+Interaction terms are written using "\blue{\texttt{:}}" or "\blue{\texttt{*}}".
+
+"\blue{\texttt{*}}" includes the main effects and interaction terms, i.e., 
+```{r, eval = FALSE}
+y ~ x1 * x2
+```
+\vspace*{-2ex}is equivalent to
+```{r, eval = FALSE}
+y ~ x1 + x2 + x1:x2
+```
+
+Interactions between multiple variables can be written using "\blue{\texttt{()}}", i.e.,
+```{r, eval = FALSE}
+y ~ x1 * (x2 + x3)
+```
+\vspace*{-2ex}is equivalent to
+```{r, eval = FALSE}
+y ~ x1 * x2 + x1 * x3
+```
+
+## Model Formula: Interactions
+To specify a \blue{higher level interaction} (for example a three-way interaction) 
+"\blue{\texttt{\^}}" is used, i.e.,
+```{r, eval = FALSE}
+y ~ (x1 + x2 + x3)^3
+```
+\vspace*{-2ex}will create all interactions up to 3-way and is equivalent to
+```{r, eval = FALSE}
+y ~ x1 * x2 * x3
+```
+\vspace*{-2ex} and equivalent to
+```{r, eval = FALSE}
+y ~ x1 + x2 + x3 + x1:x2 + x1:x3 + x2:x3 + x1:x2:x3
+```
+and
+```{r, eval = FALSE}
+y ~ (x1 + x2 + x3)^2
+```
+\vspace*{-2ex}will create all two-way interactions and is equivalent to
+```{r, eval = FALSE}
+y ~ x1 + x2 + x3 + x1:x2 + x1:x3 + x2:x3
+```
+
+## Model Formula: Removing terms
+The "\blue{\texttt{-}}" sign can be used to remove terms from a model formula, for example
+```{r, eval = FALSE}
+y ~ x1 * x2 * x3 - x2 - x1:x3
+```
+\vspace*{-2ex}is equivalent to 
+```{r, eval = FALSE}
+y ~ x1 + x3 + x1:x2 + x2:x3 + x1:x2:x3
+```
+
+The \blue{intercept} can be removed from a formula by using "\blue{\texttt{-1}}"
+or "\blue{\texttt{+0}}", i.e.
+```{r, eval = FALSE}
+y ~ x1 + x2 - 1
+y ~ x1 + x2 + 0
+```
+
+## Generalized Linear Regression (GLM)
+A \blue{generalized linear regression} model has the form
+$$g(\mathbb{E}(y)) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p$$
+where $g(\ )$ is a link function and $y$ is from the exponential family.
+
+\vfill
+
+For example \blue{logistic regression} for binary $y$:
+$$log\left(\frac{P(y = 1)}{1-P(y = 1)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p$$
+
+$log\left(\frac{p}{1-p}\right)$ is the \blue{logit} link.
+
+## Generalized Linear Regression (GLM)
+To fit a \blue{GLM} in R we use the function \blue{\texttt{glm()}}.
+
+The most important arguments are
+
+* \blue{\texttt{formula}}:\newline a `formula` object
+* \blue{\texttt{family}}: \newline a `family` object or name of the family function,
+   describing the error distribution and link function
+* \blue{\texttt{data}}: \newline a `data.frame` (optional, but usually needed)
+* \blue{\texttt{subset}}:\newline a `vector` specifying which observations should be used (optional)
+
+## Families and Link Functions
+Common families \& available links in R: \hfill (see also `?family`)
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+family & link\\\midrule
+\texttt{binomial} & \texttt{logit}, \texttt{probit}, \texttt{cauchit}, \texttt{log}, \texttt{cloglog}\\
+\texttt{gaussian} & \texttt{identity}, \texttt{log}, \texttt{inverse}\\
+\texttt{Gamma} & \texttt{inverse}, \texttt{identity}, \texttt{log}\\
+\texttt{poisson} & \texttt{log}, \texttt{identity}, \texttt{sqrt}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The `family` argument in `glm()` can be specified in the following ways:
+\begin{columns}[onlytextwidth]
+\begin{column}{0.5\linewidth}
+\begin{itemize}
+\item \texttt{binomial(link = "logit")}
+\item \texttt{binomial()}
+\item \texttt{binomial}
+\item \texttt{"binomial"}
+\end{itemize}
+\end{column}
+\begin{column}{0.5\linewidth}
+\blue{Note:}\\
+When the link is not explicitely specified (i.e. option 1),
+the default link is used.
+\end{column}
+\end{columns}
+
+
 ## Regression
 \begin{columns}[onlytextwidth,T]
 \begin{column}{0.5\linewidth}
@@ -181,6 +341,9 @@ See also [BBR Sections 5.7 & 6 (http://hbiostat.org/doc/bbr.pdf)](http://hbiosta
 \begin{itemize}\vspace*{-0.5ex}
 \item \texttt{ns()}, \texttt{bs()}, \texttt{I()}
 \item \texttt{p.adjust()}
+\item \texttt{all.vars()}
+\item \texttt{update()}
+\item \texttt{as.formula()}
 \end{itemize}
 
 \end{column}
