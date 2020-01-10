@@ -130,3 +130,14 @@
 \makeatletter 
 \preto{\@verbatim}{\topsep=0pt \partopsep=0pt } 
 \makeatother
+
+
+% other definitions ------------------------------------------------------------
+% definition for link button
+\usepackage{tcolorbox}
+\newtcbox{\buttonbox}{colback=EMC80, colframe = EMCdark, coltext = white,
+size = fbox, nobeforeafter, on line}
+\def\button#1#2{\href{#1}{\buttonbox{\footnotesize\textbf{#2}}}}
+
+
+% definition for dark blue & bold highlighting
