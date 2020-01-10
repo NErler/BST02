@@ -388,7 +388,7 @@ $if(institute)$
 \institute{$for(institute)$$institute$$sep$ \and $endfor$}
 $endif$
 $if(email)$
-\email{\faEnvelope\ $for(email)$$email$$sep$ \and $endfor$}
+\email{$for(email)$\faEnvelope\ $email$$sep$ \and $endfor$}
 $endif$
 
 $if(titlegraphic)$
