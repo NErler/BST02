@@ -213,9 +213,6 @@ x
 ```
 
 * Complicated arithmetics
- ```{r, eval = FALSE, include = TRUE, echo = TRUE}
-%*%, t(), %/%
-```
 
 
 ## Basics in R (cont'd)
@@ -284,6 +281,7 @@ The simplest data structures are:
 * \textbf{\textcolor{red}{character}} : qualitative data
 * \textbf{\textcolor{red}{integer}} : whole numbers
 * \textbf{\textcolor{red}{logical}} : TRUE or FALSE
+* \textbf{\textcolor{red}{factors}} : TRUE or FALSE
 
 To find out what type of vector you have you can use the mode function
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -415,7 +413,7 @@ write.xlsx(mydata, "c:/mydata.xlsx")
 * Compute new variables
   - transform variables
 * Matrices of wide $\Longleftrightarrow$ long format
-* Missing values and outliers
+* Missing values
 
 
 ## Data Transformation (cont'd)
@@ -473,7 +471,7 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
   
 ## Data Transformation (cont'd)
 
-* \textbf{\textcolor{red}{Missing values}} and outliers
+* \textbf{\textcolor{red}{Missing values}} 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 head(pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
                                     "trt", "age", "sex", 
@@ -481,13 +479,6 @@ head(pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
 ```  
 
 
-## Data Transformation (cont'd)
-
-* Missing values and \textbf{\textcolor{red}{outliers}}
-```{r, eval = TRUE, include = TRUE, echo = TRUE}
-head(pbc[pbc$bili > 25, c("id", "time", "status", 
-                          "trt", "age", "sex", "bili", "chol")])
-```  
 
 
 ## Data Exploration
@@ -518,7 +509,7 @@ head(pbc[pbc$bili > 25, c("id", "time", "status",
   
   - Distributions of variables
   - Distributions of variables per group
-  - Outliers
+  - Extreme values
   - Linear/nonlinear evolutions
   
   

@@ -29,6 +29,7 @@ median(pbc$age)
 IQR(pbc$age)
 
 #' What is the percentage of placebo patients?
+#' In order to use the percent function you will need to load the memisc package
 percent(pbc$trt)
 
 #' What is the percentage of females?
