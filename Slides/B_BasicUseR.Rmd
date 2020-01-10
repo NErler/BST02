@@ -213,9 +213,6 @@ x
 ```
 
 * Complicated arithmetics
- ```{r, eval = FALSE, include = TRUE, echo = TRUE}
-%*%, t(), %/%
-```
 
 
 ## Basics in R (cont'd)
