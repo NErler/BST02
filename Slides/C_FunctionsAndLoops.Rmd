@@ -130,7 +130,7 @@ Sometimes we want to perform the same action / manipulation on several objects.
 
 \pause
 
-### What are functions?
+\blue{What are functions?}
 * a group of (organized) R commands
 * a (small) programm with flexible (= not pre-specified) input
 
@@ -139,8 +139,7 @@ Sometimes we want to perform the same action / manipulation on several objects.
 **Almost all commands in R are functions!**
 
 ## Functions
-
-### Some examples:
+\blue{Some examples:}
 \begincols[t]
 \begincol{0.3\linewidth}
 
