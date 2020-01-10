@@ -9,7 +9,7 @@ output:
   beamer_presentation: 
     template: mytemplate.latex
     includes:
-      in_header: [SlideTemplate.tex, defs_Nicole.tex]
+      in_header: SlideTemplate.tex
     incremental: false
 classoption: aspectratio=169
 ---
@@ -328,6 +328,40 @@ the default link is used.
 \end{column}
 \end{columns}
 
+
+## Regression Basics
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demo}
+\begin{itemize}
+\item Regression Basics \button{https://nerler.com}{R} \button{https://nerler.com}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\begin{block}{Practical}
+\begin{itemize}
+\item Linear Regression \button{link to html file}{html}
+\item Name of practical \button{link to html file}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
+boot::urine
+MASS::birthwt
+MASS::Boston
+MASS::Cars93
+MASS::crabs
+MASS::Pima.te
+MASS::survey???
+MASS::UScereal
+MASS::UScrime
+
+rpart::stagec
+rpart::car90
 
 ## Regression
 \begin{columns}[onlytextwidth,T]
