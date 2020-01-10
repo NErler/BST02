@@ -9,7 +9,7 @@ output:
   beamer_presentation: 
     template: mytemplate.latex
     includes:
-      in_header: [SlideTemplate.tex, defs_Nicole.tex]
+      in_header: SlideTemplate.tex
     incremental: false
 classoption: aspectratio=169
 ---
