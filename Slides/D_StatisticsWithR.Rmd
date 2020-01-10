@@ -100,6 +100,29 @@ See also [BBR Sections 5.7 & 6 (http://hbiostat.org/doc/bbr.pdf)](http://hbiosta
 
 
 ## Statistical Tests
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Name of the demo 
+\item Name of demo 
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Name of practical \button{link to html file}{html}
+\item Name of practical \button{link to html file}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
+
+## Statistical Tests
 \begin{columns}[onlytextwidth,T]
 \begin{column}{0.3\linewidth}
 
