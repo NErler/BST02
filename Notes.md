@@ -3,6 +3,8 @@
 * Explain difference between `Error`, `Warning` and `Message`?
 * In which part do we practice with logical operators (`&`, `|`, `&&`, `==`, ...)? (Elrozy: `&`, `|`, `==`)
 * What about contrasts? `contr.treatment` etc. (Nicole)
+* Maybe useful: https://stat.ethz.ch/R-manual/R-devel/doc/html/packages.html
+* List of datasets: https://vincentarelbundock.github.io/Rdatasets/datasets.html
 
 ## Part B
 ### Data Structures
