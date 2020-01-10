@@ -42,13 +42,22 @@
 % end of font settings ---------------------------------------------------------
 
 % settings title page ----------------------------------------------------------
-
+% adapted from beamerbasetitle.sty
 \makeatletter
+% some of this syntax is probably nonsense. I just copied it from the defintion
+% of \author and replaced author with email, but don't fully understand what
+% everything does
 \def\email{\@dblarg\beamer@email}
 \long\def\beamer@email[#1]#2{%
-  \def\insertemail{#2}%
+  \def\insertemail{\def\inst{\beamer@insttitle}\def\and{\beamer@andtitle}#2}%
   \def\beamer@shortemail{#1}%
-  }
+  \ifbeamer@autopdfinfo%
+    \def\beamer@andstripped{}%
+    \beamer@stripands#2 \and\relax
+    {\let\inst=\@gobble\let\thanks=\@gobble\def\and{, }}
+  \fi%
+}
+
 \makeatother
 
 \setbeamerfont{title}{size = \LARGE, series=\bfseries}
