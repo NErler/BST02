@@ -1,5 +1,5 @@
 #' ---
-#' title: "Demo: Indexing/Sudsetting"
+#' title: "Demo: Indexing/Subsetting"
 #' subtitle: "NIHES BST02"
 #' author: "Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center"
 #' date: "`r Sys.setenv(LANG = 'en_US.UTF-8'); format(Sys.Date(), '%d %B %Y')`"
