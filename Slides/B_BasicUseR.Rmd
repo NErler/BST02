@@ -284,6 +284,7 @@ The simplest data structures are:
 * \textbf{\textcolor{red}{character}} : qualitative data
 * \textbf{\textcolor{red}{integer}} : whole numbers
 * \textbf{\textcolor{red}{logical}} : TRUE or FALSE
+* \textbf{\textcolor{red}{factors}} : TRUE or FALSE
 
 To find out what type of vector you have you can use the mode function
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
