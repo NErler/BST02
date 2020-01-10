@@ -2,6 +2,7 @@
 
 * Explain difference between `Error`, `Warning` and `Message`?
 * In which part do we practice with logical operators (`&`, `|`, `&&`, `==`, ...)?
+* What about contrasts? `contr.treatment` etc.
 
 ## Part B
 ### Data Structures
