@@ -1,0 +1,212 @@
+---
+title: 'Linear Regression'
+output: 
+  html_document:
+    code_folding: show
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+    number_sections: false
+    theme: spacelab
+    highlight: tango
+    includes:
+      after_body: ../footerNE.html
+    css: ../style.css
+---
+
+```{r, include = FALSE}
+library(knitr)
+options(width = 100)
+
+hint <- function(text) {
+  id <- paste0('hint_', sample.int(1e10, size = 1))
+    cat(
+    paste0('\n',
+      '<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" ',
+      'data-target="#', id, '">Hint</button>',
+      '<div id = "', id, '" class="collapse" style="border:1px; ',
+      'border-style:solid; padding: 1em; border-color:#1F78B4">',
+      text, '</div>')
+  )
+}
+```
+
+
+## Dataset 
+For this practical, we will use the **birthwt** dataset from the package **MASS**.
+
+You can either load the **MASS** package to get access to this dataset
+```{r}
+library(MASS)
+```
+or make a copy of this data
+```{r}
+birthwt <- MASS::birthwt
+```
+
+
+## Data
+The **birthwt** data have the following 10 variables:
+```{r}
+str(birthwt)
+```
+
+Some of the variables are actually categorical variables, but we will not yet
+re-code them to factors in order to investigate how the variable coding can change
+the results.
+
+## Fitting a Linear Regression{.tabset .tabset-fade .tabset-pills}
+### Taks1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Write the model formula with 
+
+* outcome `bwt` (birth weight) and 
+* covariates 
+  * `age` (mother's age), 
+  * `lwt` (mothers weight in pounds), 
+  * `race` (mother's race) and 
+  * `smoke` (smoking status during pregnancy).
+```{r, echo = FALSE, results = 'asis'}
+hint('Use the `~` to separate the outcome from the linear predictor and use `+`
+     to separate the covariates.')
+```
+</div>
+
+### Solution 1
+```{r}
+bwt ~ age + lwt + race + smoke
+```
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Fit a linear regression model with the formula that we have just specified.
+```{r, echo = FALSE, results = 'asis'}
+hint("Use the function `lm()`.")
+hint("Besides the model formula, you also need to provide the data via the argument `data`.")
+```
+</div>
+
+### Solution 2
+```{r}
+mod1 <- lm(bwt ~ age + lwt + race + smoke, data = birthwt)
+```
+Note that if we don't assign a name to the model, the results are just printed,
+but we cannot use or investigate them any further.
+
+## Model Summary {.tabset .tabset-pills .tabset-fade}
+### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Get the `summary()` of the model.
+```{r, echo = FALSE, results = 'asis'}
+hint("Use the function `lm()`.")
+hint("Besides the model formula, you also need to provide the data via the argument `data`.")
+```
+</div>
+
+### Solution 1
+```{r}
+summary(mod1)
+```
+```{r, echo = FALSE}
+smod1 <- capture.output(summary(mod1))
+```
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Investigate the model summary closely.
+
+* What are the estimated effects of the coefficients?
+* Confirm that you identified the correct part of the output by extracting only
+ the regression coefficients from the model (not from the model summary!). 
+```{r, echo = FALSE, results = 'asis'}
+hint("To extract the coefficients, use the function `coef()`.")
+```
+</div>
+
+### Solution 2
+The regression coefficients are given in the first column ("Estimate") of the
+output under the header "Coefficients".
+```{r, echo = FALSE}
+cat("[...]\n", paste0(smod1[9:15], collapse = "\n"), "\n[...]")
+```
+
+They are the same as:
+```{r}
+coef(mod1)
+```
+
+### Task 3
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+
+* Where in the summary can you find the p-values?
+* Which of the covariates have a statistically significant effect (for $\alpha = 5%$)?
+</div>
+
+### Solution 3
+The p-values are given in the last column ("Pr(>|t|)") of the output under the 
+header "Coefficients".
+We can see that the intercept and the effects for `race` and `smoke` significantly
+differ from 0.
+
+### Task 4
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+What does the model summary tell you about the model fit?
+```{r, echo = FALSE, results='asis'}
+hint("The model summary contains the $R^2$ and adjusted $R^2$.")
+hint("The model summary contains info on an omnibus test (F-statistic).")
+```
+</div>
+
+### Solution 4
+In the lowest part of the output of `summary()`:
+```{r, echo = FALSE}
+cat("[...]\n", smod1[20], "\n[...]")
+```
+We can read there that the
+R-squared is `r format(summary(mod1)$r.squared, digits = 4)` and that the
+adjusted R-squared is `r format(summary(mod1)$adj.r.squared, digits = 4)`.
+
+In the last row we see the F-statistic which tests the model against 
+the null-model (intercept only). 
+```{r, echo = FALSE}
+cat("[...]\n", smod1[21])
+```
+It shows that the model explains significantly
+more variation in the outcome than the null-model (p-value: 
+`r format.pval(pf(summary(mod1)$fstatistic[1L], 
+                summary(mod1)$fstatistic[2L], summary(mod1)$fstatistic[3L],
+               lower.tail = FALSE), digits = 4)`)
+
+## Confidence Intervals {.tabset .tabset-pills .tabset-fade}
+### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Get the 90% confidence intervals of the model.
+```{r, echo = FALSE, results = 'asis'}
+hint("Use the function `confint()`.")
+```
+</div>
+
+### Solution 1
+```{r}
+confint(mod1, level = 0.9)
+```
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Combine the coefficients and 95% confidence intervals of the model into one
+`matrix`.
+```{r, echo = FALSE, resuts = 'asis'}
+cbind(estimate = coef(mod1),
+      confint(mod1))
+```
+Note:
+
+Because `coef()` returns a vector, the corresponding column in our marix would not
+have a name. We can assign the name when we use `cbind()`.
+
+`confint()` returns a `matrix` which already has column names.
+</div>
+
+## Coding of the covariates
+Now we will re-code the covariates that are actually categorical variables.
