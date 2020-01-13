@@ -78,7 +78,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 ## Practical Examples (cont'd)
 
 * \textbf{\textcolor{red}{id}}:	case number
-* \textbf{\textcolor{red}{time}}:	number of days between registration and the earlier of death, transplantion, or study analysis in July, 1986
+* \textbf{\textcolor{red}{time}}:	number of days between registration and the earlier of death, transplantation, or study analysis in July, 1986
 * \textbf{\textcolor{red}{status}}:	status at endpoint, 0/1/2 for censored, transplant, dead
 * \textbf{\textcolor{red}{trt}}:	1/2/NA for D-penicillmain, placebo, not randomised
 * \textbf{\textcolor{red}{age}}:	in years
@@ -168,7 +168,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
    - What is the average age?
    - What is the average bili?
    - What is the average chol?
-   - What is the percentsage of females?
+   - What is the percentage of females?
    
   \vspace*{3ex}
   
@@ -301,7 +301,7 @@ mode(pbc$age)
 
 ## Common R Objects (cont'd)
 
-* Differences between \textbf{\textcolor{red}{Vector}}, Martices, Data.frames and Lists
+* Differences between \textbf{\textcolor{red}{Vector}}, Matrices, Data.frames and Lists
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbc[1:6, c("age")]
 ```
@@ -656,7 +656,7 @@ pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
 
 \bigskip
 
-\textbf{\textcolor{blue}{Visulazilation}}
+\textbf{\textcolor{blue}{Visualization}}
 \begin{itemize}
 \item \texttt{plot()}, \texttt{legend()}
 \item \texttt{hist()}
