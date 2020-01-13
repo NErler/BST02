@@ -208,5 +208,79 @@ have a name. We can assign the name when we use `cbind()`.
 `confint()` returns a `matrix` which already has column names.
 </div>
 
-## Coding of the covariates
-Now we will re-code the covariates that are actually categorical variables.
+## Coding of the covariates  {.tabset .tabset-pills .tabset-fade}
+Now we will re-code those covariates that are actually categorical variables.
+
+### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Re-code `race` and `smoke` as `factor`.
+```{r, echo = FALSE, results = 'asis'}
+hint('Use the function `factor()`.')
+```
+</div>
+
+### Solution 1
+```{r}
+birthwt$race <- factor(birthwt$race)
+birthwt$smoke <- factor(birthwt$smoke)
+```
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+
+* Fit the same model as before, but with the re-coded data and give it a new name.
+* Print the model summary.
+
+How did the results change?
+</div>
+
+### Solution 2
+```{r}
+mod2 <- lm(bwt ~ age + lwt + race + smoke, data = birthwt)
+summary(mod2)
+```
+```{r, echo = FALSE}
+smod2 <- capture.output(summary(mod2))
+```
+
+When we compare the "Coefficients" part of the summary for `mod2`
+```{r, echo = FALSE}
+cat(paste0(smod2[9:16], collapse = "\n"))
+```
+with the "Coefficients" part of the summary for `mod1`
+```{r, echo = FALSE}
+cat(paste0(smod1[9:15], collapse = "\n"))
+```
+we notice that in the summary for `mod2` we have coefficients for `race2` and `race3` where 
+in the summary for `mod1` we only had one coefficient, and that the name of the coefficient
+for `smoke` is now `smoke1`.
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+* R automatically converts a `factor` into dummy variables!
+* The **first category** is used as **reference** category.
+* The other factor levels are appended to the variable name to identify the different dummy variables.
+</div>
+
+Note:
+Because we now have more parameters, of course also the results for model fit slightly changed.
+
+### Task 3
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+What is the difference in the interpretation of the effects for `race` and `smoke` in `mod1` and `mod2`?
+</div>
+
+### Solution 3
+For `smoke` there is no real difference. `smoke` has only two categories, therefore there is one dummy
+variable `smoke1` which is 1 if `smoke == 1` and 0 otherwise. Since this is the same as the original 
+variable `smoke`, nothing really changes.
+
+For `race`, the assumption in `mod1` is that the effect of category `3` compared to `1` is 
+twice as large as the effect of category `2` compared to `1` because `race` is treated as continuous
+and the coefficient is the effect of a "one unit increase" (and `3` vs `1` is a two unit increase).
+
+In `mod2` there are two dummy variables for `race`, which measure the effect of each category compared
+to the reference category `1`. The effects of category `3` is not assumed to be double the effect of
+category `2`.
+
+
+
