@@ -30,7 +30,7 @@ mean(pbc$bili)
 #' What is the average chol?
 mean(pbc$chol, na.rm = TRUE)
 
-#' What is the percentsage of females?
+#' What is the percentage of females?
 percent(pbc$sex)
 
 #' What is the average bili and chol?
@@ -57,7 +57,7 @@ p
 #' NOTE! o == 3
 
 #' Case sensitive
-#' maen(pbc$Age) will not run because there is a typo
+#' mean(pbc$Age) will not run because there is a typo
 names(pbc)
 pbc$age
 
