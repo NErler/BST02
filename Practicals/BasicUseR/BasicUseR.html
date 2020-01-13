@@ -2952,7 +2952,9 @@ div.tocify {
 <p>In this practical, a number of R packages are used. The packages used (with versions that were used to generate the solutions) are:</p>
 <ul>
 <li>R version 3.6.1 (2019-07-05)</li>
-<li><code>survival</code> (version: 3.7.0)</li>
+<li><code>survival</code> (version: 2.44.1.1)</li>
+<li><code>memisc</code> (version: 0.99.21)</li>
+<li><code>ggplot2</code> (version: 3.2.1)</li>
 </ul>
 </div>
 <div id="dataset" class="section level3 tabset tabset-fade tabset-pills">
@@ -3542,11 +3544,11 @@ Hint
 </div>
 </div>
 </div>
-<div id="data-manupulation-exploration-and-visualization" class="section level2">
-<h2>Data Manupulation, Exploration and Visualization</h2>
-<p>Before starting with any statistical analysis it is important to transfoerm and explore your data set.</p>
-<div id="data-manupulation" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Data Manupulation</h3>
+<div id="data-manipulation-exploration-and-visualization" class="section level2">
+<h2>Data Manipulation, Exploration and Visualization</h2>
+<p>Before starting with any statistical analysis it is important to transform and explore your data set.</p>
+<div id="data-manipulation" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Data Manipulation</h3>
 <div id="task-1-3" class="section level4">
 <h4>Task 1</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
@@ -3682,7 +3684,7 @@ Hint
 <a class="sourceLine" id="cb32-5" title="5"><span class="kw">data.frame</span>(Treatment, Weight)</a></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["Treatment"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["Weight"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"yes","2":"87000"},{"1":"no","2":"63000"},{"1":"yes","2":"90000"},{"1":"yes","2":"53000"},{"1":"yes","2":"99000"},{"1":"yes","2":"73000"},{"1":"no","2":"94000"},{"1":"no","2":"89000"},{"1":"yes","2":"71000"},{"1":"no","2":"63000"},{"1":"yes","2":"55000"},{"1":"yes","2":"89000"},{"1":"no","2":"77000"},{"1":"no","2":"90000"},{"1":"yes","2":"69000"},{"1":"yes","2":"90000"},{"1":"no","2":"51000"},{"1":"no","2":"74000"},{"1":"no","2":"67000"},{"1":"no","2":"79000"},{"1":"yes","2":"90000"},{"1":"no","2":"61000"},{"1":"yes","2":"82000"},{"1":"yes","2":"58000"},{"1":"yes","2":"60000"},{"1":"yes","2":"84000"},{"1":"no","2":"92000"},{"1":"yes","2":"92000"},{"1":"yes","2":"81000"},{"1":"no","2":"52000"},{"1":"yes","2":"60000"},{"1":"yes","2":"73000"},{"1":"no","2":"56000"},{"1":"no","2":"56000"},{"1":"yes","2":"81000"},{"1":"no","2":"83000"},{"1":"no","2":"89000"},{"1":"yes","2":"90000"},{"1":"no","2":"81000"},{"1":"no","2":"87000"},{"1":"yes","2":"61000"},{"1":"yes","2":"59000"},{"1":"yes","2":"64000"},{"1":"no","2":"94000"},{"1":"yes","2":"75000"},{"1":"no","2":"54000"},{"1":"no","2":"71000"},{"1":"yes","2":"92000"},{"1":"yes","2":"64000"},{"1":"no","2":"90000"},{"1":"yes","2":"77000"},{"1":"no","2":"93000"},{"1":"no","2":"95000"},{"1":"yes","2":"52000"},{"1":"yes","2":"89000"},{"1":"yes","2":"87000"},{"1":"no","2":"57000"},{"1":"yes","2":"77000"},{"1":"no","2":"54000"},{"1":"no","2":"51000"},{"1":"no","2":"55000"},{"1":"yes","2":"91000"},{"1":"no","2":"100000"},{"1":"yes","2":"84000"},{"1":"yes","2":"80000"},{"1":"no","2":"55000"},{"1":"no","2":"82000"},{"1":"yes","2":"65000"},{"1":"yes","2":"58000"},{"1":"no","2":"69000"},{"1":"no","2":"96000"},{"1":"no","2":"79000"},{"1":"no","2":"89000"},{"1":"no","2":"97000"},{"1":"yes","2":"62000"},{"1":"no","2":"84000"},{"1":"no","2":"98000"},{"1":"yes","2":"97000"},{"1":"no","2":"61000"},{"1":"no","2":"79000"},{"1":"no","2":"73000"},{"1":"no","2":"69000"},{"1":"no","2":"70000"},{"1":"no","2":"54000"},{"1":"yes","2":"69000"},{"1":"no","2":"77000"},{"1":"no","2":"74000"},{"1":"no","2":"52000"},{"1":"yes","2":"96000"},{"1":"no","2":"68000"},{"1":"yes","2":"65000"},{"1":"yes","2":"73000"},{"1":"yes","2":"79000"},{"1":"yes","2":"57000"},{"1":"yes","2":"70000"},{"1":"no","2":"76000"},{"1":"no","2":"90000"},{"1":"yes","2":"76000"},{"1":"no","2":"60000"},{"1":"no","2":"54000"},{"1":"no","2":"100000"},{"1":"yes","2":"76000"},{"1":"no","2":"87000"},{"1":"no","2":"53000"},{"1":"no","2":"53000"},{"1":"no","2":"75000"},{"1":"yes","2":"50000"},{"1":"yes","2":"85000"},{"1":"yes","2":"64000"},{"1":"yes","2":"90000"},{"1":"yes","2":"71000"},{"1":"no","2":"88000"},{"1":"yes","2":"62000"},{"1":"yes","2":"76000"},{"1":"no","2":"92000"},{"1":"yes","2":"84000"},{"1":"yes","2":"73000"},{"1":"yes","2":"72000"},{"1":"no","2":"51000"},{"1":"no","2":"91000"},{"1":"yes","2":"69000"},{"1":"no","2":"64000"},{"1":"no","2":"65000"},{"1":"no","2":"96000"},{"1":"no","2":"94000"},{"1":"yes","2":"68000"},{"1":"no","2":"53000"},{"1":"yes","2":"60000"},{"1":"yes","2":"54000"},{"1":"yes","2":"86000"},{"1":"yes","2":"81000"},{"1":"no","2":"55000"},{"1":"yes","2":"68000"},{"1":"yes","2":"63000"},{"1":"no","2":"90000"},{"1":"yes","2":"77000"},{"1":"no","2":"94000"},{"1":"yes","2":"73000"},{"1":"no","2":"63000"},{"1":"yes","2":"59000"},{"1":"no","2":"73000"},{"1":"yes","2":"67000"},{"1":"no","2":"81000"},{"1":"no","2":"88000"},{"1":"yes","2":"63000"},{"1":"yes","2":"100000"},{"1":"yes","2":"73000"},{"1":"yes","2":"56000"},{"1":"no","2":"92000"},{"1":"yes","2":"86000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["Treatment"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["Weight"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"yes","2":"73000"},{"1":"no","2":"69000"},{"1":"yes","2":"90000"},{"1":"no","2":"59000"},{"1":"no","2":"84000"},{"1":"no","2":"53000"},{"1":"yes","2":"55000"},{"1":"no","2":"87000"},{"1":"yes","2":"69000"},{"1":"yes","2":"98000"},{"1":"no","2":"74000"},{"1":"yes","2":"81000"},{"1":"yes","2":"74000"},{"1":"yes","2":"76000"},{"1":"no","2":"86000"},{"1":"no","2":"64000"},{"1":"no","2":"75000"},{"1":"yes","2":"71000"},{"1":"no","2":"58000"},{"1":"yes","2":"96000"},{"1":"yes","2":"57000"},{"1":"yes","2":"98000"},{"1":"no","2":"89000"},{"1":"no","2":"90000"},{"1":"yes","2":"50000"},{"1":"yes","2":"90000"},{"1":"no","2":"82000"},{"1":"no","2":"74000"},{"1":"yes","2":"70000"},{"1":"no","2":"98000"},{"1":"yes","2":"63000"},{"1":"yes","2":"83000"},{"1":"yes","2":"59000"},{"1":"no","2":"61000"},{"1":"no","2":"59000"},{"1":"no","2":"62000"},{"1":"no","2":"78000"},{"1":"no","2":"68000"},{"1":"yes","2":"76000"},{"1":"yes","2":"87000"},{"1":"no","2":"55000"},{"1":"yes","2":"57000"},{"1":"no","2":"61000"},{"1":"yes","2":"50000"},{"1":"no","2":"89000"},{"1":"no","2":"93000"},{"1":"yes","2":"75000"},{"1":"no","2":"64000"},{"1":"no","2":"58000"},{"1":"yes","2":"63000"},{"1":"no","2":"56000"},{"1":"yes","2":"87000"},{"1":"no","2":"63000"},{"1":"no","2":"66000"},{"1":"yes","2":"81000"},{"1":"yes","2":"92000"},{"1":"yes","2":"66000"},{"1":"yes","2":"73000"},{"1":"no","2":"83000"},{"1":"yes","2":"88000"},{"1":"yes","2":"93000"},{"1":"no","2":"52000"},{"1":"no","2":"50000"},{"1":"yes","2":"72000"},{"1":"yes","2":"100000"},{"1":"no","2":"88000"},{"1":"no","2":"55000"},{"1":"yes","2":"88000"},{"1":"no","2":"98000"},{"1":"no","2":"80000"},{"1":"no","2":"69000"},{"1":"no","2":"93000"},{"1":"no","2":"51000"},{"1":"no","2":"59000"},{"1":"no","2":"59000"},{"1":"no","2":"82000"},{"1":"yes","2":"83000"},{"1":"no","2":"89000"},{"1":"no","2":"67000"},{"1":"yes","2":"52000"},{"1":"yes","2":"75000"},{"1":"no","2":"80000"},{"1":"yes","2":"83000"},{"1":"no","2":"81000"},{"1":"yes","2":"71000"},{"1":"yes","2":"82000"},{"1":"no","2":"69000"},{"1":"yes","2":"61000"},{"1":"yes","2":"79000"},{"1":"no","2":"51000"},{"1":"yes","2":"80000"},{"1":"no","2":"92000"},{"1":"yes","2":"51000"},{"1":"no","2":"89000"},{"1":"yes","2":"69000"},{"1":"yes","2":"99000"},{"1":"no","2":"90000"},{"1":"no","2":"71000"},{"1":"yes","2":"76000"},{"1":"no","2":"100000"},{"1":"no","2":"99000"},{"1":"no","2":"82000"},{"1":"yes","2":"83000"},{"1":"no","2":"67000"},{"1":"no","2":"58000"},{"1":"yes","2":"54000"},{"1":"yes","2":"69000"},{"1":"no","2":"68000"},{"1":"yes","2":"64000"},{"1":"yes","2":"67000"},{"1":"no","2":"70000"},{"1":"no","2":"67000"},{"1":"no","2":"74000"},{"1":"no","2":"54000"},{"1":"no","2":"75000"},{"1":"no","2":"57000"},{"1":"yes","2":"57000"},{"1":"yes","2":"99000"},{"1":"yes","2":"100000"},{"1":"no","2":"99000"},{"1":"no","2":"93000"},{"1":"no","2":"81000"},{"1":"yes","2":"90000"},{"1":"no","2":"90000"},{"1":"no","2":"73000"},{"1":"yes","2":"64000"},{"1":"no","2":"58000"},{"1":"no","2":"62000"},{"1":"no","2":"55000"},{"1":"no","2":"59000"},{"1":"yes","2":"96000"},{"1":"no","2":"54000"},{"1":"no","2":"66000"},{"1":"yes","2":"75000"},{"1":"yes","2":"99000"},{"1":"no","2":"93000"},{"1":"yes","2":"79000"},{"1":"yes","2":"71000"},{"1":"yes","2":"80000"},{"1":"no","2":"70000"},{"1":"no","2":"76000"},{"1":"no","2":"85000"},{"1":"yes","2":"68000"},{"1":"yes","2":"78000"},{"1":"yes","2":"89000"},{"1":"yes","2":"60000"},{"1":"no","2":"52000"},{"1":"yes","2":"100000"},{"1":"no","2":"83000"},{"1":"no","2":"76000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -3731,7 +3733,7 @@ Hint
 </div>
 <div id="data-exploration" class="section level3 tabset tabset-fade tabset-pills">
 <h3>Data Exploration</h3>
-<p>Let’s ontain some descriptive statistics.</p>
+<p>Let’s obtain some descriptive statistics.</p>
 <div id="task-1-4" class="section level4">
 <h4>Task 1</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
@@ -3754,7 +3756,7 @@ Hint
 <div id="task-2-4" class="section level4">
 <h4>Task 2</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-<p>Unimg the <strong>retinopathy</strong> data set: * Obtain the median and interquartile range for <code>age</code>.   * Obtain the percentage per <code>type</code>.<br />
+<p>Using the <strong>retinopathy</strong> data set: * Obtain the median and interquartile range for <code>age</code>.   * Obtain the percentage per <code>type</code>.<br />
 * Check whether there are missing values in the variable <code>age</code>.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#exp2">
 Hint
@@ -3808,27 +3810,27 @@ Hint
 <div id="solution-3-2" class="section level4">
 <h4>Solution 3</h4>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="kw">mean</span>(DF<span class="op">$</span>StandardizedAge)</a></code></pre></div>
-<pre><code>## [1] 7.384501e-17</code></pre>
+<pre><code>## [1] 8.407337e-17</code></pre>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">sd</span>(DF<span class="op">$</span>StandardizedAge)</a></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="kw">length</span>(DF<span class="op">$</span>Gender[DF<span class="op">$</span>Gender <span class="op">==</span><span class="st"> &quot;female&quot;</span>])</a></code></pre></div>
-<pre><code>## [1] 20</code></pre>
+<pre><code>## [1] 22</code></pre>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="kw">length</span>(DF<span class="op">$</span>Gender[DF<span class="op">$</span>Gender <span class="op">==</span><span class="st"> &quot;male&quot;</span>])</a></code></pre></div>
-<pre><code>## [1] 30</code></pre>
+<pre><code>## [1] 28</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="kw">table</span>(DF<span class="op">$</span>Gender)</a></code></pre></div>
 <pre><code>## 
 ## female   male 
-##     20     30</code></pre>
+##     22     28</code></pre>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="kw">table</span>(DF<span class="op">$</span>Gender, DF<span class="op">$</span>DichotomousAge)</a></code></pre></div>
 <pre><code>##         
 ##          young old
-##   female     9  11
-##   male      13  17</code></pre>
+##   female    10  12
+##   male      15  13</code></pre>
 </div>
 </div>
 <div id="data-visualization" class="section level3 tabset tabset-fade tabset-pills">
 <h3>Data Visualization</h3>
-<p>Let’s us now plot the data in order to undestand them even better.</p>
+<p>Let’s us now plot the data in order to understand them even better.</p>
 <div id="task-1-5" class="section level4">
 <h4>Task 1</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">

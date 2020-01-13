@@ -493,11 +493,11 @@ rm(numbers, numbers_2, treatment)
 ```
 
 
-## Data Manupulation, Exploration and Visualization
+## Data Manipulation, Exploration and Visualization
 
-Before starting with any statistical analysis it is important to transfoerm and explore your data set.
+Before starting with any statistical analysis it is important to transform and explore your data set.
 
-### Data Manupulation {.tabset .tabset-fade .tabset-pills}
+### Data Manipulation {.tabset .tabset-fade .tabset-pills}
 
 
 ```{r, eval = static, echo = FALSE}
@@ -755,7 +755,7 @@ my_list <- list(let = let, sex = sex, mat = mat)
 
 ### Data Exploration {.tabset .tabset-fade .tabset-pills}
 
-Let's ontain some descriptive statistics.
+Let's obtain some descriptive statistics.
 
 ```{r, eval = static, echo = FALSE}
 asis_output("#### Task 1\\n")
@@ -795,7 +795,7 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Unimg the **retinopathy** data set:
+Using the **retinopathy** data set:
 * Obtain the median and interquartile range for `age`. \ 
 * Obtain the percentage per `type`. \
 * Check whether there are missing values in the variable `age`.
@@ -863,7 +863,7 @@ table(DF$Gender, DF$DichotomousAge)
 
 ### Data Visualization {.tabset .tabset-fade .tabset-pills}
 
-Let's us now plot the data in order to undestand them even better.
+Let's us now plot the data in order to understand them even better.
 
 ```{r, eval = static, echo = FALSE}
 asis_output("#### Task 1\\n")
