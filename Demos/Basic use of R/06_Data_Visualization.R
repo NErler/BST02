@@ -51,7 +51,7 @@ plot(pbc$sex)
 #' Boxplot
 boxplot(pbc$age ~ pbc$sex, ylab = "Age", xlab = "Gender")
 
-#' Mutivariate plot
+#' Multivariate plot
 pairs(cbind(pbc$bili, pbc$chol, pbc$albumin))
 
 #' Density plots of bili per sex
