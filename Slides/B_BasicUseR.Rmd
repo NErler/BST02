@@ -620,6 +620,75 @@ pbc$status <- factor(pbc$status, levels = c(0, 1, 2), labels = c("censored", "tr
 pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
 ``` 
 
+## Useful functions for Data Manipulation
+
+\begin{columns}[onlytextwidth,T]
+\begin{column}{0.35\linewidth}
+\textbf{\textcolor{blue}{Common R objects}}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{c()}
+\item \texttt{matrix()}
+\item \texttt{data.frame()}
+\item \texttt{list()}
+\item \texttt{cbind()}, \texttt{rbind()}
+\end{itemize}
+
+\bigskip
+
+\textbf{\textcolor{blue}{Transformation}}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{factor()}
+\item \texttt{reshape()}
+\item \texttt{order()}
+\item \texttt{complete.cases()}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.30\linewidth}
+\textbf{\textcolor{blue}{Exploration}}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{is.na()}
+\item \texttt{dim()}
+\item \texttt{mean()}, \texttt{sd()}
+\item \texttt{median()}, \texttt{IQR()}
+\item \texttt{percent()}
+\end{itemize}
+
+\bigskip
+
+\textbf{\textcolor{blue}{Visulazilation}}
+\begin{itemize}
+\item \texttt{plot()}, \texttt{legend()}
+\item \texttt{hist()}
+\item \texttt{barchart()}
+\item \texttt{boxplot()}
+\item \texttt{par()}
+\item \texttt{xyplot()}
+\item \texttt{ggplot()}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.35\linewidth}
+\textbf{\textcolor{blue}{Import/Save/Present}}
+\begin{itemize}
+\item \texttt{head()}
+\item \texttt{save()}, \texttt{saveRDS()}
+\item \texttt{load()}, \texttt{readRDS()}
+\item \texttt{write.csv()}, \texttt{write.xlsx()}, \texttt{write.table()}
+\end{itemize}
+
+\bigskip
+
+\textbf{\textcolor{blue}{Other}}
+\begin{itemize}
+\item \texttt{install.packages()}
+\item \texttt{library()}
+\item \texttt{ls()}, \texttt{getwd()}
+\end{itemize}
+
+\end{column}
+\end{columns}
+
 
 ## Indexing/Subsetting
 
@@ -875,3 +944,45 @@ mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
 mylist
 mylist$y
 ```  
+
+## Useful Summary
+
+\begin{columns}[onlytextwidth,T]
+\begin{column}{0.5\linewidth}
+\textbf{\textcolor{blue}{Vectors}}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{[]}
+\item \texttt{[""]}
+\end{itemize}
+
+\bigskip
+
+\textbf{\textcolor{blue}{Matrices}}
+\begin{itemize}
+\item \texttt{[,]}
+\end{itemize}
+\end{column}
+
+
+\begin{column}{0.5\linewidth}
+\textbf{\textcolor{blue}{Data frames}}
+\begin{itemize}
+\item \texttt{[,]}
+\item \texttt{\$}
+\item \texttt{[[]]}
+\end{itemize}
+
+\bigskip
+
+\textbf{\textcolor{blue}{Lists}}
+\begin{itemize}
+\item \texttt{[]}
+\item \texttt{[[]]}
+\item \texttt{\$}
+\end{itemize}
+
+
+\end{column}
+
+\end{columns}
+
