@@ -63,7 +63,7 @@ Therefore, the aim of this course is:
   - Using R
   - In practice examples
   - Basics in R
-  - Common R objetcs
+  - Common R objects
   - Importing data and saving your work
   - Data transformation
   - Data Exploration
