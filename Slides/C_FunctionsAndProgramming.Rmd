@@ -615,3 +615,54 @@ myList <- list(x <- c(1:6),
                z = c(30, 4, 23))
 mapply(length, myList, SIMPLIFY = FALSE)
 ```
+
+
+## Useful Summary: Apply Family
+
+\begin{columns}[onlytextwidth,T]
+\begin{column}{0.5\linewidth}
+\textbf{\textcolor{blue}{Vectors}}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{tapply()}
+\item \texttt{sapply()}
+\item \texttt{lapply()}
+\item \texttt{mapply()}
+\end{itemize}
+
+\bigskip
+
+\textbf{\textcolor{blue}{Matrices}}
+\begin{itemize}
+\item \texttt{apply()}
+\item \texttt{tapply()}
+\item \texttt{lapply()}
+\item \texttt{sapply()}
+\item \texttt{mapply()}
+\end{itemize}
+\end{column}
+
+
+\begin{column}{0.5\linewidth}
+\textbf{\textcolor{blue}{Data frames}}
+\begin{itemize}
+\item \texttt{apply()}
+\item \texttt{tapply()}
+\item \texttt{lapply()}
+\item \texttt{sapply()}
+\item \texttt{mapply()}
+\end{itemize}
+
+\bigskip
+
+\textbf{\textcolor{blue}{Lists}}
+\begin{itemize}
+\item \texttt{lapply()}
+\item \texttt{sapply()}
+\item \texttt{mapply()}
+\end{itemize}
+
+
+\end{column}
+
+\end{columns}
+
