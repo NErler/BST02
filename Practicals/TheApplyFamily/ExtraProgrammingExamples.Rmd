@@ -189,7 +189,7 @@ asis_output("#### Task 3\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Define a function (with the name `mysummary`) that takes one parameter (let’s call it `x`) that investigates if it is a data frame a factor or a numeric variable and returm the message "This is a data.frame" if `x` is a data frame, "This is a factor" is `x` is a factor and "This is numeric" if `x` is numeric.  
+Define a function (with the name `mysummary`) that takes one parameter (let’s call it `x`) that investigates if it is a data frame a factor or a numeric variable and return the message "This is a data.frame" if `x` is a data frame, "This is a factor" is `x` is a factor and "This is numeric" if `x` is numeric.  
 
 
 ```{r fun3_hint, eval = static, results = 'asis', echo = FALSE}
@@ -287,7 +287,7 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-The previous function `mysummary` still does not do anything usefull when we apply it on the whole data.frame. Extend the function to take again one parameter (let’s call it `x`) but to return also some descriptive statistics for the data frame. 
+The previous function `mysummary` still does not do anything useful when we apply it on the whole data.frame. Extend the function to take again one parameter (let’s call it `x`) but to return also some descriptive statistics for the data frame. 
 
 ```{r fun5_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun5">Hint</button>
@@ -626,7 +626,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 
-Create a function with the name `summary_list` that takes as input a list with data sets (let's call it `dt_list`), a vector with the names of the continuous variables (let's call it `dt_cont`) and a vector with the names of the categorical variables (let's call it `dt_cat`) and returns the mean of the continuous variable per group for each data set. Apply the function to the **heart** and **retinopathy** data sets. In particular, use the continuous variables `year` (from the **heart** data set) and `risk` (from the **retinopathy** data set) and the categorical variabless `surgery` (from the **heart** data set) and `type` (from the **retinopathy** data set).
+Create a function with the name `summary_list` that takes as input a list with data sets (let's call it `dt_list`), a vector with the names of the continuous variables (let's call it `dt_cont`) and a vector with the names of the categorical variables (let's call it `dt_cat`) and returns the mean of the continuous variable per group for each data set. Apply the function to the **heart** and **retinopathy** data sets. In particular, use the continuous variables `year` (from the **heart** data set) and `risk` (from the **retinopathy** data set) and the categorical variables `surgery` (from the **heart** data set) and `type` (from the **retinopathy** data set).
 
 ```{r fun13_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun13">Hint</button>
