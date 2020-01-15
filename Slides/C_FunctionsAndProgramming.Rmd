@@ -30,6 +30,7 @@ knitr::opts_chunk$set(echo = TRUE, nospace = TRUE, nospaceafter = TRUE)
 ## Recap Part B
 \begin{columns}[onlytextwidth,T]
 \begin{column}{0.2\linewidth}
+
 \blue{Objects}
 \begin{itemize}
 \item \texttt{vector}
@@ -40,12 +41,14 @@ knitr::opts_chunk$set(echo = TRUE, nospace = TRUE, nospaceafter = TRUE)
 
 \bigskip
 
+\onslide<2->{
 \blue{Operators}
 \begin{itemize}
 \item \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/}
 \item \texttt{<-}, \texttt{=}
 \item \texttt{<}, \texttt{>}, \texttt{==}
 \end{itemize}
+}
 \end{column}
 
 \begin{column}{0.25\linewidth}
@@ -60,23 +63,28 @@ knitr::opts_chunk$set(echo = TRUE, nospace = TRUE, nospaceafter = TRUE)
 
 \bigskip
 
+\onslide<2->{
 \blue{Special Values}
 \begin{itemize}
 \item \texttt{NA}
 \item \texttt{NaN}
 \item \texttt{Inf}, \texttt{-Inf}
 \end{itemize}
+}
 \end{column}
 
 \begin{column}{0.5\linewidth}
+\onslide<3->{
 \blue{Data Transformations}
 \begin{itemize}
 \item rounding (\texttt{format()})
 \item convert to factor (\texttt{factor()})
 \end{itemize}
+}
 
 \bigskip
 
+\onslide<4->{
 \blue{Data Exploration}
 \begin{itemize}
 \item \texttt{mean()}, \texttt{median()}, \texttt{sd()}, \texttt{IQR()}, \ldots
@@ -84,19 +92,22 @@ knitr::opts_chunk$set(echo = TRUE, nospace = TRUE, nospaceafter = TRUE)
 
 \bigskip
 
+
 \blue{Data Visualizations}
 \begin{itemize}
 \item plotting packages
 \item plot types (\texttt{plot()}, \texttt{barplot()}, ...)
 \end{itemize}
+}
 
 \bigskip
 
+\onslide<5->{
 \blue{Subsetting}
 \begin{itemize}
-\item \texttt{[[...]]}, \texttt{[...]}, \ldots
+\item \texttt{[[...]]}, \texttt{[...]}, \texttt{\$}, \ldots
 \end{itemize}
-
+}
 \end{column}
 \end{columns}
 
@@ -125,7 +136,9 @@ Sometimes we want to perform the same action / manipulation on several objects.
 * Option 1: copy & paste
   - a lot of work
   - susceptible to mistakes
-  
+
+\pause
+
 * Option 2: \blue{functions}
 
 \pause
@@ -166,11 +179,24 @@ class(class)
 ```
 
 ## Useful Functions for Data Exploration
-Link to Demo: Functions_DataExploration.R
 
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Functions for Data Exploration \button{link to R file}{R} \button{link to html file}{html}
+\end{itemize}
+\end{block}
+\end{column}
 
-
-Link to Practical:
+\begin{column}{0.47\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Exploring and Summarizing Data \button{link to html file}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
 
 
 
@@ -238,9 +264,26 @@ Link to Practical:
 
 ## Useful functions for Data Manipulation
 
-Link to Demo: Functions_DataManipulation.R
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Name of the demo 
+\item Name of demo 
+\end{itemize}
+\end{block}
+\end{column}
 
-Link to practical
+\begin{column}{0.47\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Name of practical \button{link to html file}{html}
+\item Name of practical \button{link to html file}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
 
 ## Useful functions for Data Manipulation
 \begin{columns}[onlytextwidth,T]

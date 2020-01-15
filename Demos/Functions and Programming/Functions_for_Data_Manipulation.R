@@ -66,7 +66,7 @@ cut(x, breaks = c(-Inf, -1, 0, 1, Inf), include.lowest = TRUE)
 #' The argument `right` specifies that the right bound of each interval is included,
 #' this chan be changed by setting `right = FALSE`.
 #' By default, the resulting factor is unordered. With the argument 
-#' `ordered_result = TRUE` we can change this.
+#' `ordered_result = TRUE` we can change this. (More on ordered factors later.)
 #' 
 #' To set custom labels for the categories, the argument `labels` can be used:
 cut(x, breaks = c(-Inf, -1, 0, 1, Inf), labels = c('lowest', 'low', 'high', 'highest'))
@@ -137,9 +137,11 @@ subset(swiss,
        subset = Education > 15,
        select = c(Fertility, Education, Infant.Mortality))
 #' Note that here we can use the variable names without quotes.
+#' 
 
 #' ### Merging data
 #' The function `merge()` allows us to merge two datasets.
+# Create two datasets
 dat1 <- swiss
 dat1$id <- rownames(swiss)
 dat2 <- data.frame(id = c(paste0('newid', 1:5), rownames(swiss)[1:30]),
@@ -186,8 +188,8 @@ head(mdat3)
 (b <- LETTERS[1:8])
 match(a, b)
 
-#' ## repetition and sequence
-#' The function `rep()` replicates elements of vectors or lists.
+#' ## Repetition and Sequences
+#' The function `rep()` replicates elements of a `vector` or a `list`.
 rep(c('A', 'B'), 4)
 rep(c('A', 'B'), each = 4)
 rep(c('A', 'B'), c(2, 4))
@@ -195,7 +197,7 @@ rep(c('A', 'B'), c(2, 4))
 rep(list(a = 4, s = "This is a string.", b = c('A', 'B', 'C')), 
     c(1, 3, 1))
 
-#' `seq()` generates a sequace
+#' The function `seq()` generates a sequence:
 seq(from = 2, to = 5, by = 1)
 seq(from = 2, to = 5, by = 0.5)
 seq(from = 2, to = 5, length = 8)
@@ -208,7 +210,7 @@ expand.grid(x = c(1, 2, 3),
             a = c('a', 'b'))
 
 
-#' ## Transformations for objects
+#' ## Transforming objects
 #' The function `t()` transposes a `matrix` or a `data.frame`:
 (M <- matrix(nrow = 3, ncol = 2, data = 1:6))
 t(M)
@@ -219,47 +221,52 @@ t(M)
 t(x)
 t(t(x))
 
-# unlist 
-# unname
-# as.numeric
-# as.matrix
-# as.data.frame
-# 
+#' `unlist()` flattens lists:
+(mylist <- list(a = c(2, 5, 1),
+                b = list(name = 'Otto', age = 54, height = 182),
+                c = matrix(nrow = 3, ncol = 2, data = 1:6)))
+
+unlist(mylist)
+
+otherlist <- list(a = list(LETTERS[1:5]),
+                  b = list(names = c('Otto', 'Max'), 
+                           ages = c(54, 45),
+                           height = 182),
+                  c = 33)
+
+unlist(otherlist)
+unlist(otherlist, recursive = FALSE)
+
+unname(otherlist)
+unlist(unname(otherlist), recursive = FALSE)
+
+
+#' The functions `as.numeric()`, `as.matrix()` and `as.data.frame()` can be used
+#' to convert objects to numeric vectors, matrices and data frames, respectively.
+M
+as.numeric(M)
+as.data.frame(M)
+as.matrix(head(swiss))
+
 
 #' ## Sorting 
-# sort
-# order
-# rev
-# rank
+#' The function `sort()` allows us to sort a vector
+a <- c(5, 3, 9, 44, 1, 4)
+sort(a)
 
+b <- factor(c("A", "Q", "D", "M"))
+sort(b, decreasing = TRUE)
 
+#' The function `order()` returns the order of the elements in a vector:
+order(a)
+#' i.e.: The smallest element of `a` is on the 5th position, the 2nd smallest 
+#' element on the 2nd position, ...
 
-#' ## Matrix Algebra
-#' ### Matrix multiplication
-(A <- matrix(nrow = 2, ncol = 2, data = 1:4))
-(B <- matrix(nrow = 2, ncol = 3, data = seq(0, 2.5, by = 0.5)))
-A %*% B
+#' To `rank()` the elements of `a`:
+rank(a)
+#' i.e.: the 1st element of `a` is the 4th smallest, the 2nd element is the
+#' 2nd smallest, ...
 
-#'### Diagonal (of a) Matrix
-#' The function `diag()` allows us to extract the diagonal of a matrix, or to 
-#' create a identity matrix:
-A <- matrix(nrow = 3, ncol = 3, data = 1:9)
-diag(A)
-diag(5)
-
-#' The function `det()` calculates the determinant of  a matrix:
-det(A)
-
-#' The function `solve()`solves a syste of equations, and allows us to invert a
-#' square matrix:
-(X <- matrix(nrow = 3, ncol = 3, data = c(1, 2, 3, 1, 2, 5, 1, 5, 4)))
-solve(X)
-
-#' The functions `upper.tri()` and `lower.tri()` identify the upper and lower
-#' triangle of a matrix:
-upper.tri(X)
-lower.tri(X)
-
-#' The argument `diag` decides if the diagonal is included:
-upper.tri(X, diag = TRUE)
+#' With `rev()` we can reverse the order:
+rev(a)
 

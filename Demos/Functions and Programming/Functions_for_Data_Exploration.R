@@ -115,16 +115,13 @@ levels(esoph$agegp)
 table(esoph$agegp)
 
 #' By default, table only shows observations.
-#' The argument `exclude`can be set to `NULL` to also include missing values:
+#' The argument `exclude` can be set to `NULL` to also include missing values:
 (x <- factor(c(NA, sample(LETTERS[1:3], size = 10, replace = TRUE)),
              levels = LETTERS[1:5]))
 table(x)
 table(x, exclude = NULL)
 
-#' We can also get tables for multiple variables. There, the argument `dnn` 
-#' (dimension names) can be useful:
-table(esoph$agegp, esoph$alcgp, dnn = c("age", "alc"))
-#' or
+#' We can also get tables for multiple variables.
 table(age = esoph$agegp, alc = esoph$alcgp)
 
 
@@ -141,7 +138,7 @@ addmargins(tab, margin = 2, FUN = mean)
 addmargins(tab, FUN = c(mean, sum))
 
 #' ### Tables: Proportions
-#' To turn the table to proportions:
+#' To convert the table to proportions:
 prop.table(tab)
 
 #' Here, the sum over all cells is 1:
