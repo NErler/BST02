@@ -329,7 +329,7 @@ the default link is used.
 \end{columns}
 
 
-## Regression Basics
+## Regression
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.47\linewidth}
@@ -343,7 +343,7 @@ the default link is used.
 \begin{column}{0.47\linewidth}
 \begin{block}{Practical}
 \begin{itemize}
-\item Linear Regression \button{link to html file}{html}
+\item Linear Regression \button{https://nerler.github.io/BST02/practical/Statistics_with_R/Linear_Regression.html}{html}
 \item Name of practical \button{link to html file}{html}
 \end{itemize}
 \end{block}
