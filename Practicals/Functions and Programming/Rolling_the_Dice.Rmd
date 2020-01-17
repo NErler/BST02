@@ -16,7 +16,7 @@ output:
 ---
 
 
-<link href="../fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
+<link href="../../fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
 
 ```{r setup, include = FALSE}
 library(knitr)
