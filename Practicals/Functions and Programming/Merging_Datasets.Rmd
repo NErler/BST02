@@ -1,0 +1,232 @@
+---
+title: 'Merging Datasets'
+output: 
+  html_document:
+    code_folding: show
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+    number_sections: false
+    theme: spacelab
+    highlight: tango
+    includes:
+      after_body: ../footerNE.html
+    css: ../style.css
+---
+
+```{r setup, include = FALSE}
+library(knitr)
+library(kableExtra)
+
+opts_chunk$set(echo = TRUE)
+
+hint <- function(text) {
+  id <- paste0('hint_', sample.int(1e10, size = 1))
+    cat(
+    paste0('\n',
+      '<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" ',
+      'data-target="#', id, '">Hint</button>',
+      '<div id = "', id, '" class="collapse" style="border:1px; ',
+      'border-style:solid; padding: 1em; border-color:#1F78B4">',
+      text, '</div>')
+  )
+}
+```
+
+## Data
+
+In this practical, we will work with example datasets that are
+created by the following syntax:
+```{r}
+basedat <- data.frame(id = 1:5,
+                      age = c(37.9, 22.6, 26.9, 37.3, 49.2),
+                      sex = factor(c('male', 'female', 'female', 'male', 'male')),
+                      center = c('EMC', 'EMC', 'LUMC', 'VUMC', 'LUMC')
+)
+FUdat <- data.frame(id = c(1, 1, 1, 2, 2, 3, 4, 4, 4, 4, 5, 5, 5),
+                    time = c(3.6, 5.3, 7.8, 4.3, 8.2, 5.3, 3.5, 
+                             4.9, 6.4, 8.1, 2.2, 6.4, 7.0),
+                    weight = c(136.7, 131.5, 135.0, 113.7, 128.9, 97.1, 
+                               168.1, 147.7, 153.1, 149.6, 152.6, 137.7, 133.1))
+
+labdat <- data.frame(id = 1:12,
+                     ID = c(1, 1, 2, 2, 2, 4, 4, 4, 4, 5, 5, 6),
+                     labtime = c(3.1, 6.0, 4.3, 5.8, 8.2, 3.5, 
+                                 4.9, 6.4, 8.1, 2.2, 6.4, 4.7),
+                     chol = c(347, 309, 215, 436, 360, 335, 1002, 808, 615, 
+                              932, 413, 337),
+                     center = c(rep('EMC', 5), rep('VUMC', 4), rep('LUMC', 3))
+)
+```
+
+The resulting datasets are:
+
+**basedat**
+```{r, echo = FALSE}
+knitr::kable(basedat) %>%
+  kable_styling(full_width = FALSE)
+```
+
+**FUdat**
+```{r, echo = FALSE}
+knitr::kable(FUdat) %>%
+  kable_styling(full_width = FALSE)
+```
+
+**labdat**
+```{r, echo = FALSE}
+knitr::kable(labdat) %>%
+  kable_styling(full_width = FALSE)
+```
+
+## Merging `basedat` and `FUdat` {.tabset .tabset-pills .tabset-fade}
+### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Run the syntax given above to create the datasets `basedat` which contains 
+"baseline" information on each patient and `FUdat`, which contains repeated
+measurements of a variable `weight`.
+
+Merge `basedat` and `FUdat` by the variable `id`.
+```{r, echo = FALSE, results='asis'}
+hint('Use the function `merge()`.')
+```
+
+</div>
+
+### Solution 1
+```{r}
+dat1 <- merge(basedat, FUdat)
+dat1
+```
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Check for two of the subjects that the merged data are correct.
+```{r, echo = FALSE, results = 'asis'}
+hint("The function `subset()` could be used here.")
+```
+</div>
+
+### Solution 2
+```{r}
+# for subject 1
+subset(basedat, id == 1)
+subset(FUdat, id == 1)
+subset(dat1, id == 1)
+
+# for subject 4, using a different method of subsetting (just as a reminder how that worked)
+basedat[basedat$id == 4, ]
+FUdat[FUdat$id == 4, ]
+dat1[dat1$id == 4, ]
+```
+
+
+### Task 3
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Check that the resulting `dat1` has the correct dimensions.
+```{r, echo = FALSE, results = 'asis'}
+hint("The function `dim()` could be used here.")
+```
+</div>
+
+
+### Solution 3
+```{r}
+dim(dat1)
+dim(FUdat)
+dim(basedat)
+```
+`FUdat` and `basedat` contain data on the exact same set of subjects
+and only the `id` variable is overlapping between the two datasets.
+Therefore, the resulting `dat1` should have the same number of rows as the data
+containing the repeated measurements (`FUdat`) and has one column less than 
+the sum of the number of columns of both input datasets (6 = 3 + 4 - 1).
+
+
+## Merging with `labdat` {.tabset .tabset-pills .tabset-fade}
+We now want to merge the previously merged data `dat1` with `labdat`.
+
+### Task 1
+Note that in `labdat` we have the variables
+
+* `id`: sample number
+* `ID`: patient identifier
+
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Merge `dat` and `labdat` by patient identifier.
+```{r, echo = FALSE, results = 'asis'}
+hint("Use the arguments `by.x` and `by.y`.")
+```
+</div>
+
+
+### Solution 1
+```{r}
+dat2 <- merge(dat1, labdat, by.x = 'id', by.y = 'ID')
+dat2
+```
+
+### Task 2
+Did you notice that in the resulting `dat2` we now have the two variables
+`center.x` and `center.y`, and that we have a variable `id.y`
+(which is the sample number from `labdat`)?
+
+Moreover, there are two time variables: `time` (from `dat1`) and `labtime` 
+(from `labdat`).
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Re-do the merge of `dat1` and `labdat` taking into account the following points
+
+* merge by patient identifier and time of measurement
+* make sure there is only one "center" variable
+* give the sample numer (`id.y`) a more informative suffix
+```{r, echo = FALSE, results = 'asis'}
+hint("Use the arguments `by.x` and `by.y`.")
+```
+```{r, echo = FALSE, results = 'asis'}
+hint("Use the argument `suffixes`.")
+```
+</div>
+
+### Solution 2
+```{r}
+dat3 <- merge(dat1, labdat, 
+              by.x = c('id', 'center', 'time'),
+              by.y = c('ID', 'center', 'labtime'),
+              suffixes = c('_base_FU', '_lab'))
+```
+
+**Note:**<br>
+Here it does not actually matter how we specify the first element of the argument
+`suffixes` because it is not used.
+
+### Task 3
+You can notice that the merged `dat3` now only contains very few rows.
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+* Can you explain what happened?
+* Re-do the last merge so that the resulting dataset has the maximal number of rows. 
+```{r, echo = FALSE, results = 'asis'}
+hint("You need to use the argument `all`.")
+```
+
+</div>
+
+### Solution 3
+By default, the argument `all` is set to `FALSE`. This means that only those 
+rows are kept that have identical entries for all merging variables
+in both datasets.
+Only a few values of `time` and `labtime` are identical.
+
+When we set `all = TRUE` all rows will be kept.
+Where `time` and `labtime` do not match, two rows are created and `NA` is filled in.
+```{r}
+dat4 <- merge(dat1, labdat, 
+              by.x = c('id', 'center', 'time'),
+              by.y = c('ID', 'center', 'labtime'),
+              suffixes = c('_base_FU', '_lab'), all = TRUE)
+dat4
+```
+

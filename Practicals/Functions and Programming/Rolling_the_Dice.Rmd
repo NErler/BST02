@@ -1,0 +1,174 @@
+---
+title: 'Rolling the Dice'
+output: 
+  html_document:
+    code_folding: show
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+    number_sections: false
+    theme: spacelab
+    highlight: tango
+    includes:
+      after_body: ../footerNE.html
+    css: ../style.css
+---
+
+
+<link href="../fontawesome-free-5.12.0-web/css/all.css" rel="stylesheet"> <!--load all styles -->
+
+```{r setup, include = FALSE}
+library(knitr)
+library(kableExtra)
+
+opts_chunk$set(echo = TRUE)
+
+hint <- function(text) {
+  id <- paste0('hint_', sample.int(1e10, size = 1))
+    cat(
+    paste0('\n',
+      '<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" ',
+      'data-target="#', id, '">Hint</button>',
+      '<div id = "', id, '" class="collapse" style="border:1px; ',
+      'border-style:solid; padding: 1em; border-color:#1F78B4">',
+      text, '</div>')
+  )
+}
+```
+
+
+
+In this practical we will write a simple function that simulates rolling one or
+more dice.
+
+
+
+## The function `sample()`
+The function `sample` allows us to draw values from a given set of values, 
+with or without replacement.
+
+It has arguments
+
+* `x`: a vector of values to draw from
+* `size`: the number of values to draw
+* `replace`: can we choose the same element of `x` multiple times?
+* `prob`: a vector of probability weights (by default all elements of `x` have equal probability to be drawn)
+
+## One die <i class="fas fa-dice-five"></i> {.tabset .tabset-pills .tabset-fade}
+### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+
+Write the syntax to simulate a single role of a die using the function `sample()`.
+```{r, echo = FALSE, results = 'asis'}
+hint("You need to specify the arguments `x` and `size`.")
+```
+</div>
+
+### Solution 1
+```{r}
+sample(1:6, size = 1)
+```
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Write your own function that simulates this one role of a die.
+```{r, echo = FALSE, results = 'asis'}
+hint('The general form of a function is<br>
+     `<function name> <- function ( <arguments> ) {`<br>
+      &nbsp;&nbsp;`<function body>`<br>
+     `}`')
+```
+</div>
+
+### Solution 2
+```{r}
+die <- function() {
+  sample(1:6, size = 1)
+}
+
+die()
+die()
+die()
+```
+
+## Multiple dice <i class="fas fa-dice"></i> {.tabset .tabset-pills .tabset-fade}
+### Task 1 
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Take another look at the description of the function `sample()`. How would 
+you need to change the syntax from **Task 1** from above to simulate rolling
+two dice?
+```{r, echo = FALSE, results = 'asis'}
+hint('You need to change what is passed to the argument `size` and you need
+to specify the argument `replace`.')
+```
+</div>
+
+### Solution 1
+```{r}
+sample(1:6, size = 2, replace = TRUE)
+```
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+
+* Write another function that simulates rolling multiple dice.
+* Write the function so that the number of dice is flexible.
+```{r, echo = FALSE, results = 'asis'}
+hint('This new function needs to have an argument that can be passed to `sample`().')
+```
+
+</div>
+
+### Solution 2
+```{r}
+dice <- function(n) {
+  sample(1:6, size = n, replace = TRUE)
+}
+
+dice(2)
+dice(1)
+dice(10)
+```
+
+### Task 3
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+* What happens when you use the function `dice()` without specifying the argument
+`n`?
+* Do you know or can you guess why that happens?
+</div>
+
+### Solution 3
+```{r}
+dice()
+```
+
+By default, the function `dice()` will role 6 dice.
+
+This is due to the behaviour of the function `sample()`. In the help file
+for `sample()` we can read in the section **Details**
+
+> For sample the default for size is the number of items inferred from the first
+argument, so that `sample(x)` generates a random permutation of the elements of
+`x` (or `1:x`).
+
+**What can we learn from this?**
+
+* Read the help files!
+* Think about / try what will happen if "wrong" input is given to your function!
+
+### Task 4
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Re-write the function `dice()` so that by default only one die is used.
+</div>
+
+### Solution 4
+```{r}
+dice <- function(n = 1) {
+  sample(1:6, size = n, replace = TRUE)
+}
+
+dice()
+dice()
+```
+
