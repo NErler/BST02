@@ -2,4 +2,4 @@
 title: Statistics with R
 ---
 
- *  [[html]](/practical/Statistics with R/.html)
+ * Linear Regression [[html]](/practical/Statistics_with_R/Linear_Regression.html)

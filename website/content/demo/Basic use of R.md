@@ -2,10 +2,10 @@
 title: Basic use of R
 ---
 
- * 01BasicR [[R]](/demo/Basic use of R/01BasicR.R) [[html]](/demo/Basic use of R/01BasicR.html)
- * 02CommonRobjects [[R]](/demo/Basic use of R/02CommonRobjects.R) [[html]](/demo/Basic use of R/02CommonRobjects.html)
- * 03ImportingSaving [[R]](/demo/Basic use of R/03ImportingSaving.R) [[html]](/demo/Basic use of R/03ImportingSaving.html)
- * 04DataTransformation [[R]](/demo/Basic use of R/04DataTransformation.R) [[html]](/demo/Basic use of R/04DataTransformation.html)
- * 05DataExploration [[R]](/demo/Basic use of R/05DataExploration.R) [[html]](/demo/Basic use of R/05DataExploration.html)
- * 06DataVisualization [[R]](/demo/Basic use of R/06DataVisualization.R) [[html]](/demo/Basic use of R/06DataVisualization.html)
- * 07IndexingSudsetting [[R]](/demo/Basic use of R/07IndexingSudsetting.R) [[html]](/demo/Basic use of R/07IndexingSudsetting.html)
+ * 01 Basic R [[R]](/demo/Basic_use_of_R/01_Basic_R.R) [[html]](/demo/Basic_use_of_R/01_Basic_R.html)
+ * 02 Common R objects [[R]](/demo/Basic_use_of_R/02_Common_R_objects.R) [[html]](/demo/Basic_use_of_R/02_Common_R_objects.html)
+ * 03 Importing Saving [[R]](/demo/Basic_use_of_R/03_Importing_Saving.R) [[html]](/demo/Basic_use_of_R/03_Importing_Saving.html)
+ * 04 Data Transformation [[R]](/demo/Basic_use_of_R/04_Data_Transformation.R) [[html]](/demo/Basic_use_of_R/04_Data_Transformation.html)
+ * 05 Data Exploration [[R]](/demo/Basic_use_of_R/05_Data_Exploration.R) [[html]](/demo/Basic_use_of_R/05_Data_Exploration.html)
+ * 06 Data Visualization [[R]](/demo/Basic_use_of_R/06_Data_Visualization.R) [[html]](/demo/Basic_use_of_R/06_Data_Visualization.html)
+ * 07 Indexing Subsetting [[R]](/demo/Basic_use_of_R/07_Indexing_Subsetting.R) [[html]](/demo/Basic_use_of_R/07_Indexing_Subsetting.html)

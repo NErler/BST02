@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>BST02: Using R for Statistics in Medical Research</title>
@@ -29,7 +29,7 @@ Some more info&amp;hellip;</description>
       <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/about/</guid>
-      <description>Dr. Eleni-Rosalina Andrinopoulou Dr. Nicole Erler  Assistant Professor Postdoctoral Researcher  Department of Biostatistics Department of Biostatistics  Erasmus Medical Center Erasmus Medical Center  Rotterdam, The Netherlands Rotterdam, The Netherlands              </description>
+      <description></description>
     </item>
     
     <item>
@@ -47,7 +47,7 @@ Some more info&amp;hellip;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/basic-use-of-r/</guid>
-      <description> 01BasicR [R] [html] 02CommonRobjects [R] [html] 03ImportingSaving [R] [html] 04DataTransformation [R] [html] 05DataExploration [R] [html] 06DataVisualization [R] [html] 07IndexingSudsetting [R] [html]  </description>
+      <description> 01 Basic R [R] [html] 02 Common R objects [R] [html] 03 Importing Saving [R] [html] 04 Data Transformation [R] [html] 05 Data Exploration [R] [html] 06 Data Visualization [R] [html] 07 Indexing Subsetting [R] [html]  </description>
     </item>
     
     <item>
@@ -60,30 +60,21 @@ Some more info&amp;hellip;</description>
     </item>
     
     <item>
-      <title>ExamplePractical</title>
-      <link>https://nerler.github.io/BST02/practical/examplepractical/</link>
+      <title>Functions and Programming</title>
+      <link>https://nerler.github.io/BST02/demo/functions-and-programming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/practical/examplepractical/</guid>
-      <description> MImice [html]  </description>
+      <guid>https://nerler.github.io/BST02/demo/functions-and-programming/</guid>
+      <description> 01TheApplyFamily [R] [html] 02ExtraProgrammingExamples [R] [html] Demo Functions01 [R] [html] Functions for Data Exploration [R] [html] Functions for Data Manipulation [R] [html]  </description>
     </item>
     
     <item>
-      <title>Functions and Loops</title>
-      <link>https://nerler.github.io/BST02/demo/functions-and-loops/</link>
+      <title>Functions and Programming</title>
+      <link>https://nerler.github.io/BST02/practical/functions-and-programming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/demo/functions-and-loops/</guid>
-      <description> Demo Functions01 [R] [html] Functions for Data Exploration [R] [html] Functions for Data Manipulation [R] [html]  </description>
-    </item>
-    
-    <item>
-      <title>Functions and Loops</title>
-      <link>https://nerler.github.io/BST02/practical/functions-and-loops/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://nerler.github.io/BST02/practical/functions-and-loops/</guid>
-      <description> Exploring and Summarizing Data [html] SayHello [html]  </description>
+      <guid>https://nerler.github.io/BST02/practical/functions-and-programming/</guid>
+      <description> Exploring and Summarizing Data [html] ExtraProgrammingExamples [html] Merging Datasets [html] Rolling the Dice [html] SayHello [html] TheApplyFamily [html]  </description>
     </item>
     
     <item>
@@ -101,7 +92,7 @@ Some more info&amp;hellip;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/statistics-with-r/</guid>
-      <description> Statistical Tests [R] [html]  </description>
+      <description> Regression [R] [html] Statistical Tests [R] [html]  </description>
     </item>
     
     <item>
@@ -110,25 +101,7 @@ Some more info&amp;hellip;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/practical/statistics-with-r/</guid>
-      <description> [html]  </description>
-    </item>
-    
-    <item>
-      <title>The Apply Family</title>
-      <link>https://nerler.github.io/BST02/demo/the-apply-family/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://nerler.github.io/BST02/demo/the-apply-family/</guid>
-      <description> 01TheApplyFamily [R] [html] 02ExtraProgrammingExamples [R] [html]  </description>
-    </item>
-    
-    <item>
-      <title>TheApplyFamily</title>
-      <link>https://nerler.github.io/BST02/practical/theapplyfamily/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://nerler.github.io/BST02/practical/theapplyfamily/</guid>
-      <description> ExtraProgrammingExamples [html] TheApplyFamily [html]  </description>
+      <description> Linear Regression [html]  </description>
     </item>
     
   </channel>
