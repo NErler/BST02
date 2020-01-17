@@ -2,10 +2,12 @@
   <ul class="pure-menu-list">
 
 <!--
-    {{ if .RSSLink }}
+    {{ if .Params.social.rss }}
+    {{ with .OutputFormats.Get "RSS" }}
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="{{ .RSSLink }}"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      <a class="pure-menu-link" href="{{ .RelPermalink }}"><i class="fa fa-rss fa-fw"></i>RSS</a>
     </li>
+    {{ end }}
     {{ end }}
  -->
     <!-- SNS microblogging -->
