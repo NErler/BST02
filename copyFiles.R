@@ -1,5 +1,7 @@
 # helpfunction
 write_Demos_md <- function(x) {
+  xnew <- gsub(' ', '_', x)
+  
   files <- unique(gsub('.R$|.html$', '', 
                        dir(file.path(getwd(), 'Demos', x))))
   
@@ -11,16 +13,20 @@ write_Demos_md <- function(x) {
     ),
     paste0(
       "* ", filenames,
-      " [[R]](/demo/", x, "/", files, ".R)",
-      " [[html]](/demo/", x, "/", files, ".html)",
+      " [[R]](/demo/", xnew, "/", files, ".R)",
+      " [[html]](/demo/", xnew, "/", files, ".html)",
       "\n"
     ), file = paste0('website/content/demo/', x, '.md')
   )
 }
 
 write_Practicals_md <- function(x) {
-  files <- unique(gsub('.Rmd$|.html$', '', 
-                       dir(file.path(getwd(), 'Practicals', x))))
+  xnew <- gsub(' ', '_', x)
+  
+  files <- gsub('.Rmd$', '',
+                grep('.Rmd$', dir(file.path(getwd(), 'Practicals', x)),
+                     value = TRUE)
+  )
   
   filenames <- gsub("\\_", " ", files)
   cat(
@@ -30,7 +36,7 @@ write_Practicals_md <- function(x) {
     ),
     paste0(
       "* ", filenames,
-      " [[html]](/practical/", x, "/", files, ".html)",
+      " [[html]](/practical/", xnew, "/", files, ".html)",
       "\n"
     ), file = paste0('website/content/practical/', x, '.md')
   )
@@ -40,17 +46,22 @@ write_Practicals_md <- function(x) {
 ## Demos
 ################################################################################
 # Render all R files in Demos to html
-for (x in dir('Demos')) {
-  Rfiles <- grep('.R$', dir(file.path('Demos', x)), value = TRUE)
-  sapply(file.path('Demos', x, Rfiles), rmarkdown::render)
+for (xxx in dir('Demos')) {
+  Rfiles <- grep('.R$', dir(file.path('Demos', xxx)), value = TRUE)
+  sapply(file.path('Demos', xxx, Rfiles), rmarkdown::render)
 }
 
 
+# remove content of website/content/demo and website/static/demo
+unlink('website/content/demo/*')
+unlink('website/static/demo/*', recursive = TRUE)
+
 # Copy all files in folder Demos to the corresponding folders in website/static/demo
 for (x in dir('Demos')) {
-  dir.create(file.path('website/static/demo', x))
+  xnew <- gsub(' ', '_', x)
+  dir.create(file.path('website/static/demo', xnew))
   file.copy(from = dir(file.path(getwd(), 'Demos', x), full.names = TRUE),
-            to = file.path('website/static/demo', x),
+            to = file.path('website/static/demo', xnew),
             overwrite = TRUE)
   
   write_Demos_md(x)
@@ -66,16 +77,24 @@ for (x in list.dirs('Practicals', recursive = FALSE)) {
   sapply(file.path(x, Rmd_files), rmarkdown::render)
 }
 
+
+# remove content of website/content/practical and website/static/practical
+unlink('website/content/practical/*')
+unlink('website/static/practical/*', recursive = TRUE)
+
 # Copy all .html files in folder Practicals to the corresponding folders in website/static/practical
 for (x in list.dirs('Practicals', recursive = FALSE)) {
   x <- gsub('Practicals/', '', x)
-  dir.create(file.path('website/static/practical', x))
+  
+  xnew <- gsub(' ', '_', x)
+  
+  dir.create(file.path('website/static/practical', xnew))
   
   html_files <- grep('.html$', dir(file.path(getwd(), 'Practicals', x),
                                    full.names = TRUE), value = TRUE)
   
   file.copy(from = html_files,
-            to = file.path('website/static/practical', x),
+            to = file.path('website/static/practical', xnew),
             overwrite = TRUE)
   
   write_Practicals_md(x)
