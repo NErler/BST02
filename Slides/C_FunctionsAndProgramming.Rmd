@@ -266,10 +266,9 @@ class(class)
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.47\linewidth}
-\begin{block}{Demos}
+\begin{block}{Demo}
 \begin{itemize}
-\item Name of the demo 
-\item Name of demo 
+\item Functions for Data Manipulation \button{link to R file}{R} \button{link to html file}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -277,8 +276,7 @@ class(class)
 \begin{column}{0.47\linewidth}
 \begin{block}{Practicals}
 \begin{itemize}
-\item Name of practical \button{link to html file}{html}
-\item Name of practical \button{link to html file}{html}
+\item Merging Data \button{link to html file}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -287,7 +285,7 @@ class(class)
 
 ## Useful functions for Data Manipulation
 \begin{columns}[onlytextwidth,T]
-\begin{column}{0.35\linewidth}
+\begin{column}{0.4\linewidth}
 \blue{Transformations}
 \begin{itemize}\vspace*{-0.5ex}
 \item \texttt{log()}, \texttt{log2()}, \texttt{log10()}
@@ -307,24 +305,7 @@ class(class)
 \end{itemize}
 \end{column}
 
-\begin{column}{0.35\linewidth}
-\blue{repetition \& sequence}
-\begin{itemize}\vspace*{-0.5ex}
-\item \texttt{rep()}, \texttt{seq()}
-\item \texttt{expand.grid()}
-\end{itemize}
-
-\bigskip
-
-\blue{Transformation for objects}
-\begin{itemize}
-\item \texttt{t()}
-\item \texttt{unlist()}, \texttt{unname()}
-\item \texttt{as.numeric()}, \texttt{as.matrix()}, \texttt{as.data.frame()}
-\end{itemize}
-\end{column}
-
-\begin{column}{0.3\linewidth}
+\begin{column}{0.45\linewidth}
 \blue{Sorting}
 \begin{itemize}\vspace*{-0.5ex}
 \item \texttt{sort()}, \texttt{order()}, \texttt{rev()}, \texttt{rank()}
@@ -332,13 +313,18 @@ class(class)
 
 \bigskip
 
-\blue{matrices}
+\blue{Repetition \& Sequence}
 \begin{itemize}\vspace*{-0.5ex}
-\item \texttt{\%*\%}
-\item \texttt{diag()}, \texttt{det()}, \texttt{solve()}
-\item \texttt{upper.tri()}, \texttt{lower.tri()}
+\item \texttt{rep()}, \texttt{seq()}
+\item \texttt{expand.grid()}
 \end{itemize}
 
+\blue{Converting Objects}
+\begin{itemize}
+\item \texttt{t()}
+\item \texttt{unlist()}, \texttt{unname()}
+\item \texttt{as.numeric()}, \texttt{as.matrix()}, \texttt{as.data.frame()}
+\end{itemize}
 \end{column}
 \end{columns}
 
@@ -349,6 +335,8 @@ myfun <- function(arguments) {
   syntax
 }
 ```
+
+\pause
 
 For example:
 ```{r}
@@ -390,6 +378,15 @@ subtract(x = 5.2, y = 3.3)
 Multiple arguments are interpretet in the pre-defined order, unless they are named:
 ```{r}
 subtract(5.2, 1.2)
+```
+is equivalent to
+```{r}
+subtract(x = 5.2, y = 1.2)
+```
+
+\pause
+But this is different:
+```{r}
 subtract(y = 5.2, x = 1.2)
 ```
 
@@ -409,10 +406,23 @@ multiply(x = 3)
 
 
 ## Writing Functions
-Link to Demo
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demo}
+\begin{itemize}
+\item (demo???) \button{link to R file}{R} \button{link to html file}{html}
+\end{itemize}
+\end{block}
+\end{column}
 
-Link to Practical
-
+\begin{column}{0.47\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Rolling the Dice \button{https://nerler.github.io/BST02/practical/Functions and Programming/Rolling_the_Dice.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
 
 ## Control-flow constructs
 
