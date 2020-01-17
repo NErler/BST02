@@ -1,3 +1,4 @@
+
 # Notes
 
 * Explain difference between `Error`, `Warning` and `Message`?
@@ -20,9 +21,9 @@
 
 ## Part C: Functions
 ### Functions for exploring data
-* Have the students already practiced subsetting in Part B? Yes
-* Should `subset()` go into Part B (subsetting) or Part C (functions)? Part C
-* Do we really need the matrix algebra? No
+* <div style = "color:lightgrey">Have the students already practiced subsetting in Part B? Yes</div>
+* <div style = "color:lightgrey">Should `subset()` go into Part B (subsetting) or Part C (functions)? Part C</div>
+* <div style = "color:lightgrey">Do we really need the matrix algebra? No</div>
 * Add a section for creating objects (`matrix`, `data.frame`, ...)
 * For practical "Summarizing Data" students need to know the functions `factor()`, 
   `sqrt()` and `^`. Nicole: `sqrt()` need to be explained in Functions
