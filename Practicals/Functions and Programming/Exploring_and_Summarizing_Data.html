@@ -2621,9 +2621,9 @@ window.onload = function() {
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -2633,16 +2633,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -2651,9 +2649,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  background-color: #f8f8f8; }
+  { background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -2957,14 +2955,9 @@ div.tocify {
 <h2>Dataset</h2>
 <p>For this practical, we will use the <strong>lung</strong> dataset from the <strong>survival</strong> package.</p>
 <p>You can either load the survival package to get access to this dataset</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(survival)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;survival&#39;</code></pre>
-<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
-## 
-##     lung</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(survival)</a></code></pre></div>
 <p>or make a copy of this data</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>lung &lt;-<span class="st"> </span>survival<span class="op">::</span>lung</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">lung &lt;-<span class="st"> </span>survival<span class="op">::</span>lung</a></code></pre></div>
 </div>
 <div id="getting-to-know-the-data" class="section level2">
 <h2>Getting to know the data</h2>
@@ -2974,21 +2967,21 @@ div.tocify {
 <h4>Taks</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Find out the class and dimension of the <strong>lung</strong> data.</p>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_2386718673">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_6054280476">
 Hint
 </button>
-<div id="hint_2386718673" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_6054280476" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the functions <code>class()</code>, <code>dim()</code>, <code>nrow()</code> and <code>ncol()</code>.
 </div>
 </div>
 </div>
 <div id="solution" class="section level4">
 <h4>Solution</h4>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">dim</span>(lung)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">dim</span>(lung)</a></code></pre></div>
 <pre><code>## [1] 228  10</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">nrow</span>(lung)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">nrow</span>(lung)</a></code></pre></div>
 <pre><code>## [1] 228</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">ncol</span>(lung)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">ncol</span>(lung)</a></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 </div>
 </div>
@@ -3003,26 +2996,26 @@ Use the functions <code>class()</code>, <code>dim()</code>, <code>nrow()</code> 
 <li>What types of variables are these?</li>
 <li>Are there missing values</li>
 </ul>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_3375130215">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_7694938038">
 Hint
 </button>
-<div id="hint_3375130215" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_7694938038" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the functions <code>str()</code>, <code>head()</code>, <code>names()</code> and <code>summary()</code>.
 </div>
 </div>
 </div>
 <div id="solution-1" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">head</span>(lung)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">head</span>(lung)</a></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["inst"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["time"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["status"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["age"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["ph.ecog"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["ph.karno"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["pat.karno"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["meal.cal"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["wt.loss"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"306","3":"2","4":"74","5":"1","6":"1","7":"90","8":"100","9":"1175","10":"NA","_rn_":"1"},{"1":"3","2":"455","3":"2","4":"68","5":"1","6":"0","7":"90","8":"90","9":"1225","10":"15","_rn_":"2"},{"1":"3","2":"1010","3":"1","4":"56","5":"1","6":"0","7":"90","8":"90","9":"NA","10":"15","_rn_":"3"},{"1":"5","2":"210","3":"2","4":"57","5":"1","6":"1","7":"90","8":"60","9":"1150","10":"11","_rn_":"4"},{"1":"1","2":"883","3":"2","4":"60","5":"1","6":"0","7":"100","8":"90","9":"NA","10":"0","_rn_":"5"},{"1":"12","2":"1022","3":"1","4":"74","5":"1","6":"1","7":"50","8":"80","9":"513","10":"0","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">names</span>(lung)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">names</span>(lung)</a></code></pre></div>
 <pre><code>##  [1] &quot;inst&quot;      &quot;time&quot;      &quot;status&quot;    &quot;age&quot;       &quot;sex&quot;       &quot;ph.ecog&quot;   &quot;ph.karno&quot;  &quot;pat.karno&quot;
 ##  [9] &quot;meal.cal&quot;  &quot;wt.loss&quot;</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">str</span>(lung)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">str</span>(lung)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    228 obs. of  10 variables:
 ##  $ inst     : num  3 3 3 5 1 12 7 11 1 7 ...
 ##  $ time     : num  306 455 1010 210 883 ...
@@ -3043,10 +3036,10 @@ Use the functions <code>str()</code>, <code>head()</code>, <code>names()</code> 
 <li>Do you think some of them should be factores?</li>
 <li>Explore how many distrinct values the variables have that may not actually be continuous.</li>
 </ul>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8709527186">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8864652484">
 Hint
 </button>
-<div id="hint_8709527186" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_8864652484" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 The functions <code>unique()</code>, <code>table()</code> and <code>length()</code> are useful here.
 </div>
 </div>
@@ -3058,24 +3051,24 @@ The functions <code>unique()</code>, <code>table()</code> and <code>length()</co
 <li>Also <code>inst</code>, <code>ph.karno</code>, <code>pat.karno</code>, and <code>wt.loss</code> could be categorical.</li>
 </ul>
 <p>To confirm that <code>status</code>, <code>sex</code> and <code>ph.ecog</code> only have very few levels, <code>unique()</code> or <code>table()</code> can be used:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">unique</span>(lung<span class="op">$</span>status)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">unique</span>(lung<span class="op">$</span>status)</a></code></pre></div>
 <pre><code>## [1] 2 1</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">table</span>(lung<span class="op">$</span>sex, <span class="dt">exclude =</span> <span class="ot">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">table</span>(lung<span class="op">$</span>sex, <span class="dt">exclude =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <pre><code>## 
 ##   1   2 
 ## 138  90</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">table</span>(lung<span class="op">$</span>ph.ecog, <span class="dt">exclude =</span> <span class="ot">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">table</span>(lung<span class="op">$</span>ph.ecog, <span class="dt">exclude =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <pre><code>## 
 ##    0    1    2    3 &lt;NA&gt; 
 ##   63  113   50    1    1</code></pre>
 <p>To prevent lengthy output for the other variables we could first check how many different vaues there are:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">length</span>(<span class="kw">unique</span>(lung<span class="op">$</span>inst))</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">length</span>(<span class="kw">unique</span>(lung<span class="op">$</span>inst))</a></code></pre></div>
 <pre><code>## [1] 19</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">length</span>(<span class="kw">unique</span>(lung<span class="op">$</span>ph.karno))</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">length</span>(<span class="kw">unique</span>(lung<span class="op">$</span>ph.karno))</a></code></pre></div>
 <pre><code>## [1] 7</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">length</span>(<span class="kw">unique</span>(lung<span class="op">$</span>pat.karno))</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">length</span>(<span class="kw">unique</span>(lung<span class="op">$</span>pat.karno))</a></code></pre></div>
 <pre><code>## [1] 9</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">length</span>(<span class="kw">unique</span>(lung<span class="op">$</span>wt.loss))</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">length</span>(<span class="kw">unique</span>(lung<span class="op">$</span>wt.loss))</a></code></pre></div>
 <pre><code>## [1] 54</code></pre>
 </div>
 </div>
@@ -3092,55 +3085,55 @@ The functions <code>unique()</code>, <code>table()</code> and <code>length()</co
 <li>Use meaningful factor labels for <code>status</code> (1 = censored, 2 = dead) and <code>sex</code> (1 = male, 2 = female).</li>
 <li>Check that the resulting variables are indeed of class <code>factor</code> and that they have the correct levels.</li>
 </ul>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_7384560330">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_5240042957">
 Hint
 </button>
-<div id="hint_7384560330" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_5240042957" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the function <code>factor()</code>.
 </div>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1632539203">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_3685033150">
 Hint
 </button>
-<div id="hint_1632539203" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_3685033150" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 To make sure that the correct categories get the correct labels, specify not only the argument <code>labels</code>, but also <code>levels</code>.
 </div>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4929172686">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1272479682">
 Hint
 </button>
-<div id="hint_4929172686" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_1272479682" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 To check the class, use the function <code>class()</code>. To check levels, you can either use <code>levels()</code> or use a <code>table()</code>.
 </div>
 </div>
 </div>
 <div id="solution-3" class="section level4">
 <h4>Solution</h4>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># For ph.ecog, just convert to a factor</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a>lung<span class="op">$</span>ph.ecog &lt;-<span class="st"> </span><span class="kw">factor</span>(lung<span class="op">$</span>ph.ecog)</span>
-<span id="cb30-3"><a href="#cb30-3"></a></span>
-<span id="cb30-4"><a href="#cb30-4"></a><span class="co"># For the other two, use levels and labels</span></span>
-<span id="cb30-5"><a href="#cb30-5"></a>lung<span class="op">$</span>sex &lt;-<span class="st"> </span><span class="kw">factor</span>(lung<span class="op">$</span>sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;male&#39;</span>, <span class="st">&#39;female&#39;</span>))</span>
-<span id="cb30-6"><a href="#cb30-6"></a>lung<span class="op">$</span>status &lt;-<span class="st"> </span><span class="kw">factor</span>(lung<span class="op">$</span>status, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;censored&#39;</span>, <span class="st">&#39;dead&#39;</span>))</span>
-<span id="cb30-7"><a href="#cb30-7"></a></span>
-<span id="cb30-8"><a href="#cb30-8"></a><span class="co"># Confirm the class, either with</span></span>
-<span id="cb30-9"><a href="#cb30-9"></a><span class="kw">class</span>(lung<span class="op">$</span>ph.ecog)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># For ph.ecog, just convert to a factor</span></a>
+<a class="sourceLine" id="cb28-2" title="2">lung<span class="op">$</span>ph.ecog &lt;-<span class="st"> </span><span class="kw">factor</span>(lung<span class="op">$</span>ph.ecog)</a>
+<a class="sourceLine" id="cb28-3" title="3"></a>
+<a class="sourceLine" id="cb28-4" title="4"><span class="co"># For the other two, use levels and labels</span></a>
+<a class="sourceLine" id="cb28-5" title="5">lung<span class="op">$</span>sex &lt;-<span class="st"> </span><span class="kw">factor</span>(lung<span class="op">$</span>sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;male&#39;</span>, <span class="st">&#39;female&#39;</span>))</a>
+<a class="sourceLine" id="cb28-6" title="6">lung<span class="op">$</span>status &lt;-<span class="st"> </span><span class="kw">factor</span>(lung<span class="op">$</span>status, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;censored&#39;</span>, <span class="st">&#39;dead&#39;</span>))</a>
+<a class="sourceLine" id="cb28-7" title="7"></a>
+<a class="sourceLine" id="cb28-8" title="8"><span class="co"># Confirm the class, either with</span></a>
+<a class="sourceLine" id="cb28-9" title="9"><span class="kw">class</span>(lung<span class="op">$</span>ph.ecog)</a></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">class</span>(lung<span class="op">$</span>sex)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">class</span>(lung<span class="op">$</span>sex)</a></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">class</span>(lung<span class="op">$</span>status)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">class</span>(lung<span class="op">$</span>status)</a></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="co"># or just use (str(lung))</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a> </span>
-<span id="cb36-3"><a href="#cb36-3"></a><span class="kw">levels</span>(lung<span class="op">$</span>ph.ecog)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># or just use (str(lung))</span></a>
+<a class="sourceLine" id="cb34-2" title="2"> </a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="kw">levels</span>(lung<span class="op">$</span>ph.ecog)</a></code></pre></div>
 <pre><code>## [1] &quot;0&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">table</span>(lung<span class="op">$</span>ph.ecog)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">table</span>(lung<span class="op">$</span>ph.ecog)</a></code></pre></div>
 <pre><code>## 
 ##   0   1   2   3 
 ##  63 113  50   1</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="kw">table</span>(lung<span class="op">$</span>sex)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">table</span>(lung<span class="op">$</span>sex)</a></code></pre></div>
 <pre><code>## 
 ##   male female 
 ##    138     90</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="kw">table</span>(lung<span class="op">$</span>status)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="kw">table</span>(lung<span class="op">$</span>status)</a></code></pre></div>
 <pre><code>## 
 ## censored     dead 
 ##       63      165</code></pre>
@@ -3159,7 +3152,7 @@ To check the class, use the function <code>class()</code>. To check levels, you 
 </div>
 <div id="solution-1-1" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="kw">summary</span>(lung)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="kw">summary</span>(lung)</a></code></pre></div>
 <pre><code>##       inst            time             status         age            sex      ph.ecog   
 ##  Min.   : 1.00   Min.   :   5.0   censored: 63   Min.   :39.00   male  :138   0   : 63  
 ##  1st Qu.: 3.00   1st Qu.: 166.8   dead    :165   1st Qu.:56.00   female: 90   1   :113  
@@ -3184,36 +3177,36 @@ To check the class, use the function <code>class()</code>. To check levels, you 
 <li>Calculate each of the values of this summary for the variables <code>ph.karno</code> and <code>ph.ecog</code> “by hand” (i.e., using other functions).</li>
 <li>Also calculate the inter-quartile range for <code>ph.karno</code>.</li>
 </ul>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_147726308">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1829752101">
 Hint
 </button>
-<div id="hint_147726308" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_1829752101" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 You can use the functions <code>min()</code>, <code>max()</code>, <code>quantile()</code> for the continuous variable (but there are other options), and <code>table()</code> for the categorical variable.
 </div>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8398961025">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_7808063169">
 Hint
 </button>
-<div id="hint_8398961025" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_7808063169" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 There are missin values in both variables: remember to set <code>na.rm = TRUE</code> or <code>exclude = NULL</code>.
 </div>
 </div>
 </div>
 <div id="solution-2-1" class="section level4">
 <h4>Solution 2</h4>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="kw">min</span>(lung<span class="op">$</span>ph.karno, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">min</span>(lung<span class="op">$</span>ph.karno, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] 50</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="kw">max</span>(lung<span class="op">$</span>ph.karno, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">max</span>(lung<span class="op">$</span>ph.karno, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] 100</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="co"># alternatively: range(lung$ph.karno, na.rm = TRUE)</span></span>
-<span id="cb50-2"><a href="#cb50-2"></a></span>
-<span id="cb50-3"><a href="#cb50-3"></a><span class="kw">quantile</span>(lung<span class="op">$</span>ph.karno, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># alternatively: range(lung$ph.karno, na.rm = TRUE)</span></a>
+<a class="sourceLine" id="cb48-2" title="2"></a>
+<a class="sourceLine" id="cb48-3" title="3"><span class="kw">quantile</span>(lung<span class="op">$</span>ph.karno, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 25% 50% 75% 
 ##  75  80  90</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="co"># alternatively: median(lung$ph.karno, na.rm = TRUE)</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a></span>
-<span id="cb52-3"><a href="#cb52-3"></a><span class="kw">IQR</span>(lung<span class="op">$</span>ph.karno, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co"># alternatively: median(lung$ph.karno, na.rm = TRUE)</span></a>
+<a class="sourceLine" id="cb50-2" title="2"></a>
+<a class="sourceLine" id="cb50-3" title="3"><span class="kw">IQR</span>(lung<span class="op">$</span>ph.karno, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] 15</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="kw">table</span>(lung<span class="op">$</span>ph.ecog, <span class="dt">exclude =</span> <span class="ot">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw">table</span>(lung<span class="op">$</span>ph.ecog, <span class="dt">exclude =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <pre><code>## 
 ##    0    1    2    3 &lt;NA&gt; 
 ##   63  113   50    1    1</code></pre>
@@ -3230,35 +3223,35 @@ There are missin values in both variables: remember to set <code>na.rm = TRUE</c
 <li>Check that the standard deviation is indeed the square root of the variance.</li>
 <li>Check that the variance is indeed the square of the standard deviation.</li>
 </ul>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1949134243">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_3343872132">
 Hint
 </button>
-<div id="hint_1949134243" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_3343872132" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the functions <code>sd()</code> and <code>var()</code>.
 </div>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_3771375495">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1102693504">
 Hint
 </button>
-<div id="hint_3771375495" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_1102693504" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 To calculate the square root, use the function <code>sqrt()</code>.
 </div>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4063919843">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4173444096">
 Hint
 </button>
-<div id="hint_4063919843" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_4173444096" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 To calculate the square, use <code>^2</code>.
 </div>
 </div>
 </div>
 <div id="solution-4" class="section level4">
 <h4>Solution</h4>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>cal_sd &lt;-<span class="st"> </span><span class="kw">sd</span>(lung<span class="op">$</span>meal.cal, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>); cal_sd</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">cal_sd &lt;-<span class="st"> </span><span class="kw">sd</span>(lung<span class="op">$</span>meal.cal, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>); cal_sd</a></code></pre></div>
 <pre><code>## [1] 402.1747</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>cal_var &lt;-<span class="st"> </span><span class="kw">var</span>(lung<span class="op">$</span>meal.cal, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>); cal_var</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">cal_var &lt;-<span class="st"> </span><span class="kw">var</span>(lung<span class="op">$</span>meal.cal, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>); cal_var</a></code></pre></div>
 <pre><code>## [1] 161744.5</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="kw">sqrt</span>(cal_var)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="kw">sqrt</span>(cal_var)</a></code></pre></div>
 <pre><code>## [1] 402.1747</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>cal_sd<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">cal_sd<span class="op">^</span><span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1] 161744.5</code></pre>
 </div>
 </div>
@@ -3275,40 +3268,40 @@ To calculate the square, use <code>^2</code>.
 <li>relative to <code>sex</code></li>
 </ul></li>
 </ul>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_9070263376">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1803464785">
 Hint
 </button>
-<div id="hint_9070263376" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_1803464785" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 To get the probabilities, use the function <code>prop.table()</code>.
 </div>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4028554651">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_3511524247">
 Hint
 </button>
-<div id="hint_4028554651" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_3511524247" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the argument <code>margin</code> to specify if the probabilities are relative to the whole sample size or only one of the two variables.
 </div>
 </div>
 </div>
 <div id="solution-1-2" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="co"># 2x2 table of status and sex:</span></span>
-<span id="cb64-2"><a href="#cb64-2"></a>tab &lt;-<span class="st"> </span><span class="kw">table</span>(lung<span class="op">$</span>status, lung<span class="op">$</span>sex)</span>
-<span id="cb64-3"><a href="#cb64-3"></a></span>
-<span id="cb64-4"><a href="#cb64-4"></a><span class="co"># probabilities, relative to the total number of subjects:</span></span>
-<span id="cb64-5"><a href="#cb64-5"></a><span class="kw">prop.table</span>(tab)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co"># 2x2 table of status and sex:</span></a>
+<a class="sourceLine" id="cb62-2" title="2">tab &lt;-<span class="st"> </span><span class="kw">table</span>(lung<span class="op">$</span>status, lung<span class="op">$</span>sex)</a>
+<a class="sourceLine" id="cb62-3" title="3"></a>
+<a class="sourceLine" id="cb62-4" title="4"><span class="co"># probabilities, relative to the total number of subjects:</span></a>
+<a class="sourceLine" id="cb62-5" title="5"><span class="kw">prop.table</span>(tab)</a></code></pre></div>
 <pre><code>##           
 ##                 male    female
 ##   censored 0.1140351 0.1622807
 ##   dead     0.4912281 0.2324561</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="co"># probabilities, relative to sex:</span></span>
-<span id="cb66-2"><a href="#cb66-2"></a><span class="kw">prop.table</span>(tab, <span class="dt">margin =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co"># probabilities, relative to sex:</span></a>
+<a class="sourceLine" id="cb64-2" title="2"><span class="kw">prop.table</span>(tab, <span class="dt">margin =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##           
 ##                 male    female
 ##   censored 0.1884058 0.4111111
 ##   dead     0.8115942 0.5888889</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="co"># Make sure choose the correct margin. When sex is in the rows, you need margin = 1.</span></span>
-<span id="cb68-2"><a href="#cb68-2"></a><span class="co"># Check that the table shows the correct numbers by roughly adding the proportions</span></span>
-<span id="cb68-3"><a href="#cb68-3"></a><span class="co"># per sex in your head.</span></span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co"># Make sure choose the correct margin. When sex is in the rows, you need margin = 1.</span></a>
+<a class="sourceLine" id="cb66-2" title="2"><span class="co"># Check that the table shows the correct numbers by roughly adding the proportions</span></a>
+<a class="sourceLine" id="cb66-3" title="3"><span class="co"># per sex in your head.</span></a></code></pre></div>
 </div>
 <div id="task-2-2" class="section level4">
 <h4>Task 2</h4>
@@ -3318,18 +3311,18 @@ Use the argument <code>margin</code> to specify if the probabilities are relativ
 <li>Experiment with the effect the order of the variables in <code>table()</code> has.</li>
 <li>Convert this 3-dimensional table into a flat table.</li>
 </ul>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_2696774294">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_3482960522">
 Hint
 </button>
-<div id="hint_2696774294" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_3482960522" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 To get a flat table, use <code>ftable()</code>.
 </div>
 </div>
 </div>
 <div id="solution-2-2" class="section level4">
 <h4>Solution 2</h4>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a>tab &lt;-<span class="st"> </span><span class="kw">table</span>(lung<span class="op">$</span>sex, lung<span class="op">$</span>ph.ecog, lung<span class="op">$</span>status, <span class="dt">exclude =</span> <span class="ot">NULL</span>)</span>
-<span id="cb69-2"><a href="#cb69-2"></a>tab</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">tab &lt;-<span class="st"> </span><span class="kw">table</span>(lung<span class="op">$</span>sex, lung<span class="op">$</span>ph.ecog, lung<span class="op">$</span>status, <span class="dt">exclude =</span> <span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb67-2" title="2">tab</a></code></pre></div>
 <pre><code>## , ,  = censored
 ## 
 ##         
@@ -3343,9 +3336,9 @@ To get a flat table, use <code>ftable()</code>.
 ##           0  1  2  3 &lt;NA&gt;
 ##   male   28 54 28  1    1
 ##   female  9 28 16  0    0</code></pre>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="co"># The first variable specifies the rows, the second the columns, and the </span></span>
-<span id="cb71-2"><a href="#cb71-2"></a><span class="co"># third variables the third dimension:</span></span>
-<span id="cb71-3"><a href="#cb71-3"></a><span class="kw">table</span>(lung<span class="op">$</span>ph.ecog, lung<span class="op">$</span>status, lung<span class="op">$</span>sex, <span class="dt">exclude =</span> <span class="ot">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="co"># The first variable specifies the rows, the second the columns, and the </span></a>
+<a class="sourceLine" id="cb69-2" title="2"><span class="co"># third variables the third dimension:</span></a>
+<a class="sourceLine" id="cb69-3" title="3"><span class="kw">table</span>(lung<span class="op">$</span>ph.ecog, lung<span class="op">$</span>status, lung<span class="op">$</span>sex, <span class="dt">exclude =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <pre><code>## , ,  = male
 ## 
 ##       
@@ -3365,8 +3358,8 @@ To get a flat table, use <code>ftable()</code>.
 ##   2           5   16
 ##   3           0    0
 ##   &lt;NA&gt;        0    0</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="co"># Convert to a flat table:</span></span>
-<span id="cb73-2"><a href="#cb73-2"></a><span class="kw">ftable</span>(tab, <span class="dt">exclude =</span> <span class="ot">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co"># Convert to a flat table:</span></a>
+<a class="sourceLine" id="cb71-2" title="2"><span class="kw">ftable</span>(tab, <span class="dt">exclude =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <pre><code>##            censored dead
 ##                         
 ## male   0          8   28
