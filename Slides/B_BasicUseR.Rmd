@@ -237,6 +237,24 @@ x
 ```
 
 
+## Basics in R (cont'd)
+
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Basic R \button{01_Basic_R.R}{R} \button{01_Basic_R.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\end{column}
+\end{columns}
+
+
+
 ## Common R Objects
 
 * There are different kinds of variables
@@ -368,6 +386,25 @@ list1 <- list(vec = c(1:5), mat = pbc[1:2, c("age", "sex")])
 list1
 ```
 
+
+
+## Common R Objects (cont'd)
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Common R Objects \button{02_Common_R_objects.R}{R} \button{02_Common_R_objects.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\end{column}
+\end{columns}
+
+
+
 ## Importing Data and Saving your Work
 
 * \textbf{\textcolor{red}{read.table()}} and its variants
@@ -405,6 +442,22 @@ library(xlsx)
 write.xlsx(mydata, "c:/mydata.xlsx")
 ```
 
+
+
+## Importing Data and Saving your Work (cont'd)
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Importing and Saving \button{03_Importing_Saving.R}{R} \button{03_Importing_Saving.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\end{column}
+\end{columns}
 
 ## Data Transformation
 
@@ -479,6 +532,20 @@ head(pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
 ```  
 
 
+## Data Transformation (cont'd)
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Data Transformation \button{04_Data_Transformation.R}{R} \button{04_Data_Transformation.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\end{column}
+\end{columns}
 
 
 ## Data Exploration
@@ -500,6 +567,23 @@ head(pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
 \vspace*{3ex}  
 
   - Check functions: \textbf{\textcolor{blue}{mean(...)}}, \textbf{\textcolor{blue}{sd(...)}}, \textbf{\textcolor{blue}{percent(...)}}, \textbf{\textcolor{blue}{median(...)}}, \textbf{\textcolor{blue}{IQR(...)}}
+
+
+
+## Data Exploration (cont'd)
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Data Exploration \button{05_Data_Exploration.R}{R} \button{05_Data_Exploration.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\end{column}
+\end{columns}
 
 
 ## Data Visualization
@@ -620,7 +704,24 @@ pbc$status <- factor(pbc$status, levels = c(0, 1, 2), labels = c("censored", "tr
 pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
 ``` 
 
-## Useful functions for Data Manipulation
+
+## Data Visualization (cont'd)
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Data Visualization \button{06_Data_Visualization.R}{R} \button{06_Data_Visualization.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\end{column}
+\end{columns}
+
+
+## Useful Summary: Data manipulation
 
 \begin{columns}[onlytextwidth,T]
 \begin{column}{0.35\linewidth}
@@ -945,7 +1046,7 @@ mylist
 mylist$y
 ```  
 
-## Useful Summary
+## Useful Summary: Indexing/Subsetting
 
 \begin{columns}[onlytextwidth,T]
 \begin{column}{0.5\linewidth}
@@ -985,4 +1086,27 @@ mylist$y
 \end{column}
 
 \end{columns}
+
+
+
+## Useful Summary: Indexing/Subsetting (cont'd)
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Indexing Subsetting \button{07_Indexing_Subsetting.R}{R} \button{07_Indexing_Subsetting.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Basic Use R \button{https://nerler.github.io/BST02/practical/Functions and Programming/Basic_Use_R..html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
 
