@@ -1,0 +1,334 @@
+---
+title: 'Control Flow and Functions'
+output: 
+  html_document:
+    code_folding: show
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+    number_sections: false
+    theme: spacelab
+    highlight: tango
+    includes:
+      after_body: ../footerNE.html
+    css: ../style.css
+---
+
+
+```{r setup, include = FALSE}
+library(knitr)
+library(kableExtra)
+
+opts_chunk$set(echo = TRUE)
+
+hint <- function(text) {
+  id <- paste0('hint_', sample.int(1e10, size = 1))
+    cat(
+    paste0('\n',
+      '<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" ',
+      'data-target="#', id, '">Hint</button>',
+      '<div id = "', id, '" class="collapse" style="border:1px; ',
+      'border-style:solid; padding: 1em; border-color:#1F78B4">',
+      text, '</div>')
+  )
+}
+```
+
+## Data
+For this practical, we simulate data using the following syntax:
+```{r}
+set.seed(2020)
+nrj <- data.frame(sex = factor(sample(c('male', 'female'), size = 100, replace = TRUE)),
+                  kcal = round(rnorm(100, mean = 2200, sd = 250)),
+                  weight = runif(100, min = 45, max = 150),
+                  height = rnorm(100, mean = 170, sd = 10),
+                  age = rnorm(100, mean = 50, sd = 10),
+                  sports = factor(sample(c('never', 'sometimes', 'regularly'),
+                                         size = 100, replace = TRUE), ordered = TRUE)
+)
+```
+
+The first six rows of the resulting `data.frame` are:
+```{r, echo = FALSE}
+head(nrj) %>% 
+  kable(digits = 2) %>% 
+  kable_styling(full_width = FALSE)
+
+```
+
+
+## Calculating the BMR {.tabset .tabset-pills .tabset-fade}
+We want to calculate the Basal Metabolic Rate (BMR) for the individuals in the
+**nrj** data.
+
+The formula differs for men and women:
+
+* men: $(13.75 \times \text{weight}) + (5 \times \text{height}) - (6.76 \times \text{age}) + 66$
+* women: $(9.56 \times \text{weight}) + (1.85 \times \text{height}) - (4.68 \times \text{age}) + 655$
+
+### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Which function would you choose to calculate the BMR? `ifelse()` or `if() ... else ...`?
+</div>
+
+### Solution 1
+Both are possible, but `ifelse()` is more straightforward in this setting (in my opinion).
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Calculate the BMR using `ifelse()` and add it to the dataset as a new variable `BMR1`.
+
+```{r, results = 'asis', echo = FALSE}
+hint('The function `ifelse()` has arguments `test`, `yes` and `no`.')
+hint('You could use `nrj$sex == "male"` as the `test`.')
+```
+
+</div>
+
+### Solution 2
+```{r}
+nrj$BMR1 <- ifelse(nrj$sex == 'male',
+                  13.75 * nrj$weight + 5 * nrj$height − 6.76 * nrj$age + 66,
+                  9.56 * nrj$weight + 1.85 * nrj$height − 4.68 * nrj$age + 655
+)
+
+head(nrj)
+```
+
+### Task 3
+We now want to calculate the BMR using `if() ... else ...`.
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+How is the `condition` used in `if()` different from the `test` used in `ifelse()`?
+</div>
+
+### Solution 3
+The argument `test` in `ifelse()` expects a vector of "tests" (a vector of `TRUE` and `FALSE`)
+while the `condition` argument in `if()` expects a single "test" (a single `TRUE` or `FALSE`).
+
+### Task 4
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+How can we check row by row if a subject is male or female?
+</div>
+
+### Solution 4
+We could use a `for()`-loop that runs through all rows in **nrj**.
+
+### Task  5
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Calculate the BMR using `if() ... else ...` and add it to the **nrj** data as
+a new variable `BMR2`.
+```{r, echo = FALSE, results = 'asis'}
+hint('You need a sequence from 1 to the number of rows of **nrj**.')
+hint('You need to pre-specify (an empty version of) the new variable `BMR2`.')
+hint("Don't forget that you now need to use indices.")
+```
+</div>
+
+### Solution 5
+```{r}
+nrj$BMR2 <- NA
+for (i in 1:nrow(nrj)) {
+  nrj$BMR2[i] <- if (nrj$sex[i] == 'male') {
+    13.75 * nrj$weight[i] + 5 * nrj$height[i] − 6.76 * nrj$age[i] + 66
+  } else {
+    9.56 * nrj$weight[i] + 1.85 * nrj$height[i] − 4.68 * nrj$age[i] + 655
+  }
+}
+```
+
+### Task 6
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Check that `BMR1` and `BMR2` are the same.
+</div>
+
+### Solution 6
+There are multiple possible ways to check this:
+```{r}
+all.equal(nrj$BMR1, nrj$BMR2)
+identical(nrj$BMR1, nrj$BMR2)
+table(nrj$BMR1 == nrj$BMR2)
+summary(nrj$BMR1 - nrj$BMR2)
+```
+
+
+## Data Summary {.tabset .tabset-pills .tabset-fade}
+We would now like to get descriptive statistics of the **nrj** data.
+For continuous variables, we want the mean and standard deviation, for 
+categorical data we want to report the proportion of subjects in each category.
+
+### Task 1
+Remember how to get summary measures?
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+
+* Get the mean and standard deviation of the variable `kcal`.
+* Get the proportion of observations in each category for the variable `sports`.
+```{r, echo = FALSE, results = 'asis'}
+hint('You might use `mean()`, `sd()`, `table()` and `prop.table()`.')
+```
+
+</div>
+
+### Solution 1
+```{r}
+mean(nrj$kcal)
+sd(nrj$kcal)
+
+prop.table(table(nrj$sports))
+```
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Use `paste()` to create some nice-looking output for these summaries:
+
+* "kcal: mean (sd)" for `kcal`
+* "sports: percentage% category 1, percentage% category2, ..."
+
+```{r, echo = FALSE, results = 'asis'}
+hint("Remember: The function `paste()` has arguments `sep` and `collapse`, but you could also use `paste0()`.")
+hint("You might also want to use the function `round()` to reduce the number of
+     digits in the output.")
+```
+
+</div>
+
+### Solution 2
+```{r}
+# for "kcal":
+paste0("kcal: ", round(mean(nrj$kcal), 1), " (", round(sd(nrj$kcal), 1), ")")
+
+
+# for "sports":
+# table of proportions:
+tab <- prop.table(table(nrj$sports))
+# combine proportions with category names:
+props <- paste0(tab * 100, "% ", names(tab), collapse = ", ")
+# combine variable name with proportions string:
+paste('sports:', props)
+
+```
+
+### Task 3
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Write a loop that creates the summary strings we created in the previous Solution
+for each variable in the **nrj** data.
+
+Use `print()` to print each of the summaries.
+
+```{r, echo = FALSE, results = 'asis'}
+hint("You need a loop that iterates through the columns of **nrj**.")
+hint("You need to autmatically check for each variable if it is a `factor()` or not
+     to choose the correct summary type.")
+```
+</div>
+
+### Solution 3
+```{r}
+for (i in 1:ncol(nrj)) {
+  if (is.factor(nrj[, i])) {
+    tab <- prop.table(table(nrj[, i]))
+    props <- paste0(tab * 100, "% ", names(tab), collapse = ", ")
+    paste0(names(nrj)[i], ": ", props)
+  } else {
+    print(paste0(names(nrj)[i], ": ", 
+                 round(mean(nrj[, i]), 1), " (", round(sd(nrj[, i]), 1), ")"))
+  }
+}
+```
+
+## Writing your own function {.tabset .tabset-pills .tabset-fade}
+We also want to practice writing our own functions.
+
+### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Write two functions:
+
+* one that creates the summary string for a continuous variable,
+* one that creates the output for a categorical variable.
+
+Assume that the input will be a vector, such as `nrj$kcal` or `nrj$sports`.
+Note that when we work with these vectors, they do not contain the variable
+name any more, so we cannot use the variable name in the two functions.
+
+```{r, echo = FALSE, results = 'asis'}
+hint("The general form of a function is `function(){...}`.")
+```
+</div>
+
+### Solution 1
+We can just re-use the syntax we used before, and only remove the part that 
+adds the variable name.
+
+Our functions have one argument, which we call `x` here:
+```{r}
+summary_continuous <- function(x) {
+  paste0(round(mean(x), 1), " (", round(sd(x), 1), ")")
+}
+
+summary_continuous(nrj$kcal)
+
+summary_categorical <- function(x) {
+  tab <- prop.table(table(x))
+  paste0(tab * 100, "% ", names(tab), collapse = ", ")
+}
+
+summary_categorical(nrj$sports)
+```
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Write another function that has a `data.frame` as input and prints the 
+summary string for each variable, using the two functions from the previous solution.
+</div>
+
+### Solution 2
+This function again has one argument which we call `dat`. We can again re-use
+syntax from above:
+```{r}
+summary_df <- function(dat) {
+  for (i in 1:ncol(dat)) {
+    summary_string <- if (is.factor(dat[, i])) {
+      summary_categorical(dat[, i])
+    } else {
+      summary_continuous(dat[, i])
+    }
+    print(summary_string)
+  }
+}
+
+summary_df(dat = nrj)
+```
+
+Note that it would also be possible to use `print()` directly around the
+functions `summary_categorical()` and `summary_continuous()`, but for the 
+next Task it is more convenient to first collect the summary string in an
+object (`summary_string`), and do the further steps with that object.
+
+
+### Task 3
+The function `summary_df()` that we created in the previous solution does not
+contain any variable names.
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Modify the function so that the output strings look like in the previous exercise 
+(with "variable name: ...").
+</div>
+
+### Solution 3
+To adjust the function, the only row that needs changing is the one in which
+we print the summary:
+```{r}
+summary_df <- function(dat) {
+  for (i in 1:ncol(dat)) {
+    summary_string <- if (is.factor(dat[, i])) {
+      summary_categorical(dat[, i])
+    } else {
+      summary_continuous(dat[, i])
+    }
+    print(paste0(names(dat)[i], ": ", summary_string))
+  }
+}
+
+summary_df(dat = nrj)
+```
+
