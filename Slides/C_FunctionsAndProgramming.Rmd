@@ -888,3 +888,24 @@ mapply(length, myList, SIMPLIFY = FALSE)
 
 \end{columns}
 
+## Useful Summary: Apply Family (cont'd)
+
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item The Apply Family \button{01_The_Apply_Family.R}{R} \button{01_The_Apply_Family.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item The Apply Family \button{https://nerler.github.io/BST02/practical/Functions and Programming/The_Apply_Family.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
