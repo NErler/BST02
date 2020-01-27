@@ -126,7 +126,7 @@ knitr::opts_chunk$set(echo = TRUE, nospace = TRUE, nospaceafter = TRUE)
 
 * The `apply` family
 
-* Lots of practicing
+* Lots of practising
 
 
 ## Functions
@@ -145,7 +145,7 @@ Sometimes we want to perform the same action / manipulation on several objects.
 
 \blue{What are functions?}
 * a group of (organized) R commands
-* a (small) programm with flexible (= not pre-specified) input
+* a (small) program with flexible (= not pre-specified) input
 
 \vspace*{3ex}
 
@@ -319,6 +319,8 @@ class(class)
 \item \texttt{expand.grid()}
 \end{itemize}
 
+\bigskip
+
 \blue{Converting Objects}
 \begin{itemize}
 \item \texttt{t()}
@@ -353,7 +355,7 @@ square(3)
 Functions do not always need an argument:
 ```{r}
 random <- function() {
-  rnorm(1)
+  rnorm(n = 1)
 }
 ```
 ```{r, collapse = TRUE}
@@ -363,7 +365,7 @@ random()
 ```
 
 ## Writing Functions
-Functions can use multiple arguments:
+Functions can use \blue{multiple arguments}:
 ```{r}
 subtract <- function(x, y) {
   x - y
@@ -375,7 +377,7 @@ subtract(x = 5.2, y = 3.3)
 
 
 ## Writing Functions
-Multiple arguments are interpretet in the pre-defined order, unless they are named:
+Multiple arguments are interpreted in the \blue{pre-defined order}, unless they are named:
 ```{r}
 subtract(5.2, 1.2)
 ```
@@ -391,7 +393,7 @@ subtract(y = 5.2, x = 1.2)
 ```
 
 ## Writing Functions
-We can also define default values for arguments.
+We can also define \blue{default values} for arguments.
 ```{r}
 multiply <- function(x, y = 2) {
   x * y
@@ -406,35 +408,202 @@ multiply(x = 3)
 
 
 ## Writing Functions
-\begin{columns}[T,onlytextwidth]
+\begin{center}
+\begin{columns}
 \begin{column}{0.47\linewidth}
-\begin{block}{Demo}
-\begin{itemize}
-\item (demo???) \button{link to R file}{R} \button{link to html file}{html}
-\end{itemize}
-\end{block}
-\end{column}
-
-\begin{column}{0.47\linewidth}
-\begin{block}{Practicals}
+\begin{block}{Practical}
 \begin{itemize}
 \item Rolling the Dice \button{https://nerler.github.io/BST02/practical/Functions and Programming/Rolling_the_Dice.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
 \end{columns}
+\end{center}
 
-## Control-flow constructs
+## Control-flow Constructs: `if()`
+Sometimes, we may want to execute code only \blue{if a certain condition is fulfilled}.
 
-* `if(cond) expr`
-* `if(cond) cons.expr else (alt.expr)`
-* `ifelse()`
-* `for`
-* `while`
-* `repeat`
-* `break`
-* `next`
+To do this, we can use an \blue{\texttt{if}} statement
+```{r eval = FALSE}
+if (condition) {expression}
+```
 
+\pause
+
+For example:
+```{r}
+x <- rnorm(n = 10)
+if (length(x) > 5) {mean(x)}
+```
+\pause
+```{r}
+x <- rnorm(n = 5)
+if (length(x) > 5) {mean(x)}
+```
+
+If the condition is not fulfilled, `NULL` is returned.
+
+## Control-flow Constructs: `if()` and `else`
+We can also specify an expression that is evaluated \blue{if the condition is not
+fulfilled}:
+
+```{r, eval = FALSE}
+if (cond) {expression} else {alternative expression}
+```
+
+\pause
+
+For example:
+```{r}
+if (length(x) > 5) {
+  mean(x)
+} else {
+  x
+}
+```
+
+
+
+## Conditional Element Selection: `ifelse()`
+A similar function is \blue{\texttt{ifelse()}}, which performs \blue{conditional element selection}:
+```{r, eval = FALSE}
+ifelse(test, yes, no)
+```
+
+\pause
+
+For example:
+```{r}
+(x <- round(rnorm(n = 6), 2))
+ifelse(x > 0, ">0", "<0")
+```
+
+\pause
+
+\blue{Note:}
+
+* `if()` expects \blue{one} condition
+* `ifelse()` expects a \blue{vector of conditions}
+
+
+## Control-flow Constructs: `for()`-loop
+To perform an operation multiple times, we can use a \blue{\texttt{for}-loop}
+```{r, eval = FALSE}
+for (variable in sequence) {expression}
+```
+
+For example:
+```{r}
+for (i in 1:5) {
+  print(2 * i)
+}
+```
+
+## Control-flow Constructs: `for()`-loop
+In a \blue{\texttt{for}-loop}, the `variable` does not need to be used in the `expression`:
+
+```{r}
+for (i in 1:5) {
+  print('test')
+}
+```
+
+Note that when using `for()`, always the full `sequence` is used, i.e., we cannot
+skip iterations.
+
+
+## Control-flow Constructs: `while()`-loop
+
+The function \blue{\texttt{while()}} repeatedly evaluates an expression as 
+long as a condition is fulfilled:
+```{r, eval = FALSE}
+while (condition) {expression}
+```
+
+
+\bigskip
+
+\parbox[t]{\linewidth}{
+\blue{Careful:}\\
+If your condition is never \texttt{FALSE} this will run forever!!!\newline
+(or until you stop it manually)
+}
+
+\bigskip
+
+\parbox[t]{\linewidth}{
+\blue{Note:}\\
+\texttt{for()} and \texttt{while()} loops will not print output, unless we specifically use
+the function \texttt{print()}.
+}
+
+
+## Control-flow Constructs: `while()`-loop
+
+```{r, echo = FALSE}
+set.seed(1234)
+```
+
+For example:
+```{r}
+s <- 0
+while (s < 7) {
+  x <- rnorm(n = 1, mean = 0, sd = 2)
+  s <- s + abs(x)
+  print(s)
+}
+```
+
+
+## Control-flow Constructs
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demo}
+\begin{itemize}
+\item Control Flow \button{link to R file}{R} \button{link to html file}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\begin{block}{Practical}
+\begin{itemize}
+\item Control Flow and Functions \button{https://nerler.github.io/BST02/practical/Functions and Programming/Rolling_the_Dice.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
+
+
+## Summary: Writing Functions
+```{r, eval = FALSE}
+function_name <- function(arguments) {
+  "function body"
+}
+```
+
+* can have 0, 1, 2, ...arguments
+* arguments are interpreted in the \blue{pre-specified order}, unless the \blue{names are used}
+* we can specify \blue{default values}
+
+
+## Summary: Control-flow Constructs
+
+\begin{itemize}\itemsep3mm
+\item \blue{\texttt{if (condition) expression}}:\newline
+  evaluates the `expression` only if the `condition` is `TRUE`
+\item \blue{\texttt{if (condition) expression1 else expression2}}:\newline
+   evaluates `expression1` if the 
+  `condition` is `TRUE` and `expression2` if the `condition` is `FALSE`
+\item \blue{\texttt{ifelse(test, yes, no)}}:\newline
+   expects a vector of `test`s
+\item \blue{\texttt{for()}} and \blue{\texttt{while()}} loops:\newline
+  can be used to repeatedly perform the same action
+\item to print output from within \texttt{for()} and \texttt{while()} 
+      we need to use \texttt{print()}
+\end{itemize}
 
 
 
@@ -449,7 +618,7 @@ library(survival)
 
 ##  What is the apply Family
 
-* Manipulate slices of data from matrices, arrays, lists and dataframes in a repetitive way avoiding explicit use of loop constructs
+* Manipulate slices of data from matrices, arrays, lists and dataframes in a repetitive way avoiding explicit use of loop-constructs
   - An aggregating function, like for example the mean, or the sum
   - Other transforming or subsetting functions
   - Other vectorized functions, which return more complex structures like lists, vectors, matrices and arrays
