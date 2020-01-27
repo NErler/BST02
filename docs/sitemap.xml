@@ -18,13 +18,11 @@
   </url>
   
   <url>
-    <loc>https://nerler.github.io/BST02/slide/lecture/</loc>
-    <lastmod>2019-02-09T00:00:00+00:00</lastmod>
+    <loc>https://nerler.github.io/BST02/slide/a_introduction/</loc>
   </url>
   
   <url>
-    <loc>https://nerler.github.io/BST02/slide/</loc>
-    <lastmod>2019-02-09T00:00:00+00:00</lastmod>
+    <loc>https://nerler.github.io/BST02/slide/b_basicuser/</loc>
   </url>
   
   <url>
@@ -36,7 +34,19 @@
   </url>
   
   <url>
+    <loc>https://nerler.github.io/BST02/slide/c_functionsandprogramming/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nerler.github.io/BST02/slide/d_statisticswithr/</loc>
+  </url>
+  
+  <url>
     <loc>https://nerler.github.io/BST02/demo/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nerler.github.io/BST02/slide/e_markdown/</loc>
   </url>
   
   <url>
@@ -53,6 +63,10 @@
   
   <url>
     <loc>https://nerler.github.io/BST02/practical/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nerler.github.io/BST02/slide/</loc>
   </url>
   
   <url>

@@ -7,17 +7,52 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
     <copyright>&amp;copy; 2020. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 09 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://nerler.github.io/BST02/slide/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Lecture slides</title>
-      <link>https://nerler.github.io/BST02/slide/lecture/</link>
-      <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
+      <title>A: Introduction</title>
+      <link>https://nerler.github.io/BST02/slide/a_introduction/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/slide/lecture/</guid>
+      <guid>https://nerler.github.io/BST02/slide/a_introduction/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>B: BasicUseR</title>
+      <link>https://nerler.github.io/BST02/slide/b_basicuser/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nerler.github.io/BST02/slide/b_basicuser/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C: FunctionsAndProgramming</title>
+      <link>https://nerler.github.io/BST02/slide/c_functionsandprogramming/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nerler.github.io/BST02/slide/c_functionsandprogramming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>D: StatisticsWithR</title>
+      <link>https://nerler.github.io/BST02/slide/d_statisticswithr/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nerler.github.io/BST02/slide/d_statisticswithr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>E: Markdown</title>
+      <link>https://nerler.github.io/BST02/slide/e_markdown/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nerler.github.io/BST02/slide/e_markdown/</guid>
       <description></description>
     </item>
     
