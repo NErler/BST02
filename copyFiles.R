@@ -42,6 +42,22 @@ write_Practicals_md <- function(x) {
   )
 }
 
+write_Slides_md <- function(x) {
+  file <- gsub('^Slides/', '', x)
+  title <- gsub('.pdf$', '', gsub("_", ' ', sub("_", ': ', file)))
+  img <- gsub('.pdf$', '.png', file)
+  
+  
+  cat(
+    paste0("---\n",
+           "title: '", title, "'\n",
+           "link: /slide/", file, "\n",
+           "image: /slide/", img, "\n",
+           "---\n\n"
+    ), file = paste0('website/content/slide/', gsub('.pdf$', '', file), '.md')
+  )
+}
+
 ################################################################################
 ## Demos
 ################################################################################
@@ -99,6 +115,35 @@ for (x in list.dirs('Practicals', recursive = FALSE)) {
   
   write_Practicals_md(x)
 }
+
+
+
+################################################################################
+## Slides
+################################################################################
+
+# remove content of website/content/slide and website/static/slide
+unlink('website/content/slide/*')
+unlink('website/static/slide/*')
+
+
+# Copy all .pdf files in folder Slides to the corresponding folders in website/static/slide
+pdfs <- grep(".pdf$", dir('Slides', recursive = FALSE, full.names = TRUE), value = TRUE)
+file.copy(from = pdfs,
+          to = file.path('website/static/slide'),
+          overwrite = TRUE)
+
+# write .md files for website/content/slide
+for (x in pdfs) {
+  write_Slides_md(x)
+
+  img <- gsub('Slides/', '', gsub('.pdf$', '.png', x))
+  
+  # the following gives an error/message but works anyway
+  pdftools::pdf_convert(x, pages = 1, dpi = 150,
+                        filenames = paste0('website/static/slide/', img))
+}
+
 
 
 ################################################################################
