@@ -100,16 +100,15 @@ Therefore, the aim of this course is:
   
 ## Schedule
 
-* February 24: 10h00 - 13h00, 14h00 - 17h00
-* February 25: 10h00 - 13h00, 14h00 - 17h00
-* February 26: 10h00 - 13h00, 14h00 - 17h00
-* February 27: 10h00 - 13h00, 14h00 - 17h00
-* February 28: 10h00 - 13h00, 14h00 - 17h00
+* February 24: 10h00 - 12h30, 13h30 - 17h00
+* February 25: 10h00 - 12h30, 13h30 - 17h00
+* February 26: 10h00 - 12h30, 13h30 - 17h00
+* February 27: 10h00 - 12h30, 13h30 - 17h00
   
   
 ## Exams
 
-* Date: February 28
+* Date: February 28: 14h15 - 17h00
 
 \vspace*{3ex}
 
@@ -171,8 +170,9 @@ http://cran.r-project.org/other-docs.html
 * **2004**: First international user conference in Vienna
 * **2013**: 5026 packages available
 * **2017**: 10875 packages available
-  
-  
+* **Now**: \texttt{\blue{nrow(available.packages())}}
+
+
 ## Why learn R ?
 
 * R is a free software environment for statistical computing and graphics
