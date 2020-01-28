@@ -27,99 +27,141 @@ knitr::opts_chunk$set(echo = TRUE, nospace = TRUE, nospaceafter = TRUE)
 
 ```
 
+## In this Section
+
+* Common statistical tests
+  - for continuous data
+  - for categorical data
+* (Generalized) linear regression
+* Useful functions for regression models
+
+
 ## t-test: `t.test()`
 \blue{One-sample t-test}
 
-* compares the mean of a sample with a fixed value $\mu$
+* compares the \blue{mean of one sample} with a fixed value $\mu$
+
+\pause
+\bigskip
 
 \blue{Two sample / independent samples t-test}
 
-* compares the difference between the means of two samples with a fixed value $\mu$
+* compares the \blue{difference between the means} of two samples with a fixed value $\mu$
+
+\pause
+\bigskip
 
 \blue{Related samples t-test}
 
-* compares the mean of the difference between related observations with a fixed value $\mu$
+* compares the \blue{mean of the difference} between related observations with a fixed value $\mu$
   (same as one-sample t-test)
 
 ## Wilcoxon Test: `wilcox.test()`
 \blue{Wilcoxon Signed Rank Test}
 
-* tests if one sample (or the differences between two paired samples) is/are 
-  symmetric about $\mu$
+* tests if \blue{one sample} (or the differences between two paired samples) is/are 
+  \blue{symmetric about $\mu$}
 
+\pause\bigskip
 
 \blue{Wilcoxon Rank Sum Test / Mann-Whitney test}
 
-* test for a location shift between the distributions of two independent samples
+* test for a \blue{location shift between the distributions} of two independent samples
 
+\bigskip
+\vfill
 See also [BBR Sections 7.2 & 7.3 (http://hbiostat.org/doc/bbr.pdf)](http://hbiostat.org/doc/bbr.pdf)
 
 
 ## Kruskal-Wallis Rank Sum Test: `kruskal.test()`
 
-* This is an extension of the Wilcoxon rank sum test for more than two groups
-* Test for a difference in location of a continuous variable between multiple groups
-* The Wilcoxon rank sum test is a special case of the Kruskal-Wallis rank sum test
-
+\begin{itemize}\itemsep4mm
+\item \blue{extension} of the Wilcoxon rank sum test for \blue{more than two groups}
+\item test for a \blue{difference in location} of a continuous variable between multiple groups
+\item the \blue{Wilcoxon rank sum test is a special case} of the Kruskal-Wallis rank sum test
+\end{itemize}
 
 ## Other tests for continuous data
 
-* \blue{Kolmogoriv-Smirnov Test:} `ks.test()`\newline
+\begin{itemize}\itemsep5mm
+\item \blue{Kolmogoriv-Smirnov Test:} `ks.test()`\newline
   tests if two samples are drawn from the same continuous distribution
   
-* \blue{Shapiro-Wilk Normality Test:} `shapiro.test()`
+\item \blue{Shapiro-Wilk Normality Test:} `shapiro.test()`
 
-* \blue{Friedman Rank Sum Test:} `friedman.test()`\newline
-  non-parametric test for 2 or more related samples
+\item \blue{Friedman Rank Sum Test:} `friedman.test()`\newline
+  non-parametric test for two or more related samples
   
-* ...
+\item ...
+\end{itemize}
+
+
+## Tests for Continuous Data
+
+\begin{columns}
+\begin{column}{0.47\linewidth}
+\begin{block}{Demo}
+\begin{itemize}
+\item Tests for Continuous Data\newline \button{https://nerler.github.io/BST02/demo/Statistics_with_R/Tests_for_Continuous_Data.R}{R}
+\button{https://nerler.github.io/BST02/demo/Statistics_with_R/Tests_for_Continuous_Data.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.47\linewidth}
+\begin{block}{Demo}
+\begin{itemize}
+\item Tests for Continuous Data\newline \button{https://nerler.github.io/BST02/practical/Statistics_with_R/Tests_for_Continuous_Data.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
 
 ## Tests for Categorical Data / Proportions
 
 \blue{One-sample Proportion Test}
-* tests if the proportion in one sample is equal to a fixed value $p$
+* tests if the \blue{proportion in one sample} is equal to a fixed value $p$
 * `prop.test()` and `binom.test()`
 
+\pause\bigskip
+
 \blue{Tests for Proportions in Multiple (independent) Groups}
-* tests if the proportion in several samples are equal
+* tests if the \blue{proportions in several samples} are equal
 * `chisq.test()` and `fisher.test()` (when there are cells with 0)
 
-\vfill
+\bigskip\vfill
 
 See also [BBR Sections 5.7 & 6 (http://hbiostat.org/doc/bbr.pdf)](http://hbiostat.org/doc/bbr.pdf)
 
 ## Tests for Categorical Data / Proportions
 \blue{Related Samples: McNemar Test}
- * Tests for symmetry in a $2\times 2$ table
+ * Tests for \blue{symmetry} in a $2\times 2$ table
  * `mcnemar.test()`
+ 
+ 
+\pause\bigskip
+
 
 \blue{3-Dimensional Contingency Table}
 * Cochrane-Mantel-Haenszel Test
-* $\chi^2$ test for independence of two nominal variables in each stratum
+* $\chi^2$ test for \blue{independence} of two nominal variables \blue{within each stratum}
 * `mantelhaen.test()`
 
 
-## Statistical Tests
+## Tests for Categorical Data
 
-\begin{columns}[T,onlytextwidth]
+\begin{center}
+\begin{columns}
 \begin{column}{0.47\linewidth}
-\begin{block}{Demos}
+\begin{block}{Demo}
 \begin{itemize}
-\item Name of the demo 
-\item Name of demo 
-\end{itemize}
-\end{block}
-\end{column}
-
-\begin{column}{0.47\linewidth}
-\begin{block}{Practicals}
-\begin{itemize}
-\item Name of practical \button{link to html file}{html}
-\item Name of practical \button{link to html file}{html}
+\item Tests for Categorical Data\newline \button{https://nerler.github.io/BST02/demo/Statistics_with_R/Tests_for_Categorical_Data.R}{R}
+\button{https://nerler.github.io/BST02/demo/Statistics_with_R/Tests_for_Categorical_Data.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
 \end{columns}
+\end{center}
 
 
 ## Statistical Tests
@@ -164,6 +206,13 @@ See also [BBR Sections 5.7 & 6 (http://hbiostat.org/doc/bbr.pdf)](http://hbiosta
 \item \texttt{cor.test()}
 \item \texttt{bartlett.test()}
 \item \texttt{var.test()}
+\end{itemize}
+
+\bigskip
+
+\blue{Multiple Testing Adjustment}
+\begin{itemize}
+\item \texttt{p.adjust()}
 \end{itemize}
 \end{column}
 \end{columns}
@@ -350,6 +399,7 @@ the default link is used.
 \end{column}
 \end{columns}
 
+```{r, include = FALSE, eval= FALSE}
 boot::urine
 MASS::birthwt
 MASS::Boston
@@ -362,6 +412,8 @@ MASS::UScrime
 
 rpart::stagec
 rpart::car90
+```
+
 
 ## Regression
 \begin{columns}[onlytextwidth,T]
