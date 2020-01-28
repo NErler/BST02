@@ -2,141 +2,140 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>BST02: Using R for Statistics in Medical Research</title>
-    <link>https://nerler.github.io/BST02/</link>
+    <link>/BST02/</link>
     <description>Recent content on BST02: Using R for Statistics in Medical Research</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
     <copyright>&amp;copy; 2020. All rights reserved.</copyright>
     <lastBuildDate>Thu, 02 Jan 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://nerler.github.io/BST02/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/BST02/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>BST02: Using R for Statistics in Medical Research</title>
-      <link>https://nerler.github.io/BST02/home/</link>
+      <link>/BST02/home/</link>
       <pubDate>Thu, 02 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/home/</guid>
-      <description>This website contains slides and materials for NIHES course Using R for Statistics in Clinical Research (BST02).
-Practicals are available &amp;hellip;
-Some more info&amp;hellip;</description>
+      <guid>/BST02/home/</guid>
+      <description>This website contains materials for the NIHES course Using R for Statistics in Clinical Research (BST02):
+ lecture slides demos of R functions and syntax practicals  To download and install R, go to https://cran.r-project.org/.</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>https://nerler.github.io/BST02/about/</link>
+      <link>/BST02/about/</link>
       <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/about/</guid>
+      <guid>/BST02/about/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A: Introduction</title>
-      <link>https://nerler.github.io/BST02/slide/a_introduction/</link>
+      <link>/BST02/slide/a_introduction/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/slide/a_introduction/</guid>
+      <guid>/BST02/slide/a_introduction/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>B: BasicUseR</title>
-      <link>https://nerler.github.io/BST02/slide/b_basicuser/</link>
+      <title>B: Basic Use of R</title>
+      <link>/BST02/slide/b_basic_use_of_r/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/slide/b_basicuser/</guid>
+      <guid>/BST02/slide/b_basic_use_of_r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Basic use of R</title>
-      <link>https://nerler.github.io/BST02/demo/basic-use-of-r/</link>
+      <link>/BST02/demo/basic-use-of-r/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/demo/basic-use-of-r/</guid>
+      <guid>/BST02/demo/basic-use-of-r/</guid>
       <description> 01 Basic R [R] [html] 02 Common R objects [R] [html] 03 Importing Saving [R] [html] 04 Data Transformation [R] [html] 05 Data Exploration [R] [html] 06 Data Visualization [R] [html] 07 Indexing Subsetting [R] [html]  </description>
     </item>
     
     <item>
       <title>BasicUseR</title>
-      <link>https://nerler.github.io/BST02/practical/basicuser/</link>
+      <link>/BST02/practical/basicuser/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/practical/basicuser/</guid>
-      <description> BasicUseR [html]  </description>
+      <guid>/BST02/practical/basicuser/</guid>
+      <description> Basic Use R [html]  </description>
     </item>
     
     <item>
-      <title>C: FunctionsAndProgramming</title>
-      <link>https://nerler.github.io/BST02/slide/c_functionsandprogramming/</link>
+      <title>C: Functions and Programming</title>
+      <link>/BST02/slide/c_functions_and_programming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/slide/c_functionsandprogramming/</guid>
+      <guid>/BST02/slide/c_functions_and_programming/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>D: StatisticsWithR</title>
-      <link>https://nerler.github.io/BST02/slide/d_statisticswithr/</link>
+      <title>D: Statistics with R</title>
+      <link>/BST02/slide/d_statistics_with_r/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/slide/d_statisticswithr/</guid>
+      <guid>/BST02/slide/d_statistics_with_r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>E: Markdown</title>
-      <link>https://nerler.github.io/BST02/slide/e_markdown/</link>
+      <link>/BST02/slide/e_markdown/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/slide/e_markdown/</guid>
+      <guid>/BST02/slide/e_markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Functions and Programming</title>
-      <link>https://nerler.github.io/BST02/demo/functions-and-programming/</link>
+      <link>/BST02/demo/functions-and-programming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/demo/functions-and-programming/</guid>
-      <description> 01TheApplyFamily [R] [html] 02ExtraProgrammingExamples [R] [html] Demo Functions01 [R] [html] Functions for Data Exploration [R] [html] Functions for Data Manipulation [R] [html]  </description>
+      <guid>/BST02/demo/functions-and-programming/</guid>
+      <description> 01 The Apply Family [R] [html] 02 Extra Programming Examples [R] [html] Control Flow [R] [html] Functions for Data Exploration [R] [html] Functions for Data Manipulation [R] [html]  </description>
     </item>
     
     <item>
       <title>Functions and Programming</title>
-      <link>https://nerler.github.io/BST02/practical/functions-and-programming/</link>
+      <link>/BST02/practical/functions-and-programming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/practical/functions-and-programming/</guid>
-      <description> Exploring and Summarizing Data [html] ExtraProgrammingExamples [html] Merging Datasets [html] Rolling the Dice [html] SayHello [html] TheApplyFamily [html]  </description>
+      <guid>/BST02/practical/functions-and-programming/</guid>
+      <description> Control Flow and Functions [html] Exploring and Summarizing Data [html] Extra Programming Examples [html] Merging Datasets [html] Rolling the Dice [html] Say Hello [html] The Apply Family [html]  </description>
     </item>
     
     <item>
       <title>Markdown</title>
-      <link>https://nerler.github.io/BST02/demo/markdown/</link>
+      <link>/BST02/demo/markdown/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/demo/markdown/</guid>
-      <description> 01MarkdownCode.Rmd [R] [html]  </description>
+      <guid>/BST02/demo/markdown/</guid>
+      <description> Markdown Code.Rmd [R] [html]  </description>
     </item>
     
     <item>
       <title>Statistics with R</title>
-      <link>https://nerler.github.io/BST02/demo/statistics-with-r/</link>
+      <link>/BST02/demo/statistics-with-r/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/demo/statistics-with-r/</guid>
+      <guid>/BST02/demo/statistics-with-r/</guid>
       <description> Regression [R] [html] Statistical Tests [R] [html]  </description>
     </item>
     
     <item>
       <title>Statistics with R</title>
-      <link>https://nerler.github.io/BST02/practical/statistics-with-r/</link>
+      <link>/BST02/practical/statistics-with-r/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/practical/statistics-with-r/</guid>
+      <guid>/BST02/practical/statistics-with-r/</guid>
       <description> Linear Regression [html]  </description>
     </item>
     

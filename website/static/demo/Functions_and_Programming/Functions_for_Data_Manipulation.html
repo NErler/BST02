@@ -11,7 +11,7 @@
 
 <meta name="author" content="Nicole Erler, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-01-17" />
+<meta name="date" content="2020-01-28" />
 
 <title>Demo: Functions for Manipulating Data</title>
 
@@ -1519,7 +1519,7 @@ div.tocify {
 <h1 class="title toc-ignore">Demo: Functions for Manipulating Data</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Nicole Erler, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">17 January 2020</h4>
+<h4 class="date">28 January 2020</h4>
 
 </div>
 
@@ -1591,14 +1591,14 @@ div.tocify {
 ## [45] 5.916080 6.685806 6.542171</code></pre>
 <p>Absolute value</p>
 <pre class="r"><code>(x &lt;- rnorm(10))</code></pre>
-<pre><code>##  [1]  0.62930824  0.25981077 -0.96671736 -0.34022494  0.64814981  0.02920174 -1.04511449  0.72853572
-##  [9] -1.46415310 -1.17183415</code></pre>
+<pre><code>##  [1] -1.54140962 -0.05477413 -1.49072582  0.91260443 -1.77784494  1.24728114  0.67648117  0.18608979
+##  [9]  0.38389138  0.48998155</code></pre>
 <pre class="r"><code>abs(x)</code></pre>
-<pre><code>##  [1] 0.62930824 0.25981077 0.96671736 0.34022494 0.64814981 0.02920174 1.04511449 0.72853572 1.46415310
-## [10] 1.17183415</code></pre>
+<pre><code>##  [1] 1.54140962 0.05477413 1.49072582 0.91260443 1.77784494 1.24728114 0.67648117 0.18608979 0.38389138
+## [10] 0.48998155</code></pre>
 <p>Distribution function of the logistic distribution: this function is for instance useful to convert the linear predictor of a logistic model to the probability scale.</p>
 <pre class="r"><code>plogis(x)</code></pre>
-<pre><code>##  [1] 0.6523326 0.5645898 0.2755353 0.4157548 0.6565934 0.5072999 0.2601644 0.6744839 0.1878329 0.2365236</code></pre>
+<pre><code>##  [1] 0.1763305 0.4863099 0.1838128 0.7135328 0.1445694 0.7768289 0.6629529 0.5463887 0.5948113 0.6201021</code></pre>
 </div>
 </div>
 <div id="splitting-combining" class="section level2">
@@ -1607,28 +1607,28 @@ div.tocify {
 <h3>Dividing a (continuous) variable into a <code>factor</code></h3>
 <p>The function <code>cut()</code> allows us to convert a numeric variable to a factor. The arguments <code>breaks</code> is used to specify the cutoffs for the categories.</p>
 <pre class="r"><code>(x &lt;- rnorm(20))</code></pre>
-<pre><code>##  [1] -0.89306985 -1.39251051  1.82654514 -0.93254451 -1.94541550 -0.47574691  0.07781567  0.31828362
-##  [9]  0.59465213 -2.04983543 -0.68748750  0.56641678 -1.67544860  0.11104235 -1.09540942  0.03281609
-## [17]  0.97622087 -0.03018061  1.26436714 -0.10821042</code></pre>
+<pre><code>##  [1]  0.28192069 -2.27982247  2.24321959  1.38431996  0.69843390  0.34927379  0.14760505 -2.23621106
+##  [9]  0.43680536  0.94062190  1.04517474  1.03016152 -0.53795290 -0.04737672 -0.78435221  0.62385572
+## [17]  0.66292448  0.47071003  1.71974571  0.31282703</code></pre>
 <pre class="r"><code>cut(x, breaks = c(-1, 0, 1))</code></pre>
-<pre><code>##  [1] (-1,0] &lt;NA&gt;   &lt;NA&gt;   (-1,0] &lt;NA&gt;   (-1,0] (0,1]  (0,1]  (0,1]  &lt;NA&gt;   (-1,0] (0,1]  &lt;NA&gt;   (0,1] 
-## [15] &lt;NA&gt;   (0,1]  (0,1]  (-1,0] &lt;NA&gt;   (-1,0]
+<pre><code>##  [1] (0,1]  &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   (0,1]  (0,1]  (0,1]  &lt;NA&gt;   (0,1]  (0,1]  &lt;NA&gt;   &lt;NA&gt;   (-1,0] (-1,0]
+## [15] (-1,0] (0,1]  (0,1]  (0,1]  &lt;NA&gt;   (0,1] 
 ## Levels: (-1,0] (0,1]</code></pre>
 <p>Note that values outside the smallest and largest “break” are set to <code>NA</code>. To prevent that we can include <code>-Inf</code> and <code>Inf</code>:</p>
 <pre class="r"><code>cut(x, breaks = c(-Inf, -1, 0, 1, Inf))</code></pre>
-<pre><code>##  [1] (-1,0]    (-Inf,-1] (1, Inf]  (-1,0]    (-Inf,-1] (-1,0]    (0,1]     (0,1]     (0,1]     (-Inf,-1]
-## [11] (-1,0]    (0,1]     (-Inf,-1] (0,1]     (-Inf,-1] (0,1]     (0,1]     (-1,0]    (1, Inf]  (-1,0]   
+<pre><code>##  [1] (0,1]     (-Inf,-1] (1, Inf]  (1, Inf]  (0,1]     (0,1]     (0,1]     (-Inf,-1] (0,1]     (0,1]    
+## [11] (1, Inf]  (1, Inf]  (-1,0]    (-1,0]    (-1,0]    (0,1]     (0,1]     (0,1]     (1, Inf]  (0,1]    
 ## Levels: (-Inf,-1] (-1,0] (0,1] (1, Inf]</code></pre>
 <p>By default, the lower bound of each interval is excluded, the upper bound is included. We can include the lowest bound by setting <code>include.lowest = TRUE</code>.</p>
 <pre class="r"><code>cut(x, breaks = c(-Inf, -1, 0, 1, Inf), include.lowest = TRUE)</code></pre>
-<pre><code>##  [1] (-1,0]    [-Inf,-1] (1, Inf]  (-1,0]    [-Inf,-1] (-1,0]    (0,1]     (0,1]     (0,1]     [-Inf,-1]
-## [11] (-1,0]    (0,1]     [-Inf,-1] (0,1]     [-Inf,-1] (0,1]     (0,1]     (-1,0]    (1, Inf]  (-1,0]   
+<pre><code>##  [1] (0,1]     [-Inf,-1] (1, Inf]  (1, Inf]  (0,1]     (0,1]     (0,1]     [-Inf,-1] (0,1]     (0,1]    
+## [11] (1, Inf]  (1, Inf]  (-1,0]    (-1,0]    (-1,0]    (0,1]     (0,1]     (0,1]     (1, Inf]  (0,1]    
 ## Levels: [-Inf,-1] (-1,0] (0,1] (1, Inf]</code></pre>
 <p>Note that this only changes the lower bound of the lowest interval. The argument <code>right</code> specifies that the right bound of each interval is included, this chan be changed by setting <code>right = FALSE</code>. By default, the resulting factor is unordered. With the argument <code>ordered_result = TRUE</code> we can change this. (More on ordered factors later.)</p>
 <p>To set custom labels for the categories, the argument <code>labels</code> can be used:</p>
 <pre class="r"><code>cut(x, breaks = c(-Inf, -1, 0, 1, Inf), labels = c(&#39;lowest&#39;, &#39;low&#39;, &#39;high&#39;, &#39;highest&#39;))</code></pre>
-<pre><code>##  [1] low     lowest  highest low     lowest  low     high    high    high    lowest  low     high   
-## [13] lowest  high    lowest  high    high    low     highest low    
+<pre><code>##  [1] high    lowest  highest highest high    high    high    lowest  high    high    highest highest
+## [13] low     low     low     high    high    high    highest high   
 ## Levels: lowest low high highest</code></pre>
 </div>
 <div id="splitting-a-data.frame-matrix-or-vector" class="section level3">
@@ -1808,11 +1808,11 @@ div.tocify {
 <p>The list elements will always have the same class as the original object, i.e., when we split a vector, we obtain a list of vectors:</p>
 <pre class="r"><code>split(x, x &gt; 0)</code></pre>
 <pre><code>## $`FALSE`
-##  [1] -0.89306985 -1.39251051 -0.93254451 -1.94541550 -0.47574691 -2.04983543 -0.68748750 -1.67544860
-##  [9] -1.09540942 -0.03018061 -0.10821042
+## [1] -2.27982247 -2.23621106 -0.53795290 -0.04737672 -0.78435221
 ## 
 ## $`TRUE`
-## [1] 1.82654514 0.07781567 0.31828362 0.59465213 0.56641678 0.11104235 0.03281609 0.97622087 1.26436714</code></pre>
+##  [1] 0.2819207 2.2432196 1.3843200 0.6984339 0.3492738 0.1476051 0.4368054 0.9406219 1.0451747 1.0301615
+## [11] 0.6238557 0.6629245 0.4707100 1.7197457 0.3128270</code></pre>
 </div>
 <div id="combining-vectors-etc." class="section level3">
 <h3>Combining <code>vectors</code> etc.</h3>
@@ -1952,21 +1952,21 @@ head(dat1)</code></pre>
 ## Porrentruy        76.1        35.3           9         7    90.57             26.6   Porrentruy</code></pre>
 <pre class="r"><code>head(dat2)</code></pre>
 <pre><code>##           id          x
-## 1     newid1  1.5972993
-## 2     newid2 -0.7742113
-## 3     newid3 -0.3793237
-## 4     newid4  0.5011662
-## 5     newid5  1.4311013
-## 6 Courtelary  0.9806242</code></pre>
+## 1     newid1 -0.1792033
+## 2     newid2 -0.1486468
+## 3     newid3  0.5697069
+## 4     newid4  0.3613590
+## 5     newid5  1.6776562
+## 6 Courtelary  2.2291029</code></pre>
 <pre class="r"><code>mdat &lt;- merge(dat1, dat2)
 head(mdat)</code></pre>
-<pre><code>##           id Fertility Agriculture Examination Education Catholic Infant.Mortality           x
-## 1      Aigle      64.1        62.0          21        12     8.52             16.5  1.13077922
-## 2    Aubonne      66.9        67.5          14         7     2.27             19.1  1.54487041
-## 3   Avenches      68.9        60.7          19        12     4.43             22.7 -0.07787154
-## 4      Broye      83.8        70.2          16         7    92.85             23.6  0.36427310
-## 5   Cossonay      61.7        69.3          22         5     2.82             18.7  0.13936256
-## 6 Courtelary      80.2        17.0          15        12     9.96             22.2  0.98062423</code></pre>
+<pre><code>##           id Fertility Agriculture Examination Education Catholic Infant.Mortality          x
+## 1      Aigle      64.1        62.0          21        12     8.52             16.5  0.7201119
+## 2    Aubonne      66.9        67.5          14         7     2.27             19.1  1.5025702
+## 3   Avenches      68.9        60.7          19        12     4.43             22.7 -0.6650403
+## 4      Broye      83.8        70.2          16         7    92.85             23.6  0.3746938
+## 5   Cossonay      61.7        69.3          22         5     2.82             18.7 -1.0178187
+## 6 Courtelary      80.2        17.0          15        12     9.96             22.2  2.2291029</code></pre>
 <pre class="r"><code>dim(mdat)</code></pre>
 <pre><code>## [1] 30  8</code></pre>
 <p>The arguments <code>all</code>, <code>all.x</code> and <code>all.y</code> allow us to specify what happens with cases that are only found in one of the two datasets:</p>
@@ -1977,13 +1977,13 @@ mdat_y &lt;- merge(dat1, dat2, all.y = TRUE)
 dim(mdat_all)</code></pre>
 <pre><code>## [1] 52  8</code></pre>
 <pre class="r"><code>head(mdat_all)</code></pre>
-<pre><code>##         id Fertility Agriculture Examination Education Catholic Infant.Mortality           x
-## 1    Aigle      64.1        62.0          21        12     8.52             16.5  1.13077922
-## 2  Aubonne      66.9        67.5          14         7     2.27             19.1  1.54487041
-## 3 Avenches      68.9        60.7          19        12     4.43             22.7 -0.07787154
-## 4   Boudry      70.4        38.4          26        12     5.62             20.3          NA
-## 5    Broye      83.8        70.2          16         7    92.85             23.6  0.36427310
-## 6  Conthey      75.5        85.9           3         2    99.71             15.1          NA</code></pre>
+<pre><code>##         id Fertility Agriculture Examination Education Catholic Infant.Mortality          x
+## 1    Aigle      64.1        62.0          21        12     8.52             16.5  0.7201119
+## 2  Aubonne      66.9        67.5          14         7     2.27             19.1  1.5025702
+## 3 Avenches      68.9        60.7          19        12     4.43             22.7 -0.6650403
+## 4   Boudry      70.4        38.4          26        12     5.62             20.3         NA
+## 5    Broye      83.8        70.2          16         7    92.85             23.6  0.3746938
+## 6  Conthey      75.5        85.9           3         2    99.71             15.1         NA</code></pre>
 <pre class="r"><code>dim(mdat_x)</code></pre>
 <pre><code>## [1] 47  8</code></pre>
 <pre class="r"><code>dim(mdat_y)</code></pre>
@@ -1995,18 +1995,18 @@ mdat3 &lt;- merge(dat1, dat2, by.x = c(&#39;id&#39;, &#39;Education&#39;), by.y 
                all = TRUE)
 
 head(mdat3) </code></pre>
-<pre><code>##         id Education Fertility Agriculture Examination.x Catholic Infant.Mortality           x
-## 1    Aigle         6        NA          NA            NA       NA               NA  1.13077922
-## 2    Aigle        12      64.1        62.0            21     8.52             16.5          NA
-## 3  Aubonne         1        NA          NA            NA       NA               NA  1.54487041
-## 4  Aubonne         7      66.9        67.5            14     2.27             19.1          NA
-## 5 Avenches         3        NA          NA            NA       NA               NA -0.07787154
-## 6 Avenches        12      68.9        60.7            19     4.43             22.7          NA
+<pre><code>##         id Education Fertility Agriculture Examination.x Catholic Infant.Mortality          x
+## 1    Aigle        10        NA          NA            NA       NA               NA  0.7201119
+## 2    Aigle        12      64.1        62.0            21     8.52             16.5         NA
+## 3  Aubonne         7      66.9        67.5            14     2.27             19.1         NA
+## 4  Aubonne         8        NA          NA            NA       NA               NA  1.5025702
+## 5 Avenches         1        NA          NA            NA       NA               NA -0.6650403
+## 6 Avenches        12      68.9        60.7            19     4.43             22.7         NA
 ##   Examination.y
 ## 1            21
 ## 2            NA
-## 3            14
-## 4            NA
+## 3            NA
+## 4            14
 ## 5            19
 ## 6            NA</code></pre>
 <ul>

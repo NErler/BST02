@@ -12,9 +12,13 @@
 # install.packages("survival") 
 # install.packages("lattice")
 # install.packages("ggplot2")
+# install.packages("emojifont")
+# install.packages("rtweet")
 library(survival)
 library(lattice)
 library(ggplot2)
+library(emojifont)
+library(rtweet)
 
 #' Basic plot with 1 variable
 plot(pbc$bili)
@@ -123,4 +127,34 @@ p
 
 p + scale_fill_manual(values=c("#999999", "#E69F00"))
 
-                            
+                     
+#'Let's have some fun
+set.seed(123)
+x1 <- rnorm(10)
+y1 <- rnorm(10)
+x2 <- rnorm(10)
+y2 <- rnorm(10)
+plot(x1, y1, cex=0)
+text(x1, y1, labels=emoji('heartbeat'), cex=1.5, col='red', family='EmojiOne')
+text(x2, y2, labels=emoji('cow'), cex=1.5, col='steelblue', family='EmojiOne')
+
+search_emoji('face')
+
+plot(x1, y1, cex=0)
+text(x1, y1, labels=emoji('nerd_face'), cex=1.5, col='red', family='EmojiOne')
+
+plot(x1, y1, cex=0)
+text(x1, y1, labels=emoji('face_with_head_bandage'), cex=1.5, col='blue', family='EmojiOne')
+
+
+#' Using online data
+rt <- rtweet::search_tweets(q = "#rstats", n = 1000, include_rts = FALSE)
+cl <- rtweet::search_tweets(q = "#climate", n = 1000, include_rts = FALSE)
+bg <- rtweet::search_tweets(q = "@BillGates", n = 1000, include_rts = FALSE)
+
+ts_plot(rt)
+ts_plot(cl)
+ts_plot(bg)
+
+
+

@@ -11,7 +11,7 @@
 
 <meta name="author" content="Nicole Erler, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-01-17" />
+<meta name="date" content="2020-01-28" />
 
 <title>Demo: Statistical Tests</title>
 
@@ -1519,7 +1519,7 @@ div.tocify {
 <h1 class="title toc-ignore">Demo: Statistical Tests</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Nicole Erler, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">17 January 2020</h4>
+<h4 class="date">28 January 2020</h4>
 
 </div>
 
@@ -1536,39 +1536,39 @@ x &lt;- rnorm(250, mean = 20.5, sd = 4)</code></pre>
 ##  One Sample t-test
 ## 
 ## data:  x
-## t = 82, df = 249, p-value &lt; 2.2e-16
+## t = 79.706, df = 249, p-value &lt; 2.2e-16
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  19.98807 20.97188
+##  19.82111 20.82549
 ## sample estimates:
 ## mean of x 
-##  20.47997</code></pre>
+##   20.3233</code></pre>
 <p>Test if the mean of <code>x</code> is equal to 21:</p>
 <pre class="r"><code>t.test(x, mu = 21)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
 ## 
 ## data:  x
-## t = -2.0821, df = 249, p-value = 0.03835
+## t = -2.6539, df = 249, p-value = 0.008468
 ## alternative hypothesis: true mean is not equal to 21
 ## 95 percent confidence interval:
-##  19.98807 20.97188
+##  19.82111 20.82549
 ## sample estimates:
 ## mean of x 
-##  20.47997</code></pre>
+##   20.3233</code></pre>
 <p>By default, a two-sided test is performed. To do a one-sided test, the argument <code>alternative</code> can be set to <code>less</code> or <code>greater</code>:</p>
 <pre class="r"><code>t.test(x, mu = 21, alternative = &#39;less&#39;)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
 ## 
 ## data:  x
-## t = -2.0821, df = 249, p-value = 0.01918
+## t = -2.6539, df = 249, p-value = 0.004234
 ## alternative hypothesis: true mean is less than 21
 ## 95 percent confidence interval:
-##      -Inf 20.89232
+##      -Inf 20.74427
 ## sample estimates:
 ## mean of x 
-##  20.47997</code></pre>
+##   20.3233</code></pre>
 <p>Note that the lower limit of the confidence interval became <code>-Inf</code>, because we look at a one-sided test, and that the upper bound reduced compared to the two sided-test. The output we see is produced by the <code>print()</code> function that is automatically called. To access the elements of the test results separately:</p>
 <pre class="r"><code>testres &lt;- t.test(x, mu = 21, alternative = &#39;less&#39;, conf.level = 0.975)
 names(testres)</code></pre>
@@ -1580,9 +1580,9 @@ names(testres)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <p>This means we can treat <code>testres</code> as a <code>list</code>:</p>
 <pre class="r"><code>testres$p.value</code></pre>
-<pre><code>## [1] 0.0191759</code></pre>
+<pre><code>## [1] 0.004233969</code></pre>
 <pre class="r"><code>testres$conf.int</code></pre>
-<pre><code>## [1]     -Inf 20.97188
+<pre><code>## [1]     -Inf 20.82549
 ## attr(,&quot;conf.level&quot;)
 ## [1] 0.975</code></pre>
 </div>
@@ -1595,25 +1595,25 @@ names(testres)</code></pre>
 ##  Welch Two Sample t-test
 ## 
 ## data:  x and y
-## t = 1.8207, df = 359.78, p-value = 0.06948
+## t = 1.0487, df = 385.17, p-value = 0.295
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.04048075  1.05106126
+##  -0.2664898  0.8756752
 ## sample estimates:
 ## mean of x mean of y 
-##  20.47997  19.97468</code></pre>
+##  20.32330  20.01871</code></pre>
 <pre class="r"><code>t.test(x, y, var.equal = TRUE)</code></pre>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
 ## data:  x and y
-## t = 1.8207, df = 498, p-value = 0.06925
+## t = 1.0487, df = 498, p-value = 0.2948
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.03996998  1.05055049
+##  -0.2660822  0.8752676
 ## sample estimates:
 ## mean of x mean of y 
-##  20.47997  19.97468</code></pre>
+##  20.32330  20.01871</code></pre>
 </div>
 <div id="paired-samples-t-test" class="section level3">
 <h3>Paired-samples t-test</h3>
@@ -1623,26 +1623,26 @@ names(testres)</code></pre>
 ##  Paired t-test
 ## 
 ## data:  x and y
-## t = 1.9159, df = 249, p-value = 0.05653
+## t = 1.052, df = 249, p-value = 0.2938
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.01415376  1.02473427
+##  -0.2656485  0.8748339
 ## sample estimates:
 ## mean of the differences 
-##               0.5052903</code></pre>
+##               0.3045927</code></pre>
 <p>Again, we can change <code>mean</code> to test if the difference is different from that value instead of testing for a difference equal to zero. This is equivalent to performing a one-sampe t-test of the differences <code>x - y</code>:</p>
 <pre class="r"><code>t.test(x - y)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
 ## 
 ## data:  x - y
-## t = 1.9159, df = 249, p-value = 0.05653
+## t = 1.052, df = 249, p-value = 0.2938
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  -0.01415376  1.02473427
+##  -0.2656485  0.8748339
 ## sample estimates:
 ## mean of x 
-## 0.5052903</code></pre>
+## 0.3045927</code></pre>
 </div>
 <div id="using-the-formula-specification" class="section level3">
 <h3>Using the formula specification</h3>
@@ -1652,37 +1652,37 @@ names(testres)</code></pre>
 
 summary(dat)</code></pre>
 <pre><code>##        z          group  
-##  Min.   : 7.245   x:250  
-##  1st Qu.:18.350   y:250  
-##  Median :20.121          
-##  Mean   :20.227          
-##  3rd Qu.:21.875          
-##  Max.   :31.790</code></pre>
+##  Min.   : 8.978   x:250  
+##  1st Qu.:18.166   y:250  
+##  Median :20.058          
+##  Mean   :20.171          
+##  3rd Qu.:22.413          
+##  Max.   :31.978</code></pre>
 <pre class="r"><code>t.test(z ~ group, data = dat)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  z by group
-## t = 1.8207, df = 359.78, p-value = 0.06948
+## t = 1.0487, df = 385.17, p-value = 0.295
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.04048075  1.05106126
+##  -0.2664898  0.8756752
 ## sample estimates:
 ## mean in group x mean in group y 
-##        20.47997        19.97468</code></pre>
+##        20.32330        20.01871</code></pre>
 <p>or</p>
 <pre class="r"><code>t.test(z ~ group, data = dat, paired = TRUE)</code></pre>
 <pre><code>## 
 ##  Paired t-test
 ## 
 ## data:  z by group
-## t = 1.9159, df = 249, p-value = 0.05653
+## t = 1.052, df = 249, p-value = 0.2938
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.01415376  1.02473427
+##  -0.2656485  0.8748339
 ## sample estimates:
 ## mean of the differences 
-##               0.5052903</code></pre>
+##               0.3045927</code></pre>
 </div>
 </div>
 <div id="wilcoxon-test" class="section level2">
@@ -1694,7 +1694,7 @@ summary(dat)</code></pre>
 ##  Wilcoxon signed rank test with continuity correction
 ## 
 ## data:  x
-## V = 17930, p-value = 0.05012
+## V = 17131, p-value = 0.2074
 ## alternative hypothesis: true location is not equal to 20</code></pre>
 <p>The function <code>wilcox.test()</code> has similar arguments as <code>t.test()</code> (<code>x</code>, <code>y</code>, <code>alternative</code>, <code>mu</code>, <code>paired</code>, <code>conf.level</code>). Note that conidence intervals are only returned if <code>conf.int = TRUE</code>:</p>
 <pre class="r"><code>wilcox.test(x, conf.int = TRUE, mu = 20)</code></pre>
@@ -1702,26 +1702,26 @@ summary(dat)</code></pre>
 ##  Wilcoxon signed rank test with continuity correction
 ## 
 ## data:  x
-## V = 17930, p-value = 0.05012
+## V = 17131, p-value = 0.2074
 ## alternative hypothesis: true location is not equal to 20
 ## 95 percent confidence interval:
-##  19.99844 21.00978
+##  19.81670 20.86824
 ## sample estimates:
 ## (pseudo)median 
-##       20.50336</code></pre>
+##       20.34172</code></pre>
 <p>The additional argument <code>exact</code> controls if exact p-values and confidence intervals are calculated or if the normal approximation is used. In the latter case, the argument <code>correct</code> determins if a continuity correction is applied.</p>
 <pre class="r"><code>wilcox.test(x, conf.int = TRUE, exact = TRUE, mu = 20) </code></pre>
 <pre><code>## 
 ##  Wilcoxon signed rank test
 ## 
 ## data:  x
-## V = 17930, p-value = 0.05001
+## V = 17131, p-value = 0.2078
 ## alternative hypothesis: true location is not equal to 20
 ## 95 percent confidence interval:
-##  19.99917 21.00957
+##  19.81709 20.86764
 ## sample estimates:
 ## (pseudo)median 
-##       20.50333</code></pre>
+##       20.34179</code></pre>
 </div>
 <div id="wilcoxon-rank-sum-test" class="section level3">
 <h3>Wilcoxon Rank Sum Test</h3>
@@ -1730,13 +1730,13 @@ summary(dat)</code></pre>
 ##  Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  x and y
-## W = 34257, p-value = 0.06272
+## W = 33034, p-value = 0.2696
 ## alternative hypothesis: true location shift is not equal to 0
 ## 95 percent confidence interval:
-##  -0.03012578  1.09707733
+##  -0.2624560  0.9833352
 ## sample estimates:
 ## difference in location 
-##              0.5350269</code></pre>
+##              0.3561732</code></pre>
 <p>Like for the <code>t.test()</code>, we can also use a formula specification and the test output is of the same class, i.e., the p-value etc. can be accessed like elements of a list.</p>
 </div>
 </div>
@@ -1752,81 +1752,81 @@ kruskal.test(x)</code></pre>
 ##  Kruskal-Wallis rank sum test
 ## 
 ## data:  x
-## Kruskal-Wallis chi-squared = 19.467, df = 2, p-value = 5.926e-05</code></pre>
+## Kruskal-Wallis chi-squared = 8.9022, df = 2, p-value = 0.01167</code></pre>
 <p>or as a <code>data.frame</code> with one variable per column:</p>
 <pre class="r"><code>kruskal.test(as.data.frame(x))</code></pre>
 <pre><code>## 
 ##  Kruskal-Wallis rank sum test
 ## 
 ## data:  as.data.frame(x)
-## Kruskal-Wallis chi-squared = 19.467, df = 2, p-value = 5.926e-05</code></pre>
+## Kruskal-Wallis chi-squared = 8.9022, df = 2, p-value = 0.01167</code></pre>
 <p>or using the formula specification</p>
 <pre class="r"><code>dat &lt;- data.frame(x = c(x$x1, x$x2, x$x3),
                   group = rep(c(&#39;x1&#39;, &#39;x2&#39;, &#39;x3&#39;), each = 100))
 head(dat)</code></pre>
 <pre><code>##          x group
-## 1 11.38638    x1
-## 2 14.10799    x1
-## 3 11.67621    x1
-## 4 11.87112    x1
-## 5 12.20341    x1
-## 6 11.24040    x1</code></pre>
+## 1 10.60664    x1
+## 2 10.99622    x1
+## 3 10.80970    x1
+## 4 13.55030    x1
+## 5 10.62528    x1
+## 6 10.12749    x1</code></pre>
 <pre class="r"><code>kruskal.test(x ~ group, data = dat)</code></pre>
 <pre><code>## 
 ##  Kruskal-Wallis rank sum test
 ## 
 ## data:  x by group
-## Kruskal-Wallis chi-squared = 19.467, df = 2, p-value = 5.926e-05</code></pre>
+## Kruskal-Wallis chi-squared = 8.9022, df = 2, p-value = 0.01167</code></pre>
 </div>
 <div id="proportion-test" class="section level2">
 <h2>Proportion test</h2>
 <div id="one-sample-proportion-test" class="section level3">
 <h3>One-sample proportion test</h3>
 <pre class="r"><code>(x &lt;- rbinom(50, size = 1, prob = 0.3))</code></pre>
-<pre><code>##  [1] 1 0 0 0 0 1 1 0 1 1 1 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 0 1 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0</code></pre>
+<pre><code>##  [1] 0 0 1 1 0 1 1 1 0 1 0 0 1 0 0 1 1 0 0 0 1 1 0 1 0 0 0 0 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0</code></pre>
 <p>The data can be provided as the number of successes (<code>x</code>) and the number of trials (<code>n</code>)</p>
 <pre class="r"><code>prop.test(x = sum(x), n = length(x), p = 0.4)</code></pre>
 <pre><code>## 
 ##  1-sample proportions test with continuity correction
 ## 
 ## data:  sum(x) out of length(x), null probability 0.4
-## X-squared = 3.5208, df = 1, p-value = 0.0606
+## X-squared = 0.1875, df = 1, p-value = 0.665
 ## alternative hypothesis: true p is not equal to 0.4
 ## 95 percent confidence interval:
-##  0.1508077 0.4061259
+##  0.2328502 0.5085700
 ## sample estimates:
 ##    p 
-## 0.26</code></pre>
+## 0.36</code></pre>
 <p>or as a matrix containing the number of sucesses and failures:</p>
 <pre class="r"><code>(M &lt;- matrix(nrow = 1, ncol = 2, data = c(sum(x), sum(1 - x)),
              dimnames = list(c(), c(&#39;success&#39;, &#39;failure&#39;))))</code></pre>
 <pre><code>##      success failure
-## [1,]      13      37</code></pre>
+## [1,]      18      32</code></pre>
 <pre class="r"><code>prop.test(M, p = 0.4)</code></pre>
 <pre><code>## 
 ##  1-sample proportions test with continuity correction
 ## 
 ## data:  M, null probability 0.4
-## X-squared = 3.5208, df = 1, p-value = 0.0606
+## X-squared = 0.1875, df = 1, p-value = 0.665
 ## alternative hypothesis: true p is not equal to 0.4
 ## 95 percent confidence interval:
-##  0.1508077 0.4061259
+##  0.2328502 0.5085700
 ## sample estimates:
 ##    p 
-## 0.26</code></pre>
+## 0.36</code></pre>
 <p>If the argument <code>p</code> is unspecified, <code>p = 0.5</code> is used. Like in the <code>t.test()</code> we can choose a one- or two-sided null hypothesis using the argument <code>alternative</code>, and the confidence level using <code>conf.level</code>. When <code>correct = TRUE</code> Yate’s continuity correction is used. ### Exact one-sample proportion test The function <code>binom.test()</code> works the same as <code>prop.test()</code>, but performs an exact test.</p>
 <pre class="r"><code>binom.test(x = sum(x), n = length(x), p = 0.4)</code></pre>
 <pre><code>## 
 ##  Exact binomial test
 ## 
 ## data:  sum(x) and length(x)
-## number of successes = 13, number of trials = 50, p-value = 0.04402
+## number of successes = 18, number of trials = 50, p-value = 0.6655
 ## alternative hypothesis: true probability of success is not equal to 0.4
 ## 95 percent confidence interval:
-##  0.1463006 0.4034477
+##  0.2291571 0.5080686
 ## sample estimates:
 ## probability of success 
-##                   0.26</code></pre>
+##                   0.36</code></pre>
 </div>
 <div id="pearsons-chi2-test" class="section level3">
 <h3>Pearson’s <span class="math inline">\(\chi^2\)</span>-Test</h3>
@@ -1837,41 +1837,41 @@ head(dat)</code></pre>
 )
 X</code></pre>
 <pre><code>##             none mild severe
-## exposed       21   42     16
-## non-exposed   35   24     30</code></pre>
+## exposed       10   28     27
+## non-exposed   40   31     29</code></pre>
 <p>The function <code>chisq.test()</code> performs Pearson’s Chi-squared test. For this test (or for Fisher’s Exact test) it does not matter which variable goes into the rows and which into the columns:</p>
 <pre class="r"><code>chisq.test(X)</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  X
-## X-squared = 12.118, df = 2, p-value = 0.002337</code></pre>
+## X-squared = 11.309, df = 2, p-value = 0.003502</code></pre>
 <pre class="r"><code>chisq.test(t(X))</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  t(X)
-## X-squared = 12.118, df = 2, p-value = 0.002337</code></pre>
+## X-squared = 11.309, df = 2, p-value = 0.003502</code></pre>
 <p>By default, p-values are calculated from the asymptotic chi-squared distribution of the test statistic. This can be changed to calculation via Monte Carlo simuation when <code>simulate.p.value = TRUE</code>. Then, the argument <code>B</code> specifies the number of simulations used to calculate the p-value.</p>
 <pre class="r"><code>chisq.test(X, simulate.p.value = TRUE, B = 1e5)</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 1e+05 replicates)
 ## 
 ## data:  X
-## X-squared = 12.118, df = NA, p-value = 0.00245</code></pre>
+## X-squared = 11.309, df = NA, p-value = 0.00339</code></pre>
 <p>Note that simulation can result in different p-values every time, especially when <code>B</code> is small:</p>
 <pre class="r"><code>chisq.test(X, simulate.p.value = TRUE, B = 200)</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 200 replicates)
 ## 
 ## data:  X
-## X-squared = 12.118, df = NA, p-value = 0.01493</code></pre>
+## X-squared = 11.309, df = NA, p-value = 0.004975</code></pre>
 <pre class="r"><code>chisq.test(X, simulate.p.value = TRUE, B = 200)</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 200 replicates)
 ## 
 ## data:  X
-## X-squared = 12.118, df = NA, p-value = 0.004975</code></pre>
+## X-squared = 11.309, df = NA, p-value = 0.01493</code></pre>
 <p>Specification is also possible via two factors:</p>
 <pre class="r"><code>x &lt;- factor(sample(c(&#39;a&#39;, &#39;b&#39;), size = 100, replace = TRUE))
 y &lt;- factor(sample(c(&#39;yes&#39;, &#39;no&#39;), size = 100, replace = TRUE,
@@ -1880,20 +1880,20 @@ y &lt;- factor(sample(c(&#39;yes&#39;, &#39;no&#39;), size = 100, replace = TRUE
 table(x, y)</code></pre>
 <pre><code>##    y
 ## x   no yes
-##   a 36  11
-##   b 39  14</code></pre>
+##   a 41  16
+##   b 30  13</code></pre>
 <pre class="r"><code>chisq.test(x, y, correct = FALSE)</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  x and y
-## X-squared = 0.12043, df = 1, p-value = 0.7286</code></pre>
+## X-squared = 0.055661, df = 1, p-value = 0.8135</code></pre>
 <pre class="r"><code>chisq.test(table(x, y), correct = FALSE)</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(x, y)
-## X-squared = 0.12043, df = 1, p-value = 0.7286</code></pre>
+## X-squared = 0.055661, df = 1, p-value = 0.8135</code></pre>
 </div>
 <div id="fishers-exact-test" class="section level3">
 <h3>Fisher’s Exact Test</h3>
@@ -1901,14 +1901,14 @@ table(x, y)</code></pre>
 <pre class="r"><code>X[2, 3] &lt;- 0
 X</code></pre>
 <pre><code>##             none mild severe
-## exposed       21   42     16
-## non-exposed   35   24      0</code></pre>
+## exposed       10   28     27
+## non-exposed   40   31      0</code></pre>
 <pre class="r"><code>fisher.test(X)</code></pre>
 <pre><code>## 
 ##  Fisher&#39;s Exact Test for Count Data
 ## 
 ## data:  X
-## p-value = 4.196e-06
+## p-value = 2.073e-12
 ## alternative hypothesis: two.sided</code></pre>
 <p>Arguments <code>simulate.p.value</code> and <code>B</code> work like for <code>chisq.test()</code>. Confidence intervals for the odds ratio and the specification of an <code>alternative</code> are only available for 2x2 tables:</p>
 <pre class="r"><code>fisher.test(X[, -3], conf.int = TRUE, alternative = &#39;less&#39;)</code></pre>
@@ -1916,13 +1916,13 @@ X</code></pre>
 ##  Fisher&#39;s Exact Test for Count Data
 ## 
 ## data:  X[, -3]
-## p-value = 0.003385
+## p-value = 0.002324
 ## alternative hypothesis: true odds ratio is less than 1
 ## 95 percent confidence interval:
-##  0.0000000 0.6802298
+##  0.0000000 0.6172513
 ## sample estimates:
 ## odds ratio 
-##  0.3460276</code></pre>
+##  0.2801568</code></pre>
 </div>
 <div id="mcnemar-test" class="section level3">
 <h3>McNemar Test</h3>
@@ -1931,14 +1931,14 @@ X</code></pre>
 M</code></pre>
 <pre><code>##       after
 ## before no yes
-##    no   6   7
-##    yes 39  16</code></pre>
+##    no  47  37
+##    yes 12  38</code></pre>
 <pre class="r"><code>mcnemar.test(M)</code></pre>
 <pre><code>## 
 ##  McNemar&#39;s Chi-squared test with continuity correction
 ## 
 ## data:  M
-## McNemar&#39;s chi-squared = 20.891, df = 1, p-value = 4.861e-06</code></pre>
+## McNemar&#39;s chi-squared = 11.755, df = 1, p-value = 0.0006068</code></pre>
 <p>The <code>mcnemar.test()</code> also has the option to switch off the continuity correction by setting <code>correct = FALSE</code>. Specification for the test is also possible via two factors:</p>
 <pre class="r"><code>x &lt;- factor(sample(c(&#39;yes&#39;, &#39;no&#39;), size = 100, replace = TRUE))
 y &lt;- factor(sample(c(&#39;yes&#39;, &#39;no&#39;), size = 100, replace = TRUE,
@@ -1949,18 +1949,18 @@ y &lt;- factor(sample(c(&#39;yes&#39;, &#39;no&#39;), size = 100, replace = TRUE
 ##  McNemar&#39;s Chi-squared test with continuity correction
 ## 
 ## data:  x and y
-## McNemar&#39;s chi-squared = 9.1875, df = 1, p-value = 0.002437</code></pre>
+## McNemar&#39;s chi-squared = 5.0196, df = 1, p-value = 0.02506</code></pre>
 <pre class="r"><code>table(x, y)</code></pre>
 <pre><code>##      y
 ## x     no yes
-##   no  39  13
-##   yes 35  13</code></pre>
+##   no  37  17
+##   yes 34  12</code></pre>
 <pre class="r"><code>mcnemar.test(table(x,y))</code></pre>
 <pre><code>## 
 ##  McNemar&#39;s Chi-squared test with continuity correction
 ## 
 ## data:  table(x, y)
-## McNemar&#39;s chi-squared = 9.1875, df = 1, p-value = 0.002437</code></pre>
+## McNemar&#39;s chi-squared = 5.0196, df = 1, p-value = 0.02506</code></pre>
 </div>
 <div id="cochran-mantel-haenszel-chi-squared-test" class="section level3">
 <h3>Cochran-Mantel-Haenszel Chi-Squared Test</h3>
@@ -1972,46 +1972,46 @@ table(x, y, stratum)</code></pre>
 ## 
 ##              y
 ## x             no yes
-##   exposed      9  11
-##   not exposed  8   9
+##   exposed     13   5
+##   not exposed 11  12
 ## 
 ## , , stratum = B
 ## 
 ##              y
 ## x             no yes
-##   exposed     10  12
-##   not exposed  1   9
+##   exposed      7  11
+##   not exposed  9   6
 ## 
 ## , , stratum = C
 ## 
 ##              y
 ## x             no yes
-##   exposed      6   8
-##   not exposed  7  10</code></pre>
+##   exposed      8   2
+##   not exposed 12   4</code></pre>
 <pre class="r"><code>mantelhaen.test(x = x, y = y, z = stratum)</code></pre>
 <pre><code>## 
 ##  Mantel-Haenszel chi-squared test with continuity correction
 ## 
 ## data:  x and y and stratum
-## Mantel-Haenszel X-squared = 0.59957, df = 1, p-value = 0.4387
+## Mantel-Haenszel X-squared = 0.051386, df = 1, p-value = 0.8207
 ## alternative hypothesis: true common odds ratio is not equal to 1
 ## 95 percent confidence interval:
-##  0.6623278 3.4945783
+##  0.5287161 2.7157608
 ## sample estimates:
 ## common odds ratio 
-##          1.521367</code></pre>
+##          1.198276</code></pre>
 <pre class="r"><code>mantelhaen.test(table(x, y, stratum))</code></pre>
 <pre><code>## 
 ##  Mantel-Haenszel chi-squared test with continuity correction
 ## 
 ## data:  table(x, y, stratum)
-## Mantel-Haenszel X-squared = 0.59957, df = 1, p-value = 0.4387
+## Mantel-Haenszel X-squared = 0.051386, df = 1, p-value = 0.8207
 ## alternative hypothesis: true common odds ratio is not equal to 1
 ## 95 percent confidence interval:
-##  0.6623278 3.4945783
+##  0.5287161 2.7157608
 ## sample estimates:
 ## common odds ratio 
-##          1.521367</code></pre>
+##          1.198276</code></pre>
 <p>The arguments <code>alternative</code>, <code>correct</code>, <code>exact</code> and <code>conf.level</code> can be used like for the tests before, but only in the case of a 2 x 2 x K table.</p>
 </div>
 </div>
