@@ -31,3 +31,6 @@
   Correlation, covariance, duplicates, function `ave()`
 
 * Link to [https://rstudio.com/resources/cheatsheets/](https://rstudio.com/resources/cheatsheets/)?
+
+## Part D: Regression
+## * need recap of C / day 3
