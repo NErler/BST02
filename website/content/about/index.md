@@ -1,6 +1,7 @@
 ---
 date: "2019-02-09"
 title: About
+markup: blackFriday
 ---
 
 <table style="text-align:center; width:80%;">

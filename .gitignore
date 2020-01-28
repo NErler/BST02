@@ -4,18 +4,8 @@
 .Ruserdata
 .png
 
-Slides/A_Introduction.tex
-Slides/A_Introduction_files
-Slides/B_BasicUseR.tex
-Slides/B_BasicUseR_files
-Slides/C_FunctionsAndProgramming.tex
-Slides/C_FunctionsAndProgramming_files
-Slides/C_FunctionsAndLoops.tex
-Slides/C_FunctionsAndLoops_files
-Slides/C_TheApplyFamily.tex
-Slides/C_TheApplyFamily_files
-Slides/E_Markdown.tex
-Slides/E_Markdown_files
+Slides/B_Basic_Use_of_R_files
+Slides/C_Functions_and_Programming_files
 
 Slides/*.snm
 Slides/*.log
@@ -24,6 +14,7 @@ Slides/*.toc
 Slides/*.nav
 Slides/*.aux
 slides/*.out
+slides/*.tex
 
 Demos/*/*.html
 Demos/*/*.RData

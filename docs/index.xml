@@ -18,9 +18,8 @@
       <pubDate>Thu, 02 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/home/</guid>
-      <description>This website contains slides and materials for NIHES course Using R for Statistics in Clinical Research (BST02).
-Practicals are available &amp;hellip;
-Some more info&amp;hellip;</description>
+      <description>Under construction! This website contains materials for the NIHES course Using R for Statistics in Clinical Research (BST02):
+ lecture slides demos of R functions and syntax practicals  To download and install R, go to https://cran.r-project.org/.</description>
     </item>
     
     <item>
@@ -29,7 +28,7 @@ Some more info&amp;hellip;</description>
       <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/about/</guid>
-      <description></description>
+      <description>Dr. Eleni-Rosalina Andrinopoulou Dr. Nicole Erler  Assistant Professor Postdoctoral Researcher  Department of Biostatistics Department of Biostatistics  Erasmus Medical Center Erasmus Medical Center  Rotterdam, The Netherlands Rotterdam, The Netherlands              </description>
     </item>
     
     <item>
@@ -42,11 +41,11 @@ Some more info&amp;hellip;</description>
     </item>
     
     <item>
-      <title>B: BasicUseR</title>
-      <link>https://nerler.github.io/BST02/slide/b_basicuser/</link>
+      <title>B: Basic Use of R</title>
+      <link>https://nerler.github.io/BST02/slide/b_basic_use_of_r/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/slide/b_basicuser/</guid>
+      <guid>https://nerler.github.io/BST02/slide/b_basic_use_of_r/</guid>
       <description></description>
     </item>
     
@@ -65,24 +64,24 @@ Some more info&amp;hellip;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/practical/basicuser/</guid>
-      <description> BasicUseR [html]  </description>
+      <description> Basic Use R [html]  </description>
     </item>
     
     <item>
-      <title>C: FunctionsAndProgramming</title>
-      <link>https://nerler.github.io/BST02/slide/c_functionsandprogramming/</link>
+      <title>C: Functions and Programming</title>
+      <link>https://nerler.github.io/BST02/slide/c_functions_and_programming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/slide/c_functionsandprogramming/</guid>
+      <guid>https://nerler.github.io/BST02/slide/c_functions_and_programming/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>D: StatisticsWithR</title>
-      <link>https://nerler.github.io/BST02/slide/d_statisticswithr/</link>
+      <title>D: Statistics with R</title>
+      <link>https://nerler.github.io/BST02/slide/d_statistics_with_r/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/slide/d_statisticswithr/</guid>
+      <guid>https://nerler.github.io/BST02/slide/d_statistics_with_r/</guid>
       <description></description>
     </item>
     
@@ -101,7 +100,7 @@ Some more info&amp;hellip;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/functions-and-programming/</guid>
-      <description> 01TheApplyFamily [R] [html] 02ExtraProgrammingExamples [R] [html] Demo Functions01 [R] [html] Functions for Data Exploration [R] [html] Functions for Data Manipulation [R] [html]  </description>
+      <description> 01 The Apply Family [R] [html] 02 Extra Programming Examples [R] [html] Control Flow [R] [html] Functions for Data Exploration [R] [html] Functions for Data Manipulation [R] [html]  </description>
     </item>
     
     <item>
@@ -110,7 +109,7 @@ Some more info&amp;hellip;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/practical/functions-and-programming/</guid>
-      <description> Exploring and Summarizing Data [html] ExtraProgrammingExamples [html] Merging Datasets [html] Rolling the Dice [html] SayHello [html] TheApplyFamily [html]  </description>
+      <description> Control Flow and Functions [html] Exploring and Summarizing Data [html] Extra Programming Examples [html] Merging Datasets [html] Rolling the Dice [html] Say Hello [html] The Apply Family [html]  </description>
     </item>
     
     <item>
@@ -119,7 +118,7 @@ Some more info&amp;hellip;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/markdown/</guid>
-      <description> 01MarkdownCode.Rmd [R] [html]  </description>
+      <description> Markdown Code.Rmd [R] [html]  </description>
     </item>
     
     <item>

@@ -2,4 +2,4 @@
 title: BasicUseR
 ---
 
- * BasicUseR [[html]](/practical/BasicUseR/BasicUseR.html)
+ * Basic Use R [[html]](/practical/BasicUseR/Basic_Use_R.html)
