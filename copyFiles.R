@@ -3,7 +3,8 @@ write_Demos_md <- function(x) {
   xnew <- gsub(' ', '_', x)
   
   files <- unique(gsub('.R$|.html$', '', 
-                       dir(file.path(getwd(), 'Demos', x))))
+                       grep('.R$|.html$', 
+                            dir(file.path(getwd(), 'Demos', x)), value = TRUE)))
   
   filenames <- gsub("\\_", " ", files)
   cat(
@@ -62,9 +63,11 @@ write_Slides_md <- function(x) {
 ## Demos
 ################################################################################
 # Render all R files in Demos to html
-for (xxx in dir('Demos')) {
-  Rfiles <- grep('.R$', dir(file.path('Demos', xxx)), value = TRUE)
-  sapply(file.path('Demos', xxx, Rfiles), rmarkdown::render)
+for (xxx in dir('Demos', full.names = TRUE)) {
+  Rfiles <- grep('.R$', dir(xxx, full.names = TRUE), value = TRUE)
+  for (k in Rfiles) {
+    rmarkdown::render(k)
+  }
 }
 
 
@@ -76,7 +79,8 @@ unlink('website/static/demo/*', recursive = TRUE)
 for (x in dir('Demos')) {
   xnew <- gsub(' ', '_', x)
   dir.create(file.path('website/static/demo', xnew))
-  file.copy(from = dir(file.path(getwd(), 'Demos', x), full.names = TRUE),
+  files <- dir(file.path(getwd(), 'Demos', x), full.names = TRUE)
+  file.copy(from = grep('.R$|.html$', files, value = TRUE),
             to = file.path('website/static/demo', xnew),
             overwrite = TRUE)
   
@@ -90,7 +94,9 @@ for (x in dir('Demos')) {
 # Render all R files in Practicals to html
 for (x in list.dirs('Practicals', recursive = FALSE)) {
   Rmd_files <- grep('.Rmd$', dir(x), value = TRUE)
-  sapply(file.path(x, Rmd_files), rmarkdown::render)
+  for (k in file.path(x, Rmd_files)) {
+    rmarkdown::render(k)
+  }
 }
 
 
@@ -121,6 +127,16 @@ for (x in list.dirs('Practicals', recursive = FALSE)) {
 ################################################################################
 ## Slides
 ################################################################################
+
+# compile all slides
+Rmdfiles <- grep('.Rmd$', dir('Slides', full.names = TRUE), value = TRUE)
+sapply(Rmdfiles[-c(1,5)], rmarkdown::render)
+
+# remove unnecessary files created during compilation 
+sapply(c('.log', '.tex', '.aux', '.out', '.vrb'),
+       function(k) {
+         file.remove(gsub('.Rmd$', k, Rmdfiles))
+       })
 
 # remove content of website/content/slide and website/static/slide
 unlink('website/content/slide/*')
