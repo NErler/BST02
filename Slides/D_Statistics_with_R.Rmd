@@ -84,12 +84,12 @@ See also [BBR Sections 7.2 & 7.3 (http://hbiostat.org/doc/bbr.pdf)](http://hbios
 ## Other tests for continuous data
 
 \begin{itemize}\itemsep5mm
-\item \blue{Kolmogoriv-Smirnov Test:} `ks.test()`\newline
+\item \blue{Kolmogoriv-Smirnov Test:} \texttt{ks.test()}\newline
   tests if two samples are drawn from the same continuous distribution
   
-\item \blue{Shapiro-Wilk Normality Test:} `shapiro.test()`
+\item \blue{Shapiro-Wilk Normality Test:} \texttt{shapiro.test()}
 
-\item \blue{Friedman Rank Sum Test:} `friedman.test()`\newline
+\item \blue{Friedman Rank Sum Test:} \texttt{friedman.test()}\newline
   non-parametric test for two or more related samples
   
 \item ...
@@ -98,6 +98,7 @@ See also [BBR Sections 7.2 & 7.3 (http://hbiostat.org/doc/bbr.pdf)](http://hbios
 
 ## Tests for Continuous Data
 
+\begin{center}
 \begin{columns}
 \begin{column}{0.47\linewidth}
 \begin{block}{Demo}
@@ -107,15 +108,8 @@ See also [BBR Sections 7.2 & 7.3 (http://hbiostat.org/doc/bbr.pdf)](http://hbios
 \end{itemize}
 \end{block}
 \end{column}
-\begin{column}{0.47\linewidth}
-\begin{block}{Demo}
-\begin{itemize}
-\item Tests for Continuous Data\newline \button{https://nerler.github.io/BST02/practical/Statistics_with_R/Tests_for_Continuous_Data.html}{html}
-\end{itemize}
-\end{block}
-\end{column}
 \end{columns}
-
+\end{center}
 
 ## Tests for Categorical Data / Proportions
 
@@ -132,6 +126,7 @@ See also [BBR Sections 7.2 & 7.3 (http://hbiostat.org/doc/bbr.pdf)](http://hbios
 \bigskip\vfill
 
 See also [BBR Sections 5.7 & 6 (http://hbiostat.org/doc/bbr.pdf)](http://hbiostat.org/doc/bbr.pdf)
+
 
 ## Tests for Categorical Data / Proportions
 \blue{Related Samples: McNemar Test}
@@ -150,7 +145,6 @@ See also [BBR Sections 5.7 & 6 (http://hbiostat.org/doc/bbr.pdf)](http://hbiosta
 
 ## Tests for Categorical Data
 
-\begin{center}
 \begin{columns}
 \begin{column}{0.47\linewidth}
 \begin{block}{Demo}
@@ -160,8 +154,15 @@ See also [BBR Sections 5.7 & 6 (http://hbiostat.org/doc/bbr.pdf)](http://hbiosta
 \end{itemize}
 \end{block}
 \end{column}
+\begin{column}{0.47\linewidth}
+\begin{block}{Practical}
+\begin{itemize}
+\item Statistical Tests\newline
+\button{https://nerler.github.io/BST02/practical/Statistics_with_R/Statistical_Tests.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
 \end{columns}
-\end{center}
 
 
 ## Statistical Tests
@@ -221,9 +222,8 @@ See also [BBR Sections 5.7 & 6 (http://hbiostat.org/doc/bbr.pdf)](http://hbiosta
 ## Linear Regression
 
 A standard linear regression model has the form
-$$ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p + \varepsilon
-\qquad \text{with } \varepsilon \sim N(0, \sigma^2)$$
-
+$$ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p + \varepsilon 
+\qquad \text{with}\quad \varepsilon \sim N(0, \sigma^2)$$
 
 where
 
@@ -248,7 +248,7 @@ The most important arguments are
 
 
 ## Model Formula
-A `formula` object has the form
+A \blue{\texttt{formula}} object has the form
 ```{r, eval = FALSE}
 outcome ~ linear predictor
 ```
@@ -259,8 +259,8 @@ y ~ x1 + x2 + x3
 
 * Variables are separated by "\texttt{\blue{+}}" signs.
 * An intercept is automatically included.
-* one-sided formulas (omitting the outcome) are possible\newline
-  (used for random effects specification)
+* One-sided formulas (omitting the outcome) are possible\newline
+  (used for random effects specification).
 
 ## Model Formula: Interactions
 Interaction terms are written using "\blue{\texttt{:}}" or "\blue{\texttt{*}}".
@@ -274,6 +274,7 @@ y ~ x1 * x2
 y ~ x1 + x2 + x1:x2
 ```
 
+\pause
 Interactions between multiple variables can be written using "\blue{\texttt{()}}", i.e.,
 ```{r, eval = FALSE}
 y ~ x1 * (x2 + x3)
@@ -284,8 +285,9 @@ y ~ x1 * x2 + x1 * x3
 ```
 
 ## Model Formula: Interactions
-To specify a \blue{higher level interaction} (for example a three-way interaction) 
-"\blue{\texttt{\^}}" is used, i.e.,
+To specify a \blue{higher level interaction} "\blue{\texttt{\^}}" is used.
+
+For example:
 ```{r, eval = FALSE}
 y ~ (x1 + x2 + x3)^3
 ```
@@ -297,6 +299,7 @@ y ~ x1 * x2 * x3
 ```{r, eval = FALSE}
 y ~ x1 + x2 + x3 + x1:x2 + x1:x3 + x2:x3 + x1:x2:x3
 ```
+\pause
 and
 ```{r, eval = FALSE}
 y ~ (x1 + x2 + x3)^2
@@ -307,7 +310,9 @@ y ~ x1 + x2 + x3 + x1:x2 + x1:x3 + x2:x3
 ```
 
 ## Model Formula: Removing terms
-The "\blue{\texttt{-}}" sign can be used to remove terms from a model formula, for example
+The "\blue{\texttt{-}}" sign can be used to remove terms from a model formula.
+
+For example
 ```{r, eval = FALSE}
 y ~ x1 * x2 * x3 - x2 - x1:x3
 ```
@@ -316,6 +321,7 @@ y ~ x1 * x2 * x3 - x2 - x1:x3
 y ~ x1 + x3 + x1:x2 + x2:x3 + x1:x2:x3
 ```
 
+\pause
 The \blue{intercept} can be removed from a formula by using "\blue{\texttt{-1}}"
 or "\blue{\texttt{+0}}", i.e.
 ```{r, eval = FALSE}
@@ -328,7 +334,7 @@ A \blue{generalized linear regression} model has the form
 $$g(\mathbb{E}(y)) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p$$
 where $g(\ )$ is a link function and $y$ is from the exponential family.
 
-\vfill
+\vfill\pause
 
 For example \blue{logistic regression} for binary $y$:
 $$log\left(\frac{P(y = 1)}{1-P(y = 1)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p$$
@@ -360,6 +366,7 @@ family & link\\\midrule
 \end{tabular}
 \end{center}
 
+\pause
 The `family` argument in `glm()` can be specified in the following ways:
 \begin{columns}[onlytextwidth]
 \begin{column}{0.5\linewidth}
@@ -372,7 +379,7 @@ The `family` argument in `glm()` can be specified in the following ways:
 \end{column}
 \begin{column}{0.5\linewidth}
 \blue{Note:}\\
-When the link is not explicitely specified (i.e. option 1),
+When the link is not explicitely specified (i.e. options 2-4),
 the default link is used.
 \end{column}
 \end{columns}
@@ -431,7 +438,7 @@ rpart::car90
 \begin{itemize}\vspace*{-0.5ex}
 \item \texttt{summary()}
 \item \texttt{coef()}, \texttt{confint()}
-\item \texttt{fitted()}, \texttt{residuals()}
+\item \texttt{fitted()}, \texttt{residuals()}, \texttt{rstandard()}
 \item \texttt{AIC()}, \texttt{BIC()}
 \item \texttt{anova()}
 \end{itemize}
@@ -449,7 +456,6 @@ rpart::car90
 \blue{Topic}
 \begin{itemize}\vspace*{-0.5ex}
 \item \texttt{ns()}, \texttt{bs()}, \texttt{I()}
-\item \texttt{p.adjust()}
 \item \texttt{all.vars()}
 \item \texttt{update()}
 \item \texttt{as.formula()}
