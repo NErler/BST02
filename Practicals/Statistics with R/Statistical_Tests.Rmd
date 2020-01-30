@@ -1,0 +1,285 @@
+---
+title: 'Statistical Tests'
+output: 
+  html_document:
+    code_folding: show
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+    number_sections: false
+    theme: spacelab
+    highlight: tango
+    includes:
+      after_body: ../footerNE.html
+    css: ../style.css
+---
+
+```{r, include = FALSE}
+library(knitr)
+options(width = 100)
+
+hint <- function(text) {
+  id <- paste0('hint_', sample.int(1e10, size = 1))
+    cat(
+    paste0('\n',
+      '<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" ',
+      'data-target="#', id, '">Hint</button>',
+      '<div id = "', id, '" class="collapse" style="border:1px; ',
+      'border-style:solid; padding: 1em; border-color:#1F78B4">',
+      text, '</div>')
+  )
+}
+```
+
+
+## Dataset 
+For this practical, we will use the **survey** dataset from the package **MASS**.
+
+You can either load the **MASS** package to get access to this dataset
+```{r}
+library(MASS)
+```
+or make a copy of this data
+```{r}
+survey <- MASS::survey
+```
+
+The **survey** dataset contains responses of 237 statistics students at the 
+University of Adelaide to a number of questions:
+```{r}
+str(survey)
+```
+
+
+## Tests for Continuous Variables
+### `Age` differences {.tabset .tabset-pills .tabset-fade}
+
+First, we want to test if there is a difference in `Age` between `Female` and `Male`
+students.
+
+#### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Which statistical test do you think is appropriate to test this?
+```{r, echo = FALSE, results = 'asis'}
+hint('To decide, it is useful to get an impression of the distribution of the data,
+     for example using a histogram.')
+hint('The function `hist()` creates a histogram.')
+hint('You need to check the distribution for each of the two groups separately.')
+```
+</div>
+
+#### Solution 1
+```{r, fig.with = 8, fig.height = 4}
+par(mfrow = c(1, 2)) # arrange plots in a grid with one row and two columns
+hist(survey$Age[which(survey$Sex == 'Female')], nclass = 50, main = 'Female', xlab = 'age')
+hist(survey$Age[which(survey$Sex == 'Male')], nclass = 50, main = 'Male', xlab = 'age')
+```
+
+We notice that the distribution within each of the groups is skewed and does not
+follow a normal distribution. We decide to use a non-parametric test.
+
+**Note:**<br>
+In the above syntax we used `...[which(survey$Sex == 'Female')]...` and not just
+`...[survey$Sex == 'Female]...`.
+These two ways of selecting cases give different results when there are missing values:
+```{r}
+x <- c("A", "A", "B", NA, "A", "B")
+y <- c("a", "a", "b", "na_value", "a", "b")
+
+y[x == "A"]
+y[which(x == "A")]
+```
+
+
+#### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Perform a non-parametric test to investigate whether males are **older** than females
+in the **survey** data.
+
+[It is recommended](http://hbiostat.org/doc/bbr.pdf) to use the exact p-value 
+calculation when possible (= when there are no ties), and to use continuity
+correction if a exact calculation is not possble.
+
+```{r, echo = FALSE, results = 'asis'}
+hint("You may use the `wilcox.test()` function.")
+hint("To test if males are older, you need a one-sided test.")
+```
+</div>
+
+#### Solution 2
+To perform a one-sided test, the argument `alternative` needs to be specified to 
+either `"less"` or `"greater"`.
+
+In the help file for `wilcox.test()` it is written that 
+
+> [...] the one-sided alternative "greater" is that `x` is shifted to the right of `y`.
+
+When using the formula specification, `x` refers to the first factor level 
+(`Female` in our case) and `y` refers to the second level (`Male` in our case).
+
+Setting `alternative = "greater"` would, hence, test the alternative hypothesis
+$H_1: Female > Male$. Since we want to test $H_1: Male > Female$ 
+(i.e., $H_0: Male \leq Female$) we need to set
+`alternative = "less"`:
+```{r}
+wtest <- wilcox.test(Age ~ Sex, data = survey, alternative = 'less', exact = TRUE)
+wtest
+```
+
+Because there are ties in the data, the exact calculation of the p-value 
+could not be used and the normal approximation was used instead.
+Continuity correction was used (by default).
+
+The output shows that we can reject the null hypothesis that males are younger
+than (or equally as old as) females, i.e., males are likely older.
+
+
+
+### Differences in the span of both hands {.tabset .tabset-pills .tabset-fade}
+Next, we would like to test if the span of the writing hand (`Wr.Hnd`; 
+distance from tip of thumb to tip of little finger) differs from the
+span of the non-writing hand (`NW.Hnd`).
+
+#### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Make a plot to investigate if a `t.test()` would be appropriate to answer this 
+question.
+</div>
+
+#### Solution 1
+We are now investigating a paired sample and are, therefore, interested in the
+difference between the spans of the writing and non-writing hand.
+(Remember: a paired t-test is the same as a one-sample t-test of the 
+differences)
+
+```{r}
+hist(survey$NW.Hnd - survey$Wr.Hnd, nclass = 50)
+```
+
+#### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+* Perform a `t.test()` to answer our research question about the spand of the hands.
+* Confirm that the paired t-test and the one sample t-test do indeed give the same result.
+</div>
+
+#### Solution 2
+```{r}
+# one-sample t-test:
+ttest1 <- t.test(survey$Wr.Hnd - survey$NW.Hnd)
+
+# paired t-test:
+ttest2 <- t.test(survey$Wr.Hnd, survey$NW.Hnd, paired = TRUE)
+
+ttest1
+ttest2
+```
+
+#### Task 3
+In the previous solution(s) we have used the default options for several of the 
+arguments.
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+* Which default options were used in the one-sample t-test?
+* Are these default options appropriate in this case?
+```{r, echo = FALSE, results = 'asis'}
+hint("To see the default options of a function, check the help file (`?t.test`).")
+```
+</div>
+
+#### Solution 3
+In the help file we can read:
+
+```{r, eval = FALSE}
+## Default S3 method:
+t.test(x, y = NULL,
+       alternative = c("two.sided", "less", "greater"),
+       mu = 0, paired = FALSE, var.equal = FALSE,
+       conf.level = 0.95, ...)
+```
+
+The default values that were used are:
+
+* `y = NULL` (correct because we are doing a one-sample test)
+* `alternative = "two.sided"` (correct, we want to test for difference in either direction)
+* `mu = 0` (correct, we want to test for any difference)
+* `paired = FALSE` (only needs to be specified when we use both arguments `x` and `y`)
+* `var.equal = FALSE` (only relevant for independent samples test)
+* `conf.level = 0.95` (OK, since this is a common choice and nothing else was specified in the exercise)
+
+## Testing Categorical Variables
+### Left vs Right {.tabset .tabset-pills .tabset-fade}
+We now want to test if the writing hand (`W.Hnd`) is associated with which
+hand was on top when the students clapped their hands (`Clap`).
+
+#### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Perform an appropriate test.
+</div>
+
+#### Solution 1
+```{r}
+chisq.test(table(survey$W.Hnd, survey$Clap))
+```
+
+**Note:**</br>
+A common recommendation is / used to be that Fisher's Exact test should be used instead of 
+the $\chi^2$-test whenever one of the expected frequencies is $< 5$, however
+this "cut-off" is arbitrary ([https://doi.org/10.1002/sim.2832](https://doi.org/10.1002/sim.2832))
+and a $\chi^2$-test can be used. 
+
+
+#### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Check if the conclusion differs if we take into account the students' `Sex`.
+```{r, echo = FALSE, results = 'asis'}
+hint("Consider `Sex` as stratifying variable.")
+```
+
+</div>
+
+#### Solution 2
+To test for an association between `W.Hnd` and `Clap` in each of the two strata
+defined by `Sex` we can use the `mantelhaen.test()`:
+```{r}
+MHtest <- mantelhaen.test(table(survey$W.Hnd, survey$Clap, survey$Sex))
+```
+
+## Multiple Testing {.tabset .tabset-pills .tabset-fade}
+### Task
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Obtain adjusted p-values for these test and perform a multiplicity correction: 
+
+* Wilcoxon rank sum test for `Age` by `Sex`
+* t-test for the difference between the `Wr.Hnd` and `NW.Hnd`
+* Mantel-Haenszel test for `W.Hnd`, `Clap` and `Sex`
+
+```{r, echo = FALSE, results = 'asis'}
+hint("Adjusted p-values can be obtained using the function `p.adjust()`.")
+```
+</div>
+
+### Solution
+```{r}
+pvals <- c(wtest = wtest$p.value,
+           ttest = ttest1$p.value,
+           MHtest = MHtest$p.value)
+
+padj <- p.adjust(pvals, method = "BH")
+padj
+```
+
+To make a nice looking comparison we could use the following syntax:
+```{r, eval = FALSE}
+data.frame('p-value' = format.pval(pvals, eps = 0.001, digits = 2),
+           'adj.p-value' = format.pval(padj, eps = 0.001, digits = 2),
+          row.names = names(pvals), check.names = FALSE
+)
+```
+```{r, echo = FALSE}
+out <- capture.output(data.frame('p-value' = format.pval(pvals, eps = 0.001, digits = 2),
+                                 'adj.p-value' = format.pval(padj, eps = 0.001, digits = 2),
+                                 row.names = names(pvals), check.names = FALSE
+))
+cat(paste0(out, collapse = "\n"))
+```
+
