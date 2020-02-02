@@ -60,13 +60,8 @@ scatter.smooth(mod$fitted.values, mod$residuals, lpars = list(col = 'red'))
 abline(h = 0, lty = 2, col = 'grey')
 
 #' #### QQ-plot
-#' To create a normal QQ-plot we plot the quantiles of the residuals against the
-#' quantiles of a normal distribution:
-qqnorm(mod$residuals)
-qqline(mod$residuals, lty = 2, col = 'grey')
-
-
-#' In the plot created by `plot(mod)` the standardized residuals were used:
+#' To create a normal QQ-plot we plot the quantiles of the standardized 
+#' residuals against the quantiles of a normal distribution:
 qqnorm(rstandard(mod))
 abline(a = 0, b = 1, lty = 1, col = 'grey')
 
@@ -80,7 +75,8 @@ summary(mod2)
 #' Note: the coefficients are on the log odds ratio scale.
 
 #' The functions `coef()` and `confint()` also work on GLMs.
-
+#' 
+#' 
 
 #' ### Changing parts of the model
 #' To re-fit the model with a small change, the function `update()` is useful:
