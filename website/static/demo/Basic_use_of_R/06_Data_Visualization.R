@@ -13,12 +13,12 @@
 # install.packages("lattice")
 # install.packages("ggplot2")
 # install.packages("emojifont")
-# install.packages("gtrendsR")
+# install.packages("rtweet")
 library(survival)
 library(lattice)
 library(ggplot2)
 library(emojifont)
-library(gtrendsR)
+library(rtweet)
 
 #' Basic plot with 1 variable
 plot(pbc$bili)
@@ -147,30 +147,14 @@ plot(x1, y1, cex=0)
 text(x1, y1, labels=emoji('face_with_head_bandage'), cex=1.5, col='blue', family='EmojiOne')
 
 
-#' Using google data
-google.trends1 = gtrends(c("feyenoord"), gprop = "web", time = "all")[[1]]
+#' Using online data
+rt <- rtweet::search_tweets(q = "#rstats", n = 1000, include_rts = FALSE)
+cl <- rtweet::search_tweets(q = "#climate", n = 1000, include_rts = FALSE)
+bg <- rtweet::search_tweets(q = "@BillGates", n = 1000, include_rts = FALSE)
 
-ggplot(data = google.trends1, aes(x = date, y = hits, group = keyword, col = keyword)) +
-  geom_line() +
-  xlab('Time') +
-  ylab('Feyenoord') + 
-  theme_bw() +
-  theme(legend.title = element_blank(), legend.position = "bottom", legend.text = element_text(size = 12)) +
-  ggtitle("Hits on Google")
+ts_plot(rt)
+ts_plot(cl)
+ts_plot(bg)
 
-
-
-#' Using twitter data
-# rt <- rtweet::search_tweets(q = "#rstats", n = 1000, include_rts = FALSE)
-# cl <- rtweet::search_tweets(q = "#climate", n = 1000, include_rts = FALSE)
-# bg <- rtweet::search_tweets(q = "@BillGates", n = 1000, include_rts = FALSE)
-# emc <- rtweet::search_tweets(q = "@ErasmusMC", n = 1000, include_rts = FALSE, by = "months")
-# lumc <- rtweet::search_tweets(q = "@LUMC_Leiden", n = 1000, include_rts = FALSE)
-# 
-# ts_plot(rt)
-# ts_plot(cl)
-# ts_plot(bg)
-# ts_plot(emc)
-# ts_plot(lumc)
 
 
