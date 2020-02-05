@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 
 <meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -2824,7 +2825,6 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
-  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -2856,12 +2856,6 @@ summary {
 }
 }
 
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
 
 .toc-content {
   padding-left: 30px;
@@ -2992,10 +2986,10 @@ div.tocify {
 <li><code>smoke</code> (smoking status during pregnancy).</li>
 </ul></li>
 </ul>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4654187348">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4879487297">
 Hint
 </button>
-<div id="hint_4654187348" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_4879487297" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the <code>~</code> to separate the outcome from the linear predictor and use <code>+</code> to separate the covariates.
 </div>
 </div>
@@ -3009,16 +3003,16 @@ Use the <code>~</code> to separate the outcome from the linear predictor and use
 <h3>Task 2</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Fit a linear regression model with the formula that we have just specified.</p>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4861226330">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1688404138">
 Hint
 </button>
-<div id="hint_4861226330" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_1688404138" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the function <code>lm()</code>.
 </div>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8508954807">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_7578107501">
 Hint
 </button>
-<div id="hint_8508954807" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_7578107501" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Besides the model formula, you also need to provide the data via the argument <code>data</code>.
 </div>
 </div>
@@ -3035,16 +3029,16 @@ Besides the model formula, you also need to provide the data via the argument <c
 <h3>Task 1</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Get the <code>summary()</code> of the model.</p>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8811068141">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8421222224">
 Hint
 </button>
-<div id="hint_8811068141" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_8421222224" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the function <code>lm()</code>.
 </div>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_9419409483">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_5437665890">
 Hint
 </button>
-<div id="hint_9419409483" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_5437665890" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Besides the model formula, you also need to provide the data via the argument <code>data</code>.
 </div>
 </div>
@@ -3082,10 +3076,10 @@ Besides the model formula, you also need to provide the data via the argument <c
 <li>What are the estimated effects of the coefficients?</li>
 <li>Confirm that you identified the correct part of the output by extracting only the regression coefficients from the model (not from the model summary!).</li>
 </ul>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_7157153498">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_712465128">
 Hint
 </button>
-<div id="hint_7157153498" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_712465128" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 To extract the coefficients, use the function <code>coef()</code>.
 </div>
 </div>
@@ -3124,16 +3118,16 @@ To extract the coefficients, use the function <code>coef()</code>.
 <h3>Task 4</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>What does the model summary tell you about the model fit?</p>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_7355674499">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4601935024">
 Hint
 </button>
-<div id="hint_7355674499" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_4601935024" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 The model summary contains the <span class="math inline">\(R^2\)</span> and adjusted <span class="math inline">\(R^2\)</span>.
 </div>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_9628041620">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8595004935">
 Hint
 </button>
-<div id="hint_9628041620" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_8595004935" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 The model summary contains info on an omnibus test (F-statistic).
 </div>
 </div>
@@ -3157,10 +3151,10 @@ The model summary contains info on an omnibus test (F-statistic).
 <h3>Task 1</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Get the 90% confidence intervals of the model.</p>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_7503189024">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4231215536">
 Hint
 </button>
-<div id="hint_7503189024" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_4231215536" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the function <code>confint()</code>.
 </div>
 </div>
@@ -3198,10 +3192,10 @@ Use the function <code>confint()</code>.
 <h3>Task 1</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Re-code <code>race</code> and <code>smoke</code> as <code>factor</code>.</p>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8002259642">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_6317257567">
 Hint
 </button>
-<div id="hint_8002259642" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_6317257567" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the function <code>factor()</code>.
 </div>
 </div>
