@@ -30,6 +30,7 @@ hint <- function(text) {
       text, '</div>')
   )
 }
+set.seed(2020)
 ```
 
 
