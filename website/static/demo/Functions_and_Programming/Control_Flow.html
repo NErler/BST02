@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 
 <meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Nicole Erler, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-01-28" />
+<meta name="date" content="2020-02-05" />
 
 <title>Demo: Control-flow</title>
 
@@ -1405,7 +1406,6 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
-  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -1434,12 +1434,6 @@ summary {
 }
 }
 
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
 
 .toc-content {
   padding-left: 30px;
@@ -1519,7 +1513,7 @@ div.tocify {
 <h1 class="title toc-ignore">Demo: Control-flow</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Nicole Erler, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">28 January 2020</h4>
+<h4 class="date">05 February 2020</h4>
 
 </div>
 
@@ -1535,7 +1529,8 @@ ifelse(x &lt; 0, &quot;&lt;0&quot;, &quot;&gt;0&quot;)</code></pre>
 } else {
   &quot;&gt;0&quot;
 }</code></pre>
-<pre><code>## Warning in if (x &lt; 0) {: the condition has length &gt; 1 and only the first element will be used</code></pre>
+<pre><code>## Warning in if (x &lt; 0) {: the condition has length &gt; 1 and only the first
+## element will be used</code></pre>
 <pre><code>## [1] &quot;&lt;0&quot;</code></pre>
 <p>The problem here is that <code>if()</code> expects an expression that either returns <code>TRUE</code> or <code>FALSE</code>, but we gave it a vector:</p>
 <pre class="r"><code>x &lt; 0</code></pre>
@@ -1556,7 +1551,8 @@ ifelse(x &lt; 0, &quot;&lt;0&quot;, &quot;&gt;0&quot;)</code></pre>
 ## [1] 5
 ## 
 ## $b
-## [1]  0.6716171  1.0064242  0.2397493  0.5382886  0.5620988 -0.6357524  0.5178598
+## [1]  0.6716171  1.0064242  0.2397493  0.5382886  0.5620988 -0.6357524
+## [7]  0.5178598
 ## 
 ## $c
 ## [1]  0.6638655  0.4923426 -0.3213976 -1.0816815</code></pre>
@@ -1574,7 +1570,8 @@ ifelse(x &lt; 0, &quot;&lt;0&quot;, &quot;&gt;0&quot;)</code></pre>
 ## [1] 5
 ## 
 ## $b
-## [1]  0.6716171  1.0064242  0.2397493  0.5382886  0.5620988 -0.6357524  0.5178598
+## [1]  0.6716171  1.0064242  0.2397493  0.5382886  0.5620988 -0.6357524
+## [7]  0.5178598
 ## 
 ## $c
 ## [1]  0.6638655  0.4923426 -0.3213976 -1.0816815</code></pre>
@@ -1645,10 +1642,11 @@ while(x &lt; 5 &amp; i &lt; 25) {
   i &lt;- i + 1
 }
 xvec</code></pre>
-<pre><code>##  [1]  2.00351439  2.60475678  0.30531022  0.65987067  0.90470678  0.33847051 -0.22030761  1.35177836
-##  [9]  1.60634654  0.54308197  0.85573499  0.22862709 -0.09799564 -0.72206583 -1.39392780 -1.63577098
-## [17]  0.21500523  1.36990399  0.05354582  0.02746945 -1.19933679 -2.07635670 -3.19201820 -3.49403001
-## [25] -4.34221275</code></pre>
+<pre><code>##  [1]  2.00351439  2.60475678  0.30531022  0.65987067  0.90470678
+##  [6]  0.33847051 -0.22030761  1.35177836  1.60634654  0.54308197
+## [11]  0.85573499  0.22862709 -0.09799564 -0.72206583 -1.39392780
+## [16] -1.63577098  0.21500523  1.36990399  0.05354582  0.02746945
+## [21] -1.19933679 -2.07635670 -3.19201820 -3.49403001 -4.34221275</code></pre>
 <p>Now we will get a maximum of 25 iterations. The loop stops as soon as <code>x</code> is larger than or equal to 5, or if 25 iterations are reached.</p>
 </div>
 
