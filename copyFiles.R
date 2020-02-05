@@ -173,4 +173,4 @@ system2('hugo', args = "-s website")
 
 # does not work, but I don't know why...
 # system2('hugo server', args = "-s website")
-# Works when running in the Terminal though
+# Works when running in the Terminal though: hugo -s website

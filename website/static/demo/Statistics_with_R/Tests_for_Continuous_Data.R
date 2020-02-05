@@ -1,5 +1,5 @@
 #' ---
-#' title: "Demo: Statistical Tests"
+#' title: "Demo: Statistical Tests for Continuous Data"
 #' subtitle: "NIHES BST02"
 #' author: "Nicole Erler, Department of Biostatistics, Erasmus Medical Center"
 #' date: "`r Sys.setenv(LANG = 'en_US.UTF-8'); format(Sys.Date(), '%d %B %Y')`"
@@ -129,112 +129,62 @@ head(dat)
 kruskal.test(x ~ group, data = dat)
 
 
+
+
 #-------------------------------------------------------------------------------
-#' ## Proportion test
-#' ### One-sample proportion test
-(x <- rbinom(50, size = 1, prob = 0.3))
+#' ## Testing the Correlation
+#' While we can calculate a correlation matrix for a whole set of variables,
+#' the function `cor.test()` can only handle two variables at a time:
+cor.test(x = swiss$Fertility, y = swiss$Agriculture)
 
-#' The data can be provided as the number of successes (`x`) and the number of trials (`n`)
-prop.test(x = sum(x), n = length(x), p = 0.4)
-
-#' or as a matrix containing the number of sucesses and failures:
-(M <- matrix(nrow = 1, ncol = 2, data = c(sum(x), sum(1 - x)),
-             dimnames = list(c(), c('success', 'failure'))))
-prop.test(M, p = 0.4)
-
-#' If the argument `p` is unspecified, `p = 0.5` is used.
-#' Like in the `t.test()` we can choose a one- or two-sided null hypothesis
-#' using the argument `alternative`, and the confidence level using `conf.level`.
-
-#' When `correct = TRUE` Yate's continuity correction is used.
-
-#' ### Exact one-sample proportion test
-#' The function `binom.test()` works the same as `prop.test()`, but performs an
-#' exact test.
-binom.test(x = sum(x), n = length(x), p = 0.4)
-
-
-#' ### Pearson's $\chi^2$-Test
-#' Categorical data in mutiple categories are usually displayed in a table:
-X <- matrix(nrow = 2, ncol = 3, data = sample(5:50, size = 6),
-            dimnames = list(c('exposed', 'non-exposed'),
-                            c('none', 'mild', 'severe'))
-)
-X
-
-#' The function `chisq.test()` performs Pearson's Chi-squared test.
-#' For this test (or for Fisher's Exact test) it does not matter which variable
-#' goes into the rows and which into the columns:
-chisq.test(X)
-chisq.test(t(X))
-
-#' By default, p-values are calculated from the asymptotic chi-squared distribution
-#' of the test statistic. This can be changed to calculation via Monte Carlo simuation
-#' when `simulate.p.value = TRUE`. 
-#' Then, the argument `B` specifies the number of simulations used to calculate
-#' the p-value.
-chisq.test(X, simulate.p.value = TRUE, B = 1e5)
-#' Note that simulation can result in different p-values every time, especially 
-#' when `B` is small:
-chisq.test(X, simulate.p.value = TRUE, B = 200)
-chisq.test(X, simulate.p.value = TRUE, B = 200)
-
-#' Specification is also possible via two factors:
-x <- factor(sample(c('a', 'b'), size = 100, replace = TRUE))
-y <- factor(sample(c('yes', 'no'), size = 100, replace = TRUE,
-            prob = c(0.3, 0.7)))
-
-table(x, y)
-chisq.test(x, y, correct = FALSE)
-chisq.test(table(x, y), correct = FALSE)
+#' Using the argument `method` we can choose between
+#' 
+#' * `pearson`
+#' * `kendall`
+#' * `spearman`
+#' 
+#' Other arguments we know already from other tests are
+#' 
+#' * `alternative`
+#' * `conf.level`
+#' * `exact` (only for `kendall` and `spearman`)
+#' 
+#' We additionally have the argument `continuity` that allows us to use 
+#' continuity correction for `method = "kendall"` and `method = "spearman"`.
+#' 
+cor.test(x = swiss$Fertility, y = swiss$Agriculture, method = "kendall",
+         exact = FALSE, continuity = TRUE)
 
 
-#' ### Fisher's Exact Test
-#' `fisher.test()` takes similar arguments as `chisq.test()` and can be used
-#' when there are combinations with no observations:
-X[2, 3] <- 0
-X
-fisher.test(X)
+#' It is possible to use a `formula` specification:
+cor.test(~ Fertility + Agriculture, data = swiss)
 
-#' Arguments `simulate.p.value` and `B` work like for `chisq.test()`.
-
-#' Confidence intervals for the odds ratio and the specification of an `alternative`
-#' are only available for 2x2 tables:
-fisher.test(X[, -3], conf.int = TRUE, alternative = 'less')
+#' This allows us to use the argument `subset` to select only part of the data:
+cor.test(~ Fertility + Agriculture, data = swiss, subset = Infant.Mortality > 18)
 
 
-#' ### McNemar Test
-M <- matrix(nrow = 2, ncol = 2, data = sample(1:50, size = 4),
-            dimnames = list(before = c('no', 'yes'), after = c('no', 'yes')))
-M
-mcnemar.test(M)
+#' ## Multiple Testing Adjustment
+#' Testing multiple hypotheses at a significance level will result in an overall
+#' chance of at least one false positive result that is larger than that 
+#' significance level.
+#' We then need to correct for multiple testing.
+#' 
+#' This can be done easily using the function `p.adjust()`:
 
-#' The `mcnemar.test()` also has the option to switch off the continuity 
-#' correction by setting `correct = FALSE`.
+pval1 <- t.test(swiss$Fertility, mu = 50)$p.value
+pval2 <- t.test(swiss$Agriculture, mu = 50)$p.value
+pval3 <- t.test(swiss$Examination, mu = 30)$p.value
 
+# combine the unadjusted p-values in one vector
+(pvals <- c(Fert = pval1, Agri = pval2, Exam = pval3))
 
-#' Specification for the test is also possible via two factors:
-x <- factor(sample(c('yes', 'no'), size = 100, replace = TRUE))
-y <- factor(sample(c('yes', 'no'), size = 100, replace = TRUE,
-                   prob = c(0.3, 0.7)))
+# Adjustment using the Bonferroni method:
+p_adj_Bonf <- p.adjust(pvals, method = 'bonferroni')
 
-#' Note that in this example the data are independent, but in reality we have 
-#' paired observations.
+# Adjustment using the Benjamini-Hochberg method
+p_adj_BH <- p.adjust(pvals, method = "BH")
 
-mcnemar.test(x, y)
+cbind(pvals, p_adj_Bonf, p_adj_BH)
 
-table(x, y)
-mcnemar.test(table(x,y))
-
-
-#' ### Cochran-Mantel-Haenszel Chi-Squared Test
-x <- factor(sample(c('exposed', 'not exposed'), size = 100, replace = TRUE))
-y <- factor(sample(c('yes', 'no'), size = 100, replace = TRUE))
-stratum <- factor(sample(c('A', 'B', 'C'), size = 100, replace = TRUE))
-table(x, y, stratum)
-
-mantelhaen.test(x = x, y = y, z = stratum)
-mantelhaen.test(table(x, y, stratum))
-
-#' The arguments `alternative`, `correct`, `exact` and `conf.level` can be used
-#' like for the tests before, but only in the case of a 2 x 2 x K table.
+#' The available correction methods are available in the vector `p.adjust.methods`:
+p.adjust.methods

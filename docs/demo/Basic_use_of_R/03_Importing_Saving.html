@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 
 <meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-01-28" />
+<meta name="date" content="2020-02-05" />
 
 <title>Demo: Importing and Saving your Work</title>
 
@@ -331,7 +332,6 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
-  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -366,7 +366,7 @@ summary {
 <h1 class="title toc-ignore">Demo: Importing and Saving your Work</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">28 January 2020</h4>
+<h4 class="date">05 February 2020</h4>
 
 </div>
 
@@ -378,12 +378,40 @@ library(survival)
 library(xlsx)</code></pre>
 <p>List all your R objects</p>
 <pre class="r"><code>ls()</code></pre>
-<pre><code>##  [1] &quot;Columns_com&quot;    &quot;DF&quot;             &quot;dt&quot;             &quot;FUN&quot;            &quot;i&quot;              &quot;mylist&quot;         &quot;myList&quot;        
-##  [8] &quot;p&quot;              &quot;u&quot;              &quot;vec1&quot;           &quot;vec2&quot;           &quot;vec3&quot;           &quot;weight_columns&quot; &quot;weight_Rows&quot;   
-## [15] &quot;x&quot;              &quot;X&quot;</code></pre>
+<pre><code>##  [1] &quot;a&quot;                   &quot;A&quot;                   &quot;b&quot;                  
+##  [4] &quot;B&quot;                   &quot;C&quot;                   &quot;Columns_com&quot;        
+##  [7] &quot;cSum&quot;                &quot;dat&quot;                 &quot;dat1&quot;               
+## [10] &quot;dat2&quot;                &quot;datlist&quot;             &quot;DF&quot;                 
+## [13] &quot;dt&quot;                  &quot;esoph&quot;               &quot;files&quot;              
+## [16] &quot;google.trends1&quot;      &quot;i&quot;                   &quot;k&quot;                  
+## [19] &quot;list1&quot;               &quot;M&quot;                   &quot;mat&quot;                
+## [22] &quot;Mat&quot;                 &quot;mdat&quot;                &quot;mdat_all&quot;           
+## [25] &quot;mdat_x&quot;              &quot;mdat_y&quot;              &quot;mdat3&quot;              
+## [28] &quot;means&quot;               &quot;mod&quot;                 &quot;mod2&quot;               
+## [31] &quot;mod2b&quot;               &quot;mod3&quot;                &quot;mylist&quot;             
+## [34] &quot;myList&quot;              &quot;MyList&quot;              &quot;new_pbc&quot;            
+## [37] &quot;newData&quot;             &quot;newList&quot;             &quot;otherlist&quot;          
+## [40] &quot;output&quot;              &quot;p&quot;                   &quot;p_adj_BH&quot;           
+## [43] &quot;p_adj_Bonf&quot;          &quot;patient&quot;             &quot;pbc&quot;                
+## [46] &quot;pbc_chol_na&quot;         &quot;pbc_female_bili&quot;     &quot;pbc_male_bili&quot;      
+## [49] &quot;pbc_males&quot;           &quot;pbc_out_bili&quot;        &quot;pbcLong&quot;            
+## [52] &quot;pbcseq&quot;              &quot;pbcseq.idNEW2&quot;       &quot;pbcseq.idNEW3&quot;      
+## [55] &quot;pbcseqWide&quot;          &quot;pval1&quot;               &quot;pval2&quot;              
+## [58] &quot;pval3&quot;               &quot;pvals&quot;               &quot;res&quot;                
+## [61] &quot;res1&quot;                &quot;res2&quot;                &quot;Rfiles&quot;             
+## [64] &quot;sex&quot;                 &quot;stratum&quot;             &quot;subset_data&quot;        
+## [67] &quot;tab&quot;                 &quot;testres&quot;             &quot;u&quot;                  
+## [70] &quot;vec&quot;                 &quot;vec1&quot;                &quot;vec2&quot;               
+## [73] &quot;vec3&quot;                &quot;weight&quot;              &quot;weight_columns&quot;     
+## [76] &quot;weight_Rows&quot;         &quot;write_Demos_md&quot;      &quot;write_Practicals_md&quot;
+## [79] &quot;write_Slides_md&quot;     &quot;x&quot;                   &quot;X&quot;                  
+## [82] &quot;x1&quot;                  &quot;x2&quot;                  &quot;xnew&quot;               
+## [85] &quot;xvec&quot;                &quot;xxx&quot;                 &quot;y&quot;                  
+## [88] &quot;Y&quot;                   &quot;y1&quot;                  &quot;y2&quot;                 
+## [91] &quot;z&quot;</code></pre>
 <p>Save your work Take care: first you need to set your working directory (Rstudio: Session -&gt; Set Working Directory -&gt; Choose Directory…)</p>
 <pre class="r"><code>getwd()</code></pre>
-<pre><code>## [1] &quot;N:/Teaching/BST02/Demos/Basic use of R&quot;</code></pre>
+<pre><code>## [1] &quot;O:/Users/015004 ( Andrinopoulou )/Courses/Using R for Statistics in Medical Research (BST02)/BST02/Demos/Basic use of R&quot;</code></pre>
 <pre class="r"><code>dt &lt;- pbc[1:6, c(&quot;id&quot;, &quot;sex&quot;, &quot;bili&quot;, &quot;chol&quot;)]
 p &lt;- 1
 
