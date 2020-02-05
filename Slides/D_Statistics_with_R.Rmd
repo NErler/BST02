@@ -23,8 +23,18 @@ knitr::knit_hooks$set(
   }
 )
 
-knitr::opts_chunk$set(echo = TRUE, nospace = TRUE, nospaceafter = TRUE)
+knitr::opts_chunk$set(echo = TRUE, nospace = TRUE, nospaceafter = TRUE,
+                      fig.align = 'center', out.width = "100%")
 
+
+EMCdark <- "#0c2074"
+# \definecolor{EMCdark}{HTML}{0c2074}
+# \definecolor{EMC80}{HTML}{3d4d90}
+# \definecolor{EMC60}{HTML}{6d79ac}
+# \definecolor{EMC40}{HTML}{9ea6c7}
+# \definecolor{EMC20}{HTML}{ced2e3}
+# \definecolor{darkred}{RGB}{204,0,0}
+drkred <- rgb(204, 0, 0, maxColorValue = 255)
 ```
 
 ## In this Section
@@ -385,6 +395,30 @@ the default link is used.
 \end{columns}
 
 
+## Model Comparison
+
+\blue{Nested models:}
+* model is a \blue{special case} of the other, i.e.,
+* model B is a special case of model A when B can be obtained by setting some 
+  regression coefficients in A to zero
+  
+Comparison using a \blue{likelihood ratio (LR) test}, for example:
+```{r, eval = FALSE}
+anova(modelA, modelB)
+anova(modelA, modelB, test = "LRT") # for a glm
+```
+
+\pause
+
+\blue{Non-nested models:}
+Comparison using information criteria, e.g.
+```{r, eval = FALSE}
+AIC(modelA, modelB)
+BIC(modelA, modelB)
+```
+The model with the \blue{smaller} AIC (or BIC) has the \blue{better} fit.
+
+
 ## Regression
 
 \begin{columns}[T,onlytextwidth]
@@ -405,6 +439,444 @@ the default link is used.
 \end{block}
 \end{column}
 \end{columns}
+
+```{r, echo = FALSE}
+set.seed(2020)
+dat <- data.frame(x = runif(250, 0, 7))
+dat$y <- with(dat, (0.5*x - 1)^2) + rnorm(250, 0, 0.8)
+dat$z <- with(dat, x^(1/4)) + rnorm(250, 0, 0.1)
+
+m1 <- lm(y ~ x, data = dat)
+m2 <- lm(z ~ x, data = dat)
+
+m1b <- lm(y ~ x + I(x^2), data = dat)
+
+m2b <- lm(z ~ log(x), data = dat)
+
+library(ggplot2)
+ggtemp <- list(theme_bw(),
+               theme(axis.title = element_text(size = 14),
+                     axis.text = element_blank(),
+                     axis.ticks = element_blank(),
+                     panel.grid = element_blank(),
+                     panel.border = element_rect(color = grey(0.8)))
+)
+
+p0list <- list(
+  ggplot(dat, aes(x = x, y = y)) +
+    ggtemp +
+    xlab(expression(x)) +
+    geom_point(alpha = 0.2) +
+    theme(plot.title = element_text(margin = margin(t = 6, b = -20), hjust = 0.05)),
+  
+  ggplot(dat, aes(x = x, y = z)) +
+    ggtemp +
+    xlab(expression(x)) +
+    geom_point(alpha = 0.2) +
+    ylab('y') +
+    theme(plot.title = element_text(margin = margin(t = 6, b = -20), hjust = 0.05))
+)
+
+p3list <- list(
+    p0list[[1]] +
+    geom_line(data = cbind(dat, fit = m1b$fit), aes(x = x, y = fit), size = 1, lty = 1, color = EMCdark) +
+    geom_segment(aes(x = 0, xend = 1, y = coef(m1b) %*% c(1, 0, 0), yend = coef(m1b) %*% c(1, 0, 0)),
+                 lty = 2) +
+    geom_segment(aes(x = 1, xend = 1,
+                     y = coef(m1b) %*% c(1, 0, 0), yend = coef(m1b) %*% c(1, 1, 1)),
+                 arrow = arrow(ends = 'both', type = 'closed', length = unit(0.02, "npc"))) +
+    geom_segment(aes(x = 5, xend = 6, y = coef(m1b) %*% c(1, 5, 5^2), yend = coef(m1b) %*% c(1, 5, 5^2)),
+                 lty = 2) +
+    geom_segment(aes(x = 6, xend = 6,
+                     y = coef(m1b) %*% c(1, 5, 5^2), yend = coef(m1b) %*% c(1, 6, 6^2)),
+                 arrow = arrow(ends = 'both', type = 'closed', length = unit(0.02, "npc"))),
+  
+  p0list[[2]] +
+    geom_line(data = cbind(dat, fit = m2b$fit), aes(x = x, y = fit), size = 1, lty = 1, color = EMCdark) +
+    geom_segment(aes(x = 0.05, xend = 1.05, y = coef(m2b) %*% c(1, log(0.05)), 
+                     yend = coef(m2b) %*% c(1, log(0.05))),
+                 lty = 2) +
+    geom_segment(aes(x = 1.05, xend = 1.05,
+                     y = coef(m2b) %*% c(1, log(0.05)), yend = coef(m2b) %*% c(1, log(1.05))),
+                 arrow = arrow(ends = 'both', type = 'closed', length = unit(0.02, "npc"))) +
+    geom_segment(aes(x = 5, xend = 6, y = coef(m2b) %*% c(1, log(5)), yend = coef(m2b) %*% c(1, log(5))),
+                 lty = 2) +
+    geom_segment(aes(x = 6, xend = 6,
+                     y = coef(m2b) %*% c(1, log(5)), yend = coef(m2b) %*% c(1, log(6))),
+                 arrow = arrow(ends = 'both', type = 'closed', length = unit(0.02, "npc")))
+)
+```
+
+## Non-linear Effects
+Default assumption: \blue{linear effect}, i.e.,\quad
+x $\rightarrow$ y \quad \blue{\ding{225}} \quad x + 1 $\rightarrow$ y + $\beta$, \quad $\forall x$
+\vfill
+```{r, echo = FALSE, fig.width = 4, fig.height = 3.5, out.width = "60%", warning = FALSE}
+set.seed(2020)
+dat0 <- data.frame(x = runif(250, 0, 5))
+dat0$y <- 0.3*dat0$x + rnorm(250, 0, 0.3)
+
+m <- lm(y ~ x, data = dat0)
+
+ggplot(dat0, aes(x = x, y = y)) +
+  ggtemp +
+  geom_point(alpha = 0.1) +
+  geom_line(data = cbind(dat0, fit = m$fit), aes(y = fit), color = EMCdark, size = 1) +
+  geom_segment(aes(x = 0, xend = 1, y = coef(m) %*% c(1, 0), yend = coef(m) %*% c(1, 0)),
+               lty = 2) +
+  geom_segment(aes(x = 1, xend = 1,
+                   y = coef(m) %*% c(1, 0), yend = coef(m) %*% c(1, 1)),
+               arrow = arrow(ends = 'both', type = 'closed', length = unit(0.02, "npc"))) +
+  geom_segment(aes(x = 3, xend = 4, y = coef(m) %*% c(1, 3), yend = coef(m) %*% c(1, 3)),
+               lty = 2) +
+  geom_segment(aes(x = 4, xend = 4,
+                   y = coef(m) %*% c(1, 3), yend = coef(m) %*% c(1, 4)),
+               arrow = arrow(ends = 'both', type = 'closed', length = unit(0.02, "npc"))) +
+  annotate('text', x = 1, y = coef(m) %*% c(1, 0.5), label = "beta", parse = TRUE,
+           color = EMCdark, hjust = -0.5, size = 6) +
+  annotate('text', x = 4, y = coef(m) %*% c(1, 3.5), label = "beta",
+           color = EMCdark, hjust = -0.5, size = 6, parse = TRUE) +
+  annotate('text', x = 0.5, y = coef(m) %*% c(1, 0), label = "1 unit",
+           color = EMCdark, vjust = 1.1, size = 4) +
+  annotate('text', x = 3.5, y = coef(m) %*% c(1, 3), label = "1 unit",
+           color = EMCdark, vjust = 1.1, size = 4)
+```
+
+
+## Non-linear Effects
+Default assumption: \blue{linear effect}, i.e.,\quad
+x $\rightarrow$ y \quad \blue{\ding{225}} \quad x + 1 $\rightarrow$ y + $\beta$, \quad $\forall x$
+
+\vfill
+
+This may not always be the case:
+```{r, echo = FALSE, fig.width = 8, fig.height = 3.5, out.width = "90%"}
+cowplot::plot_grid(
+  p0list[[1]] +
+    geom_line(data = cbind(dat, fit = m1$fit), aes(x = x, y = fit), size = 1, color = EMCdark),
+  p0list[[2]] +
+    geom_line(data = cbind(dat, fit = m2$fit), aes(x = x, y = fit), size = 1, color = EMCdark)
+)
+```
+
+## Non-linear Effects
+Here, we would like to allow the \blue{effect} of a one-unit increase \blue{of x} to
+\blue{change with the value of x}:
+
+\vfill
+
+```{r p3list, echo = FALSE, fig.width = 8, fig.height = 3.5, out.width = "90%"}
+cowplot::plot_grid(plotlist = p3list)
+```
+
+## Non-linear Effects
+\begincols[t, onlytextwidth]
+\begincol{0.5\linewidth}
+Sometimes, we can use
+\begin{itemize}
+\item a \blue{transformation of x}, or
+\item x as well as \blue{a polynomial} of x (or a transformation).
+\end{itemize}
+\bigskip
+
+For example:
+```{r, eval = FALSE}
+y ~ x + I(x^2)
+```
+or
+```{r, eval = FALSE}
+y ~ log(x)
+```
+\endcol
+\begincol{0.5\linewidth}
+```{r, echo = FALSE, fig.width = 4, fig.height = 5, out.width = "80%"}
+cowplot::plot_grid(
+  p0list[[1]] +
+    geom_line(data = cbind(dat, fit = m1b$fit), aes(x = x, y = fit), size = 1, lty = 1, color = EMCdark),
+  
+  p0list[[2]] +
+    geom_line(data = cbind(dat, fit = m2b$fit), aes(x = x, y = fit), size = 1, lty = 1, color = EMCdark),
+  ncol = 1)
+```
+\endcol
+\endcols
+
+## Non-linear Effects: \texttt{I()}
+
+The function \blue{\texttt{I()}} is needed to distinguish between operators
+that need to be interpreted as 
+
+* arithmetic operators and 
+* formula operators
+
+Example:
+```{r, eval = FALSE}
+y ~ I(a + b)
+```
+\vspace*{-2ex}would be the same as
+```{r, eval = FALSE}
+z <- a + b
+y ~ z
+```
+\vspace*{-2ex}but not the same as
+```{r, eval = FALSE}
+y ~ a + b
+```
+
+
+
+```{r prepsplines, echo = FALSE}
+tpower <- function(x, t, p)
+  # Function for truncated p-th power function
+  (x - t) ^ p * (x > t)
+
+bbase <- function(x, ndx, deg){
+  xl <- min(x, na.rm = TRUE)
+  xr <- max(x, na.rm = TRUE)
+  
+  # Function for B-spline basis
+  dx <- (xr - xl) / ndx
+  # knots <- seq(xl - deg * dx, xr + deg * dx, by = dx)
+  knots <- knots(x, ndx, deg)
+  P <- outer(x, knots, tpower, deg)
+  n <- dim(P)[2]
+  D <- diff(diag(n), diff = deg + 1) / (gamma(deg + 1) * dx ^ deg)
+  B <- (-1) ^ (deg + 1) * P %*% t(D)
+  B 
+}
+
+knots <- function(x, ndx, deg){
+  xl <- min(x, na.rm = TRUE)
+  xr <- max(x, na.rm = TRUE)
+  dx <- (xr - xl) / ndx
+  seq(xl - deg * dx, xr + deg * dx, by = dx)
+}
+
+set.seed(2019)
+dat <- data.frame(x = sort(runif(250, min = 0, max = 2)))
+dat$y <- 4 + sin(5*dat$x) + 1*dat$x^3 - 2 * dat$x^2 + rnorm(length(dat$x), 0, 0.5)
+
+kn <- knots(dat$x, 6, deg = 3)
+B <- bbase(dat$x, 6, deg = 3)
+
+mod <- lm(dat$y ~ B - 1)
+dat$fit <- mod$fitted.values
+
+dat2 <- reshape2::melt(cbind(dat, B*2), id.vars = c('x', 'y', 'fit'))
+dat3 <- reshape2::melt(cbind(dat, B * matrix(nrow = nrow(B), ncol = ncol(B),
+                                data = rep(coef(mod), nrow(B)), byrow = TRUE)),
+                       id.vars = c('x', 'y', 'fit'))
+
+p0 <- ggplot(dat, aes(x = x, y = y)) +
+  ggtemp +
+  xlab("x") +
+  geom_point(alpha = 0.3)
+```
+
+
+## Complex Non-linear Effects
+\begincols[t, onlytextwidth]
+\begincol{0.35\linewidth}
+Non-linear effects may be \blue{more complex} than can be modeled with a simple
+transformation or polynomial.
+\endcol
+\begincol{0.65\linewidth}
+```{r p0, echo = FALSE, fig.width = 7, fig.height = 4}
+p0
+```
+\endcol
+\endcols
+\blue{Also:} the shape may depend on other covariates in the model\newline
+\blue{\ding{225}} we do not always know the shape in advance\newline
+\blue{\ding{225} Regression Splines} / \blue{B-Splines}
+
+
+
+## B-Splines
+A \blue{B-Spline} is a linear combination of a set of \blue{basis functions}.
+
+These basis functions are defined so that they are 
+
+* a \blue{polynomial functions} inside a given interval, and
+* zero outside that interval.
+
+The intervals are defined by a set of \blue{knots}.
+
+The polynomial function have a certain \blue{degree}
+(i.e., constant, linear, quadratic, ...)
+
+\bigskip\pause
+
+\blue{B-Splines in R}
+The R package \blue{splines} provides the functions
+
+* \blue{\texttt{bs()}}: B-splines
+* \blue{\texttt{ns()}}: natural cubic (B-)splines
+
+## B-Splines
+Instead of \quad $\displaystyle y \sim \beta_0  + \beta_1 x + \ldots$ \quad we assume \quad
+$\displaystyle y \sim \beta_0 + \sum_{\ell = 1}^d \beta_\ell {\color{darkred}B_\ell (x)} + \ldots$
+```{r p1, echo = FALSE, fig.width = 8, fig.height = 4, out.width = "90%"}
+p0 + 
+  geom_line(data = dat2, aes(y = value, group = variable), color = drkred)
+```
+
+## B-Splines
+Instead of \quad $y \sim \beta_0  + \beta_1 x + \ldots$ \quad we assume \quad
+$\displaystyle y \sim \beta_0 + \sum_{\ell = 1}^d {\color{darkred}\beta_\ell} B_\ell (x) + \ldots$
+```{r p2, echo = FALSE, fig.width = 8, fig.height = 4, out.width = "90%"}
+p0 + 
+  geom_line(data = dat3, aes(y = value, group = variable), color = drkred)
+```
+
+## B-Splines
+Instead of \quad $y \sim \beta_0  + \beta_1 x + \ldots$ \quad we assume \quad
+$\displaystyle y \sim \beta_0 + {\color{darkred}\sum_{\ell = 1}^d} \beta_\ell B_\ell (x) + \ldots$
+```{r, echo = FALSE, fig.width = 8, fig.height = 4, out.width = "90%"}
+p0 + 
+  geom_line(data = dat3, aes(y = value, group = variable)) +
+  geom_line(aes(y = fit), size = 1, col = drkred)
+```
+
+
+## B-Splines: \texttt{degree}
+```{r, echo = FALSE, fig.width = 8, fig.height = 4.5}
+plist <- list()
+
+for (dg in 0:3) {
+  set.seed(2019)
+  dat <- data.frame(x = sort(runif(250, min = 0, max = 2)))
+  dat$y <- 4 + sin(5*dat$x) + 1*dat$x^3 - 2 * dat$x^2 + rnorm(length(dat$x), 0, 0.5)
+
+  kn <- knots(dat$x, 6, deg = dg)
+  B <- bbase(dat$x, 6, deg = dg)
+  
+  mod <- lm(dat$y ~ B - 1)
+  dat$fit <- mod$fitted.values
+  dat$fit[1] <- NA
+
+  dat2 <- reshape2::melt(cbind(dat, B * 1), id.vars = c('x', 'y', 'fit'))
+
+  plist[[dg + 1]] <- ggplot(dat, aes(x = x, y = y)) +
+    ggtemp +
+    xlab("x") +
+    geom_point(alpha = 0.3) +
+    geom_line(data = dat2, aes(y = value, group = variable), color = EMCdark) +
+    geom_line(aes(y = fit), size = 1, color = EMCdark, na.rm = TRUE) +
+    ggtitle(paste0("degree = ", dg)) +
+    theme(plot.title = element_text(hjust = 0.5, margin = margin(t = 10, b = -20),
+                                    family = "mono"),
+          plot.margin = margin(l = 5, t = 5, b = 5, r = 5, unit = "pt"),
+          axis.title = element_blank())
+}
+
+cowplot::plot_grid(plotlist = plist)
+```
+
+
+```{r, echo = FALSE}
+plist_NS <- plist_BS <- list()
+
+dfs <- c(1, 2, 3, 5, 10, 30)
+for (k in seq_along(dfs)) {
+  df <- dfs[k]
+  
+  set.seed(2019)
+  dat <- data.frame(x = sort(runif(250, min = 0, max = 2)))
+  dat$y <- 4 + sin(5*dat$x) + 1*dat$x^3 - 2 * dat$x^2 + rnorm(length(dat$x), 0, 0.5)
+  
+  mod_ns <- lm(y ~ splines::ns(x, df = df), data = dat)
+  dat$fit_ns <- mod_ns$fitted.values
+  NS <- splines::ns(dat$x, df = df)
+  if (df >= 3) {
+    mod_bs <- lm(y ~ splines::bs(x, df = df), data = dat)
+    dat$fit_bs <- mod_bs$fitted.values
+    BS <- splines::bs(dat$x, df = df)
+    dat_BS <- reshape2::melt(cbind(dat, BS), id.vars = c('x', 'y', 'fit_bs', 'fit_ns'))
+  } else {
+    dat$fit_bs <- NA
+  }
+  
+  dat_NS <- reshape2::melt(cbind(dat, NS), id.vars = c('x', 'y', 'fit_bs', 'fit_ns'))
+
+  p <- ggplot(dat, aes(x = x, y = y)) +
+    ggtemp +
+    geom_point(alpha = 0.3) +
+    theme(plot.title = element_text(hjust = 0.5, margin = margin(t = 10, b = -15),
+                                    family = "mono"),
+          plot.margin = margin(l = 5, t = 5, b = 5, r = 5, unit = "pt"),
+          axis.title = element_blank())
+
+  
+  plist_NS[[k]] <- p +
+    geom_vline(xintercept = attr(NS, 'knots'), lty = 3, color = grey(0.7)) +
+    geom_vline(xintercept = attr(NS, 'Boundary.knots'), lty = 2, color = grey(0.7)) +
+    geom_line(data = dat_NS, aes(y = value, group = variable), color = EMCdark) +
+    geom_line(aes(y = fit_ns), size = 1, color = EMCdark) +
+    ggtitle(paste0("ns(x, df = ", df, ")"))
+  
+  if (df >= 3) {
+    plist_BS[[k]] <- p +
+    geom_vline(xintercept = attr(BS, 'knots'), lty = 3, color = grey(0.7)) +
+    geom_vline(xintercept = attr(BS, 'Boundary.knots'), lty = 2, color = grey(0.7)) +
+      geom_line(data = dat_BS, aes(y = value, group = variable), color = EMCdark) +
+      geom_line(aes(y = fit_bs), size = 1, color = EMCdark) +
+      ggtitle(paste0("bs(x, df = ", df, ")"))
+  }
+}
+```
+
+## B-Splines: \texttt{df}
+```{r, echo = FALSE, fig.width = 8, fig.height = 4.3, cache = TRUE}
+cowplot::plot_grid(plotlist = plist_NS)
+```
+\vspace*{-3ex}
+
+## B-Splines: \texttt{df}
+```{r, echo = FALSE, fig.width = 8, fig.height = 4.3, cache = TRUE}
+cowplot::plot_grid(plotlist = plist_BS)
+```
+\vspace*{-3ex}
+
+
+## B-Splines in R: \texttt{bs()} & \texttt{ns()}
+Important arguments of `ns()` and `bs()` are:
+
+\begincols[t, onlytextwidth]
+\begincol{0.5\linewidth}
+
+\blue{\texttt{degree}}
+
+* degree of the polynomial in each of the basis functions
+* in \texttt{bs()}: default is 3
+* in \texttt{ns()}: always 3 ("cubic")
+
+\bigskip\pause
+
+\blue{\texttt{df}} 
+
+* degrees of freedom, i.e., "number of regression coefficients" used
+* for \texttt{bs()}: has to be $\geq$ \texttt{degree}
+
+\endcol\pause
+\begincol{0.5\linewidth}
+
+\blue{\texttt{knots}}
+
+* position of (inner) knots
+* if unspecified:
+  * \texttt{df-degree} knots are used
+  * positioned at equally spaced quantiles
+
+\bigskip\pause
+
+\blue{\texttt{Boundary.knots}}
+
+* by default: \texttt{range(x)}
+* outside the \texttt{Boundary.knots} the fit is extrapolated
+
+\endcol
+\endcols
 
 ```{r, include = FALSE, eval= FALSE}
 boot::urine
@@ -453,8 +925,9 @@ rpart::car90
 
 \bigskip
 
-\blue{Topic}
+\blue{Formulas}
 \begin{itemize}\vspace*{-0.5ex}
+\item Formula operators: \texttt{+}, \texttt{-}, \texttt{*}, \texttt{:}, \text{\texttt{\^}}
 \item \texttt{ns()}, \texttt{bs()}, \texttt{I()}
 \item \texttt{all.vars()}
 \item \texttt{update()}
