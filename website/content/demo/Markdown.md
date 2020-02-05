@@ -2,4 +2,4 @@
 title: Markdown
 ---
 
- * Markdown Code.Rmd [[R]](/demo/Markdown/Markdown_Code.Rmd.R) [[html]](/demo/Markdown/Markdown_Code.Rmd.html)
+ * Markdown Code [[R]](/demo/Markdown/Markdown_Code.R) [[html]](/demo/Markdown/Markdown_Code.html)

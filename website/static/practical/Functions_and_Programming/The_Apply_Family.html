@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 
 <meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -2824,7 +2825,6 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
-  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -2856,12 +2856,6 @@ summary {
 }
 }
 
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
 
 .toc-content {
   padding-left: 30px;
@@ -2957,7 +2951,7 @@ div.tocify {
 <h3>R packages</h3>
 <p>In this practical, a number of R packages are used. The packages used (with versions that were used to generate the solutions) are:</p>
 <ul>
-<li>R version 3.6.2 (2019-12-12)</li>
+<li>R version 3.6.1 (2019-07-05)</li>
 <li><code>survival</code> (version: 3.7.0)</li>
 </ul>
 </div>
@@ -3272,6 +3266,57 @@ div.tocify {
 <pre><code>##         1         1 
 ## 0.4011628 0.3934010</code></pre>
 </div>
+<div id="task-3" class="section level4">
+<h4>Task 3</h4>
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+<ul>
+<li>Do you remember the practical <code>Writing your own function (Task 1 and 2)</code>? Now try to create again the same function (called <code>summary_df</code>) but avoid the use of a for loop. Apply the function to the <strong>retinopathy</strong> dat set.</li>
+</ul>
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#sapply3">
+Hint
+</button>
+<div id="sapply3" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<p>Use the functions summary_continuous() and summary_categorical(). <br><br> summary_continuous &lt;- function(x) { <br>    paste0(round(mean(x), 1), &quot; (“, round(sd(x), 1),”)“) <br>} <br><br>summary_categorical &lt;- function(x) { <br>    tab &lt;- prop.table(table(x)) <br>    paste0(tab * 100,”% “, names(tab), collapse =”, &quot;) <br>}</p>
+</div>
+</div>
+</div>
+<div id="solution-3" class="section level4">
+<h4>Solution 3</h4>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">summary_continuous &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb18-2" title="2">  <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="kw">round</span>(<span class="kw">sd</span>(x), <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>)</a>
+<a class="sourceLine" id="cb18-3" title="3">}</a>
+<a class="sourceLine" id="cb18-4" title="4"></a>
+<a class="sourceLine" id="cb18-5" title="5">summary_categorical &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb18-6" title="6">  tab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(x))</a>
+<a class="sourceLine" id="cb18-7" title="7">  <span class="kw">paste0</span>(tab <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="st">&quot;% &quot;</span>, <span class="kw">names</span>(tab), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</a>
+<a class="sourceLine" id="cb18-8" title="8">}</a>
+<a class="sourceLine" id="cb18-9" title="9"></a>
+<a class="sourceLine" id="cb18-10" title="10"></a>
+<a class="sourceLine" id="cb18-11" title="11">summary_df &lt;-<span class="st"> </span><span class="cf">function</span>(dat) {</a>
+<a class="sourceLine" id="cb18-12" title="12">  vec_categorical &lt;-<span class="st"> </span><span class="kw">sapply</span>(dat, is.factor)</a>
+<a class="sourceLine" id="cb18-13" title="13">  <span class="kw">print</span>(<span class="kw">sapply</span>(dat[,vec_categorical], summary_categorical))</a>
+<a class="sourceLine" id="cb18-14" title="14">  vec_continuous &lt;-<span class="st"> </span><span class="kw">sapply</span>(dat, is.numeric)</a>
+<a class="sourceLine" id="cb18-15" title="15">  <span class="kw">print</span>(<span class="kw">sapply</span>(dat[,vec_continuous], summary_continuous))</a>
+<a class="sourceLine" id="cb18-16" title="16">}</a>
+<a class="sourceLine" id="cb18-17" title="17"></a>
+<a class="sourceLine" id="cb18-18" title="18"><span class="kw">summary_df</span>(<span class="dt">dat =</span> retinopathy)</a></code></pre></div>
+<pre><code>##                                                                      laser 
+##                           &quot;50.761421319797% xenon, 49.238578680203% argon&quot; 
+##                                                                        eye 
+##                          &quot;45.1776649746193% right, 54.8223350253807% left&quot; 
+##                                                                       type 
+##                      &quot;57.8680203045685% juvenile, 42.1319796954315% adult&quot; 
+##                                                                        trt 
+##                                                             &quot;50% 0, 50% 1&quot; 
+##                                                                     status 
+##                                 &quot;60.6598984771574% 0, 39.3401015228426% 1&quot; 
+##                                                                     ageCat 
+##                           &quot;60.9137055837564% young, 39.0862944162437% old&quot; 
+##                                                                  futimeCat 
+## &quot;34.8600508905852% short, 26.972010178117% medium, 38.1679389312977% long&quot; 
+##              id             age          futime            risk 
+## &quot;873.2 (495.5)&quot;   &quot;20.8 (14.8)&quot;   &quot;35.6 (21.4)&quot;     &quot;9.7 (1.5)&quot;</code></pre>
+</div>
 </div>
 <div id="tapply" class="section level3 tabset tabset-fade tabset-pills">
 <h3>tapply</h3>
@@ -3288,10 +3333,10 @@ div.tocify {
 </div>
 <div id="solution-1-3" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">tapply</span>(heart<span class="op">$</span>year, heart<span class="op">$</span>transplant, median)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">tapply</span>(heart<span class="op">$</span>year, heart<span class="op">$</span>transplant, median)</a></code></pre></div>
 <pre><code>##       0       1 
 ## 3.47707 3.92334</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">tapply</span>(retinopathy<span class="op">$</span>futime, retinopathy<span class="op">$</span>status, median)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">tapply</span>(retinopathy<span class="op">$</span>futime, retinopathy<span class="op">$</span>status, median)</a></code></pre></div>
 <pre><code>##     0     1 
 ## 48.53 13.83</code></pre>
 </div>
@@ -3308,11 +3353,11 @@ div.tocify {
 </div>
 <div id="solution-2-3" class="section level4">
 <h4>Solution 2</h4>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">tapply</span>(heart<span class="op">$</span>year, <span class="kw">list</span>(heart<span class="op">$</span>transplant, heart<span class="op">$</span>surgery), <span class="cf">function</span>(x) {<span class="kw">mean</span>(x)<span class="op">/</span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)})</a></code></pre></div>
-<pre><code>##           no       yes
-## 0 0.03820181 0.2818764
-## 1 0.06362334 0.3910915</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">tapply</span>(retinopathy<span class="op">$</span>futime, <span class="kw">list</span>(retinopathy<span class="op">$</span>status, retinopathy<span class="op">$</span>type, retinopathy<span class="op">$</span>trt), mean)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">tapply</span>(heart<span class="op">$</span>year, <span class="kw">list</span>(heart<span class="op">$</span>transplant, heart<span class="op">$</span>surgery), <span class="cf">function</span>(x) {<span class="kw">mean</span>(x)<span class="op">/</span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)})</a></code></pre></div>
+<pre><code>##   no yes
+## 0 NA  NA
+## 1 NA  NA</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">tapply</span>(retinopathy<span class="op">$</span>futime, <span class="kw">list</span>(retinopathy<span class="op">$</span>status, retinopathy<span class="op">$</span>type, retinopathy<span class="op">$</span>trt), mean)</a></code></pre></div>
 <pre><code>## , , 0
 ## 
 ##   juvenile    adult
