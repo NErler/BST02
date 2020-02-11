@@ -21,10 +21,13 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## What is this Course About
 
-* Statistics have flourished in the recent years mainly due to the possibility of doing complex analysis using computers
+\blue{Statistics} have flourished in the recent years mainly due to the possibility of doing complex analysis using computers
+
+The \blue{programming language R} is popular for Data Scientists
+
 
 * The most valuable tool of a modern quantitative researcher is his/her personal computer
-  - Many statistical software exist to do simple and specialized analysis
+   - Many statistical software exist to do simple and specialized analysis
 
 * Analysts must not only learn how to use the software but also the ideas behind it
 
@@ -66,7 +69,7 @@ Therefore, the aim of this course is:
   - Common R objects
   - Importing data and saving your work
   - Data transformation
-  - Data Exploration
+  - Data exploration
   - Visualization of data
   - Indexing
   
@@ -100,10 +103,10 @@ Therefore, the aim of this course is:
   
 ## Schedule
 
-* February 24: 10h00 - 12h30, 13h30 - 17h00
-* February 25: 10h00 - 12h30, 13h30 - 17h00
-* February 26: 10h00 - 12h30, 13h30 - 17h00
-* February 27: 10h00 - 12h30, 13h30 - 17h00
+* February 24: 10h00 - 13h00, 14h00 - 17h00
+* February 25: 10h00 - 13h00, 14h00 - 17h00
+* February 26: 10h00 - 13h00, 14h00 - 17h00
+* February 27: 10h00 - 13h00, 14h00 - 17h00
   
   
 ## Exams
