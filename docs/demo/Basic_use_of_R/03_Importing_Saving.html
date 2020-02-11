@@ -12,7 +12,7 @@
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-05" />
+<meta name="date" content="2020-02-11" />
 
 <title>Demo: Importing and Saving your Work</title>
 
@@ -366,40 +366,24 @@ summary {
 <h1 class="title toc-ignore">Demo: Importing and Saving your Work</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">05 February 2020</h4>
+<h4 class="date">11 February 2020</h4>
 
 </div>
 
 
 <p>Load packages If you are using the package for the first time, you will have to first install it:</p>
-<pre class="r"><code># install.packages(&quot;survival&quot;) 
-# install.packages(&quot;xlsx&quot;) 
-library(survival)
-library(xlsx)</code></pre>
 <p>List all your R objects</p>
-<pre class="r"><code>ls()</code></pre>
-<pre><code>##  [1] &quot;Columns_com&quot;         &quot;DF&quot;                  &quot;dt&quot;                 
-##  [4] &quot;k&quot;                   &quot;mylist&quot;              &quot;myList&quot;             
-##  [7] &quot;p&quot;                   &quot;Rfiles&quot;              &quot;u&quot;                  
-## [10] &quot;vec1&quot;                &quot;vec2&quot;                &quot;vec3&quot;               
-## [13] &quot;weight_columns&quot;      &quot;weight_Rows&quot;         &quot;write_Demos_md&quot;     
-## [16] &quot;write_Practicals_md&quot; &quot;write_Slides_md&quot;     &quot;x&quot;                  
-## [19] &quot;xxx&quot;</code></pre>
+<pre><code> [1] &quot;Columns_com&quot;         &quot;DF&quot;                  &quot;dt&quot;                 
+ [4] &quot;k&quot;                   &quot;mylist&quot;              &quot;myList&quot;             
+ [7] &quot;p&quot;                   &quot;Rfiles&quot;              &quot;u&quot;                  
+[10] &quot;vec1&quot;                &quot;vec2&quot;                &quot;vec3&quot;               
+[13] &quot;weight_columns&quot;      &quot;weight_Rows&quot;         &quot;write_Demos_md&quot;     
+[16] &quot;write_Practicals_md&quot; &quot;write_Slides_md&quot;     &quot;x&quot;                  
+[19] &quot;xxx&quot;                </code></pre>
 <p>Save your work Take care: first you need to set your working directory (Rstudio: Session -&gt; Set Working Directory -&gt; Choose Directory…)</p>
-<pre class="r"><code>getwd()</code></pre>
-<pre><code>## [1] &quot;O:/Users/015004 ( Andrinopoulou )/Courses/Using R for Statistics in Medical Research (BST02)/BST02/Demos/Basic use of R&quot;</code></pre>
-<pre class="r"><code>dt &lt;- pbc[1:6, c(&quot;id&quot;, &quot;sex&quot;, &quot;bili&quot;, &quot;chol&quot;)]
-p &lt;- 1
-
-#save(dt, p, file = &quot;data.RData&quot;)
-#saveRDS(dt, file = &quot;data.RData&quot;)</code></pre>
+<pre><code>[1] &quot;O:/Users/015004 ( Andrinopoulou )/Courses/Using R for Statistics in Medical Research (BST02)/BST02/Demos/Basic use of R&quot;</code></pre>
 <p>Load previous work</p>
-<pre class="r"><code>#load(&quot;data.RData&quot;)
-#readRDS(&quot;data.RData&quot;)</code></pre>
 <p>Tranform a RData data set to xls, csv or text</p>
-<pre class="r"><code>#write.csv(dt, &quot;mydata.txt&quot;)
-#write.table(dt, &quot;mydata.txt&quot;, sep=&quot;\t&quot;)
-#write.xlsx(dt, &quot;mydata.xlsx&quot;)</code></pre>
 
 
 

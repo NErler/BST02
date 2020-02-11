@@ -35,7 +35,7 @@ library(dplyr)
 
 \vspace*{3ex}
 
-**You will become more familiar with the syntax as you use it** 
+\blue{You will become more familiar with the syntax as you use it}
 
 
 ## Using R (cont'd)
@@ -103,7 +103,7 @@ dt %>%
    time = cell_spec(time, align = c("c", rep("c", 4))),
    id = cell_spec(id, align = c("c", rep("c", 4))),
    sex = cell_spec(sex, align = c("c", rep("c", 4))),
-   status = cell_spec(status, align = c("c", rep("l", 4))),
+   status = cell_spec(status, align = c("c", rep("c", 4))),
    trt = cell_spec(trt, align = c("c", rep("c", 4))),
    bili = cell_spec(bili, align = c("c", rep("c", 4))),
    chol = cell_spec(chol, align = c("c", rep("c", 4))),
@@ -169,10 +169,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
    - What is the average bili?
    - What is the average chol?
    - What is the percentage of females?
-   
-  \vspace*{3ex}
-  
-   - \textbf{\textcolor{red}{What is the average bili and chol?}}
+   - How many missing values do we have for chol?
    
    
 ## Basics in R
@@ -349,7 +346,8 @@ list(pbc[1:6, c("sex")], pbc[1:2, c("sex", "bili")], pbc$age[1:4])
 
 
 ## Common R Objects (cont'd)
-Create a vector
+\blue{Create a vector}
+
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 vec <- c(1, 2, 3, 4, 5)
 vec
@@ -358,29 +356,56 @@ vec
 ```
 
 
+
 ## Common R Objects (cont'd)
-Create a matrix
+\blue{Create a matrix}
+
+\begincols[t]
+\begincol{0.5\linewidth}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 vec <- c(1, 2, 3, 4, 5, 6)
 mat <- matrix(vec, 3, 3)
 mat 
-mat <- matrix(vec, 3, 3, byrow = TRUE)
+```
+
+\endcol
+\begincol{0.5\linewidth}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+vec <- c(1, 2, 3, 4, 5, 6)
+mat <- matrix(vec, 3, 3, 
+              byrow = TRUE)
 mat
 ```
+\endcol
+\endcols\vspace*{3ex}
+
 
 
 ## Common R Objects (cont'd)
-Create a data frame
+\blue{Create a data frame}
+
+\begincols[t]
+\begincol{0.5\linewidth}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 dtf <- data.frame(pbc$sex, pbc$age)
 dtf[1:3,]
-dtf <- data.frame(Gender = pbc$sex, Age = pbc$age)
+```
+
+\endcol
+\begincol{0.5\linewidth}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+dtf <- data.frame(Gender = pbc$sex, 
+                  Age = pbc$age)
 dtf[1:3,]
 ```
+\endcol
+\endcols\vspace*{3ex}
+
 
 
 ## Common R Objects (cont'd)
-Create a list
+\blue{Create a list}
+
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 list1 <- list(vec = c(1:5), mat = pbc[1:2, c("age", "sex")])
 list1
@@ -407,7 +432,8 @@ list1
 
 ## Importing Data and Saving your Work
 
-* \textbf{\textcolor{red}{read.table()}} and its variants
+
+* function: \textbf{\textcolor{red}{read.table()}}, \textbf{\textcolor{red}{read.csv()}} and its variants
   - note: use forward slashes or double backward slashes in the file names, e.g., \
     "C:/Documents and Settings/User/Data/file.txt" or \
     "C:\\Documents and Settings\\User\\Data\\file.txt"
@@ -415,9 +441,21 @@ list1
 \vspace*{3ex}    
     
 * Specialized functions for importing data from other statistical packages
-  - packages: \textbf{\textcolor{red}{foreign}}, \textbf{\textcolor{red}{Hmisc}} and \textbf{\textcolor{red}{readxl}}
-  - \textbf{\textcolor{red}{read.spss()}}, \textbf{\textcolor{red}{read.csv()}}, \textbf{\textcolor{red}{read.dta()}}, \textbf{\textcolor{red}{sas.get()}}, \textbf{\textcolor{red}{read_excel()}}, etc.
+  - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{read.spss()}} , \textbf{\textcolor{red}{read.dta()}}
+  - package: \textbf{\textcolor{red}{Hmisc}}, function: \textbf{\textcolor{red}{sas.get()}}
+  - package: \textbf{\textcolor{red}{readxl}}, function: \textbf{\textcolor{red}{read\_excel()}}
+  - package: \textbf{\textcolor{red}{haven}}, functio: \textbf{\textcolor{red}{read\_spss()}}
+  - etc
 
+
+## Importing Data and Saving your Work (cont'd)
+
+\blue{Tips:}
+* Short names are prefered over longer names
+* Try to avoid using names that contain symbols
+* Avoid spaces in names
+* Remove any comments in your data set
+* Make sure that any missing values in your data set are indicated with the same value (or no value)
 
 ## Importing Data and Saving your Work (cont'd)
 
@@ -431,6 +469,12 @@ list1
 * Using \textbf{\textcolor{red}{saveRDS}} and \textbf{\textcolor{red}{readRDS}} you can save and read a single R object
   - The result has to be assigned to a variable
 
+\vspace*{3ex}
+
+* Specialized functions for importing data from other statistical packages
+  - function: \textbf{\textcolor{red}{read.table()}}, \textbf{\textcolor{red}{read.csv()}}
+  - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{write.spss()}}, \textbf{\textcolor{red}{write.dta()}}
+  - etc
 
 ## Importing Data and Saving your Work (cont'd)
 
