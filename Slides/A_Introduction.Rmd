@@ -23,35 +23,40 @@ knitr::opts_chunk$set(echo = FALSE)
 
 \blue{Statistics} have flourished in the recent years mainly due to the possibility of doing complex analysis using computers
 
+* Many statistical software exist to do simple and specialized analysis
+    
+\vspace*{0.5cm}    
+
 The \blue{programming language R} is popular for Data Scientists
 
-
-* The most valuable tool of a modern quantitative researcher is his/her personal computer
-   - Many statistical software exist to do simple and specialized analysis
-
 * Analysts must not only learn how to use the software but also the ideas behind it
+* Learning statistical modelling and algorithm is more important than learning a programming language. 
+
+\vspace*{0.8cm}
+
+\begin{block}{}
+The most valuable tool of a modern quantitative researcher is his/her personal computer
+\end{block}
 
 
 ## What is this Course About (cont’d)
 
-Therefore, the aim of this course is:
-
-* **Aim A**: General Introduction
+* \blue{Part A}: General Introduction
   - how does the programming language **R** work
-* **Aim B**: Basic use of **R**
+* \blue{Part B}: Basic use of **R**
   - getting started with a data set, data visualizations
-* **Aim C**: Programming
+* \blue{Part C}: Programming
   - using and writing functions, popular functions which you will later need for the more advanced courses such as Repeated **Measurements (CE08)**, **Bayesian Statistics (CE09)**, etc.
-* **Aim D**: Statistics with **R**
+* \blue{Part D}: Statistics with **R**
   - basic statistical tests, regression analysis 
-* **Aim E**: tools
+* \blue{Part E}: tools
   - some interesting tools for reporting data analyses in a reproducible manner
 
 
 ## Agenda
 
 * **Part A**:
-  - What does R look like ?
+  - What does **R** look like ?
   - What is R ?
   - A brief history of R
   - Why learn R ?
@@ -60,7 +65,7 @@ Therefore, the aim of this course is:
   - How to get help in R ?
   - Disadvantages of R
 
-## Agenda
+## Agenda (cont'd)
 
 * **Part B**:
   - Using R
@@ -74,7 +79,7 @@ Therefore, the aim of this course is:
   - Indexing
   
   
-## Agenda
+## Agenda (cont'd)
 
 * **Part C**:
   - Merging data sets
@@ -84,7 +89,7 @@ Therefore, the aim of this course is:
   - Combine everything we learned
   
   
-## Agenda
+## Agenda (cont'd)
 
 * **Part D**:
   - Statistical tests
@@ -94,7 +99,7 @@ Therefore, the aim of this course is:
   - Visualization of results
   
   
-## Agenda
+## Agenda (cont'd)
 
 * **Part E**
   - Markdown
@@ -137,6 +142,9 @@ Therefore, the aim of this course is:
 ## Structure & Material (cont'd)
 
 * You are welcome to try along
+
+\vspace*{1.5cm}
+
 * You are welcome to interrupt and ask questions
 
 
@@ -156,13 +164,17 @@ http://cran.r-project.org/other-docs.html
 
 ## What does R look like ?
 
-![alt text here](A_Introduction_files\\figure-beamer\\SS_R.PNG)
+![](A_Introduction_files\\figure-beamer\\SS_R.PNG){ height="270px" }
 
 
 ## What is R
 
-  - is a software environment for statistical computing and graphics.
-  - Unlike SPSS, R is purely command driven
+* **R** is a software environment for statistical computing and graphics
+  - extensive catalog of statistical and graphical methods
+
+* **R** is mainly used in academia. However, many large companies also use **R** programming language, including healthcare industries but also Uber, Google, Airbnb, Facebook and so on
+
+* Unlike SPSS, **R** is purely command driven
   
 
 ## A brief history of R
@@ -178,7 +190,7 @@ http://cran.r-project.org/other-docs.html
 
 ## Why learn R ?
 
-* R is a free software environment for statistical computing and graphics
+* **R** is a free software environment for statistical computing and graphics
 * It compiles and runs on LINUX, Windows and MacOS
 * Open source language
 * Users are allowed to modify and redistribute the code
@@ -215,21 +227,36 @@ http://cran.r-project.org/other-docs.html
 * Online
   - R-help (https://stat.ethz.ch/mailman/listinfo/r-help – mailing list)
   - R-seek (http://www.rseek.org – Google-like searched engine)
-  - R-wiki (http://rwiki.sciviews.org/doku.php)
   - CRAN Task Views (http://cran.r-project.org/web/views/ – categorization of packages)
   - Crantastic (http://crantastic.org/ – categorization of packages + reviews)
-  - Equalis (http://www.equalis.com/forums/ – R forum)
   - R4stats (http://www.r4stats.com/ – examples of basic R programs)
   - R related Blogs (http://www.r-bloggers.com/ – many useful illustrations of R and R packages)
-
+  - Open community for developers (https://stackoverflow.com/ – ask/answer a question)
 
 ## Disadvantages of R
 
-* appears intimidating to the first-time user
-* output is not so nice looking (but there are some alternatives)
-* exporting output is more difficult
-* cannot easily handle very big data sets (depends on the installed RAM)
-* a lot of things are available but it is sometimes hard to find your way
-* the quality of the available packages is greatly varying
-    
+* Appears intimidating to the first-time user
+* Output is not so nice looking (but there are some alternatives)
+* Exporting output is more difficult
+* Cannot easily handle very big data sets (depends on the installed RAM)
+* A lot of things are available but it is sometimes hard to find your way
+* The quality of the available packages is greatly varying
+* Has been criticized for using only one CPU at a time (but the parallel packages helps you perform tasks in different cores)
+
+## Summary
+
+* **R** is a great tool to explore and investigate the data
+* Several statistical methods can be performed with **R**
+* It is important to understand the methods before applying them in **R**
+
+\vspace*{0.9cm}
+
+\begin{block}{How to use}
+\textbf{R} uses packages that perform specific tasks
+\begin{itemize}
+\item Install package only once
+\item Load package every time you open \textbf{R}
+\end{itemize}
+\end{block}
+
     
