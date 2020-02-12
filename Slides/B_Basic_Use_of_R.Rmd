@@ -47,7 +47,7 @@ library(dplyr)
   - Emacs (w. ESS, all platforms)
   - Visual Studio (for Windows)
   - Rstudio (all major platforms; http://www.rstudio.org/) 
-  - for more check http://www.sciviews.org/_rgui/projects/Editors.html
+  - for more check https://r-dir.com/blog/2013/01/list-of-r-editors.html
   
   
 ##  Using R (cont'd)
@@ -61,6 +61,9 @@ library(dplyr)
 ##  Using R (cont'd)
 
 * Can I use R without Rstudio?
+
+\vspace*{0.5cm}
+
 * Can I use Rstudio without R?
 
 
