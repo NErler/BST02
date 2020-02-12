@@ -272,7 +272,7 @@ kable(dt, "latex", booktabs = T, digits = 2) %>%
 
 * in R Everything (data, results, ...) is an object
 
-* In order to list the created variables use objects() or ls()
+* In order to list the created variables use the following functions
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
 objects()
 ```
@@ -299,9 +299,9 @@ The simplest data structures are:
 * \textbf{\textcolor{red}{character}} : qualitative data
 * \textbf{\textcolor{red}{integer}} : whole numbers
 * \textbf{\textcolor{red}{logical}} : TRUE or FALSE
-* \textbf{\textcolor{red}{factors}} : TRUE or FALSE
+* \textbf{\textcolor{red}{factors}} : qualitative data (ordered)
 
-To find out what type of vector you have you can use the mode function
+To find out what type of object you have, you can use the following function
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mode(pbc$age)
 ```
@@ -313,20 +313,20 @@ mode(pbc$age)
 
   - \textbf{\textcolor{red}{Vectors}} have the same type of elements 
   - \textbf{\textcolor{red}{Matrices}} have the same type of elements 
-  - \textbf{\textcolor{red}{Data.frames}} and lists do not need to have the same type of elements 
-  - \textbf{\textcolor{red}{Lists}} may have elements of different length and type
+  - \textbf{\textcolor{red}{Data.frames}} can have elements of different type
+  - \textbf{\textcolor{red}{Lists}} can have elements of different length and type
 
 
 ## Common R Objects (cont'd)
 
-* Differences between \textbf{\textcolor{red}{Vector}}, Matrices, Data.frames and Lists
+* Differences between \textbf{\textcolor{red}{Vectors}}, Matrices, Data.frames and Lists
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbc[1:6, c("age")]
 ```
 
 ## Common R Objects (cont'd)
 
-* Differences between Vector, \textbf{\textcolor{red}{Matrices}}, Data.frames and Lists
+* Differences between Vectors, \textbf{\textcolor{red}{Matrices}}, Data.frames and Lists
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbc[1:6, c("age", "bili", "chol")]
 ```
@@ -334,7 +334,7 @@ pbc[1:6, c("age", "bili", "chol")]
 
 ## Common R Objects (cont'd)
 
-* Differences between Vector, Matrices, \textbf{\textcolor{red}{Data.frames}} and Lists
+* Differences between Vectors, Matrices, \textbf{\textcolor{red}{Data.frames}} and Lists
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbc[1:6, c("id", "sex", "bili", "chol")]
 ```
@@ -342,7 +342,7 @@ pbc[1:6, c("id", "sex", "bili", "chol")]
 
 ## Common R Objects (cont'd)
 
-* Differences between Vector, Matrices, Data.frames and \textbf{\textcolor{red}{Lists}}
+* Differences between Vectors, Matrices, Data.frames and \textbf{\textcolor{red}{Lists}}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 list(pbc[1:6, c("sex")], pbc[1:2, c("sex", "bili")], pbc$age[1:4])
 ```
@@ -443,11 +443,11 @@ list1
     
 \vspace*{3ex}    
     
-* Specialized functions for importing data from other statistical packages
-  - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{read.spss()}} , \textbf{\textcolor{red}{read.dta()}}
+* Specialized functions for importing data from other statistical programs
+  - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{read.spss()}}, \textbf{\textcolor{red}{read.dta()}}
   - package: \textbf{\textcolor{red}{Hmisc}}, function: \textbf{\textcolor{red}{sas.get()}}
   - package: \textbf{\textcolor{red}{readxl}}, function: \textbf{\textcolor{red}{read\_excel()}}
-  - package: \textbf{\textcolor{red}{haven}}, functio: \textbf{\textcolor{red}{read\_spss()}}
+  - package: \textbf{\textcolor{red}{haven}}, function: \textbf{\textcolor{red}{read\_spss()}}
   - etc
 
 
@@ -462,7 +462,6 @@ list1
 
 ## Importing Data and Saving your Work (cont'd)
 
-* \textbf{\textcolor{red}{ls()}} lists R objects in a session 
 * \textbf{\textcolor{red}{save()}}
   - can be used to save a list of R objects
   - a binary file with all the objects available in your last R session
@@ -474,21 +473,10 @@ list1
 
 \vspace*{3ex}
 
-* Specialized functions for importing data from other statistical packages
-  - function: \textbf{\textcolor{red}{read.table()}}, \textbf{\textcolor{red}{read.csv()}}
+* Specialized functions for export data to other statistical programs
+  - function: \textbf{\textcolor{red}{write.table()}}, \textbf{\textcolor{red}{write.csv()}}
   - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{write.spss()}}, \textbf{\textcolor{red}{write.dta()}}
   - etc
-
-## Importing Data and Saving your Work (cont'd)
-
-* Create a csv, xls or text file from an R object
-```{r, eval = FALSE, include = TRUE, echo = TRUE}
-write.csv(mydata, "c:/mydata.txt")
-write.table(mydata, "c:/mydata.txt", sep="\t")
-library(xlsx)
-write.xlsx(mydata, "c:/mydata.xlsx")
-```
-
 
 
 ## Importing Data and Saving your Work (cont'd)
