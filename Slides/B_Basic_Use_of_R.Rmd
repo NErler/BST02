@@ -169,10 +169,10 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 
 * Common questions
    - What is the average age?
-   - What is the average bili?
-   - What is the average chol?
+   - What is the average serum bilirubin?
+   - What is the average serum cholesterol?
    - What is the percentage of females?
-   - How many missing values do we have for chol?
+   - How many missing values do we have for serum cholesterol?
    
    
 ## Basics in R
@@ -496,17 +496,16 @@ list1
 
 ## Data Transformation
 
-* Round continuous variables
-* \textbf{\textcolor{red}{numeric}} variables to \textbf{\textcolor{red}{factors}}
-* Compute new variables
+* \textbf{\textcolor{red}{Round}} continuous variables
+* Convert \textbf{\textcolor{red}{numeric}} variables to \textbf{\textcolor{red}{factors}}
+* Compute \textbf{\textcolor{red}{new variables}}
   - transform variables
-* Matrices of wide $\Longleftrightarrow$ long format
-* Missing values
+* Data sets of \textbf{\textcolor{red}{wide}} $\Longleftrightarrow$ \textbf{\textcolor{red}{long}} format
 
 
 ## Data Transformation (cont'd)
 
-Round continuous variables
+* Round continuous variables
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF <- format(pbc[,c("id", "time", "status", "trt", "age", 
                     "sex", "bili", "chol")], digits = 2)
@@ -516,7 +515,7 @@ head(DF)
 
 ## Data Transformation (cont'd)
 
-\textbf{\textcolor{red}{numeric}} variables to \textbf{\textcolor{red}{factors}}
+* Convert \textbf{\textcolor{red}{numeric}} variables to \textbf{\textcolor{red}{factors}}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF <- pbc[,c("id", "time", "status", "trt", "age", 
                     "sex", "bili", "chol")]
@@ -528,7 +527,7 @@ head(DF)
 
 ## Data Transformation (cont'd)
 
-* Compute new variables
+* Compute \textbf{\textcolor{red}{new variables}}
   - transform variables
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF <- pbc[,c("id", "time", "status", "trt", "age", 
@@ -541,7 +540,7 @@ head(DF)
   
 ## Data Transformation (cont'd)
 
-* Matrices of \textbf{\textcolor{red}{wide}} $\Longleftrightarrow$ long format  
+* Data sets of \textbf{\textcolor{red}{wide}} $\Longleftrightarrow$ long format  
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 head(pbc[,c("id", "time", "status", "trt", "age", 
                     "sex", "bili", "chol")])
@@ -550,22 +549,12 @@ head(pbc[,c("id", "time", "status", "trt", "age",
   
 ## Data Transformation (cont'd)
 
-* Matrices of wide $\Longleftrightarrow$ \textbf{\textcolor{red}{long}} format  
+* Data sets of wide $\Longleftrightarrow$ \textbf{\textcolor{red}{long}} format  
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
                     "sex", "bili", "chol")])
 ```  
   
-  
-## Data Transformation (cont'd)
-
-* \textbf{\textcolor{red}{Missing values}} 
-```{r, eval = TRUE, include = TRUE, echo = TRUE}
-head(pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
-                                    "trt", "age", "sex", 
-                                    "bili", "chol")])
-```  
-
 
 ## Data Transformation (cont'd)
 
@@ -593,11 +582,11 @@ head(pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
   - What is the percentage of females?
   - What is the mean and sd for age in males?
   - What is the mean and sd for baseline serum bilirubin?
-
+  - What is the percentage of missings in serum bilirubin?
 
 ## Data Exploration (cont'd)
 
-* Common questions: \textbf{\textcolor{red}{Hints}}
+* \blue{Hints}
 
 \vspace*{3ex}  
 
@@ -706,9 +695,11 @@ pbc_male_bili <- pbc$bili[pbc$sex == "m"]
 pbc_female_bili <- pbc$bili[pbc$sex == "f"]
 plot(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
      main = "Density plots", xlab = "age", ylab = "")
-polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), border = "blue")
+polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
+        border = "blue")
 lines(density(pbc_female_bili), col = rgb(1,0,0,0.5))
-polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), border = "red")
+polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), 
+        border = "red")
 legend(20,0.03, c("male", "female"), 
        col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)
 ```  
@@ -722,7 +713,8 @@ pbc_male_bili <- pbc$bili[pbc$sex == "m"]
 pbc_female_bili <- pbc$bili[pbc$sex == "f"]
 plot(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
      main = "Density plots", xlab = "age", ylab = "", ylim = c(0,0.4))
-polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), border = "blue")
+polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
+        border = "blue")
 lines(density(pbc_female_bili), col = rgb(1,0,0,0.5))
 polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), 
         border = "red")
@@ -734,9 +726,11 @@ legend(20,0.03, c("male", "female"),
 ## Data Visualization (cont'd)
 
 Categorical variables 
-```{r, eval = TRUE, include = TRUE, echo = FALSE, fig.height = 8, fig.width = 15}
-pbc$status <- factor(pbc$status, levels = c(0, 1, 2), labels = c("censored", "transplant", "dead"))
-pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 5, fig.width = 15}
+pbc$status <- factor(pbc$status, levels = c(0, 1, 2), 
+                     labels = c("censored", "transplant", "dead"))
+pie(prop.table(table(pbc$status)), 
+    col = c("green", "blue", "red"), cex = 2)
 ``` 
 
 
@@ -850,9 +844,9 @@ pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
   
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Position indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}:
 
-* Use a \textbf{\textcolor{red}{positive}} value to select an element
+* For position indexing, use a \textbf{\textcolor{red}{positive}} value to select an element
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(6:17)
 x
@@ -867,9 +861,9 @@ x[c(2,3,4)]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Position indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}:
 
-* Use dublicated positive values to select the same elements
+* For position indexing, use dublicated positive values to select the same elements
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(6:17)
 x
@@ -879,9 +873,9 @@ x[c(2,2,2)]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Position indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}:
 
-* Use a \textbf{\textcolor{red}{negative}} value to remove an element
+* For position indexing, use a \textbf{\textcolor{red}{negative}} value to remove an element
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(6:17)
 x
@@ -895,7 +889,7 @@ x[-5]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Logical indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}:
 
 * Use logical index of the same length to select elements where the value is \textbf{\textcolor{red}{TRUE}}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -907,9 +901,9 @@ x[y]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Logical indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}:
 
-* Logical indexing is often used in combination with conditions
+* Use logical indexing in combination with conditions
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(6:10)
 x[x > 7]
@@ -920,9 +914,9 @@ x[x > 7 | x > 9]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Name/character indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}:
 
-* When a vector has been named the element names can be used as indices 
+* For name/character indexing, use the name of the element names
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(foo=5, bar=4, one=7, two=12, three=2)
 x[c('foo', 'one')]
@@ -935,11 +929,12 @@ x[c('foo', 'one')]
 
 \textbf{\textcolor{blue}{Indexing with Matrices}}:
 
-* Indexing matrices as similar to indexing vectors but with double index
+* Indexing matrices are similar to indexing vectors but with double index
 
   - The first position denotes the rows
   - The first position denotes the columns
 
+* Use position indexing as:
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mat <- matrix(1:6, 3, 3)
 mat
@@ -963,7 +958,7 @@ mat[2, ]
 
 \textbf{\textcolor{blue}{Indexing with Data Frames}}:
 
-* When you use a single index the data.frame acts like a list of variables
+* When using a single index the data frame acts like a list of variables
 
 \begincols[t]
 \begincol{0.5\linewidth}
@@ -975,7 +970,7 @@ DF
 
 \endcol
 \begincol{0.5\linewidth}
-
+* Use position indexing as:
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF <- data.frame(x = 1:4, 
           y = c(35, 23, 14, 45))
@@ -991,7 +986,8 @@ DF[2]
 
 \begincols[t]
 \begincol{0.5\linewidth}
-* When you using a double index, indexing works like a matrix
+* When using a double index, indexing works like a matrix
+* Use position indexing as:
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF <- data.frame(x = 1:4, 
           y = c(35, 23, 14, 45))
@@ -1001,8 +997,7 @@ DF[4, 2]
 
 \endcol
 \begincol{0.5\linewidth}
-
-* When you using a double index, indexing works like a matrix
+* Use logical indexing as:
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF <- data.frame(x = 1:4, 
           y = c(35, 23, 14, 45))
@@ -1050,10 +1045,10 @@ head(pbc[pbc$age > 30 & pbc$sex == "f", 1:7])
 
 \textbf{\textcolor{blue}{Indexing with Lists}}:
 
-* Lists can be subsetted in the same way as vectors using - Note that the output is a list
+* Lists can be subsetted in the same way as vectors using single brackets - Note that the output is a list
+* Use position indexing as:
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
-mylist
 mylist[2]
 ```  
 
@@ -1063,9 +1058,9 @@ mylist[2]
 \textbf{\textcolor{blue}{Indexing with Lists}}:
 
 * Double square brackets can be also used - Note that the output is a vector
+* Use position indexing as:
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
-mylist
 mylist[[2]]
 ```  
 

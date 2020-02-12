@@ -7,8 +7,8 @@
 #' ---
 #' 
 
-#' Load packages
-#' If you are using the package for the first time, you will have to first install it:
+#' Load packages \
+#' If you are using the package for the first time, you will have to first install it \
 # install.packages("survival") 
 # install.packages("xlsx") 
 library(survival)
@@ -17,7 +17,7 @@ library(xlsx)
 #' List all your R objects 
 ls()
 
-#' Save your work
+#' Save your work \
 #' Take care: first you need to set your working directory (Rstudio: Session -> Set Working Directory -> Choose Directory...)
 getwd()
 
