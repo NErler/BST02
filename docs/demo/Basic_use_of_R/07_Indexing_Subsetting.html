@@ -12,7 +12,7 @@
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-11" />
+<meta name="date" content="2020-02-12" />
 
 <title>Demo: Indexing/Subsetting</title>
 
@@ -366,983 +366,1017 @@ summary {
 <h1 class="title toc-ignore">Demo: Indexing/Subsetting</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">11 February 2020</h4>
+<h4 class="date">12 February 2020</h4>
 
 </div>
 
 
 <p>Load packages If you are using the package for the first time, you will have to first install it:</p>
+<pre class="r"><code># install.packages(&quot;survival&quot;) 
+library(survival)</code></pre>
 <p>Select the 3rd element for vector age</p>
-<pre><code>[1] 70.07</code></pre>
+<pre class="r"><code>pbc$age[3]</code></pre>
+<pre><code>## [1] 70.07</code></pre>
 <p>Select the 3rd column of the pbc data set</p>
-<pre><code>  [1] dead       censored   dead       dead       transplant dead      
-  [7] censored   dead       dead       dead       dead       dead      
- [13] censored   dead       dead       censored   dead       dead      
- [19] censored   dead       censored   dead       dead       dead      
- [25] censored   dead       dead       dead       censored   dead      
- [31] dead       censored   dead       censored   dead       censored  
- [37] dead       dead       dead       censored   dead       censored  
- [43] censored   dead       censored   dead       censored   censored  
- [49] dead       dead       dead       dead       dead       dead      
- [55] dead       dead       dead       censored   dead       censored  
- [61] censored   dead       dead       dead       censored   dead      
- [67] dead       censored   dead       censored   censored   censored  
- [73] censored   dead       dead       dead       dead       dead      
- [79] censored   dead       dead       dead       censored   censored  
- [85] dead       dead       dead       censored   dead       dead      
- [91] dead       dead       censored   dead       dead       censored  
- [97] dead       censored   censored   dead       censored   censored  
-[103] dead       dead       transplant dead       censored   dead      
-[109] censored   dead       transplant dead       dead       dead      
-[115] censored   censored   dead       dead       dead       transplant
-[121] dead       censored   dead       censored   transplant dead      
-[127] censored   dead       censored   dead       dead       censored  
-[133] dead       censored   censored   censored   censored   dead      
-[139] censored   censored   censored   dead       dead       dead      
-[145] censored   censored   censored   dead       dead       censored  
-[151] censored   dead       censored   dead       censored   dead      
-[157] censored   transplant dead       censored   censored   dead      
-[163] dead       dead       dead       censored   dead       censored  
-[169] dead       censored   censored   censored   censored   censored  
-[175] censored   dead       censored   censored   censored   censored  
-[181] censored   censored   transplant dead       censored   dead      
-[187] dead       censored   censored   censored   dead       censored  
-[193] dead       censored   censored   censored   censored   censored  
-[199] censored   censored   censored   censored   censored   dead      
-[205] dead       censored   censored   dead       censored   censored  
-[211] censored   censored   censored   dead       dead       censored  
-[217] dead       censored   censored   dead       censored   dead      
-[223] dead       censored   censored   censored   dead       censored  
-[229] dead       censored   dead       censored   censored   censored  
-[235] censored   censored   censored   censored   dead       censored  
-[241] transplant censored   dead       dead       censored   transplant
-[247] transplant censored   censored   censored   censored   censored  
-[253] censored   transplant censored   censored   censored   censored  
-[259] censored   censored   censored   censored   transplant transplant
-[265] transplant censored   dead       dead       censored   censored  
-[271] censored   censored   censored   transplant censored   censored  
-[277] censored   censored   censored   censored   dead       censored  
-[283] censored   censored   censored   censored   censored   transplant
-[289] dead       censored   transplant censored   censored   censored  
-[295] transplant censored   transplant censored   censored   dead      
-[301] censored   censored   censored   censored   censored   censored  
-[307] censored   censored   censored   censored   censored   censored  
-[313] censored   dead       censored   dead       censored   censored  
-[319] dead       censored   censored   dead       censored   censored  
-[325] censored   censored   censored   dead       dead       dead      
-[331] dead       dead       dead       dead       censored   censored  
-[337] dead       dead       censored   censored   dead       censored  
-[343] dead       censored   transplant dead       dead       censored  
-[349] censored   dead       dead       censored   censored   dead      
-[355] censored   dead       censored   censored   censored   dead      
-[361] transplant transplant censored   dead       censored   dead      
-[367] censored   dead       dead       dead       dead       censored  
-[373] censored   censored   transplant dead       censored   dead      
-[379] dead       transplant censored   dead       transplant censored  
-[385] censored   censored   censored   censored   censored   censored  
-[391] censored   censored   dead       censored   censored   censored  
-[397] censored   censored   censored   censored   dead       censored  
-[403] censored   censored   censored   dead       censored   censored  
-[409] censored   censored   censored   censored   censored   dead      
-[415] censored   censored   censored   censored  
-Levels: censored transplant dead</code></pre>
-<pre><code>  [1] dead       censored   dead       dead       transplant dead      
-  [7] censored   dead       dead       dead       dead       dead      
- [13] censored   dead       dead       censored   dead       dead      
- [19] censored   dead       censored   dead       dead       dead      
- [25] censored   dead       dead       dead       censored   dead      
- [31] dead       censored   dead       censored   dead       censored  
- [37] dead       dead       dead       censored   dead       censored  
- [43] censored   dead       censored   dead       censored   censored  
- [49] dead       dead       dead       dead       dead       dead      
- [55] dead       dead       dead       censored   dead       censored  
- [61] censored   dead       dead       dead       censored   dead      
- [67] dead       censored   dead       censored   censored   censored  
- [73] censored   dead       dead       dead       dead       dead      
- [79] censored   dead       dead       dead       censored   censored  
- [85] dead       dead       dead       censored   dead       dead      
- [91] dead       dead       censored   dead       dead       censored  
- [97] dead       censored   censored   dead       censored   censored  
-[103] dead       dead       transplant dead       censored   dead      
-[109] censored   dead       transplant dead       dead       dead      
-[115] censored   censored   dead       dead       dead       transplant
-[121] dead       censored   dead       censored   transplant dead      
-[127] censored   dead       censored   dead       dead       censored  
-[133] dead       censored   censored   censored   censored   dead      
-[139] censored   censored   censored   dead       dead       dead      
-[145] censored   censored   censored   dead       dead       censored  
-[151] censored   dead       censored   dead       censored   dead      
-[157] censored   transplant dead       censored   censored   dead      
-[163] dead       dead       dead       censored   dead       censored  
-[169] dead       censored   censored   censored   censored   censored  
-[175] censored   dead       censored   censored   censored   censored  
-[181] censored   censored   transplant dead       censored   dead      
-[187] dead       censored   censored   censored   dead       censored  
-[193] dead       censored   censored   censored   censored   censored  
-[199] censored   censored   censored   censored   censored   dead      
-[205] dead       censored   censored   dead       censored   censored  
-[211] censored   censored   censored   dead       dead       censored  
-[217] dead       censored   censored   dead       censored   dead      
-[223] dead       censored   censored   censored   dead       censored  
-[229] dead       censored   dead       censored   censored   censored  
-[235] censored   censored   censored   censored   dead       censored  
-[241] transplant censored   dead       dead       censored   transplant
-[247] transplant censored   censored   censored   censored   censored  
-[253] censored   transplant censored   censored   censored   censored  
-[259] censored   censored   censored   censored   transplant transplant
-[265] transplant censored   dead       dead       censored   censored  
-[271] censored   censored   censored   transplant censored   censored  
-[277] censored   censored   censored   censored   dead       censored  
-[283] censored   censored   censored   censored   censored   transplant
-[289] dead       censored   transplant censored   censored   censored  
-[295] transplant censored   transplant censored   censored   dead      
-[301] censored   censored   censored   censored   censored   censored  
-[307] censored   censored   censored   censored   censored   censored  
-[313] censored   dead       censored   dead       censored   censored  
-[319] dead       censored   censored   dead       censored   censored  
-[325] censored   censored   censored   dead       dead       dead      
-[331] dead       dead       dead       dead       censored   censored  
-[337] dead       dead       censored   censored   dead       censored  
-[343] dead       censored   transplant dead       dead       censored  
-[349] censored   dead       dead       censored   censored   dead      
-[355] censored   dead       censored   censored   censored   dead      
-[361] transplant transplant censored   dead       censored   dead      
-[367] censored   dead       dead       dead       dead       censored  
-[373] censored   censored   transplant dead       censored   dead      
-[379] dead       transplant censored   dead       transplant censored  
-[385] censored   censored   censored   censored   censored   censored  
-[391] censored   censored   dead       censored   censored   censored  
-[397] censored   censored   censored   censored   dead       censored  
-[403] censored   censored   censored   dead       censored   censored  
-[409] censored   censored   censored   censored   censored   dead      
-[415] censored   censored   censored   censored  
-Levels: censored transplant dead</code></pre>
-<pre><code>  [1] dead       censored   dead       dead       transplant dead      
-  [7] censored   dead       dead       dead       dead       dead      
- [13] censored   dead       dead       censored   dead       dead      
- [19] censored   dead       censored   dead       dead       dead      
- [25] censored   dead       dead       dead       censored   dead      
- [31] dead       censored   dead       censored   dead       censored  
- [37] dead       dead       dead       censored   dead       censored  
- [43] censored   dead       censored   dead       censored   censored  
- [49] dead       dead       dead       dead       dead       dead      
- [55] dead       dead       dead       censored   dead       censored  
- [61] censored   dead       dead       dead       censored   dead      
- [67] dead       censored   dead       censored   censored   censored  
- [73] censored   dead       dead       dead       dead       dead      
- [79] censored   dead       dead       dead       censored   censored  
- [85] dead       dead       dead       censored   dead       dead      
- [91] dead       dead       censored   dead       dead       censored  
- [97] dead       censored   censored   dead       censored   censored  
-[103] dead       dead       transplant dead       censored   dead      
-[109] censored   dead       transplant dead       dead       dead      
-[115] censored   censored   dead       dead       dead       transplant
-[121] dead       censored   dead       censored   transplant dead      
-[127] censored   dead       censored   dead       dead       censored  
-[133] dead       censored   censored   censored   censored   dead      
-[139] censored   censored   censored   dead       dead       dead      
-[145] censored   censored   censored   dead       dead       censored  
-[151] censored   dead       censored   dead       censored   dead      
-[157] censored   transplant dead       censored   censored   dead      
-[163] dead       dead       dead       censored   dead       censored  
-[169] dead       censored   censored   censored   censored   censored  
-[175] censored   dead       censored   censored   censored   censored  
-[181] censored   censored   transplant dead       censored   dead      
-[187] dead       censored   censored   censored   dead       censored  
-[193] dead       censored   censored   censored   censored   censored  
-[199] censored   censored   censored   censored   censored   dead      
-[205] dead       censored   censored   dead       censored   censored  
-[211] censored   censored   censored   dead       dead       censored  
-[217] dead       censored   censored   dead       censored   dead      
-[223] dead       censored   censored   censored   dead       censored  
-[229] dead       censored   dead       censored   censored   censored  
-[235] censored   censored   censored   censored   dead       censored  
-[241] transplant censored   dead       dead       censored   transplant
-[247] transplant censored   censored   censored   censored   censored  
-[253] censored   transplant censored   censored   censored   censored  
-[259] censored   censored   censored   censored   transplant transplant
-[265] transplant censored   dead       dead       censored   censored  
-[271] censored   censored   censored   transplant censored   censored  
-[277] censored   censored   censored   censored   dead       censored  
-[283] censored   censored   censored   censored   censored   transplant
-[289] dead       censored   transplant censored   censored   censored  
-[295] transplant censored   transplant censored   censored   dead      
-[301] censored   censored   censored   censored   censored   censored  
-[307] censored   censored   censored   censored   censored   censored  
-[313] censored   dead       censored   dead       censored   censored  
-[319] dead       censored   censored   dead       censored   censored  
-[325] censored   censored   censored   dead       dead       dead      
-[331] dead       dead       dead       dead       censored   censored  
-[337] dead       dead       censored   censored   dead       censored  
-[343] dead       censored   transplant dead       dead       censored  
-[349] censored   dead       dead       censored   censored   dead      
-[355] censored   dead       censored   censored   censored   dead      
-[361] transplant transplant censored   dead       censored   dead      
-[367] censored   dead       dead       dead       dead       censored  
-[373] censored   censored   transplant dead       censored   dead      
-[379] dead       transplant censored   dead       transplant censored  
-[385] censored   censored   censored   censored   censored   censored  
-[391] censored   censored   dead       censored   censored   censored  
-[397] censored   censored   censored   censored   dead       censored  
-[403] censored   censored   censored   dead       censored   censored  
-[409] censored   censored   censored   censored   censored   dead      
-[415] censored   censored   censored   censored  
-Levels: censored transplant dead</code></pre>
-<pre><code>  [1] dead       censored   dead       dead       transplant dead      
-  [7] censored   dead       dead       dead       dead       dead      
- [13] censored   dead       dead       censored   dead       dead      
- [19] censored   dead       censored   dead       dead       dead      
- [25] censored   dead       dead       dead       censored   dead      
- [31] dead       censored   dead       censored   dead       censored  
- [37] dead       dead       dead       censored   dead       censored  
- [43] censored   dead       censored   dead       censored   censored  
- [49] dead       dead       dead       dead       dead       dead      
- [55] dead       dead       dead       censored   dead       censored  
- [61] censored   dead       dead       dead       censored   dead      
- [67] dead       censored   dead       censored   censored   censored  
- [73] censored   dead       dead       dead       dead       dead      
- [79] censored   dead       dead       dead       censored   censored  
- [85] dead       dead       dead       censored   dead       dead      
- [91] dead       dead       censored   dead       dead       censored  
- [97] dead       censored   censored   dead       censored   censored  
-[103] dead       dead       transplant dead       censored   dead      
-[109] censored   dead       transplant dead       dead       dead      
-[115] censored   censored   dead       dead       dead       transplant
-[121] dead       censored   dead       censored   transplant dead      
-[127] censored   dead       censored   dead       dead       censored  
-[133] dead       censored   censored   censored   censored   dead      
-[139] censored   censored   censored   dead       dead       dead      
-[145] censored   censored   censored   dead       dead       censored  
-[151] censored   dead       censored   dead       censored   dead      
-[157] censored   transplant dead       censored   censored   dead      
-[163] dead       dead       dead       censored   dead       censored  
-[169] dead       censored   censored   censored   censored   censored  
-[175] censored   dead       censored   censored   censored   censored  
-[181] censored   censored   transplant dead       censored   dead      
-[187] dead       censored   censored   censored   dead       censored  
-[193] dead       censored   censored   censored   censored   censored  
-[199] censored   censored   censored   censored   censored   dead      
-[205] dead       censored   censored   dead       censored   censored  
-[211] censored   censored   censored   dead       dead       censored  
-[217] dead       censored   censored   dead       censored   dead      
-[223] dead       censored   censored   censored   dead       censored  
-[229] dead       censored   dead       censored   censored   censored  
-[235] censored   censored   censored   censored   dead       censored  
-[241] transplant censored   dead       dead       censored   transplant
-[247] transplant censored   censored   censored   censored   censored  
-[253] censored   transplant censored   censored   censored   censored  
-[259] censored   censored   censored   censored   transplant transplant
-[265] transplant censored   dead       dead       censored   censored  
-[271] censored   censored   censored   transplant censored   censored  
-[277] censored   censored   censored   censored   dead       censored  
-[283] censored   censored   censored   censored   censored   transplant
-[289] dead       censored   transplant censored   censored   censored  
-[295] transplant censored   transplant censored   censored   dead      
-[301] censored   censored   censored   censored   censored   censored  
-[307] censored   censored   censored   censored   censored   censored  
-[313] censored   dead       censored   dead       censored   censored  
-[319] dead       censored   censored   dead       censored   censored  
-[325] censored   censored   censored   dead       dead       dead      
-[331] dead       dead       dead       dead       censored   censored  
-[337] dead       dead       censored   censored   dead       censored  
-[343] dead       censored   transplant dead       dead       censored  
-[349] censored   dead       dead       censored   censored   dead      
-[355] censored   dead       censored   censored   censored   dead      
-[361] transplant transplant censored   dead       censored   dead      
-[367] censored   dead       dead       dead       dead       censored  
-[373] censored   censored   transplant dead       censored   dead      
-[379] dead       transplant censored   dead       transplant censored  
-[385] censored   censored   censored   censored   censored   censored  
-[391] censored   censored   dead       censored   censored   censored  
-[397] censored   censored   censored   censored   dead       censored  
-[403] censored   censored   censored   dead       censored   censored  
-[409] censored   censored   censored   censored   censored   dead      
-[415] censored   censored   censored   censored  
-Levels: censored transplant dead</code></pre>
+<pre class="r"><code>pbc[, 3]</code></pre>
+<pre><code>##   [1] dead       censored   dead       dead       transplant dead      
+##   [7] censored   dead       dead       dead       dead       dead      
+##  [13] censored   dead       dead       censored   dead       dead      
+##  [19] censored   dead       censored   dead       dead       dead      
+##  [25] censored   dead       dead       dead       censored   dead      
+##  [31] dead       censored   dead       censored   dead       censored  
+##  [37] dead       dead       dead       censored   dead       censored  
+##  [43] censored   dead       censored   dead       censored   censored  
+##  [49] dead       dead       dead       dead       dead       dead      
+##  [55] dead       dead       dead       censored   dead       censored  
+##  [61] censored   dead       dead       dead       censored   dead      
+##  [67] dead       censored   dead       censored   censored   censored  
+##  [73] censored   dead       dead       dead       dead       dead      
+##  [79] censored   dead       dead       dead       censored   censored  
+##  [85] dead       dead       dead       censored   dead       dead      
+##  [91] dead       dead       censored   dead       dead       censored  
+##  [97] dead       censored   censored   dead       censored   censored  
+## [103] dead       dead       transplant dead       censored   dead      
+## [109] censored   dead       transplant dead       dead       dead      
+## [115] censored   censored   dead       dead       dead       transplant
+## [121] dead       censored   dead       censored   transplant dead      
+## [127] censored   dead       censored   dead       dead       censored  
+## [133] dead       censored   censored   censored   censored   dead      
+## [139] censored   censored   censored   dead       dead       dead      
+## [145] censored   censored   censored   dead       dead       censored  
+## [151] censored   dead       censored   dead       censored   dead      
+## [157] censored   transplant dead       censored   censored   dead      
+## [163] dead       dead       dead       censored   dead       censored  
+## [169] dead       censored   censored   censored   censored   censored  
+## [175] censored   dead       censored   censored   censored   censored  
+## [181] censored   censored   transplant dead       censored   dead      
+## [187] dead       censored   censored   censored   dead       censored  
+## [193] dead       censored   censored   censored   censored   censored  
+## [199] censored   censored   censored   censored   censored   dead      
+## [205] dead       censored   censored   dead       censored   censored  
+## [211] censored   censored   censored   dead       dead       censored  
+## [217] dead       censored   censored   dead       censored   dead      
+## [223] dead       censored   censored   censored   dead       censored  
+## [229] dead       censored   dead       censored   censored   censored  
+## [235] censored   censored   censored   censored   dead       censored  
+## [241] transplant censored   dead       dead       censored   transplant
+## [247] transplant censored   censored   censored   censored   censored  
+## [253] censored   transplant censored   censored   censored   censored  
+## [259] censored   censored   censored   censored   transplant transplant
+## [265] transplant censored   dead       dead       censored   censored  
+## [271] censored   censored   censored   transplant censored   censored  
+## [277] censored   censored   censored   censored   dead       censored  
+## [283] censored   censored   censored   censored   censored   transplant
+## [289] dead       censored   transplant censored   censored   censored  
+## [295] transplant censored   transplant censored   censored   dead      
+## [301] censored   censored   censored   censored   censored   censored  
+## [307] censored   censored   censored   censored   censored   censored  
+## [313] censored   dead       censored   dead       censored   censored  
+## [319] dead       censored   censored   dead       censored   censored  
+## [325] censored   censored   censored   dead       dead       dead      
+## [331] dead       dead       dead       dead       censored   censored  
+## [337] dead       dead       censored   censored   dead       censored  
+## [343] dead       censored   transplant dead       dead       censored  
+## [349] censored   dead       dead       censored   censored   dead      
+## [355] censored   dead       censored   censored   censored   dead      
+## [361] transplant transplant censored   dead       censored   dead      
+## [367] censored   dead       dead       dead       dead       censored  
+## [373] censored   censored   transplant dead       censored   dead      
+## [379] dead       transplant censored   dead       transplant censored  
+## [385] censored   censored   censored   censored   censored   censored  
+## [391] censored   censored   dead       censored   censored   censored  
+## [397] censored   censored   censored   censored   dead       censored  
+## [403] censored   censored   censored   dead       censored   censored  
+## [409] censored   censored   censored   censored   censored   dead      
+## [415] censored   censored   censored   censored  
+## Levels: censored transplant dead</code></pre>
+<pre class="r"><code>pbc[, 3]</code></pre>
+<pre><code>##   [1] dead       censored   dead       dead       transplant dead      
+##   [7] censored   dead       dead       dead       dead       dead      
+##  [13] censored   dead       dead       censored   dead       dead      
+##  [19] censored   dead       censored   dead       dead       dead      
+##  [25] censored   dead       dead       dead       censored   dead      
+##  [31] dead       censored   dead       censored   dead       censored  
+##  [37] dead       dead       dead       censored   dead       censored  
+##  [43] censored   dead       censored   dead       censored   censored  
+##  [49] dead       dead       dead       dead       dead       dead      
+##  [55] dead       dead       dead       censored   dead       censored  
+##  [61] censored   dead       dead       dead       censored   dead      
+##  [67] dead       censored   dead       censored   censored   censored  
+##  [73] censored   dead       dead       dead       dead       dead      
+##  [79] censored   dead       dead       dead       censored   censored  
+##  [85] dead       dead       dead       censored   dead       dead      
+##  [91] dead       dead       censored   dead       dead       censored  
+##  [97] dead       censored   censored   dead       censored   censored  
+## [103] dead       dead       transplant dead       censored   dead      
+## [109] censored   dead       transplant dead       dead       dead      
+## [115] censored   censored   dead       dead       dead       transplant
+## [121] dead       censored   dead       censored   transplant dead      
+## [127] censored   dead       censored   dead       dead       censored  
+## [133] dead       censored   censored   censored   censored   dead      
+## [139] censored   censored   censored   dead       dead       dead      
+## [145] censored   censored   censored   dead       dead       censored  
+## [151] censored   dead       censored   dead       censored   dead      
+## [157] censored   transplant dead       censored   censored   dead      
+## [163] dead       dead       dead       censored   dead       censored  
+## [169] dead       censored   censored   censored   censored   censored  
+## [175] censored   dead       censored   censored   censored   censored  
+## [181] censored   censored   transplant dead       censored   dead      
+## [187] dead       censored   censored   censored   dead       censored  
+## [193] dead       censored   censored   censored   censored   censored  
+## [199] censored   censored   censored   censored   censored   dead      
+## [205] dead       censored   censored   dead       censored   censored  
+## [211] censored   censored   censored   dead       dead       censored  
+## [217] dead       censored   censored   dead       censored   dead      
+## [223] dead       censored   censored   censored   dead       censored  
+## [229] dead       censored   dead       censored   censored   censored  
+## [235] censored   censored   censored   censored   dead       censored  
+## [241] transplant censored   dead       dead       censored   transplant
+## [247] transplant censored   censored   censored   censored   censored  
+## [253] censored   transplant censored   censored   censored   censored  
+## [259] censored   censored   censored   censored   transplant transplant
+## [265] transplant censored   dead       dead       censored   censored  
+## [271] censored   censored   censored   transplant censored   censored  
+## [277] censored   censored   censored   censored   dead       censored  
+## [283] censored   censored   censored   censored   censored   transplant
+## [289] dead       censored   transplant censored   censored   censored  
+## [295] transplant censored   transplant censored   censored   dead      
+## [301] censored   censored   censored   censored   censored   censored  
+## [307] censored   censored   censored   censored   censored   censored  
+## [313] censored   dead       censored   dead       censored   censored  
+## [319] dead       censored   censored   dead       censored   censored  
+## [325] censored   censored   censored   dead       dead       dead      
+## [331] dead       dead       dead       dead       censored   censored  
+## [337] dead       dead       censored   censored   dead       censored  
+## [343] dead       censored   transplant dead       dead       censored  
+## [349] censored   dead       dead       censored   censored   dead      
+## [355] censored   dead       censored   censored   censored   dead      
+## [361] transplant transplant censored   dead       censored   dead      
+## [367] censored   dead       dead       dead       dead       censored  
+## [373] censored   censored   transplant dead       censored   dead      
+## [379] dead       transplant censored   dead       transplant censored  
+## [385] censored   censored   censored   censored   censored   censored  
+## [391] censored   censored   dead       censored   censored   censored  
+## [397] censored   censored   censored   censored   dead       censored  
+## [403] censored   censored   censored   dead       censored   censored  
+## [409] censored   censored   censored   censored   censored   dead      
+## [415] censored   censored   censored   censored  
+## Levels: censored transplant dead</code></pre>
+<pre class="r"><code>pbc[[3]]</code></pre>
+<pre><code>##   [1] dead       censored   dead       dead       transplant dead      
+##   [7] censored   dead       dead       dead       dead       dead      
+##  [13] censored   dead       dead       censored   dead       dead      
+##  [19] censored   dead       censored   dead       dead       dead      
+##  [25] censored   dead       dead       dead       censored   dead      
+##  [31] dead       censored   dead       censored   dead       censored  
+##  [37] dead       dead       dead       censored   dead       censored  
+##  [43] censored   dead       censored   dead       censored   censored  
+##  [49] dead       dead       dead       dead       dead       dead      
+##  [55] dead       dead       dead       censored   dead       censored  
+##  [61] censored   dead       dead       dead       censored   dead      
+##  [67] dead       censored   dead       censored   censored   censored  
+##  [73] censored   dead       dead       dead       dead       dead      
+##  [79] censored   dead       dead       dead       censored   censored  
+##  [85] dead       dead       dead       censored   dead       dead      
+##  [91] dead       dead       censored   dead       dead       censored  
+##  [97] dead       censored   censored   dead       censored   censored  
+## [103] dead       dead       transplant dead       censored   dead      
+## [109] censored   dead       transplant dead       dead       dead      
+## [115] censored   censored   dead       dead       dead       transplant
+## [121] dead       censored   dead       censored   transplant dead      
+## [127] censored   dead       censored   dead       dead       censored  
+## [133] dead       censored   censored   censored   censored   dead      
+## [139] censored   censored   censored   dead       dead       dead      
+## [145] censored   censored   censored   dead       dead       censored  
+## [151] censored   dead       censored   dead       censored   dead      
+## [157] censored   transplant dead       censored   censored   dead      
+## [163] dead       dead       dead       censored   dead       censored  
+## [169] dead       censored   censored   censored   censored   censored  
+## [175] censored   dead       censored   censored   censored   censored  
+## [181] censored   censored   transplant dead       censored   dead      
+## [187] dead       censored   censored   censored   dead       censored  
+## [193] dead       censored   censored   censored   censored   censored  
+## [199] censored   censored   censored   censored   censored   dead      
+## [205] dead       censored   censored   dead       censored   censored  
+## [211] censored   censored   censored   dead       dead       censored  
+## [217] dead       censored   censored   dead       censored   dead      
+## [223] dead       censored   censored   censored   dead       censored  
+## [229] dead       censored   dead       censored   censored   censored  
+## [235] censored   censored   censored   censored   dead       censored  
+## [241] transplant censored   dead       dead       censored   transplant
+## [247] transplant censored   censored   censored   censored   censored  
+## [253] censored   transplant censored   censored   censored   censored  
+## [259] censored   censored   censored   censored   transplant transplant
+## [265] transplant censored   dead       dead       censored   censored  
+## [271] censored   censored   censored   transplant censored   censored  
+## [277] censored   censored   censored   censored   dead       censored  
+## [283] censored   censored   censored   censored   censored   transplant
+## [289] dead       censored   transplant censored   censored   censored  
+## [295] transplant censored   transplant censored   censored   dead      
+## [301] censored   censored   censored   censored   censored   censored  
+## [307] censored   censored   censored   censored   censored   censored  
+## [313] censored   dead       censored   dead       censored   censored  
+## [319] dead       censored   censored   dead       censored   censored  
+## [325] censored   censored   censored   dead       dead       dead      
+## [331] dead       dead       dead       dead       censored   censored  
+## [337] dead       dead       censored   censored   dead       censored  
+## [343] dead       censored   transplant dead       dead       censored  
+## [349] censored   dead       dead       censored   censored   dead      
+## [355] censored   dead       censored   censored   censored   dead      
+## [361] transplant transplant censored   dead       censored   dead      
+## [367] censored   dead       dead       dead       dead       censored  
+## [373] censored   censored   transplant dead       censored   dead      
+## [379] dead       transplant censored   dead       transplant censored  
+## [385] censored   censored   censored   censored   censored   censored  
+## [391] censored   censored   dead       censored   censored   censored  
+## [397] censored   censored   censored   censored   dead       censored  
+## [403] censored   censored   censored   dead       censored   censored  
+## [409] censored   censored   censored   censored   censored   dead      
+## [415] censored   censored   censored   censored  
+## Levels: censored transplant dead</code></pre>
+<pre class="r"><code>pbc$status</code></pre>
+<pre><code>##   [1] dead       censored   dead       dead       transplant dead      
+##   [7] censored   dead       dead       dead       dead       dead      
+##  [13] censored   dead       dead       censored   dead       dead      
+##  [19] censored   dead       censored   dead       dead       dead      
+##  [25] censored   dead       dead       dead       censored   dead      
+##  [31] dead       censored   dead       censored   dead       censored  
+##  [37] dead       dead       dead       censored   dead       censored  
+##  [43] censored   dead       censored   dead       censored   censored  
+##  [49] dead       dead       dead       dead       dead       dead      
+##  [55] dead       dead       dead       censored   dead       censored  
+##  [61] censored   dead       dead       dead       censored   dead      
+##  [67] dead       censored   dead       censored   censored   censored  
+##  [73] censored   dead       dead       dead       dead       dead      
+##  [79] censored   dead       dead       dead       censored   censored  
+##  [85] dead       dead       dead       censored   dead       dead      
+##  [91] dead       dead       censored   dead       dead       censored  
+##  [97] dead       censored   censored   dead       censored   censored  
+## [103] dead       dead       transplant dead       censored   dead      
+## [109] censored   dead       transplant dead       dead       dead      
+## [115] censored   censored   dead       dead       dead       transplant
+## [121] dead       censored   dead       censored   transplant dead      
+## [127] censored   dead       censored   dead       dead       censored  
+## [133] dead       censored   censored   censored   censored   dead      
+## [139] censored   censored   censored   dead       dead       dead      
+## [145] censored   censored   censored   dead       dead       censored  
+## [151] censored   dead       censored   dead       censored   dead      
+## [157] censored   transplant dead       censored   censored   dead      
+## [163] dead       dead       dead       censored   dead       censored  
+## [169] dead       censored   censored   censored   censored   censored  
+## [175] censored   dead       censored   censored   censored   censored  
+## [181] censored   censored   transplant dead       censored   dead      
+## [187] dead       censored   censored   censored   dead       censored  
+## [193] dead       censored   censored   censored   censored   censored  
+## [199] censored   censored   censored   censored   censored   dead      
+## [205] dead       censored   censored   dead       censored   censored  
+## [211] censored   censored   censored   dead       dead       censored  
+## [217] dead       censored   censored   dead       censored   dead      
+## [223] dead       censored   censored   censored   dead       censored  
+## [229] dead       censored   dead       censored   censored   censored  
+## [235] censored   censored   censored   censored   dead       censored  
+## [241] transplant censored   dead       dead       censored   transplant
+## [247] transplant censored   censored   censored   censored   censored  
+## [253] censored   transplant censored   censored   censored   censored  
+## [259] censored   censored   censored   censored   transplant transplant
+## [265] transplant censored   dead       dead       censored   censored  
+## [271] censored   censored   censored   transplant censored   censored  
+## [277] censored   censored   censored   censored   dead       censored  
+## [283] censored   censored   censored   censored   censored   transplant
+## [289] dead       censored   transplant censored   censored   censored  
+## [295] transplant censored   transplant censored   censored   dead      
+## [301] censored   censored   censored   censored   censored   censored  
+## [307] censored   censored   censored   censored   censored   censored  
+## [313] censored   dead       censored   dead       censored   censored  
+## [319] dead       censored   censored   dead       censored   censored  
+## [325] censored   censored   censored   dead       dead       dead      
+## [331] dead       dead       dead       dead       censored   censored  
+## [337] dead       dead       censored   censored   dead       censored  
+## [343] dead       censored   transplant dead       dead       censored  
+## [349] censored   dead       dead       censored   censored   dead      
+## [355] censored   dead       censored   censored   censored   dead      
+## [361] transplant transplant censored   dead       censored   dead      
+## [367] censored   dead       dead       dead       dead       censored  
+## [373] censored   censored   transplant dead       censored   dead      
+## [379] dead       transplant censored   dead       transplant censored  
+## [385] censored   censored   censored   censored   censored   censored  
+## [391] censored   censored   dead       censored   censored   censored  
+## [397] censored   censored   censored   censored   dead       censored  
+## [403] censored   censored   censored   dead       censored   censored  
+## [409] censored   censored   censored   censored   censored   dead      
+## [415] censored   censored   censored   censored  
+## Levels: censored transplant dead</code></pre>
 <p>Select the sex of the 10th patient</p>
-<pre><code>[1] f
-Levels: m f</code></pre>
+<pre class="r"><code>pbc$sex[10]</code></pre>
+<pre><code>## [1] f
+## Levels: m f</code></pre>
 <p>Select the baseline details of the 5th patient</p>
-<pre><code>  id time     status trt   age sex ascites hepato spiders edema bili chol
-5  5 1504 transplant   2 38.11   f       0      1       1     0  3.4  279
-  albumin copper alk.phos    ast trig platelet protime stage age40higher
-5    3.53    143      671 113.15   72      136    10.9     3       young
-      ageST
-5 -1.209061</code></pre>
+<pre class="r"><code>pbc[pbc$id == 5, ]</code></pre>
+<pre><code>##   id time     status trt   age sex ascites hepato spiders edema bili chol
+## 5  5 1504 transplant   2 38.11   f       0      1       1     0  3.4  279
+##   albumin copper alk.phos    ast trig platelet protime stage age40higher
+## 5    3.53    143      671 113.15   72      136    10.9     3       young
+##       ageST
+## 5 -1.209061</code></pre>
 <p>Select the serum cholesterol for all males</p>
-<pre><code> [1] 1.4 0.8 0.6 2.1 1.9 6.0 1.8 0.7 0.6 1.4 7.2 1.6 2.0 1.8 2.3 3.2 3.5
-[18] 1.3 0.6 1.5 7.3 3.0 2.3 2.4 2.5 4.0 0.9 0.9 2.3 7.1 5.6 4.0 8.6 6.6
-[35] 2.4 1.2 1.3 3.5 0.9 9.5 1.7 1.7 3.0 1.1</code></pre>
-<pre><code> [1] 1.4 0.8 0.6 2.1 1.9 6.0 1.8 0.7 0.6 1.4 7.2 1.6 2.0 1.8 2.3 3.2 3.5
-[18] 1.3 0.6 1.5 7.3 3.0 2.3 2.4 2.5 4.0 0.9 0.9 2.3 7.1 5.6 4.0 8.6 6.6
-[35] 2.4 1.2 1.3 3.5 0.9 9.5 1.7 1.7 3.0 1.1</code></pre>
+<pre class="r"><code>pbc[pbc$sex == &quot;m&quot;, &quot;bili&quot;]</code></pre>
+<pre><code>##  [1] 1.4 0.8 0.6 2.1 1.9 6.0 1.8 0.7 0.6 1.4 7.2 1.6 2.0 1.8 2.3 3.2 3.5
+## [18] 1.3 0.6 1.5 7.3 3.0 2.3 2.4 2.5 4.0 0.9 0.9 2.3 7.1 5.6 4.0 8.6 6.6
+## [35] 2.4 1.2 1.3 3.5 0.9 9.5 1.7 1.7 3.0 1.1</code></pre>
+<pre class="r"><code>pbc$bili[pbc$sex == &quot;m&quot;]</code></pre>
+<pre><code>##  [1] 1.4 0.8 0.6 2.1 1.9 6.0 1.8 0.7 0.6 1.4 7.2 1.6 2.0 1.8 2.3 3.2 3.5
+## [18] 1.3 0.6 1.5 7.3 3.0 2.3 2.4 2.5 4.0 0.9 0.9 2.3 7.1 5.6 4.0 8.6 6.6
+## [35] 2.4 1.2 1.3 3.5 0.9 9.5 1.7 1.7 3.0 1.1</code></pre>
 <p>Select the age for male patients or patients that have serum bilirubin more than 3</p>
-<pre><code>  [1] 58.77 70.07 70.56 56.22 53.93 59.95 64.19 55.97 44.52 52.02 54.44
- [12] 44.95 61.73 33.63 45.80 49.14 50.54 65.76 44.57 43.90 46.63 46.45
- [23] 49.34 51.92 43.52 51.94 49.83 47.95 67.41 63.26 33.48 46.39 71.89
- [34] 48.47 51.47 41.15 51.23 52.83 49.66 35.15 67.91 45.82 52.89 41.95
- [45] 44.23 62.64 51.25 52.29 30.86 61.80 69.94 69.38 59.41 45.76 43.41
- [56] 53.31 41.36 60.96 37.61 35.79 52.69 56.77 49.76 41.17 36.08 61.24
- [67] 58.95 33.18 67.49 41.22 78.44 74.52 70.91 55.39 32.50 65.88 58.65
- [78] 48.94 67.57 50.25 57.20 60.54 35.35 55.99 58.17 33.15 61.00 54.00
- [89] 53.00 56.00 47.00 53.00 54.00 48.00 36.00 52.00 66.00 41.00 49.00
-[100] 49.00 50.00 51.00 44.00 41.00 51.00 54.00 49.00 68.00 62.00 42.00
-[111] 54.00</code></pre>
-<pre><code>  [1] 58.77 70.07 70.56 56.22 53.93 59.95 64.19 55.97 44.52 52.02 54.44
- [12] 44.95 61.73 33.63 45.80 49.14 50.54 65.76 44.57 43.90 46.63 46.45
- [23] 49.34 51.92 43.52 51.94 49.83 47.95 67.41 63.26 33.48 46.39 71.89
- [34] 48.47 51.47 41.15 51.23 52.83 49.66 35.15 67.91 45.82 52.89 41.95
- [45] 44.23 62.64 51.25 52.29 30.86 61.80 69.94 69.38 59.41 45.76 43.41
- [56] 53.31 41.36 60.96 37.61 35.79 52.69 56.77 49.76 41.17 36.08 61.24
- [67] 58.95 33.18 67.49 41.22 78.44 74.52 70.91 55.39 32.50 65.88 58.65
- [78] 48.94 67.57 50.25 57.20 60.54 35.35 55.99 58.17 33.15 61.00 54.00
- [89] 53.00 56.00 47.00 53.00 54.00 48.00 36.00 52.00 66.00 41.00 49.00
-[100] 49.00 50.00 51.00 44.00 41.00 51.00 54.00 49.00 68.00 62.00 42.00
-[111] 54.00</code></pre>
+<pre class="r"><code>pbc[pbc$sex == &quot;m&quot; | pbc$bili &gt; 5, &quot;age&quot;]</code></pre>
+<pre><code>##   [1] 58.77 70.07 70.56 56.22 53.93 59.95 64.19 55.97 44.52 52.02 54.44
+##  [12] 44.95 61.73 33.63 45.80 49.14 50.54 65.76 44.57 43.90 46.63 46.45
+##  [23] 49.34 51.92 43.52 51.94 49.83 47.95 67.41 63.26 33.48 46.39 71.89
+##  [34] 48.47 51.47 41.15 51.23 52.83 49.66 35.15 67.91 45.82 52.89 41.95
+##  [45] 44.23 62.64 51.25 52.29 30.86 61.80 69.94 69.38 59.41 45.76 43.41
+##  [56] 53.31 41.36 60.96 37.61 35.79 52.69 56.77 49.76 41.17 36.08 61.24
+##  [67] 58.95 33.18 67.49 41.22 78.44 74.52 70.91 55.39 32.50 65.88 58.65
+##  [78] 48.94 67.57 50.25 57.20 60.54 35.35 55.99 58.17 33.15 61.00 54.00
+##  [89] 53.00 56.00 47.00 53.00 54.00 48.00 36.00 52.00 66.00 41.00 49.00
+## [100] 49.00 50.00 51.00 44.00 41.00 51.00 54.00 49.00 68.00 62.00 42.00
+## [111] 54.00</code></pre>
+<pre class="r"><code>pbc$age[pbc$sex == &quot;m&quot; | pbc$bili &gt; 5]</code></pre>
+<pre><code>##   [1] 58.77 70.07 70.56 56.22 53.93 59.95 64.19 55.97 44.52 52.02 54.44
+##  [12] 44.95 61.73 33.63 45.80 49.14 50.54 65.76 44.57 43.90 46.63 46.45
+##  [23] 49.34 51.92 43.52 51.94 49.83 47.95 67.41 63.26 33.48 46.39 71.89
+##  [34] 48.47 51.47 41.15 51.23 52.83 49.66 35.15 67.91 45.82 52.89 41.95
+##  [45] 44.23 62.64 51.25 52.29 30.86 61.80 69.94 69.38 59.41 45.76 43.41
+##  [56] 53.31 41.36 60.96 37.61 35.79 52.69 56.77 49.76 41.17 36.08 61.24
+##  [67] 58.95 33.18 67.49 41.22 78.44 74.52 70.91 55.39 32.50 65.88 58.65
+##  [78] 48.94 67.57 50.25 57.20 60.54 35.35 55.99 58.17 33.15 61.00 54.00
+##  [89] 53.00 56.00 47.00 53.00 54.00 48.00 36.00 52.00 66.00 41.00 49.00
+## [100] 49.00 50.00 51.00 44.00 41.00 51.00 54.00 49.00 68.00 62.00 42.00
+## [111] 54.00</code></pre>
 <p>Select the first measurement per patient</p>
-<pre><code>    id futime     status trt      age sex day ascites hepato spiders edema
-1    1    400       dead   1 58.76523   f   0       1      1       1   1.0
-3    2   5169   censored   1 56.44627   f   0       0      1       1   0.0
-12   3   1012       dead   1 70.07255   m   0       0      0       0   0.5
-16   4   1925       dead   1 54.74059   f   0       0      1       1   0.5
-23   5   1505 transplant   0 38.10541   f   0       0      1       1   0.0
-29   6   2503       dead   0 66.25873   f   0       0      1       0   0.0
-35   7   2501   censored   0 55.53457   f   0       0      1       0   0.0
-42   8   2466       dead   0 53.05681   f   0       0      0       0   0.0
-50   9   2400       dead   1 42.50787   f   0       0      0       1   0.0
-57  10     51       dead   0 70.55989   f   0       1      0       1   1.0
-58  11   3762       dead   0 53.71389   f   0       0      1       1   0.0
-70  12    304       dead   0 59.13758   f   0       0      0       1   0.0
-72  13   4247   censored   0 45.68925   f   0       0      0       0   0.0
-84  14   1217       dead   0 56.22177   m   0       1      1       0   1.0
-91  15   3584       dead   1 64.64613   f   0       0      0       0   0.0
-102 16   4345   censored   0 40.44353   f   0       0      0       0   0.0
-115 17    769       dead   0 52.18344   f   0       0      1       0   0.0
-118 18    132       dead   1 53.93018   f   0       0      1       1   1.0
-119 19   4901   censored   1 49.56057   f   0       0      1       0   0.5
-134 20   1356       dead   0 59.95346   f   0       0      1       0   0.0
-138 21   3657       dead   0 64.18891   m   0       0      1       1   0.0
-150 22    673       dead   1 56.27652   f   0       0      0       1   0.0
-153 23    264       dead   0 55.96715   f   0       1      1       1   1.0
-155 24   4079       dead   1 44.52019   m   0       0      1       0   0.0
-168 25   4796   censored   0 45.07324   f   0       0      0       0   0.0
-180 26   1444       dead   0 52.02464   f   0       0      1       1   0.0
-186 27     77       dead   0 54.43943   f   0       1      1       1   0.5
-187 28    549       dead   0 44.94730   f   0       1      1       1   1.0
-190 29   5074       dead   0 63.87680   f   0       0      0       0   0.0
-200 30    321       dead   0 41.38535   f   0       0      1       1   0.0
-203 31   3839       dead   0 41.55236   f   0       0      1       0   0.0
-215 32   5192   censored   0 53.99589   f   0       0      1       0   0.5
-231 33   3170       dead   0 51.28268   f   0       0      0       0   0.0
-241 34   4602   censored   1 52.06023   f   0       0      0       0   0.5
-255 35   2847       dead   0 48.61875   f   0       0      0       0   0.0
-259 36   4281   censored   0 56.41068   f   0       0      0       0   0.0
-270 37    223       dead   1 61.72758   f   0       1      1       0   1.0
-272 38   3244       dead   0 36.62697   f   0       0      1       1   0.0
-282 39   2297       dead   1 55.39220   f   0       0      1       0   0.0
-290 40   5136   censored   1 46.66940   f   0       0      0       0   0.0
-305 41   1350       dead   1 33.63450   f   0       0      1       0   0.0
-309 42   5122   censored   0 33.69473   f   0       0      1       1   0.0
-325 43   5225   censored   1 48.87064   f   0       0      0       0   0.0
-340 44   3428       dead   0 37.58248   f   0       0      1       1   1.0
-351 45   4694   censored   0 41.79329   f   0       0      0       0   0.0
-360 46   2256       dead   1 45.79877   f   0       0      1       0   0.0
-368 47   3245   censored   0 47.42779   f   0       0      0       0   0.0
-375 48   5096   censored   0 49.13621   m   0       0      0       0   0.0
-384 49    708       dead   0 61.15264   f   0       0      1       0   0.0
-388 50   2598       dead   1 53.50856   f   0       0      1       0   0.0
-    bili chol albumin alk.phos   ast platelet protime stage visits
-1   14.5  261    2.60     1718 138.0      190    12.2     4      1
-3    1.1  302    4.14     7395 113.5      221    10.6     3      1
-12   1.4  176    3.48      516  96.1      151    12.0     4      1
-16   1.8  244    2.54     6122  60.6      183    10.3     4      1
-23   3.4  279    3.53      671 113.2      136    10.9     3      1
-29   0.8  248    3.98      944  93.0       NA    11.0     3      1
-35   1.0  322    4.09      824  60.5      204     9.7     3      1
-42   0.3  280    4.00     4651  28.4      373    11.0     3      1
-50   3.2  562    3.08     2276 144.2      251    11.0     2      1
-57  12.6  200    2.74      918 147.3      302    11.5     4      1
-58   1.4  259    4.16     1104  79.1      258    12.0     4      1
-70   3.6  236    3.52      591  82.2       71    13.6     4      1
-72   0.7  281    3.85     1181  88.4      244    10.6     3      1
-84   0.8   NA    2.27      728  71.0      156    11.0     4      1
-91   0.8  231    3.87     9010 127.7      295    11.0     3      1
-102  0.7  204    3.66      685  72.9      198    10.8     3      1
-115  2.7  274    3.15     1533 117.8      224    10.5     4      1
-118 11.4  178    2.80      961 280.6      283    12.4     4      1
-119  0.7  235    3.56     1881  93.0      209    11.0     3      1
-134  5.1  374    3.51     1919 122.5      322    13.0     4      1
-138  0.6  252    3.83      843  65.1      336    11.4     4      1
-150  3.4  271    3.63     1376 120.9      173    11.6     4      1
-153 17.4  395    2.94     6065 227.0      214    11.7     4      1
-155  2.1  456    4.00     5719 221.9       70     9.9     2      1
-168  0.7  298    4.10      661 107.0      324    11.3     2      1
-180  5.2 1128    3.68     3228 165.9      421     9.9     3      1
-186 21.6  175    3.31     3697 101.9       80    12.0     4      1
-187 17.2  222    3.23     1975 189.1      144    13.0     4      1
-190  0.7  370    3.78     5833  73.5      390    10.6     2      1
-200  3.6  260    2.54     7277 121.3      124    11.0     4      1
-203  4.7  296    3.44     9933 206.4      195    10.3     2      1
-215  1.8  262    3.34     7277  82.6      286    10.6     4      1
-231  0.8  210    3.19     1592 218.6      180    12.0     3      1
-241  0.8  364    3.70     1840 170.5      273    10.5     2      1
-255  1.2  314    3.20    12259  72.2      431    10.6     3      1
-259  0.3  172    3.39      558  71.3      311    10.6     2      1
-270  7.1  334    3.01     6931 180.6      102    12.0     4      1
-272  3.3  383    3.53     1234 138.0      234    11.0     4      1
-282  0.7  282    3.00     9067  72.2      563    10.6     4      1
-290  1.3   NA    3.34    11047 104.5      358    11.0     4      1
-305  6.8   NA    3.26     1215 151.9      226    11.7     4      1
-309  2.1   NA    3.54     8778  56.8      344    11.0     4      1
-325  1.1  361    3.64     5430  67.1      203    10.6     2      1
-340  3.3  299    3.55     1029 119.4      199    11.7     3      1
-351  0.6   NA    3.93     1826  71.3      474    10.9     2      1
-360  5.7  482    2.84    11552 136.7      518    12.7     3      1
-368  0.5  316    3.65     1716 187.6      356     9.8     3      1
-375  1.9  259    3.70    10397 188.3      214    11.0     3      1
-384  0.8   NA    3.82      678  97.7      233    11.0     4      1
-388  1.1  257    3.36     1080 107.0      128    10.6     4      1
- [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 262 rows ]</code></pre>
+<pre class="r"><code>pbcseq[tapply(row.names(pbcseq), pbcseq$id, head, 1), ]</code></pre>
+<pre><code>##     id futime     status trt      age sex day ascites hepato spiders edema
+## 1    1    400       dead   1 58.76523   f   0       1      1       1   1.0
+## 3    2   5169   censored   1 56.44627   f   0       0      1       1   0.0
+## 12   3   1012       dead   1 70.07255   m   0       0      0       0   0.5
+## 16   4   1925       dead   1 54.74059   f   0       0      1       1   0.5
+## 23   5   1505 transplant   0 38.10541   f   0       0      1       1   0.0
+## 29   6   2503       dead   0 66.25873   f   0       0      1       0   0.0
+## 35   7   2501   censored   0 55.53457   f   0       0      1       0   0.0
+## 42   8   2466       dead   0 53.05681   f   0       0      0       0   0.0
+## 50   9   2400       dead   1 42.50787   f   0       0      0       1   0.0
+## 57  10     51       dead   0 70.55989   f   0       1      0       1   1.0
+## 58  11   3762       dead   0 53.71389   f   0       0      1       1   0.0
+## 70  12    304       dead   0 59.13758   f   0       0      0       1   0.0
+## 72  13   4247   censored   0 45.68925   f   0       0      0       0   0.0
+## 84  14   1217       dead   0 56.22177   m   0       1      1       0   1.0
+## 91  15   3584       dead   1 64.64613   f   0       0      0       0   0.0
+## 102 16   4345   censored   0 40.44353   f   0       0      0       0   0.0
+## 115 17    769       dead   0 52.18344   f   0       0      1       0   0.0
+## 118 18    132       dead   1 53.93018   f   0       0      1       1   1.0
+## 119 19   4901   censored   1 49.56057   f   0       0      1       0   0.5
+## 134 20   1356       dead   0 59.95346   f   0       0      1       0   0.0
+## 138 21   3657       dead   0 64.18891   m   0       0      1       1   0.0
+## 150 22    673       dead   1 56.27652   f   0       0      0       1   0.0
+## 153 23    264       dead   0 55.96715   f   0       1      1       1   1.0
+## 155 24   4079       dead   1 44.52019   m   0       0      1       0   0.0
+## 168 25   4796   censored   0 45.07324   f   0       0      0       0   0.0
+## 180 26   1444       dead   0 52.02464   f   0       0      1       1   0.0
+## 186 27     77       dead   0 54.43943   f   0       1      1       1   0.5
+## 187 28    549       dead   0 44.94730   f   0       1      1       1   1.0
+## 190 29   5074       dead   0 63.87680   f   0       0      0       0   0.0
+## 200 30    321       dead   0 41.38535   f   0       0      1       1   0.0
+## 203 31   3839       dead   0 41.55236   f   0       0      1       0   0.0
+## 215 32   5192   censored   0 53.99589   f   0       0      1       0   0.5
+## 231 33   3170       dead   0 51.28268   f   0       0      0       0   0.0
+## 241 34   4602   censored   1 52.06023   f   0       0      0       0   0.5
+## 255 35   2847       dead   0 48.61875   f   0       0      0       0   0.0
+## 259 36   4281   censored   0 56.41068   f   0       0      0       0   0.0
+## 270 37    223       dead   1 61.72758   f   0       1      1       0   1.0
+## 272 38   3244       dead   0 36.62697   f   0       0      1       1   0.0
+## 282 39   2297       dead   1 55.39220   f   0       0      1       0   0.0
+## 290 40   5136   censored   1 46.66940   f   0       0      0       0   0.0
+## 305 41   1350       dead   1 33.63450   f   0       0      1       0   0.0
+## 309 42   5122   censored   0 33.69473   f   0       0      1       1   0.0
+## 325 43   5225   censored   1 48.87064   f   0       0      0       0   0.0
+## 340 44   3428       dead   0 37.58248   f   0       0      1       1   1.0
+## 351 45   4694   censored   0 41.79329   f   0       0      0       0   0.0
+## 360 46   2256       dead   1 45.79877   f   0       0      1       0   0.0
+## 368 47   3245   censored   0 47.42779   f   0       0      0       0   0.0
+## 375 48   5096   censored   0 49.13621   m   0       0      0       0   0.0
+## 384 49    708       dead   0 61.15264   f   0       0      1       0   0.0
+## 388 50   2598       dead   1 53.50856   f   0       0      1       0   0.0
+##     bili chol albumin alk.phos   ast platelet protime stage visits
+## 1   14.5  261    2.60     1718 138.0      190    12.2     4      1
+## 3    1.1  302    4.14     7395 113.5      221    10.6     3      1
+## 12   1.4  176    3.48      516  96.1      151    12.0     4      1
+## 16   1.8  244    2.54     6122  60.6      183    10.3     4      1
+## 23   3.4  279    3.53      671 113.2      136    10.9     3      1
+## 29   0.8  248    3.98      944  93.0       NA    11.0     3      1
+## 35   1.0  322    4.09      824  60.5      204     9.7     3      1
+## 42   0.3  280    4.00     4651  28.4      373    11.0     3      1
+## 50   3.2  562    3.08     2276 144.2      251    11.0     2      1
+## 57  12.6  200    2.74      918 147.3      302    11.5     4      1
+## 58   1.4  259    4.16     1104  79.1      258    12.0     4      1
+## 70   3.6  236    3.52      591  82.2       71    13.6     4      1
+## 72   0.7  281    3.85     1181  88.4      244    10.6     3      1
+## 84   0.8   NA    2.27      728  71.0      156    11.0     4      1
+## 91   0.8  231    3.87     9010 127.7      295    11.0     3      1
+## 102  0.7  204    3.66      685  72.9      198    10.8     3      1
+## 115  2.7  274    3.15     1533 117.8      224    10.5     4      1
+## 118 11.4  178    2.80      961 280.6      283    12.4     4      1
+## 119  0.7  235    3.56     1881  93.0      209    11.0     3      1
+## 134  5.1  374    3.51     1919 122.5      322    13.0     4      1
+## 138  0.6  252    3.83      843  65.1      336    11.4     4      1
+## 150  3.4  271    3.63     1376 120.9      173    11.6     4      1
+## 153 17.4  395    2.94     6065 227.0      214    11.7     4      1
+## 155  2.1  456    4.00     5719 221.9       70     9.9     2      1
+## 168  0.7  298    4.10      661 107.0      324    11.3     2      1
+## 180  5.2 1128    3.68     3228 165.9      421     9.9     3      1
+## 186 21.6  175    3.31     3697 101.9       80    12.0     4      1
+## 187 17.2  222    3.23     1975 189.1      144    13.0     4      1
+## 190  0.7  370    3.78     5833  73.5      390    10.6     2      1
+## 200  3.6  260    2.54     7277 121.3      124    11.0     4      1
+## 203  4.7  296    3.44     9933 206.4      195    10.3     2      1
+## 215  1.8  262    3.34     7277  82.6      286    10.6     4      1
+## 231  0.8  210    3.19     1592 218.6      180    12.0     3      1
+## 241  0.8  364    3.70     1840 170.5      273    10.5     2      1
+## 255  1.2  314    3.20    12259  72.2      431    10.6     3      1
+## 259  0.3  172    3.39      558  71.3      311    10.6     2      1
+## 270  7.1  334    3.01     6931 180.6      102    12.0     4      1
+## 272  3.3  383    3.53     1234 138.0      234    11.0     4      1
+## 282  0.7  282    3.00     9067  72.2      563    10.6     4      1
+## 290  1.3   NA    3.34    11047 104.5      358    11.0     4      1
+## 305  6.8   NA    3.26     1215 151.9      226    11.7     4      1
+## 309  2.1   NA    3.54     8778  56.8      344    11.0     4      1
+## 325  1.1  361    3.64     5430  67.1      203    10.6     2      1
+## 340  3.3  299    3.55     1029 119.4      199    11.7     3      1
+## 351  0.6   NA    3.93     1826  71.3      474    10.9     2      1
+## 360  5.7  482    2.84    11552 136.7      518    12.7     3      1
+## 368  0.5  316    3.65     1716 187.6      356     9.8     3      1
+## 375  1.9  259    3.70    10397 188.3      214    11.0     3      1
+## 384  0.8   NA    3.82      678  97.7      233    11.0     4      1
+## 388  1.1  257    3.36     1080 107.0      128    10.6     4      1
+##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 262 rows ]</code></pre>
 <p>Select the last measurement per patient</p>
-<pre><code>    id futime     status trt      age sex  day ascites hepato spiders
-2    1    400       dead   1 58.76523   f  192       1      1       1
-11   2   5169   censored   1 56.44627   f 3226       1      1       1
-15   3   1012       dead   1 70.07255   m  743       0      0       1
-22   4   1925       dead   1 54.74059   f 1824       1      1       1
-28   5   1505 transplant   0 38.10541   f 1455       0      1       1
-34   6   2503       dead   0 66.25873   f 2453      NA     NA      NA
-41   7   2501   censored   0 55.53457   f 2262       0      0       0
-49   8   2466       dead   0 53.05681   f 2218       1      1       0
-56   9   2400       dead   1 42.50787   f 2278       1      1       0
-57  10     51       dead   0 70.55989   f    0       1      0       1
-69  11   3762       dead   0 53.71389   f 3694       1      1       1
-71  12    304       dead   0 59.13758   f  180       1      0       1
-83  13   4247   censored   0 45.68925   f 4243       0      0       0
-90  14   1217       dead   0 56.22177   m 1204      NA     NA      NA
-101 15   3584       dead   1 64.64613   f 3537      NA     NA      NA
-114 16   4345   censored   0 40.44353   f 4054       0      0       0
-117 17    769       dead   0 52.18344   f  673       1      1       1
-118 18    132       dead   1 53.93018   f    0       0      1       1
-133 19   4901   censored   1 49.56057   f 4696       0      1       0
-137 20   1356       dead   0 59.95346   f 1344      NA     NA      NA
-149 21   3657       dead   0 64.18891   m 3513      NA     NA      NA
-152 22    673       dead   1 56.27652   f  360       0      0       1
-154 23    264       dead   0 55.96715   f  182       1      1       1
-167 24   4079       dead   1 44.52019   m 4034       1      1       0
-179 25   4796   censored   0 45.07324   f 3637       0      0       1
-185 26   1444       dead   0 52.02464   f 1434      NA     NA      NA
-186 27     77       dead   0 54.43943   f    0       1      1       1
-189 28    549       dead   0 44.94730   f  375       1      1       1
-199 29   5074       dead   0 63.87680   f 4333       1      1       1
-202 30    321       dead   0 41.38535   f  299       1      1       1
-214 31   3839       dead   0 41.55236   f 3590       0      0       1
-230 32   5192   censored   0 53.99589   f 5152       0      0       0
-240 33   3170       dead   0 51.28268   f 3004       0      0       0
-254 34   4602   censored   1 52.06023   f 4457       0      1       0
-258 35   2847       dead   0 48.61875   f  743       0      1       0
-269 36   4281   censored   0 56.41068   f 3956       0      1       1
-271 37    223       dead   1 61.72758   f  144       1      1       1
-281 38   3244       dead   0 36.62697   f 3209      NA     NA      NA
-289 39   2297       dead   1 55.39220   f 2247       0      1       0
-304 40   5136   censored   1 46.66940   f 4845       0      1       1
-308 41   1350       dead   1 33.63450   f 1151       0      1       1
-324 42   5122   censored   0 33.69473   f 5118       0      1       1
-339 43   5225   censored   1 48.87064   f 4877       1      1       0
-350 44   3428       dead   0 37.58248   f 3414      NA     NA      NA
-359 45   4694   censored   0 41.79329   f 3219       0      0       1
-367 46   2256       dead   1 45.79877   f 2174       0      1       1
-374 47   3245   censored   0 47.42779   f 2311       0      1       0
-383 48   5096   censored   0 49.13621   m 2517       0      0       0
-387 49    708       dead   0 61.15264   f  525      NA     NA      NA
-396 50   2598       dead   1 53.50856   f 2561       1      0       1
-    edema bili chol albumin alk.phos   ast platelet protime stage visits
-2     1.0 21.3   NA    2.94     1612   6.2      183    11.2     4      2
-11    1.0  4.6  237    2.67      669  88.0      100    11.5     3      9
-15    0.5  1.8  185    3.25      447  88.4      109    13.3     4      4
-22    1.0  5.3  140    1.83      623 131.8      101    17.0     4      7
-28    0.5 19.0   91    2.09      377 156.0      101    13.9     4      6
-34    0.0  0.7   NA    4.20       NA  60.0       NA    10.5     4      6
-41    0.0  1.4  260    3.59      448  54.0      114    12.0     3      7
-49    0.5  5.4  341    2.47     1203 120.9      238    11.3     4      8
-56    1.0 14.8  418    2.41     2268 221.7      161    13.0     3      7
-57    1.0 12.6  200    2.74      918 147.3      302    11.5     4      1
-69    1.0  9.6   NA    2.31      660 121.0      132    15.1     4     12
-71    0.5 10.0   NA    3.00      737 114.7       98    14.1     4      2
-83    0.0  1.2  221    4.26      751  72.0      176    10.2     4     12
-90    0.5  0.9   NA    2.39       NA  71.0       NA    11.9     4      7
-101   1.0 11.4   NA    2.40       NA 114.0       NA    13.0     4     11
-114   0.0  0.9  306    3.51     1004 120.0      231    11.8     4     13
-117   1.0 13.6  246    2.44      539 141.0      322    12.1     4      3
-118   1.0 11.4  178    2.80      961 280.6      283    12.4     4      1
-133   0.0  0.8  197    3.30      798  59.0      162    11.9     4     15
-137   0.0 32.0   NA    2.40       NA 156.6       NA    19.0     4      4
-149   1.0  7.8   NA    2.40       NA  73.0       NA    13.8     4     12
-152   0.5  2.4   NA    2.37     1756 148.8      182    11.7     4      3
-154   1.0 19.5   NA    2.45      949 167.4      252    21.0     4      2
-167   0.5 16.8  126    1.56      836 229.0      252    11.6     3     13
-179   0.0  0.7   NA    2.83     1560  75.0      148    10.7     4     12
-185   1.0 16.2   NA    1.81       NA 241.0       NA    12.5     4      6
-186   0.5 21.6  175    3.31     3697 101.9       80    12.0     4      1
-189   1.0 21.3   NA    2.59     1257 162.8      143    13.0     4      3
-199   1.0  1.4  242    2.47      830  73.0      163    12.4     4     10
-202   0.5 36.0   NA    2.90     1904 300.7      116    13.1     4      3
-214   0.0 12.0  219    2.89      995 211.0      120    12.6     4     12
-230   0.5  0.9  200    3.32      866  61.0      132    11.1     4     16
-240   0.0  1.3   NA    3.37     1498  85.0      147    10.7     3     10
-254   0.5  1.0  329    2.99      661  97.0      193    11.6     3     14
-258   0.0  4.2  271    3.70     2780 117.8      473    10.5     4      4
-269   0.0  0.7  236    2.76      761  43.0      220    12.3     4     11
-271   1.0 13.5   NA    2.38     1737 218.6      114    13.3     4      2
-281   0.5  5.6   NA    1.90       NA  69.0       NA    11.9     4     10
-289   0.5 10.5  275    2.60     1034 258.9      556    10.3     4      8
-304   1.0 18.0  192    2.88     1195 144.0      222    12.7     4     15
-308   1.0 16.2   NA    2.73     1240 145.7      109    13.6     4      4
-324   0.5 13.0  261    2.34     2337 217.0      152    12.6     4     16
-339   0.0  1.1   NA    3.10      802  53.0       70    12.2     4     15
-350   0.5 29.4   NA    1.90       NA 204.0       NA    16.1     4     11
-359   0.0  0.8  430    3.15       73  70.0      257     9.8     3      9
-367   1.0 16.5   NA    2.75      881 266.6      110    13.4     4      8
-374   0.0  0.9  311    3.26     1420  99.0      151    11.5     4      7
-383   0.0  1.4  235    4.15     1258 150.4      154     9.9     2      9
-387   0.0  3.1   NA    2.31       NA 170.5       NA    11.3     4      4
-396   1.0  5.8  266    2.86      879 187.0       82    15.1     3      9
- [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 262 rows ]</code></pre>
+<pre class="r"><code>pbcseq[tapply(row.names(pbcseq), pbcseq$id, tail, 1), ]</code></pre>
+<pre><code>##     id futime     status trt      age sex  day ascites hepato spiders
+## 2    1    400       dead   1 58.76523   f  192       1      1       1
+## 11   2   5169   censored   1 56.44627   f 3226       1      1       1
+## 15   3   1012       dead   1 70.07255   m  743       0      0       1
+## 22   4   1925       dead   1 54.74059   f 1824       1      1       1
+## 28   5   1505 transplant   0 38.10541   f 1455       0      1       1
+## 34   6   2503       dead   0 66.25873   f 2453      NA     NA      NA
+## 41   7   2501   censored   0 55.53457   f 2262       0      0       0
+## 49   8   2466       dead   0 53.05681   f 2218       1      1       0
+## 56   9   2400       dead   1 42.50787   f 2278       1      1       0
+## 57  10     51       dead   0 70.55989   f    0       1      0       1
+## 69  11   3762       dead   0 53.71389   f 3694       1      1       1
+## 71  12    304       dead   0 59.13758   f  180       1      0       1
+## 83  13   4247   censored   0 45.68925   f 4243       0      0       0
+## 90  14   1217       dead   0 56.22177   m 1204      NA     NA      NA
+## 101 15   3584       dead   1 64.64613   f 3537      NA     NA      NA
+## 114 16   4345   censored   0 40.44353   f 4054       0      0       0
+## 117 17    769       dead   0 52.18344   f  673       1      1       1
+## 118 18    132       dead   1 53.93018   f    0       0      1       1
+## 133 19   4901   censored   1 49.56057   f 4696       0      1       0
+## 137 20   1356       dead   0 59.95346   f 1344      NA     NA      NA
+## 149 21   3657       dead   0 64.18891   m 3513      NA     NA      NA
+## 152 22    673       dead   1 56.27652   f  360       0      0       1
+## 154 23    264       dead   0 55.96715   f  182       1      1       1
+## 167 24   4079       dead   1 44.52019   m 4034       1      1       0
+## 179 25   4796   censored   0 45.07324   f 3637       0      0       1
+## 185 26   1444       dead   0 52.02464   f 1434      NA     NA      NA
+## 186 27     77       dead   0 54.43943   f    0       1      1       1
+## 189 28    549       dead   0 44.94730   f  375       1      1       1
+## 199 29   5074       dead   0 63.87680   f 4333       1      1       1
+## 202 30    321       dead   0 41.38535   f  299       1      1       1
+## 214 31   3839       dead   0 41.55236   f 3590       0      0       1
+## 230 32   5192   censored   0 53.99589   f 5152       0      0       0
+## 240 33   3170       dead   0 51.28268   f 3004       0      0       0
+## 254 34   4602   censored   1 52.06023   f 4457       0      1       0
+## 258 35   2847       dead   0 48.61875   f  743       0      1       0
+## 269 36   4281   censored   0 56.41068   f 3956       0      1       1
+## 271 37    223       dead   1 61.72758   f  144       1      1       1
+## 281 38   3244       dead   0 36.62697   f 3209      NA     NA      NA
+## 289 39   2297       dead   1 55.39220   f 2247       0      1       0
+## 304 40   5136   censored   1 46.66940   f 4845       0      1       1
+## 308 41   1350       dead   1 33.63450   f 1151       0      1       1
+## 324 42   5122   censored   0 33.69473   f 5118       0      1       1
+## 339 43   5225   censored   1 48.87064   f 4877       1      1       0
+## 350 44   3428       dead   0 37.58248   f 3414      NA     NA      NA
+## 359 45   4694   censored   0 41.79329   f 3219       0      0       1
+## 367 46   2256       dead   1 45.79877   f 2174       0      1       1
+## 374 47   3245   censored   0 47.42779   f 2311       0      1       0
+## 383 48   5096   censored   0 49.13621   m 2517       0      0       0
+## 387 49    708       dead   0 61.15264   f  525      NA     NA      NA
+## 396 50   2598       dead   1 53.50856   f 2561       1      0       1
+##     edema bili chol albumin alk.phos   ast platelet protime stage visits
+## 2     1.0 21.3   NA    2.94     1612   6.2      183    11.2     4      2
+## 11    1.0  4.6  237    2.67      669  88.0      100    11.5     3      9
+## 15    0.5  1.8  185    3.25      447  88.4      109    13.3     4      4
+## 22    1.0  5.3  140    1.83      623 131.8      101    17.0     4      7
+## 28    0.5 19.0   91    2.09      377 156.0      101    13.9     4      6
+## 34    0.0  0.7   NA    4.20       NA  60.0       NA    10.5     4      6
+## 41    0.0  1.4  260    3.59      448  54.0      114    12.0     3      7
+## 49    0.5  5.4  341    2.47     1203 120.9      238    11.3     4      8
+## 56    1.0 14.8  418    2.41     2268 221.7      161    13.0     3      7
+## 57    1.0 12.6  200    2.74      918 147.3      302    11.5     4      1
+## 69    1.0  9.6   NA    2.31      660 121.0      132    15.1     4     12
+## 71    0.5 10.0   NA    3.00      737 114.7       98    14.1     4      2
+## 83    0.0  1.2  221    4.26      751  72.0      176    10.2     4     12
+## 90    0.5  0.9   NA    2.39       NA  71.0       NA    11.9     4      7
+## 101   1.0 11.4   NA    2.40       NA 114.0       NA    13.0     4     11
+## 114   0.0  0.9  306    3.51     1004 120.0      231    11.8     4     13
+## 117   1.0 13.6  246    2.44      539 141.0      322    12.1     4      3
+## 118   1.0 11.4  178    2.80      961 280.6      283    12.4     4      1
+## 133   0.0  0.8  197    3.30      798  59.0      162    11.9     4     15
+## 137   0.0 32.0   NA    2.40       NA 156.6       NA    19.0     4      4
+## 149   1.0  7.8   NA    2.40       NA  73.0       NA    13.8     4     12
+## 152   0.5  2.4   NA    2.37     1756 148.8      182    11.7     4      3
+## 154   1.0 19.5   NA    2.45      949 167.4      252    21.0     4      2
+## 167   0.5 16.8  126    1.56      836 229.0      252    11.6     3     13
+## 179   0.0  0.7   NA    2.83     1560  75.0      148    10.7     4     12
+## 185   1.0 16.2   NA    1.81       NA 241.0       NA    12.5     4      6
+## 186   0.5 21.6  175    3.31     3697 101.9       80    12.0     4      1
+## 189   1.0 21.3   NA    2.59     1257 162.8      143    13.0     4      3
+## 199   1.0  1.4  242    2.47      830  73.0      163    12.4     4     10
+## 202   0.5 36.0   NA    2.90     1904 300.7      116    13.1     4      3
+## 214   0.0 12.0  219    2.89      995 211.0      120    12.6     4     12
+## 230   0.5  0.9  200    3.32      866  61.0      132    11.1     4     16
+## 240   0.0  1.3   NA    3.37     1498  85.0      147    10.7     3     10
+## 254   0.5  1.0  329    2.99      661  97.0      193    11.6     3     14
+## 258   0.0  4.2  271    3.70     2780 117.8      473    10.5     4      4
+## 269   0.0  0.7  236    2.76      761  43.0      220    12.3     4     11
+## 271   1.0 13.5   NA    2.38     1737 218.6      114    13.3     4      2
+## 281   0.5  5.6   NA    1.90       NA  69.0       NA    11.9     4     10
+## 289   0.5 10.5  275    2.60     1034 258.9      556    10.3     4      8
+## 304   1.0 18.0  192    2.88     1195 144.0      222    12.7     4     15
+## 308   1.0 16.2   NA    2.73     1240 145.7      109    13.6     4      4
+## 324   0.5 13.0  261    2.34     2337 217.0      152    12.6     4     16
+## 339   0.0  1.1   NA    3.10      802  53.0       70    12.2     4     15
+## 350   0.5 29.4   NA    1.90       NA 204.0       NA    16.1     4     11
+## 359   0.0  0.8  430    3.15       73  70.0      257     9.8     3      9
+## 367   1.0 16.5   NA    2.75      881 266.6      110    13.4     4      8
+## 374   0.0  0.9  311    3.26     1420  99.0      151    11.5     4      7
+## 383   0.0  1.4  235    4.15     1258 150.4      154     9.9     2      9
+## 387   0.0  3.1   NA    2.31       NA 170.5       NA    11.3     4      4
+## 396   1.0  5.8  266    2.86      879 187.0       82    15.1     3      9
+##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 262 rows ]</code></pre>
 <p>From the vector pbc$age, select the age which is younger than 30</p>
-<pre><code>[1] 28.88 29.56 26.28</code></pre>
+<pre class="r"><code>pbc$age[pbc$age &lt; 30]</code></pre>
+<pre><code>## [1] 28.88 29.56 26.28</code></pre>
 <p>From the vector pbc$age, select only female patient</p>
-<pre><code>  [1] 58.77 56.45 54.74 38.11 66.26 55.53 53.06 42.51 70.56 53.71 59.14
- [12] 45.69 64.65 40.44 52.18 53.93 49.56 59.95 56.28 55.97 45.07 52.02
- [23] 54.44 44.95 63.88 41.39 41.55 54.00 51.28 52.06 48.62 56.41 61.73
- [34] 36.63 55.39 46.67 33.63 33.69 48.87 37.58 41.79 45.80 47.43 61.15
- [45] 53.51 52.09 67.41 39.20 33.62 53.57 40.39 58.38 60.71 46.63 62.91
- [56] 40.20 51.29 32.61 49.34 56.40 48.85 32.49 38.49 51.92 43.52 51.94
- [67] 49.83 47.95 46.52 63.26 67.31 56.01 55.83 47.22 52.76 37.28 41.39
- [78] 52.44 45.61 76.71 36.53 53.92 46.39 48.85 28.88 44.95 56.57 48.96
- [89] 43.02 34.04 68.51 62.52 50.36 44.06 38.91 41.15 55.46 51.23 42.64
-[100] 61.07 49.66 48.85 54.26 55.44 45.82 47.18 53.60 44.10 41.95 63.61
-[111] 44.23 62.00 40.55 42.34 42.97 55.96 62.86 46.76 54.08 47.04 55.73
-[122] 46.10 52.29 51.20 33.86 75.01 30.86 34.99 55.04 49.60 43.56 59.41
-[133] 48.76 36.49 57.37 42.74 58.82 53.50 43.41 41.36 47.75 35.49 48.66
-[144] 52.67 49.87 30.28 55.57 52.15 41.61 55.45 70.00 43.94 42.57 44.57
-[155] 56.94 40.26 37.61 48.36 70.84 35.79 62.62 50.65 54.53 52.69 52.72
-[166] 56.77 44.40 29.56 57.04 44.63 35.80 40.72 32.23 41.09 61.64 37.06
-[177] 62.58 48.98 61.99 72.77 61.30 52.62 52.91 47.26 50.20 69.35 41.17
-[188] 59.16 36.08 34.60 42.71 63.63 56.63 46.26 61.24 38.62 38.77 56.70
-[199] 36.92 62.41 34.61 58.34 50.18 42.69 34.38 33.18 38.38 59.76 66.41
-[210] 46.79 56.08 41.37 64.57 67.49 44.83 45.77 32.95 41.22 55.42 47.98
-[221] 40.79 56.97 68.46 39.86 35.31 31.44 58.26 51.49 59.97 52.36 42.79
-[232] 34.87 44.14 46.38 56.31 70.91 55.39 45.08 26.28 50.47 38.40 47.42
-[243] 47.98 38.32 50.11 35.09 32.50 56.15 46.15 65.88 33.94 62.86 48.56
-[254] 46.35 38.85 58.65 48.94 65.98 40.90 57.20 31.38 52.73 38.09 58.17
-[265] 45.21 37.80 60.66 35.53 43.07 56.39 30.57 61.18 58.30 62.33 38.00
-[276] 33.15 60.00 65.00 54.00 75.00 62.00 43.00 46.00 44.00 64.00 40.00
-[287] 63.00 34.00 52.00 49.00 54.00 63.00 46.00 53.00 56.00 56.00 55.00
-[298] 65.00 56.00 47.00 60.00 53.00 54.00 50.00 48.00 36.00 48.00 70.00
-[309] 51.00 54.00 48.00 66.00 53.00 62.00 59.00 39.00 67.00 58.00 64.00
-[320] 46.00 64.00 41.00 49.00 44.00 59.00 63.00 61.00 64.00 49.00 42.00
-[331] 50.00 51.00 37.00 62.00 51.00 52.00 33.00 60.00 63.00 33.00 51.00
-[342] 37.00 59.00 55.00 49.00 40.00 67.00 41.00 69.00 52.00 57.00 36.00
-[353] 50.00 64.00 62.00 42.00 44.00 69.00 52.00 66.00 40.00 52.00 46.00
-[364] 51.00 43.00 39.00 51.00 67.00 35.00 67.00 39.00 57.00 58.00 53.00</code></pre>
+<pre class="r"><code>pbc$age[pbc$sex == &quot;f&quot;]</code></pre>
+<pre><code>##   [1] 58.77 56.45 54.74 38.11 66.26 55.53 53.06 42.51 70.56 53.71 59.14
+##  [12] 45.69 64.65 40.44 52.18 53.93 49.56 59.95 56.28 55.97 45.07 52.02
+##  [23] 54.44 44.95 63.88 41.39 41.55 54.00 51.28 52.06 48.62 56.41 61.73
+##  [34] 36.63 55.39 46.67 33.63 33.69 48.87 37.58 41.79 45.80 47.43 61.15
+##  [45] 53.51 52.09 67.41 39.20 33.62 53.57 40.39 58.38 60.71 46.63 62.91
+##  [56] 40.20 51.29 32.61 49.34 56.40 48.85 32.49 38.49 51.92 43.52 51.94
+##  [67] 49.83 47.95 46.52 63.26 67.31 56.01 55.83 47.22 52.76 37.28 41.39
+##  [78] 52.44 45.61 76.71 36.53 53.92 46.39 48.85 28.88 44.95 56.57 48.96
+##  [89] 43.02 34.04 68.51 62.52 50.36 44.06 38.91 41.15 55.46 51.23 42.64
+## [100] 61.07 49.66 48.85 54.26 55.44 45.82 47.18 53.60 44.10 41.95 63.61
+## [111] 44.23 62.00 40.55 42.34 42.97 55.96 62.86 46.76 54.08 47.04 55.73
+## [122] 46.10 52.29 51.20 33.86 75.01 30.86 34.99 55.04 49.60 43.56 59.41
+## [133] 48.76 36.49 57.37 42.74 58.82 53.50 43.41 41.36 47.75 35.49 48.66
+## [144] 52.67 49.87 30.28 55.57 52.15 41.61 55.45 70.00 43.94 42.57 44.57
+## [155] 56.94 40.26 37.61 48.36 70.84 35.79 62.62 50.65 54.53 52.69 52.72
+## [166] 56.77 44.40 29.56 57.04 44.63 35.80 40.72 32.23 41.09 61.64 37.06
+## [177] 62.58 48.98 61.99 72.77 61.30 52.62 52.91 47.26 50.20 69.35 41.17
+## [188] 59.16 36.08 34.60 42.71 63.63 56.63 46.26 61.24 38.62 38.77 56.70
+## [199] 36.92 62.41 34.61 58.34 50.18 42.69 34.38 33.18 38.38 59.76 66.41
+## [210] 46.79 56.08 41.37 64.57 67.49 44.83 45.77 32.95 41.22 55.42 47.98
+## [221] 40.79 56.97 68.46 39.86 35.31 31.44 58.26 51.49 59.97 52.36 42.79
+## [232] 34.87 44.14 46.38 56.31 70.91 55.39 45.08 26.28 50.47 38.40 47.42
+## [243] 47.98 38.32 50.11 35.09 32.50 56.15 46.15 65.88 33.94 62.86 48.56
+## [254] 46.35 38.85 58.65 48.94 65.98 40.90 57.20 31.38 52.73 38.09 58.17
+## [265] 45.21 37.80 60.66 35.53 43.07 56.39 30.57 61.18 58.30 62.33 38.00
+## [276] 33.15 60.00 65.00 54.00 75.00 62.00 43.00 46.00 44.00 64.00 40.00
+## [287] 63.00 34.00 52.00 49.00 54.00 63.00 46.00 53.00 56.00 56.00 55.00
+## [298] 65.00 56.00 47.00 60.00 53.00 54.00 50.00 48.00 36.00 48.00 70.00
+## [309] 51.00 54.00 48.00 66.00 53.00 62.00 59.00 39.00 67.00 58.00 64.00
+## [320] 46.00 64.00 41.00 49.00 44.00 59.00 63.00 61.00 64.00 49.00 42.00
+## [331] 50.00 51.00 37.00 62.00 51.00 52.00 33.00 60.00 63.00 33.00 51.00
+## [342] 37.00 59.00 55.00 49.00 40.00 67.00 41.00 69.00 52.00 57.00 36.00
+## [353] 50.00 64.00 62.00 42.00 44.00 69.00 52.00 66.00 40.00 52.00 46.00
+## [364] 51.00 43.00 39.00 51.00 67.00 35.00 67.00 39.00 57.00 58.00 53.00</code></pre>
 <p>From the vector pbc$age, select the 3rd element</p>
-<pre><code>[1] 70.07</code></pre>
+<pre class="r"><code>pbc$age[3]</code></pre>
+<pre><code>## [1] 70.07</code></pre>
 <p>From the pbc data set, select male patients that died</p>
-<pre><code> [1] id          time        status      trt         age        
- [6] sex         ascites     hepato      spiders     edema      
-[11] bili        chol        albumin     copper      alk.phos   
-[16] ast         trig        platelet    protime     stage      
-[21] age40higher ageST      
-&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<pre class="r"><code>pbc[pbc$sex == &quot;m&quot; &amp; pbc$status == 2, ]      </code></pre>
+<pre><code>##  [1] id          time        status      trt         age        
+##  [6] sex         ascites     hepato      spiders     edema      
+## [11] bili        chol        albumin     copper      alk.phos   
+## [16] ast         trig        platelet    protime     stage      
+## [21] age40higher ageST      
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
 <p>From the pbc data set, select male patients or patients that died</p>
-<pre><code>     id time     status trt   age sex ascites hepato spiders edema bili
-3     3 1012       dead   1 70.07   m       0      0       0   0.5  1.4
-14   14 1217       dead   2 56.22   m       1      1       0   1.0  0.8
-21   21 3445   censored   2 64.19   m       0      1       1   0.0  0.6
-24   24 4079       dead   1 44.52   m       0      1       0   0.0  2.1
-48   48 4427   censored   2 49.14   m       0      0       0   0.0  1.9
-52   52 2386       dead   1 50.54   m       0      0       0   0.0  6.0
-55   55 1360       dead   1 65.76   m       0      0       0   0.0  1.8
-58   58 4459   censored   1 44.57   m       0      0       0   0.0  0.7
-61   61 4256   censored   2 43.90   m       0      0       0   0.0  0.6
-66   66 4191       dead   1 46.45   m       0      1       0   0.0  1.4
-80   80  890       dead   2 67.41   m       0      1       0   0.0  7.2
-90   90 2689       dead   1 33.48   m       0      0       0   0.0  1.6
-97   97  611       dead   2 71.89   m       0      1       0   0.5  2.0
-99   99 3820   censored   2 48.47   m       0      0       0   0.0  1.8
-100 100  552       dead   2 51.47   m       0      1       0   0.0  2.3
-114 114 3395       dead   2 52.83   m       0      0       0   0.0  3.2
-120 120 2033 transplant   1 35.15   m       0      0       0   0.0  3.5
-121 121  191       dead   2 67.91   m       1      1       0   1.0  1.3
-124 124 3069   censored   1 52.89   m       0      1       0   0.0  0.6
-133 133 2796       dead   2 62.64   m       0      0       0   0.0  1.5
-138 138 1297       dead   1 51.25   m       0      1       0   0.0  7.3
-149 149  762       dead   1 61.80   m       0      1       1   0.5  3.0
-152 152 1152       dead   1 69.94   m       0      1       0   0.0  2.3
-154 154  140       dead   1 69.38   m       0      0       1   1.0  2.4
-159 159 1536       dead   2 45.76   m       0      0       0   0.0  2.5
-165 165 1077       dead   1 53.31   m       0      1       0   0.0  4.0
-167 167 1682       dead   1 60.96   m       0      1       0   0.0  0.9
-210 210 2224   censored   2 49.76   m       0      1       0   0.0  0.9
-227 227  999       dead   1 58.95   m       0      0       0   0.0  2.3
-253 253 1765   censored   1 78.44   m       1      1       1   0.0  7.1
-260 260 1656   censored   2 74.52   m       0      1       0   0.0  5.6
-289 289  799       dead   1 67.57   m       0      1       0   0.5  4.0
-292 292 1329   censored   2 50.25   m       0      1       0   0.0  8.6
-294 294 1302   censored   1 60.54   m       0      1       0   0.0  6.6
-295 295  877 transplant   1 35.35   m       0      0       0   0.0  2.4
-297 297  533 transplant   1 55.99   m       0      1       0   0.0  1.2
-321 321 1170   censored  NA 61.00   m      NA     NA      NA   0.5  1.3
-330 330 1746       dead  NA 54.00   m      NA     NA      NA   0.0  3.5
-348 348 2834   censored  NA 52.00   m      NA     NA      NA   0.0  0.9
-376 376 1478       dead  NA 44.00   m      NA     NA      NA   0.0  9.5
-381 381 1899   censored  NA 41.00   m      NA     NA      NA   0.0  1.7
-386 386 1654   censored  NA 54.00   m      NA     NA      NA   0.0  1.7
-390 390 1419   censored  NA 68.00   m      NA     NA      NA   0.0  3.0
-407 407 1129   censored  NA 54.00   m      NA     NA      NA   0.0  1.1
-    chol albumin copper alk.phos    ast trig platelet protime stage
-3    176    3.48    210    516.0  96.10   55      151    12.0     4
-14    NA    2.27     43    728.0  71.00   NA      156    11.0     4
-21   252    3.83     41    843.0  65.10   83      336    11.4     4
-24   456    4.00    124   5719.0 221.88  230       70     9.9     2
-48   259    3.70    281  10396.8 188.34  178      214    11.0     3
-52   614    3.70    158   5084.4 206.40   93      362    10.6     1
-55   416    3.94    121  10165.0  79.98  219      213    11.0     3
-58   242    4.08     73   5890.0  56.76  118       NA    10.6     1
-61   216    3.94     28    601.0  60.45  188      211    13.0     1
-66   427    3.70    105   1909.0 182.90  171      123    11.0     3
-80   247    3.72    269   1303.0 176.70   91      360    11.2     4
-90   660    4.22     94   1857.0 151.90  155      337    11.0     2
-97   420    3.26     62   3196.0  77.50   91      344    11.4     3
-99   460    3.35    148   1472.0 108.50  118      172    10.2     2
-100  178    3.00    145    746.0 178.25  122      119    12.0     4
-114  259    4.30    208   1040.0 110.05   78      268    11.7     3
-120  325    3.98    444    766.0 130.20  210      344    10.6     3
-121  151    3.08     73   1112.0  46.50   49      213    13.2     4
-124  251    3.90     25    681.0  57.35  107      182    10.8     4
-133  331    3.95     13    577.0 128.65   99      165    10.1     4
-138  426    3.93    262   2424.0 145.70  218      252    10.5     3
-149  257    3.79    290   1664.0 102.30  112      140     9.9     4
-152  586    3.01    243   2276.0 114.70  126      339    10.9     3
-154  168    2.56    225   1056.0 120.90   75      108    14.1     3
-159  317    3.46    217    714.0 130.20  140      207    10.1     3
-165  196    3.45     80   2496.0 133.30  142      212    11.3     4
-167  376    3.86    200   1015.0  83.70  154      238    10.3     4
-210  346    3.37     81   1098.0 122.45   90      298    10.0     2
-227  316    3.35    172   1601.0 179.80   63      394     9.7     2
-253  243    3.03    380    983.0 158.10  154       97    11.2     4
-260  232    3.59    188   1120.0  98.00  128      248    10.9     4
-289  416    3.99    177    960.0  86.00  242      269     9.8     2
-292  546    3.73     84   1070.0 127.00  153      291    11.2     3
-294 1000    3.07     88   3150.0 193.00  133      299    10.9     4
-295  646    3.83    102    855.0 127.00  194      306    10.3     3
-297  275    3.43    100   1142.0  75.00   91      217    11.3     4
-321   NA    3.41     NA       NA     NA   NA      259    10.9     4
-330   NA    3.63     NA       NA     NA   NA      325    10.3     2
-348   NA    3.14     NA       NA     NA   NA      191    12.3     2
-376   NA    3.63     NA       NA     NA   NA      292    10.2     3
-381   NA    3.66     NA       NA     NA   NA       92    11.0     4
-386   NA    2.38     NA       NA     NA   NA      166     9.8     3
-390   NA    3.15     NA       NA     NA   NA      139    10.0     3
-407   NA    3.69     NA       NA     NA   NA      220    10.8     3
-    age40higher       ageST
-3           old  1.85012796
-14          old  0.52441577
-21          old  1.28729853
-24          old -0.59549994
-48          old -0.15327681
-52          old -0.01926980
-55          old  1.43757782
-58          old -0.59071398
-61          old -0.65484590
-66          old -0.41076171
-80          old  1.59551465
-90        young -1.65224092
-97          old  2.02433707
-99          old -0.21740874
-100         old  0.06974914
-114         old  0.19992737
-120       young -1.49238970
-121         old  1.64337429
-124         old  0.20567053
-133         old  1.13893363
-138         old  0.04869089
-149         old  1.05852942
-152         old  1.83768445
-154         old  1.78408165
-159         old -0.47680802
-165         old  0.24587263
-167         old  0.97812521
-210         old -0.09393085
-227         old  0.78572944
-253         old  2.65129843
-260         old  2.27607881
-289         old  1.61082973
-292         old -0.04702840
-294         old  0.93792311
-295       young -1.47324585
-297         old  0.50240034
-321         old  0.98195399
-330         old  0.31191894
-348         old  0.12048036
-376         old -0.64527397
-381         old -0.93243185
-386         old  0.31191894
-390         old  1.65198903
-407         old  0.31191894</code></pre>
+<pre class="r"><code>pbc[pbc$sex == &quot;m&quot; | pbc$status == 2, ]   </code></pre>
+<pre><code>##      id time     status trt   age sex ascites hepato spiders edema bili
+## 3     3 1012       dead   1 70.07   m       0      0       0   0.5  1.4
+## 14   14 1217       dead   2 56.22   m       1      1       0   1.0  0.8
+## 21   21 3445   censored   2 64.19   m       0      1       1   0.0  0.6
+## 24   24 4079       dead   1 44.52   m       0      1       0   0.0  2.1
+## 48   48 4427   censored   2 49.14   m       0      0       0   0.0  1.9
+## 52   52 2386       dead   1 50.54   m       0      0       0   0.0  6.0
+## 55   55 1360       dead   1 65.76   m       0      0       0   0.0  1.8
+## 58   58 4459   censored   1 44.57   m       0      0       0   0.0  0.7
+## 61   61 4256   censored   2 43.90   m       0      0       0   0.0  0.6
+## 66   66 4191       dead   1 46.45   m       0      1       0   0.0  1.4
+## 80   80  890       dead   2 67.41   m       0      1       0   0.0  7.2
+## 90   90 2689       dead   1 33.48   m       0      0       0   0.0  1.6
+## 97   97  611       dead   2 71.89   m       0      1       0   0.5  2.0
+## 99   99 3820   censored   2 48.47   m       0      0       0   0.0  1.8
+## 100 100  552       dead   2 51.47   m       0      1       0   0.0  2.3
+## 114 114 3395       dead   2 52.83   m       0      0       0   0.0  3.2
+## 120 120 2033 transplant   1 35.15   m       0      0       0   0.0  3.5
+## 121 121  191       dead   2 67.91   m       1      1       0   1.0  1.3
+## 124 124 3069   censored   1 52.89   m       0      1       0   0.0  0.6
+## 133 133 2796       dead   2 62.64   m       0      0       0   0.0  1.5
+## 138 138 1297       dead   1 51.25   m       0      1       0   0.0  7.3
+## 149 149  762       dead   1 61.80   m       0      1       1   0.5  3.0
+## 152 152 1152       dead   1 69.94   m       0      1       0   0.0  2.3
+## 154 154  140       dead   1 69.38   m       0      0       1   1.0  2.4
+## 159 159 1536       dead   2 45.76   m       0      0       0   0.0  2.5
+## 165 165 1077       dead   1 53.31   m       0      1       0   0.0  4.0
+## 167 167 1682       dead   1 60.96   m       0      1       0   0.0  0.9
+## 210 210 2224   censored   2 49.76   m       0      1       0   0.0  0.9
+## 227 227  999       dead   1 58.95   m       0      0       0   0.0  2.3
+## 253 253 1765   censored   1 78.44   m       1      1       1   0.0  7.1
+## 260 260 1656   censored   2 74.52   m       0      1       0   0.0  5.6
+## 289 289  799       dead   1 67.57   m       0      1       0   0.5  4.0
+## 292 292 1329   censored   2 50.25   m       0      1       0   0.0  8.6
+## 294 294 1302   censored   1 60.54   m       0      1       0   0.0  6.6
+## 295 295  877 transplant   1 35.35   m       0      0       0   0.0  2.4
+## 297 297  533 transplant   1 55.99   m       0      1       0   0.0  1.2
+## 321 321 1170   censored  NA 61.00   m      NA     NA      NA   0.5  1.3
+## 330 330 1746       dead  NA 54.00   m      NA     NA      NA   0.0  3.5
+## 348 348 2834   censored  NA 52.00   m      NA     NA      NA   0.0  0.9
+## 376 376 1478       dead  NA 44.00   m      NA     NA      NA   0.0  9.5
+## 381 381 1899   censored  NA 41.00   m      NA     NA      NA   0.0  1.7
+## 386 386 1654   censored  NA 54.00   m      NA     NA      NA   0.0  1.7
+## 390 390 1419   censored  NA 68.00   m      NA     NA      NA   0.0  3.0
+## 407 407 1129   censored  NA 54.00   m      NA     NA      NA   0.0  1.1
+##     chol albumin copper alk.phos    ast trig platelet protime stage
+## 3    176    3.48    210    516.0  96.10   55      151    12.0     4
+## 14    NA    2.27     43    728.0  71.00   NA      156    11.0     4
+## 21   252    3.83     41    843.0  65.10   83      336    11.4     4
+## 24   456    4.00    124   5719.0 221.88  230       70     9.9     2
+## 48   259    3.70    281  10396.8 188.34  178      214    11.0     3
+## 52   614    3.70    158   5084.4 206.40   93      362    10.6     1
+## 55   416    3.94    121  10165.0  79.98  219      213    11.0     3
+## 58   242    4.08     73   5890.0  56.76  118       NA    10.6     1
+## 61   216    3.94     28    601.0  60.45  188      211    13.0     1
+## 66   427    3.70    105   1909.0 182.90  171      123    11.0     3
+## 80   247    3.72    269   1303.0 176.70   91      360    11.2     4
+## 90   660    4.22     94   1857.0 151.90  155      337    11.0     2
+## 97   420    3.26     62   3196.0  77.50   91      344    11.4     3
+## 99   460    3.35    148   1472.0 108.50  118      172    10.2     2
+## 100  178    3.00    145    746.0 178.25  122      119    12.0     4
+## 114  259    4.30    208   1040.0 110.05   78      268    11.7     3
+## 120  325    3.98    444    766.0 130.20  210      344    10.6     3
+## 121  151    3.08     73   1112.0  46.50   49      213    13.2     4
+## 124  251    3.90     25    681.0  57.35  107      182    10.8     4
+## 133  331    3.95     13    577.0 128.65   99      165    10.1     4
+## 138  426    3.93    262   2424.0 145.70  218      252    10.5     3
+## 149  257    3.79    290   1664.0 102.30  112      140     9.9     4
+## 152  586    3.01    243   2276.0 114.70  126      339    10.9     3
+## 154  168    2.56    225   1056.0 120.90   75      108    14.1     3
+## 159  317    3.46    217    714.0 130.20  140      207    10.1     3
+## 165  196    3.45     80   2496.0 133.30  142      212    11.3     4
+## 167  376    3.86    200   1015.0  83.70  154      238    10.3     4
+## 210  346    3.37     81   1098.0 122.45   90      298    10.0     2
+## 227  316    3.35    172   1601.0 179.80   63      394     9.7     2
+## 253  243    3.03    380    983.0 158.10  154       97    11.2     4
+## 260  232    3.59    188   1120.0  98.00  128      248    10.9     4
+## 289  416    3.99    177    960.0  86.00  242      269     9.8     2
+## 292  546    3.73     84   1070.0 127.00  153      291    11.2     3
+## 294 1000    3.07     88   3150.0 193.00  133      299    10.9     4
+## 295  646    3.83    102    855.0 127.00  194      306    10.3     3
+## 297  275    3.43    100   1142.0  75.00   91      217    11.3     4
+## 321   NA    3.41     NA       NA     NA   NA      259    10.9     4
+## 330   NA    3.63     NA       NA     NA   NA      325    10.3     2
+## 348   NA    3.14     NA       NA     NA   NA      191    12.3     2
+## 376   NA    3.63     NA       NA     NA   NA      292    10.2     3
+## 381   NA    3.66     NA       NA     NA   NA       92    11.0     4
+## 386   NA    2.38     NA       NA     NA   NA      166     9.8     3
+## 390   NA    3.15     NA       NA     NA   NA      139    10.0     3
+## 407   NA    3.69     NA       NA     NA   NA      220    10.8     3
+##     age40higher       ageST
+## 3           old  1.85012796
+## 14          old  0.52441577
+## 21          old  1.28729853
+## 24          old -0.59549994
+## 48          old -0.15327681
+## 52          old -0.01926980
+## 55          old  1.43757782
+## 58          old -0.59071398
+## 61          old -0.65484590
+## 66          old -0.41076171
+## 80          old  1.59551465
+## 90        young -1.65224092
+## 97          old  2.02433707
+## 99          old -0.21740874
+## 100         old  0.06974914
+## 114         old  0.19992737
+## 120       young -1.49238970
+## 121         old  1.64337429
+## 124         old  0.20567053
+## 133         old  1.13893363
+## 138         old  0.04869089
+## 149         old  1.05852942
+## 152         old  1.83768445
+## 154         old  1.78408165
+## 159         old -0.47680802
+## 165         old  0.24587263
+## 167         old  0.97812521
+## 210         old -0.09393085
+## 227         old  0.78572944
+## 253         old  2.65129843
+## 260         old  2.27607881
+## 289         old  1.61082973
+## 292         old -0.04702840
+## 294         old  0.93792311
+## 295       young -1.47324585
+## 297         old  0.50240034
+## 321         old  0.98195399
+## 330         old  0.31191894
+## 348         old  0.12048036
+## 376         old -0.64527397
+## 381         old -0.93243185
+## 386         old  0.31191894
+## 390         old  1.65198903
+## 407         old  0.31191894</code></pre>
 <p>From the pbc data set, select the serum bilirubin measurements only for female patients<br />
 Calculate the mean and standard deviation Plot a histogram</p>
-<pre><code>  [1] 14.5  1.1  1.8  3.4  0.8  1.0  0.3  3.2 12.6  1.4  3.6  0.7  0.8  0.7
- [15]  2.7 11.4  0.7  5.1  3.4 17.4  0.7  5.2 21.6 17.2  0.7  3.6  4.7  1.8
- [29]  0.8  0.8  1.2  0.3  7.1  3.3  0.7  1.3  6.8  2.1  1.1  3.3  0.6  5.7
- [43]  0.5  0.8  1.1  0.8  2.6  1.3  1.1  2.3  0.8  0.9  1.3 22.5  2.1  1.2
- [57]  1.1  0.7 20.0  0.6  1.2  0.5  0.7  8.4 17.1 12.2  6.6  6.3  0.8 14.4
- [71]  4.5  1.3  0.4  2.1  5.0  1.1  0.6  2.0  5.0  1.4  1.3  3.2 17.4  1.0
- [85]  1.0  0.9  0.9  2.5  1.1  1.1  2.1  0.6  0.4  0.5  1.9  5.5  2.0  6.7
- [99]  0.7  3.0  6.5  3.5  0.6  0.6  5.1  1.3  1.2  0.5 16.2  0.9 17.4  2.8
-[113]  1.9  0.7  0.4  0.8  1.1  1.1  1.1  0.9  1.0  2.9 28.0  0.7  1.2  1.2
-[127]  7.2  1.0  0.9  0.5  0.6 25.5  0.6  3.4  0.6  2.3  3.2  0.3  8.5  5.7
-[141]  0.4  1.3  1.2  0.5  1.3  3.0  0.5  0.8  3.2  0.9  0.6  1.8  4.7  1.4
-[155]  0.6  0.5 11.0  0.8  2.0 14.0  0.7  1.3  2.3 24.5  0.9 10.8  1.5  3.7
-[169]  1.4  0.6  0.7  2.1  4.7  0.6  0.5  0.5  0.7  2.5  0.6  0.6  3.9  0.7
-[183]  1.3  1.2  0.5  0.9  5.9  0.5 11.4  0.5  1.6  3.8  0.9  4.5 14.1  1.0
-[197]  0.7  0.5  0.7  4.5  3.3  3.4  0.4  0.9  0.9 13.0  1.5  1.6  0.6  0.8
-[211]  0.4  4.4  1.9  8.0  3.9  0.6  2.1  6.1  0.8  1.3  0.6  0.5  1.1  3.1
-[225]  0.7  1.1  0.5  1.1  3.1  3.2  2.8  1.1  3.4  3.5  0.5  6.6  6.4  3.6
-[239]  1.0  1.0  0.5  2.2  1.6  2.2  1.0  1.0  5.6  0.5  1.6 17.9  1.3  1.1
-[253]  1.3  0.8  2.0  6.4  8.7  1.4  3.2  8.5  0.8  1.1  2.4  5.2  1.0  0.7
-[267]  1.0  0.5  2.9  0.6  0.8  0.4  0.4  1.7  2.0  6.4  0.7  1.4  0.7  0.7
-[281]  0.8  0.7  5.0  0.4  1.1  0.6  0.6  1.8  1.5  1.2  1.0  0.7  3.1 12.6
-[295]  2.8  7.1  0.6  2.1  1.8 16.0  0.6  5.4  9.0  0.9 11.1  8.9  0.5  0.6
-[309]  3.4  1.4  2.1 15.0  0.6  1.3  1.3  1.6  2.2  3.0  0.8  0.8  1.8  5.5
-[323] 18.0  0.6  2.7  0.9  1.3  1.1 13.8  4.4 16.0  7.3  0.6  0.7  0.7  1.7
-[337]  2.2  1.8  3.3  2.9 14.0  0.8  1.3  0.7 13.6  0.9  0.7  1.2  0.4  0.7
-[351]  2.0  1.4  1.6  0.5  7.3  8.1  0.5  4.2  0.8  2.5  4.6  1.0  4.5  1.9
-[365]  0.7  1.5  0.6  1.0  0.7  1.2  0.9  1.6  0.8  0.7</code></pre>
-<pre><code>[1] 3.262567</code></pre>
-<pre><code>[1] 4.591388</code></pre>
+<pre class="r"><code>pbc[pbc$sex == &quot;f&quot;, &quot;bili&quot;]   </code></pre>
+<pre><code>##   [1] 14.5  1.1  1.8  3.4  0.8  1.0  0.3  3.2 12.6  1.4  3.6  0.7  0.8  0.7
+##  [15]  2.7 11.4  0.7  5.1  3.4 17.4  0.7  5.2 21.6 17.2  0.7  3.6  4.7  1.8
+##  [29]  0.8  0.8  1.2  0.3  7.1  3.3  0.7  1.3  6.8  2.1  1.1  3.3  0.6  5.7
+##  [43]  0.5  0.8  1.1  0.8  2.6  1.3  1.1  2.3  0.8  0.9  1.3 22.5  2.1  1.2
+##  [57]  1.1  0.7 20.0  0.6  1.2  0.5  0.7  8.4 17.1 12.2  6.6  6.3  0.8 14.4
+##  [71]  4.5  1.3  0.4  2.1  5.0  1.1  0.6  2.0  5.0  1.4  1.3  3.2 17.4  1.0
+##  [85]  1.0  0.9  0.9  2.5  1.1  1.1  2.1  0.6  0.4  0.5  1.9  5.5  2.0  6.7
+##  [99]  0.7  3.0  6.5  3.5  0.6  0.6  5.1  1.3  1.2  0.5 16.2  0.9 17.4  2.8
+## [113]  1.9  0.7  0.4  0.8  1.1  1.1  1.1  0.9  1.0  2.9 28.0  0.7  1.2  1.2
+## [127]  7.2  1.0  0.9  0.5  0.6 25.5  0.6  3.4  0.6  2.3  3.2  0.3  8.5  5.7
+## [141]  0.4  1.3  1.2  0.5  1.3  3.0  0.5  0.8  3.2  0.9  0.6  1.8  4.7  1.4
+## [155]  0.6  0.5 11.0  0.8  2.0 14.0  0.7  1.3  2.3 24.5  0.9 10.8  1.5  3.7
+## [169]  1.4  0.6  0.7  2.1  4.7  0.6  0.5  0.5  0.7  2.5  0.6  0.6  3.9  0.7
+## [183]  1.3  1.2  0.5  0.9  5.9  0.5 11.4  0.5  1.6  3.8  0.9  4.5 14.1  1.0
+## [197]  0.7  0.5  0.7  4.5  3.3  3.4  0.4  0.9  0.9 13.0  1.5  1.6  0.6  0.8
+## [211]  0.4  4.4  1.9  8.0  3.9  0.6  2.1  6.1  0.8  1.3  0.6  0.5  1.1  3.1
+## [225]  0.7  1.1  0.5  1.1  3.1  3.2  2.8  1.1  3.4  3.5  0.5  6.6  6.4  3.6
+## [239]  1.0  1.0  0.5  2.2  1.6  2.2  1.0  1.0  5.6  0.5  1.6 17.9  1.3  1.1
+## [253]  1.3  0.8  2.0  6.4  8.7  1.4  3.2  8.5  0.8  1.1  2.4  5.2  1.0  0.7
+## [267]  1.0  0.5  2.9  0.6  0.8  0.4  0.4  1.7  2.0  6.4  0.7  1.4  0.7  0.7
+## [281]  0.8  0.7  5.0  0.4  1.1  0.6  0.6  1.8  1.5  1.2  1.0  0.7  3.1 12.6
+## [295]  2.8  7.1  0.6  2.1  1.8 16.0  0.6  5.4  9.0  0.9 11.1  8.9  0.5  0.6
+## [309]  3.4  1.4  2.1 15.0  0.6  1.3  1.3  1.6  2.2  3.0  0.8  0.8  1.8  5.5
+## [323] 18.0  0.6  2.7  0.9  1.3  1.1 13.8  4.4 16.0  7.3  0.6  0.7  0.7  1.7
+## [337]  2.2  1.8  3.3  2.9 14.0  0.8  1.3  0.7 13.6  0.9  0.7  1.2  0.4  0.7
+## [351]  2.0  1.4  1.6  0.5  7.3  8.1  0.5  4.2  0.8  2.5  4.6  1.0  4.5  1.9
+## [365]  0.7  1.5  0.6  1.0  0.7  1.2  0.9  1.6  0.8  0.7</code></pre>
+<pre class="r"><code>mean(pbc[pbc$sex == &quot;f&quot;, &quot;bili&quot;])</code></pre>
+<pre><code>## [1] 3.262567</code></pre>
+<pre class="r"><code>sd(pbc[pbc$sex == &quot;f&quot;, &quot;bili&quot;])</code></pre>
+<pre><code>## [1] 4.591388</code></pre>
+<pre class="r"><code>hist(pbc[pbc$sex == &quot;f&quot;, &quot;bili&quot;])</code></pre>
 <p><img src="data:image/png;base64,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" width="672" /></p>
 <p>From the pbc data set, select all rows where the serum bilirubin measurements that are smaller that 10</p>
-<pre><code>   id time     status trt   age sex ascites hepato spiders edema bili chol
-2   2 4500   censored   1 56.45   f       0      1       1   0.0  1.1  302
-3   3 1012       dead   1 70.07   m       0      0       0   0.5  1.4  176
-4   4 1925       dead   1 54.74   f       0      1       1   0.5  1.8  244
-5   5 1504 transplant   2 38.11   f       0      1       1   0.0  3.4  279
-6   6 2503       dead   2 66.26   f       0      1       0   0.0  0.8  248
-7   7 1832   censored   2 55.53   f       0      1       0   0.0  1.0  322
-8   8 2466       dead   2 53.06   f       0      0       0   0.0  0.3  280
-9   9 2400       dead   1 42.51   f       0      0       1   0.0  3.2  562
-11 11 3762       dead   2 53.71   f       0      1       1   0.0  1.4  259
-12 12  304       dead   2 59.14   f       0      0       1   0.0  3.6  236
-13 13 3577   censored   2 45.69   f       0      0       0   0.0  0.7  281
-14 14 1217       dead   2 56.22   m       1      1       0   1.0  0.8   NA
-15 15 3584       dead   1 64.65   f       0      0       0   0.0  0.8  231
-16 16 3672   censored   2 40.44   f       0      0       0   0.0  0.7  204
-17 17  769       dead   2 52.18   f       0      1       0   0.0  2.7  274
-19 19 4232   censored   1 49.56   f       0      1       0   0.5  0.7  235
-20 20 1356       dead   2 59.95   f       0      1       0   0.0  5.1  374
-21 21 3445   censored   2 64.19   m       0      1       1   0.0  0.6  252
-22 22  673       dead   1 56.28   f       0      0       1   0.0  3.4  271
-24 24 4079       dead   1 44.52   m       0      1       0   0.0  2.1  456
-25 25 4127   censored   2 45.07   f       0      0       0   0.0  0.7  298
-26 26 1444       dead   2 52.02   f       0      1       1   0.0  5.2 1128
-29 29 4509   censored   2 63.88   f       0      0       0   0.0  0.7  370
-30 30  321       dead   2 41.39   f       0      1       1   0.0  3.6  260
-31 31 3839       dead   2 41.55   f       0      1       0   0.0  4.7  296
-32 32 4523   censored   2 54.00   f       0      1       0   0.0  1.8  262
-33 33 3170       dead   2 51.28   f       0      0       0   0.0  0.8  210
-34 34 3933   censored   1 52.06   f       0      0       0   0.0  0.8  364
-35 35 2847       dead   2 48.62   f       0      0       0   0.0  1.2  314
-36 36 3611   censored   2 56.41   f       0      0       0   0.0  0.3  172
-37 37  223       dead   1 61.73   f       1      1       0   1.0  7.1  334
-38 38 3244       dead   2 36.63   f       0      1       1   0.0  3.3  383
-39 39 2297       dead   1 55.39   f       0      1       0   0.0  0.7  282
-40 40 4467   censored   1 46.67   f       0      0       0   0.0  1.3   NA
-41 41 1350       dead   1 33.63   f       0      1       0   0.0  6.8   NA
-42 42 4453   censored   2 33.69   f       0      1       1   0.0  2.1   NA
-43 43 4556   censored   1 48.87   f       0      0       0   0.0  1.1  361
-44 44 3428       dead   2 37.58   f       0      1       1   1.0  3.3  299
-45 45 4025   censored   2 41.79   f       0      0       0   0.0  0.6   NA
-46 46 2256       dead   1 45.80   f       0      1       0   0.0  5.7  482
-47 47 2576   censored   2 47.43   f       0      0       0   0.0  0.5  316
-48 48 4427   censored   2 49.14   m       0      0       0   0.0  1.9  259
-49 49  708       dead   2 61.15   f       0      1       0   0.0  0.8   NA
-50 50 2598       dead   1 53.51   f       0      1       0   0.0  1.1  257
-51 51 3853       dead   2 52.09   f       0      0       0   0.0  0.8  276
-   albumin copper alk.phos    ast trig platelet protime stage age40higher
-2     4.14     54   7394.8 113.52   88      221    10.6     3         old
-3     3.48    210    516.0  96.10   55      151    12.0     4         old
-4     2.54     64   6121.8  60.63   92      183    10.3     4         old
-5     3.53    143    671.0 113.15   72      136    10.9     3       young
-6     3.98     50    944.0  93.00   63       NA    11.0     3         old
-7     4.09     52    824.0  60.45  213      204     9.7     3         old
-8     4.00     52   4651.2  28.38  189      373    11.0     3         old
-9     3.08     79   2276.0 144.15   88      251    11.0     2         old
-11    4.16     46   1104.0  79.05   79      258    12.0     4         old
-12    3.52     94    591.0  82.15   95       71    13.6     4         old
-13    3.85     40   1181.0  88.35  130      244    10.6     3         old
-14    2.27     43    728.0  71.00   NA      156    11.0     4         old
-15    3.87    173   9009.8 127.71   96      295    11.0     3         old
-16    3.66     28    685.0  72.85   58      198    10.8     3         old
-17    3.15    159   1533.0 117.80  128      224    10.5     4         old
-19    3.56     39   1881.0  93.00  123      209    11.0     3         old
-20    3.51    140   1919.0 122.45  135      322    13.0     4         old
-21    3.83     41    843.0  65.10   83      336    11.4     4         old
-22    3.63    464   1376.0 120.90   55      173    11.6     4         old
-24    4.00    124   5719.0 221.88  230       70     9.9     2         old
-25    4.10     40    661.0 106.95   66      324    11.3     2         old
-26    3.68     53   3228.0 165.85  166      421     9.9     3         old
-29    3.78     24   5833.0  73.53   86      390    10.6     2         old
-30    2.54    172   7277.0 121.26  158      124    11.0     4         old
-31    3.44    114   9933.2 206.40  101      195    10.3     2         old
-32    3.34    101   7277.0  82.56  158      286    10.6     4         old
-33    3.19     82   1592.0 218.55  113      180    12.0     3         old
-34    3.70     37   1840.0 170.50   64      273    10.5     2         old
-35    3.20    201  12258.8  72.24  151      431    10.6     3         old
-36    3.39     18    558.0  71.30   96      311    10.6     2         old
-37    3.01    150   6931.2 180.60  118      102    12.0     4         old
-38    3.53    102   1234.0 137.95   87      234    11.0     4       young
-39    3.00     52   9066.8  72.24  111      563    10.6     4         old
-40    3.34    105  11046.6 104.49   NA      358    11.0     4         old
-41    3.26     96   1215.0 151.90   NA      226    11.7     4       young
-42    3.54    122   8778.0  56.76   NA      344    11.0     4       young
-43    3.64     36   5430.2  67.08   89      203    10.6     2         old
-44    3.55    131   1029.0 119.35   50      199    11.7     3       young
-45    3.93     19   1826.0  71.30   NA      474    10.9     2         old
-46    2.84    161  11552.0 136.74  165      518    12.7     3         old
-47    3.65     68   1716.0 187.55   71      356     9.8     3         old
-48    3.70    281  10396.8 188.34  178      214    11.0     3         old
-49    3.82     58    678.0  97.65   NA      233    11.0     4         old
-50    3.36     43   1080.0 106.95   73      128    10.6     4         old
-51    3.60     54   4332.0  99.33  143      273    10.6     2         old
-         ageST
-2   0.54643121
-3   1.85012796
-4   0.38275122
-5  -1.20906060
-6   1.48543746
-7   0.45836946
-8   0.22194281
-9  -0.78789572
-11  0.28416035
-12  0.80391610
-13 -0.48350837
-14  0.52441577
-15  1.33132940
-16 -0.98603465
-17  0.13770983
-19 -0.11307471
-20  0.88144873
-21  1.28729853
-22  0.53015893
-24 -0.59549994
-25 -0.54285433
-26  0.12239475
-29  1.25762555
-30 -0.89510132
-31 -0.87978624
-32  0.31191894
-33  0.05156247
-34  0.12622352
-35 -0.20305084
-36  0.54260244
-37  1.05182907
-38 -1.35072515
-39  0.44496876
-40 -0.38970346
-41 -1.63788303
-42 -1.63213987
-43 -0.17912102
-44 -1.25979183
-45 -0.85681361
-46 -0.47297925
-47 -0.31695680
-48 -0.15327681
-49  0.99631188
-50  0.26501649
-51  0.12909510
- [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 340 rows ]</code></pre>
+<pre class="r"><code>pbc[pbc$bili &lt; 10, ]</code></pre>
+<pre><code>##    id time     status trt   age sex ascites hepato spiders edema bili chol
+## 2   2 4500   censored   1 56.45   f       0      1       1   0.0  1.1  302
+## 3   3 1012       dead   1 70.07   m       0      0       0   0.5  1.4  176
+## 4   4 1925       dead   1 54.74   f       0      1       1   0.5  1.8  244
+## 5   5 1504 transplant   2 38.11   f       0      1       1   0.0  3.4  279
+## 6   6 2503       dead   2 66.26   f       0      1       0   0.0  0.8  248
+## 7   7 1832   censored   2 55.53   f       0      1       0   0.0  1.0  322
+## 8   8 2466       dead   2 53.06   f       0      0       0   0.0  0.3  280
+## 9   9 2400       dead   1 42.51   f       0      0       1   0.0  3.2  562
+## 11 11 3762       dead   2 53.71   f       0      1       1   0.0  1.4  259
+## 12 12  304       dead   2 59.14   f       0      0       1   0.0  3.6  236
+## 13 13 3577   censored   2 45.69   f       0      0       0   0.0  0.7  281
+## 14 14 1217       dead   2 56.22   m       1      1       0   1.0  0.8   NA
+## 15 15 3584       dead   1 64.65   f       0      0       0   0.0  0.8  231
+## 16 16 3672   censored   2 40.44   f       0      0       0   0.0  0.7  204
+## 17 17  769       dead   2 52.18   f       0      1       0   0.0  2.7  274
+## 19 19 4232   censored   1 49.56   f       0      1       0   0.5  0.7  235
+## 20 20 1356       dead   2 59.95   f       0      1       0   0.0  5.1  374
+## 21 21 3445   censored   2 64.19   m       0      1       1   0.0  0.6  252
+## 22 22  673       dead   1 56.28   f       0      0       1   0.0  3.4  271
+## 24 24 4079       dead   1 44.52   m       0      1       0   0.0  2.1  456
+## 25 25 4127   censored   2 45.07   f       0      0       0   0.0  0.7  298
+## 26 26 1444       dead   2 52.02   f       0      1       1   0.0  5.2 1128
+## 29 29 4509   censored   2 63.88   f       0      0       0   0.0  0.7  370
+## 30 30  321       dead   2 41.39   f       0      1       1   0.0  3.6  260
+## 31 31 3839       dead   2 41.55   f       0      1       0   0.0  4.7  296
+## 32 32 4523   censored   2 54.00   f       0      1       0   0.0  1.8  262
+## 33 33 3170       dead   2 51.28   f       0      0       0   0.0  0.8  210
+## 34 34 3933   censored   1 52.06   f       0      0       0   0.0  0.8  364
+## 35 35 2847       dead   2 48.62   f       0      0       0   0.0  1.2  314
+## 36 36 3611   censored   2 56.41   f       0      0       0   0.0  0.3  172
+## 37 37  223       dead   1 61.73   f       1      1       0   1.0  7.1  334
+## 38 38 3244       dead   2 36.63   f       0      1       1   0.0  3.3  383
+## 39 39 2297       dead   1 55.39   f       0      1       0   0.0  0.7  282
+## 40 40 4467   censored   1 46.67   f       0      0       0   0.0  1.3   NA
+## 41 41 1350       dead   1 33.63   f       0      1       0   0.0  6.8   NA
+## 42 42 4453   censored   2 33.69   f       0      1       1   0.0  2.1   NA
+## 43 43 4556   censored   1 48.87   f       0      0       0   0.0  1.1  361
+## 44 44 3428       dead   2 37.58   f       0      1       1   1.0  3.3  299
+## 45 45 4025   censored   2 41.79   f       0      0       0   0.0  0.6   NA
+## 46 46 2256       dead   1 45.80   f       0      1       0   0.0  5.7  482
+## 47 47 2576   censored   2 47.43   f       0      0       0   0.0  0.5  316
+## 48 48 4427   censored   2 49.14   m       0      0       0   0.0  1.9  259
+## 49 49  708       dead   2 61.15   f       0      1       0   0.0  0.8   NA
+## 50 50 2598       dead   1 53.51   f       0      1       0   0.0  1.1  257
+## 51 51 3853       dead   2 52.09   f       0      0       0   0.0  0.8  276
+##    albumin copper alk.phos    ast trig platelet protime stage age40higher
+## 2     4.14     54   7394.8 113.52   88      221    10.6     3         old
+## 3     3.48    210    516.0  96.10   55      151    12.0     4         old
+## 4     2.54     64   6121.8  60.63   92      183    10.3     4         old
+## 5     3.53    143    671.0 113.15   72      136    10.9     3       young
+## 6     3.98     50    944.0  93.00   63       NA    11.0     3         old
+## 7     4.09     52    824.0  60.45  213      204     9.7     3         old
+## 8     4.00     52   4651.2  28.38  189      373    11.0     3         old
+## 9     3.08     79   2276.0 144.15   88      251    11.0     2         old
+## 11    4.16     46   1104.0  79.05   79      258    12.0     4         old
+## 12    3.52     94    591.0  82.15   95       71    13.6     4         old
+## 13    3.85     40   1181.0  88.35  130      244    10.6     3         old
+## 14    2.27     43    728.0  71.00   NA      156    11.0     4         old
+## 15    3.87    173   9009.8 127.71   96      295    11.0     3         old
+## 16    3.66     28    685.0  72.85   58      198    10.8     3         old
+## 17    3.15    159   1533.0 117.80  128      224    10.5     4         old
+## 19    3.56     39   1881.0  93.00  123      209    11.0     3         old
+## 20    3.51    140   1919.0 122.45  135      322    13.0     4         old
+## 21    3.83     41    843.0  65.10   83      336    11.4     4         old
+## 22    3.63    464   1376.0 120.90   55      173    11.6     4         old
+## 24    4.00    124   5719.0 221.88  230       70     9.9     2         old
+## 25    4.10     40    661.0 106.95   66      324    11.3     2         old
+## 26    3.68     53   3228.0 165.85  166      421     9.9     3         old
+## 29    3.78     24   5833.0  73.53   86      390    10.6     2         old
+## 30    2.54    172   7277.0 121.26  158      124    11.0     4         old
+## 31    3.44    114   9933.2 206.40  101      195    10.3     2         old
+## 32    3.34    101   7277.0  82.56  158      286    10.6     4         old
+## 33    3.19     82   1592.0 218.55  113      180    12.0     3         old
+## 34    3.70     37   1840.0 170.50   64      273    10.5     2         old
+## 35    3.20    201  12258.8  72.24  151      431    10.6     3         old
+## 36    3.39     18    558.0  71.30   96      311    10.6     2         old
+## 37    3.01    150   6931.2 180.60  118      102    12.0     4         old
+## 38    3.53    102   1234.0 137.95   87      234    11.0     4       young
+## 39    3.00     52   9066.8  72.24  111      563    10.6     4         old
+## 40    3.34    105  11046.6 104.49   NA      358    11.0     4         old
+## 41    3.26     96   1215.0 151.90   NA      226    11.7     4       young
+## 42    3.54    122   8778.0  56.76   NA      344    11.0     4       young
+## 43    3.64     36   5430.2  67.08   89      203    10.6     2         old
+## 44    3.55    131   1029.0 119.35   50      199    11.7     3       young
+## 45    3.93     19   1826.0  71.30   NA      474    10.9     2         old
+## 46    2.84    161  11552.0 136.74  165      518    12.7     3         old
+## 47    3.65     68   1716.0 187.55   71      356     9.8     3         old
+## 48    3.70    281  10396.8 188.34  178      214    11.0     3         old
+## 49    3.82     58    678.0  97.65   NA      233    11.0     4         old
+## 50    3.36     43   1080.0 106.95   73      128    10.6     4         old
+## 51    3.60     54   4332.0  99.33  143      273    10.6     2         old
+##          ageST
+## 2   0.54643121
+## 3   1.85012796
+## 4   0.38275122
+## 5  -1.20906060
+## 6   1.48543746
+## 7   0.45836946
+## 8   0.22194281
+## 9  -0.78789572
+## 11  0.28416035
+## 12  0.80391610
+## 13 -0.48350837
+## 14  0.52441577
+## 15  1.33132940
+## 16 -0.98603465
+## 17  0.13770983
+## 19 -0.11307471
+## 20  0.88144873
+## 21  1.28729853
+## 22  0.53015893
+## 24 -0.59549994
+## 25 -0.54285433
+## 26  0.12239475
+## 29  1.25762555
+## 30 -0.89510132
+## 31 -0.87978624
+## 32  0.31191894
+## 33  0.05156247
+## 34  0.12622352
+## 35 -0.20305084
+## 36  0.54260244
+## 37  1.05182907
+## 38 -1.35072515
+## 39  0.44496876
+## 40 -0.38970346
+## 41 -1.63788303
+## 42 -1.63213987
+## 43 -0.17912102
+## 44 -1.25979183
+## 45 -0.85681361
+## 46 -0.47297925
+## 47 -0.31695680
+## 48 -0.15327681
+## 49  0.99631188
+## 50  0.26501649
+## 51  0.12909510
+##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 340 rows ]</code></pre>
 <p>Make a boxplot of serum bilirubin per sex using the previous selection</p>
+<pre class="r"><code>new_pbc &lt;- pbc[pbc$bili &lt; 10, ]
+boxplot(new_pbc$bili ~ new_pbc$sex)</code></pre>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABUAAAAPACAMAAADDuCPrAAAA51BMVEUAAAAAADoAAGYAOjoAOmYAOpAAZmYAZpAAZrY6AAA6AGY6OgA6Ojo6OmY6Zjo6ZmY6ZpA6ZrY6kLY6kNtmAABmOgBmOjpmOmZmZjpmZmZmZpBmkJBmkLZmkNtmtttmtv+QOgCQZgCQZjqQZmaQkGaQkJCQkLaQtraQttuQ29uQ2/+2ZgC2Zjq2kDq2kGa2kJC2tpC2tra2ttu225C227a229u22/+2/9u2///bkDrbkGbbtmbbtpDbtrbbttvb25Db27bb29vb2//b/7bb/9vb////tmb/25D/27b/29v//7b//9v///8mm909AAAACXBIWXMAAB2HAAAdhwGP5fFlAAAgAElEQVR4nO3dfZsbRb6YYQ2YBAcczLHNWe9ysGNOgGVYFm8CYRbIscnBGI+//+eJWu/SyOOqn6pfauq+/1jPDHaPruqqZ1vqVmv2GoCQ2dgPAKBWAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSg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" width="672" /></p>
 <p>Create a list with 3 elements:<br />
 1st element: all pbc$id<br />
 2nd element: pbc$bili for males<br />
 3rd element: pbc$age &gt; 30</p>
+<pre class="r"><code>myList &lt;- list(pbc$id, pbc$bili[pbc$sex == &quot;m&quot;], pbc$age[pbc$age &gt; 30])</code></pre>
 <p>Select the second element (the output should be a list)</p>
-<pre><code>[[1]]
- [1] 1.4 0.8 0.6 2.1 1.9 6.0 1.8 0.7 0.6 1.4 7.2 1.6 2.0 1.8 2.3 3.2 3.5
-[18] 1.3 0.6 1.5 7.3 3.0 2.3 2.4 2.5 4.0 0.9 0.9 2.3 7.1 5.6 4.0 8.6 6.6
-[35] 2.4 1.2 1.3 3.5 0.9 9.5 1.7 1.7 3.0 1.1</code></pre>
+<pre class="r"><code>myList[2]</code></pre>
+<pre><code>## [[1]]
+##  [1] 1.4 0.8 0.6 2.1 1.9 6.0 1.8 0.7 0.6 1.4 7.2 1.6 2.0 1.8 2.3 3.2 3.5
+## [18] 1.3 0.6 1.5 7.3 3.0 2.3 2.4 2.5 4.0 0.9 0.9 2.3 7.1 5.6 4.0 8.6 6.6
+## [35] 2.4 1.2 1.3 3.5 0.9 9.5 1.7 1.7 3.0 1.1</code></pre>
 <p>Select the third element (the output should be a vector)</p>
-<pre><code>  [1] 58.77 56.45 70.07 54.74 38.11 66.26 55.53 53.06 42.51 70.56 53.71
- [12] 59.14 45.69 56.22 64.65 40.44 52.18 53.93 49.56 59.95 64.19 56.28
- [23] 55.97 44.52 45.07 52.02 54.44 44.95 63.88 41.39 41.55 54.00 51.28
- [34] 52.06 48.62 56.41 61.73 36.63 55.39 46.67 33.63 33.69 48.87 37.58
- [45] 41.79 45.80 47.43 49.14 61.15 53.51 52.09 50.54 67.41 39.20 65.76
- [56] 33.62 53.57 44.57 40.39 58.38 43.90 60.71 46.63 62.91 40.20 46.45
- [67] 51.29 32.61 49.34 56.40 48.85 32.49 38.49 51.92 43.52 51.94 49.83
- [78] 47.95 46.52 67.41 63.26 67.31 56.01 55.83 47.22 52.76 37.28 41.39
- [89] 52.44 33.48 45.61 76.71 36.53 53.92 46.39 48.85 71.89 48.47 51.47
-[100] 44.95 56.57 48.96 43.02 34.04 68.51 62.52 50.36 44.06 38.91 41.15
-[111] 55.46 51.23 52.83 42.64 61.07 49.66 48.85 54.26 35.15 67.91 55.44
-[122] 45.82 52.89 47.18 53.60 44.10 41.95 63.61 44.23 62.00 40.55 62.64
-[133] 42.34 42.97 55.96 62.86 51.25 46.76 54.08 47.04 55.73 46.10 52.29
-[144] 51.20 33.86 75.01 30.86 61.80 34.99 55.04 69.94 49.60 69.38 43.56
-[155] 59.41 48.76 36.49 45.76 57.37 42.74 58.82 53.50 43.41 53.31 41.36
-[166] 60.96 47.75 35.49 48.66 52.67 49.87 30.28 55.57 52.15 41.61 55.45
-[177] 70.00 43.94 42.57 44.57 56.94 40.26 37.61 48.36 70.84 35.79 62.62
-[188] 50.65 54.53 52.69 52.72 56.77 44.40 57.04 44.63 35.80 40.72 32.23
-[199] 41.09 61.64 37.06 62.58 48.98 61.99 72.77 61.30 52.62 49.76 52.91
-[210] 47.26 50.20 69.35 41.17 59.16 36.08 34.60 42.71 63.63 56.63 46.26
-[221] 61.24 38.62 38.77 56.70 58.95 36.92 62.41 34.61 58.34 50.18 42.69
-[232] 34.38 33.18 38.38 59.76 66.41 46.79 56.08 41.37 64.57 67.49 44.83
-[243] 45.77 32.95 41.22 55.42 47.98 40.79 56.97 68.46 78.44 39.86 35.31
-[254] 31.44 58.26 51.49 59.97 74.52 52.36 42.79 34.87 44.14 46.38 56.31
-[265] 70.91 55.39 45.08 50.47 38.40 47.42 47.98 38.32 50.11 35.09 32.50
-[276] 56.15 46.15 65.88 33.94 62.86 48.56 46.35 38.85 58.65 48.94 67.57
-[287] 65.98 40.90 50.25 57.20 60.54 35.35 31.38 55.99 52.73 38.09 58.17
-[298] 45.21 37.80 60.66 35.53 43.07 56.39 30.57 61.18 58.30 62.33 38.00
-[309] 33.15 60.00 65.00 54.00 75.00 62.00 43.00 46.00 44.00 61.00 64.00
-[320] 40.00 63.00 34.00 52.00 49.00 54.00 63.00 54.00 46.00 53.00 56.00
-[331] 56.00 55.00 65.00 56.00 47.00 60.00 53.00 54.00 50.00 48.00 36.00
-[342] 48.00 70.00 51.00 52.00 54.00 48.00 66.00 53.00 62.00 59.00 39.00
-[353] 67.00 58.00 64.00 46.00 64.00 41.00 49.00 44.00 59.00 63.00 61.00
-[364] 64.00 49.00 42.00 50.00 51.00 37.00 62.00 51.00 52.00 44.00 33.00
-[375] 60.00 63.00 33.00 41.00 51.00 37.00 59.00 55.00 54.00 49.00 40.00
-[386] 67.00 68.00 41.00 69.00 52.00 57.00 36.00 50.00 64.00 62.00 42.00
-[397] 44.00 69.00 52.00 66.00 40.00 52.00 46.00 54.00 51.00 43.00 39.00
-[408] 51.00 67.00 35.00 67.00 39.00 57.00 58.00 53.00</code></pre>
+<pre class="r"><code>myList[[3]]</code></pre>
+<pre><code>##   [1] 58.77 56.45 70.07 54.74 38.11 66.26 55.53 53.06 42.51 70.56 53.71
+##  [12] 59.14 45.69 56.22 64.65 40.44 52.18 53.93 49.56 59.95 64.19 56.28
+##  [23] 55.97 44.52 45.07 52.02 54.44 44.95 63.88 41.39 41.55 54.00 51.28
+##  [34] 52.06 48.62 56.41 61.73 36.63 55.39 46.67 33.63 33.69 48.87 37.58
+##  [45] 41.79 45.80 47.43 49.14 61.15 53.51 52.09 50.54 67.41 39.20 65.76
+##  [56] 33.62 53.57 44.57 40.39 58.38 43.90 60.71 46.63 62.91 40.20 46.45
+##  [67] 51.29 32.61 49.34 56.40 48.85 32.49 38.49 51.92 43.52 51.94 49.83
+##  [78] 47.95 46.52 67.41 63.26 67.31 56.01 55.83 47.22 52.76 37.28 41.39
+##  [89] 52.44 33.48 45.61 76.71 36.53 53.92 46.39 48.85 71.89 48.47 51.47
+## [100] 44.95 56.57 48.96 43.02 34.04 68.51 62.52 50.36 44.06 38.91 41.15
+## [111] 55.46 51.23 52.83 42.64 61.07 49.66 48.85 54.26 35.15 67.91 55.44
+## [122] 45.82 52.89 47.18 53.60 44.10 41.95 63.61 44.23 62.00 40.55 62.64
+## [133] 42.34 42.97 55.96 62.86 51.25 46.76 54.08 47.04 55.73 46.10 52.29
+## [144] 51.20 33.86 75.01 30.86 61.80 34.99 55.04 69.94 49.60 69.38 43.56
+## [155] 59.41 48.76 36.49 45.76 57.37 42.74 58.82 53.50 43.41 53.31 41.36
+## [166] 60.96 47.75 35.49 48.66 52.67 49.87 30.28 55.57 52.15 41.61 55.45
+## [177] 70.00 43.94 42.57 44.57 56.94 40.26 37.61 48.36 70.84 35.79 62.62
+## [188] 50.65 54.53 52.69 52.72 56.77 44.40 57.04 44.63 35.80 40.72 32.23
+## [199] 41.09 61.64 37.06 62.58 48.98 61.99 72.77 61.30 52.62 49.76 52.91
+## [210] 47.26 50.20 69.35 41.17 59.16 36.08 34.60 42.71 63.63 56.63 46.26
+## [221] 61.24 38.62 38.77 56.70 58.95 36.92 62.41 34.61 58.34 50.18 42.69
+## [232] 34.38 33.18 38.38 59.76 66.41 46.79 56.08 41.37 64.57 67.49 44.83
+## [243] 45.77 32.95 41.22 55.42 47.98 40.79 56.97 68.46 78.44 39.86 35.31
+## [254] 31.44 58.26 51.49 59.97 74.52 52.36 42.79 34.87 44.14 46.38 56.31
+## [265] 70.91 55.39 45.08 50.47 38.40 47.42 47.98 38.32 50.11 35.09 32.50
+## [276] 56.15 46.15 65.88 33.94 62.86 48.56 46.35 38.85 58.65 48.94 67.57
+## [287] 65.98 40.90 50.25 57.20 60.54 35.35 31.38 55.99 52.73 38.09 58.17
+## [298] 45.21 37.80 60.66 35.53 43.07 56.39 30.57 61.18 58.30 62.33 38.00
+## [309] 33.15 60.00 65.00 54.00 75.00 62.00 43.00 46.00 44.00 61.00 64.00
+## [320] 40.00 63.00 34.00 52.00 49.00 54.00 63.00 54.00 46.00 53.00 56.00
+## [331] 56.00 55.00 65.00 56.00 47.00 60.00 53.00 54.00 50.00 48.00 36.00
+## [342] 48.00 70.00 51.00 52.00 54.00 48.00 66.00 53.00 62.00 59.00 39.00
+## [353] 67.00 58.00 64.00 46.00 64.00 41.00 49.00 44.00 59.00 63.00 61.00
+## [364] 64.00 49.00 42.00 50.00 51.00 37.00 62.00 51.00 52.00 44.00 33.00
+## [375] 60.00 63.00 33.00 41.00 51.00 37.00 59.00 55.00 54.00 49.00 40.00
+## [386] 67.00 68.00 41.00 69.00 52.00 57.00 36.00 50.00 64.00 62.00 42.00
+## [397] 44.00 69.00 52.00 66.00 40.00 52.00 46.00 54.00 51.00 43.00 39.00
+## [408] 51.00 67.00 35.00 67.00 39.00 57.00 58.00 53.00</code></pre>
 <p>Select the third element (the output should be a vector) Then select the elements that are smaller than 20</p>
-<pre><code>numeric(0)</code></pre>
+<pre class="r"><code>newData &lt;- myList[[3]]
+newData[newData &lt; 20]</code></pre>
+<pre><code>## numeric(0)</code></pre>
 <p>Create a list with 3 elements and add names:<br />
 1st element - all_id: all pbc$id<br />
 2nd element - bili_male: pbc$bili for males<br />
 3rd element - young: pbc$age &gt; 30</p>
+<pre class="r"><code>myList &lt;- list(all_id = pbc$id, bili_male = pbc$bili[pbc$sex == &quot;m&quot;], young = pbc$age[pbc$age &gt; 30])</code></pre>
 <p>Select all_id by name indexing</p>
-<pre><code>  [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
- [18]  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34
- [35]  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51
- [52]  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68
- [69]  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85
- [86]  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 101 102
-[103] 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119
-[120] 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136
-[137] 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153
-[154] 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170
-[171] 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187
-[188] 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204
-[205] 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221
-[222] 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238
-[239] 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255
-[256] 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272
-[273] 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289
-[290] 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306
-[307] 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323
-[324] 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340
-[341] 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357
-[358] 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374
-[375] 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391
-[392] 392 393 394 395 396 397 398 399 400 401 402 403 404 405 406 407 408
-[409] 409 410 411 412 413 414 415 416 417 418</code></pre>
+<pre class="r"><code>myList$all_id</code></pre>
+<pre><code>##   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+##  [18]  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34
+##  [35]  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51
+##  [52]  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68
+##  [69]  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85
+##  [86]  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 101 102
+## [103] 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119
+## [120] 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136
+## [137] 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153
+## [154] 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170
+## [171] 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187
+## [188] 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204
+## [205] 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221
+## [222] 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238
+## [239] 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255
+## [256] 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272
+## [273] 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289
+## [290] 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306
+## [307] 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323
+## [324] 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340
+## [341] 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357
+## [358] 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374
+## [375] 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391
+## [392] 392 393 394 395 396 397 398 399 400 401 402 403 404 405 406 407 408
+## [409] 409 410 411 412 413 414 415 416 417 418</code></pre>
 
 
 

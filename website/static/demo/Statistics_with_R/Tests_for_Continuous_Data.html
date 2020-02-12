@@ -12,7 +12,7 @@
 
 <meta name="author" content="Nicole Erler, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-11" />
+<meta name="date" content="2020-02-12" />
 
 <title>Demo: Statistical Tests for Continuous Data</title>
 
@@ -1513,7 +1513,7 @@ div.tocify {
 <h1 class="title toc-ignore">Demo: Statistical Tests for Continuous Data</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Nicole Erler, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">11 February 2020</h4>
+<h4 class="date">12 February 2020</h4>
 
 </div>
 
@@ -1522,234 +1522,271 @@ div.tocify {
 <h2>t-test</h2>
 <div id="one-sample-t-test" class="section level3">
 <h3>One-sample t-test</h3>
+<pre class="r"><code># make data:
+x &lt;- rnorm(250, mean = 20.5, sd = 4)</code></pre>
 <p>Test if the mean of <code>x</code> is equal to 0:</p>
-<pre><code>
-    One Sample t-test
-
-data:  x
-t = 86.465, df = 249, p-value &lt; 2.2e-16
-alternative hypothesis: true mean is not equal to 0
-95 percent confidence interval:
- 19.69532 20.61349
-sample estimates:
-mean of x 
- 20.15441 </code></pre>
+<pre class="r"><code>t.test(x)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  x
+## t = 86.465, df = 249, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  19.69532 20.61349
+## sample estimates:
+## mean of x 
+##  20.15441</code></pre>
 <p>Test if the mean of <code>x</code> is equal to 21:</p>
-<pre><code>
-    One Sample t-test
-
-data:  x
-t = -3.6277, df = 249, p-value = 0.0003469
-alternative hypothesis: true mean is not equal to 21
-95 percent confidence interval:
- 19.69532 20.61349
-sample estimates:
-mean of x 
- 20.15441 </code></pre>
+<pre class="r"><code>t.test(x, mu = 21)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  x
+## t = -3.6277, df = 249, p-value = 0.0003469
+## alternative hypothesis: true mean is not equal to 21
+## 95 percent confidence interval:
+##  19.69532 20.61349
+## sample estimates:
+## mean of x 
+##  20.15441</code></pre>
 <p>By default, a two-sided test is performed. To do a one-sided test, the argument <code>alternative</code> can be set to <code>less</code> or <code>greater</code>:</p>
-<pre><code>
-    One Sample t-test
-
-data:  x
-t = -3.6277, df = 249, p-value = 0.0001734
-alternative hypothesis: true mean is less than 21
-95 percent confidence interval:
-     -Inf 20.53925
-sample estimates:
-mean of x 
- 20.15441 </code></pre>
+<pre class="r"><code>t.test(x, mu = 21, alternative = &#39;less&#39;)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  x
+## t = -3.6277, df = 249, p-value = 0.0001734
+## alternative hypothesis: true mean is less than 21
+## 95 percent confidence interval:
+##      -Inf 20.53925
+## sample estimates:
+## mean of x 
+##  20.15441</code></pre>
 <p>Note that the lower limit of the confidence interval became <code>-Inf</code>, because we look at a one-sided test, and that the upper bound reduced compared to the two sided-test. The output we see is produced by the <code>print()</code> function that is automatically called. To access the elements of the test results separately:</p>
-<pre><code> [1] &quot;statistic&quot;   &quot;parameter&quot;   &quot;p.value&quot;     &quot;conf.int&quot;    &quot;estimate&quot;    &quot;null.value&quot;  &quot;stderr&quot;     
- [8] &quot;alternative&quot; &quot;method&quot;      &quot;data.name&quot;  </code></pre>
-<pre><code>[1] &quot;htest&quot;</code></pre>
-<pre><code>[1] TRUE</code></pre>
+<pre class="r"><code>testres &lt;- t.test(x, mu = 21, alternative = &#39;less&#39;, conf.level = 0.975)
+names(testres)</code></pre>
+<pre><code>##  [1] &quot;statistic&quot;   &quot;parameter&quot;   &quot;p.value&quot;     &quot;conf.int&quot;    &quot;estimate&quot;    &quot;null.value&quot;  &quot;stderr&quot;     
+##  [8] &quot;alternative&quot; &quot;method&quot;      &quot;data.name&quot;</code></pre>
+<pre class="r"><code>class(testres)</code></pre>
+<pre><code>## [1] &quot;htest&quot;</code></pre>
+<pre class="r"><code>is.list(testres)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <p>This means we can treat <code>testres</code> as a <code>list</code>:</p>
-<pre><code>[1] 0.0001734441</code></pre>
-<pre><code>[1]     -Inf 20.61349
-attr(,&quot;conf.level&quot;)
-[1] 0.975</code></pre>
+<pre class="r"><code>testres$p.value</code></pre>
+<pre><code>## [1] 0.0001734441</code></pre>
+<pre class="r"><code>testres$conf.int</code></pre>
+<pre><code>## [1]     -Inf 20.61349
+## attr(,&quot;conf.level&quot;)
+## [1] 0.975</code></pre>
 </div>
 <div id="two-samples-t-test" class="section level3">
 <h3>Two-samples t-test</h3>
+<pre class="r"><code>y &lt;- rnorm(250, mean = 20, sd = 2)</code></pre>
 <p>By default, the test assumes that the two samples have different variances and that the samples are independent. How can you know this? It is written in the help file!</p>
-<pre><code>
-    Welch Two Sample t-test
-
-data:  x and y
-t = 0.10124, df = 393.58, p-value = 0.9194
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.4994028  0.5536280
-sample estimates:
-mean of x mean of y 
- 20.15441  20.12730 </code></pre>
-<pre><code>
-    Two Sample t-test
-
-data:  x and y
-t = 0.10124, df = 498, p-value = 0.9194
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.4990625  0.5532877
-sample estimates:
-mean of x mean of y 
- 20.15441  20.12730 </code></pre>
+<pre class="r"><code>t.test(x, y)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  x and y
+## t = 0.10124, df = 393.58, p-value = 0.9194
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.4994028  0.5536280
+## sample estimates:
+## mean of x mean of y 
+##  20.15441  20.12730</code></pre>
+<pre class="r"><code>t.test(x, y, var.equal = TRUE)</code></pre>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  x and y
+## t = 0.10124, df = 498, p-value = 0.9194
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.4990625  0.5532877
+## sample estimates:
+## mean of x mean of y 
+##  20.15441  20.12730</code></pre>
 </div>
 <div id="paired-samples-t-test" class="section level3">
 <h3>Paired-samples t-test</h3>
 <p>A t-test for a paired sample can be performed by setting the argument <code>paired = TRUE</code>:</p>
-<pre><code>
-    Paired t-test
-
-data:  x and y
-t = 0.10184, df = 249, p-value = 0.919
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.4972152  0.5514404
-sample estimates:
-mean of the differences 
-             0.02711259 </code></pre>
+<pre class="r"><code>t.test(x, y, paired = TRUE)</code></pre>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  x and y
+## t = 0.10184, df = 249, p-value = 0.919
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.4972152  0.5514404
+## sample estimates:
+## mean of the differences 
+##              0.02711259</code></pre>
 <p>Again, we can change <code>mean</code> to test if the difference is different from that value instead of testing for a difference equal to zero. This is equivalent to performing a one-sampe t-test of the differences <code>x - y</code>:</p>
-<pre><code>
-    One Sample t-test
-
-data:  x - y
-t = 0.10184, df = 249, p-value = 0.919
-alternative hypothesis: true mean is not equal to 0
-95 percent confidence interval:
- -0.4972152  0.5514404
-sample estimates:
- mean of x 
-0.02711259 </code></pre>
+<pre class="r"><code>t.test(x - y)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  x - y
+## t = 0.10184, df = 249, p-value = 0.919
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  -0.4972152  0.5514404
+## sample estimates:
+##  mean of x 
+## 0.02711259</code></pre>
 </div>
 <div id="using-the-formula-specification" class="section level3">
 <h3>Using the formula specification</h3>
 <p>It is also possible to specify the test using a formula. This can be more convenient when we have the data in a <code>data.frame</code></p>
-<pre><code>       z         group  
- Min.   :10.42   x:250  
- 1st Qu.:18.24   y:250  
- Median :20.22          
- Mean   :20.14          
- 3rd Qu.:22.01          
- Max.   :29.79          </code></pre>
-<pre><code>
-    Welch Two Sample t-test
+<pre class="r"><code>dat &lt;- data.frame(z = c(x, y),
+                  group  = rep(c(&#39;x&#39;, &#39;y&#39;), c(length(x), length(y))))
 
-data:  z by group
-t = 0.10124, df = 393.58, p-value = 0.9194
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.4994028  0.5536280
-sample estimates:
-mean in group x mean in group y 
-       20.15441        20.12730 </code></pre>
+summary(dat)</code></pre>
+<pre><code>##        z         group  
+##  Min.   :10.42   x:250  
+##  1st Qu.:18.24   y:250  
+##  Median :20.22          
+##  Mean   :20.14          
+##  3rd Qu.:22.01          
+##  Max.   :29.79</code></pre>
+<pre class="r"><code>t.test(z ~ group, data = dat)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  z by group
+## t = 0.10124, df = 393.58, p-value = 0.9194
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.4994028  0.5536280
+## sample estimates:
+## mean in group x mean in group y 
+##        20.15441        20.12730</code></pre>
 <p>or</p>
-<pre><code>
-    Paired t-test
-
-data:  z by group
-t = 0.10184, df = 249, p-value = 0.919
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.4972152  0.5514404
-sample estimates:
-mean of the differences 
-             0.02711259 </code></pre>
+<pre class="r"><code>t.test(z ~ group, data = dat, paired = TRUE)</code></pre>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  z by group
+## t = 0.10184, df = 249, p-value = 0.919
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.4972152  0.5514404
+## sample estimates:
+## mean of the differences 
+##              0.02711259</code></pre>
 </div>
 </div>
 <div id="wilcoxon-test" class="section level2">
 <h2>Wilcoxon Test</h2>
 <div id="wilcoxon-signed-rank-test" class="section level3">
 <h3>Wilcoxon Signed Rank Test</h3>
-<pre><code>
-    Wilcoxon signed rank test with continuity correction
-
-data:  x
-V = 16604, p-value = 0.4235
-alternative hypothesis: true location is not equal to 20</code></pre>
+<pre class="r"><code>wilcox.test(x, mu = 20)</code></pre>
+<pre><code>## 
+##  Wilcoxon signed rank test with continuity correction
+## 
+## data:  x
+## V = 16604, p-value = 0.4235
+## alternative hypothesis: true location is not equal to 20</code></pre>
 <p>The function <code>wilcox.test()</code> has similar arguments as <code>t.test()</code> (<code>x</code>, <code>y</code>, <code>alternative</code>, <code>mu</code>, <code>paired</code>, <code>conf.level</code>). Note that conidence intervals are only returned if <code>conf.int = TRUE</code>:</p>
-<pre><code>
-    Wilcoxon signed rank test with continuity correction
-
-data:  x
-V = 16604, p-value = 0.4235
-alternative hypothesis: true location is not equal to 20
-95 percent confidence interval:
- 19.70952 20.68622
-sample estimates:
-(pseudo)median 
-        20.197 </code></pre>
+<pre class="r"><code>wilcox.test(x, conf.int = TRUE, mu = 20)</code></pre>
+<pre><code>## 
+##  Wilcoxon signed rank test with continuity correction
+## 
+## data:  x
+## V = 16604, p-value = 0.4235
+## alternative hypothesis: true location is not equal to 20
+## 95 percent confidence interval:
+##  19.70952 20.68622
+## sample estimates:
+## (pseudo)median 
+##         20.197</code></pre>
 <p>The additional argument <code>exact</code> controls if exact p-values and confidence intervals are calculated or if the normal approximation is used. In the latter case, the argument <code>correct</code> determins if a continuity correction is applied.</p>
-<pre><code>
-    Wilcoxon signed rank test
-
-data:  x
-V = 16604, p-value = 0.4242
-alternative hypothesis: true location is not equal to 20
-95 percent confidence interval:
- 19.70969 20.68605
-sample estimates:
-(pseudo)median 
-      20.19704 </code></pre>
+<pre class="r"><code>wilcox.test(x, conf.int = TRUE, exact = TRUE, mu = 20) </code></pre>
+<pre><code>## 
+##  Wilcoxon signed rank test
+## 
+## data:  x
+## V = 16604, p-value = 0.4242
+## alternative hypothesis: true location is not equal to 20
+## 95 percent confidence interval:
+##  19.70969 20.68605
+## sample estimates:
+## (pseudo)median 
+##       20.19704</code></pre>
 </div>
 <div id="wilcoxon-rank-sum-test" class="section level3">
 <h3>Wilcoxon Rank Sum Test</h3>
-<pre><code>
-    Wilcoxon rank sum test with continuity correction
-
-data:  x and y
-W = 32131, p-value = 0.5857
-alternative hypothesis: true location shift is not equal to 0
-95 percent confidence interval:
- -0.4182850  0.6999658
-sample estimates:
-difference in location 
-             0.1592431 </code></pre>
+<pre class="r"><code>wilcox.test(x, y, correct = TRUE, conf.int = TRUE)</code></pre>
+<pre><code>## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  x and y
+## W = 32131, p-value = 0.5857
+## alternative hypothesis: true location shift is not equal to 0
+## 95 percent confidence interval:
+##  -0.4182850  0.6999658
+## sample estimates:
+## difference in location 
+##              0.1592431</code></pre>
 <p>Like for the <code>t.test()</code>, we can also use a formula specification and the test output is of the same class, i.e., the p-value etc. can be accessed like elements of a list.</p>
 </div>
 </div>
 <div id="kruskal-wallis-rank-sum-test" class="section level2">
 <h2>Kruskal-Wallis Rank Sum Test</h2>
 <p>This test is an extension to the Wilcoxon rank sum test to more than two groups We can povide the data as a <code>list()</code>:</p>
-<pre><code>
-    Kruskal-Wallis rank sum test
+<pre class="r"><code>x &lt;- list(x1 = rnorm(100, mean = 12, sd = 1.5),
+          x2 = rnorm(100, mean = 11, sd = 2),
+          x3 = rnorm(100, mean = 11.5, sd = 1.8))
 
-data:  x
-Kruskal-Wallis chi-squared = 2.5552, df = 2, p-value = 0.2787</code></pre>
+kruskal.test(x)</code></pre>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  x
+## Kruskal-Wallis chi-squared = 2.5552, df = 2, p-value = 0.2787</code></pre>
 <p>or as a <code>data.frame</code> with one variable per column:</p>
-<pre><code>
-    Kruskal-Wallis rank sum test
-
-data:  as.data.frame(x)
-Kruskal-Wallis chi-squared = 2.5552, df = 2, p-value = 0.2787</code></pre>
+<pre class="r"><code>kruskal.test(as.data.frame(x))</code></pre>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  as.data.frame(x)
+## Kruskal-Wallis chi-squared = 2.5552, df = 2, p-value = 0.2787</code></pre>
 <p>or using the formula specification</p>
-<pre><code>         x group
-1 11.88071    x1
-2 11.35705    x1
-3 11.16178    x1
-4 10.23954    x1
-5 11.92784    x1
-6 13.82672    x1</code></pre>
-<pre><code>
-    Kruskal-Wallis rank sum test
-
-data:  x by group
-Kruskal-Wallis chi-squared = 2.5552, df = 2, p-value = 0.2787</code></pre>
+<pre class="r"><code>dat &lt;- data.frame(x = c(x$x1, x$x2, x$x3),
+                  group = rep(c(&#39;x1&#39;, &#39;x2&#39;, &#39;x3&#39;), each = 100))
+head(dat)</code></pre>
+<pre><code>##          x group
+## 1 11.88071    x1
+## 2 11.35705    x1
+## 3 11.16178    x1
+## 4 10.23954    x1
+## 5 11.92784    x1
+## 6 13.82672    x1</code></pre>
+<pre class="r"><code>kruskal.test(x ~ group, data = dat)</code></pre>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  x by group
+## Kruskal-Wallis chi-squared = 2.5552, df = 2, p-value = 0.2787</code></pre>
 </div>
 <div id="testing-the-correlation" class="section level2">
 <h2>Testing the Correlation</h2>
 <p>While we can calculate a correlation matrix for a whole set of variables, the function <code>cor.test()</code> can only handle two variables at a time:</p>
-<pre><code>
-    Pearson&#39;s product-moment correlation
-
-data:  swiss$Fertility and swiss$Agriculture
-t = 2.5316, df = 45, p-value = 0.01492
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- 0.07334947 0.58130587
-sample estimates:
-      cor 
-0.3530792 </code></pre>
+<pre class="r"><code>cor.test(x = swiss$Fertility, y = swiss$Agriculture)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  swiss$Fertility and swiss$Agriculture
+## t = 2.5316, df = 45, p-value = 0.01492
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.07334947 0.58130587
+## sample estimates:
+##       cor 
+## 0.3530792</code></pre>
 <p>Using the argument <code>method</code> we can choose between</p>
 <ul>
 <li><code>pearson</code></li>
@@ -1763,53 +1800,71 @@ sample estimates:
 <li><code>exact</code> (only for <code>kendall</code> and <code>spearman</code>)</li>
 </ul>
 <p>We additionally have the argument <code>continuity</code> that allows us to use continuity correction for <code>method = &quot;kendall&quot;</code> and <code>method = &quot;spearman&quot;</code>.</p>
-<pre><code>
-    Kendall&#39;s rank correlation tau
-
-data:  swiss$Fertility and swiss$Agriculture
-z = 1.77, p-value = 0.07673
-alternative hypothesis: true tau is not equal to 0
-sample estimates:
-      tau 
-0.1795465 </code></pre>
+<pre class="r"><code>cor.test(x = swiss$Fertility, y = swiss$Agriculture, method = &quot;kendall&quot;,
+         exact = FALSE, continuity = TRUE)</code></pre>
+<pre><code>## 
+##  Kendall&#39;s rank correlation tau
+## 
+## data:  swiss$Fertility and swiss$Agriculture
+## z = 1.77, p-value = 0.07673
+## alternative hypothesis: true tau is not equal to 0
+## sample estimates:
+##       tau 
+## 0.1795465</code></pre>
 <p>It is possible to use a <code>formula</code> specification:</p>
-<pre><code>
-    Pearson&#39;s product-moment correlation
-
-data:  Fertility and Agriculture
-t = 2.5316, df = 45, p-value = 0.01492
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- 0.07334947 0.58130587
-sample estimates:
-      cor 
-0.3530792 </code></pre>
+<pre class="r"><code>cor.test(~ Fertility + Agriculture, data = swiss)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  Fertility and Agriculture
+## t = 2.5316, df = 45, p-value = 0.01492
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.07334947 0.58130587
+## sample estimates:
+##       cor 
+## 0.3530792</code></pre>
 <p>This allows us to use the argument <code>subset</code> to select only part of the data:</p>
-<pre><code>
-    Pearson&#39;s product-moment correlation
-
-data:  Fertility and Agriculture
-t = 1.2838, df = 34, p-value = 0.2079
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.122145  0.507691
-sample estimates:
-      cor 
-0.2150193 </code></pre>
+<pre class="r"><code>cor.test(~ Fertility + Agriculture, data = swiss, subset = Infant.Mortality &gt; 18)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  Fertility and Agriculture
+## t = 1.2838, df = 34, p-value = 0.2079
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.122145  0.507691
+## sample estimates:
+##       cor 
+## 0.2150193</code></pre>
 </div>
 <div id="multiple-testing-adjustment" class="section level2">
 <h2>Multiple Testing Adjustment</h2>
 <p>Testing multiple hypotheses at a significance level will result in an overall chance of at least one false positive result that is larger than that significance level. We then need to correct for multiple testing.</p>
 <p>This can be done easily using the function <code>p.adjust()</code>:</p>
-<pre><code>        Fert         Agri         Exam 
-1.525636e-14 8.430616e-01 2.864543e-15 </code></pre>
-<pre><code>            pvals   p_adj_Bonf     p_adj_BH
-Fert 1.525636e-14 4.576907e-14 2.288453e-14
-Agri 8.430616e-01 1.000000e+00 8.430616e-01
-Exam 2.864543e-15 8.593628e-15 8.593628e-15</code></pre>
+<pre class="r"><code>pval1 &lt;- t.test(swiss$Fertility, mu = 50)$p.value
+pval2 &lt;- t.test(swiss$Agriculture, mu = 50)$p.value
+pval3 &lt;- t.test(swiss$Examination, mu = 30)$p.value
+
+# combine the unadjusted p-values in one vector
+(pvals &lt;- c(Fert = pval1, Agri = pval2, Exam = pval3))</code></pre>
+<pre><code>##         Fert         Agri         Exam 
+## 1.525636e-14 8.430616e-01 2.864543e-15</code></pre>
+<pre class="r"><code># Adjustment using the Bonferroni method:
+p_adj_Bonf &lt;- p.adjust(pvals, method = &#39;bonferroni&#39;)
+
+# Adjustment using the Benjamini-Hochberg method
+p_adj_BH &lt;- p.adjust(pvals, method = &quot;BH&quot;)
+
+cbind(pvals, p_adj_Bonf, p_adj_BH)</code></pre>
+<pre><code>##             pvals   p_adj_Bonf     p_adj_BH
+## Fert 1.525636e-14 4.576907e-14 2.288453e-14
+## Agri 8.430616e-01 1.000000e+00 8.430616e-01
+## Exam 2.864543e-15 8.593628e-15 8.593628e-15</code></pre>
 <p>The available correction methods are available in the vector <code>p.adjust.methods</code>:</p>
-<pre><code>[1] &quot;holm&quot;       &quot;hochberg&quot;   &quot;hommel&quot;     &quot;bonferroni&quot; &quot;BH&quot;         &quot;BY&quot;         &quot;fdr&quot;       
-[8] &quot;none&quot;      </code></pre>
+<pre class="r"><code>p.adjust.methods</code></pre>
+<pre><code>## [1] &quot;holm&quot;       &quot;hochberg&quot;   &quot;hommel&quot;     &quot;bonferroni&quot; &quot;BH&quot;         &quot;BY&quot;         &quot;fdr&quot;       
+## [8] &quot;none&quot;</code></pre>
 </div>
 
 

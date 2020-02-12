@@ -3551,11 +3551,11 @@ The function <code>dim()</code> could be used here.
 <div id="solution-3" class="section level3">
 <h3>Solution 3</h3>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">dim</span>(dat1)</a></code></pre></div>
-<pre><code>[1] 13  6</code></pre>
+<pre><code>## [1] 13  6</code></pre>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">dim</span>(FUdat)</a></code></pre></div>
-<pre><code>[1] 13  3</code></pre>
+<pre><code>## [1] 13  3</code></pre>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">dim</span>(basedat)</a></code></pre></div>
-<pre><code>[1] 5 4</code></pre>
+<pre><code>## [1] 5 4</code></pre>
 <p><code>FUdat</code> and <code>basedat</code> contain data on the exact same set of subjects and only the <code>id</code> variable is overlapping between the two datasets. Therefore, the resulting <code>dat1</code> should have the same number of rows as the data containing the repeated measurements (<code>FUdat</code>) and has one column less than the sum of the number of columns of both input datasets (6 = 3 + 4 - 1).</p>
 </div>
 </div>

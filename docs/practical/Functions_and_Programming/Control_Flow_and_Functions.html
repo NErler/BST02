@@ -3230,16 +3230,16 @@ Don’t forget that you now need to use indices.
 <h3>Solution 6</h3>
 <p>There are multiple possible ways to check this:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">all.equal</span>(nrj<span class="op">$</span>BMR1, nrj<span class="op">$</span>BMR2)</a></code></pre></div>
-<pre><code>[1] TRUE</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">identical</span>(nrj<span class="op">$</span>BMR1, nrj<span class="op">$</span>BMR2)</a></code></pre></div>
-<pre><code>[1] TRUE</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">table</span>(nrj<span class="op">$</span>BMR1 <span class="op">==</span><span class="st"> </span>nrj<span class="op">$</span>BMR2)</a></code></pre></div>
-<pre><code>
-TRUE 
- 100 </code></pre>
+<pre><code>## 
+## TRUE 
+##  100</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">summary</span>(nrj<span class="op">$</span>BMR1 <span class="op">-</span><span class="st"> </span>nrj<span class="op">$</span>BMR2)</a></code></pre></div>
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-      0       0       0       0       0       0 </code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       0       0       0       0       0       0</code></pre>
 </div>
 </div>
 <div id="data-summary" class="section level2 tabset tabset-pills tabset-fade">
@@ -3264,13 +3264,13 @@ You might use <code>mean()</code>, <code>sd()</code>, <code>table()</code> and <
 <div id="solution-1-1" class="section level3">
 <h3>Solution 1</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">mean</span>(nrj<span class="op">$</span>kcal)</a></code></pre></div>
-<pre><code>[1] 2200.36</code></pre>
+<pre><code>## [1] 2200.36</code></pre>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">sd</span>(nrj<span class="op">$</span>kcal)</a></code></pre></div>
-<pre><code>[1] 294.8881</code></pre>
+<pre><code>## [1] 294.8881</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(nrj<span class="op">$</span>sports))</a></code></pre></div>
-<pre><code>
-    never regularly sometimes 
-     0.34      0.23      0.43 </code></pre>
+<pre><code>## 
+##     never regularly sometimes 
+##      0.34      0.23      0.43</code></pre>
 </div>
 <div id="task-2-1" class="section level3">
 <h3>Task 2</h3>
@@ -3298,7 +3298,7 @@ You might also want to use the function <code>round()</code> to reduce the numbe
 <h3>Solution 2</h3>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># for &quot;kcal&quot;:</span></a>
 <a class="sourceLine" id="cb18-2" title="2"><span class="kw">paste0</span>(<span class="st">&quot;kcal: &quot;</span>, <span class="kw">round</span>(<span class="kw">mean</span>(nrj<span class="op">$</span>kcal), <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="kw">round</span>(<span class="kw">sd</span>(nrj<span class="op">$</span>kcal), <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>)</a></code></pre></div>
-<pre><code>[1] &quot;kcal: 2200.4 (294.9)&quot;</code></pre>
+<pre><code>## [1] &quot;kcal: 2200.4 (294.9)&quot;</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># for &quot;sports&quot;:</span></a>
 <a class="sourceLine" id="cb20-2" title="2"><span class="co"># table of proportions:</span></a>
 <a class="sourceLine" id="cb20-3" title="3">tab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(nrj<span class="op">$</span>sports))</a>
@@ -3306,7 +3306,7 @@ You might also want to use the function <code>round()</code> to reduce the numbe
 <a class="sourceLine" id="cb20-5" title="5">props &lt;-<span class="st"> </span><span class="kw">paste0</span>(tab <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="st">&quot;% &quot;</span>, <span class="kw">names</span>(tab), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</a>
 <a class="sourceLine" id="cb20-6" title="6"><span class="co"># combine variable name with proportions string:</span></a>
 <a class="sourceLine" id="cb20-7" title="7"><span class="kw">paste</span>(<span class="st">&#39;sports:&#39;</span>, props)</a></code></pre></div>
-<pre><code>[1] &quot;sports: 34% never, 23% regularly, 43% sometimes&quot;</code></pre>
+<pre><code>## [1] &quot;sports: 34% never, 23% regularly, 43% sometimes&quot;</code></pre>
 </div>
 <div id="task-3-1" class="section level3">
 <h3>Task 3</h3>
@@ -3339,12 +3339,12 @@ You need to autmatically check for each variable if it is a <code>factor()</code
 <a class="sourceLine" id="cb22-8" title="8">                 <span class="kw">round</span>(<span class="kw">mean</span>(nrj[, i]), <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="kw">round</span>(<span class="kw">sd</span>(nrj[, i]), <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>))</a>
 <a class="sourceLine" id="cb22-9" title="9">  }</a>
 <a class="sourceLine" id="cb22-10" title="10">}</a></code></pre></div>
-<pre><code>[1] &quot;kcal: 2200.4 (294.9)&quot;
-[1] &quot;weight: 95.6 (30.8)&quot;
-[1] &quot;height: 168.6 (11.5)&quot;
-[1] &quot;age: 50.1 (10.3)&quot;
-[1] &quot;BMR1: 1734.6 (375.8)&quot;
-[1] &quot;BMR2: 1734.6 (375.8)&quot;</code></pre>
+<pre><code>## [1] &quot;kcal: 2200.4 (294.9)&quot;
+## [1] &quot;weight: 95.6 (30.8)&quot;
+## [1] &quot;height: 168.6 (11.5)&quot;
+## [1] &quot;age: 50.1 (10.3)&quot;
+## [1] &quot;BMR1: 1734.6 (375.8)&quot;
+## [1] &quot;BMR2: 1734.6 (375.8)&quot;</code></pre>
 </div>
 </div>
 <div id="writing-your-own-function" class="section level2 tabset tabset-pills tabset-fade">
@@ -3376,14 +3376,14 @@ The general form of a function is <code>function(){...}</code>.
 <a class="sourceLine" id="cb24-3" title="3">}</a>
 <a class="sourceLine" id="cb24-4" title="4"></a>
 <a class="sourceLine" id="cb24-5" title="5"><span class="kw">summary_continuous</span>(nrj<span class="op">$</span>kcal)</a></code></pre></div>
-<pre><code>[1] &quot;2200.4 (294.9)&quot;</code></pre>
+<pre><code>## [1] &quot;2200.4 (294.9)&quot;</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">summary_categorical &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb26-2" title="2">  tab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(x))</a>
 <a class="sourceLine" id="cb26-3" title="3">  <span class="kw">paste0</span>(tab <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="st">&quot;% &quot;</span>, <span class="kw">names</span>(tab), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</a>
 <a class="sourceLine" id="cb26-4" title="4">}</a>
 <a class="sourceLine" id="cb26-5" title="5"></a>
 <a class="sourceLine" id="cb26-6" title="6"><span class="kw">summary_categorical</span>(nrj<span class="op">$</span>sports)</a></code></pre></div>
-<pre><code>[1] &quot;34% never, 23% regularly, 43% sometimes&quot;</code></pre>
+<pre><code>## [1] &quot;34% never, 23% regularly, 43% sometimes&quot;</code></pre>
 </div>
 <div id="task-2-2" class="section level3">
 <h3>Task 2</h3>
@@ -3406,14 +3406,14 @@ The general form of a function is <code>function(){...}</code>.
 <a class="sourceLine" id="cb28-10" title="10">}</a>
 <a class="sourceLine" id="cb28-11" title="11"></a>
 <a class="sourceLine" id="cb28-12" title="12"><span class="kw">summary_df</span>(<span class="dt">dat =</span> nrj)</a></code></pre></div>
-<pre><code>[1] &quot;60% female, 40% male&quot;
-[1] &quot;2200.4 (294.9)&quot;
-[1] &quot;95.6 (30.8)&quot;
-[1] &quot;168.6 (11.5)&quot;
-[1] &quot;50.1 (10.3)&quot;
-[1] &quot;34% never, 23% regularly, 43% sometimes&quot;
-[1] &quot;1734.6 (375.8)&quot;
-[1] &quot;1734.6 (375.8)&quot;</code></pre>
+<pre><code>## [1] &quot;60% female, 40% male&quot;
+## [1] &quot;2200.4 (294.9)&quot;
+## [1] &quot;95.6 (30.8)&quot;
+## [1] &quot;168.6 (11.5)&quot;
+## [1] &quot;50.1 (10.3)&quot;
+## [1] &quot;34% never, 23% regularly, 43% sometimes&quot;
+## [1] &quot;1734.6 (375.8)&quot;
+## [1] &quot;1734.6 (375.8)&quot;</code></pre>
 <p>Note that it would also be possible to use <code>print()</code> directly around the functions <code>summary_categorical()</code> and <code>summary_continuous()</code>, but for the next Task it is more convenient to first collect the summary string in an object (<code>summary_string</code>), and do the further steps with that object.</p>
 </div>
 <div id="task-3-2" class="section level3">
@@ -3438,14 +3438,14 @@ The function <code>summary_df()</code> that we created in the previous solution 
 <a class="sourceLine" id="cb30-10" title="10">}</a>
 <a class="sourceLine" id="cb30-11" title="11"></a>
 <a class="sourceLine" id="cb30-12" title="12"><span class="kw">summary_df</span>(<span class="dt">dat =</span> nrj)</a></code></pre></div>
-<pre><code>[1] &quot;sex: 60% female, 40% male&quot;
-[1] &quot;kcal: 2200.4 (294.9)&quot;
-[1] &quot;weight: 95.6 (30.8)&quot;
-[1] &quot;height: 168.6 (11.5)&quot;
-[1] &quot;age: 50.1 (10.3)&quot;
-[1] &quot;sports: 34% never, 23% regularly, 43% sometimes&quot;
-[1] &quot;BMR1: 1734.6 (375.8)&quot;
-[1] &quot;BMR2: 1734.6 (375.8)&quot;</code></pre>
+<pre><code>## [1] &quot;sex: 60% female, 40% male&quot;
+## [1] &quot;kcal: 2200.4 (294.9)&quot;
+## [1] &quot;weight: 95.6 (30.8)&quot;
+## [1] &quot;height: 168.6 (11.5)&quot;
+## [1] &quot;age: 50.1 (10.3)&quot;
+## [1] &quot;sports: 34% never, 23% regularly, 43% sometimes&quot;
+## [1] &quot;BMR1: 1734.6 (375.8)&quot;
+## [1] &quot;BMR2: 1734.6 (375.8)&quot;</code></pre>
 </div>
 </div>
 
