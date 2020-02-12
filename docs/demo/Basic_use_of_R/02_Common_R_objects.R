@@ -7,13 +7,10 @@
 #' ---
 #' 
 
-#' Load packages
-#' If you are using the package for the first time, you will have to first install it:
+#' Load packages \
+#' If you are using the package for the first time, you will have to first install it \
 # install.packages("survival") 
 library(survival)
-
-
-#' Most frequently used objects 
 
 #' Create vectors
 vec1 <- c(1:100)
@@ -22,6 +19,8 @@ vec3 <- c("male", "female", "female", "male", "female", "female")
 
 #' Create matrices
 matrix(1:4, 2, 2)
+
+#'Fill matrix in by row
 matrix(1:4, 2, 2, byrow = TRUE)
 
 weight_columns <- cbind(pbc$age, pbc$time)
@@ -31,7 +30,6 @@ matrix(weight_Rows, , 2, byrow = TRUE)
 
 #' TAKE CARE
 Columns_com <- cbind(c(1:4), c(1:8))
-
 
 #' Create data frames
 DF <- data.frame(Age = c(30, 20, 50),

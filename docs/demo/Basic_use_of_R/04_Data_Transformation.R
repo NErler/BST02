@@ -7,8 +7,8 @@
 #' ---
 #' 
 
-#' Load packages
-#' If you are using the package for the first time, you will have to first install it:
+#' Load packages \
+#' If you are using the package for the first time, you will have to first install it 
 # install.packages("survival") 
 # install.packages("reshape2")
 library(survival)
@@ -24,7 +24,7 @@ head(pbc)
 factor(pbc$sex, levels = c("m", "f"),
        labels = c("male","female"))
 
-#' Dichotomize variable
+#' Dichotomize variable \
 #' Categorize age (take as cut off value 40)
 pbc$age40higher <- pbc$age > 40
 
@@ -38,7 +38,6 @@ pbc$age40higher <- factor(pbc$age40higher, levels = c(0:1),
 head(pbc)
 
 
-#' Transform variables
 #' Standardize age
 pbc$ageST <- (pbc$age-mean(pbc$age))/(sd(pbc$age))
 head(pbc)
@@ -78,24 +77,3 @@ pbcLong <- pbcLong[order(pbcLong$id),]
 head(pbcLong)
 
 
-#' Missing values
-#' Check if there are missing values
-is.na(pbc$chol)
-
-#' Obtain complete cases for the variable chol
-DF <- pbc[complete.cases(pbc$chol), ]
-
-#' Obtain dimensions
-dim(pbc)
-dim(DF)
-
-#' Obtain data set where the chol variable has missing
-pbc_chol_na <- pbc[is.na(pbc$chol) == TRUE, ]
-head(pbc_chol_na)
-
-#' Obtain the dimensions of the data set where the chol variable has missing
-dim(pbc_chol_na)
-
-#' Outliers
-pbc_out_bili <- pbc[pbc$bili > 25, ]
-head(pbc_out_bili)

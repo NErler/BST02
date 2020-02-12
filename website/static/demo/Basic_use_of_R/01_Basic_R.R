@@ -7,8 +7,8 @@
 #' ---
 #' 
 
-#' Load packages
-#' If you are using the package for the first time, you will have to first install it:
+#' Load packages \
+#' If you are using the package for the first time, you will have to first install it \
 # install.packages("survival") 
 # install.packages("memisc") 
 library(survival)
@@ -18,7 +18,7 @@ library(memisc)
 head(pbc)
 
 #' Select the first 5 rows and columns 1-6, 11, 12
-dt <- pbc[1:5,c(1:6,11,12)]
+dt <- pbc[1:5, c(1:6,11,12)]
 dt
 
 #' What is the average age?
@@ -43,25 +43,23 @@ mean(c(pbc$bili, pbc$chol), na.rm = TRUE)
 x <- 103473
 x
 
-#' more examples
-#' u needs to be defined otherwise it will not print anything
-10
+#' More examples
+#' We need to define `u` and `p` before we use it, otherwise it will not print anything 
+# u
 u <- 10
 u
-
-#' p needs to be defined otherwise it will not print anything
-1
+# p
 p = 1
 p
 
-#' NOTE! o == 3
+#' NOTE! `o == 3`
 
 #' Case sensitive
 #' mean(pbc$Age) will not run because there is a typo
 names(pbc)
 pbc$age
 
-#' missing data
+#' Check for missing data
 is.na(p)
 is.na(pbc)
 
@@ -70,5 +68,5 @@ table(is.na(pbc))
 is.na(pbc$age)
 table(is.na(pbc$age)) 
 
-#' infinity
+#' Check for infinity data
 is.infinite(pbc$age)
