@@ -12,9 +12,22 @@ library(shiny)
 # Give the data and information that is needed #
 ################################################
 
-is.fact <- sapply(pbc2.id, is.factor)
-is.num <- sapply(pbc2.id, is.numeric)
+pbc$status <- factor(pbc$status, levels = c(0, 1, 2), 
+                     labels = c("censored", "transplant", "dead"))
+pbc$ascites <- factor(pbc$ascites, levels = c(0, 1), 
+                      labels = c("no", "yes"))
+pbc$hepato <- factor(pbc$hepato, levels = c(0, 1), 
+                     labels = c("no", "yes"))
+pbc$spiders <- factor(pbc$spiders, levels = c(0, 1), 
+                      labels = c("no", "yes"))
+pbc$trt <- factor(pbc$trt, levels = c(1, 2), 
+                      labels = c("D-penicillmain", "placebo"))
+pbc$stage <- factor(pbc$stage, levels = c(1, 2, 3, 4), 
+                      labels = c("1", "2", "3", "4"))
 
+is.fact <- sapply(pbc, is.factor)
+is.num <- sapply(pbc, is.numeric)
+is.num[1] <- FALSE
 
 #####################
 # Run the shiny app #
@@ -23,7 +36,7 @@ is.num <- sapply(pbc2.id, is.numeric)
 ui <- fluidPage(
   
   # Application title
-  titlePanel("Explore the apply family using the pbc2.id data set"),
+  titlePanel("Explore the apply family using the pbc data set"),
   
   # Text input 
   tabsetPanel(
@@ -32,7 +45,7 @@ ui <- fluidPage(
                sidebarPanel(
                  
                  p('Select the continous covariates (either as number or as name) that you want to investigate 
-                   (they have to be >= than two - e.g. c("years", "age") or c(2, 5))'),
+                   (they have to be >= than two - e.g. c("time", "age") or c(2, 5))'),
                  textInput("covariates1", "Continuous covariates", 
                            value = ""),
                  
@@ -64,12 +77,12 @@ ui <- fluidPage(
                  
                  p('Select a continuous covariate'),
                  selectInput("continuous2", "Continuous covariates",
-                             choices = colnames(pbc2.id[, is.num]),
+                             choices = colnames(pbc[, is.num]),
                              selected = "age"),
                  
                  p('Select a categorical covariate'),
                  selectInput("factors2", "Categorical covariates",
-                             choices = colnames(pbc2.id[, is.fact]),
+                             choices = colnames(pbc[, is.fact]),
                              selected = "sex"),
 
                  
@@ -138,7 +151,7 @@ server <- function(input, output) {
     } else {
       2
     }
-    return(paste0("apply(pbc2.id[ , ", (input$covariates1), "], ", rowcol, ", ", input$stats, ")"))
+    return(paste0("apply(pbc[ , ", (input$covariates1), "], ", rowcol, ", ", input$stats, ", na.rm = TRUE)"))
   })
   
   output$Routput <- renderText({
@@ -147,17 +160,17 @@ server <- function(input, output) {
     } else {
       2
     }
-    code1 <- paste0("apply(pbc2.id[ ,", input$covariates1, "], ", rowcol, ", ", input$stats, ")")
+    code1 <- paste0("apply(pbc[ ,", input$covariates1, "], ", rowcol, ", ", input$stats, ", na.rm = TRUE)")
     eval(parse(text = code1))
   })
   
   
   output$Rcode2 <- renderText({
-    return(paste0("tapply(pbc2.id$", input$continuous2, ", pbc2.id$", input$factors2, ", ", input$stats2, ")"))
+    return(paste0("tapply(pbc$", input$continuous2, ", pbc$", input$factors2, ", ", input$stats2, ", na.rm = TRUE)"))
   })
   
   output$Routput2 <- renderText({
-    code1 <- paste0("tapply(pbc2.id$", input$continuous2, ", pbc2.id$", input$factors2, ", ", input$stats2, ")")
+    code1 <- paste0("tapply(pbc$", input$continuous2, ", pbc$", input$factors2, ", ", input$stats2, ", na.rm = TRUE)")
     eval(parse(text = code1))
   })
   
@@ -167,7 +180,7 @@ server <- function(input, output) {
     } else {
       stats3 <- input$stats3
     }
-    return(paste0(input$applys3, "(pbc2.id[ , ", input$continuous3, "], ", stats3, ")"))
+    return(paste0(input$applys3, "(pbc[ , ", input$continuous3, "], ", stats3, ")"))
   })
   
   output$Routput3 <- renderPrint({
@@ -176,7 +189,7 @@ server <- function(input, output) {
     } else {
       stats3 <- input$stats3
     }
-    code1 <- paste0(input$applys3, "(pbc2.id[, ", input$continuous3, "], ", stats3, ")")
+    code1 <- paste0(input$applys3, "(pbc[, ", input$continuous3, "], ", stats3, ")")
     eval(parse(text = code1))
   })
   

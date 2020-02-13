@@ -1,3 +1,5 @@
+rm(list = ls())
+
 #################
 # Load packages #
 #################
@@ -34,7 +36,7 @@ is.num <- sapply(pbc, is.numeric)
 ui <- fluidPage(
   
   # Application title
-  titlePanel("Explore indexing using the pbc data set"),
+  titlePanel("Explore indexing using the pbc data from the survival package"),
   
   # Text input 
   tabsetPanel(
@@ -83,7 +85,7 @@ ui <- fluidPage(
                  conditionalPanel(condition = 'input.factors2 == "ascites"', 
                                   uiOutput("ascites2")),
                  conditionalPanel(condition = 'input.factors2 == "hepato"', 
-                                  uiOutput("hepatomegaly")),
+                                  uiOutput("hepato2")),
                  conditionalPanel(condition = 'input.factors2 == "spiders"', 
                                   uiOutput("spiders2")),
                  conditionalPanel(condition = 'input.factors2 == "edema"', 
@@ -122,7 +124,7 @@ ui <- fluidPage(
                  conditionalPanel(condition = 'input.factors3a == "ascites"', 
                                   uiOutput("ascites3a")),
                  conditionalPanel(condition = 'input.factors3a == "hepato"', 
-                                  uiOutput("hepatomegaly3a")),
+                                  uiOutput("hepato3a")),
                  conditionalPanel(condition = 'input.factors3a == "spiders"', 
                                   uiOutput("spiders3a")),
                  conditionalPanel(condition = 'input.factors3a == "edema"', 
@@ -145,7 +147,7 @@ ui <- fluidPage(
                  conditionalPanel(condition = 'input.factors3b == "ascites"', 
                                   uiOutput("ascites3b")),
                  conditionalPanel(condition = 'input.factors3b == "hepato"', 
-                                  uiOutput("hepatomegaly2b")),
+                                  uiOutput("hepato3b")),
                  conditionalPanel(condition = 'input.factors3b == "spiders"', 
                                   uiOutput("spiders3b")),
                  conditionalPanel(condition = 'input.factors3b == "edema"', 
@@ -190,7 +192,7 @@ ui <- fluidPage(
                  conditionalPanel(condition = 'input.factors4 == "ascites"', 
                                   uiOutput("ascites4")),
                  conditionalPanel(condition = 'input.factors4 == "hepato"', 
-                                  uiOutput("hepatomegaly4")),
+                                  uiOutput("hepato4")),
                  conditionalPanel(condition = 'input.factors4 == "spiders"', 
                                   uiOutput("spiders4")),
                  conditionalPanel(condition = 'input.factors4 == "edema"', 
@@ -314,19 +316,19 @@ server <- function(input, output) {
                 choices = subcat$ascites, selected = "No")
   })
   
-  output$hepatomegaly2 <- renderUI({
+  output$hepato2 <- renderUI({
     selectInput("hepato2", "Categories", 
                 choices = subcat$hepato, selected = "No")
   })
-  output$hepatomegaly3a <- renderUI({
+  output$hepato3a <- renderUI({
     selectInput("hepato3a", "Categories", 
                 choices = subcat$hepato, selected = "No")
   })
-  output$hepatomegaly3b <- renderUI({
+  output$hepato3b <- renderUI({
     selectInput("hepato3b", "Categories", 
                 choices = subcat$hepato, selected = "No")
   })
-  output$hepatomegaly4 <- renderUI({
+  output$hepato4 <- renderUI({
     selectInput("hepato4", "Categories", 
                 choices = subcat$hepato, selected = "No")
   })
@@ -407,7 +409,7 @@ server <- function(input, output) {
     if(input$factors2 == "drug")  return(paste0("pbc[pbc$", input$factors2, " == ", dQuote(input$drug2),", ]"))
     if(input$factors2 == "sex")  return(paste0("pbc[pbc$", input$factors2, " == ", dQuote(input$sex2),", ]"))
     if(input$factors2 == "ascites")  return(paste0("pbc[pbc$", input$factors2, " == ", dQuote(input$ascites2),", ]"))
-    if(input$factors2 == "hepatomegaly")  return(paste0("pbc[pbc$", input$factors2, " == ", dQuote(input$hepatomegaly2),", ]"))
+    if(input$factors2 == "hepato")  return(paste0("pbc[pbc$", input$factors2, " == ", dQuote(input$hepato2),", ]"))
     if(input$factors2 == "spiders")  return(paste0("pbc[pbc$", input$factors2, " == ", dQuote(input$spiders2),", ]"))
     if(input$factors2 == "edema")  return(paste0("pbc[pbc$", input$factors2, " == ", dQuote(input$edema2),", ]"))
     
@@ -419,7 +421,7 @@ server <- function(input, output) {
       code1 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$status2),", ]")
       eval(parse(text = code1))
     } else if (input$factors2 == "drug")  {
-      code2 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$drug2),", ]")
+      code1 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$drug2),", ]")
       eval(parse(text = code2))
     } else if(input$factors2 == "sex")  {
       code1 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$sex2),", ]")
@@ -427,8 +429,8 @@ server <- function(input, output) {
     } else if(input$factors2 == "ascites")  {
       code1 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$ascites2),", ]")
       eval(parse(text = code1))
-    } else if(input$factors2 == "hepatomegaly")  {
-      code1 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$hepatomegaly2),", ]")
+    } else if(input$factors2 == "hepato")  {
+      code1 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$hepato2),", ]")
       eval(parse(text = code1))
     }else if(input$factors2 == "spiders")  {
       code1 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$spiders2),", ]")
@@ -452,7 +454,7 @@ server <- function(input, output) {
     } else if (input$factors3a == "ascites") {
       categ3a <- input$ascites3a
     } else if (input$factors3a == "hepato") {
-      categ3a <- input$hepatomegaly3a
+      categ3a <- input$hepato3a
     } else if (input$factors3a == "spiders") {
       categ3a <- input$spiders3a
     } else if (input$factors3a == "edema") {
@@ -471,7 +473,7 @@ server <- function(input, output) {
     } else if (input$factors3b == "ascites") {
       categ3b <- input$ascites3b
     } else if (input$factors3b == "hepato") {
-      categ3b <- input$hepatomegaly3b
+      categ3b <- input$hepato3b
     } else if (input$factors3b == "spiders") {
       categ3b <- input$spiders3b
     } else if (input$factors3b == "edema") {
@@ -521,7 +523,7 @@ server <- function(input, output) {
     } else if (input$factors4 == "ascites") {
       categ4 <- input$ascites4
     } else if (input$factors4 == "hepato") {
-      categ4 <- input$hepatomegaly4
+      categ4 <- input$hepato4
     } else if (input$factors4 == "spiders") {
       categ4 <- input$spiders4
     } else if (input$factors4 == "edema") {

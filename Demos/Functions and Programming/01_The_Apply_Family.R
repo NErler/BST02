@@ -27,23 +27,23 @@ head(apply(pbc[, c("time", "age", "bili")], 2, function(x) (x-mean(x))/sd(x)))
 X <-  sample(0:200, 100)
 Mat <- matrix(X, 50, 50) 
 
-#' Obtain the mean value per row
+#' Obtain the mean value of each row for matrix `Mat`
 apply(Mat, 1, mean)
 
-#' Obtain the mean value per column
+#' Obtain the mean value of each column for matrix `Mat`
 apply(Mat, 2, mean)
 
-#' Calculate the sum of matrix `Mat` per column
+#' Calculate the sum of each column for matrix `Mat`
 apply(Mat, 2, function(x) sum(x))
 
 
 #' **lapply** \
 
-#' Obtain the quadratic term of the vector `1:3` in a list format
+#' Obtain the quadratic term of the vector `1:3`. Present the results as a list
 lapply(1:3, function(x) x^2)
 
 #' Create a list that consist of `Mat` and `Mat^2` \
-#' Obtain the mean of each element in a list format
+#' Obtain the mean of each element. Present the results as a list
 X <- list(Mat, Mat^2)
 lapply(X, mean)
 
@@ -54,26 +54,26 @@ C <- matrix(8:10, 3,2)
 MyList <- list(A,B,C) 
 
 #' Select the first row of each element \
-#' Obtain the results in a list format
+#' Present the results as a list
 lapply(MyList,"[", 1, )
 
-#' Select the second column of each element \
-#' Obtain the results in a list format
+#' Select the second column of each element
+#' Present the results as a list
 lapply(MyList,"[", , 2)
 
 
 #' **sapply** \
 
-#' Obtain the quadratic term of the vector `1:3` in a vector format
+#' Obtain the quadratic term of the vector `1:3`. Present the results as a vector
 sapply(1:3, function(x) x^2)
 
 #' Create a list that consist of `Mat` and `Mat^2` \
-#' Obtain the mean of each element in a vector format
+#' Obtain the mean of each element. Present the results as a vector
 X <- list(Mat, Mat^2)
 sapply(X, mean)
 
 #' Select the second column and first row of each element \
-#' Obtain the results in a vector format
+#' Present the results as a list
 sapply(MyList,"[", 2, 1)
 
 
@@ -163,8 +163,8 @@ head(!duplicated(pbcseq[c("id")], fromLast = TRUE))
 tapply(pbcseq.idNEW2$bili, pbcseq.idNEW2$status, mean)
 
 
-
-#' Let's assume that we want to obtain the mean serum bilirubin of the last stage of edema per event group \
+#' Let's again assume that only the long format data set `pbcseq` is available \
+#' We want to obtain the mean serum bilirubin of the last stage of edema per event group \
 #' Each patient and edema stage is counted once! \
 
 #' Sort data

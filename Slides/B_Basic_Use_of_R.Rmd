@@ -267,7 +267,8 @@ x
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Basic R \button{01_Basic_R.R}{R} \button{01_Basic_R.html}{html}
+\item Basic R 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/01_Basic_R.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/01_Basic_R.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -453,7 +454,8 @@ list1
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Common R Objects \button{02_Common_R_objects.R}{R} \button{02_Common_R_objects.html}{html}
+\item Common R Objects 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/02_Common_R_objects.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/02_Common_R_objects.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -516,7 +518,9 @@ list1
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Importing and Saving \button{03_Importing_Saving.R}{R} \button{03_Importing_Saving.html}{html}
+\item Importing and Saving 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/03_Importing_Saving.R}{R} 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/03_Importing_Saving.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -593,7 +597,8 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Data Transformation \button{04_Data_Transformation.R}{R} \button{04_Data_Transformation.html}{html}
+\item Data Transformation 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/04_Data_Transformation.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/04_Data_Transformation.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -631,7 +636,9 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Data Exploration \button{05_Data_Exploration.R}{R} \button{05_Data_Exploration.html}{html}
+\item Data Exploration 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/05_Data_Exploration.R}{R} 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/05_Data_Exploration.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -770,7 +777,8 @@ pie(prop.table(table(pbc$status)),
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Data Visualization \button{06_Data_Visualization.R}{R} \button{06_Data_Visualization.html}{html}
+\item Data Visualization 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/06_Data_Visualization.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/06_Data_Visualization.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -1126,7 +1134,7 @@ mylist$y
 ## Indexing/Subsetting (cont'd)
 
 * Use the following webpage to further investigate subsetting
-https://emcbiostatistics.shinyapps.io/the_apply_family/
+https://emcbiostatistics.shinyapps.io/indexing/
 
 * The **R** code for the shiny app is also available: 
 
@@ -1134,7 +1142,7 @@ https://emcbiostatistics.shinyapps.io/the_apply_family/
 \begin{column}{0.52\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Indexing Subsetting shiny app \button{08_shiny_app_indexing.R}{R} \
+\item Indexing Subsetting shiny app \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/08_shiny_app_indexing.R}{R} \
 \end{itemize}
 \end{block}
 \end{column}
@@ -1143,7 +1151,7 @@ https://emcbiostatistics.shinyapps.io/the_apply_family/
 \end{column}
 \end{columns}
 
-In order to run the app you will need to install the package `shiny`
+In order to run the app you will need to install the packages `survival` and `shiny`
 
 
 ## Useful Summary: Indexing/Subsetting
@@ -1195,7 +1203,8 @@ In order to run the app you will need to install the package `shiny`
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Indexing Subsetting \button{07_Indexing_Subsetting.R}{R} \button{07_Indexing_Subsetting.html}{html}
+\item Indexing Subsetting 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/07_Indexing_Subsetting.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/07_Indexing_Subsetting.html}{html}
 \end{itemize}
 \end{block}
 \end{column}

@@ -888,6 +888,29 @@ mapply(length, myList, SIMPLIFY = FALSE)
 
 \end{columns}
 
+## Useful Summary: Apply Family
+
+* Use the following webpage to further investigate subsetting
+https://emcbiostatistics.shinyapps.io/the_apply_family/
+
+* The **R** code for the shiny app is also available: 
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.52\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Indexing Subsetting shiny app \button{shiny_app_apply_family.R}{R} \
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.48\linewidth}
+\end{column}
+\end{columns}
+
+In order to run the app you will need to install the packages `survival` and `shiny`
+
+
 ## Useful Summary: Apply Family (cont'd)
 
 
@@ -895,7 +918,8 @@ mapply(length, myList, SIMPLIFY = FALSE)
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item The Apply Family \button{01_The_Apply_Family.R}{R} \button{01_The_Apply_Family.html}{html}
+\item The Apply Family 
+\button{https://nerler.github.io/BST02/demo/Functions_and_Programming/01_The_Apply_Family.R}{R} \button{https://nerler.github.io/BST02/demo/Functions_and_Programming/01_The_Apply_Family.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
