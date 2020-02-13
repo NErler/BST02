@@ -12,7 +12,7 @@
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-12" />
+<meta name="date" content="2020-02-13" />
 
 <title>Demo: Indexing/Subsetting</title>
 
@@ -366,12 +366,13 @@ summary {
 <h1 class="title toc-ignore">Demo: Indexing/Subsetting</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">12 February 2020</h4>
+<h4 class="date">13 February 2020</h4>
 
 </div>
 
 
-<p>Load packages If you are using the package for the first time, you will have to first install it:</p>
+<p>Load packages<br />
+If you are using the package for the first time, you will have to first install it</p>
 <pre class="r"><code># install.packages(&quot;survival&quot;) 
 library(survival)</code></pre>
 <p>Select the 3rd element for vector age</p>
@@ -674,10 +675,10 @@ library(survival)</code></pre>
 <pre class="r"><code>pbc[pbc$id == 5, ]</code></pre>
 <pre><code>##   id time     status trt   age sex ascites hepato spiders edema bili chol
 ## 5  5 1504 transplant   2 38.11   f       0      1       1     0  3.4  279
-##   albumin copper alk.phos    ast trig platelet protime stage age40higher
-## 5    3.53    143      671 113.15   72      136    10.9     3       young
-##       ageST
-## 5 -1.209061</code></pre>
+##   albumin copper alk.phos    ast trig platelet protime stage stage_ord
+## 5    3.53    143      671 113.15   72      136    10.9     3         3
+##   stage_rev stage_ref4 age40higher     ageST
+## 5         3          3       young -1.209061</code></pre>
 <p>Select the serum cholesterol for all males</p>
 <pre class="r"><code>pbc[pbc$sex == &quot;m&quot;, &quot;bili&quot;]</code></pre>
 <pre><code>##  [1] 1.4 0.8 0.6 2.1 1.9 6.0 1.8 0.7 0.6 1.4 7.2 1.6 2.0 1.8 2.3 3.2 3.5
@@ -717,7 +718,7 @@ library(survival)</code></pre>
 <pre><code>##     id futime     status trt      age sex day ascites hepato spiders edema
 ## 1    1    400       dead   1 58.76523   f   0       1      1       1   1.0
 ## 3    2   5169   censored   1 56.44627   f   0       0      1       1   0.0
-## 12   3   1012       dead   1 70.07255   m   0       0      0       0   0.5
+## 13   3   1012       dead   1 70.07255   m 176       0      1       1   0.0
 ## 16   4   1925       dead   1 54.74059   f   0       0      1       1   0.5
 ## 23   5   1505 transplant   0 38.10541   f   0       0      1       1   0.0
 ## 29   6   2503       dead   0 66.25873   f   0       0      1       0   0.0
@@ -728,12 +729,12 @@ library(survival)</code></pre>
 ## 58  11   3762       dead   0 53.71389   f   0       0      1       1   0.0
 ## 70  12    304       dead   0 59.13758   f   0       0      0       1   0.0
 ## 72  13   4247   censored   0 45.68925   f   0       0      0       0   0.0
-## 84  14   1217       dead   0 56.22177   m   0       1      1       0   1.0
+## 85  14   1217       dead   0 56.22177   m 202       0      1       1   0.5
 ## 91  15   3584       dead   1 64.64613   f   0       0      0       0   0.0
 ## 102 16   4345   censored   0 40.44353   f   0       0      0       0   0.0
 ## 115 17    769       dead   0 52.18344   f   0       0      1       0   0.0
 ## 118 18    132       dead   1 53.93018   f   0       0      1       1   1.0
-## 119 19   4901   censored   1 49.56057   f   0       0      1       0   0.5
+## 120 19   4901   censored   1 49.56057   f 194       0      0       1   0.0
 ## 134 20   1356       dead   0 59.95346   f   0       0      1       0   0.0
 ## 138 21   3657       dead   0 64.18891   m   0       0      1       1   0.0
 ## 150 22    673       dead   1 56.27652   f   0       0      0       1   0.0
@@ -746,7 +747,7 @@ library(survival)</code></pre>
 ## 190 29   5074       dead   0 63.87680   f   0       0      0       0   0.0
 ## 200 30    321       dead   0 41.38535   f   0       0      1       1   0.0
 ## 203 31   3839       dead   0 41.55236   f   0       0      1       0   0.0
-## 215 32   5192   censored   0 53.99589   f   0       0      1       0   0.5
+## 216 32   5192   censored   0 53.99589   f 182       0      0       0   0.0
 ## 231 33   3170       dead   0 51.28268   f   0       0      0       0   0.0
 ## 241 34   4602   censored   1 52.06023   f   0       0      0       0   0.5
 ## 255 35   2847       dead   0 48.61875   f   0       0      0       0   0.0
@@ -758,7 +759,7 @@ library(survival)</code></pre>
 ## 305 41   1350       dead   1 33.63450   f   0       0      1       0   0.0
 ## 309 42   5122   censored   0 33.69473   f   0       0      1       1   0.0
 ## 325 43   5225   censored   1 48.87064   f   0       0      0       0   0.0
-## 340 44   3428       dead   0 37.58248   f   0       0      1       1   1.0
+## 341 44   3428       dead   0 37.58248   f 192       0      0       0   0.5
 ## 351 45   4694   censored   0 41.79329   f   0       0      0       0   0.0
 ## 360 46   2256       dead   1 45.79877   f   0       0      1       0   0.0
 ## 368 47   3245   censored   0 47.42779   f   0       0      0       0   0.0
@@ -768,7 +769,7 @@ library(survival)</code></pre>
 ##     bili chol albumin alk.phos   ast platelet protime stage visits
 ## 1   14.5  261    2.60     1718 138.0      190    12.2     4      1
 ## 3    1.1  302    4.14     7395 113.5      221    10.6     3      1
-## 12   1.4  176    3.48      516  96.1      151    12.0     4      1
+## 13   1.1   NA    3.29      353  69.8      160    12.0     4      1
 ## 16   1.8  244    2.54     6122  60.6      183    10.3     4      1
 ## 23   3.4  279    3.53      671 113.2      136    10.9     3      1
 ## 29   0.8  248    3.98      944  93.0       NA    11.0     3      1
@@ -779,12 +780,12 @@ library(survival)</code></pre>
 ## 58   1.4  259    4.16     1104  79.1      258    12.0     4      1
 ## 70   3.6  236    3.52      591  82.2       71    13.6     4      1
 ## 72   0.7  281    3.85     1181  88.4      244    10.6     3      1
-## 84   0.8   NA    2.27      728  71.0      156    11.0     4      1
+## 85   1.1   NA    2.51      850  76.0      137    11.0     4      1
 ## 91   0.8  231    3.87     9010 127.7      295    11.0     3      1
 ## 102  0.7  204    3.66      685  72.9      198    10.8     3      1
 ## 115  2.7  274    3.15     1533 117.8      224    10.5     4      1
 ## 118 11.4  178    2.80      961 280.6      283    12.4     4      1
-## 119  0.7  235    3.56     1881  93.0      209    11.0     3      1
+## 120  0.5   NA    4.00      942  46.5      215    11.2     3      1
 ## 134  5.1  374    3.51     1919 122.5      322    13.0     4      1
 ## 138  0.6  252    3.83      843  65.1      336    11.4     4      1
 ## 150  3.4  271    3.63     1376 120.9      173    11.6     4      1
@@ -797,7 +798,7 @@ library(survival)</code></pre>
 ## 190  0.7  370    3.78     5833  73.5      390    10.6     2      1
 ## 200  3.6  260    2.54     7277 121.3      124    11.0     4      1
 ## 203  4.7  296    3.44     9933 206.4      195    10.3     2      1
-## 215  1.8  262    3.34     7277  82.6      286    10.6     4      1
+## 216  1.9   NA    4.05     2144 116.3      223    10.5     4      1
 ## 231  0.8  210    3.19     1592 218.6      180    12.0     3      1
 ## 241  0.8  364    3.70     1840 170.5      273    10.5     2      1
 ## 255  1.2  314    3.20    12259  72.2      431    10.6     3      1
@@ -809,7 +810,7 @@ library(survival)</code></pre>
 ## 305  6.8   NA    3.26     1215 151.9      226    11.7     4      1
 ## 309  2.1   NA    3.54     8778  56.8      344    11.0     4      1
 ## 325  1.1  361    3.64     5430  67.1      203    10.6     2      1
-## 340  3.3  299    3.55     1029 119.4      199    11.7     3      1
+## 341  3.9   NA    3.55      845  91.5      144    10.4     3      1
 ## 351  0.6   NA    3.93     1826  71.3      474    10.9     2      1
 ## 360  5.7  482    2.84    11552 136.7      518    12.7     3      1
 ## 368  0.5  316    3.65     1716 187.6      356     9.8     3      1
@@ -824,7 +825,7 @@ library(survival)</code></pre>
 ## 11   2   5169   censored   1 56.44627   f 3226       1      1       1
 ## 15   3   1012       dead   1 70.07255   m  743       0      0       1
 ## 22   4   1925       dead   1 54.74059   f 1824       1      1       1
-## 28   5   1505 transplant   0 38.10541   f 1455       0      1       1
+## 27   5   1505 transplant   0 38.10541   f 1098       0      1       1
 ## 34   6   2503       dead   0 66.25873   f 2453      NA     NA      NA
 ## 41   7   2501   censored   0 55.53457   f 2262       0      0       0
 ## 49   8   2466       dead   0 53.05681   f 2218       1      1       0
@@ -833,12 +834,12 @@ library(survival)</code></pre>
 ## 69  11   3762       dead   0 53.71389   f 3694       1      1       1
 ## 71  12    304       dead   0 59.13758   f  180       1      0       1
 ## 83  13   4247   censored   0 45.68925   f 4243       0      0       0
-## 90  14   1217       dead   0 56.22177   m 1204      NA     NA      NA
+## 87  14   1217       dead   0 56.22177   m  553       1      1       0
 ## 101 15   3584       dead   1 64.64613   f 3537      NA     NA      NA
 ## 114 16   4345   censored   0 40.44353   f 4054       0      0       0
 ## 117 17    769       dead   0 52.18344   f  673       1      1       1
 ## 118 18    132       dead   1 53.93018   f    0       0      1       1
-## 133 19   4901   censored   1 49.56057   f 4696       0      1       0
+## 119 19   4901   censored   1 49.56057   f    0       0      1       0
 ## 137 20   1356       dead   0 59.95346   f 1344      NA     NA      NA
 ## 149 21   3657       dead   0 64.18891   m 3513      NA     NA      NA
 ## 152 22    673       dead   1 56.27652   f  360       0      0       1
@@ -853,17 +854,17 @@ library(survival)</code></pre>
 ## 214 31   3839       dead   0 41.55236   f 3590       0      0       1
 ## 230 32   5192   censored   0 53.99589   f 5152       0      0       0
 ## 240 33   3170       dead   0 51.28268   f 3004       0      0       0
-## 254 34   4602   censored   1 52.06023   f 4457       0      1       0
-## 258 35   2847       dead   0 48.61875   f  743       0      1       0
-## 269 36   4281   censored   0 56.41068   f 3956       0      1       1
+## 251 34   4602   censored   1 52.06023   f 3318       0      1       0
+## 257 35   2847       dead   0 48.61875   f  376       0      1       0
+## 268 36   4281   censored   0 56.41068   f 3137       1      1       1
 ## 271 37    223       dead   1 61.72758   f  144       1      1       1
 ## 281 38   3244       dead   0 36.62697   f 3209      NA     NA      NA
-## 289 39   2297       dead   1 55.39220   f 2247       0      1       0
+## 288 39   2297       dead   1 55.39220   f 1883       0      1       1
 ## 304 40   5136   censored   1 46.66940   f 4845       0      1       1
 ## 308 41   1350       dead   1 33.63450   f 1151       0      1       1
 ## 324 42   5122   censored   0 33.69473   f 5118       0      1       1
 ## 339 43   5225   censored   1 48.87064   f 4877       1      1       0
-## 350 44   3428       dead   0 37.58248   f 3414      NA     NA      NA
+## 348 44   3428       dead   0 37.58248   f 2671       0      1       1
 ## 359 45   4694   censored   0 41.79329   f 3219       0      0       1
 ## 367 46   2256       dead   1 45.79877   f 2174       0      1       1
 ## 374 47   3245   censored   0 47.42779   f 2311       0      1       0
@@ -875,7 +876,7 @@ library(survival)</code></pre>
 ## 11    1.0  4.6  237    2.67      669  88.0      100    11.5     3      9
 ## 15    0.5  1.8  185    3.25      447  88.4      109    13.3     4      4
 ## 22    1.0  5.3  140    1.83      623 131.8      101    17.0     4      7
-## 28    0.5 19.0   91    2.09      377 156.0      101    13.9     4      6
+## 27    1.0  5.2  198    3.02      588 170.0       82    11.3     4      6
 ## 34    0.0  0.7   NA    4.20       NA  60.0       NA    10.5     4      6
 ## 41    0.0  1.4  260    3.59      448  54.0      114    12.0     3      7
 ## 49    0.5  5.4  341    2.47     1203 120.9      238    11.3     4      8
@@ -884,12 +885,12 @@ library(survival)</code></pre>
 ## 69    1.0  9.6   NA    2.31      660 121.0      132    15.1     4     12
 ## 71    0.5 10.0   NA    3.00      737 114.7       98    14.1     4      2
 ## 83    0.0  1.2  221    4.26      751  72.0      176    10.2     4     12
-## 90    0.5  0.9   NA    2.39       NA  71.0       NA    11.9     4      7
+## 87    1.0  0.6   NA    2.55      429  72.0       96    11.9     4      7
 ## 101   1.0 11.4   NA    2.40       NA 114.0       NA    13.0     4     11
 ## 114   0.0  0.9  306    3.51     1004 120.0      231    11.8     4     13
 ## 117   1.0 13.6  246    2.44      539 141.0      322    12.1     4      3
 ## 118   1.0 11.4  178    2.80      961 280.6      283    12.4     4      1
-## 133   0.0  0.8  197    3.30      798  59.0      162    11.9     4     15
+## 119   0.5  0.7  235    3.56     1881  93.0      209    11.0     3     15
 ## 137   0.0 32.0   NA    2.40       NA 156.6       NA    19.0     4      4
 ## 149   1.0  7.8   NA    2.40       NA  73.0       NA    13.8     4     12
 ## 152   0.5  2.4   NA    2.37     1756 148.8      182    11.7     4      3
@@ -904,17 +905,17 @@ library(survival)</code></pre>
 ## 214   0.0 12.0  219    2.89      995 211.0      120    12.6     4     12
 ## 230   0.5  0.9  200    3.32      866  61.0      132    11.1     4     16
 ## 240   0.0  1.3   NA    3.37     1498  85.0      147    10.7     3     10
-## 254   0.5  1.0  329    2.99      661  97.0      193    11.6     3     14
-## 258   0.0  4.2  271    3.70     2780 117.8      473    10.5     4      4
-## 269   0.0  0.7  236    2.76      761  43.0      220    12.3     4     11
+## 251   1.0  0.3  318    2.96      762  88.0      224    10.8     3     14
+## 257   0.5  3.5   NA    3.67     3112 130.2      422    10.9     4      4
+## 268   0.5  0.3  192    2.59      383  52.0      101    11.3     4     11
 ## 271   1.0 13.5   NA    2.38     1737 218.6      114    13.3     4      2
 ## 281   0.5  5.6   NA    1.90       NA  69.0       NA    11.9     4     10
-## 289   0.5 10.5  275    2.60     1034 258.9      556    10.3     4      8
+## 288   1.0  4.3   NA    3.18     1639 181.4      549    10.0     4      8
 ## 304   1.0 18.0  192    2.88     1195 144.0      222    12.7     4     15
 ## 308   1.0 16.2   NA    2.73     1240 145.7      109    13.6     4      4
 ## 324   0.5 13.0  261    2.34     2337 217.0      152    12.6     4     16
 ## 339   0.0  1.1   NA    3.10      802  53.0       70    12.2     4     15
-## 350   0.5 29.4   NA    1.90       NA 204.0       NA    16.1     4     11
+## 348   1.0  4.8  265    2.74      783 169.0       99    11.0     4     11
 ## 359   0.0  0.8  430    3.15       73  70.0      257     9.8     3      9
 ## 367   1.0 16.5   NA    2.75      881 266.6      110    13.4     4      8
 ## 374   0.0  0.9  311    3.26     1420  99.0      151    11.5     4      7
@@ -922,10 +923,10 @@ library(survival)</code></pre>
 ## 387   0.0  3.1   NA    2.31       NA 170.5       NA    11.3     4      4
 ## 396   1.0  5.8  266    2.86      879 187.0       82    15.1     3      9
 ##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 262 rows ]</code></pre>
-<p>From the vector pbc$age, select the age which is younger than 30</p>
+<p>From the vector pbc$age, select patients that are younger than 30</p>
 <pre class="r"><code>pbc$age[pbc$age &lt; 30]</code></pre>
 <pre><code>## [1] 28.88 29.56 26.28</code></pre>
-<p>From the vector pbc$age, select only female patient</p>
+<p>From the vector pbc$age, select only female patients</p>
 <pre class="r"><code>pbc$age[pbc$sex == &quot;f&quot;]</code></pre>
 <pre><code>##   [1] 58.77 56.45 54.74 38.11 66.26 55.53 53.06 42.51 70.56 53.71 59.14
 ##  [12] 45.69 64.65 40.44 52.18 53.93 49.56 59.95 56.28 55.97 45.07 52.02
@@ -964,15 +965,15 @@ library(survival)</code></pre>
 <p>From the vector pbc$age, select the 3rd element</p>
 <pre class="r"><code>pbc$age[3]</code></pre>
 <pre><code>## [1] 70.07</code></pre>
-<p>From the pbc data set, select male patients that died</p>
+<p>Select all male patients that died</p>
 <pre class="r"><code>pbc[pbc$sex == &quot;m&quot; &amp; pbc$status == 2, ]      </code></pre>
 <pre><code>##  [1] id          time        status      trt         age        
 ##  [6] sex         ascites     hepato      spiders     edema      
 ## [11] bili        chol        albumin     copper      alk.phos   
 ## [16] ast         trig        platelet    protime     stage      
-## [21] age40higher ageST      
+## [21] stage_ord   stage_rev   stage_ref4  age40higher ageST      
 ## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
-<p>From the pbc data set, select male patients or patients that died</p>
+<p>Select male patients or patients that died</p>
 <pre class="r"><code>pbc[pbc$sex == &quot;m&quot; | pbc$status == 2, ]   </code></pre>
 <pre><code>##      id time     status trt   age sex ascites hepato spiders edema bili
 ## 3     3 1012       dead   1 70.07   m       0      0       0   0.5  1.4
@@ -1011,14 +1012,10 @@ library(survival)</code></pre>
 ## 294 294 1302   censored   1 60.54   m       0      1       0   0.0  6.6
 ## 295 295  877 transplant   1 35.35   m       0      0       0   0.0  2.4
 ## 297 297  533 transplant   1 55.99   m       0      1       0   0.0  1.2
-## 321 321 1170   censored  NA 61.00   m      NA     NA      NA   0.5  1.3
-## 330 330 1746       dead  NA 54.00   m      NA     NA      NA   0.0  3.5
-## 348 348 2834   censored  NA 52.00   m      NA     NA      NA   0.0  0.9
-## 376 376 1478       dead  NA 44.00   m      NA     NA      NA   0.0  9.5
-## 381 381 1899   censored  NA 41.00   m      NA     NA      NA   0.0  1.7
-## 386 386 1654   censored  NA 54.00   m      NA     NA      NA   0.0  1.7
-## 390 390 1419   censored  NA 68.00   m      NA     NA      NA   0.0  3.0
-## 407 407 1129   censored  NA 54.00   m      NA     NA      NA   0.0  1.1
+## 321 321 1170   censored  NA 61.00   m    &lt;NA&gt;     NA    &lt;NA&gt;   0.5  1.3
+## 330 330 1746       dead  NA 54.00   m    &lt;NA&gt;     NA    &lt;NA&gt;   0.0  3.5
+## 348 348 2834   censored  NA 52.00   m    &lt;NA&gt;     NA    &lt;NA&gt;   0.0  0.9
+## 376 376 1478       dead  NA 44.00   m    &lt;NA&gt;     NA    &lt;NA&gt;   0.0  9.5
 ##     chol albumin copper alk.phos    ast trig platelet protime stage
 ## 3    176    3.48    210    516.0  96.10   55      151    12.0     4
 ## 14    NA    2.27     43    728.0  71.00   NA      156    11.0     4
@@ -1060,57 +1057,51 @@ library(survival)</code></pre>
 ## 330   NA    3.63     NA       NA     NA   NA      325    10.3     2
 ## 348   NA    3.14     NA       NA     NA   NA      191    12.3     2
 ## 376   NA    3.63     NA       NA     NA   NA      292    10.2     3
-## 381   NA    3.66     NA       NA     NA   NA       92    11.0     4
-## 386   NA    2.38     NA       NA     NA   NA      166     9.8     3
-## 390   NA    3.15     NA       NA     NA   NA      139    10.0     3
-## 407   NA    3.69     NA       NA     NA   NA      220    10.8     3
-##     age40higher       ageST
-## 3           old  1.85012796
-## 14          old  0.52441577
-## 21          old  1.28729853
-## 24          old -0.59549994
-## 48          old -0.15327681
-## 52          old -0.01926980
-## 55          old  1.43757782
-## 58          old -0.59071398
-## 61          old -0.65484590
-## 66          old -0.41076171
-## 80          old  1.59551465
-## 90        young -1.65224092
-## 97          old  2.02433707
-## 99          old -0.21740874
-## 100         old  0.06974914
-## 114         old  0.19992737
-## 120       young -1.49238970
-## 121         old  1.64337429
-## 124         old  0.20567053
-## 133         old  1.13893363
-## 138         old  0.04869089
-## 149         old  1.05852942
-## 152         old  1.83768445
-## 154         old  1.78408165
-## 159         old -0.47680802
-## 165         old  0.24587263
-## 167         old  0.97812521
-## 210         old -0.09393085
-## 227         old  0.78572944
-## 253         old  2.65129843
-## 260         old  2.27607881
-## 289         old  1.61082973
-## 292         old -0.04702840
-## 294         old  0.93792311
-## 295       young -1.47324585
-## 297         old  0.50240034
-## 321         old  0.98195399
-## 330         old  0.31191894
-## 348         old  0.12048036
-## 376         old -0.64527397
-## 381         old -0.93243185
-## 386         old  0.31191894
-## 390         old  1.65198903
-## 407         old  0.31191894</code></pre>
-<p>From the pbc data set, select the serum bilirubin measurements only for female patients<br />
-Calculate the mean and standard deviation Plot a histogram</p>
+##     stage_ord stage_rev stage_ref4 age40higher       ageST
+## 3           4         4          4         old  1.85012796
+## 14          4         4          4         old  0.52441577
+## 21          4         4          4         old  1.28729853
+## 24          2         2          2         old -0.59549994
+## 48          3         3          3         old -0.15327681
+## 52          1         1          1         old -0.01926980
+## 55          3         3          3         old  1.43757782
+## 58          1         1          1         old -0.59071398
+## 61          1         1          1         old -0.65484590
+## 66          3         3          3         old -0.41076171
+## 80          4         4          4         old  1.59551465
+## 90          2         2          2       young -1.65224092
+## 97          3         3          3         old  2.02433707
+## 99          2         2          2         old -0.21740874
+## 100         4         4          4         old  0.06974914
+## 114         3         3          3         old  0.19992737
+## 120         3         3          3       young -1.49238970
+## 121         4         4          4         old  1.64337429
+## 124         4         4          4         old  0.20567053
+## 133         4         4          4         old  1.13893363
+## 138         3         3          3         old  0.04869089
+## 149         4         4          4         old  1.05852942
+## 152         3         3          3         old  1.83768445
+## 154         3         3          3         old  1.78408165
+## 159         3         3          3         old -0.47680802
+## 165         4         4          4         old  0.24587263
+## 167         4         4          4         old  0.97812521
+## 210         2         2          2         old -0.09393085
+## 227         2         2          2         old  0.78572944
+## 253         4         4          4         old  2.65129843
+## 260         4         4          4         old  2.27607881
+## 289         2         2          2         old  1.61082973
+## 292         3         3          3         old -0.04702840
+## 294         4         4          4         old  0.93792311
+## 295         3         3          3       young -1.47324585
+## 297         4         4          4         old  0.50240034
+## 321         4         4          4         old  0.98195399
+## 330         2         2          2         old  0.31191894
+## 348         2         2          2         old  0.12048036
+## 376         3         3          3         old -0.64527397
+##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 4 rows ]</code></pre>
+<p>Select the serum bilirubin measurements only for female patients<br />
+Calculate the mean and standard deviation<br />
+Plot a histogram</p>
 <pre class="r"><code>pbc[pbc$sex == &quot;f&quot;, &quot;bili&quot;]   </code></pre>
 <pre><code>##   [1] 14.5  1.1  1.8  3.4  0.8  1.0  0.3  3.2 12.6  1.4  3.6  0.7  0.8  0.7
 ##  [15]  2.7 11.4  0.7  5.1  3.4 17.4  0.7  5.2 21.6 17.2  0.7  3.6  4.7  1.8
@@ -1145,7 +1136,7 @@ Calculate the mean and standard deviation Plot a histogram</p>
 <pre><code>## [1] 4.591388</code></pre>
 <pre class="r"><code>hist(pbc[pbc$sex == &quot;f&quot;, &quot;bili&quot;])</code></pre>
 <p><img src="data:image/png;base64,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" width="672" /></p>
-<p>From the pbc data set, select all rows where the serum bilirubin measurements that are smaller that 10</p>
+<p>Select all rows where the serum bilirubin measurements are smaller that 10</p>
 <pre class="r"><code>pbc[pbc$bili &lt; 10, ]</code></pre>
 <pre><code>##    id time     status trt   age sex ascites hepato spiders edema bili chol
 ## 2   2 4500   censored   1 56.45   f       0      1       1   0.0  1.1  302
@@ -1188,104 +1179,89 @@ Calculate the mean and standard deviation Plot a histogram</p>
 ## 44 44 3428       dead   2 37.58   f       0      1       1   1.0  3.3  299
 ## 45 45 4025   censored   2 41.79   f       0      0       0   0.0  0.6   NA
 ## 46 46 2256       dead   1 45.80   f       0      1       0   0.0  5.7  482
-## 47 47 2576   censored   2 47.43   f       0      0       0   0.0  0.5  316
-## 48 48 4427   censored   2 49.14   m       0      0       0   0.0  1.9  259
-## 49 49  708       dead   2 61.15   f       0      1       0   0.0  0.8   NA
-## 50 50 2598       dead   1 53.51   f       0      1       0   0.0  1.1  257
-## 51 51 3853       dead   2 52.09   f       0      0       0   0.0  0.8  276
-##    albumin copper alk.phos    ast trig platelet protime stage age40higher
-## 2     4.14     54   7394.8 113.52   88      221    10.6     3         old
-## 3     3.48    210    516.0  96.10   55      151    12.0     4         old
-## 4     2.54     64   6121.8  60.63   92      183    10.3     4         old
-## 5     3.53    143    671.0 113.15   72      136    10.9     3       young
-## 6     3.98     50    944.0  93.00   63       NA    11.0     3         old
-## 7     4.09     52    824.0  60.45  213      204     9.7     3         old
-## 8     4.00     52   4651.2  28.38  189      373    11.0     3         old
-## 9     3.08     79   2276.0 144.15   88      251    11.0     2         old
-## 11    4.16     46   1104.0  79.05   79      258    12.0     4         old
-## 12    3.52     94    591.0  82.15   95       71    13.6     4         old
-## 13    3.85     40   1181.0  88.35  130      244    10.6     3         old
-## 14    2.27     43    728.0  71.00   NA      156    11.0     4         old
-## 15    3.87    173   9009.8 127.71   96      295    11.0     3         old
-## 16    3.66     28    685.0  72.85   58      198    10.8     3         old
-## 17    3.15    159   1533.0 117.80  128      224    10.5     4         old
-## 19    3.56     39   1881.0  93.00  123      209    11.0     3         old
-## 20    3.51    140   1919.0 122.45  135      322    13.0     4         old
-## 21    3.83     41    843.0  65.10   83      336    11.4     4         old
-## 22    3.63    464   1376.0 120.90   55      173    11.6     4         old
-## 24    4.00    124   5719.0 221.88  230       70     9.9     2         old
-## 25    4.10     40    661.0 106.95   66      324    11.3     2         old
-## 26    3.68     53   3228.0 165.85  166      421     9.9     3         old
-## 29    3.78     24   5833.0  73.53   86      390    10.6     2         old
-## 30    2.54    172   7277.0 121.26  158      124    11.0     4         old
-## 31    3.44    114   9933.2 206.40  101      195    10.3     2         old
-## 32    3.34    101   7277.0  82.56  158      286    10.6     4         old
-## 33    3.19     82   1592.0 218.55  113      180    12.0     3         old
-## 34    3.70     37   1840.0 170.50   64      273    10.5     2         old
-## 35    3.20    201  12258.8  72.24  151      431    10.6     3         old
-## 36    3.39     18    558.0  71.30   96      311    10.6     2         old
-## 37    3.01    150   6931.2 180.60  118      102    12.0     4         old
-## 38    3.53    102   1234.0 137.95   87      234    11.0     4       young
-## 39    3.00     52   9066.8  72.24  111      563    10.6     4         old
-## 40    3.34    105  11046.6 104.49   NA      358    11.0     4         old
-## 41    3.26     96   1215.0 151.90   NA      226    11.7     4       young
-## 42    3.54    122   8778.0  56.76   NA      344    11.0     4       young
-## 43    3.64     36   5430.2  67.08   89      203    10.6     2         old
-## 44    3.55    131   1029.0 119.35   50      199    11.7     3       young
-## 45    3.93     19   1826.0  71.30   NA      474    10.9     2         old
-## 46    2.84    161  11552.0 136.74  165      518    12.7     3         old
-## 47    3.65     68   1716.0 187.55   71      356     9.8     3         old
-## 48    3.70    281  10396.8 188.34  178      214    11.0     3         old
-## 49    3.82     58    678.0  97.65   NA      233    11.0     4         old
-## 50    3.36     43   1080.0 106.95   73      128    10.6     4         old
-## 51    3.60     54   4332.0  99.33  143      273    10.6     2         old
-##          ageST
-## 2   0.54643121
-## 3   1.85012796
-## 4   0.38275122
-## 5  -1.20906060
-## 6   1.48543746
-## 7   0.45836946
-## 8   0.22194281
-## 9  -0.78789572
-## 11  0.28416035
-## 12  0.80391610
-## 13 -0.48350837
-## 14  0.52441577
-## 15  1.33132940
-## 16 -0.98603465
-## 17  0.13770983
-## 19 -0.11307471
-## 20  0.88144873
-## 21  1.28729853
-## 22  0.53015893
-## 24 -0.59549994
-## 25 -0.54285433
-## 26  0.12239475
-## 29  1.25762555
-## 30 -0.89510132
-## 31 -0.87978624
-## 32  0.31191894
-## 33  0.05156247
-## 34  0.12622352
-## 35 -0.20305084
-## 36  0.54260244
-## 37  1.05182907
-## 38 -1.35072515
-## 39  0.44496876
-## 40 -0.38970346
-## 41 -1.63788303
-## 42 -1.63213987
-## 43 -0.17912102
-## 44 -1.25979183
-## 45 -0.85681361
-## 46 -0.47297925
-## 47 -0.31695680
-## 48 -0.15327681
-## 49  0.99631188
-## 50  0.26501649
-## 51  0.12909510
-##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 340 rows ]</code></pre>
+##    albumin copper alk.phos    ast trig platelet protime stage stage_ord
+## 2     4.14     54   7394.8 113.52   88      221    10.6     3         3
+## 3     3.48    210    516.0  96.10   55      151    12.0     4         4
+## 4     2.54     64   6121.8  60.63   92      183    10.3     4         4
+## 5     3.53    143    671.0 113.15   72      136    10.9     3         3
+## 6     3.98     50    944.0  93.00   63       NA    11.0     3         3
+## 7     4.09     52    824.0  60.45  213      204     9.7     3         3
+## 8     4.00     52   4651.2  28.38  189      373    11.0     3         3
+## 9     3.08     79   2276.0 144.15   88      251    11.0     2         2
+## 11    4.16     46   1104.0  79.05   79      258    12.0     4         4
+## 12    3.52     94    591.0  82.15   95       71    13.6     4         4
+## 13    3.85     40   1181.0  88.35  130      244    10.6     3         3
+## 14    2.27     43    728.0  71.00   NA      156    11.0     4         4
+## 15    3.87    173   9009.8 127.71   96      295    11.0     3         3
+## 16    3.66     28    685.0  72.85   58      198    10.8     3         3
+## 17    3.15    159   1533.0 117.80  128      224    10.5     4         4
+## 19    3.56     39   1881.0  93.00  123      209    11.0     3         3
+## 20    3.51    140   1919.0 122.45  135      322    13.0     4         4
+## 21    3.83     41    843.0  65.10   83      336    11.4     4         4
+## 22    3.63    464   1376.0 120.90   55      173    11.6     4         4
+## 24    4.00    124   5719.0 221.88  230       70     9.9     2         2
+## 25    4.10     40    661.0 106.95   66      324    11.3     2         2
+## 26    3.68     53   3228.0 165.85  166      421     9.9     3         3
+## 29    3.78     24   5833.0  73.53   86      390    10.6     2         2
+## 30    2.54    172   7277.0 121.26  158      124    11.0     4         4
+## 31    3.44    114   9933.2 206.40  101      195    10.3     2         2
+## 32    3.34    101   7277.0  82.56  158      286    10.6     4         4
+## 33    3.19     82   1592.0 218.55  113      180    12.0     3         3
+## 34    3.70     37   1840.0 170.50   64      273    10.5     2         2
+## 35    3.20    201  12258.8  72.24  151      431    10.6     3         3
+## 36    3.39     18    558.0  71.30   96      311    10.6     2         2
+## 37    3.01    150   6931.2 180.60  118      102    12.0     4         4
+## 38    3.53    102   1234.0 137.95   87      234    11.0     4         4
+## 39    3.00     52   9066.8  72.24  111      563    10.6     4         4
+## 40    3.34    105  11046.6 104.49   NA      358    11.0     4         4
+## 41    3.26     96   1215.0 151.90   NA      226    11.7     4         4
+## 42    3.54    122   8778.0  56.76   NA      344    11.0     4         4
+## 43    3.64     36   5430.2  67.08   89      203    10.6     2         2
+## 44    3.55    131   1029.0 119.35   50      199    11.7     3         3
+## 45    3.93     19   1826.0  71.30   NA      474    10.9     2         2
+## 46    2.84    161  11552.0 136.74  165      518    12.7     3         3
+##    stage_rev stage_ref4 age40higher       ageST
+## 2          3          3         old  0.54643121
+## 3          4          4         old  1.85012796
+## 4          4          4         old  0.38275122
+## 5          3          3       young -1.20906060
+## 6          3          3         old  1.48543746
+## 7          3          3         old  0.45836946
+## 8          3          3         old  0.22194281
+## 9          2          2         old -0.78789572
+## 11         4          4         old  0.28416035
+## 12         4          4         old  0.80391610
+## 13         3          3         old -0.48350837
+## 14         4          4         old  0.52441577
+## 15         3          3         old  1.33132940
+## 16         3          3         old -0.98603465
+## 17         4          4         old  0.13770983
+## 19         3          3         old -0.11307471
+## 20         4          4         old  0.88144873
+## 21         4          4         old  1.28729853
+## 22         4          4         old  0.53015893
+## 24         2          2         old -0.59549994
+## 25         2          2         old -0.54285433
+## 26         3          3         old  0.12239475
+## 29         2          2         old  1.25762555
+## 30         4          4         old -0.89510132
+## 31         2          2         old -0.87978624
+## 32         4          4         old  0.31191894
+## 33         3          3         old  0.05156247
+## 34         2          2         old  0.12622352
+## 35         3          3         old -0.20305084
+## 36         2          2         old  0.54260244
+## 37         4          4         old  1.05182907
+## 38         4          4       young -1.35072515
+## 39         4          4         old  0.44496876
+## 40         4          4         old -0.38970346
+## 41         4          4       young -1.63788303
+## 42         4          4       young -1.63213987
+## 43         2          2         old -0.17912102
+## 44         3          3       young -1.25979183
+## 45         2          2         old -0.85681361
+## 46         3          3         old -0.47297925
+##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 345 rows ]</code></pre>
 <p>Make a boxplot of serum bilirubin per sex using the previous selection</p>
 <pre class="r"><code>new_pbc &lt;- pbc[pbc$bili &lt; 10, ]
 boxplot(new_pbc$bili ~ new_pbc$sex)</code></pre>
@@ -1341,15 +1317,16 @@ boxplot(new_pbc$bili ~ new_pbc$sex)</code></pre>
 ## [386] 67.00 68.00 41.00 69.00 52.00 57.00 36.00 50.00 64.00 62.00 42.00
 ## [397] 44.00 69.00 52.00 66.00 40.00 52.00 46.00 54.00 51.00 43.00 39.00
 ## [408] 51.00 67.00 35.00 67.00 39.00 57.00 58.00 53.00</code></pre>
-<p>Select the third element (the output should be a vector) Then select the elements that are smaller than 20</p>
+<p>Select the third element (the output should be a vector)<br />
+Then select the elements that are smaller than 20</p>
 <pre class="r"><code>newData &lt;- myList[[3]]
 newData[newData &lt; 20]</code></pre>
 <pre><code>## numeric(0)</code></pre>
 <p>Create a list with 3 elements and add names:<br />
 1st element - all_id: all pbc$id<br />
 2nd element - bili_male: pbc$bili for males<br />
-3rd element - young: pbc$age &gt; 30</p>
-<pre class="r"><code>myList &lt;- list(all_id = pbc$id, bili_male = pbc$bili[pbc$sex == &quot;m&quot;], young = pbc$age[pbc$age &gt; 30])</code></pre>
+3rd element - young: pbc$age &lt; 30</p>
+<pre class="r"><code>myList &lt;- list(all_id = pbc$id, bili_male = pbc$bili[pbc$sex == &quot;m&quot;], young = pbc$age[pbc$age &lt; 30])</code></pre>
 <p>Select all_id by name indexing</p>
 <pre class="r"><code>myList$all_id</code></pre>
 <pre><code>##   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17

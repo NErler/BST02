@@ -12,7 +12,7 @@
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-12" />
+<meta name="date" content="2020-02-13" />
 
 <title>Demo: Extra Programming examples</title>
 
@@ -366,15 +366,17 @@ summary {
 <h1 class="title toc-ignore">Demo: Extra Programming examples</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">12 February 2020</h4>
+<h4 class="date">13 February 2020</h4>
 
 </div>
 
 
-<p>Load packages If you are using the package for the first time, you will have to first install it:</p>
+<p>Load packages<br />
+If you are using the package for the first time, you will have to first install it</p>
 <pre class="r"><code># install.packages(&quot;survival&quot;) 
 library(survival)</code></pre>
-<p>Calculate the sum per row</p>
+<p>Create a matrix<br />
+Calculate the sum per row</p>
 <pre class="r"><code>A &lt;- matrix(rnorm(1e06), 1000, 1000)
 A[1:10 , 1:10]</code></pre>
 <pre><code>##             [,1]        [,2]       [,3]        [,4]       [,5]        [,6]
@@ -410,7 +412,7 @@ for (k in 1:length(x)){
   cSum &lt;- cSum + x[k]
   cSum
 }</code></pre>
-<p>Explore how does it work</p>
+<p>Explore how it works</p>
 <pre class="r"><code>i &lt;- 1
 cSum &lt;- 0
 cSum &lt;- cSum + x[i]
@@ -432,14 +434,14 @@ tail(res)</code></pre>
   }
 })</code></pre>
 <pre><code>##    user  system elapsed 
-##    0.07    0.00    0.06</code></pre>
+##    0.06    0.00    0.06</code></pre>
 <pre class="r"><code>system.time({
   cumsum(x)
 }) # better</code></pre>
 <pre><code>##    user  system elapsed 
 ##       0       0       0</code></pre>
 <p>More than one ways exist to code something in R!<br />
-Create a dichotomous variable for age</p>
+Create a dichotomous variable for <code>age</code> (assume as cut-off point the value 42)</p>
 <pre class="r"><code>for (i in 1:dim(pbc)[1]) {
   pbc$ageCat[i] &lt;- as.numeric(pbc$age[i] &gt; 42)
 }
@@ -449,38 +451,30 @@ pbc$ageCat[i] &lt;- as.numeric(pbc$age[i] &gt; 42)
 
 
 head(pbc)</code></pre>
-<pre><code>##   id time     status trt   age sex ascites hepato spiders edema bili chol
-## 1  1  400       dead   1 58.77   f       1      1       1   1.0 14.5  261
-## 2  2 4500   censored   1 56.45   f       0      1       1   0.0  1.1  302
-## 3  3 1012       dead   1 70.07   m       0      0       0   0.5  1.4  176
-## 4  4 1925       dead   1 54.74   f       0      1       1   0.5  1.8  244
-## 5  5 1504 transplant   2 38.11   f       0      1       1   0.0  3.4  279
-## 6  6 2503       dead   2 66.26   f       0      1       0   0.0  0.8  248
-##   albumin copper alk.phos    ast trig platelet protime stage age40higher
-## 1    2.60    156   1718.0 137.95  172      190    12.2     4         old
-## 2    4.14     54   7394.8 113.52   88      221    10.6     3         old
-## 3    3.48    210    516.0  96.10   55      151    12.0     4         old
-## 4    2.54     64   6121.8  60.63   92      183    10.3     4         old
-## 5    3.53    143    671.0 113.15   72      136    10.9     3       young
-## 6    3.98     50    944.0  93.00   63       NA    11.0     3         old
-##        ageST ageCat
-## 1  0.7685000      1
-## 2  0.5464312      1
-## 3  1.8501280      1
-## 4  0.3827512      1
-## 5 -1.2090606      0
-## 6  1.4854375      1</code></pre>
+<pre><code>##   id time     status trt      age sex ascites hepato spiders edema bili
+## 1  1  400       dead   1 58.76523   f     yes    yes     yes   1.0 14.5
+## 2  2 4500   censored   1 56.44627   f      no    yes     yes   0.0  1.1
+## 3  3 1012       dead   1 70.07255   m      no     no      no   0.5  1.4
+## 4  4 1925       dead   1 54.74059   f      no    yes     yes   0.5  1.8
+## 5  5 1504 transplant   2 38.10541   f      no    yes     yes   0.0  3.4
+## 6  6 2503       dead   2 66.25873   f      no    yes      no   0.0  0.8
+##   chol albumin copper alk.phos    ast trig platelet protime stage ageCat
+## 1  261    2.60    156   1718.0 137.95  172      190    12.2     4      1
+## 2  302    4.14     54   7394.8 113.52   88      221    10.6     3      1
+## 3  176    3.48    210    516.0  96.10   55      151    12.0     4      1
+## 4  244    2.54     64   6121.8  60.63   92      183    10.3     4      1
+## 5  279    3.53    143    671.0 113.15   72      136    10.9     3      0
+## 6  248    3.98     50    944.0  93.00   63       NA    11.0     3      1</code></pre>
 <pre class="r"><code>pbc[i, ]</code></pre>
-<pre><code>##   id time status trt   age sex ascites hepato spiders edema bili chol
-## 1  1  400   dead   1 58.77   f       1      1       1     1 14.5  261
-##   albumin copper alk.phos    ast trig platelet protime stage age40higher
-## 1     2.6    156     1718 137.95  172      190    12.2     4         old
-##    ageST ageCat
-## 1 0.7685      1</code></pre>
-<p>Do the same thing as a vector</p>
+<pre><code>##   id time status trt      age sex ascites hepato spiders edema bili chol
+## 1  1  400   dead   1 58.76523   f     yes    yes     yes     1 14.5  261
+##   albumin copper alk.phos    ast trig platelet protime stage ageCat
+## 1     2.6    156     1718 137.95  172      190    12.2     4      1</code></pre>
+<p>Do the same thing without a loop</p>
 <pre class="r"><code>pbc$ageCat &lt;- as.numeric(pbc$age &gt; 42)</code></pre>
-<p>calculate the mean weight of males and females in 100 datasets<br />
-If we would do that manually…</p>
+<p>Calculate the mean weight for <code>males</code> and <code>females</code> in 100 datasets<br />
+Since we do not have 100 data sets, we will create them!<br />
+Let’s do that first manually…</p>
 <pre class="r"><code>datlist &lt;- list()
 
 i &lt;- 1
@@ -499,8 +493,9 @@ weight &lt;- rnorm(20, 70, 10)
 sex &lt;- sample(1:2, 20, replace = T)
 sex &lt;- factor(sex, levels = 1:2, labels = c(&quot;male&quot;, &quot;female&quot;))
 
-datlist[[i]] &lt;- data.frame(patient, weight, sex)</code></pre>
-<p>….. Now use a loop</p>
+datlist[[i]] &lt;- data.frame(patient, weight, sex)
+# ..... </code></pre>
+<p>It is too much work! Now use a loop</p>
 <pre class="r"><code>for (i in 1:100) {
   set.seed(2015+i)
   patient &lt;- c(1:20)
@@ -510,7 +505,8 @@ datlist[[i]] &lt;- data.frame(patient, weight, sex)</code></pre>
   
   datlist[[i]] &lt;- data.frame(patient, weight, sex)
 }</code></pre>
-<p>We will have to go through all data sets to calculate the mean age   If we would do that manually…</p>
+<p>Now that we have 100 data sets we need to calculate the mean <code>age</code> per <code>gender</code> in each of them<br />
+Let’s do that manually…</p>
 <pre class="r"><code>means &lt;- matrix(NA, length(datlist), 2)
 
 
@@ -629,7 +625,7 @@ means</code></pre>
 ##  [98,] 74.11485 71.50819
 ##  [99,] 70.71719 66.66810
 ## [100,] 73.99102 69.82842</code></pre>
-<p>Select datasets were more than 39% of the patients are females</p>
+<p>Select the data sets, where more than 39% of the patients are <code>females</code></p>
 <pre class="r"><code>newList &lt;- list()
 k &lt;- 1
 
@@ -643,9 +639,10 @@ for (i in 1:length(datlist)) {
 
 length(newList)</code></pre>
 <pre><code>## [1] 90</code></pre>
-<p>Select datasets where more than 49% of the patients are males</p>
+<p>Select the data sets, where more than 49% of the patients are <code>males</code></p>
 <pre class="r"><code>newList &lt;- list()
 k &lt;- 1
+
 for (i in 1:length(datlist)) {
   dat &lt;- datlist[[i]]
   if (sum(dat$sex == &quot;male&quot;)/20 &gt;= 0.5) {
@@ -653,7 +650,9 @@ for (i in 1:length(datlist)) {
     k &lt;- k + 1
   }
 }</code></pre>
-<p>Now make a function that takes as input the data sets in a list format, the name of the sex variable and the name of the male category This function returns the data sets where more than 49% of the patients are males in a list</p>
+<p>Now make a function that takes as input the data sets in a list format, the name of the <code>gender</code> variable and the name of the <code>male</code> category<br />
+This function returns only the data sets, where more than 49% of the patients are <code>males</code><br />
+The output should be a list</p>
 <pre class="r"><code>subset_data &lt;- function(dataset = x, sex_var = &quot;sex&quot;, male_cat = &quot;male&quot;){
   newList &lt;- list()
   k &lt;- 1
@@ -671,62 +670,6 @@ res &lt;- subset_data(dataset = datlist, sex_var = &quot;sex&quot;, male_cat = &
 
 length(res)</code></pre>
 <pre><code>## [1] 64</code></pre>
-<pre class="r"><code>## other examples
-for (i in 1:10){
-  if (i &lt; 5) {
-    print(i)
-  }
-}</code></pre>
-<pre><code>## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4</code></pre>
-<pre class="r"><code>for (i in 1:10){
-  if (i &lt; 5) {
-    print(2*i)
-  } else {
-    print(i)
-  } 
-}</code></pre>
-<pre><code>## [1] 2
-## [1] 4
-## [1] 6
-## [1] 8
-## [1] 5
-## [1] 6
-## [1] 7
-## [1] 8
-## [1] 9
-## [1] 10</code></pre>
-<pre class="r"><code>## switch
-x &lt;- sample(1:250, 100, replace = FALSE)
-switch(&quot;mean&quot;,
-       mean = mean(x),
-       median = median(x),
-       trimmed = mean(x, trim = .1))</code></pre>
-<pre><code>## [1] 132.28</code></pre>
-<pre class="r"><code>switch(&quot;median&quot;,
-       mean = mean(x),
-       median = median(x),
-       trimmed = mean(x, trim = .1))</code></pre>
-<pre><code>## [1] 131</code></pre>
-<pre class="r"><code>switch(&quot;trimmed&quot;,
-       mean = mean(x),
-       median = median(x),
-       trimmed = mean(x, trim = .1))</code></pre>
-<pre><code>## [1] 132.9125</code></pre>
-<pre class="r"><code>## ifelse
-ifelse(x &gt;= 100, 2*x, x/2)</code></pre>
-<pre><code>##   [1] 496.0  46.5 478.0 228.0 362.0 382.0 282.0 486.0 318.0  24.0  40.0
-##  [12]  36.0 268.0 432.0  27.0 250.0 480.0  37.0 412.0 354.0 368.0 208.0
-##  [23]  27.5 350.0  19.0  13.0 370.0  41.0 438.0  15.5 234.0  17.0 462.0
-##  [34] 364.0 326.0 458.0 380.0  18.5 450.0 278.0 308.0  47.0  32.0 472.0
-##  [45] 402.0 300.0  34.5  38.5  11.0 258.0 424.0   4.5   8.5  31.0 256.0
-##  [56] 492.0 272.0 418.0 206.0 332.0 484.0 260.0 264.0 214.0 356.0 406.0
-##  [67]  33.0 288.0 218.0 404.0 254.0 314.0 240.0 286.0 304.0 246.0 320.0
-##  [78] 336.0  43.5 376.0  32.5 202.0 422.0 216.0  14.5  26.0  16.5  47.5
-##  [89] 232.0 338.0 236.0  48.5 344.0   6.5 464.0  12.5 488.0   1.5 446.0
-## [100]   9.5</code></pre>
 
 
 

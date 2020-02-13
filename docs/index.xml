@@ -64,7 +64,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/basic-use-of-r/</guid>
-      <description> 01 Basic R [R] [html] 02 Common R objects [R] [html] 03 Importing Saving [R] [html] 04 Data Transformation [R] [html] 05 Data Exploration [R] [html] 06 Data Visualization [R] [html] 07 Indexing Subsetting [R] [html]  </description>
+      <description> 01 Basic R [R] [html] 02 Common R objects [R] [html] 03 Importing Saving [R] [html] 04 Data Transformation [R] [html] 05 Data Exploration [R] [html] 06 Data Visualization [R] [html] 07 Indexing Subsetting [R] [html] 08 shiny app indexing [R] [html]  </description>
     </item>
     
     <item>
@@ -109,7 +109,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/functions-and-programming/</guid>
-      <description> 01 The Apply Family [R] [html] 02 Extra Programming Examples [R] [html] Control Flow [R] [html] Functions for Data Exploration [R] [html] Functions for Data Manipulation [R] [html]  </description>
+      <description> 01 The Apply Family [R] [html] 02 Extra Programming Examples [R] [html] Control Flow [R] [html] Functions for Data Exploration [R] [html] Functions for Data Manipulation [R] [html] shiny app apply family [R] [html]  </description>
     </item>
     
     <item>
@@ -136,7 +136,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/statistics-with-r/</guid>
-      <description> Regression [R] [html] Tests for Categorical Data [R] [html] Tests for Continuous Data [R] [html]  </description>
+      <description> Model Evaluation [R] [html] Regression [R] [html] Tests for Categorical Data [R] [html] Tests for Continuous Data [R] [html]  </description>
     </item>
     
     <item>
@@ -145,7 +145,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/practical/statistics-with-r/</guid>
-      <description> Linear Regression [html] Statistical Tests [html]  </description>
+      <description> Linear Regression [html] Logistic Regression and More [html] Statistical Tests [html]  </description>
     </item>
     
     <item>

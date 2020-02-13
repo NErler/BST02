@@ -2952,7 +2952,7 @@ div.tocify {
 <p>In this practical, a number of R packages are used. The packages used (with versions that were used to generate the solutions) are:</p>
 <ul>
 <li>R version 3.6.1 (2019-07-05)</li>
-<li><code>survival</code> (version: 3.7.0)</li>
+<li><code>survival</code> (version: 2.44.1.1)</li>
 </ul>
 </div>
 <div id="datasets" class="section level3">
@@ -3354,9 +3354,9 @@ Hint
 <div id="solution-2-3" class="section level4">
 <h4>Solution 2</h4>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">tapply</span>(heart<span class="op">$</span>year, <span class="kw">list</span>(heart<span class="op">$</span>transplant, heart<span class="op">$</span>surgery), <span class="cf">function</span>(x) {<span class="kw">mean</span>(x)<span class="op">/</span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)})</a></code></pre></div>
-<pre><code>##   no yes
-## 0 NA  NA
-## 1 NA  NA</code></pre>
+<pre><code>##           no       yes
+## 0 0.03820181 0.2818764
+## 1 0.06362334 0.3910915</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">tapply</span>(retinopathy<span class="op">$</span>futime, <span class="kw">list</span>(retinopathy<span class="op">$</span>status, retinopathy<span class="op">$</span>type, retinopathy<span class="op">$</span>trt), mean)</a></code></pre></div>
 <pre><code>## , , 0
 ## 

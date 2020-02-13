@@ -7,3 +7,4 @@ title: Functions and Programming
  * Control Flow [[R]](/demo/Functions_and_Programming/Control_Flow.R) [[html]](/demo/Functions_and_Programming/Control_Flow.html)
  * Functions for Data Exploration [[R]](/demo/Functions_and_Programming/Functions_for_Data_Exploration.R) [[html]](/demo/Functions_and_Programming/Functions_for_Data_Exploration.html)
  * Functions for Data Manipulation [[R]](/demo/Functions_and_Programming/Functions_for_Data_Manipulation.R) [[html]](/demo/Functions_and_Programming/Functions_for_Data_Manipulation.html)
+ * shiny app apply family [[R]](/demo/Functions_and_Programming/shiny_app_apply_family.R) [[html]](/demo/Functions_and_Programming/shiny_app_apply_family.html)

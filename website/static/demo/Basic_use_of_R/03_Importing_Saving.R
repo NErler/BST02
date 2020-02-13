@@ -31,7 +31,7 @@ p <- 1
 #load("data.RData")
 #readRDS("data.RData")
 
-#' Tranform a RData data set to xls, csv or text
+#' Transform a RData data set to xls, csv or text
 #write.csv(dt, "mydata.txt")
 #write.table(dt, "mydata.txt", sep="\t")
 #write.xlsx(dt, "mydata.xlsx")
