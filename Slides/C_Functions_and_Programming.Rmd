@@ -24,7 +24,6 @@ knitr::knit_hooks$set(
 )
 
 knitr::opts_chunk$set(echo = TRUE, nospace = TRUE, nospaceafter = TRUE)
-
 ```
 
 ## Recap Part B
@@ -618,15 +617,15 @@ library(survival)
 
 ##  What is the apply Family
 
-* Manipulate slices of data from matrices, arrays, lists and dataframes in a repetitive way avoiding explicit use of loop-constructs
+* Manipulate slices of data from matrices, data frames and lists in a repetitive way avoiding explicit use of loop-constructs
   - An aggregating function, like for example the mean, or the sum
   - Other transforming or subsetting functions
-  - Other vectorized functions, which return more complex structures like lists, vectors, matrices and arrays
+  - Other vectorized functions, which return more complex structures like lists, vectors and matrices
   
   
 ## What is the apply Family (cont'd)
 
-\textbf{\textcolor{blue}{apply(), lapply() , sapply(), tapply(), mapply()}}
+\blue{apply(), lapply() , sapply(), tapply(), mapply()}
 
 \vspace*{3ex} 
 
@@ -639,18 +638,19 @@ library(survival)
 
 \begincols[t]
 \begincol{0.5\linewidth}
+* By column
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mat <- matrix(1:6, 3, 3)
 mat
 apply(mat, 2, sum)
 ```
 
+\pause
+
 \endcol
 \begincol{0.5\linewidth}
-
+* By row
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mat <- matrix(1:6, 3, 3)
-mat
 apply(mat, 1, sum)
 ```
 
@@ -670,12 +670,12 @@ mat
 apply(mat, 2, mean)
 ```
 
+\pause
+
 \endcol
 \begincol{0.5\linewidth}
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mat <- matrix(1:6, 3, 3)
-mat
 apply(mat, 1, mean)
 ```
 
@@ -696,12 +696,12 @@ apply(mat, 2, function(x)
           sum(x)/(length(x)-1))
 ```
 
+\pause
+
 \endcol
 \begincol{0.5\linewidth}
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mat <- matrix(1:6, 3, 3)
-mat
 apply(mat, 1, function(x) 
           sum(x)/(length(x)-1))
 ```
@@ -713,7 +713,7 @@ apply(mat, 1, function(x)
 ## How To Use lapply() in R 
 
 * Apply a given function to every element of a list and obtain a list as result
-* The difference with apply():
+* The difference with `apply()`:
   - It can be used for other objects like data frames, lists or vectors
   - The output returned is a list
 
@@ -729,6 +729,8 @@ myList <- list(x <- c(1:6),
                z = c(30, 4, 23))
 myList
 ```
+
+\pause
 
 \endcol
 \begincol{0.5\linewidth}
@@ -756,13 +758,12 @@ myList <- list(x <- c(1:6),
 myList
 ```
 
+\pause
+
 \endcol
 \begincol{0.5\linewidth}
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE, warning = FALSE}
-myList <- list(x <- c(1:6), 
-               y = c("m", "f"), 
-               z = c(30, 4, 23))
 lapply(myList, median)
 ```
 
@@ -772,7 +773,7 @@ lapply(myList, median)
 
 ## How To Use sapply() in R 
 
-* sapply() is similar to lapply(), but it tries to simplify the output
+* `sapply()` is similar to `lapply()`, but it tries to simplify the output
 
 \begincols[t]
 \begincol{0.5\linewidth}
@@ -784,13 +785,12 @@ myList <- list(x <- c(1:6),
 myList
 ```
 
+\pause
+
 \endcol
 \begincol{0.5\linewidth}
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE, warning = FALSE}
-myList <- list(x <- c(1:6), 
-               y = c("m", "f"), 
-               z = c(30, 4, 23))
 sapply(myList, length)
 sapply(myList, median)
 ```

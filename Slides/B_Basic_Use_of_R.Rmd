@@ -24,6 +24,27 @@ library(kableExtra)
 library(dplyr)
 ```
 
+## In this Section
+
+* Using R
+
+* In practice examples
+
+* Basics in R
+
+* Common R objects
+
+* Importing data and saving your work
+
+*  Data transformation
+
+* Data exploration
+
+* Visualization of data
+
+* Indexing
+
+Lots of practising
 
 ## Using R
 
@@ -985,8 +1006,6 @@ DF
 \begincol{0.5\linewidth}
 * Use position indexing as:
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-DF <- data.frame(x = 1:4, 
-          y = c(35, 23, 14, 45))
 DF[2]
 ```  
 \endcol
@@ -1010,24 +1029,23 @@ head(pbc$time)
 \begincols[t]
 \begincol{0.5\linewidth}
 * When using a double index, indexing works like a matrix
-* Use position indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF <- data.frame(x = 1:3, 
           y = c(35, 23, 14))
 DF
-DF[4, 2]
 ```  
 
 \pause
 
 \endcol
 \begincol{0.5\linewidth}
+* Use position indexing
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+DF[2, 2]
+```  
 * Use logical indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-DF <- data.frame(x = 1:3, 
-          y = c(35, 23, 14))
-DF
-DF[DF$y < 30, ]
+DF[DF$y < 30, 2]
 ```  
 \endcol
 \endcols
