@@ -195,6 +195,8 @@ Expression is given as a command,
 
  - However, it cannot be viewed again unless the command is rerun.
  
+\pause
+ 
 \vspace*{3ex}
 
  In order to store information, the expression should assign the command
@@ -272,11 +274,13 @@ kable(dt, "latex", booktabs = T, digits = 2) %>%
 
 * in R Everything (data, results, ...) is an object
 
-* In order to list the created variables use the following functions
+* In order to list the created objects use the following functions
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
 objects()
 ls()
 ```
+
+\pause
 
   - In order to remove objects
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
@@ -373,6 +377,8 @@ mat <- matrix(vec, 3, 3)
 mat 
 ```
 
+\pause
+
 \endcol
 \begincol{0.5\linewidth}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -395,6 +401,8 @@ mat
 dtf <- data.frame(pbc$sex, pbc$age)
 dtf[1:3,]
 ```
+
+\pause
 
 \endcol
 \begincol{0.5\linewidth}
@@ -935,6 +943,8 @@ x[c('foo', 'one')]
   - The first position denotes the rows
   - The first position denotes the columns
 
+\pause
+
 * Use position indexing as:
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mat <- matrix(1:6, 3, 3)
@@ -968,6 +978,8 @@ DF <- data.frame(x = 1:4,
           y = c(35, 23, 14, 45))
 DF
 ```  
+
+\pause
 
 \endcol
 \begincol{0.5\linewidth}
@@ -1005,6 +1017,8 @@ DF <- data.frame(x = 1:3,
 DF
 DF[4, 2]
 ```  
+
+\pause
 
 \endcol
 \begincol{0.5\linewidth}
@@ -1057,6 +1071,9 @@ head(pbc[pbc$age > 30 & pbc$sex == "f", 1:7])
 \textbf{\textcolor{blue}{Indexing with Lists}}
 
 * Lists can be subsetted in the same way as vectors using single brackets - Note that the output is a list
+
+\vspace*{0.6cm}
+
 * Use position indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
@@ -1093,13 +1110,22 @@ mylist$y
 * Use the following webpage to further investigate subsetting
 https://emcbiostatistics.shinyapps.io/the_apply_family/
 
-* The code for the shiny app in **R** is also available. In order to run it you will need to install the package `shiny`
+* The **R** code for the shiny app is also available: 
 
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.52\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Indexing Subsetting shiny app \button{08_shiny_app_indexing.R}{R}
+\item Indexing Subsetting shiny app \button{08_shiny_app_indexing.R}{R} \
 \end{itemize}
 \end{block}
+\end{column}
+
+\begin{column}{0.48\linewidth}
+\end{column}
+\end{columns}
+
+In order to run the app you will need to install the package `shiny`
 
 
 ## Useful Summary: Indexing/Subsetting
