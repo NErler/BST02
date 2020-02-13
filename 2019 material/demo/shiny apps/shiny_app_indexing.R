@@ -5,9 +5,8 @@
 # install.packages("shiny")
 # install.packages("JM")
 # install.packages("DT")
-library(JM)
+library(survival)
 library(shiny)
-library(DT)
 
 ################################################
 # Give the data and information that is needed #
@@ -52,8 +51,7 @@ ui <- fluidPage(
 
                  tabsetPanel(
                             tabPanel("Rcode", verbatimTextOutput("Rcode")),
-                            tabPanel("Output",  tableOutput("Routput")),
-                            tabPanel("Example", DTOutput('DTindex')))
+                            tabPanel("Output",  tableOutput("Routput")))
                                            
                )
              )
@@ -395,36 +393,36 @@ server <- function(input, output) {
     
   })
   
-  output$DTindex <- renderDT(
-    if (input$rows == "") {
-      if (input$columns == ""){
-        code1 <- paste0("pbc2.id")
-        return(datatable(pbc2.id))
-      } else {
-        code1 <- paste0("pbc2.id[", ", c(", toString(input$columns), ")]")
-        return(datatable(pbc2.id) %>%
-                 formatStyle(columns=eval(parse(text=paste0("c(", toString(input$columns), ")"))), color='blue'))
-      }
-    } else if (input$columns == "") {
-      if (input$rows == "") {
-        code1 <- paste0("pbc2.id")
-        datatable(pbc2.id)
-      } else {
-        code1 <- paste0("pbc2.id[c(", toString(input$rows), "), ]")
-        rws <- eval(parse(text=paste0("c(", toString(input$rows), ")")))
-        return(datatable(pbc2.id) %>%
-                 formatStyle(columns=0, target='row', color=styleEqual(rws, rep('blue',length(rws)) ) ))
-      }
-    } else {
-      code1 <- paste0("pbc2.id[c(", toString(input$rows), "), c(", toString(input$columns), ")]")
-      rws <- eval(parse(text=paste0("c(", toString(input$rows), ")")))
-      cls <- eval(parse(text=paste0("c(", toString(input$columns), ")")))
-      return(datatable(pbc2.id) %>%
-               formatStyle(columns=cls, valueColumns = 0,
-                           color=styleEqual(rws, rep('blue',length(rws)) ) ))
-    }
-    
-  )
+  # output$DTindex <- renderDT(
+  #   if (input$rows == "") {
+  #     if (input$columns == ""){
+  #       code1 <- paste0("pbc2.id")
+  #       return(datatable(pbc2.id))
+  #     } else {
+  #       code1 <- paste0("pbc2.id[", ", c(", toString(input$columns), ")]")
+  #       return(datatable(pbc2.id) %>%
+  #                formatStyle(columns=eval(parse(text=paste0("c(", toString(input$columns), ")"))), color='blue'))
+  #     }
+  #   } else if (input$columns == "") {
+  #     if (input$rows == "") {
+  #       code1 <- paste0("pbc2.id")
+  #       datatable(pbc2.id)
+  #     } else {
+  #       code1 <- paste0("pbc2.id[c(", toString(input$rows), "), ]")
+  #       rws <- eval(parse(text=paste0("c(", toString(input$rows), ")")))
+  #       return(datatable(pbc2.id) %>%
+  #                formatStyle(columns=0, target='row', color=styleEqual(rws, rep('blue',length(rws)) ) ))
+  #     }
+  #   } else {
+  #     code1 <- paste0("pbc2.id[c(", toString(input$rows), "), c(", toString(input$columns), ")]")
+  #     rws <- eval(parse(text=paste0("c(", toString(input$rows), ")")))
+  #     cls <- eval(parse(text=paste0("c(", toString(input$columns), ")")))
+  #     return(datatable(pbc2.id) %>%
+  #              formatStyle(columns=cls, valueColumns = 0,
+  #                          color=styleEqual(rws, rep('blue',length(rws)) ) ))
+  #   }
+  #   
+  # )
   
   
   output$Rcode2 <- renderText({

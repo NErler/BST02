@@ -7,8 +7,8 @@
 #' ---
 #' 
 
-#' Load packages
-#' If you are using the package for the first time, you will have to first install it:
+#' Load packages \
+#' If you are using the package for the first time, you will have to first install it \
 # install.packages("survival") 
 # install.packages("memisc")
 library(survival)
@@ -28,7 +28,7 @@ sd(pbc$time)
 median(pbc$age)
 IQR(pbc$age)
 
-#' What is the percentage of placebo patients?
+#' What is the percentage of placebo patients? \
 #' In order to use the percent function you will need to load the memisc package
 percent(pbc$trt)
 
@@ -43,3 +43,31 @@ sd(pbc_males$age)
 #' What is the mean and sd for serum bilirubin?
 mean(pbc$bili)
 sd(pbc$bili)
+
+
+#' Missing values \
+#' Check if there are missing values
+is.na(pbc$chol)
+
+pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
+                                    "trt", "age", "sex", 
+                                    "bili", "chol")]
+
+
+#' Obtain complete cases for the variable chol
+DF <- pbc[complete.cases(pbc$chol), ]
+
+#' Obtain dimensions
+dim(pbc)
+dim(DF)
+
+#' Obtain data set where the chol variable has missing
+pbc_chol_na <- pbc[is.na(pbc$chol) == TRUE, ]
+head(pbc_chol_na)
+
+#' Obtain the dimensions of the data set where the chol variable has missing
+dim(pbc_chol_na)
+
+#' Check for outliers
+pbc_out_bili <- pbc[pbc$bili > 25, ]
+head(pbc_out_bili)

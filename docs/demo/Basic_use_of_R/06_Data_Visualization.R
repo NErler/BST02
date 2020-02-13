@@ -8,7 +8,7 @@
 #' 
 
 #' Load packages
-#' If you are using the package for the first time, you will have to first install it:
+#' If you are using the package for the first time, you will have to first install it \
 # install.packages("survival") 
 # install.packages("lattice")
 # install.packages("ggplot2")
@@ -85,7 +85,7 @@ xyplot(bili ~ age | status, data = pbc, type = c("p", "smooth"), lwd = 2, col = 
 #' Lattice family - smooth evolution with points of bili with age per status (as separate panel - change layout)
 xyplot(bili ~ age | status, data = pbc, type = c("p", "smooth"), lwd = 2, col = c("red"), layout = c(3,1)) 
 
-#' Lattice family - smooth evolution with points of bili with age per status (as separate panel - change layout).
+#' Lattice family - smooth evolution with points of bili with age per status (as separate panel - change layout). \
 #' Add names of status
 pbc$status <- factor(pbc$status, levels = c(0, 1, 2), labels = c("censored", "transplant", "dead"))
 xyplot(bili ~ age | status, data = pbc, type = c("p", "smooth"), lwd = 2, col = c("red"), layout = c(3,1))  
@@ -107,7 +107,7 @@ ggplot(pbc, aes(age, bili, colour = sex)) +
 geom_point(alpha = 0.3) +
 geom_smooth()
 
-#' ggplot family - plot day with bili for patient 93
+#' ggplot family - plot day with bili for patient 93 \
 #' A smoothed curve is added in blue
 ggplot(pbcseq[pbcseq$id == 93,], aes(day, bili)) +
 geom_line() +

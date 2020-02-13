@@ -24,6 +24,27 @@ library(kableExtra)
 library(dplyr)
 ```
 
+## In this Section
+
+* Using R
+
+* In practice examples
+
+* Basics in R
+
+* Common R objects
+
+* Importing data and saving your work
+
+*  Data transformation
+
+* Data exploration
+
+* Visualization of data
+
+* Indexing
+
+Lots of practising
 
 ## Using R
 
@@ -47,7 +68,7 @@ library(dplyr)
   - Emacs (w. ESS, all platforms)
   - Visual Studio (for Windows)
   - Rstudio (all major platforms; http://www.rstudio.org/) 
-  - for more check http://www.sciviews.org/_rgui/projects/Editors.html
+  - for more check https://r-dir.com/blog/2013/01/list-of-r-editors.html
   
   
 ##  Using R (cont'd)
@@ -61,6 +82,9 @@ library(dplyr)
 ##  Using R (cont'd)
 
 * Can I use R without Rstudio?
+
+\vspace*{0.5cm}
+
 * Can I use Rstudio without R?
 
 
@@ -166,10 +190,10 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 
 * Common questions
    - What is the average age?
-   - What is the average bili?
-   - What is the average chol?
+   - What is the average serum bilirubin?
+   - What is the average serum cholesterol?
    - What is the percentage of females?
-   - How many missing values do we have for chol?
+   - How many missing values do we have for serum cholesterol?
    
    
 ## Basics in R
@@ -192,11 +216,13 @@ Expression is given as a command,
 
  - However, it cannot be viewed again unless the command is rerun.
  
+\pause
+ 
 \vspace*{3ex}
 
  In order to store information, the expression should assign the command
  
- ```{r, eval = TRUE, include = TRUE, echo = TRUE}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- 103473
 x
 ```
@@ -269,13 +295,17 @@ kable(dt, "latex", booktabs = T, digits = 2) %>%
 
 * in R Everything (data, results, ...) is an object
 
-* In order to list the created variables use objects() or ls()
+* In order to list the created objects use the following functions
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
 objects()
+ls()
 ```
 
-  - In order to remove everything:
+\pause
+
+  - In order to remove objects
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
+rm(...)
 rm(list=ls(all=TRUE))
 ```
 
@@ -296,9 +326,9 @@ The simplest data structures are:
 * \textbf{\textcolor{red}{character}} : qualitative data
 * \textbf{\textcolor{red}{integer}} : whole numbers
 * \textbf{\textcolor{red}{logical}} : TRUE or FALSE
-* \textbf{\textcolor{red}{factors}} : TRUE or FALSE
+* \textbf{\textcolor{red}{factors}} : qualitative data (ordered)
 
-To find out what type of vector you have you can use the mode function
+To find out what type of object you have, you can use the following function
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mode(pbc$age)
 ```
@@ -310,20 +340,20 @@ mode(pbc$age)
 
   - \textbf{\textcolor{red}{Vectors}} have the same type of elements 
   - \textbf{\textcolor{red}{Matrices}} have the same type of elements 
-  - \textbf{\textcolor{red}{Data.frames}} and lists do not need to have the same type of elements 
-  - \textbf{\textcolor{red}{Lists}} may have elements of different length and type
+  - \textbf{\textcolor{red}{Data.frames}} can have elements of different type
+  - \textbf{\textcolor{red}{Lists}} can have elements of different length and type
 
 
 ## Common R Objects (cont'd)
 
-* Differences between \textbf{\textcolor{red}{Vector}}, Matrices, Data.frames and Lists
+* Differences between \textbf{\textcolor{red}{Vectors}}, Matrices, Data.frames and Lists
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbc[1:6, c("age")]
 ```
 
 ## Common R Objects (cont'd)
 
-* Differences between Vector, \textbf{\textcolor{red}{Matrices}}, Data.frames and Lists
+* Differences between Vectors, \textbf{\textcolor{red}{Matrices}}, Data.frames and Lists
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbc[1:6, c("age", "bili", "chol")]
 ```
@@ -331,7 +361,7 @@ pbc[1:6, c("age", "bili", "chol")]
 
 ## Common R Objects (cont'd)
 
-* Differences between Vector, Matrices, \textbf{\textcolor{red}{Data.frames}} and Lists
+* Differences between Vectors, Matrices, \textbf{\textcolor{red}{Data.frames}} and Lists
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbc[1:6, c("id", "sex", "bili", "chol")]
 ```
@@ -339,7 +369,7 @@ pbc[1:6, c("id", "sex", "bili", "chol")]
 
 ## Common R Objects (cont'd)
 
-* Differences between Vector, Matrices, Data.frames and \textbf{\textcolor{red}{Lists}}
+* Differences between Vectors, Matrices, Data.frames and \textbf{\textcolor{red}{Lists}}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 list(pbc[1:6, c("sex")], pbc[1:2, c("sex", "bili")], pbc$age[1:4])
 ```
@@ -368,6 +398,8 @@ mat <- matrix(vec, 3, 3)
 mat 
 ```
 
+\pause
+
 \endcol
 \begincol{0.5\linewidth}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -390,6 +422,8 @@ mat
 dtf <- data.frame(pbc$sex, pbc$age)
 dtf[1:3,]
 ```
+
+\pause
 
 \endcol
 \begincol{0.5\linewidth}
@@ -435,16 +469,16 @@ list1
 
 * function: \textbf{\textcolor{red}{read.table()}}, \textbf{\textcolor{red}{read.csv()}} and its variants
   - note: use forward slashes or double backward slashes in the file names, e.g., \
-    "C:/Documents and Settings/User/Data/file.txt" or \
-    "C:\\Documents and Settings\\User\\Data\\file.txt"
+    "`C:/Documents and Settings/User/Data/file.txt`" or \
+    "`C:\\Documents and Settings\\User\\Data\\file.txt`"
     
 \vspace*{3ex}    
     
-* Specialized functions for importing data from other statistical packages
-  - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{read.spss()}} , \textbf{\textcolor{red}{read.dta()}}
+* Specialized functions for importing data from other programs
+  - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{read.spss()}}, \textbf{\textcolor{red}{read.dta()}}
   - package: \textbf{\textcolor{red}{Hmisc}}, function: \textbf{\textcolor{red}{sas.get()}}
   - package: \textbf{\textcolor{red}{readxl}}, function: \textbf{\textcolor{red}{read\_excel()}}
-  - package: \textbf{\textcolor{red}{haven}}, functio: \textbf{\textcolor{red}{read\_spss()}}
+  - package: \textbf{\textcolor{red}{haven}}, function: \textbf{\textcolor{red}{read\_spss()}}
   - etc
 
 
@@ -459,7 +493,6 @@ list1
 
 ## Importing Data and Saving your Work (cont'd)
 
-* \textbf{\textcolor{red}{ls()}} lists R objects in a session 
 * \textbf{\textcolor{red}{save()}}
   - can be used to save a list of R objects
   - a binary file with all the objects available in your last R session
@@ -471,21 +504,10 @@ list1
 
 \vspace*{3ex}
 
-* Specialized functions for importing data from other statistical packages
-  - function: \textbf{\textcolor{red}{read.table()}}, \textbf{\textcolor{red}{read.csv()}}
+* Specialized functions for exporting data to other programs
+  - function: \textbf{\textcolor{red}{write.table()}}, \textbf{\textcolor{red}{write.csv()}}
   - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{write.spss()}}, \textbf{\textcolor{red}{write.dta()}}
   - etc
-
-## Importing Data and Saving your Work (cont'd)
-
-* Create a csv, xls or text file from an R object
-```{r, eval = FALSE, include = TRUE, echo = TRUE}
-write.csv(mydata, "c:/mydata.txt")
-write.table(mydata, "c:/mydata.txt", sep="\t")
-library(xlsx)
-write.xlsx(mydata, "c:/mydata.xlsx")
-```
-
 
 
 ## Importing Data and Saving your Work (cont'd)
@@ -505,17 +527,16 @@ write.xlsx(mydata, "c:/mydata.xlsx")
 
 ## Data Transformation
 
-* Round continuous variables
-* \textbf{\textcolor{red}{numeric}} variables to \textbf{\textcolor{red}{factors}}
-* Compute new variables
+* \textbf{\textcolor{red}{Round}} continuous variables
+* Convert \textbf{\textcolor{red}{numeric}} variables to \textbf{\textcolor{red}{factors}}
+* Compute \textbf{\textcolor{red}{new variables}}
   - transform variables
-* Matrices of wide $\Longleftrightarrow$ long format
-* Missing values
+* Data sets of \textbf{\textcolor{red}{wide}} $\Longleftrightarrow$ \textbf{\textcolor{red}{long}} format
 
 
 ## Data Transformation (cont'd)
 
-Round continuous variables
+* Round continuous variables
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF <- format(pbc[,c("id", "time", "status", "trt", "age", 
                     "sex", "bili", "chol")], digits = 2)
@@ -525,7 +546,7 @@ head(DF)
 
 ## Data Transformation (cont'd)
 
-\textbf{\textcolor{red}{numeric}} variables to \textbf{\textcolor{red}{factors}}
+* Convert \textbf{\textcolor{red}{numeric}} variables to \textbf{\textcolor{red}{factors}}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF <- pbc[,c("id", "time", "status", "trt", "age", 
                     "sex", "bili", "chol")]
@@ -537,7 +558,7 @@ head(DF)
 
 ## Data Transformation (cont'd)
 
-* Compute new variables
+* Compute \textbf{\textcolor{red}{new variables}}
   - transform variables
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF <- pbc[,c("id", "time", "status", "trt", "age", 
@@ -550,7 +571,7 @@ head(DF)
   
 ## Data Transformation (cont'd)
 
-* Matrices of \textbf{\textcolor{red}{wide}} $\Longleftrightarrow$ long format  
+* Data sets of \textbf{\textcolor{red}{wide}} $\Longleftrightarrow$ long format  
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 head(pbc[,c("id", "time", "status", "trt", "age", 
                     "sex", "bili", "chol")])
@@ -559,22 +580,12 @@ head(pbc[,c("id", "time", "status", "trt", "age",
   
 ## Data Transformation (cont'd)
 
-* Matrices of wide $\Longleftrightarrow$ \textbf{\textcolor{red}{long}} format  
+* Data sets of wide $\Longleftrightarrow$ \textbf{\textcolor{red}{long}} format  
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
                     "sex", "bili", "chol")])
 ```  
   
-  
-## Data Transformation (cont'd)
-
-* \textbf{\textcolor{red}{Missing values}} 
-```{r, eval = TRUE, include = TRUE, echo = TRUE}
-head(pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
-                                    "trt", "age", "sex", 
-                                    "bili", "chol")])
-```  
-
 
 ## Data Transformation (cont'd)
 
@@ -602,11 +613,11 @@ head(pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
   - What is the percentage of females?
   - What is the mean and sd for age in males?
   - What is the mean and sd for baseline serum bilirubin?
-
+  - What is the percentage of missings in serum bilirubin?
 
 ## Data Exploration (cont'd)
 
-* Common questions: \textbf{\textcolor{red}{Hints}}
+* \blue{Hints}
 
 \vspace*{3ex}  
 
@@ -632,9 +643,8 @@ head(pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
 
 ## Data Visualization
 
-* It is important to investigate each data set using plots
+* It is important to investigate each variable in our data set using plots
   - Descriptive statistics for continuous and categorical variables
-  
   - Distributions of variables
   - Distributions of variables per group
   - Extreme values
@@ -715,9 +725,11 @@ pbc_male_bili <- pbc$bili[pbc$sex == "m"]
 pbc_female_bili <- pbc$bili[pbc$sex == "f"]
 plot(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
      main = "Density plots", xlab = "age", ylab = "")
-polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), border = "blue")
+polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
+        border = "blue")
 lines(density(pbc_female_bili), col = rgb(1,0,0,0.5))
-polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), border = "red")
+polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), 
+        border = "red")
 legend(20,0.03, c("male", "female"), 
        col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)
 ```  
@@ -731,7 +743,8 @@ pbc_male_bili <- pbc$bili[pbc$sex == "m"]
 pbc_female_bili <- pbc$bili[pbc$sex == "f"]
 plot(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
      main = "Density plots", xlab = "age", ylab = "", ylim = c(0,0.4))
-polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), border = "blue")
+polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
+        border = "blue")
 lines(density(pbc_female_bili), col = rgb(1,0,0,0.5))
 polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), 
         border = "red")
@@ -743,9 +756,11 @@ legend(20,0.03, c("male", "female"),
 ## Data Visualization (cont'd)
 
 Categorical variables 
-```{r, eval = TRUE, include = TRUE, echo = FALSE, fig.height = 8, fig.width = 15}
-pbc$status <- factor(pbc$status, levels = c(0, 1, 2), labels = c("censored", "transplant", "dead"))
-pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 5, fig.width = 15}
+pbc$status <- factor(pbc$status, levels = c(0, 1, 2), 
+                     labels = c("censored", "transplant", "dead"))
+pie(prop.table(table(pbc$status)), 
+    col = c("green", "blue", "red"), cex = 2)
 ``` 
 
 
@@ -819,7 +834,7 @@ pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
 \item \texttt{head()}
 \item \texttt{save()}, \texttt{saveRDS()}
 \item \texttt{load()}, \texttt{readRDS()}
-\item \texttt{write.csv()}, \texttt{write.xlsx()}, \texttt{write.table()}
+\item \texttt{read.csv()}, \texttt{write.csv()}, \texttt{read.xlsx()}, \texttt{write.xlsx()}, \texttt{read.table()}, \texttt{write.table()}
 \end{itemize}
 
 \bigskip
@@ -827,8 +842,8 @@ pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
 \textbf{\textcolor{blue}{Other}}
 \begin{itemize}
 \item \texttt{install.packages()}
-\item \texttt{library()}
-\item \texttt{ls()}, \texttt{getwd()}
+\item \texttt{library()}, \texttt{getwd()}
+\item \texttt{ls()}, \texttt{objects()}
 \end{itemize}
 
 \end{column}
@@ -859,9 +874,9 @@ pie(prop.table(table(pbc$status)), col = c("green", "blue", "red"), cex = 2)
   
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Position indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}
 
-* Use a \textbf{\textcolor{red}{positive}} value to select an element
+* For position indexing, use a \textbf{\textcolor{red}{positive}} value to select an element
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(6:17)
 x
@@ -876,9 +891,9 @@ x[c(2,3,4)]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Position indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}
 
-* Use dublicated positive values to select the same elements
+* For position indexing, use dublicated \textbf{\textcolor{red}{positive}} values to select the same elements
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(6:17)
 x
@@ -888,9 +903,9 @@ x[c(2,2,2)]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Position indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}
 
-* Use a \textbf{\textcolor{red}{negative}} value to remove an element
+* For position indexing, use a \textbf{\textcolor{red}{negative}} value to remove an element
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(6:17)
 x
@@ -904,7 +919,7 @@ x[-5]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Logical indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}
 
 * Use logical index of the same length to select elements where the value is \textbf{\textcolor{red}{TRUE}}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -916,9 +931,9 @@ x[y]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Logical indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}
 
-* Logical indexing is often used in combination with conditions
+* Use logical indexing in combination with conditions
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(6:10)
 x[x > 7]
@@ -929,26 +944,29 @@ x[x > 7 | x > 9]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Name/character indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}
 
-* When a vector has been named the element names can be used as indices 
+* For name/character indexing, use the name of the element names
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(foo=5, bar=4, one=7, two=12, three=2)
 x[c('foo', 'one')]
 ```
 
-* Use the function \textcolor{blue}{names} to obtain the names
+* Use the function `names` to obtain the names
 
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Matrices}}:
+\textbf{\textcolor{blue}{Indexing with Matrices}}
 
-* Indexing matrices as similar to indexing vectors but with double index
+* Indexing matrices are similar to indexing vectors but with double index
 
   - The first position denotes the rows
   - The first position denotes the columns
 
+\pause
+
+* Use position indexing as:
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mat <- matrix(1:6, 3, 3)
 mat
@@ -958,7 +976,7 @@ mat[2, 2]
   
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Matrices}}:
+\textbf{\textcolor{blue}{Indexing with Matrices}}
 
 * When we leave a position blank all elements are selected
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -970,9 +988,9 @@ mat[2, ]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+\textbf{\textcolor{blue}{Indexing with Data Frames}}
 
-* When you use a single index the data.frame acts like a list of variables
+* When using a single index the data frame acts like a list of variables
 
 \begincols[t]
 \begincol{0.5\linewidth}
@@ -982,12 +1000,12 @@ DF <- data.frame(x = 1:4,
 DF
 ```  
 
+\pause
+
 \endcol
 \begincol{0.5\linewidth}
-
+* Use position indexing as:
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-DF <- data.frame(x = 1:4, 
-          y = c(35, 23, 14, 45))
 DF[2]
 ```  
 \endcol
@@ -996,27 +1014,38 @@ DF[2]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+\textbf{\textcolor{blue}{Indexing with Data Frames}}
+
+* \textcolor{blue}{\$} provides a convinient notation to extract an element by name
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+head(pbc$time)
+```  
+
+
+## Indexing/Subsetting (cont'd)
+
+\textbf{\textcolor{blue}{Indexing with Data Frames}}
 
 \begincols[t]
 \begincol{0.5\linewidth}
-* When you using a double index, indexing works like a matrix
+* When using a double index, indexing works like a matrix
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-DF <- data.frame(x = 1:4, 
-          y = c(35, 23, 14, 45))
+DF <- data.frame(x = 1:3, 
+          y = c(35, 23, 14))
 DF
-DF[4, 2]
 ```  
+
+\pause
 
 \endcol
 \begincol{0.5\linewidth}
-
-* When you using a double index, indexing works like a matrix
+* Use position indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-DF <- data.frame(x = 1:4, 
-          y = c(35, 23, 14, 45))
-DF
-DF[DF$y < 30, ]
+DF[2, 2]
+```  
+* Use logical indexing
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+DF[DF$y < 30, 2]
 ```  
 \endcol
 \endcols
@@ -1024,9 +1053,9 @@ DF[DF$y < 30, ]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+\textbf{\textcolor{blue}{Indexing with Data Frames}}
 
-* Logical indexing in data frame
+* Combine logical and position indexing in data frame
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbcDF <- data.frame(pbc)
 head(pbc[pbc$sex == "m", 1:7])
@@ -1035,9 +1064,9 @@ head(pbc[pbc$sex == "m", 1:7])
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+\textbf{\textcolor{blue}{Indexing with Data Frames}}
 
-* Logical indexing in data frame
+* Combine logical and position indexing in data frame
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbcDF <- data.frame(pbc)
 head(pbc[pbc$age > 30 | pbc$sex == "f", 1:7])
@@ -1046,9 +1075,9 @@ head(pbc[pbc$age > 30 | pbc$sex == "f", 1:7])
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+\textbf{\textcolor{blue}{Indexing with Data Frames}}
 
-* Logical indexing in data frame
+* Combine logical and position indexing in data frame
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbcDF <- data.frame(pbc)
 head(pbc[pbc$age > 30 & pbc$sex == "f", 1:7])
@@ -1057,31 +1086,34 @@ head(pbc[pbc$age > 30 & pbc$sex == "f", 1:7])
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Lists}}:
+\textbf{\textcolor{blue}{Indexing with Lists}}
 
-* Lists can be subsetted in the same way as vectors using - Note that the output is a list
+* Lists can be subsetted in the same way as vectors using single brackets - Note that the output is a list
+
+\vspace*{0.6cm}
+
+* Use position indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
-mylist
 mylist[2]
 ```  
 
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Lists}}:
+\textbf{\textcolor{blue}{Indexing with Lists}}
 
 * Double square brackets can be also used - Note that the output is a vector
+* Use position indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
-mylist
 mylist[[2]]
 ```  
 
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Lists}}:
+\textbf{\textcolor{blue}{Indexing with Lists}}
 
 * \textcolor{blue}{\$} provides a convinient notation to extract an element by name - Note that the output is a vector
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -1089,6 +1121,30 @@ mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
 mylist
 mylist$y
 ```  
+
+
+## Indexing/Subsetting (cont'd)
+
+* Use the following webpage to further investigate subsetting
+https://emcbiostatistics.shinyapps.io/the_apply_family/
+
+* The **R** code for the shiny app is also available: 
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.52\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Indexing Subsetting shiny app \button{08_shiny_app_indexing.R}{R} \
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.48\linewidth}
+\end{column}
+\end{columns}
+
+In order to run the app you will need to install the package `shiny`
+
 
 ## Useful Summary: Indexing/Subsetting
 
@@ -1113,8 +1169,8 @@ mylist$y
 \textbf{\textcolor{blue}{Data frames}}
 \begin{itemize}
 \item \texttt{[,]}
-\item \texttt{\$}
 \item \texttt{[[]]}
+\item \texttt{\$}
 \end{itemize}
 
 \bigskip
