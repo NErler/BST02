@@ -7,8 +7,8 @@
 #' ---
 #' 
 
-#' Load packages
-#' If you are using the package for the first time, you will have to first install it:
+#' Load packages \
+#' If you are using the package for the first time, you will have to first install it
 # install.packages("survival") 
 library(survival)
 
@@ -42,23 +42,23 @@ pbcseq[tapply(row.names(pbcseq), pbcseq$id, head, 1), ]
 #' Select the last measurement per patient
 pbcseq[tapply(row.names(pbcseq), pbcseq$id, tail, 1), ]
 
-#' From the vector pbc\$age, select the age which is younger than 30
+#' From the vector pbc\$age, select patients that are younger than 30
 pbc$age[pbc$age < 30]
 
-#' From the vector pbc\$age, select only female patient
+#' From the vector pbc\$age, select only female patients
 pbc$age[pbc$sex == "f"]
 
 #' From the vector pbc\$age, select the 3rd element
 pbc$age[3]
 
-#' From the pbc data set, select male patients that died
+#' Select all male patients that died
 pbc[pbc$sex == "m" & pbc$status == 2, ]      
 
-#' From the pbc data set, select male patients or patients that died
+#' Select male patients or patients that died
 pbc[pbc$sex == "m" | pbc$status == 2, ]   
 
-#' From the pbc data set, select the serum bilirubin measurements only for female patients \
-#' Calculate the mean and standard deviation
+#' Select the serum bilirubin measurements only for female patients \
+#' Calculate the mean and standard deviation \
 #' Plot a histogram
 pbc[pbc$sex == "f", "bili"]   
 
@@ -67,7 +67,7 @@ sd(pbc[pbc$sex == "f", "bili"])
 
 hist(pbc[pbc$sex == "f", "bili"])
 
-#' From the pbc data set, select all rows where the serum bilirubin measurements that are smaller that 10
+#' Select all rows where the serum bilirubin measurements are smaller that 10
 pbc[pbc$bili < 10, ]
 
 #' Make a boxplot of serum bilirubin per sex using the previous selection
@@ -86,7 +86,7 @@ myList[2]
 #' Select the third element (the output should be a vector)
 myList[[3]]
 
-#' Select the third element (the output should be a vector)
+#' Select the third element (the output should be a vector) \
 #' Then select the elements that are smaller than 20
 newData <- myList[[3]]
 newData[newData < 20]
@@ -94,8 +94,8 @@ newData[newData < 20]
 #' Create a list with 3 elements and add names: \
 #' 1st element - all_id: all pbc\$id \
 #' 2nd element - bili_male: pbc\$bili for males \
-#' 3rd element - young: pbc\$age > 30
-myList <- list(all_id = pbc$id, bili_male = pbc$bili[pbc$sex == "m"], young = pbc$age[pbc$age > 30])
+#' 3rd element - young: pbc\$age < 30
+myList <- list(all_id = pbc$id, bili_male = pbc$bili[pbc$sex == "m"], young = pbc$age[pbc$age < 30])
 
 #' Select all_id by name indexing
 myList$all_id

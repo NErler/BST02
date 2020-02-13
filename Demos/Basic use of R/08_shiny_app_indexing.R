@@ -5,7 +5,7 @@
 # install.packages("shiny")
 # install.packages("JM")
 # install.packages("DT")
-library(survival)
+library(JM)
 library(shiny)
 
 ################################################

@@ -199,7 +199,7 @@ Expression is given as a command,
 
  In order to store information, the expression should assign the command
  
- ```{r, eval = TRUE, include = TRUE, echo = TRUE}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- 103473
 x
 ```
@@ -275,10 +275,12 @@ kable(dt, "latex", booktabs = T, digits = 2) %>%
 * In order to list the created variables use the following functions
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
 objects()
+ls()
 ```
 
-  - In order to remove everything:
+  - In order to remove objects
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
+rm(...)
 rm(list=ls(all=TRUE))
 ```
 
@@ -438,12 +440,12 @@ list1
 
 * function: \textbf{\textcolor{red}{read.table()}}, \textbf{\textcolor{red}{read.csv()}} and its variants
   - note: use forward slashes or double backward slashes in the file names, e.g., \
-    "C:/Documents and Settings/User/Data/file.txt" or \
-    "C:\\Documents and Settings\\User\\Data\\file.txt"
+    "`C:/Documents and Settings/User/Data/file.txt`" or \
+    "`C:\\Documents and Settings\\User\\Data\\file.txt`"
     
 \vspace*{3ex}    
     
-* Specialized functions for importing data from other statistical programs
+* Specialized functions for importing data from other programs
   - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{read.spss()}}, \textbf{\textcolor{red}{read.dta()}}
   - package: \textbf{\textcolor{red}{Hmisc}}, function: \textbf{\textcolor{red}{sas.get()}}
   - package: \textbf{\textcolor{red}{readxl}}, function: \textbf{\textcolor{red}{read\_excel()}}
@@ -473,7 +475,7 @@ list1
 
 \vspace*{3ex}
 
-* Specialized functions for export data to other statistical programs
+* Specialized functions for exporting data to other programs
   - function: \textbf{\textcolor{red}{write.table()}}, \textbf{\textcolor{red}{write.csv()}}
   - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{write.spss()}}, \textbf{\textcolor{red}{write.dta()}}
   - etc
@@ -612,9 +614,8 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 
 ## Data Visualization
 
-* It is important to investigate each data set using plots
+* It is important to investigate each variable in our data set using plots
   - Descriptive statistics for continuous and categorical variables
-  
   - Distributions of variables
   - Distributions of variables per group
   - Extreme values
@@ -804,7 +805,7 @@ pie(prop.table(table(pbc$status)),
 \item \texttt{head()}
 \item \texttt{save()}, \texttt{saveRDS()}
 \item \texttt{load()}, \texttt{readRDS()}
-\item \texttt{write.csv()}, \texttt{write.xlsx()}, \texttt{write.table()}
+\item \texttt{read.csv()}, \texttt{write.csv()}, \texttt{read.xlsx()}, \texttt{write.xlsx()}, \texttt{read.table()}, \texttt{write.table()}
 \end{itemize}
 
 \bigskip
@@ -812,8 +813,8 @@ pie(prop.table(table(pbc$status)),
 \textbf{\textcolor{blue}{Other}}
 \begin{itemize}
 \item \texttt{install.packages()}
-\item \texttt{library()}
-\item \texttt{ls()}, \texttt{getwd()}
+\item \texttt{library()}, \texttt{getwd()}
+\item \texttt{ls()}, \texttt{objects()}
 \end{itemize}
 
 \end{column}
@@ -844,7 +845,7 @@ pie(prop.table(table(pbc$status)),
   
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}
 
 * For position indexing, use a \textbf{\textcolor{red}{positive}} value to select an element
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -861,9 +862,9 @@ x[c(2,3,4)]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}
 
-* For position indexing, use dublicated positive values to select the same elements
+* For position indexing, use dublicated \textbf{\textcolor{red}{positive}} values to select the same elements
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(6:17)
 x
@@ -873,7 +874,7 @@ x[c(2,2,2)]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}
 
 * For position indexing, use a \textbf{\textcolor{red}{negative}} value to remove an element
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -889,7 +890,7 @@ x[-5]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}
 
 * Use logical index of the same length to select elements where the value is \textbf{\textcolor{red}{TRUE}}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -901,7 +902,7 @@ x[y]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}
 
 * Use logical indexing in combination with conditions
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -914,7 +915,7 @@ x[x > 7 | x > 9]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with vectors}}:
+\textbf{\textcolor{blue}{Indexing with vectors}}
 
 * For name/character indexing, use the name of the element names
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -922,12 +923,12 @@ x <- c(foo=5, bar=4, one=7, two=12, three=2)
 x[c('foo', 'one')]
 ```
 
-* Use the function \textcolor{blue}{names} to obtain the names
+* Use the function `names` to obtain the names
 
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Matrices}}:
+\textbf{\textcolor{blue}{Indexing with Matrices}}
 
 * Indexing matrices are similar to indexing vectors but with double index
 
@@ -944,7 +945,7 @@ mat[2, 2]
   
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Matrices}}:
+\textbf{\textcolor{blue}{Indexing with Matrices}}
 
 * When we leave a position blank all elements are selected
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -956,7 +957,7 @@ mat[2, ]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+\textbf{\textcolor{blue}{Indexing with Data Frames}}
 
 * When using a single index the data frame acts like a list of variables
 
@@ -982,25 +983,35 @@ DF[2]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+\textbf{\textcolor{blue}{Indexing with Data Frames}}
+
+* \textcolor{blue}{\$} provides a convinient notation to extract an element by name
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+head(pbc$time)
+```  
+
+
+## Indexing/Subsetting (cont'd)
+
+\textbf{\textcolor{blue}{Indexing with Data Frames}}
 
 \begincols[t]
 \begincol{0.5\linewidth}
 * When using a double index, indexing works like a matrix
-* Use position indexing as:
+* Use position indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-DF <- data.frame(x = 1:4, 
-          y = c(35, 23, 14, 45))
+DF <- data.frame(x = 1:3, 
+          y = c(35, 23, 14))
 DF
 DF[4, 2]
 ```  
 
 \endcol
 \begincol{0.5\linewidth}
-* Use logical indexing as:
+* Use logical indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-DF <- data.frame(x = 1:4, 
-          y = c(35, 23, 14, 45))
+DF <- data.frame(x = 1:3, 
+          y = c(35, 23, 14))
 DF
 DF[DF$y < 30, ]
 ```  
@@ -1010,9 +1021,9 @@ DF[DF$y < 30, ]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+\textbf{\textcolor{blue}{Indexing with Data Frames}}
 
-* Logical indexing in data frame
+* Combine logical and position indexing in data frame
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbcDF <- data.frame(pbc)
 head(pbc[pbc$sex == "m", 1:7])
@@ -1021,9 +1032,9 @@ head(pbc[pbc$sex == "m", 1:7])
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+\textbf{\textcolor{blue}{Indexing with Data Frames}}
 
-* Logical indexing in data frame
+* Combine logical and position indexing in data frame
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbcDF <- data.frame(pbc)
 head(pbc[pbc$age > 30 | pbc$sex == "f", 1:7])
@@ -1032,9 +1043,9 @@ head(pbc[pbc$age > 30 | pbc$sex == "f", 1:7])
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}:
+\textbf{\textcolor{blue}{Indexing with Data Frames}}
 
-* Logical indexing in data frame
+* Combine logical and position indexing in data frame
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbcDF <- data.frame(pbc)
 head(pbc[pbc$age > 30 & pbc$sex == "f", 1:7])
@@ -1043,10 +1054,10 @@ head(pbc[pbc$age > 30 & pbc$sex == "f", 1:7])
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Lists}}:
+\textbf{\textcolor{blue}{Indexing with Lists}}
 
 * Lists can be subsetted in the same way as vectors using single brackets - Note that the output is a list
-* Use position indexing as:
+* Use position indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
 mylist[2]
@@ -1055,10 +1066,10 @@ mylist[2]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Lists}}:
+\textbf{\textcolor{blue}{Indexing with Lists}}
 
 * Double square brackets can be also used - Note that the output is a vector
-* Use position indexing as:
+* Use position indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
 mylist[[2]]
@@ -1067,7 +1078,7 @@ mylist[[2]]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Lists}}:
+\textbf{\textcolor{blue}{Indexing with Lists}}
 
 * \textcolor{blue}{\$} provides a convinient notation to extract an element by name - Note that the output is a vector
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -1075,6 +1086,21 @@ mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
 mylist
 mylist$y
 ```  
+
+
+## Indexing/Subsetting (cont'd)
+
+* Use the following webpage to further investigate subsetting
+https://emcbiostatistics.shinyapps.io/the_apply_family/
+
+* The code for the shiny app in **R** is also available. In order to run it you will need to install the package `shiny`
+
+\begin{block}{Demos}
+\begin{itemize}
+\item Indexing Subsetting shiny app \button{08_shiny_app_indexing.R}{R}
+\end{itemize}
+\end{block}
+
 
 ## Useful Summary: Indexing/Subsetting
 
@@ -1099,8 +1125,8 @@ mylist$y
 \textbf{\textcolor{blue}{Data frames}}
 \begin{itemize}
 \item \texttt{[,]}
-\item \texttt{\$}
 \item \texttt{[[]]}
+\item \texttt{\$}
 \end{itemize}
 
 \bigskip
