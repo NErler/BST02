@@ -56,7 +56,7 @@ In this practical, a number of R packages are used.
 The packages used (with versions that were used to generate the solutions) are:
 
 * `r R.version.string`
-* `survival` (version: `r packageVersion("mice")`)
+* `survival` (version: `r packageVersion("survival")`)
 
 
 

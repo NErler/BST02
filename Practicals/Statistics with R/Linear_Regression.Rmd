@@ -197,17 +197,20 @@ confint(mod1, level = 0.9)
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 Combine the coefficients and 95% confidence intervals of the model into one
 `matrix`.
+</div>
+
+### Solution 2
 ```{r, echo = FALSE, resuts = 'asis'}
 cbind(estimate = coef(mod1),
       confint(mod1))
 ```
-Note:
 
+Note:</br>
 Because `coef()` returns a vector, the corresponding column in our marix would not
 have a name. We can assign the name when we use `cbind()`.
 
 `confint()` returns a `matrix` which already has column names.
-</div>
+
 
 ## Coding of the covariates  {.tabset .tabset-pills .tabset-fade}
 Now we will re-code those covariates that are actually categorical variables.

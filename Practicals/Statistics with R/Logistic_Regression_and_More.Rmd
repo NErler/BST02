@@ -1,0 +1,431 @@
+---
+title: 'Logistic Regression & Non-linear Effects'
+output: 
+  html_document:
+    code_folding: show
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+    number_sections: false
+    theme: spacelab
+    highlight: tango
+    includes:
+      after_body: ../footerNE.html
+    css: ../style.css
+---
+
+```{r, include = FALSE}
+library(knitr)
+options(width = 100)
+
+hint <- function(text) {
+  id <- paste0('hint_', sample.int(1e10, size = 1))
+    cat(
+    paste0('\n',
+      '<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" ',
+      'data-target="#', id, '">Hint</button>',
+      '<div id = "', id, '" class="collapse" style="border:1px; ',
+      'border-style:solid; padding: 1em; border-color:#1F78B4">',
+      text, '</div>')
+  )
+}
+set.seed(2020)
+```
+
+
+## Preface
+### R packages
+In this practical, we use the R package **effects**.
+It can be installed by running the following syntax:
+```{r, eval = FALSE}
+install.packages("effects")
+```
+
+
+### Dataset 
+For this practical, we will use the **pbc** dataset from the package **survival**.
+
+You can either load the **survival** package to get access to this dataset
+```{r}
+library(survival)
+```
+or make a copy of this data
+```{r}
+pbc <- survival::pbc
+```
+
+The **pbc** data contain (among others) the following variables:
+```{r}
+str(pbc[, c(5:11, 20)])
+```
+
+
+
+
+
+## Fitting a Logistic Regression
+
+We want to fit a logistic regression model for the outcome `spiders` using the 
+covariates `age`, `sex`, `bili`, `stage` and `ascites`.
+
+### Variable coding {.tabset .tabset-fade .tabset-pills}
+
+#### Task 1
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Are the variables coded correctly?
+If not, re-code them.
+```{r, echo = FALSE, results = 'asis'}
+hint('Three of the variables of interest are coded as integer.')
+```
+
+</div>
+
+#### Solution 1
+The variables `ascites`, `spiders` and `stage` are coded as integer. Both
+`ascites` and `spiders` do only have two levels, therefore we *could* use them
+as they are:
+```{r}
+table(pbc$spiders, exclude = NULL)
+table(pbc$ascites, exclude = NULL)
+
+#  In this case optional:
+pbc$spiders <- factor(pbc$spiders)
+pbc$stage <- factor(pbc$stage)
+```
+
+`stage` has four levels and should be re-coded as a factor:
+```{r}
+table(pbc$stage, exclude = NULL)
+pbc$ascites <- factor(pbc$ascites)
+```
+
+
+#### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Fit the logistic model described above and get the model summary.
+```{r, echo = FALSE, results = 'asis'}
+hint("A logistic regression model is a GLM.")
+hint("You need to specify the model `formula`, the `data` and the `family`.")
+```
+</div>
+
+#### Solution 2
+```{r}
+mod1 <- glm(spiders ~ age + sex + bili + stage + ascites, data = pbc,
+            family = binomial())
+summary(mod1)
+```
+
+
+#### Task 3
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+
+Investigate the output of the model summary.
+
+* Were there missing values in the data? What happened with those cases?
+* What is the interpretation of the coefficient for `bili` in this model?
+* What is the interpretation of the coefficients for `stage`?
+</div>
+
+
+
+#### Solution 3
+**Missing values:**<br>
+In the lower part of the output of the model summary we can read:
+```{r, echo = FALSE}
+smod1 <- capture.output(summary(mod1))
+cat("[...]\n",
+    paste0(smod1[25:28], sep = "\n"),
+    "[...]")
+```
+
+There were `r  length(summary(mod1)$na.action)` cases with missing values. These
+were excluded from the analysis.
+
+
+<br><br>
+**Interpretation fo the effect of `bili`:**
+```{r, echo = FALSE}
+cat(paste0(smod1[10:11], sep = "\n"),
+    "[...]\n",
+    paste0(smod1[15], sep = "\n"),
+    "[...]"
+    )
+```
+
+With every 1 unite increase of `bili` the expected log odds of having `spiders`,
+i.e., $\log\left(\frac{P(\texttt{spiders = 1})}{1 - P(\texttt{spiders=1})}\right)$, increases by
+$\beta_{\texttt{bili}} = `r sprintf("%.3f", coef(mod1)['bili'])`$ (while all other
+covariates in the model are kept constant).
+
+This means that the odds ratio of `bili` is
+$\exp(\beta_{\texttt{bili}}) = \exp(`r sprintf("%.3f", coef(mod1)['bili'])`) = `r sprintf("%.3f", exp(coef(mod1)['bili']))`$.
+
+<br><br>
+**Interpretation of the effect(s) of `stage`:**
+```{r, echo = FALSE}
+cat(paste0(smod1[10:11], sep = "\n"),
+    "[...]\n",
+    paste0(smod1[16:18], sep = "\n"),
+    "[...]"
+    )
+```
+
+A patient with `stage = 2` has a $\beta_{\texttt{stage2}} = `r sprintf("%.3f", coef(mod1)['stage2'])`$
+higher log odds to have `spiders` than a patient with `stage = 1` (and the same
+values for all other covariates).<br>
+The odds ratio of `stage = 2` is 
+$\exp(\beta_{\texttt{stage2}}) = \exp(`r sprintf("%.3f", coef(mod1)['stage2'])`) = `r sprintf("%.3f", exp(coef(mod1)['stage2']))`$.
+
+Patients with `stage = 3` or `stage = 4` have a 
+$\beta_{\texttt{stage3}} = `r sprintf("%.3f", coef(mod1)['stage3'])`$ and
+$\beta_{\texttt{stage4}} = `r sprintf("%.3f", coef(mod1)['stage4'])`$
+higher log odds to have `spiders` than a patient with `stage = 1` 
+(who has the same values for all other covariates).<br>
+The corresponding odds ratios of `stage = 3` and `stage = 4` are 
+$\exp(\beta_{\texttt{stage3}}) = \exp(`r sprintf("%.3f", coef(mod1)['stage3'])`) = `r sprintf("%.3f", exp(coef(mod1)['stage3']))`$ and
+$\exp(\beta_{\texttt{stage4}}) = \exp(`r sprintf("%.3f", coef(mod1)['stage4'])`) = `r sprintf("%.3f", exp(coef(mod1)['stage4']))`$, 
+respectively.
+
+
+### Comparing Models {.tabset .tabset-fade .tabset-pills}
+We would like to know if the variable `stage` has a significant/relevant
+contribution to the model.
+
+#### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+How can we determine this? Does the output of the `summary()` give us an answer?
+</div>
+
+#### Solution 1
+Since `stage` is a factor with >2 levels, multiple dummy variables are used in the
+model. To answer the question whether `stage` has a significant/relevant contribution
+we need to consider all three dummy variables simultaneously.
+
+Therefore, we need to compare `mod1` with the model in which `stage` was removed.
+
+#### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Re-fit `mod1` without `stage` (but give it a different name).
+</div>
+
+
+#### Solution 2
+```{r}
+mod1b <- glm(spiders ~ age + sex + bili + ascites, data = pbc,
+             family = binomial())
+
+# We could also use:
+mod1b <- update(mod1, formula = . ~ . - stage)
+```
+
+**Note:**
+The function `update()` allows us to update models or formulas.
+
+* To update a model, specify the new values for those arguments that change.
+* To update a formula, we can use the `.` to say 'as it was' and only add the change.
+
+
+#### Task 3
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+* Are the models `mod1` and `mod1b` nested or not?
+* Which method can we use to  compare them?
+* Perform this comparison and interpret the result.
+</div>
+
+
+#### Solution 3
+The models are nested. `mod1b` is a specific case of `mod1` for which 
+$\beta_{\texttt{stage2}} = \beta_{\texttt{stage3}} = \beta_{\texttt{stage4}} = 0$ 
+
+To compare nested models, we can use a likelihood ratio test:
+```{r, eval = FALSE}
+anova(mod1, mod1b, test = 'LRT')
+```
+
+```{r, echo = FALSE}
+cat(paste0(capture.output(anova(mod1, mod1b, test = 'LRT')), collapse = "\n"))
+```
+
+The small p-value indicates that the observed difference in residual deviance 
+between the two models would be very unlikely to observe if `mod1b` was the
+correct model.
+
+Hence, the model with `stage` fits the data better.
+
+
+## Non-linear effects {.tabset .tabset-pills .tabset-fade}
+We now want to investigate if the continuous variables have non-linear effect.
+
+### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+
+To do this, use a natural cubic splines with three degrees of freedom. 
+```{r, echo = FALSE, results = 'asis'}
+hint('Use the function `ns()` from the package `splines`.')
+```
+
+</div>
+
+### Solution 1
+```{r}
+library(splines)
+mod2 <- glm(spiders ~ ns(age, df= 3) + sex + ns(bili, df = 3) + stage + ascites,
+            data = pbc, family = binomial())
+
+summary(mod2)
+```
+
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+What is the interpretation of the regression coefficients for `bili` in `mod2`?
+</div>
+
+### Solution 2
+The coefficients tell us how much each of the basis functions of the splines 
+have been scaled. They do not have a direct meaningful clinical interpretation.
+
+### Visualization
+To visualize the resulting non-linear fit, we can use an effect plot.
+
+The idea is to obtain fitted values for a specific set of cases, which vary in the
+value of the covariate of interest, but have constant values for all other 
+covariates.
+
+The R package **effects** can help us in creating such plots:
+```{r, fig.width = 12, fig.height = 8, message=FALSE}
+library("effects")
+plot(predictorEffects(mod2))
+```
+
+From the **effects** package documentation:
+
+>  [...] the vertical axis is in linear predictor scale, which is the log-odds or
+logit for this logistic regression example, but the vertical axis labels are in mean (probability) scale,
+so the tick-marks are not equally spaced
+
+The plot for `age`, for example, shows us the estimated probability 
+(and corresponding 95% confidence band) for having `spiders` for any given 
+`age` while the other variables have been fixed to the population mean.
+
+
+For a more information about the **effects** package and its functions, 
+please refer to the reference manual and vignettes available at
+[https://CRAN.R-project.org/package=effects](https://CRAN.R-project.org/package=effects).
+
+
+### Task 3
+The effect plots show that the effect of `age` is quite linear, but that the
+effect of `bili` is indeed non-linear.
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Confirm that the non-linear effect for `age` is not needed, i.e., does not fit
+the data better than the corresponding model with a linear effect of `age`.
+```{r, echo = FALSE, results = 'asis'}
+hint("Re-fit the model and replace the spline for `age` with just `age` to compare the model fit.")
+hint('For the comparison, use the `AIC()` or `BIC()`.')
+```
+</div>
+
+### Solution 3
+```{r}
+mod2b <- glm(spiders ~ age + sex + ns(bili, df = 3) + stage + ascites,
+             data = pbc, family = binomial())
+```
+
+When comparing models with regards to the effect of a variable that is modeled
+using a spline, models are usually not nested (except in specific cases). therefore,
+we will use here the information criteria to compare `mod2` and `mod2b`:
+
+
+```{r, eval = FALSE}
+BIC(mod2, mod2b)
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(BIC(mod2, mod2b)), collapse = "\n"))
+```
+
+We see that the smaller (less degrees of freedom / parameters) model has the lower BIC.
+This confirms that the spline specification for `age` is not necessary.
+
+
+### Task 4
+The non-linear association for `bili` resemples the shape of the logarithmic function.
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Investigate if we can replace the spline for `bili` with the (natural) logarithm.
+
+* using information criteria
+* visually
+```{r, echo = FALSE, results = 'asis'}
+hint('For the visual comparison, the function 
+`predictorEffect(predictor = "bili", mod = <name of model>)` may be useful if 
+you want to show the effect plot for the variable `bili` only.')
+```
+</div>
+
+### Solution 4
+```{r}
+mod2c <- glm(spiders ~ age + sex + log(bili) + stage + ascites,
+             data = pbc, family = binomial())
+```
+```{r, eval = FALSE}
+BIC(mod2b, mod2c)
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(BIC(mod2b, mod2c)), collapse = '\n'))
+```
+
+The BIC shows that the model with `log(bili)` has better model fit.
+
+```{r, fig.width = 5, fig.height = 5, out.width = "50%", fig.align='center', collapse=TRUE}
+plot(predictorEffect('bili', mod2b))
+plot(predictorEffect('bili', mod2c))
+```
+
+
+## Addtitional 
+
+### Extra Task:
+How does the model interpretation change if we use the ordinal version of `stage`?
+```{r}
+pbc$stage_ord <- factor(pbc$stage, ordered = TRUE) # or as.ordered()
+
+mod1c <- glm(spiders ~ age + sex + chol + bili + stage_ord + ascites, data = pbc,
+            family = binomial())
+summary(mod1c)
+
+```
+
+
+
+### Investigate the problem with stage
+```{r}
+table(pbc$stage, pbc$spiders, exclude = NULL)
+
+# but we also might have missing values in other variables, so better make 
+# sure we also exclude these cases from our table
+
+pbc_sub <- subset(pbc, !is.na(chol) & !is.na(stage))
+
+table(pbc_sub$stage, pbc_sub$spiders, exclude = NULL)
+
+
+pbc$stage_rev <- factor(pbc$stage, levels = 4:1, labels = 4:1)
+pbc$stage_ref4 <- relevel(pbc$stage, ref = 4)
+
+levels(pbc$stage)
+levels(pbc$stage_ref4)
+levels(pbc$stage_rev)
+
+mod1b <- glm(spiders ~ age + sex + chol + bili + stage_rev + ascites, data = pbc,
+             family = binomial())
+summary(mod1b)
+
+```
+
+practice `update()`

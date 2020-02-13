@@ -39,11 +39,19 @@ drkred <- rgb(204, 0, 0, maxColorValue = 255)
 
 ## In this Section
 
-* Common statistical tests
-  - for continuous data
-  - for categorical data
-* (Generalized) linear regression
-* Useful functions for regression models
+
+\begin{itemize}\itemsep3mm
+\item Common statistical tests
+  \begin{itemize}
+  \item for continuous data
+  \item for categorical data
+  \end{itemize}
+\item (Generalized) linear regression
+\item Useful functions for regression models
+\item Modeling non-linear effectss
+\end{itemize}
+
+
 
 
 ## t-test: `t.test()`
@@ -121,6 +129,7 @@ See also [BBR Sections 7.2 & 7.3 (http://hbiostat.org/doc/bbr.pdf)](http://hbios
 \end{columns}
 \end{center}
 
+
 ## Tests for Categorical Data / Proportions
 
 \blue{One-sample Proportion Test}
@@ -175,7 +184,7 @@ See also [BBR Sections 5.7 & 6 (http://hbiostat.org/doc/bbr.pdf)](http://hbiosta
 \end{columns}
 
 
-## Statistical Tests
+## Useful Functions: Statistical Tests
 \begin{columns}[onlytextwidth,T]
 \begin{column}{0.3\linewidth}
 
@@ -229,6 +238,7 @@ See also [BBR Sections 5.7 & 6 (http://hbiostat.org/doc/bbr.pdf)](http://hbiosta
 \end{columns}
 
 
+
 ## Linear Regression
 
 A standard linear regression model has the form
@@ -237,13 +247,17 @@ $$ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p + \varepsilon
 
 where
 
-* \blue{$y$} is the \blue{outcome} variable ("dependent variable")
-* \blue{$x_1, \ldots, x_p$} are the \blue{covariates} ("independent variables")
-* \blue{$\beta_0, \ldots, \beta_p$} are the \blue{regression coefficients}
-  * $\beta_0$ is the intercept
-  * $\beta_1, \ldots, \beta_p$ estimate the effects of the covariates
-* \blue{$\varepsilon$} is a vector of \blue{residuals}, which we assume to be
+\begin{itemize}\itemsep2.5mm
+\item \blue{$y$} is the \blue{outcome} variable ("dependent variable")
+\item \blue{$x_1, \ldots, x_p$} are the \blue{covariates} ("independent variables")
+\item \blue{$\beta_0, \ldots, \beta_p$} are the \blue{regression coefficients}
+  \begin{itemize}
+  \item $\beta_0$ is the intercept
+  \item $\beta_1, \ldots, \beta_p$ estimate the effects of the covariates
+  \end{itemize}
+\item \blue{$\varepsilon$} is a vector of \blue{residuals}, which we assume to be
   (approximately) normally distributed.
+\end{itemize}
 
 
 ## Linear Regression 
@@ -252,10 +266,13 @@ To fit a \blue{linear regression} in R we use the function \blue{\texttt{lm()}}.
 
 The most important arguments are
 
-* \blue{\texttt{formula}}:\newline a `formula` object
-* \blue{\texttt{data}}: \newline a `data.frame` (optional, but usually needed)
-* \blue{\texttt{subset}}:\newline a `vector` specifying which observations should be used (optional)
+\begin{itemize}\itemsep2mm
+\item \blue{\texttt{formula}}:\newline a \texttt{formula} object
+\item \blue{\texttt{data}}: \newline a \texttt{data.frame} (optional, but usually needed)
+\item \blue{\texttt{subset}}:\newline a \texttt{vector} specifying which observations should be used (optional)\newline
+      (works like the \texttt{subset} argument of the function \texttt{subset()})
 
+\end{itemize}
 
 ## Model Formula
 A \blue{\texttt{formula}} object has the form
@@ -267,10 +284,13 @@ for example
 y ~ x1 + x2 + x3
 ```
 
-* Variables are separated by "\texttt{\blue{+}}" signs.
-* An intercept is automatically included.
-* One-sided formulas (omitting the outcome) are possible\newline
+\begin{itemize}\itemsep2mm
+\item Variables are separated by "\texttt{\blue{+}}" signs.
+\item An intercept is automatically included.
+\item One-sided formulas (omitting the outcome) are possible\newline
   (used for random effects specification).
+\end{itemize}
+
 
 ## Model Formula: Interactions
 Interaction terms are written using "\blue{\texttt{:}}" or "\blue{\texttt{*}}".
@@ -354,13 +374,18 @@ $log\left(\frac{p}{1-p}\right)$ is the \blue{logit} link.
 ## Generalized Linear Regression (GLM)
 To fit a \blue{GLM} in R we use the function \blue{\texttt{glm()}}.
 
+\bigskip
+
 The most important arguments are
 
-* \blue{\texttt{formula}}:\newline a `formula` object
-* \blue{\texttt{family}}: \newline a `family` object or name of the family function,
+\begin{itemize}\itemsep2mm
+\item \blue{\texttt{formula}}:\newline a \texttt{formula} object
+\item \blue{\texttt{family}}: \newline a \texttt{family} object or name of the family function,
    describing the error distribution and link function
-* \blue{\texttt{data}}: \newline a `data.frame` (optional, but usually needed)
-* \blue{\texttt{subset}}:\newline a `vector` specifying which observations should be used (optional)
+\item \blue{\texttt{data}}: \newline a \texttt{data.frame} (optional, but usually needed)
+\item \blue{\texttt{subset}}:\newline a \texttt{vector} specifying which observations should be used (optional)
+\end{itemize}
+
 
 ## Families and Link Functions
 Common families \& available links in R: \hfill (see also `?family`)
@@ -387,12 +412,48 @@ The `family` argument in `glm()` can be specified in the following ways:
 \item \texttt{"binomial"}
 \end{itemize}
 \end{column}
+\pause
 \begin{column}{0.5\linewidth}
 \blue{Note:}\\
 When the link is not explicitely specified (i.e. options 2-4),
 the default link is used.
 \end{column}
 \end{columns}
+
+
+## Regression
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demo}
+\begin{itemize}
+\item Regression Basics\newline \button{https://nerler.github.io/BST02/demo/Statistics_with_R/Regression.R}{R}
+\button{https://nerler.github.io/BST02/demo/Statistics_with_R/Regression.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\begin{block}{Practical}
+\begin{itemize}
+\item Linear Regression \button{https://nerler.github.io/BST02/practical/Statistics_with_R/Linear_Regression.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
+
+## Model Evaluation
+
+\blue{Linear model:}
+
+Evaluate the assumptions of a linear regression model visually, for example:
+
+* Histogram
+* Normal QQ-plot
+* Plot residuals vs fitted values
+
+
 
 
 ## Model Comparison
@@ -419,7 +480,7 @@ BIC(modelA, modelB)
 The model with the \blue{smaller} AIC (or BIC) has the \blue{better} fit.
 
 
-## Regression
+## Model evaluation
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.47\linewidth}
@@ -439,6 +500,8 @@ The model with the \blue{smaller} AIC (or BIC) has the \blue{better} fit.
 \end{block}
 \end{column}
 \end{columns}
+
+
 
 ```{r, echo = FALSE}
 set.seed(2020)
@@ -881,7 +944,7 @@ Important arguments of `ns()` and `bs()` are:
 ```{r, include = FALSE, eval= FALSE}
 boot::urine
 MASS::birthwt
-MASS::Boston
+MASS::Boston # Housing Values
 MASS::Cars93
 MASS::crabs
 MASS::Pima.te
@@ -891,6 +954,8 @@ MASS::UScrime
 
 rpart::stagec
 rpart::car90
+
+survival::pbc
 ```
 
 
