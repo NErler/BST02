@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-13" />
+<meta name="date" content="2020-02-14" />
 
 <title>Demo: Importing and Saving your Work</title>
 
@@ -332,6 +331,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -366,7 +366,7 @@ summary {
 <h1 class="title toc-ignore">Demo: Importing and Saving your Work</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">13 February 2020</h4>
+<h4 class="date">14 February 2020</h4>
 
 </div>
 
@@ -374,77 +374,48 @@ summary {
 <p>Load packages<br />
 If you are using the package for the first time, you will have to first install it<br />
 </p>
-<pre class="r"><code># install.packages(&quot;survival&quot;) 
-# install.packages(&quot;xlsx&quot;) 
-library(survival)
-library(xlsx)</code></pre>
 <p>List all your R objects</p>
-<pre class="r"><code>ls()</code></pre>
-<pre><code>##   [1] &quot;a&quot;                   &quot;A&quot;                   &quot;Age&quot;                
-##   [4] &quot;AgeCat&quot;              &quot;b&quot;                   &quot;B&quot;                  
-##   [7] &quot;basedat&quot;             &quot;birthwt&quot;             &quot;C&quot;                  
-##  [10] &quot;cal_sd&quot;              &quot;cal_var&quot;             &quot;Columns_com&quot;        
-##  [13] &quot;cSum&quot;                &quot;dat&quot;                 &quot;dat1&quot;               
-##  [16] &quot;dat2&quot;                &quot;dat3&quot;                &quot;dat4&quot;               
-##  [19] &quot;dataset1&quot;            &quot;dataset2&quot;            &quot;datlist&quot;            
-##  [22] &quot;DerivativeFunction&quot;  &quot;DF&quot;                  &quot;df_test&quot;            
-##  [25] &quot;df1_test&quot;            &quot;df2_test&quot;            &quot;dice&quot;               
-##  [28] &quot;die&quot;                 &quot;dt&quot;                  &quot;dt_events&quot;          
-##  [31] &quot;esoph&quot;               &quot;files&quot;               &quot;FUdat&quot;              
-##  [34] &quot;Function2&quot;           &quot;h&quot;                   &quot;heart&quot;              
-##  [37] &quot;hello&quot;               &quot;hello_any&quot;           &quot;hello2&quot;             
-##  [40] &quot;hint&quot;                &quot;html_files&quot;          &quot;i&quot;                  
-##  [43] &quot;img&quot;                 &quot;is.fact&quot;             &quot;is.num&quot;             
-##  [46] &quot;j&quot;                   &quot;k&quot;                   &quot;labdat&quot;             
-##  [49] &quot;let&quot;                 &quot;list_test&quot;           &quot;list1&quot;              
-##  [52] &quot;list2&quot;               &quot;lung&quot;                &quot;M&quot;                  
-##  [55] &quot;mat&quot;                 &quot;Mat&quot;                 &quot;mat_test&quot;           
-##  [58] &quot;mdat&quot;                &quot;mdat_all&quot;            &quot;mdat_x&quot;             
-##  [61] &quot;mdat_y&quot;              &quot;mdat3&quot;               &quot;means&quot;              
-##  [64] &quot;MHtest&quot;              &quot;mod&quot;                 &quot;mod1&quot;               
-##  [67] &quot;mod1b&quot;               &quot;mod1c&quot;               &quot;mod2&quot;               
-##  [70] &quot;mod2b&quot;               &quot;mod2c&quot;               &quot;my_list&quot;            
-##  [73] &quot;mylist&quot;              &quot;myList&quot;              &quot;MyList&quot;             
-##  [76] &quot;mysummary&quot;           &quot;name&quot;                &quot;newList&quot;            
-##  [79] &quot;nrj&quot;                 &quot;otherlist&quot;           &quot;out&quot;                
-##  [82] &quot;output&quot;              &quot;p&quot;                   &quot;padj&quot;               
-##  [85] &quot;patient&quot;             &quot;pbc&quot;                 &quot;pbc_sub&quot;            
-##  [88] &quot;pbcCAT&quot;              &quot;pbcseq&quot;              &quot;pbcseq.idNEW2&quot;      
-##  [91] &quot;pbcseq.idNEW3&quot;       &quot;pdfs&quot;                &quot;plot_summary&quot;       
-##  [94] &quot;props&quot;               &quot;pvals&quot;               &quot;res&quot;                
-##  [97] &quot;res1&quot;                &quot;res2&quot;                &quot;retinopathy&quot;        
-## [100] &quot;Rfiles&quot;              &quot;Rmd_files&quot;           &quot;Rmdfiles&quot;           
-## [103] &quot;scalar_test&quot;         &quot;server&quot;              &quot;sex&quot;                
-## [106] &quot;Sex&quot;                 &quot;smod1&quot;               &quot;smod2&quot;              
-## [109] &quot;static&quot;              &quot;std_num&quot;             &quot;subcat&quot;             
-## [112] &quot;subset_data&quot;         &quot;summary_categorical&quot; &quot;summary_continuous&quot; 
-## [115] &quot;summary_df&quot;          &quot;summary_list&quot;        &quot;survey&quot;             
-## [118] &quot;tab&quot;                 &quot;Treatment&quot;           &quot;ttest1&quot;             
-## [121] &quot;ttest2&quot;              &quot;u&quot;                   &quot;ui&quot;                 
-## [124] &quot;vec_test&quot;            &quot;vec1&quot;                &quot;vec1_test&quot;          
-## [127] &quot;vec2&quot;                &quot;vec2_test&quot;           &quot;vec3&quot;               
-## [130] &quot;weight&quot;              &quot;Weight&quot;              &quot;weight_columns&quot;     
-## [133] &quot;weight_Rows&quot;         &quot;write_Demos_md&quot;      &quot;write_Practicals_md&quot;
-## [136] &quot;write_Slides_md&quot;     &quot;wtest&quot;               &quot;x&quot;                  
-## [139] &quot;X&quot;                   &quot;xnew&quot;                &quot;xvec&quot;               
-## [142] &quot;xxx&quot;                 &quot;y&quot;                   &quot;Y&quot;                  
-## [145] &quot;z&quot;</code></pre>
+<pre><code>  [1] &quot;a&quot;                   &quot;A&quot;                   &quot;Age&quot;                 &quot;AgeCat&quot;             
+  [5] &quot;b&quot;                   &quot;B&quot;                   &quot;basedat&quot;             &quot;birthwt&quot;            
+  [9] &quot;C&quot;                   &quot;cal_sd&quot;              &quot;cal_var&quot;             &quot;Columns_com&quot;        
+ [13] &quot;cSum&quot;                &quot;dat&quot;                 &quot;dat1&quot;                &quot;dat2&quot;               
+ [17] &quot;dat3&quot;                &quot;dat4&quot;                &quot;dataset1&quot;            &quot;dataset2&quot;           
+ [21] &quot;datlist&quot;             &quot;DerivativeFunction&quot;  &quot;DF&quot;                  &quot;df_test&quot;            
+ [25] &quot;df1_test&quot;            &quot;df2_test&quot;            &quot;dice&quot;                &quot;die&quot;                
+ [29] &quot;dt_events&quot;           &quot;esoph&quot;               &quot;files&quot;               &quot;FUdat&quot;              
+ [33] &quot;Function2&quot;           &quot;h&quot;                   &quot;heart&quot;               &quot;hello&quot;              
+ [37] &quot;hello_any&quot;           &quot;hello2&quot;              &quot;hi&quot;                  &quot;hint&quot;               
+ [41] &quot;html_files&quot;          &quot;i&quot;                   &quot;img&quot;                 &quot;is.fact&quot;            
+ [45] &quot;is.num&quot;              &quot;j&quot;                   &quot;k&quot;                   &quot;labdat&quot;             
+ [49] &quot;let&quot;                 &quot;list_test&quot;           &quot;list1&quot;               &quot;list2&quot;              
+ [53] &quot;lung&quot;                &quot;M&quot;                   &quot;mat&quot;                 &quot;Mat&quot;                
+ [57] &quot;mat_test&quot;            &quot;mdat&quot;                &quot;mdat_all&quot;            &quot;mdat_x&quot;             
+ [61] &quot;mdat_y&quot;              &quot;mdat3&quot;               &quot;means&quot;               &quot;MHtest&quot;             
+ [65] &quot;mod&quot;                 &quot;mod1&quot;                &quot;mod1b&quot;               &quot;mod1c&quot;              
+ [69] &quot;mod2&quot;                &quot;mod2b&quot;               &quot;mod2c&quot;               &quot;my_list&quot;            
+ [73] &quot;mylist&quot;              &quot;myList&quot;              &quot;MyList&quot;              &quot;mysummary&quot;          
+ [77] &quot;name&quot;                &quot;newList&quot;             &quot;nrj&quot;                 &quot;number&quot;             
+ [81] &quot;otherlist&quot;           &quot;out&quot;                 &quot;output&quot;              &quot;padj&quot;               
+ [85] &quot;patient&quot;             &quot;pbc&quot;                 &quot;pbc_sub&quot;             &quot;pbcCAT&quot;             
+ [89] &quot;pbcseq&quot;              &quot;pbcseq.idNEW2&quot;       &quot;pbcseq.idNEW3&quot;       &quot;pdfs&quot;               
+ [93] &quot;plot_summary&quot;        &quot;props&quot;               &quot;pvals&quot;               &quot;res&quot;                
+ [97] &quot;res1&quot;                &quot;res2&quot;                &quot;retinopathy&quot;         &quot;Rfiles&quot;             
+[101] &quot;Rmd_files&quot;           &quot;Rmdfiles&quot;            &quot;scalar_test&quot;         &quot;server&quot;             
+[105] &quot;sex&quot;                 &quot;Sex&quot;                 &quot;smod1&quot;               &quot;smod2&quot;              
+[109] &quot;static&quot;              &quot;std_num&quot;             &quot;subcat&quot;              &quot;subset_data&quot;        
+[113] &quot;summary_categorical&quot; &quot;summary_continuous&quot;  &quot;summary_df&quot;          &quot;summary_list&quot;       
+[117] &quot;survey&quot;              &quot;tab&quot;                 &quot;Treatment&quot;           &quot;ttest1&quot;             
+[121] &quot;ttest2&quot;              &quot;ui&quot;                  &quot;vec_test&quot;            &quot;vec1&quot;               
+[125] &quot;vec1_test&quot;           &quot;vec2&quot;                &quot;vec2_test&quot;           &quot;vec3&quot;               
+[129] &quot;weight&quot;              &quot;Weight&quot;              &quot;weight_columns&quot;      &quot;weight_Rows&quot;        
+[133] &quot;write_Demos_md&quot;      &quot;write_Practicals_md&quot; &quot;write_Slides_md&quot;     &quot;wtest&quot;              
+[137] &quot;x&quot;                   &quot;X&quot;                   &quot;xnew&quot;                &quot;xvec&quot;               
+[141] &quot;xxx&quot;                 &quot;y&quot;                   &quot;Y&quot;                   &quot;z&quot;                  </code></pre>
 <p>Save your work<br />
-Take care: first you need to set your working directory (Rstudio: Session -&gt; Set Working Directory -&gt; Choose Directory…)</p>
-<pre class="r"><code>getwd()</code></pre>
-<pre><code>## [1] &quot;O:/Users/015004 ( Andrinopoulou )/Courses/Using R for Statistics in Medical Research (BST02)/BST02/Demos/Basic use of R&quot;</code></pre>
-<pre class="r"><code>dt &lt;- pbc[1:6, c(&quot;id&quot;, &quot;sex&quot;, &quot;bili&quot;, &quot;chol&quot;)]
-p &lt;- 1
-
-#save(dt, p, file = &quot;data.RData&quot;)
-#saveRDS(dt, file = &quot;data.RData&quot;)</code></pre>
+Take care: first you need to set your working directory (Rstudio: Session -&gt; Set Working Directory -&gt; Choose Directory…) Use also the function <code>setwd(...)</code> to set the working directory</p>
+<pre><code>[1] &quot;O:/Users/015004 ( Andrinopoulou )/Courses/Using R for Statistics in Medical Research (BST02)/BST02/Demos/Basic use of R&quot;</code></pre>
 <p>Load previous work</p>
-<pre class="r"><code>#load(&quot;data.RData&quot;)
-#readRDS(&quot;data.RData&quot;)</code></pre>
 <p>Transform a RData data set to xls, csv or text</p>
-<pre class="r"><code>#write.csv(dt, &quot;mydata.txt&quot;)
-#write.table(dt, &quot;mydata.txt&quot;, sep=&quot;\t&quot;)
-#write.xlsx(dt, &quot;mydata.xlsx&quot;)</code></pre>
 
 
 

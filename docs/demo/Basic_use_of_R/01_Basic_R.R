@@ -17,51 +17,52 @@ library(memisc)
 #' Print the first 6 rows of the data set
 head(pbc)
 
-#' Select the first 5 rows and columns 1-6, 11, 12
-dt <- pbc[1:5, c(1:6,11,12)]
-dt
+#' Select the first 5 rows and columns 1 until 6, 11, 12
+pbc[1:5, c(1:6,11,12)]
 
-#' What is the average age?
+#' What is the average `age`?
 mean(pbc$age)
 
-#' What is the average bili?
+#' What is the average `serum bilirubin`?
 mean(pbc$bili)
 
-#' What is the average chol?
+#' What is the average `serum cholesterol`?
 mean(pbc$chol, na.rm = TRUE)
 
-#' What is the percentage of females?
+#' What is the percentage of `females`?
 percent(pbc$sex)
 
-#' What is the average bili and chol?
-mean(c(pbc$bili, pbc$chol), na.rm = TRUE)
+#' What is the average `serum bilirubin` and `serum cholesterol`?
+mean(pbc$chol, na.rm = TRUE)
+mean(pbc$bili, na.rm = TRUE)
 
-#' Expression is given as a command
-103473
+#' We obtained a lot of information in R but we did not save anything \
+"Hello"
 
 #' In order to store information, the expression should assign the command
-x <- 103473
+hi <- "Hello"
+hi
+
+#' We need to define any object before we use it \
+#' E.g. `number` and `x` are first defined 
+# number
+number <- 10
+number
+# x
+x = 1
 x
 
-#' More examples
-#' We need to define `u` and `p` before we use it, otherwise it will not print anything 
-# u
-u <- 10
-u
-# p
-p = 1
-p
-
-#' NOTE! `o == 3`
-
-#' Case sensitive
-#' mean(pbc$Age) will not run because there is a typo
+#' NOTE! `o == 3` \
+#' \
+#' Case sensitive \
+#' `mean(pbc$Age)` will not run because there is a typo \
+#' We need to check the names first
 names(pbc)
 pbc$age
 
 #' Check for missing data
-is.na(p)
-is.na(pbc)
+is.na(x)
+head(is.na(pbc))
 
 #' If you are looking at the whole data set, you need to get a summary.
 table(is.na(pbc))

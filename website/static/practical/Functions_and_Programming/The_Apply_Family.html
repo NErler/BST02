@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -2620,105 +2619,6 @@ window.onload = function() {
 </script>
 
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  { background-color: #f8f8f8; }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ef2929; } /* Alert */
-code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
-code span.bn { color: #0000cf; } /* BaseN */
-code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
-code span.co { color: #8f5902; font-style: italic; } /* Comment */
-code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code span.dt { color: #204a87; } /* DataType */
-code span.dv { color: #0000cf; } /* DecVal */
-code span.er { color: #a40000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code span.ot { color: #8f5902; } /* Other */
-code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
-code span.ss { color: #4e9a06; } /* SpecialString */
-code span.st { color: #4e9a06; } /* String */
-code span.va { color: #000000; } /* Variable */
-code span.vs { color: #4e9a06; } /* VerbatimString */
-code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-
-.sourceCode .row {
-  width: 100%;
-}
-.sourceCode {
-  overflow-x: auto;
-}
-.code-folding-btn {
-  margin-right: -30px;
-}
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
 <style type="text/css">
@@ -2825,6 +2725,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -2856,6 +2757,12 @@ summary {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -2979,23 +2886,21 @@ div.tocify {
 </div>
 <div id="solution-1" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">apply</span>(heart[, <span class="kw">c</span>(<span class="st">&quot;start&quot;</span>, <span class="st">&quot;stop&quot;</span>, <span class="st">&quot;event&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;surgery&quot;</span>)], <span class="dv">2</span>, mean)</a></code></pre></div>
-<pre><code>## Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA
+<pre><code>Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA
 
-## Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA
+Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA
 
-## Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA
+Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA
 
-## Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA
+Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA
 
-## Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA
+Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA
 
-## Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA</code></pre>
-<pre><code>##   start    stop   event     age    year surgery 
-##      NA      NA      NA      NA      NA      NA</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">apply</span>(retinopathy[, <span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;futime&quot;</span>, <span class="st">&quot;risk&quot;</span>)], <span class="dv">2</span>, mean)</a></code></pre></div>
-<pre><code>##      age   futime     risk 
-## 20.78173 35.57929  9.69797</code></pre>
+Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA</code></pre>
+<pre><code>  start    stop   event     age    year surgery 
+     NA      NA      NA      NA      NA      NA </code></pre>
+<pre><code>     age   futime     risk 
+20.78173 35.57929  9.69797 </code></pre>
 </div>
 <div id="task-2" class="section level4">
 <h4>Task 2</h4>
@@ -3005,10 +2910,8 @@ div.tocify {
 </div>
 <div id="solution-2" class="section level4">
 <h4>Solution 2</h4>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">dataset1 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">A =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">B =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">30</span>))</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">apply</span>(dataset1, <span class="dv">1</span>, median)</a></code></pre></div>
-<pre><code>##  [1] 11.0  1.5 26.5 28.0 15.0 17.0 16.5 30.5 46.5 42.0 26.0 10.0 11.5 28.0 30.0 54.5 28.0 43.5 50.0
-## [20] 41.0 43.0 36.5 57.5 24.0 17.0 57.0 17.0 46.0 21.5 39.5</code></pre>
+<pre><code> [1] 11.0  1.5 26.5 28.0 15.0 17.0 16.5 30.5 46.5 42.0 26.0 10.0 11.5 28.0 30.0 54.5 28.0 43.5 50.0
+[20] 41.0 43.0 36.5 57.5 24.0 17.0 57.0 17.0 46.0 21.5 39.5</code></pre>
 </div>
 </div>
 <div id="lapply" class="section level3 tabset tabset-fade tabset-pills">
@@ -3021,188 +2924,185 @@ div.tocify {
 </div>
 <div id="solution-1-1" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">DerivativeFunction &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">log10</span>(x) <span class="op">+</span><span class="st"> </span><span class="dv">10</span>}</a>
-<a class="sourceLine" id="cb8-2" title="2">dataset1 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">A =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">B =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">30</span>))</a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="kw">lapply</span>(dataset1, DerivativeFunction)</a></code></pre></div>
-<pre><code>## [[1]]
-## [1] 10
-## 
-## [[2]]
-## [1] 10.30103
-## 
-## [[3]]
-## [1] 10.47712
-## 
-## [[4]]
-## [1] 10.60206
-## 
-## [[5]]
-## [1] 10.69897
-## 
-## [[6]]
-## [1] 10.77815
-## 
-## [[7]]
-## [1] 10.8451
-## 
-## [[8]]
-## [1] 10.90309
-## 
-## [[9]]
-## [1] 10.95424
-## 
-## [[10]]
-## [1] 11
-## 
-## [[11]]
-## [1] 11.04139
-## 
-## [[12]]
-## [1] 11.07918
-## 
-## [[13]]
-## [1] 11.11394
-## 
-## [[14]]
-## [1] 11.14613
-## 
-## [[15]]
-## [1] 11.17609
-## 
-## [[16]]
-## [1] 11.20412
-## 
-## [[17]]
-## [1] 11.23045
-## 
-## [[18]]
-## [1] 11.25527
-## 
-## [[19]]
-## [1] 11.27875
-## 
-## [[20]]
-## [1] 11.30103
-## 
-## [[21]]
-## [1] 11.32222
-## 
-## [[22]]
-## [1] 11.34242
-## 
-## [[23]]
-## [1] 11.36173
-## 
-## [[24]]
-## [1] 11.38021
-## 
-## [[25]]
-## [1] 11.39794
-## 
-## [[26]]
-## [1] 11.41497
-## 
-## [[27]]
-## [1] 11.43136
-## 
-## [[28]]
-## [1] 11.44716
-## 
-## [[29]]
-## [1] 11.4624
-## 
-## [[30]]
-## [1] 11.47712
-## 
-## [[31]]
-## [1] 11.9345
-## 
-## [[32]]
-## [1] 11.75587
-## 
-## [[33]]
-## [1] 11.50515
-## 
-## [[34]]
-## [1] 11.81954
-## 
-## [[35]]
-## [1] 11.20412
-## 
-## [[36]]
-## [1] 11.25527
-## 
-## [[37]]
-## [1] 11.91908
-## 
-## [[38]]
-## [1] 11.79934
-## 
-## [[39]]
-## [1] 11.88649
-## 
-## [[40]]
-## [1] 11.70757
-## 
-## [[41]]
-## [1] 11.38021
-## 
-## [[42]]
-## [1] 11.11394
-## 
-## [[43]]
-## [1] 11.91381
-## 
-## [[44]]
-## [1] 11.97772
-## 
-## [[45]]
-## [1] 11.41497
-## 
-## [[46]]
-## [1] 11.77815
-## 
-## [[47]]
-## [1] 11.92942
-## 
-## [[48]]
-## [1] 11.07918
-## 
-## [[49]]
-## [1] 11.83885
-## 
-## [[50]]
-## [1] 11.49136
-## 
-## [[51]]
-## [1] 11.47712
-## 
-## [[52]]
-## [1] 11.53148
-## 
-## [[53]]
-## [1] 11.60206
-## 
-## [[54]]
-## [1] 11.14613
-## 
-## [[55]]
-## [1] 11.96379
-## 
-## [[56]]
-## [1] 11.23045
-## 
-## [[57]]
-## [1] 11.97313
-## 
-## [[58]]
-## [1] 11.87506
-## 
-## [[59]]
-## [1] 11.73239
-## 
-## [[60]]
-## [1] 11.81291</code></pre>
+<pre><code>[[1]]
+[1] 10
+
+[[2]]
+[1] 10.30103
+
+[[3]]
+[1] 10.47712
+
+[[4]]
+[1] 10.60206
+
+[[5]]
+[1] 10.69897
+
+[[6]]
+[1] 10.77815
+
+[[7]]
+[1] 10.8451
+
+[[8]]
+[1] 10.90309
+
+[[9]]
+[1] 10.95424
+
+[[10]]
+[1] 11
+
+[[11]]
+[1] 11.04139
+
+[[12]]
+[1] 11.07918
+
+[[13]]
+[1] 11.11394
+
+[[14]]
+[1] 11.14613
+
+[[15]]
+[1] 11.17609
+
+[[16]]
+[1] 11.20412
+
+[[17]]
+[1] 11.23045
+
+[[18]]
+[1] 11.25527
+
+[[19]]
+[1] 11.27875
+
+[[20]]
+[1] 11.30103
+
+[[21]]
+[1] 11.32222
+
+[[22]]
+[1] 11.34242
+
+[[23]]
+[1] 11.36173
+
+[[24]]
+[1] 11.38021
+
+[[25]]
+[1] 11.39794
+
+[[26]]
+[1] 11.41497
+
+[[27]]
+[1] 11.43136
+
+[[28]]
+[1] 11.44716
+
+[[29]]
+[1] 11.4624
+
+[[30]]
+[1] 11.47712
+
+[[31]]
+[1] 11.9345
+
+[[32]]
+[1] 11.75587
+
+[[33]]
+[1] 11.50515
+
+[[34]]
+[1] 11.81954
+
+[[35]]
+[1] 11.20412
+
+[[36]]
+[1] 11.25527
+
+[[37]]
+[1] 11.91908
+
+[[38]]
+[1] 11.79934
+
+[[39]]
+[1] 11.88649
+
+[[40]]
+[1] 11.70757
+
+[[41]]
+[1] 11.38021
+
+[[42]]
+[1] 11.11394
+
+[[43]]
+[1] 11.91381
+
+[[44]]
+[1] 11.97772
+
+[[45]]
+[1] 11.41497
+
+[[46]]
+[1] 11.77815
+
+[[47]]
+[1] 11.92942
+
+[[48]]
+[1] 11.07918
+
+[[49]]
+[1] 11.83885
+
+[[50]]
+[1] 11.49136
+
+[[51]]
+[1] 11.47712
+
+[[52]]
+[1] 11.53148
+
+[[53]]
+[1] 11.60206
+
+[[54]]
+[1] 11.14613
+
+[[55]]
+[1] 11.96379
+
+[[56]]
+[1] 11.23045
+
+[[57]]
+[1] 11.97313
+
+[[58]]
+[1] 11.87506
+
+[[59]]
+[1] 11.73239
+
+[[60]]
+[1] 11.81291</code></pre>
 </div>
 <div id="task-2-1" class="section level4">
 <h4>Task 2</h4>
@@ -3216,16 +3116,14 @@ div.tocify {
 </div>
 <div id="solution-2-1" class="section level4">
 <h4>Solution 2</h4>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">list1 &lt;-<span class="st"> </span><span class="kw">list</span>(heart<span class="op">$</span>age, heart<span class="op">$</span>year, retinopathy<span class="op">$</span>risk)</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw">lapply</span>(list1, median)</a></code></pre></div>
-<pre><code>## [[1]]
-## [1] -0.1136208
-## 
-## [[2]]
-## [1] 3.750856
-## 
-## [[3]]
-## [1] 10</code></pre>
+<pre><code>[[1]]
+[1] -0.1136208
+
+[[2]]
+[1] 3.750856
+
+[[3]]
+[1] 10</code></pre>
 </div>
 </div>
 <div id="sapply" class="section level3 tabset tabset-fade tabset-pills">
@@ -3238,12 +3136,9 @@ div.tocify {
 </div>
 <div id="solution-1-2" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">Function2 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">exp</span>(x) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>}</a>
-<a class="sourceLine" id="cb12-2" title="2">dataset2 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">A =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="kw">sapply</span>(dataset2, Function2)</a></code></pre></div>
-<pre><code>##  [1] 2.818282e+00 7.489056e+00 2.018554e+01 5.469815e+01 1.485132e+02 4.035288e+02 1.096733e+03
-##  [8] 2.981058e+03 8.103184e+03 2.202657e+04 5.073913e-01 5.638309e-01 5.504854e-01 5.998045e-01
-## [15] 1.683059e+00 5.345432e-01 3.145498e+00 5.259522e-01 7.169674e-01 1.830052e+00</code></pre>
+<pre><code> [1] 2.818282e+00 7.489056e+00 2.018554e+01 5.469815e+01 1.485132e+02 4.035288e+02 1.096733e+03
+ [8] 2.981058e+03 8.103184e+03 2.202657e+04 5.073913e-01 5.638309e-01 5.504854e-01 5.998045e-01
+[15] 1.683059e+00 5.345432e-01 3.145498e+00 5.259522e-01 7.169674e-01 1.830052e+00</code></pre>
 </div>
 <div id="task-2-2" class="section level4">
 <h4>Task 2</h4>
@@ -3258,13 +3153,10 @@ div.tocify {
 </div>
 <div id="solution-2-2" class="section level4">
 <h4>Solution 2</h4>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">list2 &lt;-<span class="st"> </span><span class="kw">list</span>(heart<span class="op">$</span>transplant, retinopathy<span class="op">$</span>status)</a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="kw">sapply</span>(list2, <span class="cf">function</span>(x) <span class="kw">table</span>(x)[<span class="dv">1</span>]<span class="op">/</span><span class="kw">length</span>(x))</a></code></pre></div>
-<pre><code>##         0         0 
-## 0.5988372 0.6065990</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">sapply</span>(list2, <span class="cf">function</span>(x) <span class="kw">table</span>(x)[<span class="dv">2</span>]<span class="op">/</span><span class="kw">length</span>(x))</a></code></pre></div>
-<pre><code>##         1         1 
-## 0.4011628 0.3934010</code></pre>
+<pre><code>        0         0 
+0.5988372 0.6065990 </code></pre>
+<pre><code>        1         1 
+0.4011628 0.3934010 </code></pre>
 </div>
 <div id="task-3" class="section level4">
 <h4>Task 3</h4>
@@ -3282,40 +3174,22 @@ Hint
 </div>
 <div id="solution-3" class="section level4">
 <h4>Solution 3</h4>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">summary_continuous &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb18-2" title="2">  <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="kw">round</span>(<span class="kw">sd</span>(x), <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>)</a>
-<a class="sourceLine" id="cb18-3" title="3">}</a>
-<a class="sourceLine" id="cb18-4" title="4"></a>
-<a class="sourceLine" id="cb18-5" title="5">summary_categorical &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb18-6" title="6">  tab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(x))</a>
-<a class="sourceLine" id="cb18-7" title="7">  <span class="kw">paste0</span>(tab <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="st">&quot;% &quot;</span>, <span class="kw">names</span>(tab), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</a>
-<a class="sourceLine" id="cb18-8" title="8">}</a>
-<a class="sourceLine" id="cb18-9" title="9"></a>
-<a class="sourceLine" id="cb18-10" title="10"></a>
-<a class="sourceLine" id="cb18-11" title="11">summary_df &lt;-<span class="st"> </span><span class="cf">function</span>(dat) {</a>
-<a class="sourceLine" id="cb18-12" title="12">  vec_categorical &lt;-<span class="st"> </span><span class="kw">sapply</span>(dat, is.factor)</a>
-<a class="sourceLine" id="cb18-13" title="13">  <span class="kw">print</span>(<span class="kw">sapply</span>(dat[,vec_categorical], summary_categorical))</a>
-<a class="sourceLine" id="cb18-14" title="14">  vec_continuous &lt;-<span class="st"> </span><span class="kw">sapply</span>(dat, is.numeric)</a>
-<a class="sourceLine" id="cb18-15" title="15">  <span class="kw">print</span>(<span class="kw">sapply</span>(dat[,vec_continuous], summary_continuous))</a>
-<a class="sourceLine" id="cb18-16" title="16">}</a>
-<a class="sourceLine" id="cb18-17" title="17"></a>
-<a class="sourceLine" id="cb18-18" title="18"><span class="kw">summary_df</span>(<span class="dt">dat =</span> retinopathy)</a></code></pre></div>
-<pre><code>##                                                                      laser 
-##                           &quot;50.761421319797% xenon, 49.238578680203% argon&quot; 
-##                                                                        eye 
-##                          &quot;45.1776649746193% right, 54.8223350253807% left&quot; 
-##                                                                       type 
-##                      &quot;57.8680203045685% juvenile, 42.1319796954315% adult&quot; 
-##                                                                        trt 
-##                                                             &quot;50% 0, 50% 1&quot; 
-##                                                                     status 
-##                                 &quot;60.6598984771574% 0, 39.3401015228426% 1&quot; 
-##                                                                     ageCat 
-##                           &quot;60.9137055837564% young, 39.0862944162437% old&quot; 
-##                                                                  futimeCat 
-## &quot;34.8600508905852% short, 26.972010178117% medium, 38.1679389312977% long&quot; 
-##              id             age          futime            risk 
-## &quot;873.2 (495.5)&quot;   &quot;20.8 (14.8)&quot;   &quot;35.6 (21.4)&quot;     &quot;9.7 (1.5)&quot;</code></pre>
+<pre><code>                                                                     laser 
+                          &quot;50.761421319797% xenon, 49.238578680203% argon&quot; 
+                                                                       eye 
+                         &quot;45.1776649746193% right, 54.8223350253807% left&quot; 
+                                                                      type 
+                     &quot;57.8680203045685% juvenile, 42.1319796954315% adult&quot; 
+                                                                       trt 
+                                                            &quot;50% 0, 50% 1&quot; 
+                                                                    status 
+                                &quot;60.6598984771574% 0, 39.3401015228426% 1&quot; 
+                                                                    ageCat 
+                          &quot;60.9137055837564% young, 39.0862944162437% old&quot; 
+                                                                 futimeCat 
+&quot;34.8600508905852% short, 26.972010178117% medium, 38.1679389312977% long&quot; 
+             id             age          futime            risk 
+&quot;873.2 (495.5)&quot;   &quot;20.8 (14.8)&quot;   &quot;35.6 (21.4)&quot;     &quot;9.7 (1.5)&quot; </code></pre>
 </div>
 </div>
 <div id="tapply" class="section level3 tabset tabset-fade tabset-pills">
@@ -3333,12 +3207,10 @@ Hint
 </div>
 <div id="solution-1-3" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">tapply</span>(heart<span class="op">$</span>year, heart<span class="op">$</span>transplant, median)</a></code></pre></div>
-<pre><code>##       0       1 
-## 3.47707 3.92334</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">tapply</span>(retinopathy<span class="op">$</span>futime, retinopathy<span class="op">$</span>status, median)</a></code></pre></div>
-<pre><code>##     0     1 
-## 48.53 13.83</code></pre>
+<pre><code>      0       1 
+3.47707 3.92334 </code></pre>
+<pre><code>    0     1 
+48.53 13.83 </code></pre>
 </div>
 <div id="task-2-3" class="section level4">
 <h4>Task 2</h4>
@@ -3353,22 +3225,20 @@ Hint
 </div>
 <div id="solution-2-3" class="section level4">
 <h4>Solution 2</h4>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">tapply</span>(heart<span class="op">$</span>year, <span class="kw">list</span>(heart<span class="op">$</span>transplant, heart<span class="op">$</span>surgery), <span class="cf">function</span>(x) {<span class="kw">mean</span>(x)<span class="op">/</span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)})</a></code></pre></div>
-<pre><code>##           no       yes
-## 0 0.03820181 0.2818764
-## 1 0.06362334 0.3910915</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">tapply</span>(retinopathy<span class="op">$</span>futime, <span class="kw">list</span>(retinopathy<span class="op">$</span>status, retinopathy<span class="op">$</span>type, retinopathy<span class="op">$</span>trt), mean)</a></code></pre></div>
-<pre><code>## , , 0
-## 
-##   juvenile    adult
-## 0 45.22127 48.42273
-## 1 18.65137 19.25160
-## 
-## , , 1
-## 
-##   juvenile    adult
-## 0 45.62218 47.92323
-## 1 16.66944 21.32833</code></pre>
+<pre><code>          no       yes
+0 0.03820181 0.2818764
+1 0.06362334 0.3910915</code></pre>
+<pre><code>, , 0
+
+  juvenile    adult
+0 45.22127 48.42273
+1 18.65137 19.25160
+
+, , 1
+
+  juvenile    adult
+0 45.62218 47.92323
+1 16.66944 21.32833</code></pre>
 </div>
 </div>
 </div>

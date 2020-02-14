@@ -15,11 +15,11 @@ library(survival)
 
 #' **apply** \
 
-#' Obtain the mean of columns time and age in the pbc data set
+#' Obtain the mean of columns `time` and `age` in the pbc data set
 apply(pbc[, c(2,5)], 2, mean)
 apply(pbc[, c("time", "age")], 2, mean)
 
-#' Obtain the standardized values of columns time, age and bili in the pbc data set
+#' Obtain the standardized values of columns `time`, `age` and `bili` in the pbc data set
 head(apply(pbc[, c("time", "age", "bili")], 2, function(x) (x-mean(x))/sd(x)))
 
 #' Other examples \
@@ -34,12 +34,25 @@ apply(Mat, 1, mean)
 apply(Mat, 2, mean)
 
 #' Calculate the sum of each column for matrix `Mat`
+apply(Mat, 2, sum)
 apply(Mat, 2, function(x) sum(x))
+
+#' Calculate the sum of each row for matrix `Mat`
+apply(Mat, 1, sum)
+apply(Mat, 1, function(x) sum(x))
+
+#' There is no one way of doing things in R!
+colSums(Mat)
+rowSums(Mat)
 
 
 #' **lapply** \
 
-#' Obtain the quadratic term of the vector `1:3`. Present the results as a list
+#' Obtain the summary of the pbc data set
+lapply(pbc, summary)
+
+#' Obtain the quadratic term of the vector `1:3` \
+#' Present the results as a list
 lapply(1:3, function(x) x^2)
 
 #' Create a list that consist of `Mat` and `Mat^2` \
@@ -57,18 +70,20 @@ MyList <- list(A,B,C)
 #' Present the results as a list
 lapply(MyList,"[", 1, )
 
-#' Select the second column of each element
+#' Select the second column of each element \
 #' Present the results as a list
 lapply(MyList,"[", , 2)
 
 
 #' **sapply** \
 
-#' Obtain the quadratic term of the vector `1:3`. Present the results as a vector
+#' Obtain the quadratic term of the vector `1:3` \
+#' Present the results as a vector
 sapply(1:3, function(x) x^2)
 
 #' Create a list that consist of `Mat` and `Mat^2` \
-#' Obtain the mean of each element. Present the results as a vector
+#' Obtain the mean of each element \
+#' Present the results as a vector
 X <- list(Mat, Mat^2)
 sapply(X, mean)
 
@@ -79,17 +94,18 @@ sapply(MyList,"[", 2, 1)
 
 #' **tapply** \
 
-#' Obtain the mean age and time per sex
+#' Obtain the mean `age` and `time` per `sex`
 tapply(pbc$age, pbc$sex, mean)
 tapply(pbc$time, pbc$sex, mean)
 
-#' Obtain the mean age and time (both devided by two) per sex
+#' Obtain the mean `age` and `time` (both devided by two) per `sex`
 tapply(pbc$age, pbc$sex, function(x) mean(x/2))
 tapply(pbc$time, pbc$sex, function(x) mean(x/2))
 
-#' Obtain the mean age and time per sex and status
+#' Obtain the mean `age` and `time` per `sex` and `status`
 tapply(pbc$age, list(pbc$status, pbc$sex), mean)
 tapply(pbc$time, list(pbc$status, pbc$sex), mean)
+
 
 #' **mapply** \
 
@@ -117,7 +133,7 @@ mapply(rep, times = 1:4, x = 4)
 mapply(rep,1:4, 4, SIMPLIFY = FALSE)
 ### alternative run: list(rep(1, 4), rep(2, 4), rep(3, 4), rep(4, 4))
 
-#' Note: if the scale is the same we can obtain a simplified output
+#' Note: if the length is the same we can obtain a simplified output
 mapply(rep,1:4, 4, SIMPLIFY = TRUE)
 ### alternative run: matrix(c(rep(1, 4), rep(2, 4), rep(3, 4), rep(4, 4)), 4, 4)
 
@@ -142,7 +158,7 @@ mapply(function(x,y) {x^y}, x = c(2, 3), y = c(4))
 
 
 #' Let's assume that only the long format data set `pbcseq` is available \
-#' We want to obtain the mean serum bilirubin of the last follow-up measurement per event group \
+#' We want to obtain the mean `serum bilirubin` of the last follow-up measurement per `status` group \
 #' Each patient is counted once! \
 head(pbcseq)
 
@@ -159,18 +175,19 @@ head(!duplicated(pbcseq[c("id")], fromLast = TRUE))
 
 ### alternative run: pbcseq.idNEW2 <- pbcseq[unlist(tapply(rownames(pbcseq), pbcseq$id, tail,  1)), ]
 
-#' Obtain the mean serum bilirubin per event group
+#' Obtain the mean `serum bilirubin` per `status` group
 tapply(pbcseq.idNEW2$bili, pbcseq.idNEW2$status, mean)
 
 
 #' Let's again assume that only the long format data set `pbcseq` is available \
-#' We want to obtain the mean serum bilirubin of the last stage of edema per event group \
-#' Each patient and edema stage is counted once! \
+#' We want to obtain the mean `serum bilirubin` of the last stage of `edema` per `status` group \
+#' Each patient and `edema` stage is counted once! \
+head(pbcseq)
 
 #' Sort data
 pbcseq <- pbcseq[order(pbcseq$id, pbcseq$edema), ]
 
-#' Select the last stage of edema of each patient
+#' Select the last stage of `edema` of each patient
 pbcseq.idNEW3 <- pbcseq[!duplicated(pbcseq[c("id")], fromLast = TRUE), ]
 
 #' Step by step
@@ -180,7 +197,7 @@ head(!duplicated(pbcseq[c("id")], fromLast = TRUE))
 
 ### alternative run: pbcseq.idNEW3 <- pbcseq[unlist(tapply(rownames(pbcseq), pbcseq$id, tail,  1)), ]
 
-#' Obtain the mean serum bilirubin per event group
+#' Obtain the mean `serum bilirubin` per `status` group
 tapply(pbcseq.idNEW3$bili, pbcseq.idNEW3$status, mean)
 
 

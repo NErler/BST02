@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-13" />
+<meta name="date" content="2020-02-14" />
 
 <title>Demo: The Apply family</title>
 
@@ -332,6 +331,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -366,284 +366,334 @@ summary {
 <h1 class="title toc-ignore">Demo: The Apply family</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">13 February 2020</h4>
+<h4 class="date">14 February 2020</h4>
 
 </div>
 
 
 <p>Load packages<br />
 If you are using the package for the first time, you will have to first install it</p>
-<pre class="r"><code># install.packages(&quot;survival&quot;) 
-library(survival)</code></pre>
 <p><strong>apply</strong><br />
-Obtain the mean of columns time and age in the pbc data set</p>
-<pre class="r"><code>apply(pbc[, c(2,5)], 2, mean)</code></pre>
-<pre><code>##       time        age 
-## 1917.78230   50.74155</code></pre>
-<pre class="r"><code>apply(pbc[, c(&quot;time&quot;, &quot;age&quot;)], 2, mean)</code></pre>
-<pre><code>##       time        age 
-## 1917.78230   50.74155</code></pre>
-<p>Obtain the standardized values of columns time, age and bili in the pbc data set</p>
-<pre class="r"><code>head(apply(pbc[, c(&quot;time&quot;, &quot;age&quot;, &quot;bili&quot;)], 2, function(x) (x-mean(x))/sd(x)))</code></pre>
-<pre><code>##              time        age        bili
-## [1,] -1.373965243  0.7680208  2.55908571
-## [2,]  2.337540359  0.5460516 -0.48118215
-## [3,] -0.819955139  1.8503499 -0.41311645
-## [4,]  0.006533792  0.3827850 -0.32236219
-## [5,] -0.374574466 -1.2095228  0.04065487
-## [6,]  0.529765557  1.4852931 -0.54924785</code></pre>
+Obtain the mean of columns <code>time</code> and <code>age</code> in the pbc data set</p>
+<pre><code>      time        age 
+1917.78230   50.74155 </code></pre>
+<pre><code>      time        age 
+1917.78230   50.74155 </code></pre>
+<p>Obtain the standardized values of columns <code>time</code>, <code>age</code> and <code>bili</code> in the pbc data set</p>
+<pre><code>             time        age        bili
+[1,] -1.373965243  0.7680208  2.55908571
+[2,]  2.337540359  0.5460516 -0.48118215
+[3,] -0.819955139  1.8503499 -0.41311645
+[4,]  0.006533792  0.3827850 -0.32236219
+[5,] -0.374574466 -1.2095228  0.04065487
+[6,]  0.529765557  1.4852931 -0.54924785</code></pre>
 <p>Other examples<br />
 Create a matrix</p>
-<pre class="r"><code>X &lt;-  sample(0:200, 100)
-Mat &lt;- matrix(X, 50, 50) </code></pre>
 <p>Obtain the mean value of each row for matrix <code>Mat</code></p>
-<pre class="r"><code>apply(Mat, 1, mean)</code></pre>
-<pre><code>##  [1] 102.5  55.5 109.5 149.5  93.0  81.0  93.0  32.0  92.0  17.0  16.0
-## [12]  61.0 100.0 117.0 123.5  88.0  67.5 117.5  80.5  72.0 151.5  55.5
-## [23] 103.5 146.0 155.0 152.0 126.0 122.0 114.0 139.5 106.0  84.5 112.0
-## [34] 124.0  88.0  99.5 160.5  78.5 129.0  76.5  69.0 110.0 135.5  13.0
-## [45] 111.0  30.0 165.0 183.0 122.5  78.0</code></pre>
+<pre><code> [1] 102.5  55.5 109.5 149.5  93.0  81.0  93.0  32.0  92.0  17.0  16.0  61.0 100.0 117.0 123.5  88.0
+[17]  67.5 117.5  80.5  72.0 151.5  55.5 103.5 146.0 155.0 152.0 126.0 122.0 114.0 139.5 106.0  84.5
+[33] 112.0 124.0  88.0  99.5 160.5  78.5 129.0  76.5  69.0 110.0 135.5  13.0 111.0  30.0 165.0 183.0
+[49] 122.5  78.0</code></pre>
 <p>Obtain the mean value of each column for matrix <code>Mat</code></p>
-<pre class="r"><code>apply(Mat, 2, mean)</code></pre>
-<pre><code>##  [1]  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16
-## [11]  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16
-## [21]  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16
-## [31]  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16
-## [41]  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16</code></pre>
+<pre><code> [1]  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18
+[14] 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16
+[27]  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18
+[40] 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16  98.18 102.16</code></pre>
 <p>Calculate the sum of each column for matrix <code>Mat</code></p>
-<pre class="r"><code>apply(Mat, 2, function(x) sum(x))</code></pre>
-<pre><code>##  [1] 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108
-## [15] 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108
-## [29] 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108
-## [43] 4909 5108 4909 5108 4909 5108 4909 5108</code></pre>
+<pre><code> [1] 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909
+[20] 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108
+[39] 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108</code></pre>
+<pre><code> [1] 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909
+[20] 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108
+[39] 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108</code></pre>
+<p>Calculate the sum of each row for matrix <code>Mat</code></p>
+<pre><code> [1] 5125 2775 5475 7475 4650 4050 4650 1600 4600  850  800 3050 5000 5850 6175 4400 3375 5875 4025
+[20] 3600 7575 2775 5175 7300 7750 7600 6300 6100 5700 6975 5300 4225 5600 6200 4400 4975 8025 3925
+[39] 6450 3825 3450 5500 6775  650 5550 1500 8250 9150 6125 3900</code></pre>
+<pre><code> [1] 5125 2775 5475 7475 4650 4050 4650 1600 4600  850  800 3050 5000 5850 6175 4400 3375 5875 4025
+[20] 3600 7575 2775 5175 7300 7750 7600 6300 6100 5700 6975 5300 4225 5600 6200 4400 4975 8025 3925
+[39] 6450 3825 3450 5500 6775  650 5550 1500 8250 9150 6125 3900</code></pre>
+<p>There is no one way of doing things in R!</p>
+<pre><code> [1] 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909
+[20] 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108
+[39] 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108 4909 5108</code></pre>
+<pre><code> [1] 5125 2775 5475 7475 4650 4050 4650 1600 4600  850  800 3050 5000 5850 6175 4400 3375 5875 4025
+[20] 3600 7575 2775 5175 7300 7750 7600 6300 6100 5700 6975 5300 4225 5600 6200 4400 4975 8025 3925
+[39] 6450 3825 3450 5500 6775  650 5550 1500 8250 9150 6125 3900</code></pre>
 <p><strong>lapply</strong><br />
-Obtain the quadratic term of the vector <code>1:3</code>. Present the results as a list</p>
-<pre class="r"><code>lapply(1:3, function(x) x^2)</code></pre>
-<pre><code>## [[1]]
-## [1] 1
-## 
-## [[2]]
-## [1] 4
-## 
-## [[3]]
-## [1] 9</code></pre>
+Obtain the summary of the pbc data set</p>
+<pre><code>$id
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    1.0   105.2   209.5   209.5   313.8   418.0 
+
+$time
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+     41    1093    1730    1918    2614    4795 
+
+$status
+  censored transplant       dead 
+       232         25        161 
+
+$trt
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+  1.000   1.000   1.000   1.494   2.000   2.000     106 
+
+$age
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  26.28   42.83   51.00   50.74   58.24   78.44 
+
+$sex
+  m   f 
+ 44 374 
+
+$ascites
+  no  yes NA&#39;s 
+ 288   24  106 
+
+$hepato
+  no  yes NA&#39;s 
+ 152  160  106 
+
+$spiders
+  no  yes NA&#39;s 
+ 222   90  106 
+
+$edema
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.0000  0.0000  0.1005  0.0000  1.0000 
+
+$bili
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.300   0.800   1.400   3.221   3.400  28.000 
+
+$chol
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+  120.0   249.5   309.5   369.5   400.0  1775.0     134 
+
+$albumin
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.960   3.243   3.530   3.497   3.770   4.640 
+
+$copper
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+   4.00   41.25   73.00   97.65  123.00  588.00     108 
+
+$alk.phos
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+  289.0   871.5  1259.0  1982.7  1980.0 13862.4     106 
+
+$ast
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+  26.35   80.60  114.70  122.56  151.90  457.25     106 
+
+$trig
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+  33.00   84.25  108.00  124.70  151.00  598.00     136 
+
+$platelet
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+   62.0   188.5   251.0   257.0   318.0   721.0      11 
+
+$protime
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+   9.00   10.00   10.60   10.73   11.10   18.00       2 
+
+$stage
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+  1.000   2.000   3.000   3.024   4.000   4.000       6 </code></pre>
+<p>Obtain the quadratic term of the vector <code>1:3</code><br />
+Present the results as a list</p>
+<pre><code>[[1]]
+[1] 1
+
+[[2]]
+[1] 4
+
+[[3]]
+[1] 9</code></pre>
 <p>Create a list that consist of <code>Mat</code> and <code>Mat^2</code><br />
 Obtain the mean of each element. Present the results as a list</p>
-<pre class="r"><code>X &lt;- list(Mat, Mat^2)
-lapply(X, mean)</code></pre>
-<pre><code>## [[1]]
-## [1] 100.17
-## 
-## [[2]]
-## [1] 13363.67</code></pre>
+<pre><code>[[1]]
+[1] 100.17
+
+[[2]]
+[1] 13363.67</code></pre>
 <p>Select elements in a list</p>
-<pre class="r"><code>A &lt;- matrix(1:9, 3,3)
-B &lt;- matrix(4:15, 4,3)
-C &lt;- matrix(8:10, 3,2)
-MyList &lt;- list(A,B,C) </code></pre>
 <p>Select the first row of each element<br />
 Present the results as a list</p>
-<pre class="r"><code>lapply(MyList,&quot;[&quot;, 1, )</code></pre>
-<pre><code>## [[1]]
-## [1] 1 4 7
-## 
-## [[2]]
-## [1]  4  8 12
-## 
-## [[3]]
-## [1] 8 8</code></pre>
-<p>Select the second column of each element Present the results as a list</p>
-<pre class="r"><code>lapply(MyList,&quot;[&quot;, , 2)</code></pre>
-<pre><code>## [[1]]
-## [1] 4 5 6
-## 
-## [[2]]
-## [1]  8  9 10 11
-## 
-## [[3]]
-## [1]  8  9 10</code></pre>
+<pre><code>[[1]]
+[1] 1 4 7
+
+[[2]]
+[1]  4  8 12
+
+[[3]]
+[1] 8 8</code></pre>
+<p>Select the second column of each element<br />
+Present the results as a list</p>
+<pre><code>[[1]]
+[1] 4 5 6
+
+[[2]]
+[1]  8  9 10 11
+
+[[3]]
+[1]  8  9 10</code></pre>
 <p><strong>sapply</strong><br />
-Obtain the quadratic term of the vector <code>1:3</code>. Present the results as a vector</p>
-<pre class="r"><code>sapply(1:3, function(x) x^2)</code></pre>
-<pre><code>## [1] 1 4 9</code></pre>
+Obtain the quadratic term of the vector <code>1:3</code><br />
+Present the results as a vector</p>
+<pre><code>[1] 1 4 9</code></pre>
 <p>Create a list that consist of <code>Mat</code> and <code>Mat^2</code><br />
-Obtain the mean of each element. Present the results as a vector</p>
-<pre class="r"><code>X &lt;- list(Mat, Mat^2)
-sapply(X, mean)</code></pre>
-<pre><code>## [1]   100.17 13363.67</code></pre>
+Obtain the mean of each element<br />
+Present the results as a vector</p>
+<pre><code>[1]   100.17 13363.67</code></pre>
 <p>Select the second column and first row of each element<br />
 Present the results as a list</p>
-<pre class="r"><code>sapply(MyList,&quot;[&quot;, 2, 1)</code></pre>
-<pre><code>## [1] 2 5 9</code></pre>
+<pre><code>[1] 2 5 9</code></pre>
 <p><strong>tapply</strong><br />
-Obtain the mean age and time per sex</p>
-<pre class="r"><code>tapply(pbc$age, pbc$sex, mean)</code></pre>
-<pre><code>##        m        f 
-## 55.71072 50.15694</code></pre>
-<pre class="r"><code>tapply(pbc$time, pbc$sex, mean)</code></pre>
-<pre><code>##        m        f 
-## 1894.023 1920.578</code></pre>
-<p>Obtain the mean age and time (both devided by two) per sex</p>
-<pre class="r"><code>tapply(pbc$age, pbc$sex, function(x) mean(x/2))</code></pre>
-<pre><code>##        m        f 
-## 27.85536 25.07847</code></pre>
-<pre class="r"><code>tapply(pbc$time, pbc$sex, function(x) mean(x/2))</code></pre>
-<pre><code>##        m        f 
-## 947.0114 960.2888</code></pre>
-<p>Obtain the mean age and time per sex and status</p>
-<pre class="r"><code>tapply(pbc$age, list(pbc$status, pbc$sex), mean)</code></pre>
-<pre><code>##                   m        f
-## censored   55.68595 49.02203
-## transplant 42.16290 41.62939
-## dead       57.42174 53.30739</code></pre>
-<pre class="r"><code>tapply(pbc$time, list(pbc$status, pbc$sex), mean)</code></pre>
-<pre><code>##                   m        f
-## censored   2462.176 2322.953
-## transplant 1147.667 1600.545
-## dead       1584.875 1340.504</code></pre>
+Obtain the mean <code>age</code> and <code>time</code> per <code>sex</code></p>
+<pre><code>       m        f 
+55.71072 50.15694 </code></pre>
+<pre><code>       m        f 
+1894.023 1920.578 </code></pre>
+<p>Obtain the mean <code>age</code> and <code>time</code> (both devided by two) per <code>sex</code></p>
+<pre><code>       m        f 
+27.85536 25.07847 </code></pre>
+<pre><code>       m        f 
+947.0114 960.2888 </code></pre>
+<p>Obtain the mean <code>age</code> and <code>time</code> per <code>sex</code> and <code>status</code></p>
+<pre><code>                  m        f
+censored   55.68595 49.02203
+transplant 42.16290 41.62939
+dead       57.42174 53.30739</code></pre>
+<pre><code>                  m        f
+censored   2462.176 2322.953
+transplant 1147.667 1600.545
+dead       1584.875 1340.504</code></pre>
 <p><strong>mapply</strong><br />
 Create a list:<br />
 1st element: repeats 1 four times<br />
 2nd element: repeats 2 three times  <br />
 3rd element: repeats 3 two times  <br />
 4th element: repeats 4 one time</p>
-<pre class="r"><code>mapply(rep, 1:4, 4:1)</code></pre>
-<pre><code>## [[1]]
-## [1] 1 1 1 1
-## 
-## [[2]]
-## [1] 2 2 2
-## 
-## [[3]]
-## [1] 3 3
-## 
-## [[4]]
-## [1] 4</code></pre>
-<pre class="r"><code>#### alternative run: list(rep(1, 4), rep(2, 3), rep(3, 2), rep(4, 1))</code></pre>
+<pre><code>[[1]]
+[1] 1 1 1 1
+
+[[2]]
+[1] 2 2 2
+
+[[3]]
+[1] 3 3
+
+[[4]]
+[1] 4</code></pre>
 <p>Create a list:<br />
 1st element: repeats 4 one times<br />
 2nd element: repeats 4 two times  <br />
 3rd element: repeats 4 three times  <br />
 4th element: repeats 4 four time</p>
-<pre class="r"><code>mapply(rep, times = 1:4, x = 4)</code></pre>
-<pre><code>## [[1]]
-## [1] 4
-## 
-## [[2]]
-## [1] 4 4
-## 
-## [[3]]
-## [1] 4 4 4
-## 
-## [[4]]
-## [1] 4 4 4 4</code></pre>
-<pre class="r"><code>#### alternative run: list(rep(4, times = 1), rep(4, times = 2), rep(4, times = 3), rep(4, times = 4))</code></pre>
+<pre><code>[[1]]
+[1] 4
+
+[[2]]
+[1] 4 4
+
+[[3]]
+[1] 4 4 4
+
+[[4]]
+[1] 4 4 4 4</code></pre>
 <p>Create a list:<br />
 1st element: repeats 1 four times  <br />
 2nd element: repeats 2 four times  <br />
 3rd element: repeats 3 four times  <br />
 4th element: repeats 4 four time</p>
-<pre class="r"><code>mapply(rep,1:4, 4, SIMPLIFY = FALSE)</code></pre>
-<pre><code>## [[1]]
-## [1] 1 1 1 1
-## 
-## [[2]]
-## [1] 2 2 2 2
-## 
-## [[3]]
-## [1] 3 3 3 3
-## 
-## [[4]]
-## [1] 4 4 4 4</code></pre>
-<pre class="r"><code>### alternative run: list(rep(1, 4), rep(2, 4), rep(3, 4), rep(4, 4))</code></pre>
-<p>Note: if the scale is the same we can obtain a simplified output</p>
-<pre class="r"><code>mapply(rep,1:4, 4, SIMPLIFY = TRUE)</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4]
-## [1,]    1    2    3    4
-## [2,]    1    2    3    4
-## [3,]    1    2    3    4
-## [4,]    1    2    3    4</code></pre>
-<pre class="r"><code>### alternative run: matrix(c(rep(1, 4), rep(2, 4), rep(3, 4), rep(4, 4)), 4, 4)</code></pre>
-<p>Other examples</p>
-<pre class="r"><code>mapply(function(x,y) seq_len(x) + y,
-       c(a = 1, b = 2, c = 3),  
-       c(A = 10, B = 0, C = -10))</code></pre>
-<pre><code>## $a
-## [1] 11
-## 
-## $b
-## [1] 1 2
-## 
-## $c
-## [1] -9 -8 -7</code></pre>
-<pre class="r"><code>#### alternative run: list(c(1) + 10, c(1, 2) + 0, c(1, 2, 3) - 10)
+<pre><code>[[1]]
+[1] 1 1 1 1
 
-X &lt;- list(Mat, Mat^2)
-mapply(mean, X)</code></pre>
-<pre><code>## [1]   100.17 13363.67</code></pre>
+[[2]]
+[1] 2 2 2 2
+
+[[3]]
+[1] 3 3 3 3
+
+[[4]]
+[1] 4 4 4 4</code></pre>
+<p>Note: if the length is the same we can obtain a simplified output</p>
+<pre><code>     [,1] [,2] [,3] [,4]
+[1,]    1    2    3    4
+[2,]    1    2    3    4
+[3,]    1    2    3    4
+[4,]    1    2    3    4</code></pre>
+<p>Other examples</p>
+<pre><code>$a
+[1] 11
+
+$b
+[1] 1 2
+
+$c
+[1] -9 -8 -7</code></pre>
+<pre><code>[1]   100.17 13363.67</code></pre>
 <p>Note!</p>
-<pre class="r"><code>mapply(mean, MyList)</code></pre>
-<pre><code>## [1] 5.0 9.5 9.0</code></pre>
-<pre class="r"><code>sapply(MyList, mean)</code></pre>
-<pre><code>## [1] 5.0 9.5 9.0</code></pre>
-<pre class="r"><code>mapply(function(x,y) {x^y}, x = c(2, 3), y = c(4))</code></pre>
-<pre><code>## [1] 16 81</code></pre>
-<pre class="r"><code>#### alternative run: list(2^4, 3^4)</code></pre>
+<pre><code>[1] 5.0 9.5 9.0</code></pre>
+<pre><code>[1] 5.0 9.5 9.0</code></pre>
+<pre><code>[1] 16 81</code></pre>
 <p><strong>Long format data</strong><br />
 Let’s assume that only the long format data set <code>pbcseq</code> is available<br />
-We want to obtain the mean serum bilirubin of the last follow-up measurement per event group<br />
+We want to obtain the mean <code>serum bilirubin</code> of the last follow-up measurement per <code>status</code> group<br />
 Each patient is counted once!<br />
 </p>
-<pre class="r"><code>head(pbcseq)</code></pre>
-<pre><code>##   id futime status trt      age sex day ascites hepato spiders edema bili
-## 1  1    400      2   1 58.76523   f   0       1      1       1     1 14.5
-## 2  1    400      2   1 58.76523   f 192       1      1       1     1 21.3
-## 3  2   5169      0   1 56.44627   f   0       0      1       1     0  1.1
-## 4  2   5169      0   1 56.44627   f 182       0      1       1     0  0.8
-## 5  2   5169      0   1 56.44627   f 365       0      1       1     0  1.0
-## 6  2   5169      0   1 56.44627   f 768       0      1       1     0  1.9
-##   chol albumin alk.phos   ast platelet protime stage
-## 1  261    2.60     1718 138.0      190    12.2     4
-## 2   NA    2.94     1612   6.2      183    11.2     4
-## 3  302    4.14     7395 113.5      221    10.6     3
-## 4   NA    3.60     2107 139.5      188    11.0     3
-## 5   NA    3.55     1711 144.2      161    11.6     3
-## 6   NA    3.92     1365 144.2      122    10.6     3</code></pre>
+<pre><code>  id futime status trt      age sex day ascites hepato spiders edema bili chol albumin alk.phos
+1  1    400      2   1 58.76523   f   0       1      1       1     1 14.5  261    2.60     1718
+2  1    400      2   1 58.76523   f 192       1      1       1     1 21.3   NA    2.94     1612
+3  2   5169      0   1 56.44627   f   0       0      1       1     0  1.1  302    4.14     7395
+4  2   5169      0   1 56.44627   f 182       0      1       1     0  0.8   NA    3.60     2107
+5  2   5169      0   1 56.44627   f 365       0      1       1     0  1.0   NA    3.55     1711
+6  2   5169      0   1 56.44627   f 768       0      1       1     0  1.9   NA    3.92     1365
+    ast platelet protime stage
+1 138.0      190    12.2     4
+2   6.2      183    11.2     4
+3 113.5      221    10.6     3
+4 139.5      188    11.0     3
+5 144.2      161    11.6     3
+6 144.2      122    10.6     3</code></pre>
 <p>Sort data</p>
-<pre class="r"><code>pbcseq &lt;- pbcseq[order(pbcseq$id, pbcseq$day), ]</code></pre>
 <p>Select the last follow-up measurement of each patient</p>
-<pre class="r"><code>pbcseq.idNEW2 &lt;- pbcseq[!duplicated(pbcseq[c(&quot;id&quot;)], fromLast = TRUE), ]</code></pre>
 <p>Step by step</p>
-<pre class="r"><code>head(duplicated(pbcseq[c(&quot;id&quot;)]))</code></pre>
-<pre><code>## [1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE</code></pre>
-<pre class="r"><code>head(duplicated(pbcseq[c(&quot;id&quot;)], fromLast = TRUE))</code></pre>
-<pre><code>## [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
-<pre class="r"><code>head(!duplicated(pbcseq[c(&quot;id&quot;)], fromLast = TRUE))</code></pre>
-<pre><code>## [1] FALSE  TRUE FALSE FALSE FALSE FALSE</code></pre>
-<pre class="r"><code>### alternative run: pbcseq.idNEW2 &lt;- pbcseq[unlist(tapply(rownames(pbcseq), pbcseq$id, tail,  1)), ]</code></pre>
-<p>Obtain the mean serum bilirubin per event group</p>
-<pre class="r"><code>tapply(pbcseq.idNEW2$bili, pbcseq.idNEW2$status, mean)</code></pre>
-<pre><code>##         0         1         2 
-##  2.190909  9.172414 11.800000</code></pre>
+<pre><code>[1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE</code></pre>
+<pre><code>[1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre><code>[1] FALSE  TRUE FALSE FALSE FALSE FALSE</code></pre>
+<p>Obtain the mean <code>serum bilirubin</code> per <code>status</code> group</p>
+<pre><code>        0         1         2 
+ 2.190909  9.172414 11.800000 </code></pre>
 <p>Let’s again assume that only the long format data set <code>pbcseq</code> is available<br />
-We want to obtain the mean serum bilirubin of the last stage of edema per event group<br />
-Each patient and edema stage is counted once!<br />
-Sort data</p>
-<pre class="r"><code>pbcseq &lt;- pbcseq[order(pbcseq$id, pbcseq$edema), ]</code></pre>
-<p>Select the last stage of edema of each patient</p>
-<pre class="r"><code>pbcseq.idNEW3 &lt;- pbcseq[!duplicated(pbcseq[c(&quot;id&quot;)], fromLast = TRUE), ]</code></pre>
+We want to obtain the mean <code>serum bilirubin</code> of the last stage of <code>edema</code> per <code>status</code> group<br />
+Each patient and <code>edema</code> stage is counted once!<br />
+</p>
+<pre><code>  id futime status trt      age sex day ascites hepato spiders edema bili chol albumin alk.phos
+1  1    400      2   1 58.76523   f   0       1      1       1     1 14.5  261    2.60     1718
+2  1    400      2   1 58.76523   f 192       1      1       1     1 21.3   NA    2.94     1612
+3  2   5169      0   1 56.44627   f   0       0      1       1     0  1.1  302    4.14     7395
+4  2   5169      0   1 56.44627   f 182       0      1       1     0  0.8   NA    3.60     2107
+5  2   5169      0   1 56.44627   f 365       0      1       1     0  1.0   NA    3.55     1711
+6  2   5169      0   1 56.44627   f 768       0      1       1     0  1.9   NA    3.92     1365
+    ast platelet protime stage
+1 138.0      190    12.2     4
+2   6.2      183    11.2     4
+3 113.5      221    10.6     3
+4 139.5      188    11.0     3
+5 144.2      161    11.6     3
+6 144.2      122    10.6     3</code></pre>
+<p>Sort data</p>
+<p>Select the last stage of <code>edema</code> of each patient</p>
 <p>Step by step</p>
-<pre class="r"><code>head(duplicated(pbcseq[c(&quot;id&quot;)]))</code></pre>
-<pre><code>## [1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE</code></pre>
-<pre class="r"><code>head(duplicated(pbcseq[c(&quot;id&quot;)], fromLast = TRUE))</code></pre>
-<pre><code>## [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
-<pre class="r"><code>head(!duplicated(pbcseq[c(&quot;id&quot;)], fromLast = TRUE))</code></pre>
-<pre><code>## [1] FALSE  TRUE FALSE FALSE FALSE FALSE</code></pre>
-<pre class="r"><code>### alternative run: pbcseq.idNEW3 &lt;- pbcseq[unlist(tapply(rownames(pbcseq), pbcseq$id, tail,  1)), ]</code></pre>
-<p>Obtain the mean serum bilirubin per event group</p>
-<pre class="r"><code>tapply(pbcseq.idNEW3$bili, pbcseq.idNEW3$status, mean)</code></pre>
-<pre><code>##         0         1         2 
-##  2.182517  8.651724 11.425000</code></pre>
+<pre><code>[1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE</code></pre>
+<pre><code>[1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre><code>[1] FALSE  TRUE FALSE FALSE FALSE FALSE</code></pre>
+<p>Obtain the mean <code>serum bilirubin</code> per <code>status</code> group</p>
+<pre><code>        0         1         2 
+ 2.182517  8.651724 11.425000 </code></pre>
 
 
 

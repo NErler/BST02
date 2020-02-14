@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -2834,6 +2833,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -2865,6 +2865,12 @@ summary {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -3551,11 +3557,11 @@ The function <code>dim()</code> could be used here.
 <div id="solution-3" class="section level3">
 <h3>Solution 3</h3>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">dim</span>(dat1)</a></code></pre></div>
-<pre><code>## [1] 13  6</code></pre>
+<pre><code>[1] 13  6</code></pre>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">dim</span>(FUdat)</a></code></pre></div>
-<pre><code>## [1] 13  3</code></pre>
+<pre><code>[1] 13  3</code></pre>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">dim</span>(basedat)</a></code></pre></div>
-<pre><code>## [1] 5 4</code></pre>
+<pre><code>[1] 5 4</code></pre>
 <p><code>FUdat</code> and <code>basedat</code> contain data on the exact same set of subjects and only the <code>id</code> variable is overlapping between the two datasets. Therefore, the resulting <code>dat1</code> should have the same number of rows as the data containing the repeated measurements (<code>FUdat</code>) and has one column less than the sum of the number of columns of both input datasets (6 = 3 + 4 - 1).</p>
 </div>
 </div>

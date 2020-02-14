@@ -36,7 +36,7 @@ is.num[1] <- FALSE
 ui <- fluidPage(
   
   # Application title
-  titlePanel("Explore the apply family using the pbc data set"),
+  titlePanel("Explore the apply family using the pbc data set from the survival package"),
   
   # Text input 
   tabsetPanel(
@@ -44,7 +44,7 @@ ui <- fluidPage(
              sidebarLayout(
                sidebarPanel(
                  
-                 p('Select the continous covariates (either as number or as name) that you want to investigate 
+                 p('Select the continous covariates (either as numbers or as names) that you want to investigate 
                    (they have to be >= than two - e.g. c("time", "age") or c(2, 5))'),
                  textInput("covariates1", "Continuous covariates", 
                            value = ""),
@@ -107,8 +107,8 @@ ui <- fluidPage(
              sidebarLayout(
                sidebarPanel(
                  
-                 p('Select the continous covariates (either as number or as name) that you want to investigate 
-                   (they have to be >= than two - e.g. c("years", "age") or c(2, 5))'),
+                 p('Select the continous covariates (either as numbers or as names) that you want to investigate 
+                   (they have to be >= than two - e.g. c("time", "age") or c(2, 5))'),
                  textInput("continuous3", "Continuous covariates", 
                            value = ""),
                  
@@ -180,7 +180,7 @@ server <- function(input, output) {
     } else {
       stats3 <- input$stats3
     }
-    return(paste0(input$applys3, "(pbc[ , ", input$continuous3, "], ", stats3, ")"))
+    return(paste0(input$applys3, "(pbc[ , ", input$continuous3, "], ", stats3, ", na.rm = TRUE)"))
   })
   
   output$Routput3 <- renderPrint({
@@ -189,7 +189,7 @@ server <- function(input, output) {
     } else {
       stats3 <- input$stats3
     }
-    code1 <- paste0(input$applys3, "(pbc[, ", input$continuous3, "], ", stats3, ")")
+    code1 <- paste0(input$applys3, "(pbc[, ", input$continuous3, "], ", stats3, ", na.rm = TRUE)")
     eval(parse(text = code1))
   })
   

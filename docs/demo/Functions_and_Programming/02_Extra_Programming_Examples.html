@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-13" />
+<meta name="date" content="2020-02-14" />
 
 <title>Demo: Extra Programming examples</title>
 
@@ -332,6 +331,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -366,310 +366,188 @@ summary {
 <h1 class="title toc-ignore">Demo: Extra Programming examples</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">13 February 2020</h4>
+<h4 class="date">14 February 2020</h4>
 
 </div>
 
 
 <p>Load packages<br />
 If you are using the package for the first time, you will have to first install it</p>
-<pre class="r"><code># install.packages(&quot;survival&quot;) 
-library(survival)</code></pre>
 <p>Create a matrix<br />
-Calculate the sum per row</p>
-<pre class="r"><code>A &lt;- matrix(rnorm(1e06), 1000, 1000)
-A[1:10 , 1:10]</code></pre>
-<pre><code>##             [,1]        [,2]       [,3]        [,4]       [,5]        [,6]
-##  [1,] -0.1803943  1.07517647  0.1317783  0.42152372 -0.7311972 -0.06316354
-##  [2,] -1.5676751  0.38047302  1.5385788  0.19420750  1.9382166 -0.98188616
-##  [3,] -0.2607259 -0.08498298 -0.1586313  1.54369363 -0.9267908  0.67742867
-##  [4,]  0.9618104 -0.68883264 -1.7907944 -0.56676551 -0.1590448 -0.12795690
-##  [5,]  0.8538955  1.83940017 -0.4666530 -0.09062807  0.3111327 -1.40544405
-##  [6,]  0.4187967  0.39643307  0.8753449 -0.83208562  0.7364348 -0.60069070
-##  [7,]  0.3399565  1.86982738 -1.3446056 -0.19500142 -0.4770160 -0.38497806
-##  [8,]  0.5964251  1.11770048 -0.9368919  0.32963886  1.4635646  0.71765349
-##  [9,]  1.8714180  0.77568322 -1.7873283 -0.05374106 -1.0163532  1.12711360
-## [10,]  0.6028704 -0.55498403  0.9216301 -0.44625319  0.8661580 -1.07680047
-##             [,7]        [,8]          [,9]        [,10]
-##  [1,] -1.4918277 -1.27005715  0.8820956870  0.297363706
-##  [2,]  0.2364757 -1.89939340 -1.3432327967  0.049838063
-##  [3,] -0.3374008 -0.29661876  0.0006372053 -0.713489048
-##  [4,] -1.2567549 -1.15741252  1.5625100573 -0.799665351
-##  [5,] -1.2570817  0.35639215 -0.8315549224 -0.869940024
-##  [6,] -0.6347263 -1.09266243 -0.9046003887 -0.795728229
-##  [7,]  0.1986559 -1.38885278 -0.3489689921  0.004764925
-##  [8,] -0.2587784  1.12964627  1.6020708088  0.278689038
-##  [9,] -0.9345922 -0.08730042 -0.6692200996 -1.602503138
-## [10,] -0.1269706  1.53189359 -0.1751877269 -0.529230812</code></pre>
-<pre class="r"><code>#?rnorm
-res1 &lt;- replicate(100, z &lt;- apply(A, 1, sum))
-res2 &lt;- replicate(100, z &lt;- rowSums(A)) # Use specialized functions</code></pre>
+</p>
+<pre><code>            [,1]        [,2]       [,3]        [,4]       [,5]        [,6]       [,7]        [,8]
+ [1,] -0.1803943  1.07517647  0.1317783  0.42152372 -0.7311972 -0.06316354 -1.4918277 -1.27005715
+ [2,] -1.5676751  0.38047302  1.5385788  0.19420750  1.9382166 -0.98188616  0.2364757 -1.89939340
+ [3,] -0.2607259 -0.08498298 -0.1586313  1.54369363 -0.9267908  0.67742867 -0.3374008 -0.29661876
+ [4,]  0.9618104 -0.68883264 -1.7907944 -0.56676551 -0.1590448 -0.12795690 -1.2567549 -1.15741252
+ [5,]  0.8538955  1.83940017 -0.4666530 -0.09062807  0.3111327 -1.40544405 -1.2570817  0.35639215
+ [6,]  0.4187967  0.39643307  0.8753449 -0.83208562  0.7364348 -0.60069070 -0.6347263 -1.09266243
+ [7,]  0.3399565  1.86982738 -1.3446056 -0.19500142 -0.4770160 -0.38497806  0.1986559 -1.38885278
+ [8,]  0.5964251  1.11770048 -0.9368919  0.32963886  1.4635646  0.71765349 -0.2587784  1.12964627
+ [9,]  1.8714180  0.77568322 -1.7873283 -0.05374106 -1.0163532  1.12711360 -0.9345922 -0.08730042
+[10,]  0.6028704 -0.55498403  0.9216301 -0.44625319  0.8661580 -1.07680047 -0.1269706  1.53189359
+               [,9]        [,10]
+ [1,]  0.8820956870  0.297363706
+ [2,] -1.3432327967  0.049838063
+ [3,]  0.0006372053 -0.713489048
+ [4,]  1.5625100573 -0.799665351
+ [5,] -0.8315549224 -0.869940024
+ [6,] -0.9046003887 -0.795728229
+ [7,] -0.3489689921  0.004764925
+ [8,]  1.6020708088  0.278689038
+ [9,] -0.6692200996 -1.602503138
+[10,] -0.1751877269 -0.529230812</code></pre>
+<p>Calculate the sum per row</p>
+<pre><code>[1]  25.277438  -4.227194  23.103067 -12.157703   9.905469 -24.071180</code></pre>
+<p>Calculate the sum per row, repeat this procedure 100 times</p>
 <p>Compute the cumulative sum</p>
-<pre class="r"><code>x &lt;- rnorm(1000000, 10, 10)
-
-cSum &lt;- 0
-for (k in 1:length(x)){
-  cSum &lt;- cSum + x[k]
-  cSum
-}</code></pre>
 <p>Explore how it works</p>
-<pre class="r"><code>i &lt;- 1
-cSum &lt;- 0
-cSum &lt;- cSum + x[i]
-x[1]</code></pre>
-<pre><code>## [1] -4.881263</code></pre>
-<pre class="r"><code>i &lt;- 2
-cSum &lt;- cSum + x[i]
-
-
-res &lt;- cumsum(x)
-tail(res)</code></pre>
-<pre><code>## [1] 10013211 10013230 10013237 10013250 10013257 10013256</code></pre>
+<pre><code>[1] -4.881263</code></pre>
+<pre><code>[1] 10013211 10013230 10013237 10013250 10013257 10013256</code></pre>
 <p>Explore the timing of the code</p>
-<pre class="r"><code>system.time({
-  cSum &lt;- 0
-  for (i in 1:length(x)){
-    cSum &lt;- cSum + x[i]
-    cSum
-  }
-})</code></pre>
-<pre><code>##    user  system elapsed 
-##    0.06    0.00    0.06</code></pre>
-<pre class="r"><code>system.time({
-  cumsum(x)
-}) # better</code></pre>
-<pre><code>##    user  system elapsed 
-##       0       0       0</code></pre>
+<pre><code>   user  system elapsed 
+   0.09    0.00    0.09 </code></pre>
+<pre><code>   user  system elapsed 
+      0       0       0 </code></pre>
 <p>More than one ways exist to code something in R!<br />
-Create a dichotomous variable for <code>age</code> (assume as cut-off point the value 42)</p>
-<pre class="r"><code>for (i in 1:dim(pbc)[1]) {
-  pbc$ageCat[i] &lt;- as.numeric(pbc$age[i] &gt; 42)
-}
-
-i &lt;- 1
-pbc$ageCat[i] &lt;- as.numeric(pbc$age[i] &gt; 42)
-
-
-head(pbc)</code></pre>
-<pre><code>##   id time     status trt      age sex ascites hepato spiders edema bili
-## 1  1  400       dead   1 58.76523   f     yes    yes     yes   1.0 14.5
-## 2  2 4500   censored   1 56.44627   f      no    yes     yes   0.0  1.1
-## 3  3 1012       dead   1 70.07255   m      no     no      no   0.5  1.4
-## 4  4 1925       dead   1 54.74059   f      no    yes     yes   0.5  1.8
-## 5  5 1504 transplant   2 38.10541   f      no    yes     yes   0.0  3.4
-## 6  6 2503       dead   2 66.25873   f      no    yes      no   0.0  0.8
-##   chol albumin copper alk.phos    ast trig platelet protime stage ageCat
-## 1  261    2.60    156   1718.0 137.95  172      190    12.2     4      1
-## 2  302    4.14     54   7394.8 113.52   88      221    10.6     3      1
-## 3  176    3.48    210    516.0  96.10   55      151    12.0     4      1
-## 4  244    2.54     64   6121.8  60.63   92      183    10.3     4      1
-## 5  279    3.53    143    671.0 113.15   72      136    10.9     3      0
-## 6  248    3.98     50    944.0  93.00   63       NA    11.0     3      1</code></pre>
-<pre class="r"><code>pbc[i, ]</code></pre>
-<pre><code>##   id time status trt      age sex ascites hepato spiders edema bili chol
-## 1  1  400   dead   1 58.76523   f     yes    yes     yes     1 14.5  261
-##   albumin copper alk.phos    ast trig platelet protime stage ageCat
-## 1     2.6    156     1718 137.95  172      190    12.2     4      1</code></pre>
+</p>
+<p>Create a dichotomous variable for <code>age</code> (assume as cut-off point the value 42)</p>
+<p>Explore what it is happening<br />
+This will help you later create more complicated functions</p>
+<pre><code>  id time     status trt      age sex ascites hepato spiders edema bili chol albumin copper
+1  1  400       dead   1 58.76523   f     yes    yes     yes   1.0 14.5  261    2.60    156
+2  2 4500   censored   1 56.44627   f      no    yes     yes   0.0  1.1  302    4.14     54
+3  3 1012       dead   1 70.07255   m      no     no      no   0.5  1.4  176    3.48    210
+4  4 1925       dead   1 54.74059   f      no    yes     yes   0.5  1.8  244    2.54     64
+5  5 1504 transplant   2 38.10541   f      no    yes     yes   0.0  3.4  279    3.53    143
+6  6 2503       dead   2 66.25873   f      no    yes      no   0.0  0.8  248    3.98     50
+  alk.phos    ast trig platelet protime stage ageCat
+1   1718.0 137.95  172      190    12.2     4      1
+2   7394.8 113.52   88      221    10.6     3      1
+3    516.0  96.10   55      151    12.0     4      1
+4   6121.8  60.63   92      183    10.3     4      1
+5    671.0 113.15   72      136    10.9     3      0
+6    944.0  93.00   63       NA    11.0     3      1</code></pre>
+<pre><code>  id time status trt      age sex ascites hepato spiders edema bili chol albumin copper alk.phos
+1  1  400   dead   1 58.76523   f     yes    yes     yes     1 14.5  261     2.6    156     1718
+     ast trig platelet protime stage ageCat
+1 137.95  172      190    12.2     4      1</code></pre>
 <p>Do the same thing without a loop</p>
-<pre class="r"><code>pbc$ageCat &lt;- as.numeric(pbc$age &gt; 42)</code></pre>
 <p>Calculate the mean weight for <code>males</code> and <code>females</code> in 100 datasets<br />
 Since we do not have 100 data sets, we will create them!<br />
 Let’s do that first manually…</p>
-<pre class="r"><code>datlist &lt;- list()
-
-i &lt;- 1
-set.seed(2015+i)
-patient &lt;- c(1:20)
-weight &lt;- rnorm(20, 70, 10)
-sex &lt;- sample(1:2, 20, replace = TRUE)
-sex &lt;- factor(sex, levels = 1:2, labels = c(&quot;male&quot;, &quot;female&quot;))
-
-datlist[[i]] &lt;- data.frame(patient, weight, sex)
-
-i &lt;- 2
-set.seed(2015+i)
-patient &lt;- c(1:20)
-weight &lt;- rnorm(20, 70, 10)
-sex &lt;- sample(1:2, 20, replace = T)
-sex &lt;- factor(sex, levels = 1:2, labels = c(&quot;male&quot;, &quot;female&quot;))
-
-datlist[[i]] &lt;- data.frame(patient, weight, sex)
-# ..... </code></pre>
 <p>It is too much work! Now use a loop</p>
-<pre class="r"><code>for (i in 1:100) {
-  set.seed(2015+i)
-  patient &lt;- c(1:20)
-  weight &lt;- rnorm(20, 70, 10)
-  sex &lt;- sample(1:2, 20, replace = T)
-  sex &lt;- factor(sex, levels = 1:2, labels = c(&quot;male&quot;, &quot;female&quot;))
-  
-  datlist[[i]] &lt;- data.frame(patient, weight, sex)
-}</code></pre>
 <p>Now that we have 100 data sets we need to calculate the mean <code>age</code> per <code>gender</code> in each of them<br />
 Let’s do that manually…</p>
-<pre class="r"><code>means &lt;- matrix(NA, length(datlist), 2)
-
-
-i &lt;- 1
-dat &lt;- datlist[[i]]
-means[i, ] &lt;- tapply(dat$weight, dat$sex, mean)
-
-i &lt;- 2
-dat &lt;- datlist[[i]]
-means[i, ] &lt;- tapply(dat$weight, dat$sex, mean)</code></pre>
 <p>Now use a loop</p>
-<pre class="r"><code>for (i in 1:length(datlist)) {
-  dat &lt;- datlist[[i]]
-  means[i, ] &lt;- tapply(dat$weight, dat$sex, mean)
-}
-
-means</code></pre>
-<pre><code>##            [,1]     [,2]
-##   [1,] 66.87221 70.23012
-##   [2,] 69.32428 71.10880
-##   [3,] 73.35006 63.82016
-##   [4,] 68.84998 66.25908
-##   [5,] 67.04163 70.26612
-##   [6,] 70.71196 77.17049
-##   [7,] 68.96159 65.47418
-##   [8,] 64.35831 73.27005
-##   [9,] 66.32138 67.72680
-##  [10,] 71.55249 72.48613
-##  [11,] 65.76905 66.36133
-##  [12,] 73.48102 63.50352
-##  [13,] 68.47477 64.66653
-##  [14,] 69.56143 71.17912
-##  [15,] 69.29229 70.56164
-##  [16,] 71.38866 69.45462
-##  [17,] 76.79215 71.76611
-##  [18,] 65.71939 69.49420
-##  [19,] 71.98203 72.16730
-##  [20,] 69.34998 67.93628
-##  [21,] 63.21352 72.26006
-##  [22,] 70.72174 66.16482
-##  [23,] 71.91892 75.30717
-##  [24,] 65.58916 64.65397
-##  [25,] 70.26669 78.72166
-##  [26,] 66.02550 71.79470
-##  [27,] 70.64065 70.19797
-##  [28,] 70.20606 77.39163
-##  [29,] 71.78320 71.13655
-##  [30,] 71.92905 72.75175
-##  [31,] 70.96654 73.94545
-##  [32,] 75.58260 69.19083
-##  [33,] 67.41139 68.88708
-##  [34,] 64.36274 68.46705
-##  [35,] 68.74053 66.84963
-##  [36,] 63.34794 68.82594
-##  [37,] 65.07727 65.14672
-##  [38,] 73.55567 75.33889
-##  [39,] 74.01027 70.32720
-##  [40,] 68.06847 74.80821
-##  [41,] 70.72333 65.96066
-##  [42,] 65.42156 71.96316
-##  [43,] 69.14935 65.91266
-##  [44,] 74.04650 70.97440
-##  [45,] 69.59519 70.53345
-##  [46,] 70.97698 69.22818
-##  [47,] 58.30949 67.73015
-##  [48,] 65.99013 67.84917
-##  [49,] 67.51769 72.63818
-##  [50,] 70.20286 63.76691
-##  [51,] 67.86270 75.51401
-##  [52,] 62.94888 70.86488
-##  [53,] 70.78478 69.66490
-##  [54,] 66.69677 69.57164
-##  [55,] 68.94568 69.57028
-##  [56,] 73.93241 72.08760
-##  [57,] 66.87292 70.82672
-##  [58,] 75.27587 67.85564
-##  [59,] 71.42993 74.39911
-##  [60,] 72.75904 73.61665
-##  [61,] 74.74384 69.01195
-##  [62,] 68.04087 68.99214
-##  [63,] 70.75011 74.70910
-##  [64,] 67.70502 72.73423
-##  [65,] 70.91187 69.68420
-##  [66,] 67.45621 65.99839
-##  [67,] 77.12369 65.93115
-##  [68,] 75.96823 69.92782
-##  [69,] 64.32795 70.02376
-##  [70,] 71.27700 65.16304
-##  [71,] 72.77217 77.80718
-##  [72,] 75.89081 75.24157
-##  [73,] 68.61311 74.60519
-##  [74,] 70.47600 69.13892
-##  [75,] 71.67574 72.77853
-##  [76,] 73.91047 66.58250
-##  [77,] 67.92155 67.22125
-##  [78,] 72.61366 77.01334
-##  [79,] 76.22293 69.00145
-##  [80,] 72.58301 67.69118
-##  [81,] 68.66738 71.94712
-##  [82,] 66.01072 74.95175
-##  [83,] 70.80124 66.47900
-##  [84,] 64.68112 70.52083
-##  [85,] 66.51895 69.75434
-##  [86,] 75.51569 74.40123
-##  [87,] 66.50925 72.54881
-##  [88,] 71.67315 68.66200
-##  [89,] 69.97492 72.45629
-##  [90,] 65.34358 74.72192
-##  [91,] 68.07291 73.52073
-##  [92,] 71.06988 69.87011
-##  [93,] 68.81983 69.00338
-##  [94,] 65.88510 70.58513
-##  [95,] 69.14958 74.72742
-##  [96,] 63.78094 70.16301
-##  [97,] 71.57882 73.66845
-##  [98,] 74.11485 71.50819
-##  [99,] 70.71719 66.66810
-## [100,] 73.99102 69.82842</code></pre>
+<pre><code>           [,1]     [,2]
+  [1,] 66.87221 70.23012
+  [2,] 69.32428 71.10880
+  [3,] 73.35006 63.82016
+  [4,] 68.84998 66.25908
+  [5,] 67.04163 70.26612
+  [6,] 70.71196 77.17049
+  [7,] 68.96159 65.47418
+  [8,] 64.35831 73.27005
+  [9,] 66.32138 67.72680
+ [10,] 71.55249 72.48613
+ [11,] 65.76905 66.36133
+ [12,] 73.48102 63.50352
+ [13,] 68.47477 64.66653
+ [14,] 69.56143 71.17912
+ [15,] 69.29229 70.56164
+ [16,] 71.38866 69.45462
+ [17,] 76.79215 71.76611
+ [18,] 65.71939 69.49420
+ [19,] 71.98203 72.16730
+ [20,] 69.34998 67.93628
+ [21,] 63.21352 72.26006
+ [22,] 70.72174 66.16482
+ [23,] 71.91892 75.30717
+ [24,] 65.58916 64.65397
+ [25,] 70.26669 78.72166
+ [26,] 66.02550 71.79470
+ [27,] 70.64065 70.19797
+ [28,] 70.20606 77.39163
+ [29,] 71.78320 71.13655
+ [30,] 71.92905 72.75175
+ [31,] 70.96654 73.94545
+ [32,] 75.58260 69.19083
+ [33,] 67.41139 68.88708
+ [34,] 64.36274 68.46705
+ [35,] 68.74053 66.84963
+ [36,] 63.34794 68.82594
+ [37,] 65.07727 65.14672
+ [38,] 73.55567 75.33889
+ [39,] 74.01027 70.32720
+ [40,] 68.06847 74.80821
+ [41,] 70.72333 65.96066
+ [42,] 65.42156 71.96316
+ [43,] 69.14935 65.91266
+ [44,] 74.04650 70.97440
+ [45,] 69.59519 70.53345
+ [46,] 70.97698 69.22818
+ [47,] 58.30949 67.73015
+ [48,] 65.99013 67.84917
+ [49,] 67.51769 72.63818
+ [50,] 70.20286 63.76691
+ [51,] 67.86270 75.51401
+ [52,] 62.94888 70.86488
+ [53,] 70.78478 69.66490
+ [54,] 66.69677 69.57164
+ [55,] 68.94568 69.57028
+ [56,] 73.93241 72.08760
+ [57,] 66.87292 70.82672
+ [58,] 75.27587 67.85564
+ [59,] 71.42993 74.39911
+ [60,] 72.75904 73.61665
+ [61,] 74.74384 69.01195
+ [62,] 68.04087 68.99214
+ [63,] 70.75011 74.70910
+ [64,] 67.70502 72.73423
+ [65,] 70.91187 69.68420
+ [66,] 67.45621 65.99839
+ [67,] 77.12369 65.93115
+ [68,] 75.96823 69.92782
+ [69,] 64.32795 70.02376
+ [70,] 71.27700 65.16304
+ [71,] 72.77217 77.80718
+ [72,] 75.89081 75.24157
+ [73,] 68.61311 74.60519
+ [74,] 70.47600 69.13892
+ [75,] 71.67574 72.77853
+ [76,] 73.91047 66.58250
+ [77,] 67.92155 67.22125
+ [78,] 72.61366 77.01334
+ [79,] 76.22293 69.00145
+ [80,] 72.58301 67.69118
+ [81,] 68.66738 71.94712
+ [82,] 66.01072 74.95175
+ [83,] 70.80124 66.47900
+ [84,] 64.68112 70.52083
+ [85,] 66.51895 69.75434
+ [86,] 75.51569 74.40123
+ [87,] 66.50925 72.54881
+ [88,] 71.67315 68.66200
+ [89,] 69.97492 72.45629
+ [90,] 65.34358 74.72192
+ [91,] 68.07291 73.52073
+ [92,] 71.06988 69.87011
+ [93,] 68.81983 69.00338
+ [94,] 65.88510 70.58513
+ [95,] 69.14958 74.72742
+ [96,] 63.78094 70.16301
+ [97,] 71.57882 73.66845
+ [98,] 74.11485 71.50819
+ [99,] 70.71719 66.66810
+[100,] 73.99102 69.82842</code></pre>
 <p>Select the data sets, where more than 39% of the patients are <code>females</code></p>
-<pre class="r"><code>newList &lt;- list()
-k &lt;- 1
-
-for (i in 1:length(datlist)) {
-  dat &lt;- datlist[[i]]
-  if (sum(dat$sex == &quot;female&quot;)/20 &gt;= 0.4) {
-    newList[[k]] &lt;- dat
-    k &lt;- k + 1
-  }
-}
-
-length(newList)</code></pre>
-<pre><code>## [1] 90</code></pre>
+<pre><code>[1] 90</code></pre>
 <p>Select the data sets, where more than 49% of the patients are <code>males</code></p>
-<pre class="r"><code>newList &lt;- list()
-k &lt;- 1
-
-for (i in 1:length(datlist)) {
-  dat &lt;- datlist[[i]]
-  if (sum(dat$sex == &quot;male&quot;)/20 &gt;= 0.5) {
-    newList[[k]] &lt;- dat
-    k &lt;- k + 1
-  }
-}</code></pre>
 <p>Now make a function that takes as input the data sets in a list format, the name of the <code>gender</code> variable and the name of the <code>male</code> category<br />
 This function returns only the data sets, where more than 49% of the patients are <code>males</code><br />
 The output should be a list</p>
-<pre class="r"><code>subset_data &lt;- function(dataset = x, sex_var = &quot;sex&quot;, male_cat = &quot;male&quot;){
-  newList &lt;- list()
-  k &lt;- 1
-  for (i in 1:length(dataset)) {
-    dat &lt;- dataset[[i]]
-    if (sum(dat[[sex_var]] == male_cat)/20 &gt;= 0.5) {
-      newList[[k]] &lt;- dat
-      k &lt;- k + 1
-    }
-  }
-  newList
-}
-
-res &lt;- subset_data(dataset = datlist, sex_var = &quot;sex&quot;, male_cat = &quot;male&quot;)
-
-length(res)</code></pre>
-<pre><code>## [1] 64</code></pre>
+<pre><code>[1] 64</code></pre>
 
 
 

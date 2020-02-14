@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-13" />
+<meta name="date" content="2020-02-14" />
 
 <title>Demo: Data Exploration</title>
 
@@ -332,6 +331,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -366,7 +366,7 @@ summary {
 <h1 class="title toc-ignore">Demo: Data Exploration</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">13 February 2020</h4>
+<h4 class="date">14 February 2020</h4>
 
 </div>
 
@@ -374,266 +374,97 @@ summary {
 <p>Load packages<br />
 If you are using the package for the first time, you will have to first install it<br />
 </p>
-<pre class="r"><code># install.packages(&quot;survival&quot;) 
-# install.packages(&quot;memisc&quot;)
-library(survival)
-library(memisc)</code></pre>
-<p>What is the mean and sd for age?</p>
-<pre class="r"><code>mean(pbc$age)</code></pre>
-<pre><code>## [1] 50.74132</code></pre>
-<pre class="r"><code>mean(pbc$age, na.rm = TRUE)</code></pre>
-<pre><code>## [1] 50.74132</code></pre>
-<pre class="r"><code>sd(pbc$age)</code></pre>
-<pre><code>## [1] 10.44721</code></pre>
-<p>What is the mean and sd for time?</p>
-<pre class="r"><code>mean(pbc$time)</code></pre>
-<pre><code>## [1] 1917.782</code></pre>
-<pre class="r"><code>mean(pbc$time, na.rm = TRUE)</code></pre>
-<pre><code>## [1] 1917.782</code></pre>
-<pre class="r"><code>sd(pbc$time)</code></pre>
-<pre><code>## [1] 1104.673</code></pre>
-<p>What is the median and interquartile range for age?</p>
-<pre class="r"><code>median(pbc$age)</code></pre>
-<pre><code>## [1] 51</code></pre>
-<pre class="r"><code>IQR(pbc$age)</code></pre>
-<pre><code>## [1] 15.4025</code></pre>
-<p>What is the percentage of placebo patients?<br />
-In order to use the percent function you will need to load the memisc package</p>
-<pre class="r"><code>percent(pbc$trt)</code></pre>
-<pre><code>##         1         2         N 
-##  50.64103  49.35897 312.00000</code></pre>
-<p>What is the percentage of females?</p>
-<pre class="r"><code>percent(pbc$sex)</code></pre>
-<pre><code>##         m         f         N 
-##  10.52632  89.47368 418.00000</code></pre>
-<p>What is the mean and sd for age in males?</p>
-<pre class="r"><code>pbc_males &lt;- pbc[pbc$sex == &quot;m&quot;, ]
-mean(pbc_males$age)</code></pre>
-<pre><code>## [1] 55.71068</code></pre>
-<pre class="r"><code>sd(pbc_males$age)</code></pre>
-<pre><code>## [1] 10.97715</code></pre>
-<p>What is the mean and sd for serum bilirubin?</p>
-<pre class="r"><code>mean(pbc$bili)</code></pre>
-<pre><code>## [1] 3.220813</code></pre>
-<pre class="r"><code>sd(pbc$bili)</code></pre>
-<pre><code>## [1] 4.407506</code></pre>
-<p>Missing values<br />
+<p>What is the mean and sd for <code>age</code>?</p>
+<pre><code>[1] 50.74132</code></pre>
+<pre><code>[1] 50.74132</code></pre>
+<pre><code>[1] 10.44721</code></pre>
+<p>What is the mean and sd for <code>time</code>?</p>
+<pre><code>[1] 1917.782</code></pre>
+<pre><code>[1] 1917.782</code></pre>
+<pre><code>[1] 1104.673</code></pre>
+<p>What is the median and interquartile range for <code>age</code>?</p>
+<pre><code>[1] 51</code></pre>
+<pre><code>[1] 15.4025</code></pre>
+<p>What is the percentage of <code>placebo</code> and <code>treatment</code> patients?<br />
+In order to use the percent() function you will need to load the memisc package</p>
+<pre><code>        1         2         N 
+ 50.64103  49.35897 312.00000 </code></pre>
+<p>What is the percentage of <code>females</code> and <code>males</code>?</p>
+<pre><code>        m         f         N 
+ 10.52632  89.47368 418.00000 </code></pre>
+<p>What is the mean and sd for <code>age</code> in <code>males</code>?</p>
+<pre><code>[1] 55.71068</code></pre>
+<pre><code>[1] 10.97715</code></pre>
+<p>What is the mean and sd for <code>serum bilirubin</code>?</p>
+<pre><code>[1] 3.220813</code></pre>
+<pre><code>[1] 4.407506</code></pre>
+<p><strong>Missing values and outliers</strong><br />
 Check if there are missing values</p>
-<pre class="r"><code>is.na(pbc$chol)</code></pre>
-<pre><code>##   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [12] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [23] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [34] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE
-##  [45]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE
-##  [56] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [67] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [78] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [89] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE
-## [100] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
-## [111] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [122] FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
-## [133] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [144] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
-## [155] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
-## [166] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE
-## [177] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
-## [188] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [199] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
-## [210] FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE
-## [221] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [232] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [243] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [254] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [265] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
-## [276] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [287] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [298] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [309] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [320]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [331]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [342]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [353]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [364]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [375]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [386]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [397]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [408]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
-<pre class="r"><code>pbc[is.na(pbc$chol) == TRUE, c(&quot;id&quot;, &quot;time&quot;, &quot;status&quot;,
-                                    &quot;trt&quot;, &quot;age&quot;, &quot;sex&quot;, 
-                                    &quot;bili&quot;, &quot;chol&quot;)]</code></pre>
-<pre><code>##      id time status trt   age sex bili chol
-## 14   14 1217      2   2 56.22   m  0.8   NA
-## 40   40 4467      0   1 46.67   f  1.3   NA
-## 41   41 1350      2   1 33.63   f  6.8   NA
-## 42   42 4453      0   2 33.69   f  2.1   NA
-## 45   45 4025      0   2 41.79   f  0.6   NA
-## 49   49  708      2   2 61.15   f  0.8   NA
-## 53   53 1000      2   1 67.41   f  2.6   NA
-## 70   70 3458      0   1 56.40   f  0.6   NA
-## 95   95  130      2   2 46.39   f 17.4   NA
-## 96   96 3850      0   1 48.85   f  1.0   NA
-## 106 106 3222      2   1 68.51   f  2.1   NA
-## 123 123  971      2   1 45.82   f  5.1   NA
-## 128 128 1037      2   1 41.95   f 16.2   NA
-## 146 146 2615      0   2 33.86   f  1.2   NA
-## 150 150 2891      0   2 34.99   f  1.0   NA
-## 164 164  264      2   2 43.41   f  8.5   NA
-## 171 171 2574      0   1 52.67   f  0.5   NA
-## 174 174 2644      0   1 55.57   f  0.5   NA
-## 176 176 1492      2   1 41.61   f  3.2   NA
-## 178 178 2580      0   1 70.00   f  0.6   NA
-## 182 182 2555      0   1 56.94   f  0.6   NA
-## 190 190 2504      0   1 54.53   f  2.3   NA
-## 207 207 2171      0   1 72.77   f  0.6   NA
-## 211 211 2195      0   2 52.91   f  1.3   NA
-## 216 216 2168      0   1 59.16   f  0.5   NA
-## 218 218 2170      0   1 34.60   f  0.5   NA
-## 274 274 1447      1   1 47.98   f  1.6   NA
-## 300 300  207      2   2 58.17   f  5.2   NA
-## 313 313 4062      0  NA 60.00   f  0.7   NA
-## 314 314 3561      2  NA 65.00   f  1.4   NA
-## 315 315 2844      0  NA 54.00   f  0.7   NA
-## 316 316 2071      2  NA 75.00   f  0.7   NA
-## 317 317 3030      0  NA 62.00   f  0.8   NA
-## 318 318 1680      0  NA 43.00   f  0.7   NA
-## 319 319   41      2  NA 46.00   f  5.0   NA
-## 320 320 2403      0  NA 44.00   f  0.4   NA
-## 321 321 1170      0  NA 61.00   m  1.3   NA
-## 322 322 2011      2  NA 64.00   f  1.1   NA
-## 323 323 3523      0  NA 40.00   f  0.6   NA
-## 324 324 3468      0  NA 63.00   f  0.6   NA
-## 325 325 4795      0  NA 34.00   f  1.8   NA
-## 326 326 1236      0  NA 52.00   f  1.5   NA
-## 327 327 4214      0  NA 49.00   f  1.2   NA
-## 328 328 2111      2  NA 54.00   f  1.0   NA
-## 329 329 1462      2  NA 63.00   f  0.7   NA
-## 330 330 1746      2  NA 54.00   m  3.5   NA
-## 331 331   94      2  NA 46.00   f  3.1   NA
-## 332 332  785      2  NA 53.00   f 12.6   NA
-## 333 333 1518      2  NA 56.00   f  2.8   NA
-## 334 334  466      2  NA 56.00   f  7.1   NA
-## 335 335 3527      0  NA 55.00   f  0.6   NA
-## 336 336 2635      0  NA 65.00   f  2.1   NA
-## 337 337 2286      2  NA 56.00   f  1.8   NA
-## 338 338  791      2  NA 47.00   f 16.0   NA
-## 339 339 3492      0  NA 60.00   f  0.6   NA
-## 340 340 3495      0  NA 53.00   f  5.4   NA
-## 341 341  111      2  NA 54.00   f  9.0   NA
-## 342 342 3231      0  NA 50.00   f  0.9   NA
-## 343 343  625      2  NA 48.00   f 11.1   NA
-## 344 344 3157      0  NA 36.00   f  8.9   NA
-## 345 345 3021      1  NA 48.00   f  0.5   NA
-## 346 346  559      2  NA 70.00   f  0.6   NA
-## 347 347 2812      2  NA 51.00   f  3.4   NA
-## 348 348 2834      0  NA 52.00   m  0.9   NA
-## 349 349 2855      0  NA 54.00   f  1.4   NA
-## 350 350  662      2  NA 48.00   f  2.1   NA
-## 351 351  727      2  NA 66.00   f 15.0   NA
-## 352 352 2716      0  NA 53.00   f  0.6   NA
-## 353 353 2698      0  NA 62.00   f  1.3   NA
-## 354 354  990      2  NA 59.00   f  1.3   NA
-## 355 355 2338      0  NA 39.00   f  1.6   NA
-## 356 356 1616      2  NA 67.00   f  2.2   NA
-## 357 357 2563      0  NA 58.00   f  3.0   NA
-## 358 358 2537      0  NA 64.00   f  0.8   NA
-## 359 359 2534      0  NA 46.00   f  0.8   NA
-## 360 360  778      2  NA 64.00   f  1.8   NA
-## 361 361  617      1  NA 41.00   f  5.5   NA
-## 362 362 2267      1  NA 49.00   f 18.0   NA
-## 363 363 2249      0  NA 44.00   f  0.6   NA
-## 364 364  359      2  NA 59.00   f  2.7   NA
-## 365 365 1925      0  NA 63.00   f  0.9   NA
-## 366 366  249      2  NA 61.00   f  1.3   NA
-## 367 367 2202      0  NA 64.00   f  1.1   NA
-## 368 368   43      2  NA 49.00   f 13.8   NA
-## 369 369 1197      2  NA 42.00   f  4.4   NA
-## 370 370 1095      2  NA 50.00   f 16.0   NA
-## 371 371  489      2  NA 51.00   f  7.3   NA
-## 372 372 2149      0  NA 37.00   f  0.6   NA
-## 373 373 2103      0  NA 62.00   f  0.7   NA
-## 374 374 1980      0  NA 51.00   f  0.7   NA
-## 375 375 1347      1  NA 52.00   f  1.7   NA
-## 376 376 1478      2  NA 44.00   m  9.5   NA
-## 377 377 1987      0  NA 33.00   f  2.2   NA
-## 378 378 1168      2  NA 60.00   f  1.8   NA
-## 379 379  597      2  NA 63.00   f  3.3   NA
-## 380 380 1725      1  NA 33.00   f  2.9   NA
-## 381 381 1899      0  NA 41.00   m  1.7   NA
-## 382 382  221      2  NA 51.00   f 14.0   NA
-## 383 383 1022      1  NA 37.00   f  0.8   NA
-## 384 384 1639      0  NA 59.00   f  1.3   NA
-## 385 385 1635      0  NA 55.00   f  0.7   NA
-## 386 386 1654      0  NA 54.00   m  1.7   NA
-## 387 387 1653      0  NA 49.00   f 13.6   NA
-## 388 388 1560      0  NA 40.00   f  0.9   NA
-## 389 389 1581      0  NA 67.00   f  0.7   NA
-## 390 390 1419      0  NA 68.00   m  3.0   NA
-## 391 391 1443      0  NA 41.00   f  1.2   NA
-## 392 392 1368      0  NA 69.00   f  0.4   NA
-## 393 393  193      2  NA 52.00   f  0.7   NA
-## 394 394 1367      0  NA 57.00   f  2.0   NA
-## 395 395 1329      0  NA 36.00   f  1.4   NA
-## 396 396 1343      0  NA 50.00   f  1.6   NA
-## 397 397 1328      0  NA 64.00   f  0.5   NA
-## 398 398 1375      0  NA 62.00   f  7.3   NA
-## 399 399 1260      0  NA 42.00   f  8.1   NA
-## 400 400 1223      0  NA 44.00   f  0.5   NA
-## 401 401  935      2  NA 69.00   f  4.2   NA
-## 402 402  943      0  NA 52.00   f  0.8   NA
-## 403 403 1141      0  NA 66.00   f  2.5   NA
-## 404 404 1092      0  NA 40.00   f  4.6   NA
-## 405 405 1150      0  NA 52.00   f  1.0   NA
-## 406 406  703      2  NA 46.00   f  4.5   NA
-## 407 407 1129      0  NA 54.00   m  1.1   NA
-## 408 408 1086      0  NA 51.00   f  1.9   NA
-## 409 409 1067      0  NA 43.00   f  0.7   NA
-##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 9 rows ]</code></pre>
-<p>Obtain complete cases for the variable chol</p>
-<pre class="r"><code>DF &lt;- pbc[complete.cases(pbc$chol), ]</code></pre>
+<pre><code>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+ [16] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [31] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE
+ [46] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+ [76] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [91] FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[106]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[121] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[136] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
+[151] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+[166] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE
+[181] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+[196] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
+[211]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[226] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[241] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[256] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[271] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[286] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+[301] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE
+[316]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[331]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[346]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[361]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[376]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[391]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[406]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<p>Obtain complete cases for the variable <code>serum cholesterol</code></p>
 <p>Obtain dimensions</p>
-<pre class="r"><code>dim(pbc)</code></pre>
-<pre><code>## [1] 418  25</code></pre>
-<pre class="r"><code>dim(DF)</code></pre>
-<pre><code>## [1] 284  25</code></pre>
-<p>Obtain data set where the chol variable has missing</p>
-<pre class="r"><code>pbc_chol_na &lt;- pbc[is.na(pbc$chol) == TRUE, ]
-head(pbc_chol_na)</code></pre>
-<pre><code>##    id time status trt   age sex ascites hepato spiders edema bili chol
-## 14 14 1217      2   2 56.22   m       1      1       0     1  0.8   NA
-## 40 40 4467      0   1 46.67   f       0      0       0     0  1.3   NA
-## 41 41 1350      2   1 33.63   f       0      1       0     0  6.8   NA
-## 42 42 4453      0   2 33.69   f       0      1       1     0  2.1   NA
-## 45 45 4025      0   2 41.79   f       0      0       0     0  0.6   NA
-## 49 49  708      2   2 61.15   f       0      1       0     0  0.8   NA
-##    albumin copper alk.phos    ast trig platelet protime stage stage_ord
-## 14    2.27     43    728.0  71.00   NA      156    11.0     4         4
-## 40    3.34    105  11046.6 104.49   NA      358    11.0     4         4
-## 41    3.26     96   1215.0 151.90   NA      226    11.7     4         4
-## 42    3.54    122   8778.0  56.76   NA      344    11.0     4         4
-## 45    3.93     19   1826.0  71.30   NA      474    10.9     2         2
-## 49    3.82     58    678.0  97.65   NA      233    11.0     4         4
-##    stage_rev stage_ref4 age40higher      ageST
-## 14         4          4         old  0.5244158
-## 40         4          4         old -0.3897035
-## 41         4          4       young -1.6378830
-## 42         4          4       young -1.6321399
-## 45         2          2         old -0.8568136
-## 49         4          4         old  0.9963119</code></pre>
-<p>Obtain the dimensions of the data set where the chol variable has missing</p>
-<pre class="r"><code>dim(pbc_chol_na)</code></pre>
-<pre><code>## [1] 134  25</code></pre>
-<p>Check for outliers</p>
-<pre class="r"><code>pbc_out_bili &lt;- pbc[pbc$bili &gt; 25, ]
-head(pbc_out_bili)</code></pre>
-<pre><code>##      id time status trt   age sex ascites hepato spiders edema bili chol
-## 144 144  943      2   2 52.29   f       0      1       0   0.5 28.0  556
-## 156 156  853      2   2 59.41   f       0      1       0   0.0 25.5  358
-##     albumin copper alk.phos   ast trig platelet protime stage stage_ord
-## 144    3.26    152     3896 198.4  171      335    10.0     3         3
-## 156    3.52    219     2468 201.5  205      151    11.5     2         2
-##     stage_rev stage_ref4 age40higher     ageST
-## 144         3          3         old 0.1482390
-## 156         2          2         old 0.8297603</code></pre>
+<pre><code>[1] 418  25</code></pre>
+<pre><code>[1] 284  25</code></pre>
+<p>Obtain data set where the <code>serum cholesterol</code> variable has missing</p>
+<pre><code>   id time status trt   age sex ascites hepato spiders edema bili chol albumin copper alk.phos
+14 14 1217      2   2 56.22   m       1      1       0     1  0.8   NA    2.27     43    728.0
+40 40 4467      0   1 46.67   f       0      0       0     0  1.3   NA    3.34    105  11046.6
+41 41 1350      2   1 33.63   f       0      1       0     0  6.8   NA    3.26     96   1215.0
+42 42 4453      0   2 33.69   f       0      1       1     0  2.1   NA    3.54    122   8778.0
+45 45 4025      0   2 41.79   f       0      0       0     0  0.6   NA    3.93     19   1826.0
+49 49  708      2   2 61.15   f       0      1       0     0  0.8   NA    3.82     58    678.0
+      ast trig platelet protime stage stage_ord stage_rev stage_ref4 age40higher      ageST
+14  71.00   NA      156    11.0     4         4         4          4         old  0.5244158
+40 104.49   NA      358    11.0     4         4         4          4         old -0.3897035
+41 151.90   NA      226    11.7     4         4         4          4       young -1.6378830
+42  56.76   NA      344    11.0     4         4         4          4       young -1.6321399
+45  71.30   NA      474    10.9     2         2         2          2         old -0.8568136
+49  97.65   NA      233    11.0     4         4         4          4         old  0.9963119</code></pre>
+<pre><code>   id time status trt   age sex bili chol
+14 14 1217      2   2 56.22   m  0.8   NA
+40 40 4467      0   1 46.67   f  1.3   NA
+41 41 1350      2   1 33.63   f  6.8   NA
+42 42 4453      0   2 33.69   f  2.1   NA
+45 45 4025      0   2 41.79   f  0.6   NA
+49 49  708      2   2 61.15   f  0.8   NA</code></pre>
+<p>Obtain the dimensions of the data set where the <code>serum cholesterol</code> variable has missing</p>
+<pre><code>[1] 134   8</code></pre>
+<p>Check for outliers: e.g. let’s assume that patients with <code>serum bilirun</code> values &gt; 25 are outliers<br />
+Check whether there are outliers<br />
+Obtain all rows from the data set which correspond to <code>serum bilirun</code> outliers</p>
+<pre><code>     id time status trt   age sex ascites hepato spiders edema bili chol albumin copper alk.phos
+144 144  943      2   2 52.29   f       0      1       0   0.5 28.0  556    3.26    152     3896
+156 156  853      2   2 59.41   f       0      1       0   0.0 25.5  358    3.52    219     2468
+      ast trig platelet protime stage stage_ord stage_rev stage_ref4 age40higher     ageST
+144 198.4  171      335    10.0     3         3         3          3         old 0.1482390
+156 201.5  205      151    11.5     2         2         2          2         old 0.8297603</code></pre>
 
 
 

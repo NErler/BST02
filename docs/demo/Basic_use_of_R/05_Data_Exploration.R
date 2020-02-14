@@ -14,60 +14,61 @@
 library(survival)
 library(memisc)
 
-#' What is the mean and sd for age?
+#' What is the mean and sd for `age`?
 mean(pbc$age)
 mean(pbc$age, na.rm = TRUE)
 sd(pbc$age)
 
-#' What is the mean and sd for time?
+#' What is the mean and sd for `time`?
 mean(pbc$time)
 mean(pbc$time, na.rm = TRUE)
 sd(pbc$time)
 
-#' What is the median and interquartile range for age?
+#' What is the median and interquartile range for `age`?
 median(pbc$age)
 IQR(pbc$age)
 
-#' What is the percentage of placebo patients? \
-#' In order to use the percent function you will need to load the memisc package
+#' What is the percentage of `placebo` and `treatment` patients? \
+#' In order to use the percent() function you will need to load the memisc package
 percent(pbc$trt)
 
-#' What is the percentage of females?
+#' What is the percentage of `females` and `males`?
 percent(pbc$sex)
 
-#' What is the mean and sd for age in males?
+#' What is the mean and sd for `age` in `males`?
 pbc_males <- pbc[pbc$sex == "m", ]
 mean(pbc_males$age)
 sd(pbc_males$age)
 
-#' What is the mean and sd for serum bilirubin?
+#' What is the mean and sd for `serum bilirubin`?
 mean(pbc$bili)
 sd(pbc$bili)
 
 
-#' Missing values \
+#' **Missing values and outliers** \
 #' Check if there are missing values
 is.na(pbc$chol)
 
-pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
-                                    "trt", "age", "sex", 
-                                    "bili", "chol")]
-
-
-#' Obtain complete cases for the variable chol
+#' Obtain complete cases for the variable `serum cholesterol`
 DF <- pbc[complete.cases(pbc$chol), ]
 
 #' Obtain dimensions
 dim(pbc)
 dim(DF)
 
-#' Obtain data set where the chol variable has missing
+#' Obtain data set where the `serum cholesterol` variable has missing
 pbc_chol_na <- pbc[is.na(pbc$chol) == TRUE, ]
 head(pbc_chol_na)
+pbc_chol_na <- pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
+                               "trt", "age", "sex", 
+                               "bili", "chol")]
+head(pbc_chol_na)
 
-#' Obtain the dimensions of the data set where the chol variable has missing
+#' Obtain the dimensions of the data set where the `serum cholesterol` variable has missing
 dim(pbc_chol_na)
 
-#' Check for outliers
+#' Check for outliers: e.g. let's assume that patients with `serum bilirun` values > 25 are outliers  \
+#' Check whether there are outliers \
+#' Obtain all rows from the data set which correspond to `serum bilirun` outliers
 pbc_out_bili <- pbc[pbc$bili > 25, ]
 head(pbc_out_bili)

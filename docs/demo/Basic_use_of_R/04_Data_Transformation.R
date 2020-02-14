@@ -20,39 +20,44 @@ pbc$age <- round(pbc$age, digits = 2)
 head(pbc)
 
 
-#' Set age40higher as factor
+#' Set `sex` as factor with labels `m` for `male` and `f` for `female`
 factor(pbc$sex, levels = c("m", "f"),
        labels = c("male","female"))
 
-#' Dichotomize variable \
-#' Categorize age (take as cut off value 40)
+#' Categorize `age` (take as cut off value 40) \
+#' Step 1: Check whether the age of each patient is above 40
 pbc$age40higher <- pbc$age > 40
 
-#' Transform a logical variable into a numeric
+#' Step 2: Transform a logical variable into a numeric
 pbc$age40higher <- as.numeric(pbc$age40higher)
 head(pbc)
 
-#' Transform a numeric variable into a factor
+#' Step 3: Transform a numeric variable into a factor
 pbc$age40higher <- factor(pbc$age40higher, levels = c(0:1),
                               labels = c("young","old"))
 head(pbc)
 
 
-#' Standardize age
+#' Standardize `age`
 pbc$ageST <- (pbc$age-mean(pbc$age))/(sd(pbc$age))
 head(pbc)
 
 
-#' Wide/long format
+#' **Wide/long format**
 head(pbcseq)
 
-#' Obtain how many repeated measurements we have per patient
+#' Select the first (or last) row of each patient
+head(pbcseq[unlist(tapply(rownames(pbcseq), pbcseq$id, head,  1)), ])
+head(pbcseq[unlist(tapply(rownames(pbcseq), pbcseq$id, tail,  1)), ])
+
+#' Check how many repeated measurements we have per patient
 vec <- table(pbcseq$id)
+
 #' Take a sequence of the visits of each patient
 vec2 <- sequence(vec)
 pbcseq$visits <- vec2
 
-#' Obtain wide format data set
+#' Obtain wide format `pbcseq` data set
 pbcseqWide <- reshape(pbcseq, idvar = c("id"), 
                     drop = c("futime", "status", "trt", "age", "sex", 
                              "day", "ascites", "hepato", "spiders", 
@@ -62,17 +67,15 @@ pbcseqWide <- reshape(pbcseq, idvar = c("id"),
 
 head(pbcseqWide)
 
-#' Obtain wide format data set by selecting the first (or last) row of each patient
-head(pbcseq[unlist(tapply(rownames(pbcseq), pbcseq$id, head,  1)), ])
-head(pbcseq[unlist(tapply(rownames(pbcseq), pbcseq$id, tail,  1)), ])
 
-#' Obtain long format data set
+
+#' Obtain the long format `pbcseqWide` data set 
 pbcLong <- reshape(pbcseqWide, idvar = c("id"), timevar = "time", 
                     varying = list(names(pbcseqWide)[2:17]),
                     v.names = "bili", direction = "long", times = 1:16)
 head(pbcLong)
 
-#' Order the data set
+#' Extra step: Order the data set by `id` number
 pbcLong <- pbcLong[order(pbcLong$id),]
 head(pbcLong)
 
