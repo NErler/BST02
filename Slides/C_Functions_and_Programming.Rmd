@@ -617,7 +617,10 @@ library(survival)
 
 ##  What is the apply Family
 
-* Manipulate slices of data from matrices, data frames and lists in a repetitive way avoiding explicit use of loop-constructs
+Manipulate \blue{vectors} or slices of data from \blue{matrices}, \blue{data frames} and \blue{lists} in a repetitive way avoiding explicit use of loop-constructs
+
+\vspace*{0.7cm}
+
   - An aggregating function, like for example the mean, or the sum
   - Other transforming or subsetting functions
   - Other vectorized functions, which return more complex structures like lists, vectors and matrices
@@ -634,7 +637,7 @@ library(survival)
 
 ## How To Use apply() in R
 
-* Operates on Matrices and Data Frames
+* Operates on \blue{\texttt{matrix}} and \blue{\texttt{data.frame}}
 
 \begincols[t]
 \begincol{0.5\linewidth}
@@ -660,10 +663,11 @@ apply(mat, 1, sum)
 
 ## How To Use apply() in R (cont'd)
 
-* Operates on Matrices and Data Frames
+* Operates on \blue{\texttt{matrix}} and \blue{\texttt{data.frame}}
 
 \begincols[t]
 \begincol{0.5\linewidth}
+* By column
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mat <- matrix(1:6, 3, 3)
 mat
@@ -674,7 +678,7 @@ apply(mat, 2, mean)
 
 \endcol
 \begincol{0.5\linewidth}
-
+* By row
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 apply(mat, 1, mean)
 ```
@@ -685,10 +689,11 @@ apply(mat, 1, mean)
 
 ## How To Use apply() in R (cont'd)
 
-* You can also apply your functions
+* You can also apply your own functions
 
 \begincols[t]
 \begincol{0.5\linewidth}
+* By column
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mat <- matrix(1:6, 3, 3)
 mat
@@ -700,7 +705,7 @@ apply(mat, 2, function(x)
 
 \endcol
 \begincol{0.5\linewidth}
-
+* By row
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 apply(mat, 1, function(x) 
           sum(x)/(length(x)-1))
@@ -712,9 +717,12 @@ apply(mat, 1, function(x)
 
 ## How To Use lapply() in R 
 
-* Apply a given function to every element of a list and obtain a list as result
-* The difference with `apply()`:
-  - It can be used for other objects like data frames, lists or vectors
+* Apply a given function to every element of a \blue{\texttt{list}} and return a \blue{\texttt{list}}
+
+\vspace*{0.6cm}
+
+* The difference with \blue{\texttt{apply()}}:
+  - It can be used for other objects like \blue{\texttt{vector}}, \blue{\texttt{data.frame}} or \blue{\texttt{list}}
   - The output returned is a list
 
 
@@ -724,7 +732,7 @@ apply(mat, 1, function(x)
 \begincol{0.5\linewidth}
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-myList <- list(x <- c(1:6), 
+myList <- list(x = c(1:6), 
                y = c("m", "f"), 
                z = c(30, 4, 23))
 myList
@@ -734,11 +742,8 @@ myList
 
 \endcol
 \begincol{0.5\linewidth}
-
+* Use pre-specified functions
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-myList <- list(x <- c(1:6), 
-               y = c("m", "f"), 
-               z = c(30, 4, 23))
 lapply(myList, length)
 ```
 
@@ -752,20 +757,20 @@ lapply(myList, length)
 \begincol{0.5\linewidth}
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-myList <- list(x <- c(1:6), 
+myList <- list(x = c(1:6), 
                y = c("m", "f"), 
                z = c(30, 4, 23))
 myList
 ```
 
-\pause
 
 \endcol
 \begincol{0.5\linewidth}
-
+* Use pre-specified functions
 ```{r, eval = TRUE, include = TRUE, echo = TRUE, warning = FALSE}
 lapply(myList, median)
 ```
+* You can also apply your own functions!
 
 \endcol
 \endcols
@@ -773,13 +778,13 @@ lapply(myList, median)
 
 ## How To Use sapply() in R 
 
-* `sapply()` is similar to `lapply()`, but it tries to simplify the output
+* \blue{\texttt{sapply()}} is similar to \blue{\texttt{lapply()}}, but it tries to simplify the output
 
 \begincols[t]
 \begincol{0.5\linewidth}
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-myList <- list(x <- c(1:6), 
+myList <- list(x = c(1:6), 
                y = c("m", "f"), 
                z = c(30, 4, 23))
 myList
@@ -789,11 +794,12 @@ myList
 
 \endcol
 \begincol{0.5\linewidth}
-
+* Use pre-specified functions
 ```{r, eval = TRUE, include = TRUE, echo = TRUE, warning = FALSE}
 sapply(myList, length)
 sapply(myList, median)
 ```
+* You can also apply your own functions!
 
 \endcol
 \endcols
@@ -801,7 +807,7 @@ sapply(myList, median)
 
 ## How To Use tapply() in R
 
-* Apply a function to subsets of a vector and the subsets are defined by some other vector, usually a factor
+* Apply a function to subsets of a \blue{\texttt{vector}} - The subsets are defined by some other \blue{\texttt{vector}}, usually a factor
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 tapply(pbc$bili, pbc$sex, mean)
@@ -811,7 +817,7 @@ tapply(pbc$age, pbc$sex, median)
 
 ## How To Use tapply() in R (cont'd)
 
-* You can also apply your functions
+* You can also apply your own functions
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 tapply(pbc$bili, pbc$sex, function(x) sum(x)/(length(x)-1))
@@ -821,8 +827,8 @@ tapply(pbc$bili, pbc$sex, function(x) sum(x)/(length(x)-1))
 ## How To Use mapply() in R
 
 * Multivariate apply
-* Its purpose is to be able to vectorize arguments to a function that is not usually accepting vectors as arguments
-* mapply() applies a function to multiple list or multiple vector arguments
+* Its purpose is to be able to vectorize arguments to a function that is not usually accepting \blue{\texttt{vectors}} as arguments
+* \blue{\texttt{mapply()}} applies a function to multiple \blue{\texttt{list}} or multiple \blue{\texttt{vector}} arguments
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mapply(length, pbc)
@@ -831,13 +837,30 @@ mapply(length, pbc)
 
 ## How To Use mapply() in R (cont'd)
 
+* Overlapping between functions
+
+\begincols[t]
+\begincol{0.5\linewidth}
+
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-myList <- list(x <- c(1:6), 
+myList <- list(x = c(1:6), 
                y = c("m", "f"), 
                z = c(30, 4, 23))
-mapply(length, myList, SIMPLIFY = FALSE)
+mapply(length, myList, 
+       SIMPLIFY = FALSE)
 ```
 
+\pause
+
+\endcol
+\begincol{0.5\linewidth}
+```{r, eval = TRUE, include = TRUE, echo = TRUE, warning = FALSE}
+lapply(myList, length)
+```
+* You can also apply your own functions!
+
+\endcol
+\endcols
 
 ## Useful Summary: Apply Family
 
@@ -846,8 +869,6 @@ mapply(length, myList, SIMPLIFY = FALSE)
 \textbf{\textcolor{blue}{Vectors}}
 \begin{itemize}\vspace*{-0.5ex}
 \item \texttt{tapply()}
-\item \texttt{sapply()}
-\item \texttt{lapply()}
 \item \texttt{mapply()}
 \end{itemize}
 
@@ -890,25 +911,27 @@ mapply(length, myList, SIMPLIFY = FALSE)
 
 ## Useful Summary: Apply Family
 
-* Use the following webpage to further investigate subsetting
+* Use the following webpage to further investigate the apply family
 https://emcbiostatistics.shinyapps.io/the_apply_family/
 
 * The **R** code for the shiny app is also available: 
 
-\begin{columns}[T,onlytextwidth]
+\begin{center}
+\begin{columns}
 \begin{column}{0.52\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Indexing Subsetting shiny app \button{shiny_app_apply_family.R}{R} \
+\item Shiny app apply family \button{shiny_app_apply_family.R}{R} 
 \end{itemize}
 \end{block}
 \end{column}
-
-\begin{column}{0.48\linewidth}
-\end{column}
 \end{columns}
+\end{center}
 
-In order to run the app you will need to install the packages `survival` and `shiny`
+In order to run the app you will need to install the packages:
+
+   * `survival`
+   * `shiny`
 
 
 ## Useful Summary: Apply Family (cont'd)
