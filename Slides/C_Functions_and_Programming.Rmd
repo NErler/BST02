@@ -911,7 +911,7 @@ lapply(myList, length)
 
 ## Useful Summary: Apply Family
 
-* Use the following webpage to further investigate the apply family
+* Use the following webpage to further investigate the apply family \
 https://emcbiostatistics.shinyapps.io/the_apply_family/
 
 * The **R** code for the shiny app is also available: 

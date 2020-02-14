@@ -36,7 +36,7 @@ is.num[1] <- FALSE
 ui <- fluidPage(
   
   # Application title
-  titlePanel("Explore the apply family using the pbc data set"),
+  titlePanel("Explore the apply family using the pbc data set from the survival package"),
   
   # Text input 
   tabsetPanel(

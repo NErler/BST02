@@ -45,8 +45,8 @@ ui <- fluidPage(
                sidebarPanel(
                  
                  p('Select rows and columns'),
-                 p('The rows can be selected as numbers'),
-                 p('The columns can be selected as numbers and names (e.g. "sex" or c("id", "age", "sex"))'),
+                 p('The rows can be selected as numbers (e.g. 2 or c(2,5))'),
+                 p('The columns can be selected as numbers and names (e.g.  2 or c(1, 5, 6) or c("sex") or c("id", "age", "sex"))'),
                  
                  textInput("rows", "Select rows", 
                            value = ""),
