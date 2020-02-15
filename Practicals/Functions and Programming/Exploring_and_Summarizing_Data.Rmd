@@ -68,7 +68,7 @@ lung <- survival::lung
 
 ## Getting to know the data
 ### Data dimensions {.tabset .tabset-fade .tabset-pills}
-#### Taks
+#### Task
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 Find out the class and dimension of the **lung** data.
 ```{r, echo = FALSE, results = 'asis'}
@@ -89,28 +89,34 @@ ncol(lung)
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 Now investigate the structure of the data.
 
-* Which variables does the data contain?
+* Which variables do the data contain?
 * What types of variables are these?
-* Are there missing values
+* Are there missing values?
 ```{r, echo = FALSE, results = 'asis'}
 hint('Use the functions `str()`, `head()`, `names()` and `summary()`.')
 ```
 </div>
 
 #### Solution 1
-```{r}
+```{r, eval = FALSE}
 head(lung)
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(head(lung)), collapse = "\n"))
+```
+```{r}
 names(lung)
 str(lung)
 ```
+
 
 #### Task 2
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 
 All variables are coded as `numeric`.
 
-* Do you think some of them should be factores?
-* Explore how many distrinct values the variables have that may not actually be
+* Do you think some of them should be factors?
+* Explore how many district values there are in those variables that may not actually be
   continuous.
 ```{r, echo = FALSE, results = 'asis'}
 hint('The functions `unique()`, `table()` and `length()` are useful here.')
@@ -131,8 +137,8 @@ table(lung$sex, exclude = NULL)
 table(lung$ph.ecog, exclude = NULL)
 ```
 
-To prevent lengthy output for the other variables we could first check how many
-different vaues there are:
+To prevent possibly very lengthy output for the other variables (if they have 
+many different values) we could first check how many different values there are:
 ```{r}
 length(unique(lung$inst))
 length(unique(lung$ph.karno))
@@ -140,6 +146,9 @@ length(unique(lung$pat.karno))
 length(unique(lung$wt.loss))
 ```
 
+We decide that they all should remain continuous variables (although for variables
+with few different values, like `ph.karno` or `pat.karno`, it may often not
+be appropriate to treat them as continuous).
 
 ## Re-coding
 ### Turning continuous values into factors {.tabset .tabset-pills .tabset-fade}
@@ -204,7 +213,7 @@ and `ph.ecog` "by hand" (i.e., using other functions).
 hint('You can use the functions `min()`, `max()`, `quantile()` for the 
      continuous variable (but there are other options), 
      and `table()` for the categorical variable.')
-hint('There are missin values in both variables: 
+hint('There are missing values in both variables: 
      remember to set `na.rm = TRUE` or `exclude = NULL`.')
 ```
 </div>
@@ -227,7 +236,7 @@ table(lung$ph.ecog, exclude = NULL)
 #### Task
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 * Calculate the variance of `meal.cal`.
-* Calculate the standard devition of `meal.cal`.
+* Calculate the standard deviation of `meal.cal`.
 * Check that the standard deviation is indeed the square root of the variance.
 * Check that the variance is indeed the square of the standard deviation.
 ```{r, echo = FALSE, results = 'asis'}
@@ -271,10 +280,17 @@ prop.table(tab)
 
 # probabilities, relative to sex:
 prop.table(tab, margin = 2)
-# Make sure choose the correct margin. When sex is in the rows, you need margin = 1.
-# Check that the table shows the correct numbers by roughly adding the proportions
-# per sex in your head.
 ```
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
+Make sure choose the correct margin!
+
+When `sex` is in the rows, you need `margin = 1`.
+
+Always check that the table shows the correct numbers by roughly adding up the
+proportions in your head.
+</div>
 
 #### Task 2
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">

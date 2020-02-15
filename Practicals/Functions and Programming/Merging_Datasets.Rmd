@@ -44,11 +44,13 @@ basedat <- data.frame(id = 1:5,
                       sex = factor(c('male', 'female', 'female', 'male', 'male')),
                       center = c('EMC', 'EMC', 'LUMC', 'VUMC', 'LUMC')
 )
+
 FUdat <- data.frame(id = c(1, 1, 1, 2, 2, 3, 4, 4, 4, 4, 5, 5, 5),
                     time = c(3.6, 5.3, 7.8, 4.3, 8.2, 5.3, 3.5, 
                              4.9, 6.4, 8.1, 2.2, 6.4, 7.0),
                     weight = c(136.7, 131.5, 135.0, 113.7, 128.9, 97.1, 
-                               168.1, 147.7, 153.1, 149.6, 152.6, 137.7, 133.1))
+                               168.1, 147.7, 153.1, 149.6, 152.6, 137.7, 133.1)
+)
 
 labdat <- data.frame(id = 1:12,
                      ID = c(1, 1, 2, 2, 2, 4, 4, 4, 4, 5, 5, 6),
@@ -95,10 +97,15 @@ hint('Use the function `merge()`.')
 </div>
 
 ### Solution 1
-```{r}
+```{r, eval = FALSE}
 dat1 <- merge(basedat, FUdat)
 dat1
 ```
+```{r, echo = FALSE}
+dat1 <- merge(basedat, FUdat)
+cat(paste0(capture.output(dat1), collapse = "\n"))
+```
+
 
 ### Task 2
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
@@ -109,17 +116,51 @@ hint("The function `subset()` could be used here.")
 </div>
 
 ### Solution 2
-```{r}
+```{r, eval = FALSE}
 # for subject 1
 subset(basedat, id == 1)
-subset(FUdat, id == 1)
-subset(dat1, id == 1)
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(subset(basedat, id == 1)), collapse = "\n"))
+```
 
+```{r, eval = FALSE}
+subset(FUdat, id == 1)
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(subset(FUdat, id == 1)), collapse = "\n"))
+```
+
+```{r, eval = FALSE}
+subset(dat1, id == 1)
+```
+```{r}
+cat(paste0(capture.output(subset(dat1, id == 1)), collapse = "\n"))
+```
+
+
+```{r, eval = FALSE}
 # for subject 4, using a different method of subsetting (just as a reminder how that worked)
 basedat[basedat$id == 4, ]
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(basedat[basedat$id == 4, ]), collapse = "\n"))
+```
+
+```{r}
 FUdat[FUdat$id == 4, ]
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(FUdat[FUdat$id == 4, ]), collapse = "\n"))
+```
+
+```{r, eval = FALSE}
 dat1[dat1$id == 4, ]
 ```
+```{r, echo = FALSE}
+cat(paste0(capture.output(dat1[dat1$id == 4, ]), collapse = "\n"))
+```
+
 
 
 ### Task 3
@@ -163,10 +204,15 @@ hint("Use the arguments `by.x` and `by.y`.")
 
 
 ### Solution 1
-```{r}
+```{r, eval = FALSE}
 dat2 <- merge(dat1, labdat, by.x = 'id', by.y = 'ID')
 dat2
 ```
+```{r, echo = FALSE}
+dat2 <- merge(dat1, labdat, by.x = 'id', by.y = 'ID')
+cat(paste0(capture.output(dat2), collapse = "\n"))
+```
+
 
 ### Task 2
 Did you notice that in the resulting `dat2` we now have the two variables
@@ -181,7 +227,7 @@ Re-do the merge of `dat1` and `labdat` taking into account the following points
 
 * merge by patient identifier and time of measurement
 * make sure there is only one "center" variable
-* give the sample numer (`id.y`) a more informative suffix
+* give the sample number (`id.y`) a more informative suffix
 ```{r, echo = FALSE, results = 'asis'}
 hint("Use the arguments `by.x` and `by.y`.")
 ```
@@ -197,13 +243,22 @@ dat3 <- merge(dat1, labdat,
               by.y = c('ID', 'center', 'labtime'),
               suffixes = c('_base_FU', '_lab'))
 ```
+```{r, eval = FALSE}
+dat3
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(dat3), collapse = "\n"))
+```
 
-**Note:**<br>
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
 Here it does not actually matter how we specify the first element of the argument
 `suffixes` because it is not used.
+</div>
+
 
 ### Task 3
-You can notice that the merged `dat3` now only contains very few rows.
+You may have noticed that the merged `dat3` only contains very few rows.
 
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 * Can you explain what happened?
@@ -227,6 +282,11 @@ dat4 <- merge(dat1, labdat,
               by.x = c('id', 'center', 'time'),
               by.y = c('ID', 'center', 'labtime'),
               suffixes = c('_base_FU', '_lab'), all = TRUE)
+```
+```{r, eval = FALSE}
 dat4
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(dat4), collapse = "\n"))
 ```
 
