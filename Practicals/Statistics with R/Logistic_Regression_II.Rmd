@@ -1,0 +1,361 @@
+---
+title: 'Logistic Regression: Additional Exercise'
+output: 
+  html_document:
+    code_folding: show
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+    number_sections: false
+    theme: spacelab
+    highlight: tango
+    includes:
+      after_body: ../footerNE.html
+    css: ../style.css
+---
+
+```{r, include = FALSE}
+library(knitr)
+options(width = 100)
+
+hint <- function(text) {
+  id <- paste0('hint_', sample.int(1e10, size = 1))
+    cat(
+    paste0('\n',
+      '<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" ',
+      'data-target="#', id, '">Hint</button>',
+      '<div id = "', id, '" class="collapse" style="border:1px; ',
+      'border-style:solid; padding: 1em; border-color:#1F78B4">',
+      text, '</div>')
+  )
+}
+set.seed(2020)
+```
+
+
+## Preface
+### R packages
+In this practical, we use the R package **ggplot2**.
+It can be installed by running the following syntax:
+```{r, eval = FALSE}
+install.packages("ggplot2")
+```
+
+
+### Dataset 
+Like in the previous practical on logistic regression, we will use the **pbc** 
+dataset from the package **survival**.
+
+You can either load the **survival** package to get access to this dataset
+```{r}
+library(survival)
+```
+or make a copy of this data
+```{r}
+pbc <- survival::pbc
+```
+
+The **pbc** data contain (among others) the following variables:
+```{r}
+str(pbc[, c(5:12, 20)])
+```
+
+The relevant variables are
+
+* `age`: patient's age in years
+* `sex`: patient's sex
+* `ascites`: presence of ascites
+* `spiders`: presence of blood vessel malformations in the skin
+* `bili`: serum bilirubin
+* `chol`: serum cholesterol
+* `stage`: histologic stage of the disease
+
+
+## Exploring problems in logistic regression {.tabset .tabset-pills .tabset-fade}
+In the previous practical, we have re-coded some of the categorical variables 
+and fitted the logistic regression model. 
+
+If you are using a new R session, you need to first run the following syntax:
+```{r}
+pbc$stage <- factor(pbc$stage)
+pbc$spiders <- factor(pbc$spiders)
+
+mod1 <- glm(spiders ~ age + sex + bili + stage + ascites, data = pbc,
+            family = binomial())
+```
+
+We would now like to add another continuous variable to `mod1`: the variable `chol`.
+
+### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+
+* Update `mod1` to include `chol`.
+* Investigate how the results change.
+</div>
+
+
+### Solution 1
+```{r}
+mod_chol <- update(mod1, formula = . ~ . + chol)
+summary(mod_chol)
+```
+
+We can compare the coefficients form `mod1` and `mod_chol` and notice that the 
+`(Intercept)`, and the coefficients for `stage` are much more extreme than the
+ones in `mod1`:
+
+```{r}
+round(
+  cbind(mod1 = coef(mod1)[names(coef(mod_chol))],
+        mod_chol = coef(mod_chol)
+  ), 3)
+```
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
+If we would just use `cbind()` to combine the coefficients into a matrix we
+could not be sure that the coefficients of the same variable are in the same row.
+```{r}
+a <- c(x = 1, y = 2, z = 3)
+b <- c(x = 1, z = 3, y = 2)
+cbind(a, b)
+```
+
+Moreover, the "missing" effect for `chol` in `mod1` will just be filled in with
+the first value of the vector.
+```{r}
+cbind(coef(mod1), coef(mod_chol))
+```
+
+By using `coef(mod1)[names(coef(mod_chol))]` we make sure that the coefficients
+from `mod1` are given in the same order as the coefficients from `mod_chol`. Since
+there is no `chol` in `coef(mod1)`, `NA` is filled in:
+```{r}
+coef(mod1)[names(coef(mod_chol))]
+```
+</div>
+
+
+### Visualization
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+To compare the coefficients from different models it is useful to plot coefficients
+with their corresponding confidence intervals.
+
+**Using base R plots:**
+```{r, warning = FALSE}
+# coefficients & CI from mod1
+res1 <- cbind(coef = coef(mod1), confint(mod1))
+res1 <- rbind(res1, chol = c(NA, NA, NA)) # add an "empty" row for chol
+
+# coefficients & CI from mod_chol
+res3 <- cbind(coef = coef(mod_chol), confint(mod_chol))
+
+# graphical settings:
+# * mfrow = c(3, 3) print the plots in a grid with 3 rows and 3 columns
+# * mar = c(3, 3, 2, 1): adjust the plot margins (looks nicer)
+par(mfrow = c(3, 3), mar = c(3, 3, 2, 1))
+
+for (k in rownames(res1)) {                               # loop over all variables
+  plot(x = c(1, 2),                                       # position on the x-axis
+       y = c(res1[k, 'coef'], res3[k, 'coef']),           # coefficient value on the y-axis
+       main = k,                                          # set variable name as title
+       xlim = c(0, 3),                                    # set limit of the x-axis (looks nicer)
+       ylim = range(res1[k, ], res3[k, ], na.rm = TRUE),  # set the limits of the y-axis
+                                                          # so that also the CIs fit in
+       xaxt = 'n',                                        # don't plot the x-axis (we want our own version)
+       ylab = 'log OR & 95% CI')                          # specify the y-axis label
+  
+  # specification of the x-axis
+  axis(side = 1,                    # draw axis at the bottom of the plot
+       at = c(1, 2),                # locations of the tick-marks on the x-axis
+       labels = c('mod1', 'mod_chol'))  # labels of the tick-marks
+  
+  # add vertical lines representing the confidence intervals
+  lines(x = c(1, 1), y = res1[k, c('2.5 %', '97.5 %')])
+  lines(x = c(2, 2), y = res3[k, c('2.5 %', '97.5 %')])
+}
+```
+
+
+**Using ggplot2:**
+```{r, warning = FALSE}
+results <- rbind(
+  # data.frame containing results from mod1
+  data.frame(coef = coef(mod1), 
+             confint(mod1), 
+             variable = names(coef(mod1)),
+             model = 'mod1',
+             check.names = FALSE),
+  
+  # data.frame containing results from mod_chol
+  data.frame(coef = coef(mod_chol), 
+             confint(mod_chol), 
+             variable = names(coef(mod_chol)),
+             model = 'mod_chol',
+             check.names = FALSE)
+)
+```
+```{r}
+library("ggplot2")
+ggplot(results,                           # specification of the data
+       aes(x = model, y = coef)) +        # specify what goes on which axis
+  geom_point() +                          # plot points for the coefficients
+  geom_errorbar(aes(ymin = `2.5 %`,       # add confidence intervals
+                    ymax = `97.5 %`),
+                width = 0.3) +            # width of the horizontal lines
+  facet_wrap('variable',                  # make a separate plot per variable
+             scales = 'free_y')           # allow the y-axes to vary between variables
+```
+</div>
+
+### Task 2
+Something is clearly going wrong with the variable `stage`.
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Investigate what is going on by looking at `stage` in relation to the outcome `spiders`.
+```{r, echo = FALSE, results = 'asis'}
+hint("Use a `table()`.")
+```
+</div>
+
+### Solution 2
+```{r}
+table(stage = pbc$stage,
+      spiders = pbc$spiders, exclude = NULL)
+```
+There are very few observations with `spiders` for `stage = 1` and `stage = 2`.
+
+### Task 3
+We saw that there is almost perfect separation between `spiders` for the patients
+with `stage = 1`, but as long as there is a patient, for every combination of
+covariate and outcome, we should not get such non-sense results.
+
+<br>
+We may have overlooked something when we created the table.
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Check if the table did indeed include those cases that are analysed in `mod_chol`
+by checking if the table at least contains the correct number of cases.
+```{r, echo = FALSE, results = 'asis'}
+hint('You can find relevant info in the output of the summary().')
+```
+</div>
+
+### Solution 3
+```{r}
+sum(table(stage = pbc$stage, spiders = pbc$spiders))
+```
+In the table, we have `r sum(table(stage = pbc$stage, spiders = pbc$spiders))`
+cases where both `spiders` and `stage` are observed.
+
+The output of `summary(mod_chol)` showed the following:
+```{r, echo = FALSE}
+smod_chol <- capture.output(summary(mod_chol))
+cat(paste("[...]", paste0(smod_chol[26:31], collapse = '\n'), sep = "\n"))
+```
+`r length(summary(mod_chol)$na.action)` observations were excluded.
+
+In the full **pbc** data we have `nrow(pbc) = `r nrow(pbc)`` observations.
+
+We should, hence, be looking at only `418 - 134 = `r  418 - 134`` observations!
+
+There are some other variables in our model that have missing values!
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
+The output of `summary(mod_chol)`) also shows that the deviance of the null model
+(the model with only intercept) had 283 degrees of freedom, which is N - 1.
+We could also derive from there that there were 283 + 1 cases in the analysis.
+</div>
+
+
+### Task 4
+We need to exclude all cases that have missing values in any of the variables
+involved in `mod_chol` and check the table of `stage` and `spiders` again.
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+
+* Check which variables have missing values.
+* Make a subset excluding those cases.
+* Create the table of `stage` vs `spiders` using the subset.
+</div>
+
+
+### Solution 4
+A convenient way to obtain all variables from a model is to use the function
+`all.vars()` on the model formula:
+```{r}
+all.vars(formula(mod_chol))
+```
+We can use this to get a summary of exactly those columns of the **pbc** data:
+```{r}
+summary(pbc[, all.vars(formula(mod_chol))])
+```
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
+Alternatively, we could have looked at the sum of missing values in each column:
+```{r}
+colSums(is.na(pbc[, all.vars(formula(mod_chol))]))
+```
+</div>
+<br>
+
+We can make a subset in which we exclude cases with missing values in variables
+other than `stage` and `spiders`.
+(We could also exclude the cases with missing values in those two variables,
+but they are shown in separate columns/rows in the table anyway.)
+```{r}
+pbc_sub <- subset(pbc, !is.na(chol) & !is.na(stage))
+
+# or:
+# pbc_sub <- pbc[, !is.na(ascites) & !is.na(chol)]
+
+table(pbc_sub$stage, pbc_sub$spiders, exclude = NULL)
+```
+Indeed, there are no subjects with `spiders` in the `stage = 1` group in the
+analysis. This explains the inflated effect estimates and standard errors.
+
+
+## Changing the reference category {.tabset .tabset-pills .tabset-fade}
+Due to the dummy coding in which `stage = 1` was the reference category,
+there was no information available to estimate any of the `stage` dummy effects,
+because they are relative to `stage = 1`.
+
+### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Change the reference category of `stage` to another level and re-fit `mod_chol`.
+</div>
+
+### Solution 1
+We choose category 4 as reference category.
+There are (at least) two options to change the reference category:
+```{r, collapse=TRUE}
+pbc$stage_rev <- factor(pbc$stage, levels = 4:1, labels = 4:1)
+pbc$stage_ref4 <- relevel(pbc$stage, ref = 4)
+
+levels(pbc$stage)
+levels(pbc$stage_ref4)
+levels(pbc$stage_rev)
+```
+Even though `stage_ref4` and `stage_rev` have different ordering of their levels
+(but thy are not ordered factors!), they give the same result when used as covariates
+in a regression model, since all non-reference categories are only compared with the
+reference category.
+
+
+```{r}
+mod_chol2 <- glm(spiders ~ age + sex + chol + bili + stage_rev + ascites, 
+                 data = pbc, family = binomial())
+summary(mod_chol2)
+```
+
+We see that the effect estimates and standard errors of levels 2 and 3 are back
+to normal values.
+
+```{r}
+library(effects)
+plot(predictorEffects(mod_chol2))
+```
+
