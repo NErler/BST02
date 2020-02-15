@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Demos on BST02: Using R for Statistics in Medical Research</title>
@@ -17,7 +17,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/basic-use-of-r/</guid>
-      <description> 01 Basic R [html] [R] 02 Common R objects [html] [R] 03 Importing Saving [html] [R] 04 Data Transformation [html] [R] 05 Data Exploration [html] [R] 06 Data Visualization [html] [R] 07 Indexing Subsetting [html] [R] 08 shiny app indexing [html] [R]  </description>
+      <description> 01 Basic R [html] [R] 02 Common R objects [html] [R] 03 Importing Saving [html] [R] 04 Data Transformation [html] [R] 04DataTransformation [html] 05 Data Exploration [html] [R] 06 Data Visualization [html] [R] 07 Indexing Subsetting [html] [R] 08 shiny app indexing [html] [R]  </description>
     </item>
     
     <item>
@@ -44,7 +44,16 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/statistics-with-r/</guid>
-      <description> Model Evaluation [html] [R] Regression [html] [R] Tests for Categorical Data [html] [R] Tests for Continuous Data [html] [R]  </description>
+      <description> Model Evaluation [html] [R] Regression Basics [html] [R] Tests for Categorical Data [html] [R] Tests for Continuous Data [html] [R]  </description>
+    </item>
+    
+    <item>
+      <title>The Apply Family</title>
+      <link>https://nerler.github.io/BST02/demo/the-apply-family/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nerler.github.io/BST02/demo/the-apply-family/</guid>
+      <description> 01TheApplyFamily [html]  </description>
     </item>
     
   </channel>

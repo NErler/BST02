@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Practicals on BST02: Using R for Statistics in Medical Research</title>
@@ -26,7 +26,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/practical/functions-and-programming/</guid>
-      <description> Control Flow and Functions [html] Exploring and Summarizing Data [html] Extra Programming Examples [html] Merging Datasets [html] Rolling the Dice [html] Say Hello [html] The Apply Family [html]  </description>
+      <description> Control Flow and Functions [html] Exploring and Summarizing Data [html] Extra Programming Examples [html] Merging Datasets [html] Rolling the Dice [html] The Apply Family [html]  </description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/practical/statistics-with-r/</guid>
-      <description> Linear Regression [html] Logistic Regression and More [html] Statistical Tests [html]  </description>
+      <description> Linear Regression [html] Logistic Regression and More [html] Logistic Regression II [html] Statistical Tests [html]  </description>
     </item>
     
   </channel>

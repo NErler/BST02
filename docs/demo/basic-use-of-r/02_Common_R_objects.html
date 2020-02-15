@@ -394,21 +394,21 @@ vec3 &lt;- c(&quot;male&quot;, &quot;female&quot;, &quot;female&quot;, &quot;mal
 <pre class="r"><code>weight_columns &lt;- cbind(pbc$age, pbc$time)
 weight_Rows &lt;- rbind(pbc$age, pbc$time)
 head(matrix(weight_columns, , 2))</code></pre>
-<pre><code>##          [,1] [,2]
-## [1,] 58.76523  400
-## [2,] 56.44627 4500
-## [3,] 70.07255 1012
-## [4,] 54.74059 1925
-## [5,] 38.10541 1504
-## [6,] 66.25873 2503</code></pre>
+<pre><code>##       [,1] [,2]
+## [1,] 58.77  400
+## [2,] 56.45 4500
+## [3,] 70.07 1012
+## [4,] 54.74 1925
+## [5,] 38.11 1504
+## [6,] 66.26 2503</code></pre>
 <pre class="r"><code>head(matrix(weight_Rows, , 2, byrow = TRUE))</code></pre>
-<pre><code>##          [,1] [,2]
-## [1,] 58.76523  400
-## [2,] 56.44627 4500
-## [3,] 70.07255 1012
-## [4,] 54.74059 1925
-## [5,] 38.10541 1504
-## [6,] 66.25873 2503</code></pre>
+<pre><code>##       [,1] [,2]
+## [1,] 58.77  400
+## [2,] 56.45 4500
+## [3,] 70.07 1012
+## [4,] 54.74 1925
+## [5,] 38.11 1504
+## [6,] 66.26 2503</code></pre>
 <p>TAKE CARE</p>
 <pre class="r"><code>Columns_com &lt;- cbind(c(1:4), c(1:8))</code></pre>
 <p>Create data frames</p>
@@ -420,13 +420,13 @@ DF &lt;- data.frame(Age = runif(30, 1, 80),
                  Sex = sample(1:2, 30, replace = TRUE),
                  Drug = sample(1:3, 30, replace = TRUE))
 head(DF)</code></pre>
-<pre><code>##        Age Sex Drug
-## 1 61.22821   1    2
-## 2 19.45336   2    2
-## 3 40.83962   2    3
-## 4 35.41791   2    1
-## 5 25.69635   2    3
-## 6 35.86278   1    3</code></pre>
+<pre><code>##         Age Sex Drug
+## 1 44.208031   2    1
+## 2 76.569853   1    3
+## 3  2.199645   2    2
+## 4 73.793182   2    2
+## 5 27.186804   1    1
+## 6 77.012200   1    1</code></pre>
 <p>Create lists</p>
 <pre class="r"><code>myList &lt;- list(x = c(1:20), sex = c(&quot;male&quot;, &quot;female&quot;)) 
 myList</code></pre>
