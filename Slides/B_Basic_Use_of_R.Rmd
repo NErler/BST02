@@ -36,13 +36,13 @@ library(dplyr)
 
 * Importing data and saving your work
 
-*  Data transformation
+* Data transformation
 
 * Data exploration
 
-* Visualization of data
+* Data visualization 
 
-* Indexing
+* Indexing/Subsetting
 
 Lots of practising
 
@@ -115,7 +115,7 @@ More details: https://stat.ethz.ch/R-manual/R-devel/library/survival/html/pbc.ht
 
 ## Practical Examples (cont'd)
 
-* What is a \textcolor{red}{scalar}/vector/matrix
+* What is a \blue{scalar}/vector/matrix
 
 ```{r example data b, include=TRUE}
 dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
@@ -140,7 +140,7 @@ kable_styling(position = "center", full_width = F)
 
 ## Practical Examples (cont'd)
 
-* What is a scalar/\textcolor{red}{vector}/matrix
+* What is a scalar/\blue{vector}/matrix
 
 ```{r example data c, include=TRUE}
 dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
@@ -152,7 +152,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 
 ## Practical Examples (cont'd)
 
-* What is a scalar/\textcolor{red}{vector}/matrix
+* What is a scalar/\blue{vector}/matrix
 
 ```{r example data d, include=TRUE}
 dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
@@ -164,7 +164,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 
 ## Practical Examples (cont'd)
 
-* What is a scalar/vector/\textcolor{red}{matrix}
+* What is a scalar/vector/\blue{matrix}
 
 ```{r example data e, include=TRUE}
 dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
@@ -176,7 +176,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 
 ## Practical Examples (cont'd)
 
-* What is a scalar/vector/\textcolor{red}{matrix}
+* What is a scalar/vector/\blue{matrix}
 
 ```{r example data f, include=TRUE}
 dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
@@ -194,8 +194,11 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
    - What is the average serum cholesterol?
    - What is the percentage of females?
    - How many missing values do we have for serum cholesterol?
-   
-   
+
+\vspace*{0.3cm}
+
+\blue{All these questions can be answered using R!}
+
 ## Basics in R
 
 * Elementary commands: \textbf{\textcolor{red}{expressions}} and \textbf{\textcolor{blue}{assignments}}
@@ -230,15 +233,24 @@ x
 
 ## Basics in R (cont'd)
 
+\blue{You can use R as a calculator!}
+
 * Basic arithmetics
  ```{r, eval = FALSE, include = TRUE, echo = TRUE}
 +, -, *, /, ^
+```
+
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+y <- 103473 + 100000
+y
 ```
 
 * Complicated arithmetics
 
 
 ## Basics in R (cont'd)
+
+\blue{Tips:}
 
 * R is case sensitive, e.g.,
   - \textbf{\textcolor{blue}{"sex"}} is different than \textbf{\textcolor{blue}{"Sex"}}
@@ -267,7 +279,8 @@ x
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Basic R \button{01_Basic_R.R}{R} \button{01_Basic_R.html}{html}
+\item Basic R 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/01_Basic_R.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/01_Basic_R.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -338,22 +351,22 @@ mode(pbc$age)
 
 * Every object in R has a class
 
-  - \textbf{\textcolor{red}{Vectors}} have the same type of elements 
-  - \textbf{\textcolor{red}{Matrices}} have the same type of elements 
-  - \textbf{\textcolor{red}{Data.frames}} can have elements of different type
-  - \textbf{\textcolor{red}{Lists}} can have elements of different length and type
+  - \textbf{\textcolor{red}{Vectors}} have the same type of elements with the same length (one dimension)
+  - \textbf{\textcolor{red}{Matrices}} have the same type of elements with the same length (two dimensions)
+  - \textbf{\textcolor{red}{Data.frames}} have elements of different type with the same length (two dimensions)
+  - \textbf{\textcolor{red}{Lists}} have elements of different type and length (any dimension)
 
 
 ## Common R Objects (cont'd)
 
-* Differences between \textbf{\textcolor{red}{Vectors}}, Matrices, Data.frames and Lists
+* Differences between \blue{vector}, matrix, data.frame and list
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbc[1:6, c("age")]
 ```
 
 ## Common R Objects (cont'd)
 
-* Differences between Vectors, \textbf{\textcolor{red}{Matrices}}, Data.frames and Lists
+* Differences between vector, \blue{matrix}, data.frame and list
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbc[1:6, c("age", "bili", "chol")]
 ```
@@ -361,7 +374,7 @@ pbc[1:6, c("age", "bili", "chol")]
 
 ## Common R Objects (cont'd)
 
-* Differences between Vectors, Matrices, \textbf{\textcolor{red}{Data.frames}} and Lists
+* Differences between vector, matrix, \blue{data.frame} and list
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbc[1:6, c("id", "sex", "bili", "chol")]
 ```
@@ -369,7 +382,7 @@ pbc[1:6, c("id", "sex", "bili", "chol")]
 
 ## Common R Objects (cont'd)
 
-* Differences between Vectors, Matrices, Data.frames and \textbf{\textcolor{red}{Lists}}
+* Differences between vector, matrix, data.frame and \blue{list}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 list(pbc[1:6, c("sex")], pbc[1:2, c("sex", "bili")], pbc$age[1:4])
 ```
@@ -453,7 +466,8 @@ list1
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Common R Objects \button{02_Common_R_objects.R}{R} \button{02_Common_R_objects.html}{html}
+\item Common R Objects 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/02_Common_R_objects.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/02_Common_R_objects.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -479,7 +493,7 @@ list1
   - package: \textbf{\textcolor{red}{Hmisc}}, function: \textbf{\textcolor{red}{sas.get()}}
   - package: \textbf{\textcolor{red}{readxl}}, function: \textbf{\textcolor{red}{read\_excel()}}
   - package: \textbf{\textcolor{red}{haven}}, function: \textbf{\textcolor{red}{read\_spss()}}
-  - etc
+  - \textit{etc}
 
 
 ## Importing Data and Saving your Work (cont'd)
@@ -496,7 +510,6 @@ list1
 * \textbf{\textcolor{red}{save()}}
   - can be used to save a list of R objects
   - a binary file with all the objects available in your last R session
-  - platform independent
 * You can load your saved R objects using \textbf{\textcolor{red}{load()}}
   - be careful about overwriting
 * Using \textbf{\textcolor{red}{saveRDS}} and \textbf{\textcolor{red}{readRDS}} you can save and read a single R object
@@ -507,7 +520,7 @@ list1
 * Specialized functions for exporting data to other programs
   - function: \textbf{\textcolor{red}{write.table()}}, \textbf{\textcolor{red}{write.csv()}}
   - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{write.spss()}}, \textbf{\textcolor{red}{write.dta()}}
-  - etc
+  - \textit{etc}
 
 
 ## Importing Data and Saving your Work (cont'd)
@@ -516,7 +529,9 @@ list1
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Importing and Saving \button{03_Importing_Saving.R}{R} \button{03_Importing_Saving.html}{html}
+\item Importing and Saving 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/03_Importing_Saving.R}{R} 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/03_Importing_Saving.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -527,6 +542,8 @@ list1
 
 ## Data Transformation
 
+\blue{You will never receive the perfect data set!}
+
 * \textbf{\textcolor{red}{Round}} continuous variables
 * Convert \textbf{\textcolor{red}{numeric}} variables to \textbf{\textcolor{red}{factors}}
 * Compute \textbf{\textcolor{red}{new variables}}
@@ -536,7 +553,7 @@ list1
 
 ## Data Transformation (cont'd)
 
-* Round continuous variables
+* \textbf{\textcolor{red}{Round}} continuous variables
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF <- format(pbc[,c("id", "time", "status", "trt", "age", 
                     "sex", "bili", "chol")], digits = 2)
@@ -593,7 +610,8 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Data Transformation \button{04_Data_Transformation.R}{R} \button{04_Data_Transformation.html}{html}
+\item Data Transformation 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/04_Data_Transformation.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/04_Data_Transformation.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -614,6 +632,11 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
   - What is the mean and sd for age in males?
   - What is the mean and sd for baseline serum bilirubin?
   - What is the percentage of missings in serum bilirubin?
+  
+\vspace*{0.3cm}
+
+\blue{All these questions can be answered using R!}
+
 
 ## Data Exploration (cont'd)
 
@@ -631,7 +654,9 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Data Exploration \button{05_Data_Exploration.R}{R} \button{05_Data_Exploration.html}{html}
+\item Data Exploration 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/05_Data_Exploration.R}{R} 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/05_Data_Exploration.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -730,7 +755,7 @@ polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5),
 lines(density(pbc_female_bili), col = rgb(1,0,0,0.5))
 polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), 
         border = "red")
-legend(20,0.03, c("male", "female"), 
+legend(8,0.2, c("male", "female"), 
        col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)
 ```  
 
@@ -748,7 +773,7 @@ polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5),
 lines(density(pbc_female_bili), col = rgb(1,0,0,0.5))
 polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), 
         border = "red")
-legend(20,0.03, c("male", "female"), 
+legend(8,0.2, c("male", "female"), 
        col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)
 ``` 
 
@@ -770,7 +795,8 @@ pie(prop.table(table(pbc$status)),
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Data Visualization \button{06_Data_Visualization.R}{R} \button{06_Data_Visualization.html}{html}
+\item Data Visualization 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/06_Data_Visualization.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/06_Data_Visualization.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -852,7 +878,7 @@ pie(prop.table(table(pbc$status)),
 
 ## Indexing/Subsetting
 
-* When transforming and analyzing data we often need to select specific observations or variables.
+* When transforming and analyzing data we often need to select specific observations or variables
   - Examples: Select ...
       * the 3rd element for vector age
       * the 3rd column of the pbc data set
@@ -874,7 +900,7 @@ pie(prop.table(table(pbc$status)),
   
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with vectors}}
+\blue{Indexing with \blue{\texttt{vector}}}
 
 * For position indexing, use a \textbf{\textcolor{red}{positive}} value to select an element
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -891,7 +917,7 @@ x[c(2,3,4)]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with vectors}}
+\blue{Indexing with \blue{\texttt{vector}}}
 
 * For position indexing, use dublicated \textbf{\textcolor{red}{positive}} values to select the same elements
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -903,7 +929,7 @@ x[c(2,2,2)]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with vectors}}
+\blue{Indexing with \blue{\texttt{vector}}}
 
 * For position indexing, use a \textbf{\textcolor{red}{negative}} value to remove an element
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -919,7 +945,7 @@ x[-5]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with vectors}}
+\blue{Indexing with \blue{\texttt{vector}}}
 
 * Use logical index of the same length to select elements where the value is \textbf{\textcolor{red}{TRUE}}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -931,7 +957,7 @@ x[y]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with vectors}}
+\blue{Indexing with \blue{\texttt{vector}}}
 
 * Use logical indexing in combination with conditions
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -944,9 +970,9 @@ x[x > 7 | x > 9]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with vectors}}
+\blue{Indexing with \blue{\texttt{vector}}}
 
-* For name/character indexing, use the name of the element names
+* For name/character indexing, use the name of the element
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(foo=5, bar=4, one=7, two=12, three=2)
 x[c('foo', 'one')]
@@ -957,12 +983,12 @@ x[c('foo', 'one')]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Matrices}}
+\blue{Indexing with \blue{\texttt{matrix}}}
 
 * Indexing matrices are similar to indexing vectors but with double index
 
-  - The first position denotes the rows
-  - The first position denotes the columns
+  - The first position denotes the rows \blue{["index", ]}
+  - The first position denotes the columns \blue{[, "index"]}
 
 \pause
 
@@ -976,7 +1002,7 @@ mat[2, 2]
   
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Matrices}}
+\blue{Indexing with \blue{\texttt{matrix}}}
 
 * When we leave a position blank all elements are selected
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -988,7 +1014,7 @@ mat[2, ]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}
+\blue{Indexing with \blue{\texttt{data.frame}}}
 
 * When using a single index the data frame acts like a list of variables
 
@@ -1014,7 +1040,7 @@ DF[2]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}
+\blue{Indexing with \blue{\texttt{data.frame}}}
 
 * \textcolor{blue}{\$} provides a convinient notation to extract an element by name
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -1024,7 +1050,7 @@ head(pbc$time)
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}
+\blue{Indexing with \blue{\texttt{data.frame}}}
 
 \begincols[t]
 \begincol{0.5\linewidth}
@@ -1053,7 +1079,7 @@ DF[DF$y < 30, 2]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}
+\blue{Indexing with \blue{\texttt{data.frame}}}
 
 * Combine logical and position indexing in data frame
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -1064,7 +1090,7 @@ head(pbc[pbc$sex == "m", 1:7])
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}
+\blue{Indexing with \blue{\texttt{data.frame}}}
 
 * Combine logical and position indexing in data frame
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -1075,7 +1101,7 @@ head(pbc[pbc$age > 30 | pbc$sex == "f", 1:7])
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Data Frames}}
+\blue{Indexing with \blue{\texttt{data.frame}}}
 
 * Combine logical and position indexing in data frame
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -1086,7 +1112,7 @@ head(pbc[pbc$age > 30 & pbc$sex == "f", 1:7])
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Lists}}
+\blue{Indexing with \blue{\texttt{list}}}
 
 * Lists can be subsetted in the same way as vectors using single brackets - Note that the output is a list
 
@@ -1101,9 +1127,12 @@ mylist[2]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Lists}}
+\blue{Indexing with \blue{\texttt{list}}}
 
 * Double square brackets can be also used - Note that the output is a vector
+
+\vspace*{0.6cm}
+
 * Use position indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
@@ -1113,7 +1142,7 @@ mylist[[2]]
 
 ## Indexing/Subsetting (cont'd)
 
-\textbf{\textcolor{blue}{Indexing with Lists}}
+\blue{Indexing with \blue{\texttt{list}}}
 
 * \textcolor{blue}{\$} provides a convinient notation to extract an element by name - Note that the output is a vector
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -1125,25 +1154,25 @@ mylist$y
 
 ## Indexing/Subsetting (cont'd)
 
-* Use the following webpage to further investigate subsetting
-https://emcbiostatistics.shinyapps.io/the_apply_family/
+* Use the following webpage to further investigate indexing and subsetting \
+https://emcbiostatistics.shinyapps.io/indexing/
 
-* The **R** code for the shiny app is also available: 
-
-\begin{columns}[T,onlytextwidth]
+\begin{center}
+\begin{columns}
 \begin{column}{0.52\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Indexing Subsetting shiny app \button{08_shiny_app_indexing.R}{R} \
+\item Shiny app indexing subsetting \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/08_shiny_app_indexing.R}{R} 
 \end{itemize}
 \end{block}
 \end{column}
-
-\begin{column}{0.48\linewidth}
-\end{column}
 \end{columns}
+\end{center}
 
-In order to run the app you will need to install the package `shiny`
+In order to run the app you will need to install the packages:
+
+   * `survival`
+   * `shiny`
 
 
 ## Useful Summary: Indexing/Subsetting
@@ -1195,7 +1224,8 @@ In order to run the app you will need to install the package `shiny`
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Indexing Subsetting \button{07_Indexing_Subsetting.R}{R} \button{07_Indexing_Subsetting.html}{html}
+\item Indexing Subsetting 
+\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/07_Indexing_Subsetting.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/07_Indexing_Subsetting.html}{html}
 \end{itemize}
 \end{block}
 \end{column}

@@ -1,25 +1,34 @@
+#+ eval = FALSE
+rm(list = ls())
+
 #################
 # Load packages #
 #################
 
 # install.packages("shiny")
-# install.packages("JM")
-# install.packages("DT")
-library(JM)
+# install.packages("survival")
+library(survival)
 library(shiny)
 
 ################################################
 # Give the data and information that is needed #
 ################################################
 
-is.fact <- sapply(pbc2.id, is.factor)
+pbc$status <- factor(pbc$status, levels = c(0, 1, 2), 
+                     labels = c("censored", "transplant", "dead"))
+pbc$ascites <- factor(pbc$ascites, levels = c(0, 1), 
+                     labels = c("no", "yes"))
+pbc$hepato <- factor(pbc$hepato, levels = c(0, 1), 
+                      labels = c("no", "yes"))
+pbc$spiders <- factor(pbc$spiders, levels = c(0, 1), 
+                     labels = c("no", "yes"))
+is.fact <- sapply(pbc, is.factor)
 is.fact[1] <- FALSE
-pbc2.idCAT <- pbc2.id[, is.fact]
-subcat <- sapply(colnames(pbc2.idCAT), function(x) levels(pbc2.id[[x]]))
+pbcCAT <- pbc[, is.fact]
+subcat <- sapply(colnames(pbcCAT), function(x) levels(pbc[[x]]))
 subcat[["id"]] <- NULL
 
-is.num <- sapply(pbc2.id, is.numeric)
-
+is.num <- sapply(pbc, is.numeric)
 
 #####################
 # Run the shiny app #
@@ -28,7 +37,7 @@ is.num <- sapply(pbc2.id, is.numeric)
 ui <- fluidPage(
   
   # Application title
-  titlePanel("Explore indexing using the pbc2.id data set"),
+  titlePanel("Explore indexing using the pbc data from the survival package"),
   
   # Text input 
   tabsetPanel(
@@ -37,8 +46,8 @@ ui <- fluidPage(
                sidebarPanel(
                  
                  p('Select rows and columns'),
-                 p('The rows can be selected as numbers'),
-                 p('The columns can be selected as numbers and names (e.g. "sex" or c("id", "age", "sex"))'),
+                 p('The rows can be selected as numbers (e.g. 2 or c(2,5))'),
+                 p('The columns can be selected as numbers and names (e.g.  2 or c(1, 5, 6) or c("sex") or c("id", "age", "sex"))'),
                  
                  textInput("rows", "Select rows", 
                            value = ""),
@@ -63,7 +72,7 @@ ui <- fluidPage(
                  p('Select a categorical variable'),
                  
                  selectInput("factors2", "Categorical variables",
-                              choices = colnames(pbc2.id[, is.fact]),
+                              choices = colnames(pbc[, is.fact]),
                              selected = "status"),
                  
                  p('Select the caregory of this variable'),
@@ -76,8 +85,8 @@ ui <- fluidPage(
                                   uiOutput("sex2")),
                  conditionalPanel(condition = 'input.factors2 == "ascites"', 
                                   uiOutput("ascites2")),
-                 conditionalPanel(condition = 'input.factors2 == "hepatomegaly"', 
-                                  uiOutput("hepatomegaly")),
+                 conditionalPanel(condition = 'input.factors2 == "hepato"', 
+                                  uiOutput("hepato2")),
                  conditionalPanel(condition = 'input.factors2 == "spiders"', 
                                   uiOutput("spiders2")),
                  conditionalPanel(condition = 'input.factors2 == "edema"', 
@@ -102,7 +111,7 @@ ui <- fluidPage(
                  p('Select a categorical variable'),
                  
                  selectInput("factors3a", "Categorical variables",
-                             choices = colnames(pbc2.id[, is.fact]),
+                             choices = colnames(pbc[, is.fact]),
                              selected = "drug"),
                  
                  p('Select the caregory of this variable'),
@@ -115,8 +124,8 @@ ui <- fluidPage(
                                   uiOutput("sex3a")),
                  conditionalPanel(condition = 'input.factors3a == "ascites"', 
                                   uiOutput("ascites3a")),
-                 conditionalPanel(condition = 'input.factors3a == "hepatomegaly"', 
-                                  uiOutput("hepatomegaly3a")),
+                 conditionalPanel(condition = 'input.factors3a == "hepato"', 
+                                  uiOutput("hepato3a")),
                  conditionalPanel(condition = 'input.factors3a == "spiders"', 
                                   uiOutput("spiders3a")),
                  conditionalPanel(condition = 'input.factors3a == "edema"', 
@@ -125,7 +134,7 @@ ui <- fluidPage(
                  p('Select a categorical variable'),
                  
                  selectInput("factors3b", "Categorical variables",
-                             choices = colnames(pbc2.id[, is.fact]),
+                             choices = colnames(pbc[, is.fact]),
                              selected = "status"),
                  
                  p('Select the caregory of this variable'),
@@ -138,8 +147,8 @@ ui <- fluidPage(
                                   uiOutput("sex3b")),
                  conditionalPanel(condition = 'input.factors3b == "ascites"', 
                                   uiOutput("ascites3b")),
-                 conditionalPanel(condition = 'input.factors3b == "hepatomegaly"', 
-                                  uiOutput("hepatomegaly2b")),
+                 conditionalPanel(condition = 'input.factors3b == "hepato"', 
+                                  uiOutput("hepato3b")),
                  conditionalPanel(condition = 'input.factors3b == "spiders"', 
                                   uiOutput("spiders3b")),
                  conditionalPanel(condition = 'input.factors3b == "edema"', 
@@ -170,7 +179,7 @@ ui <- fluidPage(
                  p('Select a categorical variable'),
                  
                  selectInput("factors4", "Categorical variables",
-                             choices = colnames(pbc2.id[, is.fact]),
+                             choices = colnames(pbc[, is.fact]),
                              selected = "drug"),
                  
                  p('Select the caregory of this variable'),
@@ -183,8 +192,8 @@ ui <- fluidPage(
                                   uiOutput("sex4")),
                  conditionalPanel(condition = 'input.factors4 == "ascites"', 
                                   uiOutput("ascites4")),
-                 conditionalPanel(condition = 'input.factors4 == "hepatomegaly"', 
-                                  uiOutput("hepatomegaly4")),
+                 conditionalPanel(condition = 'input.factors4 == "hepato"', 
+                                  uiOutput("hepato4")),
                  conditionalPanel(condition = 'input.factors4 == "spiders"', 
                                   uiOutput("spiders4")),
                  conditionalPanel(condition = 'input.factors4 == "edema"', 
@@ -193,7 +202,7 @@ ui <- fluidPage(
                  p('Select a numerical variable'),
                  
                  selectInput("numerics", "Numerical variables",
-                             choices = colnames(pbc2.id[, is.num]),
+                             choices = colnames(pbc[, is.num]),
                              selected = "age"),
                  
                  p('Speficy the cut off value for the variable'),
@@ -308,21 +317,21 @@ server <- function(input, output) {
                 choices = subcat$ascites, selected = "No")
   })
   
-  output$hepatomegaly2 <- renderUI({
-    selectInput("hepatomegaly2", "Categories", 
-                choices = subcat$hepatomegaly, selected = "No")
+  output$hepato2 <- renderUI({
+    selectInput("hepato2", "Categories", 
+                choices = subcat$hepato, selected = "No")
   })
-  output$hepatomegaly3a <- renderUI({
-    selectInput("hepatomegaly3a", "Categories", 
-                choices = subcat$hepatomegaly, selected = "No")
+  output$hepato3a <- renderUI({
+    selectInput("hepato3a", "Categories", 
+                choices = subcat$hepato, selected = "No")
   })
-  output$hepatomegaly3b <- renderUI({
-    selectInput("hepatomegaly3b", "Categories", 
-                choices = subcat$hepatomegaly, selected = "No")
+  output$hepato3b <- renderUI({
+    selectInput("hepato3b", "Categories", 
+                choices = subcat$hepato, selected = "No")
   })
-  output$hepatomegaly4 <- renderUI({
-    selectInput("hepatomegaly4", "Categories", 
-                choices = subcat$hepatomegaly, selected = "No")
+  output$hepato4 <- renderUI({
+    selectInput("hepato4", "Categories", 
+                choices = subcat$hepato, selected = "No")
   })
   
   output$spiders2 <- renderUI({
@@ -363,7 +372,7 @@ server <- function(input, output) {
   ###################################################
   output$Rcode <- renderText({
     
-    return(paste0("pbc2.id[", input$rows, ", ", input$columns, "]"))
+    return(paste0("pbc[", input$rows, ", ", input$columns, "]"))
     
   })
   
@@ -372,93 +381,63 @@ server <- function(input, output) {
     
      if (input$rows == "") {
        if (input$columns == ""){
-         code1 <- paste0("pbc2.id")
+         code1 <- paste0("pbc")
          eval(parse(text = code1))
        } else {
-         code1 <- paste0("pbc2.id[", ", c(", toString(input$columns), ")]")
+         code1 <- paste0("pbc[", ", c(", toString(input$columns), ")]")
          eval(parse(text = code1))
        }
      } else if (input$columns == "") {
        if (input$rows == "") {
-         code1 <- paste0("pbc2.id")
+         code1 <- paste0("pbc")
          eval(parse(text = code1))
        } else {
-         code1 <- paste0("pbc2.id[c(", toString(input$rows), "), ]")
+         code1 <- paste0("pbc[c(", toString(input$rows), "), ]")
          eval(parse(text = code1))
        }
      } else {
-       code1 <- paste0("pbc2.id[c(", toString(input$rows), "), c(", toString(input$columns), ")]")
+       code1 <- paste0("pbc[c(", toString(input$rows), "), c(", toString(input$columns), ")]")
        eval(parse(text = code1))
      }
     
   })
   
-  # output$DTindex <- renderDT(
-  #   if (input$rows == "") {
-  #     if (input$columns == ""){
-  #       code1 <- paste0("pbc2.id")
-  #       return(datatable(pbc2.id))
-  #     } else {
-  #       code1 <- paste0("pbc2.id[", ", c(", toString(input$columns), ")]")
-  #       return(datatable(pbc2.id) %>%
-  #                formatStyle(columns=eval(parse(text=paste0("c(", toString(input$columns), ")"))), color='blue'))
-  #     }
-  #   } else if (input$columns == "") {
-  #     if (input$rows == "") {
-  #       code1 <- paste0("pbc2.id")
-  #       datatable(pbc2.id)
-  #     } else {
-  #       code1 <- paste0("pbc2.id[c(", toString(input$rows), "), ]")
-  #       rws <- eval(parse(text=paste0("c(", toString(input$rows), ")")))
-  #       return(datatable(pbc2.id) %>%
-  #                formatStyle(columns=0, target='row', color=styleEqual(rws, rep('blue',length(rws)) ) ))
-  #     }
-  #   } else {
-  #     code1 <- paste0("pbc2.id[c(", toString(input$rows), "), c(", toString(input$columns), ")]")
-  #     rws <- eval(parse(text=paste0("c(", toString(input$rows), ")")))
-  #     cls <- eval(parse(text=paste0("c(", toString(input$columns), ")")))
-  #     return(datatable(pbc2.id) %>%
-  #              formatStyle(columns=cls, valueColumns = 0,
-  #                          color=styleEqual(rws, rep('blue',length(rws)) ) ))
-  #   }
-  #   
-  # )
   
   
   output$Rcode2 <- renderText({
     
-    if(input$factors2 == "status")  return(paste0("pbc2.id[pbc2.id$", input$factors2, " == ", dQuote(input$status2),", ]"))
-    if(input$factors2 == "drug")  return(paste0("pbc2.id[pbc2.id$", input$factors2, " == ", dQuote(input$drug2),", ]"))
-    if(input$factors2 == "sex")  return(paste0("pbc2.id[pbc2.id$", input$factors2, " == ", dQuote(input$sex2),", ]"))
-    if(input$factors2 == "ascites")  return(paste0("pbc2.id[pbc2.id$", input$factors2, " == ", dQuote(input$ascites2),", ]"))
-    if(input$factors2 == "hepatomegaly")  return(paste0("pbc2.id[pbc2.id$", input$factors2, " == ", dQuote(input$hepatomegaly2),", ]"))
-    if(input$factors2 == "spiders")  return(paste0("pbc2.id[pbc2.id$", input$factors2, " == ", dQuote(input$spiders2),", ]"))
-    if(input$factors2 == "edema")  return(paste0("pbc2.id[pbc2.id$", input$factors2, " == ", dQuote(input$edema2),", ]"))
+    if(input$factors2 == "status")  return(paste0("pbc[pbc$", input$factors2, " == ", dQuote(input$status2),", ]"))
+    if(input$factors2 == "drug")  return(paste0("pbc[pbc$", input$factors2, " == ", dQuote(input$drug2),", ]"))
+    if(input$factors2 == "sex")  return(paste0("pbc[pbc$", input$factors2, " == ", dQuote(input$sex2),", ]"))
+    if(input$factors2 == "ascites")  return(paste0("pbc[pbc$", input$factors2, " == ", dQuote(input$ascites2),", ]"))
+    if(input$factors2 == "hepato")  return(paste0("pbc[pbc$", input$factors2, " == ", dQuote(input$hepato2),", ]"))
+    if(input$factors2 == "spiders")  return(paste0("pbc[pbc$", input$factors2, " == ", dQuote(input$spiders2),", ]"))
+    if(input$factors2 == "edema")  return(paste0("pbc[pbc$", input$factors2, " == ", dQuote(input$edema2),", ]"))
     
   })
   
   output$Routput2 <- renderTable({
   
     if(input$factors2 == "status")  {
-      code1 <- paste0("pbc2.id[pbc2.id$", toString(input$factors2), " == ", shQuote(input$status2),", ]")
+      code1 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$status2),", ]")
       eval(parse(text = code1))
     } else if (input$factors2 == "drug")  {
-      code2 <- paste0("pbc2.id[pbc2.id$", toString(input$factors2), " == ", shQuote(input$drug2),", ]")
+      code1 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$drug2),", ]")
       eval(parse(text = code2))
     } else if(input$factors2 == "sex")  {
-      code1 <- paste0("pbc2.id[pbc2.id$", toString(input$factors2), " == ", shQuote(input$sex2),", ]")
+      code1 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$sex2),", ]")
       eval(parse(text = code1))
     } else if(input$factors2 == "ascites")  {
-      code1 <- paste0("pbc2.id[pbc2.id$", toString(input$factors2), " == ", shQuote(input$ascites2),", ]")
+      code1 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$ascites2),", ]")
       eval(parse(text = code1))
-    } else if(input$factors2 == "hepatomegaly")  {
-      code1 <- paste0("pbc2.id[pbc2.id$", toString(input$factors2), " == ", shQuote(input$hepatomegaly2),", ]")
+    } else if(input$factors2 == "hepato")  {
+      code1 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$hepato2),", ]")
       eval(parse(text = code1))
     }else if(input$factors2 == "spiders")  {
-      code1 <- paste0("pbc2.id[pbc2.id$", toString(input$factors2), " == ", shQuote(input$spiders2),", ]")
+      code1 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$spiders2),", ]")
       eval(parse(text = code1))
     } else if(input$factors2 == "edema")  {
-      code1 <- paste0("pbc2.id[pbc2.id$", toString(input$factors2), " == ", shQuote(input$edema2),", ]")
+      code1 <- paste0("pbc[pbc$", toString(input$factors2), " == ", shQuote(input$edema2),", ]")
       eval(parse(text = code1))
     }
       
@@ -475,8 +454,8 @@ server <- function(input, output) {
       categ3a <- input$sex3a
     } else if (input$factors3a == "ascites") {
       categ3a <- input$ascites3a
-    } else if (input$factors3a == "hepatomegaly") {
-      categ3a <- input$hepatomegaly3a
+    } else if (input$factors3a == "hepato") {
+      categ3a <- input$hepato3a
     } else if (input$factors3a == "spiders") {
       categ3a <- input$spiders3a
     } else if (input$factors3a == "edema") {
@@ -494,8 +473,8 @@ server <- function(input, output) {
       categ3b <- input$sex3b
     } else if (input$factors3b == "ascites") {
       categ3b <- input$ascites3b
-    } else if (input$factors3b == "hepatomegaly") {
-      categ3b <- input$hepatomegaly3b
+    } else if (input$factors3b == "hepato") {
+      categ3b <- input$hepato3b
     } else if (input$factors3b == "spiders") {
       categ3b <- input$spiders3b
     } else if (input$factors3b == "edema") {
@@ -514,7 +493,7 @@ server <- function(input, output) {
         "|"
       }
       
-      return(paste0("pbc2.id[pbc2.id$", input$factors3a, " == ", shQuote(categ3a), " ", select, " pbc2.id$",  input$factors3b, " == ", 
+      return(paste0("pbc[pbc$", input$factors3a, " == ", shQuote(categ3a), " ", select, " pbc$",  input$factors3b, " == ", 
                     shQuote(categ3b), ", ]"))
 
   })
@@ -529,7 +508,7 @@ server <- function(input, output) {
       "|"
     }
     
-    code1 <- paste0("pbc2.id[pbc2.id$", input$factors3a, " == ", shQuote(categ3a), " ", select, " pbc2.id$",  input$factors3b, " == ", 
+    code1 <- paste0("pbc[pbc$", input$factors3a, " == ", shQuote(categ3a), " ", select, " pbc$",  input$factors3b, " == ", 
                   shQuote(categ3b), ", ]")
     eval(parse(text = code1))
     
@@ -544,8 +523,8 @@ server <- function(input, output) {
       categ4 <- input$sex4
     } else if (input$factors4 == "ascites") {
       categ4 <- input$ascites4
-    } else if (input$factors4 == "hepatomegaly") {
-      categ4 <- input$hepatomegaly4
+    } else if (input$factors4 == "hepato") {
+      categ4 <- input$hepato4
     } else if (input$factors4 == "spiders") {
       categ4 <- input$spiders4
     } else if (input$factors4 == "edema") {
@@ -562,7 +541,7 @@ server <- function(input, output) {
     } else {
       "|"
     }
-    return(paste0("pbc2.id[pbc2.id$", input$factors4, " == ", shQuote(categ4), " ", select2, " pbc2.id$",  input$numerics, 
+    return(paste0("pbc[pbc$", input$factors4, " == ", shQuote(categ4), " ", select2, " pbc$",  input$numerics, 
                   " ", input$smaller_lower, " ", input$numbers ,", ", input$columns2, "]"))
     
   })
@@ -579,11 +558,11 @@ server <- function(input, output) {
     
     
     if (!is.null(input$columns2)) {
-      code1 <- paste0("pbc2.id[pbc2.id$", input$factors4, " == ", shQuote(categ4), " ", select2, " pbc2.id$",  input$numerics,
+      code1 <- paste0("pbc[pbc$", input$factors4, " == ", shQuote(categ4), " ", select2, " pbc$",  input$numerics,
                       " ", input$smaller_lower, " ", input$numbers ,", ", input$columns2, ", ]")
       eval(parse(text = code1))  
       } else {
-      code1 <- paste0("pbc2.id[pbc2.id$", input$factors4, " == ", shQuote(categ4), " ", select2, " pbc2.id$",  input$numerics,
+      code1 <- paste0("pbc[pbc$", input$factors4, " == ", shQuote(categ4), " ", select2, " pbc$",  input$numerics,
                                                       " ", input$smaller_lower, " ", input$numbers ,", ]")
       eval(parse(text = code1))
       

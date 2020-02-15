@@ -11,7 +11,7 @@
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-01-28" />
+<meta name="date" content="2020-02-15" />
 
 <title>Demo: Data Exploration</title>
 
@@ -366,54 +366,136 @@ summary {
 <h1 class="title toc-ignore">Demo: Data Exploration</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">28 January 2020</h4>
+<h4 class="date">15 February 2020</h4>
 
 </div>
 
 
-<p>Load packages If you are using the package for the first time, you will have to first install it:</p>
+<p>Load packages<br />
+If you are using the package for the first time, you will have to first install it<br />
+</p>
 <pre class="r"><code># install.packages(&quot;survival&quot;) 
 # install.packages(&quot;memisc&quot;)
 library(survival)
 library(memisc)</code></pre>
-<p>What is the mean and sd for age?</p>
+<p>What is the mean and sd for <code>age</code>?</p>
 <pre class="r"><code>mean(pbc$age)</code></pre>
 <pre><code>## [1] 50.74132</code></pre>
 <pre class="r"><code>mean(pbc$age, na.rm = TRUE)</code></pre>
 <pre><code>## [1] 50.74132</code></pre>
 <pre class="r"><code>sd(pbc$age)</code></pre>
 <pre><code>## [1] 10.44721</code></pre>
-<p>What is the mean and sd for time?</p>
+<p>What is the mean and sd for <code>time</code>?</p>
 <pre class="r"><code>mean(pbc$time)</code></pre>
 <pre><code>## [1] 1917.782</code></pre>
 <pre class="r"><code>mean(pbc$time, na.rm = TRUE)</code></pre>
 <pre><code>## [1] 1917.782</code></pre>
 <pre class="r"><code>sd(pbc$time)</code></pre>
 <pre><code>## [1] 1104.673</code></pre>
-<p>What is the median and interquartile range for age?</p>
+<p>What is the median and interquartile range for <code>age</code>?</p>
 <pre class="r"><code>median(pbc$age)</code></pre>
 <pre><code>## [1] 51</code></pre>
 <pre class="r"><code>IQR(pbc$age)</code></pre>
 <pre><code>## [1] 15.4025</code></pre>
-<p>What is the percentage of placebo patients? In order to use the percent function you will need to load the memisc package</p>
+<p>What is the percentage of <code>placebo</code> and <code>treatment</code> patients?<br />
+In order to use the percent() function you will need to load the memisc package</p>
 <pre class="r"><code>percent(pbc$trt)</code></pre>
 <pre><code>##         1         2         N 
 ##  50.64103  49.35897 312.00000</code></pre>
-<p>What is the percentage of females?</p>
+<p>What is the percentage of <code>females</code> and <code>males</code>?</p>
 <pre class="r"><code>percent(pbc$sex)</code></pre>
 <pre><code>##         m         f         N 
 ##  10.52632  89.47368 418.00000</code></pre>
-<p>What is the mean and sd for age in males?</p>
+<p>What is the mean and sd for <code>age</code> in <code>males</code>?</p>
 <pre class="r"><code>pbc_males &lt;- pbc[pbc$sex == &quot;m&quot;, ]
 mean(pbc_males$age)</code></pre>
 <pre><code>## [1] 55.71068</code></pre>
 <pre class="r"><code>sd(pbc_males$age)</code></pre>
 <pre><code>## [1] 10.97715</code></pre>
-<p>What is the mean and sd for serum bilirubin?</p>
+<p>What is the mean and sd for <code>serum bilirubin</code>?</p>
 <pre class="r"><code>mean(pbc$bili)</code></pre>
 <pre><code>## [1] 3.220813</code></pre>
 <pre class="r"><code>sd(pbc$bili)</code></pre>
 <pre><code>## [1] 4.407506</code></pre>
+<p><strong>Missing values and outliers</strong><br />
+Check if there are missing values</p>
+<pre class="r"><code>is.na(pbc$chol)</code></pre>
+<pre><code>##   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+##  [17] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [33] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
+##  [49]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [65] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [81] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
+##  [97] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+## [113] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE
+## [129] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [145] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [161] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE
+## [177] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+## [193] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+## [209] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+## [225] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [241] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [257] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [273] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [289] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+## [305] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [321]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [337]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [353]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [369]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [385]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [401]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [417]  TRUE  TRUE</code></pre>
+<p>Obtain complete cases for the variable <code>serum cholesterol</code></p>
+<pre class="r"><code>DF &lt;- pbc[complete.cases(pbc$chol), ]</code></pre>
+<p>Obtain dimensions</p>
+<pre class="r"><code>dim(pbc)</code></pre>
+<pre><code>## [1] 418  22</code></pre>
+<pre class="r"><code>dim(DF)</code></pre>
+<pre><code>## [1] 284  22</code></pre>
+<p>Obtain data set where the <code>serum cholesterol</code> variable has missing</p>
+<pre class="r"><code>pbc_chol_na &lt;- pbc[is.na(pbc$chol) == TRUE, ]
+head(pbc_chol_na)</code></pre>
+<pre><code>##    id time status trt   age sex ascites hepato spiders edema bili chol albumin copper alk.phos    ast
+## 14 14 1217      2   2 56.22   m       1      1       0     1  0.8   NA    2.27     43    728.0  71.00
+## 40 40 4467      0   1 46.67   f       0      0       0     0  1.3   NA    3.34    105  11046.6 104.49
+## 41 41 1350      2   1 33.63   f       0      1       0     0  6.8   NA    3.26     96   1215.0 151.90
+## 42 42 4453      0   2 33.69   f       0      1       1     0  2.1   NA    3.54    122   8778.0  56.76
+## 45 45 4025      0   2 41.79   f       0      0       0     0  0.6   NA    3.93     19   1826.0  71.30
+## 49 49  708      2   2 61.15   f       0      1       0     0  0.8   NA    3.82     58    678.0  97.65
+##    trig platelet protime stage age40higher      ageST
+## 14   NA      156    11.0     4         old  0.5244158
+## 40   NA      358    11.0     4         old -0.3897035
+## 41   NA      226    11.7     4       young -1.6378830
+## 42   NA      344    11.0     4       young -1.6321399
+## 45   NA      474    10.9     2         old -0.8568136
+## 49   NA      233    11.0     4         old  0.9963119</code></pre>
+<pre class="r"><code>pbc_chol_na &lt;- pbc[is.na(pbc$chol) == TRUE, c(&quot;id&quot;, &quot;time&quot;, &quot;status&quot;,
+                               &quot;trt&quot;, &quot;age&quot;, &quot;sex&quot;, 
+                               &quot;bili&quot;, &quot;chol&quot;)]
+head(pbc_chol_na)</code></pre>
+<pre><code>##    id time status trt   age sex bili chol
+## 14 14 1217      2   2 56.22   m  0.8   NA
+## 40 40 4467      0   1 46.67   f  1.3   NA
+## 41 41 1350      2   1 33.63   f  6.8   NA
+## 42 42 4453      0   2 33.69   f  2.1   NA
+## 45 45 4025      0   2 41.79   f  0.6   NA
+## 49 49  708      2   2 61.15   f  0.8   NA</code></pre>
+<p>Obtain the dimensions of the data set where the <code>serum cholesterol</code> variable has missing</p>
+<pre class="r"><code>dim(pbc_chol_na)</code></pre>
+<pre><code>## [1] 134   8</code></pre>
+<p>Check for outliers: e.g. let’s assume that patients with <code>serum bilirun</code> values &gt; 25 are outliers<br />
+Check whether there are outliers<br />
+Obtain all rows from the data set which correspond to <code>serum bilirun</code> outliers</p>
+<pre class="r"><code>pbc_out_bili &lt;- pbc[pbc$bili &gt; 25, ]
+head(pbc_out_bili)</code></pre>
+<pre><code>##      id time status trt   age sex ascites hepato spiders edema bili chol albumin copper alk.phos   ast
+## 144 144  943      2   2 52.29   f       0      1       0   0.5 28.0  556    3.26    152     3896 198.4
+## 156 156  853      2   2 59.41   f       0      1       0   0.0 25.5  358    3.52    219     2468 201.5
+##     trig platelet protime stage age40higher     ageST
+## 144  171      335    10.0     3         old 0.1482390
+## 156  205      151    11.5     2         old 0.8297603</code></pre>
 
 
 

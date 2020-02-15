@@ -11,7 +11,7 @@
 
 <meta name="author" content="Nicole Erler, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-01-28" />
+<meta name="date" content="2020-02-15" />
 
 <title>Demo: Functions for exploring data</title>
 
@@ -1518,7 +1518,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Demo: Functions for exploring data</h1>
 <h4 class="author">Nicole Erler, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">28 January 2020</h4>
+<h4 class="date">15 February 2020</h4>
 
 </div>
 
@@ -1645,11 +1645,11 @@ str(swiss)</code></pre>
 <pre><code>## [1] 156.0425</code></pre>
 <p>All the above functions (<code>min</code>, <code>max</code>, <code>range</code>, <code>mean</code>, <code>median</code>, <code>quantile</code>, <code>sd</code>, <code>var</code>) have an argument <code>na.rm</code> which is by default set to <code>FALSE</code>.</p>
 <pre class="r"><code>(x &lt;- c(rnorm(5), NA))</code></pre>
-<pre><code>## [1] -0.1341792  2.2942396  0.3392226 -0.4894923 -0.6796116         NA</code></pre>
+<pre><code>## [1]  0.6012424 -2.2994466  0.3545604  0.2448361 -0.5662363         NA</code></pre>
 <pre class="r"><code>min(x)</code></pre>
 <pre><code>## [1] NA</code></pre>
 <pre class="r"><code>min(x, na.rm = TRUE)</code></pre>
-<pre><code>## [1] -0.6796116</code></pre>
+<pre><code>## [1] -2.299447</code></pre>
 <p>Another helpful function to summarize continuous data is <code>ave()</code>. It calculates a summary measure of a continuous variable per group, that are defined by one or more categorical variables:</p>
 <pre class="r"><code>esoph$av_case_by_age &lt;- ave(esoph$ncases, esoph$agegp)
 esoph[12:22, ]</code></pre>
@@ -1680,10 +1680,10 @@ esoph[28:36, ]</code></pre>
 ## 36 45-54     40-79    10-19      4        21          2.875               3</code></pre>
 <p>And we can split the data by multiple categorical variables:</p>
 <pre class="r"><code>ave(esoph$ncases, esoph$agegp, esoph$alcgp, FUN = median)</code></pre>
-<pre><code>##  [1] 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.5 0.5 0.5 0.5 0.0 0.0 0.0
-## [27] 0.0 2.0 2.0 2.0 0.0 0.0 0.0 0.0 5.0 5.0 5.0 5.0 2.5 2.5 2.5 2.5 3.5 3.5 3.5 3.5 3.0 3.0 3.0 3.0 5.0 5.0
-## [53] 5.0 5.0 6.0 6.0 6.0 6.0 5.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 1.0 1.0 1.0 1.0 1.0
-## [79] 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.5 1.5</code></pre>
+<pre><code>##  [1] 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.5 0.5 0.5 0.5 0.0 0.0
+## [26] 0.0 0.0 2.0 2.0 2.0 0.0 0.0 0.0 0.0 5.0 5.0 5.0 5.0 2.5 2.5 2.5 2.5 3.5 3.5 3.5 3.5 3.0 3.0 3.0 3.0
+## [51] 5.0 5.0 5.0 5.0 6.0 6.0 6.0 6.0 5.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 1.0 1.0
+## [76] 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.5 1.5</code></pre>
 </div>
 </div>
 <div id="tables" class="section level2">
@@ -1698,16 +1698,16 @@ esoph[28:36, ]</code></pre>
 <p>By default, table only shows observations. The argument <code>exclude</code> can be set to <code>NULL</code> to also include missing values:</p>
 <pre class="r"><code>(x &lt;- factor(c(NA, sample(LETTERS[1:3], size = 10, replace = TRUE)),
              levels = LETTERS[1:5]))</code></pre>
-<pre><code>##  [1] &lt;NA&gt; C    C    C    C    B    B    B    C    A    B   
+<pre><code>##  [1] &lt;NA&gt; A    C    B    B    A    B    C    A    C    B   
 ## Levels: A B C D E</code></pre>
 <pre class="r"><code>table(x)</code></pre>
 <pre><code>## x
 ## A B C D E 
-## 1 4 5 0 0</code></pre>
+## 3 4 3 0 0</code></pre>
 <pre class="r"><code>table(x, exclude = NULL)</code></pre>
 <pre><code>## x
 ##    A    B    C    D    E &lt;NA&gt; 
-##    1    4    5    0    0    1</code></pre>
+##    3    4    3    0    0    1</code></pre>
 <p>We can also get tables for multiple variables.</p>
 <pre class="r"><code>table(age = esoph$agegp, alc = esoph$alcgp)</code></pre>
 <pre><code>##        alc
@@ -1979,90 +1979,88 @@ addmargins(tab)</code></pre>
 <h2>Duplicates and Comparison</h2>
 <p>To find duplicates in a <code>data.frame</code>, <code>matrix</code> or a <code>vector</code> we can use the function <code>duplicated()</code>:</p>
 <pre class="r"><code>duplicated(esoph)</code></pre>
-<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [18] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [35] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [52] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [69] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [86] FALSE FALSE FALSE</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [17] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [33] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [65] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [81] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 <pre class="r"><code>(x &lt;- sample(LETTERS[1:5], 10, replace = TRUE))</code></pre>
-<pre><code>##  [1] &quot;D&quot; &quot;D&quot; &quot;C&quot; &quot;C&quot; &quot;A&quot; &quot;C&quot; &quot;A&quot; &quot;C&quot; &quot;D&quot; &quot;D&quot;</code></pre>
+<pre><code>##  [1] &quot;A&quot; &quot;D&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;A&quot; &quot;E&quot; &quot;C&quot; &quot;C&quot;</code></pre>
 <pre class="r"><code>duplicated(x)</code></pre>
-<pre><code>##  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre><code>##  [1] FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE</code></pre>
 <p>Let’s set the original variable and the duplication indicator next to each other to see what is happening:</p>
 <pre class="r"><code>cbind(x, duplicated(x))</code></pre>
 <pre><code>##       x          
-##  [1,] &quot;D&quot; &quot;FALSE&quot;
-##  [2,] &quot;D&quot; &quot;TRUE&quot; 
-##  [3,] &quot;C&quot; &quot;FALSE&quot;
-##  [4,] &quot;C&quot; &quot;TRUE&quot; 
-##  [5,] &quot;A&quot; &quot;FALSE&quot;
-##  [6,] &quot;C&quot; &quot;TRUE&quot; 
+##  [1,] &quot;A&quot; &quot;FALSE&quot;
+##  [2,] &quot;D&quot; &quot;FALSE&quot;
+##  [3,] &quot;A&quot; &quot;TRUE&quot; 
+##  [4,] &quot;B&quot; &quot;FALSE&quot;
+##  [5,] &quot;C&quot; &quot;FALSE&quot;
+##  [6,] &quot;D&quot; &quot;TRUE&quot; 
 ##  [7,] &quot;A&quot; &quot;TRUE&quot; 
-##  [8,] &quot;C&quot; &quot;TRUE&quot; 
-##  [9,] &quot;D&quot; &quot;TRUE&quot; 
-## [10,] &quot;D&quot; &quot;TRUE&quot;</code></pre>
+##  [8,] &quot;E&quot; &quot;FALSE&quot;
+##  [9,] &quot;C&quot; &quot;TRUE&quot; 
+## [10,] &quot;C&quot; &quot;TRUE&quot;</code></pre>
 <p>(We will get to know the function <code>cbind()</code> later). Using the argument <code>fromLast = TRUE</code> checks for duplicates starting from the last value:</p>
 <pre class="r"><code>cbind(x,
       duplFirst = duplicated(x),
       duplLast = duplicated(x, fromLast = TRUE))</code></pre>
 <pre><code>##       x   duplFirst duplLast
-##  [1,] &quot;D&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
-##  [2,] &quot;D&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
-##  [3,] &quot;C&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
-##  [4,] &quot;C&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
-##  [5,] &quot;A&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
-##  [6,] &quot;C&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
+##  [1,] &quot;A&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
+##  [2,] &quot;D&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
+##  [3,] &quot;A&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
+##  [4,] &quot;B&quot; &quot;FALSE&quot;   &quot;FALSE&quot; 
+##  [5,] &quot;C&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
+##  [6,] &quot;D&quot; &quot;TRUE&quot;    &quot;FALSE&quot; 
 ##  [7,] &quot;A&quot; &quot;TRUE&quot;    &quot;FALSE&quot; 
-##  [8,] &quot;C&quot; &quot;TRUE&quot;    &quot;FALSE&quot; 
-##  [9,] &quot;D&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
-## [10,] &quot;D&quot; &quot;TRUE&quot;    &quot;FALSE&quot;</code></pre>
+##  [8,] &quot;E&quot; &quot;FALSE&quot;   &quot;FALSE&quot; 
+##  [9,] &quot;C&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
+## [10,] &quot;C&quot; &quot;TRUE&quot;    &quot;FALSE&quot;</code></pre>
 <p>Return only the unique values:</p>
 <pre class="r"><code>unique(x)</code></pre>
-<pre><code>## [1] &quot;D&quot; &quot;C&quot; &quot;A&quot;</code></pre>
+<pre><code>## [1] &quot;A&quot; &quot;D&quot; &quot;B&quot; &quot;C&quot; &quot;E&quot;</code></pre>
 <p>This also works for <code>data.frame</code> and <code>matrix</code>.</p>
 <pre class="r"><code>(dat &lt;- data.frame(x = x,
                   y = rbinom(length(x), size = 1, prob = 0.5))
 )</code></pre>
 <pre><code>##    x y
-## 1  D 0
-## 2  D 1
-## 3  C 0
-## 4  C 1
-## 5  A 0
-## 6  C 0
-## 7  A 1
-## 8  C 1
-## 9  D 1
-## 10 D 0</code></pre>
+## 1  A 0
+## 2  D 0
+## 3  A 0
+## 4  B 0
+## 5  C 0
+## 6  D 0
+## 7  A 0
+## 8  E 1
+## 9  C 0
+## 10 C 0</code></pre>
 <pre class="r"><code>unique(dat)</code></pre>
 <pre><code>##   x y
-## 1 D 0
-## 2 D 1
-## 3 C 0
-## 4 C 1
-## 5 A 0
-## 7 A 1</code></pre>
+## 1 A 0
+## 2 D 0
+## 4 B 0
+## 5 C 0
+## 8 E 1</code></pre>
 <pre class="r"><code>(mat &lt;- as.matrix(dat))</code></pre>
 <pre><code>##       x   y  
-##  [1,] &quot;D&quot; &quot;0&quot;
-##  [2,] &quot;D&quot; &quot;1&quot;
-##  [3,] &quot;C&quot; &quot;0&quot;
-##  [4,] &quot;C&quot; &quot;1&quot;
-##  [5,] &quot;A&quot; &quot;0&quot;
-##  [6,] &quot;C&quot; &quot;0&quot;
-##  [7,] &quot;A&quot; &quot;1&quot;
-##  [8,] &quot;C&quot; &quot;1&quot;
-##  [9,] &quot;D&quot; &quot;1&quot;
-## [10,] &quot;D&quot; &quot;0&quot;</code></pre>
+##  [1,] &quot;A&quot; &quot;0&quot;
+##  [2,] &quot;D&quot; &quot;0&quot;
+##  [3,] &quot;A&quot; &quot;0&quot;
+##  [4,] &quot;B&quot; &quot;0&quot;
+##  [5,] &quot;C&quot; &quot;0&quot;
+##  [6,] &quot;D&quot; &quot;0&quot;
+##  [7,] &quot;A&quot; &quot;0&quot;
+##  [8,] &quot;E&quot; &quot;1&quot;
+##  [9,] &quot;C&quot; &quot;0&quot;
+## [10,] &quot;C&quot; &quot;0&quot;</code></pre>
 <pre class="r"><code>unique(mat)</code></pre>
 <pre><code>##      x   y  
-## [1,] &quot;D&quot; &quot;0&quot;
-## [2,] &quot;D&quot; &quot;1&quot;
-## [3,] &quot;C&quot; &quot;0&quot;
-## [4,] &quot;C&quot; &quot;1&quot;
-## [5,] &quot;A&quot; &quot;0&quot;
-## [6,] &quot;A&quot; &quot;1&quot;</code></pre>
+## [1,] &quot;A&quot; &quot;0&quot;
+## [2,] &quot;D&quot; &quot;0&quot;
+## [3,] &quot;B&quot; &quot;0&quot;
+## [4,] &quot;C&quot; &quot;0&quot;
+## [5,] &quot;E&quot; &quot;1&quot;</code></pre>
 <p>With the function <code>data.frame()</code> we create a <code>data.frame</code> and the function <code>as.matrix()</code> allows us to convert an object to a <code>matrix</code>.</p>
 </div>
 

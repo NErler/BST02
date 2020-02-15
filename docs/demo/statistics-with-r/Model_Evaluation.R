@@ -53,6 +53,13 @@ abline(a = 0, b = 1, lty = 1, col = 'grey')
 #' To check if `education` is needed in the model, we can use a likelihood ratio
 #' test to compare the models with and without `education`.
 #' This is implemented in the function `anova()`.
+mod2 <- glm(case ~ age + education + spontaneous, data = infert, family = binomial())
+summary(mod2)
+
+
+#' To re-fit the model with a small change, the function `update()` is useful:
+mod2b <- update(mod2, formula = . ~ . - education)
+
 anova(mod2, mod2b, test = "LRT")
 
 #' To compare non-nested models (where one model is not a special case of the
@@ -61,32 +68,4 @@ anova(mod2, mod2b, test = "LRT")
 mod3 <- update(mod2b, formula = . ~ . - age + induced)
 
 AIC(mod3, mod2b)
-
-
-
-
-
-
-# ------------------------------------------------------------------------------
-#' ## Logistic Regression
-mod2 <- glm(case ~ age + education + spontaneous, data = infert, family = binomial())
-summary(mod2)
-#' Note: the coefficients are on the log odds ratio scale.
-
-#' The functions `coef()` and `confint()` also work on GLMs.
-#' 
-#' 
-
-#' ### Changing parts of the model
-#' To re-fit the model with a small change, the function `update()` is useful:
-mod2b <- update(mod2, formula = . ~ . - education)
-
-#' In `update()` we specify the model we want to update and only those arguments
-#' that need to be changed. In our case, the model formula.
-#' Using `.` we can specify to keep parts of the formula the same.
-#' This allows us to "subtract" `education` from the original formula.
-
-#' `update()` also works for other types of objects (not just regression models):
-formula(mod2)
-update(formula(mod2), . ~ . - education)
 

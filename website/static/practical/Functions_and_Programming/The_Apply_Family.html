@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -2825,6 +2824,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -2856,6 +2856,12 @@ summary {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -2951,8 +2957,8 @@ div.tocify {
 <h3>R packages</h3>
 <p>In this practical, a number of R packages are used. The packages used (with versions that were used to generate the solutions) are:</p>
 <ul>
-<li>R version 3.6.1 (2019-07-05)</li>
-<li><code>survival</code> (version: 3.7.0)</li>
+<li>R version 3.6.2 (2019-12-12)</li>
+<li><code>survival</code> (version: 3.1.8)</li>
 </ul>
 </div>
 <div id="datasets" class="section level3">
@@ -3354,9 +3360,9 @@ Hint
 <div id="solution-2-3" class="section level4">
 <h4>Solution 2</h4>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">tapply</span>(heart<span class="op">$</span>year, <span class="kw">list</span>(heart<span class="op">$</span>transplant, heart<span class="op">$</span>surgery), <span class="cf">function</span>(x) {<span class="kw">mean</span>(x)<span class="op">/</span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)})</a></code></pre></div>
-<pre><code>##   no yes
-## 0 NA  NA
-## 1 NA  NA</code></pre>
+<pre><code>##           no       yes
+## 0 0.03820181 0.2818764
+## 1 0.06362334 0.3910915</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">tapply</span>(retinopathy<span class="op">$</span>futime, <span class="kw">list</span>(retinopathy<span class="op">$</span>status, retinopathy<span class="op">$</span>type, retinopathy<span class="op">$</span>trt), mean)</a></code></pre></div>
 <pre><code>## , , 0
 ## 

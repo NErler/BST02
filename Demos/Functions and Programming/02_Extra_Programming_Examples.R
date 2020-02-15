@@ -7,16 +7,21 @@
 #' ---
 #' 
 
-#' Load packages
-#' If you are using the package for the first time, you will have to first install it:
+#' Load packages \
+#' If you are using the package for the first time, you will have to first install it
 # install.packages("survival") 
 library(survival)
 
 
-#' Calculate the sum per row
+#' Create a matrix \
 A <- matrix(rnorm(1e06), 1000, 1000)
 A[1:10 , 1:10]
+
+#' Calculate the sum per row
+head(apply(A, 1, sum))
 #?rnorm
+
+#' Calculate the sum per row, repeat this procedure 100 times
 res1 <- replicate(100, z <- apply(A, 1, sum))
 res2 <- replicate(100, z <- rowSums(A)) # Use specialized functions
 
@@ -24,12 +29,13 @@ res2 <- replicate(100, z <- rowSums(A)) # Use specialized functions
 x <- rnorm(1000000, 10, 10)
 
 cSum <- 0
+z <- numeric() # empty vector
 for (k in 1:length(x)){
   cSum <- cSum + x[k]
-  cSum
+  z[k] <- cSum
 }
 
-#' Explore how does it work
+#' Explore how it works
 i <- 1
 cSum <- 0
 cSum <- cSum + x[i]
@@ -43,11 +49,13 @@ res <- cumsum(x)
 tail(res)
 
 #' Explore the timing of the code
+cSum <- 0
+z <- numeric() # empty vector
 system.time({
   cSum <- 0
   for (i in 1:length(x)){
-    cSum <- cSum + x[i]
-    cSum
+    cSum <- cSum + x[k]
+    z[k] <- cSum
   }
 })
 
@@ -56,27 +64,30 @@ system.time({
 }) # better
 
 #' More than one ways exist to code something in R! \
-#' Create a dichotomous variable for age
+#' 
+#' 
+#' Create a dichotomous variable for `age` (assume as cut-off point the value 42)
 for (i in 1:dim(pbc)[1]) {
   pbc$ageCat[i] <- as.numeric(pbc$age[i] > 42)
 }
 
+#' Explore what it is happening \
+#' This will help you later create more complicated functions
 i <- 1
 pbc$ageCat[i] <- as.numeric(pbc$age[i] > 42)
-
 
 head(pbc)
 
 pbc[i, ]
 
 
-
-#' Do the same thing as a vector
+#' Do the same thing without a loop
 pbc$ageCat <- as.numeric(pbc$age > 42)
 
 
-#' calculate the mean weight of males and females in 100 datasets \
-#' If we would do that manually...
+#' Calculate the mean weight for `males` and `females` in 100 datasets \
+#' Since we do not have 100 data sets, we will create them! \
+#' Let's do that first manually...
 datlist <- list()
 
 i <- 1
@@ -96,10 +107,10 @@ sex <- sample(1:2, 20, replace = T)
 sex <- factor(sex, levels = 1:2, labels = c("male", "female"))
 
 datlist[[i]] <- data.frame(patient, weight, sex)
+# ..... 
 
 
-#' .....
-
+#' It is too much work!
 #' Now use a loop
 for (i in 1:100) {
   set.seed(2015+i)
@@ -112,10 +123,9 @@ for (i in 1:100) {
 }
 
 
-#' We will have to go through all data sets to calculate the mean age \ 
-#' If we would do that manually...
+#' Now that we have 100 data sets we need to calculate the mean `age` per `gender` in each of them \
+#' Let's do that manually...
 means <- matrix(NA, length(datlist), 2)
-
 
 i <- 1
 dat <- datlist[[i]]
@@ -134,13 +144,13 @@ for (i in 1:length(datlist)) {
 
 means
 
-#' Select datasets were more than 39% of the patients are females
+#' Select the data sets, where more than 39% of the patients are `females`
 newList <- list()
 k <- 1
 
 for (i in 1:length(datlist)) {
   dat <- datlist[[i]]
-  if (sum(dat$sex == "female")/20 >= 0.4) {
+  if (sum(dat$sex == "female")/20 > 0.39) {
     newList[[k]] <- dat
     k <- k + 1
   }
@@ -148,26 +158,28 @@ for (i in 1:length(datlist)) {
 
 length(newList)
 
-#' Select datasets where more than 49% of the patients are males
+#' Select the data sets, where more than 49% of the patients are `males`
 newList <- list()
 k <- 1
+
 for (i in 1:length(datlist)) {
   dat <- datlist[[i]]
-  if (sum(dat$sex == "male")/20 >= 0.5) {
+  if (sum(dat$sex == "male")/20 > 0.49) {
     newList[[k]] <- dat
     k <- k + 1
   }
 }
 
-#' Now make a function that takes as input the data sets in a list format, the name of the sex variable and the name of the male category
-#' This function returns the data sets where more than 49% of the patients are males in a list
+#' Now make a function that takes as input the data sets in a list format, the name of the `gender` variable and the name of the `male` category \
+#' This function returns only the data sets, where more than 49% of the patients are `males` \
+#' The output should be a list
 
 subset_data <- function(dataset = x, sex_var = "sex", male_cat = "male"){
   newList <- list()
   k <- 1
   for (i in 1:length(dataset)) {
     dat <- dataset[[i]]
-    if (sum(dat[[sex_var]] == male_cat)/20 >= 0.5) {
+    if (sum(dat[[sex_var]] == male_cat)/20 > 0.49) {
       newList[[k]] <- dat
       k <- k + 1
     }
@@ -178,40 +190,3 @@ subset_data <- function(dataset = x, sex_var = "sex", male_cat = "male"){
 res <- subset_data(dataset = datlist, sex_var = "sex", male_cat = "male")
 
 length(res)
-
-## other examples
-for (i in 1:10){
-  if (i < 5) {
-    print(i)
-  }
-}
-
-for (i in 1:10){
-  if (i < 5) {
-    print(2*i)
-  } else {
-    print(i)
-  } 
-}
-
-## switch
-x <- sample(1:250, 100, replace = FALSE)
-switch("mean",
-       mean = mean(x),
-       median = median(x),
-       trimmed = mean(x, trim = .1))
-
-switch("median",
-       mean = mean(x),
-       median = median(x),
-       trimmed = mean(x, trim = .1))
-
-switch("trimmed",
-       mean = mean(x),
-       median = median(x),
-       trimmed = mean(x, trim = .1))
-
-
-
-## ifelse
-ifelse(x >= 100, 2*x, x/2)

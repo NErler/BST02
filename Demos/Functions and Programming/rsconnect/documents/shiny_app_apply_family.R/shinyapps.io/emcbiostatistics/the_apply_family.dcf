@@ -1,0 +1,13 @@
+name: the_apply_family
+title: the_apply_family
+username:
+account: emcbiostatistics
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1805030
+bundleId: 2800774
+url: https://emcbiostatistics.shinyapps.io/the_apply_family/
+when: 1581684340.45165
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: 01_The_Apply_Family.html|01_The_Apply_Family.R|02_Extra_Programming_Examples.html|02_Extra_Programming_Examples.R|Control_Flow.html|Control_Flow.R|Functions_for_Data_Exploration.html|Functions_for_Data_Exploration.R|Functions_for_Data_Manipulation.html|Functions_for_Data_Manipulation.R|shiny_app_apply_family.html

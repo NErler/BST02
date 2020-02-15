@@ -20,13 +20,14 @@ vec3 <- c("male", "female", "female", "male", "female", "female")
 #' Create matrices
 matrix(1:4, 2, 2)
 
-#'Fill matrix in by row
+#' Fill matrix in by row
 matrix(1:4, 2, 2, byrow = TRUE)
 
+#' There are multiple ways to create a matrix
 weight_columns <- cbind(pbc$age, pbc$time)
 weight_Rows <- rbind(pbc$age, pbc$time)
-matrix(weight_columns, , 2)
-matrix(weight_Rows, , 2, byrow = TRUE)
+head(matrix(weight_columns, , 2))
+head(matrix(weight_Rows, , 2, byrow = TRUE))
 
 #' TAKE CARE
 Columns_com <- cbind(c(1:4), c(1:8))

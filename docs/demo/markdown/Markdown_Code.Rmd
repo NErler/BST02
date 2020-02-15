@@ -85,7 +85,7 @@ kable(tab[, c(1,2,4)], dig = 4, caption = "Table 2: The coefficients, standard e
 plot(effect("age", fm2))
 ```
 
-### Serum bilirubin with spiders
+### Serum bilirubin with treatment
 ```{r, echo=TRUE, message = FALSE, warning = FALSE}
 plot(effect("trt", fm2))
 ```

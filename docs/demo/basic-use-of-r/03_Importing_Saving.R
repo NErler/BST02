@@ -19,7 +19,9 @@ ls()
 
 #' Save your work \
 #' Take care: first you need to set your working directory (Rstudio: Session -> Set Working Directory -> Choose Directory...)
+#' Use also the function `setwd(...)` to set the working directory
 getwd()
+
 
 dt <- pbc[1:6, c("id", "sex", "bili", "chol")]
 p <- 1
@@ -32,7 +34,7 @@ p <- 1
 #readRDS("data.RData")
 
 #' Transform a RData data set to xls, csv or text
-#write.csv(dt, "mydata.txt")
+#write.csv(dt, "mydata.csv")
 #write.table(dt, "mydata.txt", sep="\t")
 #write.xlsx(dt, "mydata.xlsx")
 

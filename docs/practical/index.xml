@@ -21,15 +21,6 @@
     </item>
     
     <item>
-      <title>BasicUseR</title>
-      <link>https://nerler.github.io/BST02/practical/basicuser/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://nerler.github.io/BST02/practical/basicuser/</guid>
-      <description> [html]  </description>
-    </item>
-    
-    <item>
       <title>Functions and Programming</title>
       <link>https://nerler.github.io/BST02/practical/functions-and-programming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -44,7 +35,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/practical/statistics-with-r/</guid>
-      <description> Linear Regression [html] Statistical Tests [html]  </description>
+      <description> Linear Regression [html] Logistic Regression and More [html] Statistical Tests [html]  </description>
     </item>
     
   </channel>

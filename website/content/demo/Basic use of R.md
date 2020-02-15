@@ -9,4 +9,4 @@ title: Basic use of R
 * 05 Data Exploration [[html]](/demo/basic-use-of-r/05_Data_Exploration.html)  [[R]](/demo/basic-use-of-r/05_Data_Exploration.R)
 * 06 Data Visualization [[html]](/demo/basic-use-of-r/06_Data_Visualization.html)  [[R]](/demo/basic-use-of-r/06_Data_Visualization.R)
 * 07 Indexing Subsetting [[html]](/demo/basic-use-of-r/07_Indexing_Subsetting.html)  [[R]](/demo/basic-use-of-r/07_Indexing_Subsetting.R)
-* 08 shiny app indexing [[R]](/demo/basic-use-of-r/08_shiny_app_indexing.R)
+* 08 shiny app indexing [[html]](/demo/basic-use-of-r/08_shiny_app_indexing.html)  [[R]](/demo/basic-use-of-r/08_shiny_app_indexing.R)
