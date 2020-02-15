@@ -1,23 +1,31 @@
 # helpfunction
 write_Demos_md <- function(x) {
-  xnew <- gsub(' ', '_', x)
+  xnew <- gsub(' ', '-', tolower(x))
   
-  files <- unique(gsub('.R$|.html$', '', 
-                       grep('.R$|.html$', 
-                            dir(file.path(getwd(), 'Demos', x)), value = TRUE)))
+  filenames <- unique(gsub('.R$|.html$|.Rmd$', '', 
+                           grep('.R$|.html$|.Rmd$', 
+                                dir(file.path(getwd(), 'Demos', x)), value = TRUE)))
   
-  filenames <- gsub("\\_", " ", files)
+  topics <- setNames(gsub("\\_", " ", filenames), filenames)
+  
+  filetypes <- sapply(filenames, function(file) {
+    gsub("^[[:print:]]*\\.", '', grep(paste0(file, '\\.'), dir(file.path(getwd(), 'Demos', x)), value = TRUE))
+  }, simplify = FALSE)
+
+  
   cat(
     paste0("---\n",
            "title: ", x, "\n",
            "---\n\n"
     ),
     paste0(
-      "* ", filenames,
-      " [[R]](/demo/", xnew, "/", files, ".R)",
-      " [[html]](/demo/", xnew, "/", files, ".html)",
-      "\n"
-    ), file = paste0('website/content/demo/', x, '.md')
+      sapply(filenames, function(file) {
+        paste0("* ", topics[file],
+               paste0(
+                 sapply(filetypes[[file]], function(type) {
+                   paste0(" [[", type, "]](/demo/", xnew, "/", file, ".", type, ")")
+                 }), collapse = ' '))
+    }), collapse = "\n"), file = paste0('website/content/demo/', x, '.md')
   )
 }
 
@@ -77,10 +85,10 @@ unlink('website/static/demo/*', recursive = TRUE)
 
 # Copy all files in folder Demos to the corresponding folders in website/static/demo
 for (x in dir('Demos')) {
-  xnew <- gsub(' ', '_', x)
+  xnew <- gsub(' ', '-', tolower(x))
   dir.create(file.path('website/static/demo', xnew))
   files <- dir(file.path(getwd(), 'Demos', x), full.names = TRUE)
-  file.copy(from = grep('.R$|.html$', files, value = TRUE),
+  file.copy(from = grep('.R$|.html$|.Rmd$', files, value = TRUE),
             to = file.path('website/static/demo', xnew),
             overwrite = TRUE)
   
