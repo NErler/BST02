@@ -138,10 +138,10 @@ for (x in list.dirs('Practicals', recursive = FALSE)) {
 
 # compile all slides
 Rmdfiles <- grep('.Rmd$', dir('Slides', full.names = TRUE), value = TRUE)
-sapply(Rmdfiles[-c(1,5)], rmarkdown::render)
+sapply(Rmdfiles, rmarkdown::render)
 
 # remove unnecessary files created during compilation 
-sapply(c('.log', '.tex', '.aux', '.out', '.vrb'),
+sapply(c('.log', '.tex', '.aux', '.out', '.vrb', '.snm', '.nav', '.toc'),
        function(k) {
          file.remove(gsub('.Rmd$', k, Rmdfiles))
        })
@@ -160,7 +160,7 @@ file.copy(from = pdfs,
 # write .md files for website/content/slide
 for (x in pdfs) {
   write_Slides_md(x)
-
+  
   img <- gsub('Slides/', '', gsub('.pdf$', '.png', x))
   
   # the following gives an error/message but works anyway
