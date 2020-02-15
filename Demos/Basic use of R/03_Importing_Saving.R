@@ -10,9 +10,9 @@
 #' Load packages \
 #' If you are using the package for the first time, you will have to first install it \
 # install.packages("survival") 
-# install.packages("xlsx") 
+# install.packages("openxlsx") 
 library(survival)
-library(xlsx)
+library(openxlsx)
 
 #' List all your R objects 
 ls()
