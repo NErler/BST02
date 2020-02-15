@@ -34,7 +34,7 @@ set.seed(2020)
 ```
 
 
-## Dataset 
+## Data
 For this practical, we will use the **birthwt** dataset from the package **MASS**.
 
 You can either load the **MASS** package to get access to this dataset
@@ -46,8 +46,6 @@ or make a copy of this data
 birthwt <- MASS::birthwt
 ```
 
-
-## Data
 The **birthwt** data have the following 10 variables:
 ```{r}
 str(birthwt)
@@ -57,8 +55,9 @@ Some of the variables are actually categorical variables, but we will not yet
 re-code them to factors in order to investigate how the variable coding can change
 the results.
 
+
 ## Fitting a Linear Regression{.tabset .tabset-fade .tabset-pills}
-### Taks1
+### Task 1
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 Write the model formula with 
 
@@ -145,7 +144,7 @@ coef(mod1)
 </div>
 
 ### Solution 3
-The p-values are given in the last column ("Pr(>|t|)") of the output under the 
+The p-values are given in the last column (`Pr(>|t|)`) of the output under the 
 header "Coefficients".
 We can see that the intercept and the effects for `race` and `smoke` significantly
 differ from 0.
@@ -205,12 +204,13 @@ cbind(estimate = coef(mod1),
       confint(mod1))
 ```
 
-Note:</br>
-Because `coef()` returns a vector, the corresponding column in our marix would not
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
+Because `coef()` returns a vector, the corresponding column in our matrix would not
 have a name. We can assign the name when we use `cbind()`.
 
 `confint()` returns a `matrix` which already has column names.
-
+</div>
 
 ## Coding of the covariates  {.tabset .tabset-pills .tabset-fade}
 Now we will re-code those covariates that are actually categorical variables.
@@ -259,14 +259,14 @@ we notice that in the summary for `mod2` we have coefficients for `race2` and `r
 in the summary for `mod1` we only had one coefficient, and that the name of the coefficient
 for `smoke` is now `smoke1`.
 
-<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
 * R automatically converts a `factor` into dummy variables!
 * The **first category** is used as **reference** category.
 * The other factor levels are appended to the variable name to identify the different dummy variables.
-</div>
 
-Note:
 Because we now have more parameters, of course also the results for model fit slightly changed.
+</div>
 
 ### Task 3
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">

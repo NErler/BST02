@@ -44,7 +44,8 @@ install.packages("effects")
 
 
 ### Dataset 
-For this practical, we will use the **pbc** dataset from the package **survival**.
+For this practical, we will use the **pbc** dataset on Primary Biliary Cholangitis
+from the package **survival**.
 
 You can either load the **survival** package to get access to this dataset
 ```{r}
@@ -60,7 +61,14 @@ The **pbc** data contain (among others) the following variables:
 str(pbc[, c(5:11, 20)])
 ```
 
+The relevant variables are
 
+* `age`: patient's age in years
+* `sex`: patient's sex
+* `ascites`: presence of ascites
+* `spiders`: presence of blood vessel malformations in the skin
+* `bili`: serum bilirubin
+* `stage`: histologic stage of the disease
 
 
 
@@ -92,13 +100,12 @@ table(pbc$ascites, exclude = NULL)
 
 #  In this case optional:
 pbc$spiders <- factor(pbc$spiders)
-pbc$stage <- factor(pbc$stage)
 ```
 
 `stage` has four levels and should be re-coded as a factor:
 ```{r}
 table(pbc$stage, exclude = NULL)
-pbc$ascites <- factor(pbc$ascites)
+pbc$stage <- factor(pbc$stage)
 ```
 
 
@@ -147,7 +154,7 @@ were excluded from the analysis.
 
 
 <br><br>
-**Interpretation fo the effect of `bili`:**
+**Interpretation of the effect of `bili`:**
 ```{r, echo = FALSE}
 cat(paste0(smod1[10:11], sep = "\n"),
     "[...]\n",
@@ -222,12 +229,13 @@ mod1b <- glm(spiders ~ age + sex + bili + ascites, data = pbc,
 mod1b <- update(mod1, formula = . ~ . - stage)
 ```
 
-**Note:**
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
 The function `update()` allows us to update models or formulas.
 
 * To update a model, specify the new values for those arguments that change.
 * To update a formula, we can use the `.` to say 'as it was' and only add the change.
-
+</div>
 
 #### Task 3
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
@@ -262,7 +270,6 @@ We now want to investigate if the continuous variables have non-linear effect.
 
 ### Task 1
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-
 To do this, use a natural cubic splines with three degrees of freedom. 
 ```{r, echo = FALSE, results = 'asis'}
 hint('Use the function `ns()` from the package `splines`.')
@@ -290,6 +297,7 @@ The coefficients tell us how much each of the basis functions of the splines
 have been scaled. They do not have a direct meaningful clinical interpretation.
 
 ### Visualization
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
 To visualize the resulting non-linear fit, we can use an effect plot.
 
 The idea is to obtain fitted values for a specific set of cases, which vary in the
@@ -298,6 +306,9 @@ covariates.
 
 The R package **effects** can help us in creating such plots:
 ```{r, fig.width = 12, fig.height = 8, message=FALSE}
+# if not installed, run:
+# install.packages("effects")
+
 library("effects")
 plot(predictorEffects(mod2))
 ```
@@ -316,7 +327,7 @@ The plot for `age`, for example, shows us the estimated probability
 For a more information about the **effects** package and its functions, 
 please refer to the reference manual and vignettes available at
 [https://CRAN.R-project.org/package=effects](https://CRAN.R-project.org/package=effects).
-
+</div>
 
 ### Task 3
 The effect plots show that the effect of `age` is quite linear, but that the
@@ -337,7 +348,7 @@ mod2b <- glm(spiders ~ age + sex + ns(bili, df = 3) + stage + ascites,
              data = pbc, family = binomial())
 ```
 
-When comparing models with regards to the effect of a variable that is modeled
+When comparing models with regards to the effect of a variable that is modelled
 using a spline, models are usually not nested (except in specific cases). therefore,
 we will use here the information criteria to compare `mod2` and `mod2b`:
 
@@ -354,7 +365,7 @@ This confirms that the spline specification for `age` is not necessary.
 
 
 ### Task 4
-The non-linear association for `bili` resemples the shape of the logarithmic function.
+The non-linear association for `bili` resembles the shape of the logarithmic function.
 
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 Investigate if we can replace the spline for `bili` with the (natural) logarithm.
@@ -388,7 +399,7 @@ plot(predictorEffect('bili', mod2c))
 ```
 
 
-## Addtitional Exercises
+## Additional Exercises
 
 ### Ordinal Covariate {.tabset .tabset-pills .tabset-fade}
 
@@ -408,54 +419,88 @@ pbc$stage_ord <- as.ordered(pbc$stage)
 # pbc$stage_ord <- factor(pbc$stage, ordered = TRUE)
 ```
 
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
+R automatically orders factors by their level (alphabetically or by number):
+```{r}
+factor(c('low', 'medium', 'high'), ordered = TRUE)
+```
+
+For ordered factors where the levels should not be ordered by alphabet (or number)
+you need to specify the `levels` in `factor()`:
+```{r}
+factor(c('low', 'medium', 'high'), levels = c('low', 'medium', 'high'), ordered = TRUE)
+```
+</div>
+
 #### Task 2
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-* Fit another version of `mod1` using `stage_ord` instead of `stage`.
-* Do not copy-paste the syntax from above, but use `update()` to change the model.
+* Fit another version of `mod1` using `stage_ord` instead of `stage`.<br>
+  Do not copy-paste the syntax from above, but use `update()` to change the model.
 * What is the interpretation of the regression coefficients for `stage_ord`?
 </div>
 
 #### Solution 2
+To update `mod1`, we need to specify that we want to change the `formula`.
+We remove the original `stage` and add `stage_ord`:
 ```{r}
 mod1c <- update(mod1, formula = . ~ . -stage + stage_ord)
 summary(mod1c)
+```
+The summary of the coefficients for `stage_ord` looks a bit different than the
+corresponding part in `mod1`. We now have:
+```{r, echo = FALSE}
+smod1c <- capture.output(summary(mod1c))
 
+cat(paste0(smod1c[10], "\n[...]\n",
+       paste0(smod1c[17:19], collapse = "\n"),
+       "\n[...]", collapse = '\n')
+)
+```
+where in `mod1` we had:
+```{r, echo = FALSE}
+cat(paste0(smod1[10], "\n[...]\n",
+       paste0(smod1[16:18], collapse = "\n"),
+       "\n[...]", collapse = '\n')
+)
+```
+
+When R creates dummy variables, the factor levels are added at the end of the
+variable name. For ordered factors, R uses by default **orthogonal polynomials**, 
+i.e., in this case a **l**inear, a **q**uadratic and a **c**ubic term.
+
+You can obtain the coding for the (ordered) factor using `contrasts()`: 
+```{r}
 contrasts(pbc$stage_ord)
 ```
-
-```{r, echo = FALSE, eval = FALSE}
+These values are values from a linear, quadratic and cubic curve at the numeric
+values of the factor levels:
+```{r, echo = FALSE, fig.width = 6, fig.height = 4, out.width = "80%", fig.align = 'center'}
 x <- seq(1, 4, length = 100)
+p4 <- poly(1:4, degree = 3)
 
-matplot(contrasts(pbc$stage_ord), type = 'l')
-matplot(contrasts(pbc$stage_ord))
-lines(x, -1.118034 + 0.4472136 * x)
-lines(x, 0.5 * (x - 2.5)^2 - 0.625, xlim = c(1, 4), ylim = c(-1, 1), col = 2)
-```
+library(ggplot2)
+plotdat <- reshape2::melt(as.data.frame(cbind(x = x, predict(p4, newdata = x))),
+                          id.vars = 'x')
 
+textdat <- reshape2::melt(as.data.frame(cbind(x = 1:4, p4)),
+                          id.vars = 'x')
+textdat$label <- c('.L', '.Q', '.C')[textdat$variable]
 
-### Investigate the problem with stage
-```{r}
-table(pbc$stage, pbc$spiders, exclude = NULL)
+ggplot(plotdat, aes(x = x, y = value, color = variable)) +
+  geom_line(size = 1) +
+  theme(panel.background = element_rect(fill = grey(0.95), color = grey(0.8)),
+        panel.grid = element_blank()) +
+  scale_color_viridis_d(guide = FALSE, end = 0.8, begin = 0, option = 'D') +
+  geom_label(data = textdat, aes(label = label), label.size = 0, size = 4) +
+  xlab('numeric factor level') +
+  ylab('orthogonal polynomial') +
+  scale_y_continuous(breaks = seq(-1, 1, 0.25))
 
-# but we also might have missing values in other variables, so better make 
-# sure we also exclude these cases from our table
-
-pbc_sub <- subset(pbc, !is.na(chol) & !is.na(stage))
-
-table(pbc_sub$stage, pbc_sub$spiders, exclude = NULL)
-
-
-pbc$stage_rev <- factor(pbc$stage, levels = 4:1, labels = 4:1)
-pbc$stage_ref4 <- relevel(pbc$stage, ref = 4)
-
-levels(pbc$stage)
-levels(pbc$stage_ref4)
-levels(pbc$stage_rev)
-
-mod1b <- glm(spiders ~ age + sex + chol + bili + stage_rev + ascites, data = pbc,
-             family = binomial())
-summary(mod1b)
 
 ```
 
-practice `update()`
+The coefficients in the `summary()` output are thus the effect estimates for
+these linear, quadratic and cubic curves and **cannot be interpreted as difference
+from a reference category** like it was the case with a dummy coded factor.
+
