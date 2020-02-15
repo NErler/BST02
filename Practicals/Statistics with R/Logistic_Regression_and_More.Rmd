@@ -388,19 +388,49 @@ plot(predictorEffect('bili', mod2c))
 ```
 
 
-## Addtitional 
+## Addtitional Exercises
 
-### Extra Task:
-How does the model interpretation change if we use the ordinal version of `stage`?
+### Ordinal Covariate {.tabset .tabset-pills .tabset-fade}
+
+The variable `stage` is actually ordinal, but when we re-coded it above, we
+did not consider that.
+
+#### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Make a an ordered factor from `stage` and call the new variable `stage_ord`.
+</div>
+
+#### Solution 1
 ```{r}
-pbc$stage_ord <- factor(pbc$stage, ordered = TRUE) # or as.ordered()
+pbc$stage_ord <- as.ordered(pbc$stage)
 
-mod1c <- glm(spiders ~ age + sex + chol + bili + stage_ord + ascites, data = pbc,
-            family = binomial())
-summary(mod1c)
-
+# or alternatively:
+# pbc$stage_ord <- factor(pbc$stage, ordered = TRUE)
 ```
 
+#### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+* Fit another version of `mod1` using `stage_ord` instead of `stage`.
+* Do not copy-paste the syntax from above, but use `update()` to change the model.
+* What is the interpretation of the regression coefficients for `stage_ord`?
+</div>
+
+#### Solution 2
+```{r}
+mod1c <- update(mod1, formula = . ~ . -stage + stage_ord)
+summary(mod1c)
+
+contrasts(pbc$stage_ord)
+```
+
+```{r, echo = FALSE, eval = FALSE}
+x <- seq(1, 4, length = 100)
+
+matplot(contrasts(pbc$stage_ord), type = 'l')
+matplot(contrasts(pbc$stage_ord))
+lines(x, -1.118034 + 0.4472136 * x)
+lines(x, 0.5 * (x - 2.5)^2 - 0.625, xlim = c(1, 4), ylim = c(-1, 1), col = 2)
+```
 
 
 ### Investigate the problem with stage
