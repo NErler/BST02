@@ -30,7 +30,7 @@ write_Demos_md <- function(x) {
 }
 
 write_Practicals_md <- function(x) {
-  xnew <- gsub(' ', '_', x)
+  xnew <- gsub(' ', '-', tolower(x))
   
   files <- gsub('.Rmd$', '',
                 grep('.Rmd$', dir(file.path(getwd(), 'Practicals', x)),
@@ -116,7 +116,7 @@ unlink('website/static/practical/*', recursive = TRUE)
 for (x in list.dirs('Practicals', recursive = FALSE)) {
   x <- gsub('Practicals/', '', x)
   
-  xnew <- gsub(' ', '_', x)
+  xnew <- gsub(' ', '-', tolower(x))
   
   dir.create(file.path('website/static/practical', xnew))
   

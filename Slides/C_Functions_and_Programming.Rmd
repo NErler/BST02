@@ -183,7 +183,7 @@ class(class)
 \begin{column}{0.47\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Functions for Data Exploration \button{link to R file}{R} \button{link to html file}{html}
+\item Functions for Data Exploration \button{https://nerler.github.io/BST02/demo/functions-and-programming/Functions_for_Data_Exploration.R}{R} \button{https://nerler.github.io/BST02/demo/functions-and-programming/Functions_for_Data_Exploration.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -191,7 +191,7 @@ class(class)
 \begin{column}{0.47\linewidth}
 \begin{block}{Practicals}
 \begin{itemize}
-\item Exploring and Summarizing Data \button{link to html file}{html}
+\item Exploring and Summarizing Data \button{https://nerler.github.io/BST02/practical/functions-and-programming/Exploring_and_Summarizing_Data.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -267,15 +267,14 @@ class(class)
 \begin{column}{0.47\linewidth}
 \begin{block}{Demo}
 \begin{itemize}
-\item Functions for Data Manipulation \button{link to R file}{R} \button{link to html file}{html}
-\end{itemize}
+\item Functions for Data Manipulation \button{https://nerler.github.io/BST02/demo/functions-and-programming/Functions_for_Data_Manipulation.R}{R} \button{https://nerler.github.io/BST02/demo/functions-and-programming/Functions_for_Data_Manipulation.html}{html} \end{itemize}
 \end{block}
 \end{column}
 
 \begin{column}{0.47\linewidth}
 \begin{block}{Practicals}
 \begin{itemize}
-\item Merging Data \button{link to html file}{html}
+\item Merging Datasets \button{https://nerler.github.io/BST02/practical/functions-and-programming/Merging_Datasets.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -412,7 +411,7 @@ multiply(x = 3)
 \begin{column}{0.47\linewidth}
 \begin{block}{Practical}
 \begin{itemize}
-\item Rolling the Dice \button{https://nerler.github.io/BST02/practical/Functions and Programming/Rolling_the_Dice.html}{html}
+\item Rolling the Dice \button{https://nerler.github.io/BST02/practical/functions-and-programming/Rolling_the_Dice.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -560,7 +559,7 @@ while (s < 7) {
 \begin{column}{0.47\linewidth}
 \begin{block}{Demo}
 \begin{itemize}
-\item Control Flow \button{link to R file}{R} \button{link to html file}{html}
+\item Control Flow \button{https://nerler.github.io/BST02/demo/functions-and-programming/Control_Flow.R}{R} \item Rolling the Dice \button{https://nerler.github.io/BST02/demo/functions-and-programming/Control_Flow.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -568,7 +567,7 @@ while (s < 7) {
 \begin{column}{0.47\linewidth}
 \begin{block}{Practical}
 \begin{itemize}
-\item Control Flow and Functions \button{https://nerler.github.io/BST02/practical/Functions and Programming/Rolling_the_Dice.html}{html}
+\item Control Flow and Functions \button{https://nerler.github.io/BST02/practical/functions-and-programming/Rolling_the_Dice.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -942,7 +941,7 @@ In order to run the app you will need to install the packages:
 \begin{block}{Demos}
 \begin{itemize}
 \item The Apply Family 
-\button{https://nerler.github.io/BST02/demo/Functions_and_Programming/01_The_Apply_Family.R}{R} \button{https://nerler.github.io/BST02/demo/Functions_and_Programming/01_The_Apply_Family.html}{html}
+\button{https://nerler.github.io/BST02/demo/functions-and-programming/01_The_Apply_Family.R}{R} \button{https://nerler.github.io/BST02/demo/functions-and-programming/01_The_Apply_Family.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -950,7 +949,7 @@ In order to run the app you will need to install the packages:
 \begin{column}{0.47\linewidth}
 \begin{block}{Practicals}
 \begin{itemize}
-\item The Apply Family \button{https://nerler.github.io/BST02/practical/Functions and Programming/The_Apply_Family.html}{html}
+\item The Apply Family \button{https://nerler.github.io/BST02/practical/functions-and-programming/The_Apply_Family.html}{html}
 \end{itemize}
 \end{block}
 \end{column}

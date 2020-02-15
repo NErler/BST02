@@ -48,7 +48,7 @@ The most valuable tool of a modern quantitative researcher is his/her personal c
 * \blue{Part C}: Programming
   - using and writing functions, popular functions which you will later need for the more advanced courses such as Repeated **Measurements (CE08)**, **Bayesian Statistics (CE09)**, etc.
 * \blue{Part D}: Statistics with **R**
-  - basic statistical tests, regression analysis 
+  - basic statistical tests, regression analysis
 * \blue{Part E}: tools
   - some interesting tools for reporting data analyses in a reproducible manner
 

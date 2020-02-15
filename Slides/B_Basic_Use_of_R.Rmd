@@ -280,7 +280,7 @@ y
 \begin{block}{Demos}
 \begin{itemize}
 \item Basic R 
-\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/01_Basic_R.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/01_Basic_R.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/01_Basic_R.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/01_Basic_R.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -467,7 +467,7 @@ list1
 \begin{block}{Demos}
 \begin{itemize}
 \item Common R Objects 
-\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/02_Common_R_objects.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/02_Common_R_objects.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/02_Common_R_objects.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/02_Common_R_objects.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -530,8 +530,8 @@ list1
 \begin{block}{Demos}
 \begin{itemize}
 \item Importing and Saving 
-\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/03_Importing_Saving.R}{R} 
-\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/03_Importing_Saving.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/03_Importing_Saving.R}{R} 
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/03_Importing_Saving.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -611,7 +611,7 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 \begin{block}{Demos}
 \begin{itemize}
 \item Data Transformation 
-\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/04_Data_Transformation.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/04_Data_Transformation.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/04_Data_Transformation.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/04_Data_Transformation.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -655,8 +655,8 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 \begin{block}{Demos}
 \begin{itemize}
 \item Data Exploration 
-\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/05_Data_Exploration.R}{R} 
-\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/05_Data_Exploration.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/05_Data_Exploration.R}{R} 
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/05_Data_Exploration.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -796,7 +796,7 @@ pie(prop.table(table(pbc$status)),
 \begin{block}{Demos}
 \begin{itemize}
 \item Data Visualization 
-\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/06_Data_Visualization.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/06_Data_Visualization.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/06_Data_Visualization.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/06_Data_Visualization.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -1162,7 +1162,7 @@ https://emcbiostatistics.shinyapps.io/indexing/
 \begin{column}{0.52\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Shiny app indexing subsetting \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/08_shiny_app_indexing.R}{R} 
+\item Shiny app indexing subsetting \button{https://nerler.github.io/BST02/demo/basic-use-of-r/08_shiny_app_indexing.R}{R} 
 \end{itemize}
 \end{block}
 \end{column}
@@ -1225,7 +1225,7 @@ In order to run the app you will need to install the packages:
 \begin{block}{Demos}
 \begin{itemize}
 \item Indexing Subsetting 
-\button{https://nerler.github.io/BST02/demo/Basic_use_of_R/07_Indexing_Subsetting.R}{R} \button{https://nerler.github.io/BST02/demo/Basic_use_of_R/07_Indexing_Subsetting.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/07_Indexing_Subsetting.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/07_Indexing_Subsetting.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -1233,7 +1233,7 @@ In order to run the app you will need to install the packages:
 \begin{column}{0.47\linewidth}
 \begin{block}{Practicals}
 \begin{itemize}
-\item Basic Use R \button{https://nerler.github.io/BST02/practical/Functions and Programming/Basic_Use_R..html}{html}
+\item Basic Use R \button{https://nerler.github.io/BST02/practical/basic-use-of-r/Basic_Use_R.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
