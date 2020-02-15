@@ -11,7 +11,7 @@
 #' 
 
 #' ## Dataset
-#' We will explore the datasets `swiss` and `esoph` (both automatically availabe in R).
+#' We will explore the datasets `swiss` and `esoph` (both automatically available in R).
 #' 
 
 # ------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ dim(swiss)
 nrow(swiss)
 ncol(swiss)
 
-#' Be carefull:
+#' Be careful:
 length(swiss)
 
 #' Why is that?
@@ -208,7 +208,7 @@ cov(esoph)
 cov2cor(var(swiss))
 
 #' The correlation matrix can be obtained directly using `cor()`. The argument 
-#' `method` allows the choice of pearson", "kendall" or "spearman" correation.
+#' `method` allows the choice of pearson", "kendall" or "spearman" correlation.
 cor(swiss, method = 'kendall')
 
 

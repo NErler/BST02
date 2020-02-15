@@ -1526,7 +1526,7 @@ div.tocify {
 
 <div id="dataset" class="section level2">
 <h2>Dataset</h2>
-<p>We will work with the datasets <code>swiss</code> and <code>esoph</code> (both automatically availabe in R).</p>
+<p>We will work with the datasets <code>swiss</code> and <code>esoph</code> (both automatically available in R).</p>
 </div>
 <div id="transformations" class="section level2">
 <h2>Transformations</h2>
@@ -1545,7 +1545,7 @@ div.tocify {
 ## [23] 4.036009 4.050044 4.283587 4.306764 4.276666 4.102643 4.065602 4.180522 4.324133 4.238445 4.347694
 ## [34] 4.255613 4.374498 4.174387 4.523960 4.373238 4.254193 4.185099 4.286341 4.165114 4.351567 4.213608
 ## [45] 3.555348 3.799974 3.756538</code></pre>
-<p>For other commonly used bases we can use separate functions, e.g. <code>log2()</code> or <code>log10</code>. The argument <code>base</code> allows us to change the base of the logarithm to any value:</p>
+<p>For other commonly used bases we can use separate functions, e.g. <code>log2()</code> or <code>log10()</code>. The argument <code>base</code> allows us to change the base of the logarithm to any value:</p>
 <pre class="r"><code>log(swiss$Fertility, base = 2)</code></pre>
 <pre><code>##  [1] 6.325530 6.376777 6.531381 6.422906 6.264912 6.249825 6.388878 6.529821 6.364572 6.373300 6.444601
 ## [12] 6.002252 6.063934 6.106432 5.947199 6.093814 6.163901 5.799605 5.762880 6.024586 6.033423 6.022368
@@ -1590,15 +1590,16 @@ div.tocify {
 ## [34] 8.396428 8.910668 8.062258 9.602083 8.905055 8.390471 8.105554 8.526429 8.024961 8.809086 8.221922
 ## [45] 5.916080 6.685806 6.542171</code></pre>
 <p>Absolute value</p>
-<pre class="r"><code>(x &lt;- rnorm(10))</code></pre>
-<pre><code>##  [1] -0.84818274  0.56439815 -0.08345734 -0.68554381  1.73102476 -0.09537088 -1.19906619 -0.74732579
-##  [9] -0.93471408 -0.51626702</code></pre>
+<pre class="r"><code>x &lt;- rnorm(10)
+x</code></pre>
+<pre><code>##  [1] -0.495370746  0.638987765  0.668263409  0.223569149 -0.787458420 -0.468655306 -0.975442061
+##  [8]  0.109526662  0.719720859 -0.001805468</code></pre>
 <pre class="r"><code>abs(x)</code></pre>
-<pre><code>##  [1] 0.84818274 0.56439815 0.08345734 0.68554381 1.73102476 0.09537088 1.19906619 0.74732579 0.93471408
-## [10] 0.51626702</code></pre>
+<pre><code>##  [1] 0.495370746 0.638987765 0.668263409 0.223569149 0.787458420 0.468655306 0.975442061 0.109526662
+##  [9] 0.719720859 0.001805468</code></pre>
 <p>Distribution function of the logistic distribution: this function is for instance useful to convert the linear predictor of a logistic model to the probability scale.</p>
 <pre class="r"><code>plogis(x)</code></pre>
-<pre><code>##  [1] 0.2998142 0.6374696 0.4791478 0.3350251 0.8495435 0.4761753 0.2316414 0.3214043 0.2819693 0.3737255</code></pre>
+<pre><code>##  [1] 0.3786292 0.6545246 0.6611142 0.5556606 0.3127147 0.3849346 0.2737971 0.5273543 0.6725455 0.4995486</code></pre>
 </div>
 </div>
 <div id="splitting-combining" class="section level2">
@@ -1607,28 +1608,28 @@ div.tocify {
 <h3>Dividing a (continuous) variable into a <code>factor</code></h3>
 <p>The function <code>cut()</code> allows us to convert a numeric variable to a factor. The arguments <code>breaks</code> is used to specify the cutoffs for the categories.</p>
 <pre class="r"><code>(x &lt;- rnorm(20))</code></pre>
-<pre><code>##  [1] -1.24321904 -0.79711829  0.29665977 -0.92222313  0.67074998  0.54996263  0.85496792  0.99945345
-##  [9]  0.97771726 -1.56518806  0.72374308 -0.27909979 -1.15079794  0.08594062  1.93406148  0.33529186
-## [17]  0.33636487  1.06382168 -0.60988438  0.64352873</code></pre>
+<pre><code>##  [1]  0.42406551  1.14262893  0.63088842  1.16168649 -0.13104406 -0.48441873  0.07840924  1.31294411
+##  [9] -0.07071251  1.10220853  0.22479520 -0.58136039 -1.04879430  1.38289797  0.08876024 -0.89017791
+## [17]  0.19339059 -0.93065497 -0.62096925 -2.59161153</code></pre>
 <pre class="r"><code>cut(x, breaks = c(-1, 0, 1))</code></pre>
-<pre><code>##  [1] &lt;NA&gt;   (-1,0] (0,1]  (-1,0] (0,1]  (0,1]  (0,1]  (0,1]  (0,1]  &lt;NA&gt;   (0,1]  (-1,0] &lt;NA&gt;   (0,1] 
-## [15] &lt;NA&gt;   (0,1]  (0,1]  &lt;NA&gt;   (-1,0] (0,1] 
+<pre><code>##  [1] (0,1]  &lt;NA&gt;   (0,1]  &lt;NA&gt;   (-1,0] (-1,0] (0,1]  &lt;NA&gt;   (-1,0] &lt;NA&gt;   (0,1]  (-1,0] &lt;NA&gt;   &lt;NA&gt;  
+## [15] (0,1]  (-1,0] (0,1]  (-1,0] (-1,0] &lt;NA&gt;  
 ## Levels: (-1,0] (0,1]</code></pre>
 <p>Note that values outside the smallest and largest “break” are set to <code>NA</code>. To prevent that we can include <code>-Inf</code> and <code>Inf</code>:</p>
 <pre class="r"><code>cut(x, breaks = c(-Inf, -1, 0, 1, Inf))</code></pre>
-<pre><code>##  [1] (-Inf,-1] (-1,0]    (0,1]     (-1,0]    (0,1]     (0,1]     (0,1]     (0,1]     (0,1]     (-Inf,-1]
-## [11] (0,1]     (-1,0]    (-Inf,-1] (0,1]     (1, Inf]  (0,1]     (0,1]     (1, Inf]  (-1,0]    (0,1]    
+<pre><code>##  [1] (0,1]     (1, Inf]  (0,1]     (1, Inf]  (-1,0]    (-1,0]    (0,1]     (1, Inf]  (-1,0]    (1, Inf] 
+## [11] (0,1]     (-1,0]    (-Inf,-1] (1, Inf]  (0,1]     (-1,0]    (0,1]     (-1,0]    (-1,0]    (-Inf,-1]
 ## Levels: (-Inf,-1] (-1,0] (0,1] (1, Inf]</code></pre>
 <p>By default, the lower bound of each interval is excluded, the upper bound is included. We can include the lowest bound by setting <code>include.lowest = TRUE</code>.</p>
 <pre class="r"><code>cut(x, breaks = c(-Inf, -1, 0, 1, Inf), include.lowest = TRUE)</code></pre>
-<pre><code>##  [1] [-Inf,-1] (-1,0]    (0,1]     (-1,0]    (0,1]     (0,1]     (0,1]     (0,1]     (0,1]     [-Inf,-1]
-## [11] (0,1]     (-1,0]    [-Inf,-1] (0,1]     (1, Inf]  (0,1]     (0,1]     (1, Inf]  (-1,0]    (0,1]    
+<pre><code>##  [1] (0,1]     (1, Inf]  (0,1]     (1, Inf]  (-1,0]    (-1,0]    (0,1]     (1, Inf]  (-1,0]    (1, Inf] 
+## [11] (0,1]     (-1,0]    [-Inf,-1] (1, Inf]  (0,1]     (-1,0]    (0,1]     (-1,0]    (-1,0]    [-Inf,-1]
 ## Levels: [-Inf,-1] (-1,0] (0,1] (1, Inf]</code></pre>
 <p>Note that this only changes the lower bound of the lowest interval. The argument <code>right</code> specifies that the right bound of each interval is included, this chan be changed by setting <code>right = FALSE</code>. By default, the resulting factor is unordered. With the argument <code>ordered_result = TRUE</code> we can change this. (More on ordered factors later.)</p>
 <p>To set custom labels for the categories, the argument <code>labels</code> can be used:</p>
 <pre class="r"><code>cut(x, breaks = c(-Inf, -1, 0, 1, Inf), labels = c(&#39;lowest&#39;, &#39;low&#39;, &#39;high&#39;, &#39;highest&#39;))</code></pre>
-<pre><code>##  [1] lowest  low     high    low     high    high    high    high    high    lowest  high    low    
-## [13] lowest  high    highest high    high    highest low     high   
+<pre><code>##  [1] high    highest high    highest low     low     high    highest low     highest high    low    
+## [13] lowest  highest high    low     high    low     low     lowest 
 ## Levels: lowest low high highest</code></pre>
 </div>
 <div id="splitting-a-data.frame-matrix-or-vector" class="section level3">
@@ -1687,7 +1688,7 @@ div.tocify {
 ## V. De Geneve      35.0         1.2          37        53    42.34             18.0
 ## Rive Droite       44.7        46.6          16        29    50.43             18.2
 ## Rive Gauche       42.8        27.7          22        29    58.33             19.3</code></pre>
-<p>This creates a list with one element per category of <code>f</code>. When the splitting factor has more categories, the list has more elemets:</p>
+<p>This creates a list with one element per category of <code>f</code>. When the splitting factor has more categories, the list has more elements:</p>
 <pre class="r"><code>split(swiss, f = cut(swiss$Education, c(0, 5, 10, 15, 20)))</code></pre>
 <pre><code>## $`(0,5]`
 ##              Fertility Agriculture Examination Education Catholic Infant.Mortality
@@ -1808,11 +1809,12 @@ div.tocify {
 <p>The list elements will always have the same class as the original object, i.e., when we split a vector, we obtain a list of vectors:</p>
 <pre class="r"><code>split(x, x &gt; 0)</code></pre>
 <pre><code>## $`FALSE`
-## [1] -1.2432190 -0.7971183 -0.9222231 -1.5651881 -0.2790998 -1.1507979 -0.6098844
+## [1] -0.13104406 -0.48441873 -0.07071251 -0.58136039 -1.04879430 -0.89017791 -0.93065497 -0.62096925
+## [9] -2.59161153
 ## 
 ## $`TRUE`
-##  [1] 0.29665977 0.67074998 0.54996263 0.85496792 0.99945345 0.97771726 0.72374308 0.08594062 1.93406148
-## [10] 0.33529186 0.33636487 1.06382168 0.64352873</code></pre>
+##  [1] 0.42406551 1.14262893 0.63088842 1.16168649 0.07840924 1.31294411 1.10220853 0.22479520 1.38289797
+## [10] 0.08876024 0.19339059</code></pre>
 </div>
 <div id="combining-vectors-etc." class="section level3">
 <h3>Combining <code>vectors</code> etc.</h3>
@@ -1919,7 +1921,7 @@ div.tocify {
 </div>
 <div id="getting-a-subset-of-a-data.frame" class="section level3">
 <h3>Getting a subset of a <code>data.frame</code></h3>
-<p>The function <code>subset()</code> helps us to get a subset of a <code>data.frame</code>. Its arguments <code>subset</code> and <code>select</code> are used to specify which cases and which variables shouls be selected:</p>
+<p>The function <code>subset()</code> helps us to get a subset of a <code>data.frame</code>. Its arguments <code>subset</code> and <code>select</code> are used to specify which cases and which variables should be selected:</p>
 <pre class="r"><code>subset(swiss, 
        subset = Education &gt; 15,
        select = c(Fertility, Education, Infant.Mortality))</code></pre>
@@ -1939,6 +1941,7 @@ div.tocify {
 <pre class="r"><code># Create two datasets
 dat1 &lt;- swiss
 dat1$id &lt;- rownames(swiss)
+
 dat2 &lt;- data.frame(id = c(paste0(&#39;newid&#39;, 1:5), rownames(swiss)[1:30]),
                    x = rnorm(35))
 
@@ -1952,21 +1955,21 @@ head(dat1)</code></pre>
 ## Porrentruy        76.1        35.3           9         7    90.57             26.6   Porrentruy</code></pre>
 <pre class="r"><code>head(dat2)</code></pre>
 <pre><code>##           id          x
-## 1     newid1 -0.2833042
-## 2     newid2  1.2756828
-## 3     newid3  0.1380195
-## 4     newid4 -2.3261836
-## 5     newid5 -1.2101094
-## 6 Courtelary  1.1000837</code></pre>
+## 1     newid1 -0.4674319
+## 2     newid2 -0.7494522
+## 3     newid3  1.4201191
+## 4     newid4 -0.6280849
+## 5     newid5  2.0089809
+## 6 Courtelary  2.5157230</code></pre>
 <pre class="r"><code>mdat &lt;- merge(dat1, dat2)
 head(mdat)</code></pre>
-<pre><code>##           id Fertility Agriculture Examination Education Catholic Infant.Mortality            x
-## 1      Aigle      64.1        62.0          21        12     8.52             16.5 -0.006339981
-## 2    Aubonne      66.9        67.5          14         7     2.27             19.1 -1.523509376
-## 3   Avenches      68.9        60.7          19        12     4.43             22.7  1.228422935
-## 4      Broye      83.8        70.2          16         7    92.85             23.6 -0.633625984
-## 5   Cossonay      61.7        69.3          22         5     2.82             18.7  0.127369809
-## 6 Courtelary      80.2        17.0          15        12     9.96             22.2  1.100083693</code></pre>
+<pre><code>##           id Fertility Agriculture Examination Education Catholic Infant.Mortality          x
+## 1      Aigle      64.1        62.0          21        12     8.52             16.5 -0.6488102
+## 2    Aubonne      66.9        67.5          14         7     2.27             19.1 -1.1347418
+## 3   Avenches      68.9        60.7          19        12     4.43             22.7  0.8062628
+## 4      Broye      83.8        70.2          16         7    92.85             23.6  0.2180469
+## 5   Cossonay      61.7        69.3          22         5     2.82             18.7  0.9865646
+## 6 Courtelary      80.2        17.0          15        12     9.96             22.2  2.5157230</code></pre>
 <pre class="r"><code>dim(mdat)</code></pre>
 <pre><code>## [1] 30  8</code></pre>
 <p>The arguments <code>all</code>, <code>all.x</code> and <code>all.y</code> allow us to specify what happens with cases that are only found in one of the two datasets:</p>
@@ -1977,13 +1980,13 @@ mdat_y &lt;- merge(dat1, dat2, all.y = TRUE)
 dim(mdat_all)</code></pre>
 <pre><code>## [1] 52  8</code></pre>
 <pre class="r"><code>head(mdat_all)</code></pre>
-<pre><code>##         id Fertility Agriculture Examination Education Catholic Infant.Mortality            x
-## 1    Aigle      64.1        62.0          21        12     8.52             16.5 -0.006339981
-## 2  Aubonne      66.9        67.5          14         7     2.27             19.1 -1.523509376
-## 3 Avenches      68.9        60.7          19        12     4.43             22.7  1.228422935
-## 4   Boudry      70.4        38.4          26        12     5.62             20.3           NA
-## 5    Broye      83.8        70.2          16         7    92.85             23.6 -0.633625984
-## 6  Conthey      75.5        85.9           3         2    99.71             15.1           NA</code></pre>
+<pre><code>##         id Fertility Agriculture Examination Education Catholic Infant.Mortality          x
+## 1    Aigle      64.1        62.0          21        12     8.52             16.5 -0.6488102
+## 2  Aubonne      66.9        67.5          14         7     2.27             19.1 -1.1347418
+## 3 Avenches      68.9        60.7          19        12     4.43             22.7  0.8062628
+## 4   Boudry      70.4        38.4          26        12     5.62             20.3         NA
+## 5    Broye      83.8        70.2          16         7    92.85             23.6  0.2180469
+## 6  Conthey      75.5        85.9           3         2    99.71             15.1         NA</code></pre>
 <pre class="r"><code>dim(mdat_x)</code></pre>
 <pre><code>## [1] 47  8</code></pre>
 <pre class="r"><code>dim(mdat_y)</code></pre>
@@ -1991,22 +1994,23 @@ dim(mdat_all)</code></pre>
 <p>By default, <code>merge()</code> will take all identical column names to merge by. Arguments <code>by.x</code> and <code>by.y</code> allow us to specify the names of variables in each of the datasets to use for merging. This is also possible when variable names differ:</p>
 <pre class="r"><code>dat2$z &lt;- sample(1:10, size = nrow(dat2), replace = TRUE) # we add a new variable to the data
 dat2$Examination &lt;- dat1$Examination[match(dat2$id, dat1$id)]
+
 mdat3 &lt;- merge(dat1, dat2, by.x = c(&#39;id&#39;, &#39;Education&#39;), by.y = c(&#39;id&#39;, &#39;z&#39;),
                all = TRUE)
 
 head(mdat3) </code></pre>
-<pre><code>##         id Education Fertility Agriculture Examination.x Catholic Infant.Mortality            x
-## 1    Aigle         9        NA          NA            NA       NA               NA -0.006339981
-## 2    Aigle        12      64.1        62.0            21     8.52             16.5           NA
-## 3  Aubonne         6        NA          NA            NA       NA               NA -1.523509376
-## 4  Aubonne         7      66.9        67.5            14     2.27             19.1           NA
-## 5 Avenches        10        NA          NA            NA       NA               NA  1.228422935
-## 6 Avenches        12      68.9        60.7            19     4.43             22.7           NA
+<pre><code>##         id Education Fertility Agriculture Examination.x Catholic Infant.Mortality          x
+## 1    Aigle         2        NA          NA            NA       NA               NA -0.6488102
+## 2    Aigle        12      64.1        62.0            21     8.52             16.5         NA
+## 3  Aubonne         7      66.9        67.5            14     2.27             19.1         NA
+## 4  Aubonne         8        NA          NA            NA       NA               NA -1.1347418
+## 5 Avenches         2        NA          NA            NA       NA               NA  0.8062628
+## 6 Avenches        12      68.9        60.7            19     4.43             22.7         NA
 ##   Examination.y
 ## 1            21
 ## 2            NA
-## 3            14
-## 4            NA
+## 3            NA
+## 4            14
 ## 5            19
 ## 6            NA</code></pre>
 <ul>

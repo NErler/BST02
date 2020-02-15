@@ -17,7 +17,7 @@ options(width = 105)
 
 
 #' ## Dataset
-#' We will work with the datasets `swiss` and `esoph` (both automatically availabe in R).
+#' We will work with the datasets `swiss` and `esoph` (both automatically available in R).
 #' 
 
 #' ## Transformations
@@ -28,7 +28,7 @@ log(swiss$Fertility)
 log(swiss$Fertility, base = exp(1))
 
 #' For other commonly used bases we can use separate functions, e.g. `log2()` or
-#' `log10`.
+#' `log10()`.
 #' The argument `base` allows us to change the base of the logarithm to any value:
 log(swiss$Fertility, base = 2)
 log2(swiss$Fertility)
@@ -36,19 +36,30 @@ log2(swiss$Fertility)
 log(swiss$Fertility, base = 10)
 log10(swiss$Fertility)
 
+
+
 #' ### Other transformations
+
 #' Exponential function
 exp(swiss$Fertility)
+
 #' Square root
 sqrt(swiss$Fertility)
+
 #' Absolute value
-(x <- rnorm(10))
+x <- rnorm(10)
+x
 abs(x)
-#' Distribution function of the logistic distribution: this function is for instance
-#' useful to convert the linear predictor of a logistic model to the probability scale.
+
+#' Distribution function of the logistic distribution:
+#' this function is for instance useful to convert the linear predictor of a 
+#' logistic model to the probability scale.
 plogis(x)
 
+
+
 #' ## Splitting & Combining
+
 #' ### Dividing a (continuous) variable into a `factor`
 #' The function `cut()` allows us to convert a numeric variable to a factor.
 #' The arguments `breaks` is used to specify the cutoffs for the
@@ -62,6 +73,7 @@ cut(x, breaks = c(-Inf, -1, 0, 1, Inf))
 #' By default, the lower bound of each interval is excluded, the upper bound is included.
 #' We can include the lowest bound by setting `include.lowest = TRUE`.
 cut(x, breaks = c(-Inf, -1, 0, 1, Inf), include.lowest = TRUE)
+
 #' Note that this only changes the lower bound of the lowest interval.
 #' The argument `right` specifies that the right bound of each interval is included,
 #' this chan be changed by setting `right = FALSE`.
@@ -72,13 +84,15 @@ cut(x, breaks = c(-Inf, -1, 0, 1, Inf), include.lowest = TRUE)
 cut(x, breaks = c(-Inf, -1, 0, 1, Inf), labels = c('lowest', 'low', 'high', 'highest'))
 #' 
  
+
+
 #' ### Splitting a `data.frame`, `matrix` or `vector`
 #' The function `split()` splits a `data.frame`, `matrix` or `vector` by one 
 #' or more categorical variables:
 split(swiss, f = swiss$Education > 10)
 #' This creates a list with one element per category of `f`.
  
-#' When the splitting factor has more categories, the list has more elemets:
+#' When the splitting factor has more categories, the list has more elements:
 split(swiss, f = cut(swiss$Education, c(0, 5, 10, 15, 20)))
 #' Note that cases with Education > 20 are now excluded (because we set the highest
 #' breakpoint in `cut()` to 20).
@@ -119,6 +133,7 @@ cbind(x, z)
 c(list1, LETTERS[4:7])
 c(list1, list(LETTERS[4:7]))
 
+
 #' ### Combining strings
 #' The function `paste()` (and it's special case `paste0()`) 
 #' allows us to combine objects into strings:
@@ -129,21 +144,25 @@ paste0("The mean of x is ", mean(x), ".")
 paste("This", "is", "a", "sentence.", sep = " +++ ")
 paste(c("This", "is", "a", "sentence."), collapse = " +++ ")
 
+
+
 #' ### Getting a subset of a `data.frame`
 #' The function `subset()` helps us to get a subset of a `data.frame`.
 #' Its arguments `subset` and `select` are used to specify which cases and which
-#' variables shouls be selected:
+#' variables should be selected:
 subset(swiss, 
        subset = Education > 15,
        select = c(Fertility, Education, Infant.Mortality))
 #' Note that here we can use the variable names without quotes.
 #' 
 
+
 #' ### Merging data
 #' The function `merge()` allows us to merge two datasets.
 # Create two datasets
 dat1 <- swiss
 dat1$id <- rownames(swiss)
+
 dat2 <- data.frame(id = c(paste0('newid', 1:5), rownames(swiss)[1:30]),
                    x = rnorm(35))
 
@@ -172,6 +191,7 @@ dim(mdat_y)
 #' variable names differ:
 dat2$z <- sample(1:10, size = nrow(dat2), replace = TRUE) # we add a new variable to the data
 dat2$Examination <- dat1$Examination[match(dat2$id, dat1$id)]
+
 mdat3 <- merge(dat1, dat2, by.x = c('id', 'Education'), by.y = c('id', 'z'),
                all = TRUE)
 
@@ -187,6 +207,7 @@ head(mdat3)
 (a <- c('G', 'A', 'D', 'B', 'Z'))
 (b <- LETTERS[1:8])
 match(a, b)
+
 
 #' ## Repetition and Sequences
 #' The function `rep()` replicates elements of a `vector` or a `list`.
@@ -210,6 +231,7 @@ expand.grid(x = c(1, 2, 3),
             a = c('a', 'b'))
 
 
+
 #' ## Transforming objects
 #' The function `t()` transposes a `matrix` or a `data.frame`:
 (M <- matrix(nrow = 3, ncol = 2, data = 1:6))
@@ -220,6 +242,7 @@ t(M)
 (x <- c(1, 2, 3))
 t(x)
 t(t(x))
+
 
 #' `unlist()` flattens lists:
 (mylist <- list(a = c(2, 5, 1),
