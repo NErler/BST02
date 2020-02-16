@@ -1,0 +1,506 @@
+---
+title: 'A Custom Subset Function'
+output: 
+  html_document:
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+    number_sections: false
+    theme: spacelab
+    highlight: tango
+    includes:
+      after_body: ../footerNE.html
+    css: ../style.css
+---
+
+
+```{r setup, include = FALSE}
+library(knitr)
+library(kableExtra)
+options(knitr.kable.NA = '')
+
+
+opts_chunk$set(echo = TRUE)
+
+hint <- function(text) {
+  id <- paste0('hint_', sample.int(1e10, size = 1))
+    cat(
+    paste0('\n',
+      '<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" ',
+      'data-target="#', id, '">Hint</button>',
+      '<div id = "', id, '" class="collapse" style="border:1px; ',
+      'border-style:solid; padding: 1em; border-color:#1F78B4">',
+      text, '</div>')
+  )
+}
+
+set.seed(2020)
+```
+
+
+## Selection base on an interval {.tabset .tabset-pills .tabset-fade}
+
+Aim of this practical is to write a function that selects a subset of 
+a dataset based on whether a particular variable is inside an interval.
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
+When writing functions, there are usually many ways that lead to the same solution.
+The solutions given here are suggestions, but there are many other ways the
+functions could be written.
+</div>
+<br>
+
+
+### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+* How many arguments does our function need? 
+* What type of input do you need for these arguments?
+</div>
+
+
+### Solution 1
+The function needs three arguments. We will call them
+
+* `dat`: `a data.frame`
+* `variable`: the name of the variable based on which the subset is created (a character string)
+* `interval`: a numeric vector of length two, with the lower and upper limit of the interval
+
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+
+Now, write the function.
+
+* It should create a filter variable that tells us for each row of the
+  dataset `dat` if the value of `variable` is inside the `interval` or not.
+* Using this filter variable, create the subset and return it.
+* Create your own example `data.frame` to test the function.
+
+</div>
+
+
+### Solution 2
+
+```{r}
+fun1 <- function(dat, variable, interval) {
+  filter <- dat[, variable] > interval[1] & dat[, variable] < interval[2]
+  
+  subset(dat, subset = filter)
+}
+```
+
+To test the function, we create a dataset that allows us to check easily
+if what the function returns is correct:
+```{r}
+exdat <- data.frame(a = 1:10,
+                    b = factor(sample(c('A', 'B'), size = 10, replace = TRUE))
+)
+```
+```{r, eval = FALSE}
+exdat
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(exdat), collapse = "\n"))
+```
+For `interval = c(3, 7)` the output should be those rows with `a` equal to 4, 5, or 6:
+```{r, eval = FALSE}
+fun1(exdat, variable = 'a', interval = c(3, 7))
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(
+  fun1(exdat, variable = 'a', interval = c(3, 7))
+), collapse = "\n"))
+```
+
+
+### Task 3
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Extend the function with an argument `incl_boundaries` that allows the user to 
+specify whether the boundaries of the `interval` should be included in the 
+subset that is returned.
+
+* Specify this argument so that by default the boundaries are always included.
+* Check your function using the example data.
+</div>
+
+### Solution 3
+```{r}
+fun2 <- function(dat, variable, interval, incl_boundaries = TRUE) {
+  
+  # check if boundaries should be included
+  filter <- if (incl_boundaries) {
+    
+    # syntax for subset including boundaries
+    dat[, variable] >= interval[1] & dat[, variable] <= interval[2]
+    
+  } else {
+    
+    # syntax for subset not including boundaries
+    dat[, variable] > interval[1] & dat[, variable] < interval[2]
+  }
+  
+  subset(dat, subset = filter)
+}
+```
+
+With the default setting to include the boundaries, `fun2()` should return the
+rows of `exdat` where `a` is 3, ..., 6:
+```{r, eval = FALSE}
+fun2(exdat, variable = 'a', interval = c(3, 6))
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(fun2(exdat, variable = 'a', interval = c(3, 6))), collapse = "\n"))
+```
+
+When we set `incl_boundaries = FALSE` the rows where `a = 3` and `a = 6`
+should be excluded:
+```{r, eval = FALSE}
+fun2(exdat, variable = 'a', interval = c(3, 6), incl_boundaries = FALSE)
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(
+  fun2(exdat, variable = 'a', interval = c(3, 6), incl_boundaries = FALSE)
+), collapse = "\n"))
+
+```
+
+
+
+## Inside or outside? {.tabset .tabset-pills .tabset-fade}
+
+### Task 1
+We want to extend the function further with an additional argument `outside`
+that allows the user to choose whether cases with values of the `variable` inside
+or outside the specified interval should be selected.
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+* Write this extended version of the function using another `if() ... else` statement.
+* Set the argument so that by default values inside the interval are selected.
+</div>
+
+### Solution 1
+```{r}
+fun3 <- function(dat, variable, interval, incl_boundaries = TRUE, outside = FALSE) {
+  
+  # check if boundaries should be included
+  filter <- if (incl_boundaries) {
+    
+    # check if values outside (or inside) the interval should be selected
+    if (outside) {
+      # syntax for subset including boundaries
+      dat[, variable] <= interval[1] | dat[, variable] >= interval[2]
+    } else {
+      # syntax for subset including boundaries
+      dat[, variable] >= interval[1] & dat[, variable] <= interval[2]
+    }
+    
+  } else {
+    
+    # check if values outside (or inside) the interval should be selected
+    if (outside) {
+      # syntax for subset not including boundaries
+      dat[, variable] < interval[1] | dat[, variable] > interval[2]
+    } else {
+      # syntax for subset not including boundaries
+      dat[, variable] > interval[1] & dat[, variable] < interval[2]
+    }
+  }
+  
+  subset(dat, subset = filter)
+}
+```
+
+We test all four scenarios (different combinations of `incl_boundaries` and `outside`)
+with `interval = c(3, 7)`:
+
+`incl_boundaries = TRUE, outside = FALSE` should include values 3, ..., 7:
+```{r, eval = FALSE}
+fun3(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = TRUE, outside = FALSE)
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(
+  fun3(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = TRUE, outside = FALSE)
+), collapse = "\n"))
+```
+
+
+`incl_boundaries = TRUE, outside = TRUE` should include values 1, 2, 3, and 7, ..., 10:
+```{r, eval = FALSE}
+fun3(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = TRUE, outside = TRUE)
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(
+fun3(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = TRUE, outside = TRUE)
+), collapse = "\n"))
+```
+
+
+`incl_boundaries = FALSE, outside = FALSE` should include values 4, 5, 6:
+```{r, eval = FALSE}
+fun3(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = FALSE, outside = FALSE)
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(
+  fun3(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = FALSE, outside = FALSE)
+), collapse = "\n"))
+```
+
+
+`incl_boundaries = FALSE, outside = TRUE` should include values 1, 2 and 8, 9, 10:
+```{r, eval = FALSE}
+fun3(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = FALSE, outside = TRUE)
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(
+  fun3(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = FALSE, outside = TRUE)
+), collapse = "\n"))
+```
+
+
+
+
+### Task 2
+In `fun3()`, many of the lines of syntax are almost identical.
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Re-write the function to make better use of the fact that a `logical` value can be
+reversed (i.e., you can use the `filter` to specify which cases should be selected
+or which cases should be excluded.)
+
+```{r, echo = FALSE, results = 'asis'}
+hint('The idea is that we could use `filter` when we want to select cases with
+values inside the interval and `!filter` when we want to select cases outside
+the interval.')
+hint('It is helpful to make a table of the combinations of options for `incl_boundaries`
+and `outside` and then think about which version of the syntax is needed:
+
+* version 1) `dat[, variable] >= interval[1] & dat[, variable] <= interval[2]`
+* version 2) `dat[, variable] > interval[1] & dat[, variable] < interval[2]`')
+```
+
+</div>
+
+### Solution 2
+
+Our first idea might be to try this function:
+```{r, eval = FALSE}
+fun4_false <- function(dat, variable, interval, incl_boundaries = TRUE, outside = FALSE) {
+  
+  filter <- if (incl_boundaries) {
+    dat[, variable] >= interval[1] & dat[, variable] <= interval[2]  # version 1
+  } else {
+    dat[, variable] > interval[1] & dat[, variable] < interval[2]    # version 2
+  }
+  
+  if (outside) 
+    filter <- !filter
+  
+  subset(dat, filter)
+}
+```
+
+* Depending on the `incl_boundary` argument, the `filter` selects either the inside
+  of the interval, or the inside AND the boundaries. 
+* Depending on the argument `outside`, we then use `filter` directly (when we want
+  to return the inside of the interval) or negate it (i.e., turn `TRUE` into `FALSE`
+  and vice versa) when `outside = TRUE`.
+
+The problem is that by negating the filter, we also "negate" the in- or 
+exclusion of the boundary values:
+
+* when `filter` includes the boundary values, they are excluded in `!filter`
+* when `filter` excludes the boundary values, they are included in `!filter`
+
+We somehow need to consider the two arguments `incl_boundary` and `outside`
+together.
+This is where the table comes in handy:
+```{r, echo = FALSE}
+tab <- expand.grid(incl_boundary = c(TRUE, FALSE),
+                   outside = c(TRUE, FALSE),
+                   version = NA)
+kable(tab) %>%
+  kable_styling(full_width = FALSE)
+```
+
+We can then fill in the table by looking at each scenario:
+
+* If we want the outside of the intervals including the boundaries, we need to
+  exclude the inside of the interval without boundaries => version 2
+* If we want the outside of the intervals excluding the boundaries, we need to
+  exclude the inside of the interval inclusive the boundaries => version 2
+* If we want the inside of the interval including the boundaries, we select 
+  exactly that => version 1
+* If we want the inside of the interval excluding the boundaries, we select 
+  exactly that => version 2
+
+The filled-in version of the table then is:
+```{r, echo = FALSE}
+tab$version <- c(2, 1, 1, 2)
+
+kable(tab) %>%
+  kable_styling(full_width = FALSE)
+```
+
+We note that we need to choose version 1 when `incl_boundary != outside` and
+version 2 when `incl_boundary == outside`!
+
+With this we can fix our function, which now is a lot shorter than `fun3`:
+```{r}
+fun4_correct <- function(dat, variable, interval, incl_boundaries = TRUE, outside = FALSE) {
+  
+  filter <- if (incl_boundaries != outside) {
+    dat[, variable] >= interval[1] & dat[, variable] <= interval[2]
+  } else {
+    dat[, variable] > interval[1] & dat[, variable] < interval[2]
+  }
+  
+  if (outside) 
+    filter <- !filter
+  
+  subset(dat, filter)
+}
+```
+
+
+We repeat the same set of tests as before, with `interval = c(3, 7)`:
+
+`incl_boundaries = TRUE, outside = FALSE` should include values 3, ..., 7:
+```{r, eval = FALSE}
+fun4_correct(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = TRUE, outside = FALSE)
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(
+  fun4_correct(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = TRUE, outside = FALSE)
+), collapse = "\n"))
+```
+
+
+`incl_boundaries = TRUE, outside = TRUE` should include values 1, 2, 3, and 7, ..., 10:
+```{r, eval = FALSE}
+fun4_correct(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = TRUE, outside = TRUE)
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(
+fun4_correct(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = TRUE, outside = TRUE)
+), collapse = "\n"))
+```
+
+
+`incl_boundaries = FALSE, outside = FALSE` should include values 4, 5, 6:
+```{r, eval = FALSE}
+fun4_correct(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = FALSE, outside = FALSE)
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(
+  fun4_correct(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = FALSE, outside = FALSE)
+), collapse = "\n"))
+```
+
+
+`incl_boundaries = FALSE, outside = TRUE` should include values 1, 2 and 8, 9, 10:
+```{r, eval = FALSE}
+fun4_correct(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = FALSE, outside = TRUE)
+```
+```{r, echo = FALSE}
+cat(paste0(capture.output(
+  fun4_correct(exdat, variable = 'a', interval = c(3, 7), incl_boundaries = FALSE, outside = TRUE)
+), collapse = "\n"))
+```
+
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
+If you didn't figure this one out by yourself, don't worry. This really was a though one!
+</div>
+
+
+## Check for categorical variables {.tabset .tabset-pills .tabset-fade}
+
+### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+What happens when we call `fun4_correct()` but specify `variable` to be a factor?
+</div>
+
+
+### Solution 1
+We can easily check that:
+```{r}
+fun4_correct(exdat, variable = 'b', interval = c(3, 7))
+```
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Add a check to `fun4_correct` that first checks if `variable` is of type `numeric`.
+When a non-numeric variable is selected, the function should not try to produce
+a subset but instead print a message.
+```{r, echo = FALSE, results = 'asis'}
+hint('You can use the function `is.numeric()` to check this.')
+```
+
+</div>
+
+### Solution 2
+With the functions that we have seen so far, one solution would be:
+```{r}
+fun5 <- function(dat, variable, interval, incl_boundaries = TRUE, outside = FALSE) {
+  
+  if (!is.numeric(dat[, variable])) {
+    print('The variable you selected is not numeric!')
+    
+  } else { 
+  
+  filter <- if (incl_boundaries != outside) {
+    dat[, variable] >= interval[1] & dat[, variable] <= interval[2]
+  } else {
+    dat[, variable] > interval[1] & dat[, variable] < interval[2]
+  }
+  
+  if (outside) 
+    filter <- !filter
+  
+  subset(dat, filter)
+  }
+}
+```
+
+```{r}
+fun5(exdat, variable = 'b', interval = c(3, 7))
+```
+
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
+Typically we would not just want to print a message but either create a 
+`warning()` or an error message (using `stop()`) which would immediately stop
+the execution of the function:
+```{r}
+fun5b <- function(dat, variable, interval, incl_boundaries = TRUE, outside = FALSE) {
+  
+  if (!is.numeric(dat[, variable])) {
+    stop('The variable you selected is not numeric!', call. = FALSE)
+  }
+  
+  filter <- if (incl_boundaries != outside) {
+    dat[, variable] >= interval[1] & dat[, variable] <= interval[2]
+  } else {
+    dat[, variable] > interval[1] & dat[, variable] < interval[2]
+  }
+  
+  if (outside) 
+    filter <- !filter
+  
+  subset(dat, filter)
+}
+```
+
+```{r, error = TRUE}
+fun5b(exdat, variable = 'b', interval = c(3, 7))
+```
+When we use `stop()` we do not need the `else` part of the `if()` statement
+because the function will be stopped immediately and the rest of the syntax
+will not be evaluated.
+</div>
+
+
