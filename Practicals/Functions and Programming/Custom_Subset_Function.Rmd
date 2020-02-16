@@ -39,7 +39,7 @@ set.seed(2020)
 ```
 
 
-## Selection base on an interval {.tabset .tabset-pills .tabset-fade}
+## Selection based on an interval {.tabset .tabset-pills .tabset-fade}
 
 Aim of this practical is to write a function that selects a subset of 
 a dataset based on whether a particular variable is inside an interval.
