@@ -110,7 +110,7 @@ It is important to distinguish the different object in R.
 
 ### Vectors {.tabset .tabset-fade .tabset-pills}
 
-Let's create some vectors.
+Let's investigate some vectors.
 
 ```{r, eval = static, echo = FALSE}
 asis_output("#### Task 1\\n")
@@ -255,7 +255,7 @@ Create a categorical vector that consists of the values: yes, yes, no, no, no, y
 ```{r vec5_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#vec5">Hint</button>
 <div id = "vec5" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use the c(...) function. Replace the dots with the numbers.
+Use the c(...) function. Replace the dots with the categories.
 </div>')
 ```
 
@@ -274,7 +274,7 @@ treatment <- c("yes", "yes", "no", "no", "no", "yes")
 
 ### Matrices and Data Frames {.tabset .tabset-fade .tabset-pills}
 
-Let's create some matrices and data frames.
+Let's investigate some matrices and data frames.
 
 ```{r, eval = static, echo = FALSE}
 asis_output("#### Task 1\\n")
@@ -314,7 +314,7 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Create a data frame using the vectors `id`, `type` and `trt` from the **retinopathy** data set. This data frame should have 3 columns where each column represents each variable.
+Create a data frame using the vectors `id`, `type` and `trt` from the **retinopathy** data set. This data frame should have 3 columns, where each column represents each variable.
 
 ```{r df_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#df">Hint</button>
@@ -338,7 +338,7 @@ data.frame(id = retinopathy$id, type = retinopathy$type, trt = retinopathy$trt)
 
 ### Lists {.tabset .tabset-fade .tabset-pills}
 
-Let's create some lists.
+Let's investigate some lists.
 
 ```{r, eval = static, echo = FALSE}
 asis_output("#### Task 1\\n")
@@ -377,7 +377,7 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Create a list using the vectors `numbers`, `numbers_2` and `treatment`. Give the names `numbers`, `many_numbers` and `treatment`.
+Create a list using the vectors `numbers`, `numbers_2` and `treatment`. These variables can be taken from the exercise called `Vectors`.  Give the names: `numbers`, `many_numbers` and `treatment`.
 
 ```{r list2_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#list2">Hint</button>
@@ -402,6 +402,8 @@ list(numbers = numbers, many_numbers = numbers_2, treatment = treatment)
 ## Importing and Saving data
 ### Save your work {.tabset .tabset-fade .tabset-pills}
 
+It is important to save your work.
+
 ```{r, eval = static, echo = FALSE}
 asis_output("#### Task\\n")
 ```
@@ -410,12 +412,12 @@ asis_output("#### Task\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Save the vectors `numbers`, `numbers_2` and `treatment`. Use the name `new_vectors`.
+Save the vectors `numbers`, `numbers_2` and `treatment`. Use the name `new_vectors`. These variables can be taken from the exercise called `Vectors`.
 
 ```{r save_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#save">Hint</button>
 <div id = "save" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use the function save().
+Use the function save(...). Note that you need to set the working directory.
 </div>')
 ```
 
@@ -433,6 +435,8 @@ save(numbers, numbers_2, treatment, file = "new_vectors.RData")
 
 ### Load your work {.tabset .tabset-fade .tabset-pills}
 
+Let's continue working on the data sets by loading our results.
+
 ```{r, eval = static, echo = FALSE}
 asis_output("#### Task\\n")
 ```
@@ -446,7 +450,7 @@ Load the file `new_vectors`.
 ```{r load_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#load">Hint</button>
 <div id = "load" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use the function load().
+Use the function load(...).
 </div>')
 ```
 
@@ -464,6 +468,8 @@ load("new_vectors.RData")
 
 ### Remove your work {.tabset .tabset-fade .tabset-pills}
 
+Remove unnecessary objects.
+
 ```{r, eval = static, echo = FALSE}
 asis_output("#### Task\\n")
 ```
@@ -477,7 +483,7 @@ Remove the vectors `numbers`, `numbers_2` and `treatment`.
 ```{r rm_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#rm">Hint</button>
 <div id = "rm" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use the function rm().
+Use the function rm(...).
 </div>')
 ```
 
@@ -511,6 +517,13 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 * As mentioned in the manual of the **heart** data set, `age` is equal to `age` - 48. Let's bring `age` back to the normal scale. Do not overwrite the variable `age`, but create a new variable with the name `age_orig`. \
 * Convert the variable `surgery` into a factor with levels 0: `no` and 1: `yes`.
 
+```{r man1_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#man1">Hint</button>
+<div id = "man1" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use the function factor(...) to convert a numerical variable to a factor.
+</div>')
+```
+
 ```{r, eval = static, echo = FALSE}
 asis_output("</div>")
 
@@ -533,12 +546,12 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Categorize as as `young`: [minimum `age` until mean `age`) and `old`: [mean `age` until maximum `age`). Give this variable the name `ageCat`. Print the first 6 rows of the data set **retinopathy**.
+Categorize the variable `age` from the **retinopathy** data set as `young`: [minimum `age` until mean `age`) and `old`: [mean `age` until maximum `age`). Give this variable the name `ageCat`. Print the first 6 rows of the data set **retinopathy**.
 
 ```{r man2_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#man2">Hint</button>
 <div id = "man2" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use the function as.numeric(...) to convert a variable to a numeric variable. Use the function factor(...) to create a categorical variable. 
+To dichotomize a numerical variable use the function as.numeric(...). Use the function factor(...) to convert a variable into a factor. 
 </div>')
 ```
 
@@ -568,14 +581,14 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 Categorize `futime` from data set **retinopathy** as follows: \
 * `short`: [minimum `futime` until 2). \
 * `medium`: [25 until 45). \
-* `long`: [45 until maximum `futime`). Give this variable the name `futimeCat`. \
-* Print the first 6 rows of the data.
+* `long`: [45 until maximum `futime`). \
+Give this variable the name `futimeCat`. Print the first 6 rows of the data.
 
 
 ```{r man3_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#man3">Hint</button>
 <div id = "man3" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
- Use the function factor(...) to create a categorical variable. Use the function cut(..., right = FALSE) to convert a continuous variable to a categorical variable. If needed consult the documentation for the cut function using ?cut.
+Use the function cut(..., right = FALSE) to convert a continuous variable to a categorical variable. If you need help check ?cut. Use the function factor(...) to convert a variable into a factor. 
 </div>')
 ```
 
@@ -608,16 +621,16 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 
 Create 2 vectors of size 50 as follows: \
 * `Sex`: takes 2 values 0 and 1. \
-* `Age`: takes values from 20 till 80 (hint: use sample()). \
-* Convert “Sex” to a factor with levels 0: “female” and 1: “male”. \
-* Define the new variable “AgeCat” as dichotomous with `Age` <= 50 to be 0 and 1 otherwise. \
-* Convert `AgeCat` to a factor with levels 0: `young` and 1: `old`. \
-* Overwrite `Age` variable by $\frac{Age-mean(Age)}{sd(Age)}$.
+* `Age`: takes values from 20 till 80. \
+* Convert the `Sex` variable into a factor with levels 0: `female` and 1: `male`. \
+* Define the new variable `AgeCat` as dichotomous with `Age` <= 50 to be 0 and 1 otherwise. \
+* Convert the `AgeCat` variable into a factor with levels 0: `young` and 1: `old`. \
+* Overwrite the `Age` variable by $\frac{Age-mean(Age)}{sd(Age)}$.
 
 ```{r man4_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#man4">Hint</button>
 <div id = "man4" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-To sample a numarical and categorical variable use the function sample(...). To convert a numerical variable to a categorical use the function factor(...). To dichotomize a numerical variable use the function as.numeric(...).
+To sample a numerical and categorical variable use the function sample(...). To convert a numerical variable to a categorical use the function factor(...). To dichotomize a numerical variable use the function as.numeric(...).
 </div>')
 ```
 
@@ -648,17 +661,9 @@ asis_output("#### Task 5\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Create a data.frame with the name `DF` as follows: \
-* Include the following vectors: `Sex`, `Age`, `AgeCat`. \
+Create a data frame with the name `DF` as follows: \
+* Include the following vectors: `Sex`, `Age`, `AgeCat` form the previous Task. \
 * Use the names: `Gender`, `StandardizedAge`, `DichotomousAge`. \
-* What are the dimensions of the data.frame?
-
-```{r man5_hint, eval = static, results = 'asis', echo = FALSE}
-cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#man5">Hint</button>
-<div id = "man5" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-To obtain the dimensions use the function dim(...).
-</div>')
-```
 
 
 ```{r, eval = static, echo = FALSE}
@@ -670,7 +675,6 @@ asis_output("#### Solution 5\\n")
 ```{r man5-solution, solution = TRUE}
 DF <- data.frame(Sex, Age, AgeCat)
 DF <- data.frame("Gender" = Sex, "StandardizedAge" = Age, "DichotomousAge" = AgeCat)
-dim(DF)
 ```
 
 
@@ -685,10 +689,16 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 Create 2 vectors of size 150 as follows: \
 * `Treatment`: takes 2 values 1 and 2. \
 * `Weight`: takes values from 50 till 100. \
-* Convert `Treatment` to a factor with levels 1: `no` and 2: `yes`. \
-* Overwrite `Weight` variable by `Weight` * 1000. \
-* Create a data.frame including `Treatment and `Weight`. \
+* Convert the `Treatment` variable into a factor with levels 1: `no` and 2: `yes`. \
+* Overwrite the `Weight` variable by `Weight` * 1000. \
+* Create a data frame including `Treatment` and `Weight`. \
 
+```{r man6_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#man6">Hint</button>
+<div id = "man6" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+To sample a numerical and categorical variable use the function sample(...). To convert a numerical variable to a categorical use the function factor(...). 
+</div>')
+```
 
 
 ```{r, eval = static, echo = FALSE}
@@ -733,7 +743,7 @@ Create a list called `my_list` with the following: \
 ```{r man7_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#man7">Hint</button>
 <div id = "man7" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-To obtain letters use the function letters(...).
+To obtain letters use the function letters(...). To sample a numerical and categorical variable use the function sample(...). To convert a numerical variable to a categorical use the function factor(...). 
 </div>')
 ```
 
@@ -765,12 +775,12 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Obtain the mean and sd for `age` only for transplanted patients using **heart** the data set.
+Obtain the mean and standard deviation for the variable `age` using the **heart** data set.
 
 ```{r exp1_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#exp1">Hint</button>
 <div id = "exp1" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use square brackets to select transplanted patients.
+Use the functions mean(...) and sd(...).
 </div>')
 ```
 
@@ -781,8 +791,8 @@ asis_output("#### Solution 1\\n")
 ```
 
 ```{r exp1-solution, solution = TRUE}
-mean(heart$age[heart$transplant == 1])
-sd(heart$age[heart$transplant == 1])
+mean(heart$age)
+sd(heart$age)
 ```
 
 
@@ -795,15 +805,15 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Using the **retinopathy** data set:
-* Obtain the median and interquartile range for `age`. \ 
+Using the **retinopathy** data set: \
+* Obtain the median and interquartile range for `age`. \ \
 * Obtain the percentage per `type`. \
-* Check whether there are missing values in the variable `age`.
+* Check whether there are missing in the variable `age`.
 
 ```{r exp2_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#exp2">Hint</button>
 <div id = "exp2" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use the functions median(...) and IQR(...). Load the package memisc in order to obain the percentages. To check whether there are missing values use the combination of the functions sum(is.na(...)).
+Use the functions median(...) and IQR(...) to obtain the median and the interquartile range. Load the package memisc and use the function percent(...) in order to obtain the percentages. To check whether there are missing values use the functions sum(is.na(...)).
 </div>')
 ```
 
@@ -830,17 +840,18 @@ asis_output("#### Task 3\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Using the data frame `DF` from the exercise before: \
+Using the data frame `DF` from the exercise before (Task 5): \
 * Calculate the mean of the variable `StandardizedAge`. \
 * Calculate the standard deviation of the variable `StandardizedAge`. \
 * Calculate the frequencies of the variable `Gender`. \
 * Calculate the frequencies of the variable `DichotomousAge`. \
-* Calculate the frequencies of both variables `Gender` and `DichotomousAge` (crosstab table).
+* Calculate the frequencies of both variables `Gender` and `DichotomousAge` (crosstab table). \
+* What are the dimensions of the data.frame?
 
 ```{r exp3_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#exp3">Hint</button>
 <div id = "exp3" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-To calculate the frequencies use function length() or table().
+To calculate the frequencies, use the functions length() or table(). To obtain the dimensions use the function dim(...).
 </div>')
 ```
 
@@ -857,13 +868,14 @@ length(DF$Gender[DF$Gender == "female"])
 length(DF$Gender[DF$Gender == "male"])
 table(DF$Gender)
 table(DF$Gender, DF$DichotomousAge)
+dim(DF)
 ```
 
 
 
 ### Data Visualization {.tabset .tabset-fade .tabset-pills}
 
-Let's us now plot the data in order to understand them even better.
+Let's visualize the data.
 
 ```{r, eval = static, echo = FALSE}
 asis_output("#### Task 1\\n")
@@ -873,7 +885,8 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-* Create a scatterplot with the variables `age` and `year` using the **heart** data set. \
+Using the **heart** data set: \
+* Create a scatterplot with the variables `age` and `year`  \
 * Change the labels of the axis. In particular, give the name `Age` for the x-axis and `Year of acceptance` for the y-axis. \
 * Give a different color to the patients that had a transplant. \
 * Add a legend.
@@ -881,7 +894,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```{r plot1_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#plot1">Hint</button>
 <div id = "plot1" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use the function plot(..., xlab, ylab, col). Use the function legend(...) to add a legend to the plot.
+Use the function plot(..., xlab, ylab, col). Note that colour should be a number (use the function as.numeric(...)). Use the function legend(...) to add a legend to the plot.
 </div>')
 ```
 
@@ -908,8 +921,9 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-* Create a boxplot of `age` per `status` using the **retinopathy** data set. \
-* Change the color to blue and green respectively.
+Using the **retinopathy** data set: \
+* Create a boxplot of `age` per `status`.\
+* Change the colour to blue and green respectively.
 
 ```{r plot2_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#plot2">Hint</button>
@@ -939,13 +953,13 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 Using the **retinopathy** data set: \
-* Create a smooth plot or `age` and `risk`. \
-* Create a density plot or `age` per `type` group.
+* Create a smooth plot of `age` with `risk`. \
+* Create a density plot of `age` per `type` group.
 
 ```{r plot3_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#plot3">Hint</button>
 <div id = "plot3" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use can use the ggplot2 library and the geom_smooth(...) and geom_density(...) functions.
+Use the ggplot2 package and the functions: geom_smooth(...) and geom_density(...).
 </div>')
 ```
 
@@ -1053,26 +1067,3 @@ retinopathy$age[retinopathy$futime > 20 & retinopathy$type == "adult"]
 retinopathy[!is.na(retinopathy$age), ]
 ```
 
-
-
-```{r, eval = static, echo = FALSE}
-asis_output("#### Task 3\\n")
-```
-
-```{r, eval = static, echo = FALSE}
-asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
-```
-
-Using the **retinopathy** data set: \
-* Select patients that have no missing values in age.
-
-
-```{r, eval = static, echo = FALSE}
-asis_output("</div>")
-
-asis_output("#### Solution 3\\n")
-```
-
-```{r sub3-solution, solution = TRUE}
-retinopathy[!is.na(retinopathy$age), ]
-```
