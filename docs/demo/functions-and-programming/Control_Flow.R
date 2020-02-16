@@ -41,7 +41,9 @@ if (length(x) > 5) {
 ifelse(length(x) > 5, mean(x), x)
 
 #' But for other cases it may not do what we expect it to do:
-(x <- list(a = 5, b = rnorm(7), c = rnorm(4)))
+x <- list(a = 5, b = rnorm(7), c = rnorm(4))
+x
+
 ifelse(length(x) > 5, mean(x), x)
 #' Here, the "test" `length(x) > 5` results in `FALSE`, but because `ifelse()`
 #' expects a vector of "tests" (and only receives one "test"), it will only 
@@ -68,23 +70,28 @@ seq_along(x)
 #' Because we are using a loop, we need to add the `print()` function to see
 #' the printed output.
 for (i in seq_along(x)) {
+  
   if (length(x[[i]]) > 5) {
     print(mean(x[[i]]))
   } else {
     print(x[[i]])
   }
+
 }
+
  
 
 #' We could also "collect" the output in a new object:
 output <- list()
 
 for (i in seq_along(x)) {
+  
   output[[i]] <- if (length(x[[i]]) > 5) {
     mean(x[[i]])
   } else {
     x[[i]]
   }
+  
 }
 
 output
@@ -96,7 +103,7 @@ output
 #' The following would run forever (stop it by pressing "Esc" when in the Console):
 #+ eval = FALSE
 i <- 0
-while(i < 5) {
+while (i < 5) {
   print(i)
 }
 
@@ -104,7 +111,8 @@ while(i < 5) {
 #' we save it in a vector that we can plot afterwards.
 x <- 0
 xvec <- c()
-while(x < 5) {
+
+while (x < 5) {
   x <- x + rnorm(1, 0, 1)
   xvec <- c(xvec, x)
 }
@@ -117,7 +125,8 @@ plot(xvec, type = 'l')
 #' We could extend the syntax from above by adding a counter
 x <- i <- 0
 xvec <- c()
-while(x < 5 & i < 25) {
+
+while (x < 5 & i < 25) {
   x <- x + rnorm(1, 0, 1)
   xvec <- c(xvec, x)
   i <- i + 1

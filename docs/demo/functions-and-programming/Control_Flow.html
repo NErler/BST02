@@ -11,7 +11,7 @@
 
 <meta name="author" content="Nicole Erler, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-15" />
+<meta name="date" content="2020-02-16" />
 
 <title>Demo: Control-flow</title>
 
@@ -1519,7 +1519,7 @@ div.tocify {
 <h1 class="title toc-ignore">Demo: Control-flow</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Nicole Erler, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">15 February 2020</h4>
+<h4 class="date">16 February 2020</h4>
 
 </div>
 
@@ -1551,7 +1551,8 @@ ifelse(x &lt; 0, &quot;&lt;0&quot;, &quot;&gt;0&quot;)</code></pre>
 <pre class="r"><code>ifelse(length(x) &gt; 5, mean(x), x)</code></pre>
 <pre><code>## [1] 0.172405</code></pre>
 <p>But for other cases it may not do what we expect it to do:</p>
-<pre class="r"><code>(x &lt;- list(a = 5, b = rnorm(7), c = rnorm(4)))</code></pre>
+<pre class="r"><code>x &lt;- list(a = 5, b = rnorm(7), c = rnorm(4))
+x</code></pre>
 <pre><code>## $a
 ## [1] 5
 ## 
@@ -1586,11 +1587,13 @@ ifelse(x &lt; 0, &quot;&lt;0&quot;, &quot;&gt;0&quot;)</code></pre>
 <pre><code>## [1] 1 2 3</code></pre>
 <p>It produces a sequence with the same length as <code>x</code> has elements. Because we are using a loop, we need to add the <code>print()</code> function to see the printed output.</p>
 <pre class="r"><code>for (i in seq_along(x)) {
+  
   if (length(x[[i]]) &gt; 5) {
     print(mean(x[[i]]))
   } else {
     print(x[[i]])
   }
+
 }</code></pre>
 <pre><code>## [1] 5
 ## [1] 0.09264059
@@ -1599,11 +1602,13 @@ ifelse(x &lt; 0, &quot;&lt;0&quot;, &quot;&gt;0&quot;)</code></pre>
 <pre class="r"><code>output &lt;- list()
 
 for (i in seq_along(x)) {
+  
   output[[i]] &lt;- if (length(x[[i]]) &gt; 5) {
     mean(x[[i]])
   } else {
     x[[i]]
   }
+  
 }
 
 output</code></pre>
@@ -1621,13 +1626,14 @@ output</code></pre>
 <p><code>while()</code> requires a <code>condition</code> that at some point is <code>FALSE</code> for the loop to stop.</p>
 <p>The following would run forever (stop it by pressing “Esc” when in the Console):</p>
 <pre class="r"><code>i &lt;- 0
-while(i &lt; 5) {
+while (i &lt; 5) {
   print(i)
 }</code></pre>
 <p>This one here could also take very long. Instead of printing the output we save it in a vector that we can plot afterwards.</p>
 <pre class="r"><code>x &lt;- 0
 xvec &lt;- c()
-while(x &lt; 5) {
+
+while (x &lt; 5) {
   x &lt;- x + rnorm(1, 0, 1)
   xvec &lt;- c(xvec, x)
 }
@@ -1639,7 +1645,8 @@ length(xvec)</code></pre>
 <p>We could extend the syntax from above by adding a counter</p>
 <pre class="r"><code>x &lt;- i &lt;- 0
 xvec &lt;- c()
-while(x &lt; 5 &amp; i &lt; 25) {
+
+while (x &lt; 5 &amp; i &lt; 25) {
   x &lt;- x + rnorm(1, 0, 1)
   xvec &lt;- c(xvec, x)
   i &lt;- i + 1
