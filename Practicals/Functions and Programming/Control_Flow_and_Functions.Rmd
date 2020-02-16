@@ -2,7 +2,6 @@
 title: 'Control Flow and Functions'
 output: 
   html_document:
-    code_folding: show
     df_print: paged
     toc: true
     toc_float:
@@ -54,7 +53,6 @@ The first six rows of the resulting `data.frame` are:
 head(nrj) %>% 
   kable(digits = 2) %>% 
   kable_styling(full_width = FALSE)
-
 ```
 
 
@@ -73,11 +71,12 @@ Which function would you choose to calculate the BMR? `ifelse()` or `if() ... el
 </div>
 
 ### Solution 1
-Both are possible, but `ifelse()` is more straightforward in this setting (in my opinion).
+Both are possible, but `ifelse()` is more straightforward in this setting.
 
 ### Task 2
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-Calculate the BMR using `ifelse()` and add it to the dataset as a new variable `BMR1`.
+* Run the syntax from above to create the dataset.
+* Calculate the BMR using `ifelse()` and add it to the dataset as a new variable `BMR1`.
 
 ```{r, results = 'asis', echo = FALSE}
 hint('The function `ifelse()` has arguments `test`, `yes` and `no`.')
@@ -89,12 +88,17 @@ hint('You could use `nrj$sex == "male"` as the `test`.')
 ### Solution 2
 ```{r}
 nrj$BMR1 <- ifelse(nrj$sex == 'male',
-                  13.75 * nrj$weight + 5 * nrj$height − 6.76 * nrj$age + 66,
-                  9.56 * nrj$weight + 1.85 * nrj$height − 4.68 * nrj$age + 655
+                  13.75 * nrj$weight + 5 * nrj$height - 6.76 * nrj$age + 66,
+                  9.56 * nrj$weight + 1.85 * nrj$height - 4.68 * nrj$age + 655
 )
-
+```
+```{r, eval = FALSE}
 head(nrj)
 ```
+```{r, echo = FALSE}
+cat(paste0(capture.output(head(nrj)), collapse = "\n"))
+```
+
 
 ### Task 3
 We now want to calculate the BMR using `if() ... else ...`.
@@ -126,13 +130,39 @@ hint("Don't forget that you now need to use indices.")
 </div>
 
 ### Solution 5
-```{r}
-nrj$BMR2 <- NA
-for (i in 1:nrow(nrj)) {
-  nrj$BMR2[i] <- if (nrj$sex[i] == 'male') {
-    13.75 * nrj$weight[i] + 5 * nrj$height[i] − 6.76 * nrj$age[i] + 66
+Our syntax needs to have the general form:
+```{r, eval = FALSE}
+for (i in <"columns of nrj">) {
+  
+  if ("<subject is male">) {
+    
+    <"formula for males">
+    
   } else {
-    9.56 * nrj$weight[i] + 1.85 * nrj$height[i] − 4.68 * nrj$age[i] + 655
+    
+    <"formula for females">
+    
+  }
+}
+```
+
+```{r}
+nrj$BMR2 <- NA   # "empty" version of BMR2
+
+# loop over all rows
+for (i in 1:nrow(nrj)) {
+  
+  # test if the subject is male
+  nrj$BMR2[i] <- if (nrj$sex[i] == 'male') {
+    
+    # formula for males
+    13.75 * nrj$weight[i] + 5 * nrj$height[i] - 6.76 * nrj$age[i] + 66
+    
+  } else {
+    
+    # formula for females
+    9.56 * nrj$weight[i] + 1.85 * nrj$height[i] - 4.68 * nrj$age[i] + 655
+    
   }
 }
 ```
@@ -182,8 +212,8 @@ prop.table(table(nrj$sports))
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 Use `paste()` to create some nice-looking output for these summaries:
 
-* "kcal: mean (sd)" for `kcal`
-* "sports: percentage% category 1, percentage% category2, ..."
+* "kcal: <mean> (<sd>)" for `kcal`
+* "sports: <percentage>% <category 1>, <percentage>% <category2>, ..."
 
 ```{r, echo = FALSE, results = 'asis'}
 hint("Remember: The function `paste()` has arguments `sep` and `collapse`, but you could also use `paste0()`.")
@@ -200,13 +230,15 @@ paste0("kcal: ", round(mean(nrj$kcal), 1), " (", round(sd(nrj$kcal), 1), ")")
 
 
 # for "sports":
+
 # table of proportions:
 tab <- prop.table(table(nrj$sports))
+
 # combine proportions with category names:
 props <- paste0(tab * 100, "% ", names(tab), collapse = ", ")
+
 # combine variable name with proportions string:
 paste('sports:', props)
-
 ```
 
 ### Task 3
@@ -224,15 +256,41 @@ hint("You need to autmatically check for each variable if it is a `factor()` or 
 </div>
 
 ### Solution 3
+Our syntax has the general form:
+```{r, eval = FALSE}
+for (i in <"columns of nrj">) {
+  
+  if ("<variable is factor">) {
+    
+    <"syntax for summary of a factor">
+    
+  } else {
+    
+    <"syntax for summary of a continuous variable">
+    
+  }
+}
+
+```
+
 ```{r}
+# loop over all columns
 for (i in 1:ncol(nrj)) {
+  
+  # test if column is a factor
   if (is.factor(nrj[, i])) {
+    
+    # syntax for categorical variable
     tab <- prop.table(table(nrj[, i]))
     props <- paste0(tab * 100, "% ", names(tab), collapse = ", ")
     paste0(names(nrj)[i], ": ", props)
+    
   } else {
+    
+    # syntax for continuous variable
     print(paste0(names(nrj)[i], ": ", 
                  round(mean(nrj[, i]), 1), " (", round(sd(nrj[, i]), 1), ")"))
+    
   }
 }
 ```
@@ -247,7 +305,7 @@ Write two functions:
 * one that creates the summary string for a continuous variable,
 * one that creates the output for a categorical variable.
 
-Assume that the input will be a vector, such as `nrj$kcal` or `nrj$sports`.
+Assume that the input will be a vector, such as `nrj$kcal` or `nrj$sports`.<br>
 Note that when we work with these vectors, they do not contain the variable
 name any more, so we cannot use the variable name in the two functions.
 
@@ -257,7 +315,7 @@ hint("The general form of a function is `function(){...}`.")
 </div>
 
 ### Solution 1
-We can just re-use the syntax we used before, and only remove the part that 
+We can re-use the syntax we used before, and only remove the part that 
 adds the variable name.
 
 Our functions have one argument, which we call `x` here:
@@ -283,35 +341,51 @@ summary string for each variable, using the two functions from the previous solu
 </div>
 
 ### Solution 2
-This function again has one argument which we call `dat`. We can again re-use
+This function also has one argument which we call `dat`. We can, again, re-use
 syntax from above:
 ```{r}
 summary_df <- function(dat) {
+  
+  # loop over all columns
   for (i in 1:ncol(dat)) {
+    
+    # check if the column is a factor
     summary_string <- if (is.factor(dat[, i])) {
+      
+      # syntax for a categorical variable
       summary_categorical(dat[, i])
+      
     } else {
+      
+      # syntax for a continuous variable
       summary_continuous(dat[, i])
     }
+    
+    # print the result of the summary
     print(summary_string)
   }
+  
 }
 
 summary_df(dat = nrj)
 ```
 
-Note that it would also be possible to use `print()` directly around the
-functions `summary_categorical()` and `summary_continuous()`, but for the 
-next Task it is more convenient to first collect the summary string in an
-object (`summary_string`), and do the further steps with that object.
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
+
+It would also be possible to use `print()` directly around the
+functions `summary_categorical()` and `summary_continuous()`.
+However, for the next Task it is more convenient to first collect the summary 
+string in an object (`summary_string`), and do the further steps with that object.
+</div>
 
 
 ### Task 3
 The function `summary_df()` that we created in the previous solution does not
 contain any variable names.
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-Modify the function so that the output strings look like in the previous exercise 
-(with "variable name: ...").
+Modify the function so that the output strings look like the output in the 
+previous exercise (with "variable name: ...").
 </div>
 
 ### Solution 3
@@ -319,12 +393,23 @@ To adjust the function, the only row that needs changing is the one in which
 we print the summary:
 ```{r}
 summary_df <- function(dat) {
+  
+  # loop over all columns
   for (i in 1:ncol(dat)) {
+    
+    # check if the column is a factor
     summary_string <- if (is.factor(dat[, i])) {
+      
+      # syntax for a categorical variable
       summary_categorical(dat[, i])
+      
     } else {
+      
+      # syntax for a continuous variable
       summary_continuous(dat[, i])
     }
+    
+    # print the result of the summary together with the variable name
     print(paste0(names(dat)[i], ": ", summary_string))
   }
 }

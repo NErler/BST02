@@ -430,12 +430,12 @@ if (condition) {expression}
 
 For example:
 ```{r}
-x <- rnorm(n = 10)
+x <- c(0.3, -1.2, 0.8,  1.7,  0.7, -0.1, -0.4, -0.1, -0.2,  0.6)
 if (length(x) > 5) {mean(x)}
 ```
 \pause
 ```{r}
-x <- rnorm(n = 5)
+x <- c(0.7, -0.1, -0.4, -0.1)
 if (length(x) > 5) {mean(x)}
 ```
 
@@ -446,7 +446,7 @@ We can also specify an expression that is evaluated \blue{if the condition is no
 fulfilled}:
 
 ```{r, eval = FALSE}
-if (cond) {expression} else {alternative expression}
+if (condition) {expression} else {alternative expression}
 ```
 
 \pause
@@ -472,7 +472,7 @@ ifelse(test, yes, no)
 
 For example:
 ```{r}
-(x <- round(rnorm(n = 6), 2))
+x <- c(0.3, -1.2, 0.8,  1.7,  0.7, -0.1, -0.4, -0.1, -0.2,  0.6)
 ifelse(x > 0, ">0", "<0")
 ```
 
@@ -544,10 +544,9 @@ set.seed(1234)
 
 For example:
 ```{r}
-s <- 0
-while (s < 7) {
-  x <- rnorm(n = 1, mean = 0, sd = 2)
-  s <- s + abs(x)
+s <- 1
+while (s < 5) {
+  s <- s + s/2
   print(s)
 }
 ```
@@ -565,9 +564,11 @@ while (s < 7) {
 \end{column}
 
 \begin{column}{0.47\linewidth}
-\begin{block}{Practical}
+\begin{block}{Practicals}
 \begin{itemize}
 \item Control Flow and Functions \button{https://nerler.github.io/BST02/practical/functions-and-programming/Control_Flow_and_Functions.html}{html}
+\item Custom Subset Function
+\button{https://nerler.github.io/BST02/practical/functions-and-programming/Custom_Subset_Function.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -591,12 +592,12 @@ function_name <- function(arguments) {
 
 \begin{itemize}\itemsep3mm
 \item \blue{\texttt{if (condition) expression}}:\newline
-  evaluates the `expression` only if the `condition` is `TRUE`
+  evaluates the \texttt{expression} only if the \texttt{condition} is \texttt{TRUE}
 \item \blue{\texttt{if (condition) expression1 else expression2}}:\newline
-   evaluates `expression1` if the 
-  `condition` is `TRUE` and `expression2` if the `condition` is `FALSE`
+   evaluates \texttt{expression1} if the 
+  \texttt{condition} is \texttt{TRUE} and \texttt{expression2} if the \texttt{condition} is \texttt{FALSE}
 \item \blue{\texttt{ifelse(test, yes, no)}}:\newline
-   expects a vector of `test`s
+   expects a vector of \texttt{test}s
 \item \blue{\texttt{for()}} and \blue{\texttt{while()}} loops:\newline
   can be used to repeatedly perform the same action
 \item to print output from within \texttt{for()} and \texttt{while()} 
