@@ -11,7 +11,7 @@
 
 <meta name="author" content="Nicole Erler, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-16" />
+<meta name="date" content="2020-02-15" />
 
 <title>Demo: Functions for exploring data</title>
 
@@ -1518,14 +1518,14 @@ div.tocify {
 
 <h1 class="title toc-ignore">Demo: Functions for exploring data</h1>
 <h4 class="author">Nicole Erler, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">16 February 2020</h4>
+<h4 class="date">15 February 2020</h4>
 
 </div>
 
 
 <div id="dataset" class="section level2">
 <h2>Dataset</h2>
-<p>We will explore the datasets <code>swiss</code> and <code>esoph</code> (both automatically available in R).</p>
+<p>We will explore the datasets <code>swiss</code> and <code>esoph</code> (both automatically availabe in R).</p>
 </div>
 <div id="what-type-of-object-do-i-have" class="section level2">
 <h2>What type of object do I have?</h2>
@@ -1542,7 +1542,7 @@ div.tocify {
 <pre><code>## [1] 47</code></pre>
 <pre class="r"><code>ncol(swiss)</code></pre>
 <pre><code>## [1] 6</code></pre>
-<p>Be careful:</p>
+<p>Be carefull:</p>
 <pre class="r"><code>length(swiss)</code></pre>
 <pre><code>## [1] 6</code></pre>
 <p>Why is that? Because a <code>data.frame</code> is also a <code>list</code>:</p>
@@ -1558,7 +1558,8 @@ div.tocify {
 <h2>How does the dataset look like?</h2>
 <p>Names of all the variables in the data:</p>
 <pre class="r"><code>names(swiss)</code></pre>
-<pre><code>## [1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;      &quot;Education&quot;        &quot;Catholic&quot;         &quot;Infant.Mortality&quot;</code></pre>
+<pre><code>## [1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;      &quot;Education&quot;        &quot;Catholic&quot;        
+## [6] &quot;Infant.Mortality&quot;</code></pre>
 <p>Show me the first and last few rows:</p>
 <pre class="r"><code>head(swiss)</code></pre>
 <pre><code>##              Fertility Agriculture Examination Education Catholic Infant.Mortality
@@ -1679,9 +1680,10 @@ esoph[28:36, ]</code></pre>
 ## 36 45-54     40-79    10-19      4        21          2.875               3</code></pre>
 <p>And we can split the data by multiple categorical variables:</p>
 <pre class="r"><code>ave(esoph$ncases, esoph$agegp, esoph$alcgp, FUN = median)</code></pre>
-<pre><code>##  [1] 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.5 0.5 0.5 0.5 0.0 0.0 0.0 0.0 2.0 2.0 2.0 0.0 0.0 0.0
-## [34] 0.0 5.0 5.0 5.0 5.0 2.5 2.5 2.5 2.5 3.5 3.5 3.5 3.5 3.0 3.0 3.0 3.0 5.0 5.0 5.0 5.0 6.0 6.0 6.0 6.0 5.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0
-## [67] 5.0 5.0 5.0 3.0 3.0 3.0 3.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.5 1.5</code></pre>
+<pre><code>##  [1] 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.5 0.5 0.5 0.5 0.0 0.0
+## [26] 0.0 0.0 2.0 2.0 2.0 0.0 0.0 0.0 0.0 5.0 5.0 5.0 5.0 2.5 2.5 2.5 2.5 3.5 3.5 3.5 3.5 3.0 3.0 3.0 3.0
+## [51] 5.0 5.0 5.0 5.0 6.0 6.0 6.0 6.0 5.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 1.0 1.0
+## [76] 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.5 1.5</code></pre>
 </div>
 </div>
 <div id="tables" class="section level2">
@@ -1925,14 +1927,16 @@ addmargins(tab)</code></pre>
 <pre><code>##        Fertility      Agriculture      Examination        Education         Catholic Infant.Mortality 
 ##          3296.70          2381.00           775.00           516.00          1933.76           937.30</code></pre>
 <pre class="r"><code>rowMeans(swiss)</code></pre>
-<pre><code>##   Courtelary     Delemont Franches-Mnt      Moutier   Neuveville   Porrentruy        Broye        Glane      Gruyere       Sarine 
-##     26.06000     41.70667     42.63333     32.56167     29.69333     40.76167     48.90833     50.71000     45.56167     45.48000 
-##      Veveyse        Aigle      Aubonne     Avenches     Cossonay    Echallens     Grandson     Lausanne    La Vallee       Lavaux 
-##     49.11833     30.68667     29.46167     31.28833     29.92000     34.38333     25.66667     26.90167     22.24167     31.49000 
-##       Morges       Moudon        Nyone         Orbe         Oron      Payerne Paysd&#39;enhaut        Rolle        Vevey      Yverdon 
-##     30.08833     27.33667     28.89000     26.16667     30.01667     30.55500     27.51000     28.55333     28.07667     27.75000 
-##      Conthey    Entremont       Herens     Martigwy      Monthey   St Maurice       Sierre         Sion       Boudry La Chauxdfnd 
-##     46.86833     47.78000     48.71667     47.51000     45.45333     45.96000     49.76000     47.22167     28.78667     24.61500 
+<pre><code>##   Courtelary     Delemont Franches-Mnt      Moutier   Neuveville   Porrentruy        Broye        Glane 
+##     26.06000     41.70667     42.63333     32.56167     29.69333     40.76167     48.90833     50.71000 
+##      Gruyere       Sarine      Veveyse        Aigle      Aubonne     Avenches     Cossonay    Echallens 
+##     45.56167     45.48000     49.11833     30.68667     29.46167     31.28833     29.92000     34.38333 
+##     Grandson     Lausanne    La Vallee       Lavaux       Morges       Moudon        Nyone         Orbe 
+##     25.66667     26.90167     22.24167     31.49000     30.08833     27.33667     28.89000     26.16667 
+##         Oron      Payerne Paysd&#39;enhaut        Rolle        Vevey      Yverdon      Conthey    Entremont 
+##     30.01667     30.55500     27.51000     28.55333     28.07667     27.75000     46.86833     47.78000 
+##       Herens     Martigwy      Monthey   St Maurice       Sierre         Sion       Boudry La Chauxdfnd 
+##     48.71667     47.51000     45.45333     45.96000     49.76000     47.22167     28.78667     24.61500 
 ##     Le Locle    Neuchatel   Val de Ruz ValdeTravers V. De Geneve  Rive Droite  Rive Gauche 
 ##     25.75333     31.48667     27.02833     24.40833     31.09000     34.15500     33.18833</code></pre>
 <p>To use other functions (like <code>min</code>, <code>max</code>, <code>median</code>, <code>sd</code>, …) on a whole <code>matrix</code> or <code>data.frame</code> we need some more programming and the help of <code>if (...)</code>, <code>for (...)</code> and/or <code>apply()</code> (will be covered later).</p>
@@ -1960,7 +1964,7 @@ addmargins(tab)</code></pre>
 ## Education        -0.6637889 -0.63952252   0.6984153  1.00000000 -0.1538589      -0.09932185
 ## Catholic          0.4636847  0.40109505  -0.5727418 -0.15385892  1.0000000       0.17549591
 ## Infant.Mortality  0.4165560 -0.06085861  -0.1140216 -0.09932185  0.1754959       1.00000000</code></pre>
-<p>The correlation matrix can be obtained directly using <code>cor()</code>. The argument <code>method</code> allows the choice of pearson“,”kendall&quot; or “spearman” correlation.</p>
+<p>The correlation matrix can be obtained directly using <code>cor()</code>. The argument <code>method</code> allows the choice of pearson“,”kendall&quot; or “spearman” correation.</p>
 <pre class="r"><code>cor(swiss, method = &#39;kendall&#39;)</code></pre>
 <pre><code>##                   Fertility Agriculture Examination    Education    Catholic Infant.Mortality
 ## Fertility         1.0000000  0.17954653 -0.47624374 -0.330611161  0.24537037      0.315647384
@@ -1975,10 +1979,12 @@ addmargins(tab)</code></pre>
 <h2>Duplicates and Comparison</h2>
 <p>To find duplicates in a <code>data.frame</code>, <code>matrix</code> or a <code>vector</code> we can use the function <code>duplicated()</code>:</p>
 <pre class="r"><code>duplicated(esoph)</code></pre>
-<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [23] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [67] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [17] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [33] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [65] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [81] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 <pre class="r"><code>(x &lt;- sample(LETTERS[1:5], 10, replace = TRUE))</code></pre>
 <pre><code>##  [1] &quot;A&quot; &quot;D&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;A&quot; &quot;E&quot; &quot;C&quot; &quot;C&quot;</code></pre>
 <pre class="r"><code>duplicated(x)</code></pre>

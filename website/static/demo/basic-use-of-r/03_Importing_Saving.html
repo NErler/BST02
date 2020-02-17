@@ -11,7 +11,7 @@
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-16" />
+<meta name="date" content="2020-02-15" />
 
 <title>Demo: Importing and Saving your Work</title>
 
@@ -366,7 +366,7 @@ summary {
 <h1 class="title toc-ignore">Demo: Importing and Saving your Work</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">16 February 2020</h4>
+<h4 class="date">15 February 2020</h4>
 
 </div>
 
@@ -375,18 +375,18 @@ summary {
 If you are using the package for the first time, you will have to first install it<br />
 </p>
 <pre class="r"><code># install.packages(&quot;survival&quot;) 
-# install.packages(&quot;openxlsx&quot;) 
+# install.packages(&quot;xlsx&quot;) 
 library(survival)
-library(openxlsx)</code></pre>
+library(xlsx)</code></pre>
 <p>List all your R objects</p>
 <pre class="r"><code>ls()</code></pre>
-<pre><code>##  [1] &quot;Columns_com&quot;         &quot;DF&quot;                  &quot;hi&quot;                  &quot;k&quot;                   &quot;mylist&quot;              &quot;myList&quot;             
-##  [7] &quot;number&quot;              &quot;Rfiles&quot;              &quot;vec1&quot;                &quot;vec2&quot;                &quot;vec3&quot;                &quot;weight_columns&quot;     
-## [13] &quot;weight_Rows&quot;         &quot;write_Demos_md&quot;      &quot;write_Practicals_md&quot; &quot;write_Slides_md&quot;     &quot;x&quot;                   &quot;xxx&quot;</code></pre>
+<pre><code>##  [1] &quot;Columns_com&quot;    &quot;DF&quot;             &quot;hi&quot;             &quot;k&quot;              &quot;mylist&quot;        
+##  [6] &quot;myList&quot;         &quot;number&quot;         &quot;Rfiles&quot;         &quot;vec1&quot;           &quot;vec2&quot;          
+## [11] &quot;vec3&quot;           &quot;weight_columns&quot; &quot;weight_Rows&quot;    &quot;x&quot;              &quot;xxx&quot;</code></pre>
 <p>Save your work<br />
 Take care: first you need to set your working directory (Rstudio: Session -&gt; Set Working Directory -&gt; Choose Directory…) Use also the function <code>setwd(...)</code> to set the working directory</p>
 <pre class="r"><code>getwd()</code></pre>
-<pre><code>## [1] &quot;C:/Users/erler/Documents/Work/Projects/Teaching/BST02/Demos/Basic use of R&quot;</code></pre>
+<pre><code>## [1] &quot;N:/Teaching/BST02/Demos/Basic use of R&quot;</code></pre>
 <pre class="r"><code>dt &lt;- pbc[1:6, c(&quot;id&quot;, &quot;sex&quot;, &quot;bili&quot;, &quot;chol&quot;)]
 p &lt;- 1
 
