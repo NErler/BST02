@@ -78,10 +78,9 @@ for (xxx in dir('Demos', full.names = TRUE)) {
   }
 }
 
-# remove unnecessary files created during compilation 
-sapply(c('.tex', '.log'),
+sapply(c('.log', '.tex', '.aux', '.out', '.vrb', '.snm', '.nav', '.toc'),
        function(k) {
-         file.remove(gsub('.R$', k, Rfiles))
+         file.remove(gsub('.Rmd$', k, "Demos/Markdown/Markdown_Code.Rmd"))
        })
 
 # remove content of website/content/demo and website/static/demo
