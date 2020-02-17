@@ -78,6 +78,11 @@ for (xxx in dir('Demos', full.names = TRUE)) {
   }
 }
 
+# remove unnecessary files created during compilation 
+sapply(c('.tex', '.log'),
+       function(k) {
+         file.remove(gsub('.R$', k, Rfiles))
+       })
 
 # remove content of website/content/demo and website/static/demo
 unlink('website/content/demo/*')
