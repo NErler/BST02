@@ -14,6 +14,9 @@
 library(survival)
 library(memisc)
 
+#' Load data set from package
+pbc <- survival::pbc
+
 #' Print the first 6 rows of the data set
 head(pbc)
 

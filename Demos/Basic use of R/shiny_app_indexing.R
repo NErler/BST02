@@ -1,6 +1,3 @@
-#+ eval = FALSE
-rm(list = ls())
-
 #################
 # Load packages #
 #################
@@ -9,6 +6,8 @@ rm(list = ls())
 # install.packages("survival")
 library(survival)
 library(shiny)
+
+pbc <- survival::pbc
 
 ################################################
 # Give the data and information that is needed #

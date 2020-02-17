@@ -14,6 +14,9 @@
 library(survival)
 library(openxlsx)
 
+#' Load data set from package
+pbc <- survival::pbc
+
 #' List all your R objects 
 ls()
 

@@ -14,6 +14,9 @@
 library(survival)
 library(memisc)
 
+#' Load data set from package
+pbc <- survival::pbc
+
 #' What is the mean and sd for `age`?
 mean(pbc$age)
 mean(pbc$age, na.rm = TRUE)

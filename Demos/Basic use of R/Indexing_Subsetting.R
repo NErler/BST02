@@ -12,6 +12,10 @@
 # install.packages("survival") 
 library(survival)
 
+#' Load data set from package
+pbc <- survival::pbc
+pbcseq <- survival::pbcseq
+
 #' Select the 3rd element for vector age
 pbc$age[3]
 

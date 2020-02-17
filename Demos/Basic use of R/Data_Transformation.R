@@ -14,6 +14,10 @@
 library(survival)
 library(reshape2)
 
+#' Load data set from package
+pbc <- survival::pbc
+pbcseq <- survival::pbcseq
+
 #' Round continuous variables
 pbc$bili <- round(pbc$bili, digits = 2)
 pbc$age <- round(pbc$age, digits = 2)

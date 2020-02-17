@@ -20,6 +20,10 @@ library(ggplot2)
 library(emojifont)
 library(gtrendsR)
 
+#' Load data set from package
+pbc <- survival::pbc
+pbcseq <- survival::pbcseq
+
 #' Basic plot with 1 variable
 plot(pbc$bili)
 

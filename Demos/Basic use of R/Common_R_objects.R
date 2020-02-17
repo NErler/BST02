@@ -12,6 +12,9 @@
 # install.packages("survival") 
 library(survival)
 
+#' Load data set from package
+pbc <- survival::pbc
+
 #' Create vectors
 vec1 <- c(1:100)
 vec2 <- c(2, 32, 14, 23, 54, 13, 45)
