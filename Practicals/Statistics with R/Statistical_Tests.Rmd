@@ -2,7 +2,6 @@
 title: 'Statistical Tests'
 output: 
   html_document:
-    code_folding: show
     df_print: paged
     toc: true
     toc_float:
@@ -79,7 +78,8 @@ hist(survey$Age[which(survey$Sex == 'Male')], nclass = 50, main = 'Male', xlab =
 We notice that the distribution within each of the groups is skewed and does not
 follow a normal distribution. We decide to use a non-parametric test.
 
-**Note:**<br>
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
 In the above syntax we used `...[which(survey$Sex == 'Female')]...` and not just
 `...[survey$Sex == 'Female]...`.
 These two ways of selecting cases give different results when there are missing values:
@@ -90,12 +90,11 @@ y <- c("a", "a", "b", "na_value", "a", "b")
 y[x == "A"]
 y[which(x == "A")]
 ```
-
+</div>
 
 #### Task 2
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-Perform a non-parametric test to investigate whether males are **older** than females
-in the **survey** data.
+Perform a non-parametric test to investigate whether males are **older** than females.
 
 [It is recommended](http://hbiostat.org/doc/bbr.pdf) to use the exact p-value 
 calculation when possible (= when there are no ties), and to use continuity
@@ -199,7 +198,7 @@ t.test(x, y = NULL,
 
 The default values that were used are:
 
-* `y = NULL` (correct because we are doing a one-sample test)
+* `y = NULL` (correct, because we are doing a one-sample test)
 * `alternative = "two.sided"` (correct, we want to test for difference in either direction)
 * `mu = 0` (correct, we want to test for any difference)
 * `paired = FALSE` (only needs to be specified when we use both arguments `x` and `y`)
@@ -221,16 +220,17 @@ Perform an appropriate test.
 chisq.test(table(survey$W.Hnd, survey$Clap))
 ```
 
-**Note:**</br>
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
 A common recommendation is / used to be that Fisher's Exact test should be used instead of 
 the $\chi^2$-test whenever one of the expected frequencies is $< 5$, however
 this "cut-off" is arbitrary ([https://doi.org/10.1002/sim.2832](https://doi.org/10.1002/sim.2832))
 and a $\chi^2$-test can be used. 
-
+</div>
 
 #### Task 2
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-Check if the conclusion differs if we take into account the students' `Sex`.
+Check if the conclusion differs when we take into account the students' `Sex`.
 ```{r, echo = FALSE, results = 'asis'}
 hint("Consider `Sex` as stratifying variable.")
 ```
@@ -242,6 +242,7 @@ To test for an association between `W.Hnd` and `Clap` in each of the two strata
 defined by `Sex` we can use the `mantelhaen.test()`:
 ```{r}
 MHtest <- mantelhaen.test(table(survey$W.Hnd, survey$Clap, survey$Sex))
+MHtest
 ```
 
 ## Multiple Testing {.tabset .tabset-pills .tabset-fade}
@@ -268,11 +269,13 @@ padj <- p.adjust(pvals, method = "BH")
 padj
 ```
 
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
 To make a nice looking comparison we could use the following syntax:
 ```{r, eval = FALSE}
 data.frame('p-value' = format.pval(pvals, eps = 0.001, digits = 2),
            'adj.p-value' = format.pval(padj, eps = 0.001, digits = 2),
-          row.names = names(pvals), check.names = FALSE
+           row.names = names(pvals), check.names = FALSE
 )
 ```
 ```{r, echo = FALSE}
@@ -283,3 +286,11 @@ out <- capture.output(data.frame('p-value' = format.pval(pvals, eps = 0.001, dig
 cat(paste0(out, collapse = "\n"))
 ```
 
+By setting the argument `check.names = FALSE` in `data.frame()` we prevent that
+R "cleanes" the variable names (replaces the "-" with ".", because a "-" in a 
+variable name is usually rather inconvenient and can give problems.).
+
+The argument `eps` in `format.pvals()` controls the cutoff at which the "<..." 
+notation is used, the argument `digits` sets the number of significant digits
+are used (significant has nothing to do with statistical significance in this case).
+</div>

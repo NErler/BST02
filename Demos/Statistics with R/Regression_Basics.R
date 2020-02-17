@@ -57,7 +57,11 @@ fmla5 <- Infant.Mortality ~ (Fertility + Agriculture + Education + Catholic)^2 -
 head(model.matrix(fmla5, data = swiss))
 
 
+#' ## The `subset` argument:
+mod_sub <- lm(Infant.Mortality ~ Fertility + Agriculture + Education + Catholic,
+              data = swiss, subset = Catholic > 5)
 
+summary(mod_sub)
 
 # ------------------------------------------------------------------------------
 #' ## Logistic Regression
@@ -72,6 +76,12 @@ mod2a
 mod2b
 mod2c
 
+#' We can also fit a linear regression model using glm:
+mod_lm <- glm(Infant.Mortality ~ Fertility + Agriculture + Education + Catholic,
+              data = swiss, family = gaussian())
+
+mod_lm
+mod
 
 
 #' ## Formula: Categorical covariates
@@ -100,8 +110,10 @@ summary(mod2)
 
 #' Extract the regression coefficients
 coef(mod)
+coef(mod2)
 
 #' Obtain the confidence interval
+confint(mod)
 confint(mod2)
 
 #' The function `confint()` also has arguments `parm` and `level` that let us

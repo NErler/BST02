@@ -2,7 +2,6 @@
 title: 'Control Flow and Functions'
 output: 
   html_document:
-    df_print: paged
     toc: true
     toc_float:
       collapsed: false
@@ -91,12 +90,7 @@ nrj$BMR1 <- ifelse(nrj$sex == 'male',
                   13.75 * nrj$weight + 5 * nrj$height - 6.76 * nrj$age + 66,
                   9.56 * nrj$weight + 1.85 * nrj$height - 4.68 * nrj$age + 655
 )
-```
-```{r, eval = FALSE}
 head(nrj)
-```
-```{r, echo = FALSE}
-cat(paste0(capture.output(head(nrj)), collapse = "\n"))
 ```
 
 
@@ -235,7 +229,7 @@ paste0("kcal: ", round(mean(nrj$kcal), 1), " (", round(sd(nrj$kcal), 1), ")")
 tab <- prop.table(table(nrj$sports))
 
 # combine proportions with category names:
-props <- paste0(tab * 100, "% ", names(tab), collapse = ", ")
+props <- paste0(round(tab * 100, 1), "% ", names(tab), collapse = ", ")
 
 # combine variable name with proportions string:
 paste('sports:', props)
@@ -282,7 +276,7 @@ for (i in 1:ncol(nrj)) {
     
     # syntax for categorical variable
     tab <- prop.table(table(nrj[, i]))
-    props <- paste0(tab * 100, "% ", names(tab), collapse = ", ")
+    props <- paste0(round(tab * 100, 1), "% ", names(tab), collapse = ", ")
     print(paste0(names(nrj)[i], ": ", props))
     
   } else {
@@ -328,7 +322,7 @@ summary_continuous(nrj$kcal)
 
 summary_categorical <- function(x) {
   tab <- prop.table(table(x))
-  paste0(tab * 100, "% ", names(tab), collapse = ", ")
+  paste0(round(tab * 100, 1), "% ", names(tab), collapse = ", ")
 }
 
 summary_categorical(nrj$sports)

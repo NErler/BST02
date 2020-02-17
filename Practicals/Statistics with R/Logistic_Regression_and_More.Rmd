@@ -2,7 +2,6 @@
 title: 'Logistic Regression & Non-linear Effects'
 output: 
   html_document:
-    code_folding: show
     df_print: paged
     toc: true
     toc_float:
@@ -280,8 +279,8 @@ hint('Use the function `ns()` from the package `splines`.')
 
 ### Solution 1
 ```{r}
-library(splines)
-mod2 <- glm(spiders ~ ns(age, df= 3) + sex + ns(bili, df = 3) + stage + ascites,
+library("splines")
+mod2 <- glm(spiders ~ ns(age, df = 3) + sex + ns(bili, df = 3) + stage + ascites,
             data = pbc, family = binomial())
 
 summary(mod2)
@@ -350,7 +349,7 @@ mod2b <- glm(spiders ~ age + sex + ns(bili, df = 3) + stage + ascites,
 ```
 
 When comparing models with regards to the effect of a variable that is modelled
-using a spline, models are usually not nested (except in specific cases). therefore,
+using a spline, models are usually not nested (except in specific cases). Therefore,
 we will use here the information criteria to compare `mod2` and `mod2b`:
 
 

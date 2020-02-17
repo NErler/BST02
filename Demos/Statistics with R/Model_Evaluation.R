@@ -37,8 +37,10 @@ residuals(mod)
 mod$fitted.values
 fitted(mod) # also: fitted.values(mod)
 
+# scatter plot with smooth (loess) fit:
 scatter.smooth(mod$fitted.values, mod$residuals, lpars = list(col = 'red'))
-abline(h = 0, lty = 2, col = 'grey')
+abline(h = 0, lty = 2, col = 'grey') # grey horizontal line
+
 
 #' #### QQ-plot
 #' To create a normal QQ-plot we plot the quantiles of the standardized 
@@ -46,7 +48,9 @@ abline(h = 0, lty = 2, col = 'grey')
 qqnorm(rstandard(mod))
 abline(a = 0, b = 1, lty = 1, col = 'grey')
 
-
+#' #### Histogram of the residuals
+hist(mod$residuals)
+hist(mod$residuals, nclass = 50)
 
 
 #' ### Comparing Models
@@ -68,4 +72,4 @@ anova(mod2, mod2b, test = "LRT")
 mod3 <- update(mod2b, formula = . ~ . - age + induced)
 
 AIC(mod3, mod2b)
-
+BIC(mod3, mod2b)

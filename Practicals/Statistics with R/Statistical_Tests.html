@@ -1286,66 +1286,6 @@ window.buildTabsets = function(tocID) {
 };
 
 </script>
-<script>
-window.initializeCodeFolding = function(show) {
-
-  // handlers for show-all and hide all
-  $("#rmd-show-all-code").click(function() {
-    $('div.r-code-collapse').each(function() {
-      $(this).collapse('show');
-    });
-  });
-  $("#rmd-hide-all-code").click(function() {
-    $('div.r-code-collapse').each(function() {
-      $(this).collapse('hide');
-    });
-  });
-
-  // index for unique code element ids
-  var currentIndex = 1;
-
-  // select all R code blocks
-  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia');
-  rCodeBlocks.each(function() {
-
-    // create a collapsable div to wrap the code in
-    var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show || $(this)[0].classList.contains('fold-show'))
-      div.addClass('in');
-    var id = 'rcode-643E0F36' + currentIndex++;
-    div.attr('id', id);
-    $(this).before(div);
-    $(this).detach().appendTo(div);
-
-    // add a show code button right above
-    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
-    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
-    showCodeButton.append(showCodeText);
-    showCodeButton
-        .attr('data-toggle', 'collapse')
-        .attr('data-target', '#' + id)
-        .attr('aria-expanded', show)
-        .attr('aria-controls', id);
-
-    var buttonRow = $('<div class="row"></div>');
-    var buttonCol = $('<div class="col-md-12"></div>');
-
-    buttonCol.append(showCodeButton);
-    buttonRow.append(buttonCol);
-
-    div.before(buttonRow);
-
-    // update state of button on show/hide
-    div.on('hidden.bs.collapse', function () {
-      showCodeText.text('Code');
-    });
-    div.on('show.bs.collapse', function () {
-      showCodeText.text('Hide');
-    });
-  });
-
-}
-</script>
 <style type="text/css">.pagedtable {
 overflow: auto;
 padding-left: 8px;
@@ -2682,15 +2622,6 @@ code span.va { color: #000000; } /* Variable */
 code span.vs { color: #4e9a06; } /* VerbatimString */
 code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 
-.sourceCode .row {
-  width: 100%;
-}
-.sourceCode {
-  overflow-x: auto;
-}
-.code-folding-btn {
-  margin-right: -30px;
-}
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -2838,9 +2769,6 @@ summary {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
 
 
@@ -2936,14 +2864,6 @@ div.tocify {
 
 <div class="fluid-row" id="header">
 
-<div class="btn-group pull-right">
-<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu" style="min-width: 50px;">
-<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
-<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
-</ul>
-</div>
-
 
 
 <h1 class="title toc-ignore">Statistical Tests</h1>
@@ -2983,22 +2903,22 @@ div.tocify {
 <h4>Task 1</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Which statistical test do you think is appropriate to test this?</p>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1167138587">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4468520251">
 Hint
 </button>
-<div id="hint_1167138587" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_4468520251" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 To decide, it is useful to get an impression of the distribution of the data, for example using a histogram.
 </div>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8142399199">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8036392561">
 Hint
 </button>
-<div id="hint_8142399199" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_8036392561" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 The function <code>hist()</code> creates a histogram.
 </div>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_3623697675">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_2167021357">
 Hint
 </button>
-<div id="hint_3623697675" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_2167021357" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 You need to check the distribution for each of the two groups separately.
 </div>
 </div>
@@ -3010,7 +2930,11 @@ You need to check the distribution for each of the two groups separately.
 <a class="sourceLine" id="cb5-3" title="3"><span class="kw">hist</span>(survey<span class="op">$</span>Age[<span class="kw">which</span>(survey<span class="op">$</span>Sex <span class="op">==</span><span class="st"> &#39;Male&#39;</span>)], <span class="dt">nclass =</span> <span class="dv">50</span>, <span class="dt">main =</span> <span class="st">&#39;Male&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;age&#39;</span>)</a></code></pre></div>
 <p><img src="data:image/png;base64,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" width="672" /></p>
 <p>We notice that the distribution within each of the groups is skewed and does not follow a normal distribution. We decide to use a non-parametric test.</p>
-<p><strong>Note:</strong><br> In the above syntax we used <code>...[which(survey$Sex == &#39;Female&#39;)]...</code> and not just <code>...[survey$Sex == &#39;Female]...</code>. These two ways of selecting cases give different results when there are missing values:</p>
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style="color:#009B8F; font-weight:bold;">
+Note:
+</p>
+<p>In the above syntax we used <code>...[which(survey$Sex == &#39;Female&#39;)]...</code> and not just <code>...[survey$Sex == &#39;Female]...</code>. These two ways of selecting cases give different results when there are missing values:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>)</a>
 <a class="sourceLine" id="cb6-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;na_value&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>)</a>
 <a class="sourceLine" id="cb6-3" title="3"></a>
@@ -3019,21 +2943,22 @@ You need to check the distribution for each of the two groups separately.
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">y[<span class="kw">which</span>(x <span class="op">==</span><span class="st"> &quot;A&quot;</span>)]</a></code></pre></div>
 <pre><code>## [1] &quot;a&quot; &quot;a&quot; &quot;a&quot;</code></pre>
 </div>
+</div>
 <div id="task-2" class="section level4">
 <h4>Task 2</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-<p>Perform a non-parametric test to investigate whether males are <strong>older</strong> than females in the <strong>survey</strong> data.</p>
+<p>Perform a non-parametric test to investigate whether males are <strong>older</strong> than females.</p>
 <p><a href="http://hbiostat.org/doc/bbr.pdf">It is recommended</a> to use the exact p-value calculation when possible (= when there are no ties), and to use continuity correction if a exact calculation is not possble.</p>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_6717640354">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_6935501198">
 Hint
 </button>
-<div id="hint_6717640354" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_6935501198" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 You may use the <code>wilcox.test()</code> function.
 </div>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_7185653265">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_992881606">
 Hint
 </button>
-<div id="hint_7185653265" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_992881606" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 To test if males are older, you need a one-sided test.
 </div>
 </div>
@@ -3126,10 +3051,10 @@ In the previous solution(s) we have used the default options for several of the 
 <li>Which default options were used in the one-sample t-test?</li>
 <li>Are these default options appropriate in this case?</li>
 </ul>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_5336136850">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_2209744662">
 Hint
 </button>
-<div id="hint_5336136850" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_2209744662" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 To see the default options of a function, check the help file (<code>?t.test</code>).
 </div>
 </div>
@@ -3144,7 +3069,7 @@ To see the default options of a function, check the help file (<code>?t.test</co
 <a class="sourceLine" id="cb19-5" title="5">       <span class="dt">conf.level =</span> <span class="fl">0.95</span>, ...)</a></code></pre></div>
 <p>The default values that were used are:</p>
 <ul>
-<li><code>y = NULL</code> (correct because we are doing a one-sample test)</li>
+<li><code>y = NULL</code> (correct, because we are doing a one-sample test)</li>
 <li><code>alternative = &quot;two.sided&quot;</code> (correct, we want to test for difference in either direction)</li>
 <li><code>mu = 0</code> (correct, we want to test for any difference)</li>
 <li><code>paired = FALSE</code> (only needs to be specified when we use both arguments <code>x</code> and <code>y</code>)</li>
@@ -3174,16 +3099,21 @@ To see the default options of a function, check the help file (<code>?t.test</co
 ## 
 ## data:  table(survey$W.Hnd, survey$Clap)
 ## X-squared = 19.252, df = 2, p-value = 6.598e-05</code></pre>
-<p><strong>Note:</strong></br> A common recommendation is / used to be that Fisher’s Exact test should be used instead of the <span class="math inline">\(\chi^2\)</span>-test whenever one of the expected frequencies is <span class="math inline">\(&lt; 5\)</span>, however this “cut-off” is arbitrary (<a href="https://doi.org/10.1002/sim.2832">https://doi.org/10.1002/sim.2832</a>) and a <span class="math inline">\(\chi^2\)</span>-test can be used.</p>
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style="color:#009B8F; font-weight:bold;">
+Note:
+</p>
+<p>A common recommendation is / used to be that Fisher’s Exact test should be used instead of the <span class="math inline">\(\chi^2\)</span>-test whenever one of the expected frequencies is <span class="math inline">\(&lt; 5\)</span>, however this “cut-off” is arbitrary (<a href="https://doi.org/10.1002/sim.2832">https://doi.org/10.1002/sim.2832</a>) and a <span class="math inline">\(\chi^2\)</span>-test can be used.</p>
+</div>
 </div>
 <div id="task-2-2" class="section level4">
 <h4>Task 2</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-<p>Check if the conclusion differs if we take into account the students’ <code>Sex</code>.</p>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_3634105507">
+<p>Check if the conclusion differs when we take into account the students’ <code>Sex</code>.</p>
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1457141922">
 Hint
 </button>
-<div id="hint_3634105507" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_1457141922" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Consider <code>Sex</code> as stratifying variable.
 </div>
 </div>
@@ -3191,7 +3121,13 @@ Consider <code>Sex</code> as stratifying variable.
 <div id="solution-2-2" class="section level4">
 <h4>Solution 2</h4>
 <p>To test for an association between <code>W.Hnd</code> and <code>Clap</code> in each of the two strata defined by <code>Sex</code> we can use the <code>mantelhaen.test()</code>:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">MHtest &lt;-<span class="st"> </span><span class="kw">mantelhaen.test</span>(<span class="kw">table</span>(survey<span class="op">$</span>W.Hnd, survey<span class="op">$</span>Clap, survey<span class="op">$</span>Sex))</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">MHtest &lt;-<span class="st"> </span><span class="kw">mantelhaen.test</span>(<span class="kw">table</span>(survey<span class="op">$</span>W.Hnd, survey<span class="op">$</span>Clap, survey<span class="op">$</span>Sex))</a>
+<a class="sourceLine" id="cb23-2" title="2">MHtest</a></code></pre></div>
+<pre><code>## 
+##  Cochran-Mantel-Haenszel test
+## 
+## data:  table(survey$W.Hnd, survey$Clap, survey$Sex)
+## Cochran-Mantel-Haenszel M^2 = 19.922, df = 2, p-value = 4.721e-05</code></pre>
 </div>
 </div>
 </div>
@@ -3206,33 +3142,40 @@ Consider <code>Sex</code> as stratifying variable.
 <li>t-test for the difference between the <code>Wr.Hnd</code> and <code>NW.Hnd</code></li>
 <li>Mantel-Haenszel test for <code>W.Hnd</code>, <code>Clap</code> and <code>Sex</code></li>
 </ul>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1910137592">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1748760751">
 Hint
 </button>
-<div id="hint_1910137592" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_1748760751" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Adjusted p-values can be obtained using the function <code>p.adjust()</code>.
 </div>
 </div>
 </div>
 <div id="solution" class="section level3">
 <h3>Solution</h3>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">pvals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">wtest =</span> wtest<span class="op">$</span>p.value,</a>
-<a class="sourceLine" id="cb24-2" title="2">           <span class="dt">ttest =</span> ttest1<span class="op">$</span>p.value,</a>
-<a class="sourceLine" id="cb24-3" title="3">           <span class="dt">MHtest =</span> MHtest<span class="op">$</span>p.value)</a>
-<a class="sourceLine" id="cb24-4" title="4"></a>
-<a class="sourceLine" id="cb24-5" title="5">padj &lt;-<span class="st"> </span><span class="kw">p.adjust</span>(pvals, <span class="dt">method =</span> <span class="st">&quot;BH&quot;</span>)</a>
-<a class="sourceLine" id="cb24-6" title="6">padj</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">pvals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">wtest =</span> wtest<span class="op">$</span>p.value,</a>
+<a class="sourceLine" id="cb25-2" title="2">           <span class="dt">ttest =</span> ttest1<span class="op">$</span>p.value,</a>
+<a class="sourceLine" id="cb25-3" title="3">           <span class="dt">MHtest =</span> MHtest<span class="op">$</span>p.value)</a>
+<a class="sourceLine" id="cb25-4" title="4"></a>
+<a class="sourceLine" id="cb25-5" title="5">padj &lt;-<span class="st"> </span><span class="kw">p.adjust</span>(pvals, <span class="dt">method =</span> <span class="st">&quot;BH&quot;</span>)</a>
+<a class="sourceLine" id="cb25-6" title="6">padj</a></code></pre></div>
 <pre><code>##        wtest        ttest       MHtest 
 ## 0.0278728964 0.0344813844 0.0001416164</code></pre>
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style="color:#009B8F; font-weight:bold;">
+Note:
+</p>
 <p>To make a nice looking comparison we could use the following syntax:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">data.frame</span>(<span class="st">&#39;p-value&#39;</span> =<span class="st"> </span><span class="kw">format.pval</span>(pvals, <span class="dt">eps =</span> <span class="fl">0.001</span>, <span class="dt">digits =</span> <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb26-2" title="2">           <span class="st">&#39;adj.p-value&#39;</span> =<span class="st"> </span><span class="kw">format.pval</span>(padj, <span class="dt">eps =</span> <span class="fl">0.001</span>, <span class="dt">digits =</span> <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb26-3" title="3">          <span class="dt">row.names =</span> <span class="kw">names</span>(pvals), <span class="dt">check.names =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb26-4" title="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">data.frame</span>(<span class="st">&#39;p-value&#39;</span> =<span class="st"> </span><span class="kw">format.pval</span>(pvals, <span class="dt">eps =</span> <span class="fl">0.001</span>, <span class="dt">digits =</span> <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb27-2" title="2">           <span class="st">&#39;adj.p-value&#39;</span> =<span class="st"> </span><span class="kw">format.pval</span>(padj, <span class="dt">eps =</span> <span class="fl">0.001</span>, <span class="dt">digits =</span> <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb27-3" title="3">           <span class="dt">row.names =</span> <span class="kw">names</span>(pvals), <span class="dt">check.names =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb27-4" title="4">)</a></code></pre></div>
 <pre><code>##        p-value adj.p-value
 ## wtest    0.019       0.028
 ## ttest    0.034       0.034
 ## MHtest  &lt;0.001      &lt;0.001</code></pre>
+<p>By setting the argument <code>check.names = FALSE</code> in <code>data.frame()</code> we prevent that R “cleanes” the variable names (replaces the “-” with “.”, because a “-” in a variable name is usually rather inconvenient and can give problems.).</p>
+<p>The argument <code>eps</code> in <code>format.pvals()</code> controls the cutoff at which the “&lt;…” notation is used, the argument <code>digits</code> sets the number of significant digits are used (significant has nothing to do with statistical significance in this case).</p>
+</div>
 </div>
 </div>
 
@@ -3286,11 +3229,6 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
 
 <script>
 $(document).ready(function ()  {

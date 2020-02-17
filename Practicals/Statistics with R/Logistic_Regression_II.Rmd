@@ -2,8 +2,6 @@
 title: 'Logistic Regression: Additional Exercise'
 output: 
   html_document:
-    code_folding: show
-    df_print: paged
     toc: true
     toc_float:
       collapsed: false
@@ -238,7 +236,7 @@ We may have overlooked something when we created the table.
 Check if the table did indeed include those cases that are analysed in `mod_chol`
 by checking if the table at least contains the correct number of cases.
 ```{r, echo = FALSE, results = 'asis'}
-hint('You can find relevant info in the output of the summary().')
+hint('You can find relevant info in the output of the `summary()`.')
 ```
 </div>
 
@@ -353,9 +351,3 @@ summary(mod_chol2)
 
 We see that the effect estimates and standard errors of levels 2 and 3 are back
 to normal values.
-
-```{r}
-library(effects)
-plot(predictorEffects(mod_chol2))
-```
-
