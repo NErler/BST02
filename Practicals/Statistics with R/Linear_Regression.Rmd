@@ -98,10 +98,6 @@ but we cannot use or investigate them any further.
 ### Task 1
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 Get the `summary()` of the model.
-```{r, echo = FALSE, results = 'asis'}
-hint("Use the function `lm()`.")
-hint("Besides the model formula, you also need to provide the data via the argument `data`.")
-```
 </div>
 
 ### Solution 1
@@ -140,7 +136,7 @@ coef(mod1)
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 
 * Where in the summary can you find the p-values?
-* Which of the covariates have a statistically significant effect (for $\alpha = 5%$)?
+* Which of the covariates have a statistically significant effect (for $\alpha = 5\%$)?
 </div>
 
 ### Solution 3
@@ -199,7 +195,7 @@ Combine the coefficients and 95% confidence intervals of the model into one
 </div>
 
 ### Solution 2
-```{r, echo = FALSE, resuts = 'asis'}
+```{r}
 cbind(estimate = coef(mod1),
       confint(mod1))
 ```

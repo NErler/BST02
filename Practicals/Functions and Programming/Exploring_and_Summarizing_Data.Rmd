@@ -15,29 +15,14 @@ output:
     css: ../style.css
 ---
 
-```{r, echo = FALSE, purl = FALSE}
+
+```{r setup, include = FALSE}
 library(knitr)
-
-knit_hooks$set(purl = hook_purl)
-
-options(purl = FALSE)
-
-opts_chunk$set(purl = FALSE)
-```
-
-```{r, include = FALSE}
-opts_hooks$set(eval = function(opt) {
-  if (any(opt$exercise))
-    opt$eval <- opt$include <- FALSE
-  
-  opt
-})
+library(kableExtra)
+options(knitr.kable.NA = '')
 
 
-static <- TRUE
-
-options(width = 100)
-
+opts_chunk$set(echo = TRUE)
 
 hint <- function(text) {
   id <- paste0('hint_', sample.int(1e10, size = 1))
@@ -50,7 +35,10 @@ hint <- function(text) {
       text, '</div>')
   )
 }
+
+set.seed(2020)
 ```
+
 
 
 ## Dataset 
@@ -78,6 +66,7 @@ hint('Use the functions `class()`, `dim()`, `nrow()` and `ncol()`.')
 
 #### Solution
 ```{r}
+class(lung)
 dim(lung)
 nrow(lung)
 ncol(lung)
@@ -116,7 +105,7 @@ str(lung)
 All variables are coded as `numeric`.
 
 * Do you think some of them should be factors?
-* Explore how many district values there are in those variables that may not actually be
+* Explore how many distinct values there are in those variables that may not actually be
   continuous.
 ```{r, echo = FALSE, results = 'asis'}
 hint('The functions `unique()`, `table()` and `length()` are useful here.')
@@ -210,7 +199,7 @@ and `ph.ecog` "by hand" (i.e., using other functions).
 * Also calculate the inter-quartile range for `ph.karno`.
 
 ```{r, echo = FALSE, results = 'asis'}
-hint('You can use the functions `min()`, `max()`, `quantile()` for the 
+hint('You can use the functions `min()`, `max()`, `mean()`, `quantile()` for the 
      continuous variable (but there are other options), 
      and `table()` for the categorical variable.')
 hint('There are missing values in both variables: 

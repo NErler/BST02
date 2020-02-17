@@ -100,6 +100,7 @@ table(pbc$ascites, exclude = NULL)
 
 #  In this case optional:
 pbc$spiders <- factor(pbc$spiders)
+pbc$ascites <- factor(pbc$ascites)
 ```
 
 `stage` has four levels and should be re-coded as a factor:
@@ -408,7 +409,7 @@ did not consider that.
 
 #### Task 1
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-Make a an ordered factor from `stage` and call the new variable `stage_ord`.
+Make an ordered factor from `stage` and call the new variable `stage_ord`.
 </div>
 
 #### Solution 1

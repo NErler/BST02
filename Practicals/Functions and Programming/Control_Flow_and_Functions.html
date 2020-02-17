@@ -2570,9 +2570,9 @@ window.onload = function() {
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -2582,16 +2582,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -2600,9 +2598,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  background-color: #f8f8f8; }
+  { background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -2885,15 +2883,15 @@ div.tocify {
 <div id="data" class="section level2">
 <h2>Data</h2>
 <p>For this practical, we simulate data using the following syntax:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">set.seed</span>(<span class="dv">2020</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>nrj &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">sex =</span> <span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&#39;male&#39;</span>, <span class="st">&#39;female&#39;</span>), <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)),</span>
-<span id="cb1-3"><a href="#cb1-3"></a>                  <span class="dt">kcal =</span> <span class="kw">round</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">2200</span>, <span class="dt">sd =</span> <span class="dv">250</span>)),</span>
-<span id="cb1-4"><a href="#cb1-4"></a>                  <span class="dt">weight =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">45</span>, <span class="dt">max =</span> <span class="dv">150</span>),</span>
-<span id="cb1-5"><a href="#cb1-5"></a>                  <span class="dt">height =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">170</span>, <span class="dt">sd =</span> <span class="dv">10</span>),</span>
-<span id="cb1-6"><a href="#cb1-6"></a>                  <span class="dt">age =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">10</span>),</span>
-<span id="cb1-7"><a href="#cb1-7"></a>                  <span class="dt">sports =</span> <span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&#39;never&#39;</span>, <span class="st">&#39;sometimes&#39;</span>, <span class="st">&#39;regularly&#39;</span>),</span>
-<span id="cb1-8"><a href="#cb1-8"></a>                                         <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>), <span class="dt">ordered =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb1-9"><a href="#cb1-9"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">set.seed</span>(<span class="dv">2020</span>)</a>
+<a class="sourceLine" id="cb1-2" title="2">nrj &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">sex =</span> <span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&#39;male&#39;</span>, <span class="st">&#39;female&#39;</span>), <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)),</a>
+<a class="sourceLine" id="cb1-3" title="3">                  <span class="dt">kcal =</span> <span class="kw">round</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">2200</span>, <span class="dt">sd =</span> <span class="dv">250</span>)),</a>
+<a class="sourceLine" id="cb1-4" title="4">                  <span class="dt">weight =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">45</span>, <span class="dt">max =</span> <span class="dv">150</span>),</a>
+<a class="sourceLine" id="cb1-5" title="5">                  <span class="dt">height =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">170</span>, <span class="dt">sd =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb1-6" title="6">                  <span class="dt">age =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb1-7" title="7">                  <span class="dt">sports =</span> <span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&#39;never&#39;</span>, <span class="st">&#39;sometimes&#39;</span>, <span class="st">&#39;regularly&#39;</span>),</a>
+<a class="sourceLine" id="cb1-8" title="8">                                         <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>), <span class="dt">ordered =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb1-9" title="9">)</a></code></pre></div>
 The first six rows of the resulting <code>data.frame</code> are:
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -3083,11 +3081,11 @@ You could use <code>nrj$sex == &quot;male&quot;</code> as the <code>test</code>.
 </div>
 <div id="solution-2" class="section level3">
 <h3>Solution 2</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>nrj<span class="op">$</span>BMR1 &lt;-<span class="st"> </span><span class="kw">ifelse</span>(nrj<span class="op">$</span>sex <span class="op">==</span><span class="st"> &#39;male&#39;</span>,</span>
-<span id="cb2-2"><a href="#cb2-2"></a>                  <span class="fl">13.75</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>weight <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>height <span class="op">-</span><span class="st"> </span><span class="fl">6.76</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>age <span class="op">+</span><span class="st"> </span><span class="dv">66</span>,</span>
-<span id="cb2-3"><a href="#cb2-3"></a>                  <span class="fl">9.56</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>weight <span class="op">+</span><span class="st"> </span><span class="fl">1.85</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>height <span class="op">-</span><span class="st"> </span><span class="fl">4.68</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>age <span class="op">+</span><span class="st"> </span><span class="dv">655</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">head</span>(nrj)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">nrj<span class="op">$</span>BMR1 &lt;-<span class="st"> </span><span class="kw">ifelse</span>(nrj<span class="op">$</span>sex <span class="op">==</span><span class="st"> &#39;male&#39;</span>,</a>
+<a class="sourceLine" id="cb2-2" title="2">                  <span class="fl">13.75</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>weight <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>height <span class="op">-</span><span class="st"> </span><span class="fl">6.76</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>age <span class="op">+</span><span class="st"> </span><span class="dv">66</span>,</a>
+<a class="sourceLine" id="cb2-3" title="3">                  <span class="fl">9.56</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>weight <span class="op">+</span><span class="st"> </span><span class="fl">1.85</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>height <span class="op">-</span><span class="st"> </span><span class="fl">4.68</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>age <span class="op">+</span><span class="st"> </span><span class="dv">655</span></a>
+<a class="sourceLine" id="cb2-4" title="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">head</span>(nrj)</a></code></pre></div>
 <pre><code>##      sex kcal    weight   height      age    sports     BMR1
 ## 1 female 2153  83.24565 162.7047 59.16676     never 1474.932
 ## 2 female 2350  74.34613 178.5138 47.73101     never 1472.618
@@ -3144,36 +3142,36 @@ Don’t forget that you now need to use indices.
 <div id="solution-5" class="section level3">
 <h3>Solution 5</h3>
 <p>Our syntax needs to have the general form:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="op">&lt;</span><span class="st">&quot;columns of nrj&quot;</span><span class="op">&gt;</span>) {</span>
-<span id="cb5-2"><a href="#cb5-2"></a>  </span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="cf">if</span> (<span class="st">&quot;&lt;subject is male&quot;</span><span class="op">&gt;</span>) {</span>
-<span id="cb5-4"><a href="#cb5-4"></a>    </span>
-<span id="cb5-5"><a href="#cb5-5"></a>    <span class="op">&lt;</span><span class="st">&quot;formula for males&quot;</span><span class="op">&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="st">    </span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="st">  </span>} <span class="cf">else</span> {</span>
-<span id="cb5-8"><a href="#cb5-8"></a>    </span>
-<span id="cb5-9"><a href="#cb5-9"></a>    <span class="op">&lt;</span><span class="st">&quot;formula for females&quot;</span><span class="op">&gt;</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="st">    </span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="st">  </span>}</span>
-<span id="cb5-12"><a href="#cb5-12"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>nrj<span class="op">$</span>BMR2 &lt;-<span class="st"> </span><span class="ot">NA</span>   <span class="co"># &quot;empty&quot; version of BMR2</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co"># loop over all rows</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(nrj)) {</span>
-<span id="cb6-5"><a href="#cb6-5"></a>  </span>
-<span id="cb6-6"><a href="#cb6-6"></a>  <span class="co"># test if the subject is male</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>  nrj<span class="op">$</span>BMR2[i] &lt;-<span class="st"> </span><span class="cf">if</span> (nrj<span class="op">$</span>sex[i] <span class="op">==</span><span class="st"> &#39;male&#39;</span>) {</span>
-<span id="cb6-8"><a href="#cb6-8"></a>    </span>
-<span id="cb6-9"><a href="#cb6-9"></a>    <span class="co"># formula for males</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a>    <span class="fl">13.75</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>weight[i] <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>height[i] <span class="op">-</span><span class="st"> </span><span class="fl">6.76</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>age[i] <span class="op">+</span><span class="st"> </span><span class="dv">66</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>    </span>
-<span id="cb6-12"><a href="#cb6-12"></a>  } <span class="cf">else</span> {</span>
-<span id="cb6-13"><a href="#cb6-13"></a>    </span>
-<span id="cb6-14"><a href="#cb6-14"></a>    <span class="co"># formula for females</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a>    <span class="fl">9.56</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>weight[i] <span class="op">+</span><span class="st"> </span><span class="fl">1.85</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>height[i] <span class="op">-</span><span class="st"> </span><span class="fl">4.68</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>age[i] <span class="op">+</span><span class="st"> </span><span class="dv">655</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a>    </span>
-<span id="cb6-17"><a href="#cb6-17"></a>  }</span>
-<span id="cb6-18"><a href="#cb6-18"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="op">&lt;</span><span class="st">&quot;columns of nrj&quot;</span><span class="op">&gt;</span>) {</a>
+<a class="sourceLine" id="cb5-2" title="2">  </a>
+<a class="sourceLine" id="cb5-3" title="3">  <span class="cf">if</span> (<span class="st">&quot;&lt;subject is male&quot;</span><span class="op">&gt;</span>) {</a>
+<a class="sourceLine" id="cb5-4" title="4">    </a>
+<a class="sourceLine" id="cb5-5" title="5">    <span class="op">&lt;</span><span class="st">&quot;formula for males&quot;</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="st">    </span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="st">  </span>} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb5-8" title="8">    </a>
+<a class="sourceLine" id="cb5-9" title="9">    <span class="op">&lt;</span><span class="st">&quot;formula for females&quot;</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="st">    </span></a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="st">  </span>}</a>
+<a class="sourceLine" id="cb5-12" title="12">}</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">nrj<span class="op">$</span>BMR2 &lt;-<span class="st"> </span><span class="ot">NA</span>   <span class="co"># &quot;empty&quot; version of BMR2</span></a>
+<a class="sourceLine" id="cb6-2" title="2"></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="co"># loop over all rows</span></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(nrj)) {</a>
+<a class="sourceLine" id="cb6-5" title="5">  </a>
+<a class="sourceLine" id="cb6-6" title="6">  <span class="co"># test if the subject is male</span></a>
+<a class="sourceLine" id="cb6-7" title="7">  nrj<span class="op">$</span>BMR2[i] &lt;-<span class="st"> </span><span class="cf">if</span> (nrj<span class="op">$</span>sex[i] <span class="op">==</span><span class="st"> &#39;male&#39;</span>) {</a>
+<a class="sourceLine" id="cb6-8" title="8">    </a>
+<a class="sourceLine" id="cb6-9" title="9">    <span class="co"># formula for males</span></a>
+<a class="sourceLine" id="cb6-10" title="10">    <span class="fl">13.75</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>weight[i] <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>height[i] <span class="op">-</span><span class="st"> </span><span class="fl">6.76</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>age[i] <span class="op">+</span><span class="st"> </span><span class="dv">66</span></a>
+<a class="sourceLine" id="cb6-11" title="11">    </a>
+<a class="sourceLine" id="cb6-12" title="12">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb6-13" title="13">    </a>
+<a class="sourceLine" id="cb6-14" title="14">    <span class="co"># formula for females</span></a>
+<a class="sourceLine" id="cb6-15" title="15">    <span class="fl">9.56</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>weight[i] <span class="op">+</span><span class="st"> </span><span class="fl">1.85</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>height[i] <span class="op">-</span><span class="st"> </span><span class="fl">4.68</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>age[i] <span class="op">+</span><span class="st"> </span><span class="dv">655</span></a>
+<a class="sourceLine" id="cb6-16" title="16">    </a>
+<a class="sourceLine" id="cb6-17" title="17">  }</a>
+<a class="sourceLine" id="cb6-18" title="18">}</a></code></pre></div>
 </div>
 <div id="task-6" class="section level3">
 <h3>Task 6</h3>
@@ -3184,15 +3182,15 @@ Don’t forget that you now need to use indices.
 <div id="solution-6" class="section level3">
 <h3>Solution 6</h3>
 <p>There are multiple possible ways to check this:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">all.equal</span>(nrj<span class="op">$</span>BMR1, nrj<span class="op">$</span>BMR2)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">all.equal</span>(nrj<span class="op">$</span>BMR1, nrj<span class="op">$</span>BMR2)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">identical</span>(nrj<span class="op">$</span>BMR1, nrj<span class="op">$</span>BMR2)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">identical</span>(nrj<span class="op">$</span>BMR1, nrj<span class="op">$</span>BMR2)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">table</span>(nrj<span class="op">$</span>BMR1 <span class="op">==</span><span class="st"> </span>nrj<span class="op">$</span>BMR2)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">table</span>(nrj<span class="op">$</span>BMR1 <span class="op">==</span><span class="st"> </span>nrj<span class="op">$</span>BMR2)</a></code></pre></div>
 <pre><code>## 
 ## TRUE 
 ##  100</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">summary</span>(nrj<span class="op">$</span>BMR1 <span class="op">-</span><span class="st"> </span>nrj<span class="op">$</span>BMR2)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">summary</span>(nrj<span class="op">$</span>BMR1 <span class="op">-</span><span class="st"> </span>nrj<span class="op">$</span>BMR2)</a></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##       0       0       0       0       0       0</code></pre>
 </div>
@@ -3218,11 +3216,11 @@ You might use <code>mean()</code>, <code>sd()</code>, <code>table()</code> and <
 </div>
 <div id="solution-1-1" class="section level3">
 <h3>Solution 1</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">mean</span>(nrj<span class="op">$</span>kcal)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">mean</span>(nrj<span class="op">$</span>kcal)</a></code></pre></div>
 <pre><code>## [1] 2200.36</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">sd</span>(nrj<span class="op">$</span>kcal)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">sd</span>(nrj<span class="op">$</span>kcal)</a></code></pre></div>
 <pre><code>## [1] 294.8881</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(nrj<span class="op">$</span>sports))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(nrj<span class="op">$</span>sports))</a></code></pre></div>
 <pre><code>## 
 ##     never regularly sometimes 
 ##      0.34      0.23      0.43</code></pre>
@@ -3251,19 +3249,19 @@ You might also want to use the function <code>round()</code> to reduce the numbe
 </div>
 <div id="solution-2-1" class="section level3">
 <h3>Solution 2</h3>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># for &quot;kcal&quot;:</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="kw">paste0</span>(<span class="st">&quot;kcal: &quot;</span>, <span class="kw">round</span>(<span class="kw">mean</span>(nrj<span class="op">$</span>kcal), <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="kw">round</span>(<span class="kw">sd</span>(nrj<span class="op">$</span>kcal), <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># for &quot;kcal&quot;:</span></a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="kw">paste0</span>(<span class="st">&quot;kcal: &quot;</span>, <span class="kw">round</span>(<span class="kw">mean</span>(nrj<span class="op">$</span>kcal), <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="kw">round</span>(<span class="kw">sd</span>(nrj<span class="op">$</span>kcal), <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;kcal: 2200.4 (294.9)&quot;</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># for &quot;sports&quot;:</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="co"># table of proportions:</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a>tab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(nrj<span class="op">$</span>sports))</span>
-<span id="cb23-5"><a href="#cb23-5"></a></span>
-<span id="cb23-6"><a href="#cb23-6"></a><span class="co"># combine proportions with category names:</span></span>
-<span id="cb23-7"><a href="#cb23-7"></a>props &lt;-<span class="st"> </span><span class="kw">paste0</span>(tab <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="st">&quot;% &quot;</span>, <span class="kw">names</span>(tab), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</span>
-<span id="cb23-8"><a href="#cb23-8"></a></span>
-<span id="cb23-9"><a href="#cb23-9"></a><span class="co"># combine variable name with proportions string:</span></span>
-<span id="cb23-10"><a href="#cb23-10"></a><span class="kw">paste</span>(<span class="st">&#39;sports:&#39;</span>, props)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="co"># for &quot;sports&quot;:</span></a>
+<a class="sourceLine" id="cb23-2" title="2"></a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="co"># table of proportions:</span></a>
+<a class="sourceLine" id="cb23-4" title="4">tab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(nrj<span class="op">$</span>sports))</a>
+<a class="sourceLine" id="cb23-5" title="5"></a>
+<a class="sourceLine" id="cb23-6" title="6"><span class="co"># combine proportions with category names:</span></a>
+<a class="sourceLine" id="cb23-7" title="7">props &lt;-<span class="st"> </span><span class="kw">paste0</span>(tab <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="st">&quot;% &quot;</span>, <span class="kw">names</span>(tab), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</a>
+<a class="sourceLine" id="cb23-8" title="8"></a>
+<a class="sourceLine" id="cb23-9" title="9"><span class="co"># combine variable name with proportions string:</span></a>
+<a class="sourceLine" id="cb23-10" title="10"><span class="kw">paste</span>(<span class="st">&#39;sports:&#39;</span>, props)</a></code></pre></div>
 <pre><code>## [1] &quot;sports: 34% never, 23% regularly, 43% sometimes&quot;</code></pre>
 </div>
 <div id="task-3-1" class="section level3">
@@ -3288,41 +3286,43 @@ You need to autmatically check for each variable if it is a <code>factor()</code
 <div id="solution-3-1" class="section level3">
 <h3>Solution 3</h3>
 <p>Our syntax has the general form:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="op">&lt;</span><span class="st">&quot;columns of nrj&quot;</span><span class="op">&gt;</span>) {</span>
-<span id="cb25-2"><a href="#cb25-2"></a>  </span>
-<span id="cb25-3"><a href="#cb25-3"></a>  <span class="cf">if</span> (<span class="st">&quot;&lt;variable is factor&quot;</span><span class="op">&gt;</span>) {</span>
-<span id="cb25-4"><a href="#cb25-4"></a>    </span>
-<span id="cb25-5"><a href="#cb25-5"></a>    <span class="op">&lt;</span><span class="st">&quot;syntax for summary of a factor&quot;</span><span class="op">&gt;</span></span>
-<span id="cb25-6"><a href="#cb25-6"></a><span class="st">    </span></span>
-<span id="cb25-7"><a href="#cb25-7"></a><span class="st">  </span>} <span class="cf">else</span> {</span>
-<span id="cb25-8"><a href="#cb25-8"></a>    </span>
-<span id="cb25-9"><a href="#cb25-9"></a>    <span class="op">&lt;</span><span class="st">&quot;syntax for summary of a continuous variable&quot;</span><span class="op">&gt;</span></span>
-<span id="cb25-10"><a href="#cb25-10"></a><span class="st">    </span></span>
-<span id="cb25-11"><a href="#cb25-11"></a><span class="st">  </span>}</span>
-<span id="cb25-12"><a href="#cb25-12"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># loop over all columns</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(nrj)) {</span>
-<span id="cb26-3"><a href="#cb26-3"></a>  </span>
-<span id="cb26-4"><a href="#cb26-4"></a>  <span class="co"># test if column is a factor</span></span>
-<span id="cb26-5"><a href="#cb26-5"></a>  <span class="cf">if</span> (<span class="kw">is.factor</span>(nrj[, i])) {</span>
-<span id="cb26-6"><a href="#cb26-6"></a>    </span>
-<span id="cb26-7"><a href="#cb26-7"></a>    <span class="co"># syntax for categorical variable</span></span>
-<span id="cb26-8"><a href="#cb26-8"></a>    tab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(nrj[, i]))</span>
-<span id="cb26-9"><a href="#cb26-9"></a>    props &lt;-<span class="st"> </span><span class="kw">paste0</span>(tab <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="st">&quot;% &quot;</span>, <span class="kw">names</span>(tab), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</span>
-<span id="cb26-10"><a href="#cb26-10"></a>    <span class="kw">paste0</span>(<span class="kw">names</span>(nrj)[i], <span class="st">&quot;: &quot;</span>, props)</span>
-<span id="cb26-11"><a href="#cb26-11"></a>    </span>
-<span id="cb26-12"><a href="#cb26-12"></a>  } <span class="cf">else</span> {</span>
-<span id="cb26-13"><a href="#cb26-13"></a>    </span>
-<span id="cb26-14"><a href="#cb26-14"></a>    <span class="co"># syntax for continuous variable</span></span>
-<span id="cb26-15"><a href="#cb26-15"></a>    <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="kw">names</span>(nrj)[i], <span class="st">&quot;: &quot;</span>, </span>
-<span id="cb26-16"><a href="#cb26-16"></a>                 <span class="kw">round</span>(<span class="kw">mean</span>(nrj[, i]), <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="kw">round</span>(<span class="kw">sd</span>(nrj[, i]), <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>))</span>
-<span id="cb26-17"><a href="#cb26-17"></a>    </span>
-<span id="cb26-18"><a href="#cb26-18"></a>  }</span>
-<span id="cb26-19"><a href="#cb26-19"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;kcal: 2200.4 (294.9)&quot;
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="op">&lt;</span><span class="st">&quot;columns of nrj&quot;</span><span class="op">&gt;</span>) {</a>
+<a class="sourceLine" id="cb25-2" title="2">  </a>
+<a class="sourceLine" id="cb25-3" title="3">  <span class="cf">if</span> (<span class="st">&quot;&lt;variable is factor&quot;</span><span class="op">&gt;</span>) {</a>
+<a class="sourceLine" id="cb25-4" title="4">    </a>
+<a class="sourceLine" id="cb25-5" title="5">    <span class="op">&lt;</span><span class="st">&quot;syntax for summary of a factor&quot;</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb25-6" title="6"><span class="st">    </span></a>
+<a class="sourceLine" id="cb25-7" title="7"><span class="st">  </span>} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb25-8" title="8">    </a>
+<a class="sourceLine" id="cb25-9" title="9">    <span class="op">&lt;</span><span class="st">&quot;syntax for summary of a continuous variable&quot;</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb25-10" title="10"><span class="st">    </span></a>
+<a class="sourceLine" id="cb25-11" title="11"><span class="st">  </span>}</a>
+<a class="sourceLine" id="cb25-12" title="12">}</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># loop over all columns</span></a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(nrj)) {</a>
+<a class="sourceLine" id="cb26-3" title="3">  </a>
+<a class="sourceLine" id="cb26-4" title="4">  <span class="co"># test if column is a factor</span></a>
+<a class="sourceLine" id="cb26-5" title="5">  <span class="cf">if</span> (<span class="kw">is.factor</span>(nrj[, i])) {</a>
+<a class="sourceLine" id="cb26-6" title="6">    </a>
+<a class="sourceLine" id="cb26-7" title="7">    <span class="co"># syntax for categorical variable</span></a>
+<a class="sourceLine" id="cb26-8" title="8">    tab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(nrj[, i]))</a>
+<a class="sourceLine" id="cb26-9" title="9">    props &lt;-<span class="st"> </span><span class="kw">paste0</span>(tab <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="st">&quot;% &quot;</span>, <span class="kw">names</span>(tab), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</a>
+<a class="sourceLine" id="cb26-10" title="10">    <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="kw">names</span>(nrj)[i], <span class="st">&quot;: &quot;</span>, props))</a>
+<a class="sourceLine" id="cb26-11" title="11">    </a>
+<a class="sourceLine" id="cb26-12" title="12">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb26-13" title="13">    </a>
+<a class="sourceLine" id="cb26-14" title="14">    <span class="co"># syntax for continuous variable</span></a>
+<a class="sourceLine" id="cb26-15" title="15">    <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="kw">names</span>(nrj)[i], <span class="st">&quot;: &quot;</span>, </a>
+<a class="sourceLine" id="cb26-16" title="16">                 <span class="kw">round</span>(<span class="kw">mean</span>(nrj[, i]), <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="kw">round</span>(<span class="kw">sd</span>(nrj[, i]), <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>))</a>
+<a class="sourceLine" id="cb26-17" title="17">    </a>
+<a class="sourceLine" id="cb26-18" title="18">  }</a>
+<a class="sourceLine" id="cb26-19" title="19">}</a></code></pre></div>
+<pre><code>## [1] &quot;sex: 60% female, 40% male&quot;
+## [1] &quot;kcal: 2200.4 (294.9)&quot;
 ## [1] &quot;weight: 95.6 (30.8)&quot;
 ## [1] &quot;height: 168.6 (11.5)&quot;
 ## [1] &quot;age: 50.1 (10.3)&quot;
+## [1] &quot;sports: 34% never, 23% regularly, 43% sometimes&quot;
 ## [1] &quot;BMR1: 1734.6 (375.8)&quot;
 ## [1] &quot;BMR2: 1734.6 (375.8)&quot;</code></pre>
 </div>
@@ -3351,18 +3351,18 @@ The general form of a function is <code>function(){...}</code>.
 <h3>Solution 1</h3>
 <p>We can re-use the syntax we used before, and only remove the part that adds the variable name.</p>
 <p>Our functions have one argument, which we call <code>x</code> here:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>summary_continuous &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb28-2"><a href="#cb28-2"></a>  <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="kw">round</span>(<span class="kw">sd</span>(x), <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>)</span>
-<span id="cb28-3"><a href="#cb28-3"></a>}</span>
-<span id="cb28-4"><a href="#cb28-4"></a></span>
-<span id="cb28-5"><a href="#cb28-5"></a><span class="kw">summary_continuous</span>(nrj<span class="op">$</span>kcal)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">summary_continuous &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb28-2" title="2">  <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="kw">round</span>(<span class="kw">sd</span>(x), <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>)</a>
+<a class="sourceLine" id="cb28-3" title="3">}</a>
+<a class="sourceLine" id="cb28-4" title="4"></a>
+<a class="sourceLine" id="cb28-5" title="5"><span class="kw">summary_continuous</span>(nrj<span class="op">$</span>kcal)</a></code></pre></div>
 <pre><code>## [1] &quot;2200.4 (294.9)&quot;</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>summary_categorical &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb30-2"><a href="#cb30-2"></a>  tab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(x))</span>
-<span id="cb30-3"><a href="#cb30-3"></a>  <span class="kw">paste0</span>(tab <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="st">&quot;% &quot;</span>, <span class="kw">names</span>(tab), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</span>
-<span id="cb30-4"><a href="#cb30-4"></a>}</span>
-<span id="cb30-5"><a href="#cb30-5"></a></span>
-<span id="cb30-6"><a href="#cb30-6"></a><span class="kw">summary_categorical</span>(nrj<span class="op">$</span>sports)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">summary_categorical &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb30-2" title="2">  tab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(x))</a>
+<a class="sourceLine" id="cb30-3" title="3">  <span class="kw">paste0</span>(tab <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="st">&quot;% &quot;</span>, <span class="kw">names</span>(tab), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</a>
+<a class="sourceLine" id="cb30-4" title="4">}</a>
+<a class="sourceLine" id="cb30-5" title="5"></a>
+<a class="sourceLine" id="cb30-6" title="6"><span class="kw">summary_categorical</span>(nrj<span class="op">$</span>sports)</a></code></pre></div>
 <pre><code>## [1] &quot;34% never, 23% regularly, 43% sometimes&quot;</code></pre>
 </div>
 <div id="task-2-2" class="section level3">
@@ -3374,30 +3374,30 @@ The general form of a function is <code>function(){...}</code>.
 <div id="solution-2-2" class="section level3">
 <h3>Solution 2</h3>
 <p>This function also has one argument which we call <code>dat</code>. We can, again, re-use syntax from above:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>summary_df &lt;-<span class="st"> </span><span class="cf">function</span>(dat) {</span>
-<span id="cb32-2"><a href="#cb32-2"></a>  </span>
-<span id="cb32-3"><a href="#cb32-3"></a>  <span class="co"># loop over all columns</span></span>
-<span id="cb32-4"><a href="#cb32-4"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(dat)) {</span>
-<span id="cb32-5"><a href="#cb32-5"></a>    </span>
-<span id="cb32-6"><a href="#cb32-6"></a>    <span class="co"># check if the column is a factor</span></span>
-<span id="cb32-7"><a href="#cb32-7"></a>    summary_string &lt;-<span class="st"> </span><span class="cf">if</span> (<span class="kw">is.factor</span>(dat[, i])) {</span>
-<span id="cb32-8"><a href="#cb32-8"></a>      </span>
-<span id="cb32-9"><a href="#cb32-9"></a>      <span class="co"># syntax for a categorical variable</span></span>
-<span id="cb32-10"><a href="#cb32-10"></a>      <span class="kw">summary_categorical</span>(dat[, i])</span>
-<span id="cb32-11"><a href="#cb32-11"></a>      </span>
-<span id="cb32-12"><a href="#cb32-12"></a>    } <span class="cf">else</span> {</span>
-<span id="cb32-13"><a href="#cb32-13"></a>      </span>
-<span id="cb32-14"><a href="#cb32-14"></a>      <span class="co"># syntax for a continuous variable</span></span>
-<span id="cb32-15"><a href="#cb32-15"></a>      <span class="kw">summary_continuous</span>(dat[, i])</span>
-<span id="cb32-16"><a href="#cb32-16"></a>    }</span>
-<span id="cb32-17"><a href="#cb32-17"></a>    </span>
-<span id="cb32-18"><a href="#cb32-18"></a>    <span class="co"># print the result of the summary</span></span>
-<span id="cb32-19"><a href="#cb32-19"></a>    <span class="kw">print</span>(summary_string)</span>
-<span id="cb32-20"><a href="#cb32-20"></a>  }</span>
-<span id="cb32-21"><a href="#cb32-21"></a>  </span>
-<span id="cb32-22"><a href="#cb32-22"></a>}</span>
-<span id="cb32-23"><a href="#cb32-23"></a></span>
-<span id="cb32-24"><a href="#cb32-24"></a><span class="kw">summary_df</span>(<span class="dt">dat =</span> nrj)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">summary_df &lt;-<span class="st"> </span><span class="cf">function</span>(dat) {</a>
+<a class="sourceLine" id="cb32-2" title="2">  </a>
+<a class="sourceLine" id="cb32-3" title="3">  <span class="co"># loop over all columns</span></a>
+<a class="sourceLine" id="cb32-4" title="4">  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(dat)) {</a>
+<a class="sourceLine" id="cb32-5" title="5">    </a>
+<a class="sourceLine" id="cb32-6" title="6">    <span class="co"># check if the column is a factor</span></a>
+<a class="sourceLine" id="cb32-7" title="7">    summary_string &lt;-<span class="st"> </span><span class="cf">if</span> (<span class="kw">is.factor</span>(dat[, i])) {</a>
+<a class="sourceLine" id="cb32-8" title="8">      </a>
+<a class="sourceLine" id="cb32-9" title="9">      <span class="co"># syntax for a categorical variable</span></a>
+<a class="sourceLine" id="cb32-10" title="10">      <span class="kw">summary_categorical</span>(dat[, i])</a>
+<a class="sourceLine" id="cb32-11" title="11">      </a>
+<a class="sourceLine" id="cb32-12" title="12">    } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb32-13" title="13">      </a>
+<a class="sourceLine" id="cb32-14" title="14">      <span class="co"># syntax for a continuous variable</span></a>
+<a class="sourceLine" id="cb32-15" title="15">      <span class="kw">summary_continuous</span>(dat[, i])</a>
+<a class="sourceLine" id="cb32-16" title="16">    }</a>
+<a class="sourceLine" id="cb32-17" title="17">    </a>
+<a class="sourceLine" id="cb32-18" title="18">    <span class="co"># print the result of the summary</span></a>
+<a class="sourceLine" id="cb32-19" title="19">    <span class="kw">print</span>(summary_string)</a>
+<a class="sourceLine" id="cb32-20" title="20">  }</a>
+<a class="sourceLine" id="cb32-21" title="21">  </a>
+<a class="sourceLine" id="cb32-22" title="22">}</a>
+<a class="sourceLine" id="cb32-23" title="23"></a>
+<a class="sourceLine" id="cb32-24" title="24"><span class="kw">summary_df</span>(<span class="dt">dat =</span> nrj)</a></code></pre></div>
 <pre><code>## [1] &quot;60% female, 40% male&quot;
 ## [1] &quot;2200.4 (294.9)&quot;
 ## [1] &quot;95.6 (30.8)&quot;
@@ -3423,29 +3423,29 @@ The function <code>summary_df()</code> that we created in the previous solution 
 <div id="solution-3-2" class="section level3">
 <h3>Solution 3</h3>
 <p>To adjust the function, the only row that needs changing is the one in which we print the summary:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>summary_df &lt;-<span class="st"> </span><span class="cf">function</span>(dat) {</span>
-<span id="cb34-2"><a href="#cb34-2"></a>  </span>
-<span id="cb34-3"><a href="#cb34-3"></a>  <span class="co"># loop over all columns</span></span>
-<span id="cb34-4"><a href="#cb34-4"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(dat)) {</span>
-<span id="cb34-5"><a href="#cb34-5"></a>    </span>
-<span id="cb34-6"><a href="#cb34-6"></a>    <span class="co"># check if the column is a factor</span></span>
-<span id="cb34-7"><a href="#cb34-7"></a>    summary_string &lt;-<span class="st"> </span><span class="cf">if</span> (<span class="kw">is.factor</span>(dat[, i])) {</span>
-<span id="cb34-8"><a href="#cb34-8"></a>      </span>
-<span id="cb34-9"><a href="#cb34-9"></a>      <span class="co"># syntax for a categorical variable</span></span>
-<span id="cb34-10"><a href="#cb34-10"></a>      <span class="kw">summary_categorical</span>(dat[, i])</span>
-<span id="cb34-11"><a href="#cb34-11"></a>      </span>
-<span id="cb34-12"><a href="#cb34-12"></a>    } <span class="cf">else</span> {</span>
-<span id="cb34-13"><a href="#cb34-13"></a>      </span>
-<span id="cb34-14"><a href="#cb34-14"></a>      <span class="co"># syntax for a continuous variable</span></span>
-<span id="cb34-15"><a href="#cb34-15"></a>      <span class="kw">summary_continuous</span>(dat[, i])</span>
-<span id="cb34-16"><a href="#cb34-16"></a>    }</span>
-<span id="cb34-17"><a href="#cb34-17"></a>    </span>
-<span id="cb34-18"><a href="#cb34-18"></a>    <span class="co"># print the result of the summary together with the variable name</span></span>
-<span id="cb34-19"><a href="#cb34-19"></a>    <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="kw">names</span>(dat)[i], <span class="st">&quot;: &quot;</span>, summary_string))</span>
-<span id="cb34-20"><a href="#cb34-20"></a>  }</span>
-<span id="cb34-21"><a href="#cb34-21"></a>}</span>
-<span id="cb34-22"><a href="#cb34-22"></a></span>
-<span id="cb34-23"><a href="#cb34-23"></a><span class="kw">summary_df</span>(<span class="dt">dat =</span> nrj)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">summary_df &lt;-<span class="st"> </span><span class="cf">function</span>(dat) {</a>
+<a class="sourceLine" id="cb34-2" title="2">  </a>
+<a class="sourceLine" id="cb34-3" title="3">  <span class="co"># loop over all columns</span></a>
+<a class="sourceLine" id="cb34-4" title="4">  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(dat)) {</a>
+<a class="sourceLine" id="cb34-5" title="5">    </a>
+<a class="sourceLine" id="cb34-6" title="6">    <span class="co"># check if the column is a factor</span></a>
+<a class="sourceLine" id="cb34-7" title="7">    summary_string &lt;-<span class="st"> </span><span class="cf">if</span> (<span class="kw">is.factor</span>(dat[, i])) {</a>
+<a class="sourceLine" id="cb34-8" title="8">      </a>
+<a class="sourceLine" id="cb34-9" title="9">      <span class="co"># syntax for a categorical variable</span></a>
+<a class="sourceLine" id="cb34-10" title="10">      <span class="kw">summary_categorical</span>(dat[, i])</a>
+<a class="sourceLine" id="cb34-11" title="11">      </a>
+<a class="sourceLine" id="cb34-12" title="12">    } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb34-13" title="13">      </a>
+<a class="sourceLine" id="cb34-14" title="14">      <span class="co"># syntax for a continuous variable</span></a>
+<a class="sourceLine" id="cb34-15" title="15">      <span class="kw">summary_continuous</span>(dat[, i])</a>
+<a class="sourceLine" id="cb34-16" title="16">    }</a>
+<a class="sourceLine" id="cb34-17" title="17">    </a>
+<a class="sourceLine" id="cb34-18" title="18">    <span class="co"># print the result of the summary together with the variable name</span></a>
+<a class="sourceLine" id="cb34-19" title="19">    <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="kw">names</span>(dat)[i], <span class="st">&quot;: &quot;</span>, summary_string))</a>
+<a class="sourceLine" id="cb34-20" title="20">  }</a>
+<a class="sourceLine" id="cb34-21" title="21">}</a>
+<a class="sourceLine" id="cb34-22" title="22"></a>
+<a class="sourceLine" id="cb34-23" title="23"><span class="kw">summary_df</span>(<span class="dt">dat =</span> nrj)</a></code></pre></div>
 <pre><code>## [1] &quot;sex: 60% female, 40% male&quot;
 ## [1] &quot;kcal: 2200.4 (294.9)&quot;
 ## [1] &quot;weight: 95.6 (30.8)&quot;

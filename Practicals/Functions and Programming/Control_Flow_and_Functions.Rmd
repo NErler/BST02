@@ -283,7 +283,7 @@ for (i in 1:ncol(nrj)) {
     # syntax for categorical variable
     tab <- prop.table(table(nrj[, i]))
     props <- paste0(tab * 100, "% ", names(tab), collapse = ", ")
-    paste0(names(nrj)[i], ": ", props)
+    print(paste0(names(nrj)[i], ": ", props))
     
   } else {
     

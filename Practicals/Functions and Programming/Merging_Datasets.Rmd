@@ -32,6 +32,8 @@ hint <- function(text) {
       text, '</div>')
   )
 }
+
+set.seed(2020)
 ```
 
 ## Data
@@ -196,7 +198,7 @@ Note that in `labdat` we have the variables
 
 
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-Merge `dat` and `labdat` by patient identifier.
+Merge `dat1` and `labdat` by patient identifier.
 ```{r, echo = FALSE, results = 'asis'}
 hint("Use the arguments `by.x` and `by.y`.")
 ```

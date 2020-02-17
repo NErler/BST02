@@ -457,8 +457,9 @@ fun5 <- function(dat, variable, interval, incl_boundaries = TRUE, outside = FALS
     dat[, variable] > interval[1] & dat[, variable] < interval[2]
   }
   
-  if (outside) 
+  if (outside) {
     filter <- !filter
+  }
   
   subset(dat, filter)
   }
@@ -488,8 +489,9 @@ fun5b <- function(dat, variable, interval, incl_boundaries = TRUE, outside = FAL
     dat[, variable] > interval[1] & dat[, variable] < interval[2]
   }
   
-  if (outside) 
+  if (outside) {
     filter <- !filter
+  }
   
   subset(dat, filter)
 }

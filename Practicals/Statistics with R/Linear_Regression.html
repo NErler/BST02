@@ -2621,9 +2621,9 @@ window.onload = function() {
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -2633,16 +2633,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -2651,9 +2649,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  background-color: #f8f8f8; }
+  { background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -2957,11 +2955,11 @@ div.tocify {
 <h2>Data</h2>
 <p>For this practical, we will use the <strong>birthwt</strong> dataset from the package <strong>MASS</strong>.</p>
 <p>You can either load the <strong>MASS</strong> package to get access to this dataset</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(MASS)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(MASS)</a></code></pre></div>
 <p>or make a copy of this data</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>birthwt &lt;-<span class="st"> </span>MASS<span class="op">::</span>birthwt</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">birthwt &lt;-<span class="st"> </span>MASS<span class="op">::</span>birthwt</a></code></pre></div>
 <p>The <strong>birthwt</strong> data have the following 10 variables:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">str</span>(birthwt)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">str</span>(birthwt)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    189 obs. of  10 variables:
 ##  $ low  : int  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ age  : int  19 33 20 21 18 21 22 17 29 26 ...
@@ -3001,7 +2999,7 @@ Use the <code>~</code> to separate the outcome from the linear predictor and use
 </div>
 <div id="solution-1" class="section level3">
 <h3>Solution 1</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>bwt <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>lwt <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>smoke</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">bwt <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>lwt <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>smoke</a></code></pre></div>
 <pre><code>## bwt ~ age + lwt + race + smoke</code></pre>
 </div>
 <div id="task-2" class="section level3">
@@ -3024,7 +3022,7 @@ Besides the model formula, you also need to provide the data via the argument <c
 </div>
 <div id="solution-2" class="section level3">
 <h3>Solution 2</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(bwt <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>lwt <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>smoke, <span class="dt">data =</span> birthwt)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(bwt <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>lwt <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>smoke, <span class="dt">data =</span> birthwt)</a></code></pre></div>
 <p>Note that if we don’t assign a name to the model, the results are just printed, but we cannot use or investigate them any further.</p>
 </div>
 </div>
@@ -3034,23 +3032,11 @@ Besides the model formula, you also need to provide the data via the argument <c
 <h3>Task 1</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Get the <code>summary()</code> of the model.</p>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8421222224">
-Hint
-</button>
-<div id="hint_8421222224" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use the function <code>lm()</code>.
-</div>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_5437665890">
-Hint
-</button>
-<div id="hint_5437665890" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Besides the model formula, you also need to provide the data via the argument <code>data</code>.
-</div>
 </div>
 </div>
 <div id="solution-1-1" class="section level3">
 <h3>Solution 1</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">summary</span>(mod1)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">summary</span>(mod1)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = bwt ~ age + lwt + race + smoke, data = birthwt)
@@ -3081,10 +3067,10 @@ Besides the model formula, you also need to provide the data via the argument <c
 <li>What are the estimated effects of the coefficients?</li>
 <li>Confirm that you identified the correct part of the output by extracting only the regression coefficients from the model (not from the model summary!).</li>
 </ul>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_712465128">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8421222224">
 Hint
 </button>
-<div id="hint_712465128" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_8421222224" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 To extract the coefficients, use the function <code>coef()</code>.
 </div>
 </div>
@@ -3102,7 +3088,7 @@ To extract the coefficients, use the function <code>coef()</code>.
 ## smoke       -408.542    110.155  -3.709 0.000276 *** 
 ## [...]</code></pre>
 <p>They are the same as:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">coef</span>(mod1)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">coef</span>(mod1)</a></code></pre></div>
 <pre><code>## (Intercept)         age         lwt        race       smoke 
 ## 3066.310971    1.278421    3.057756 -210.345356 -408.542106</code></pre>
 </div>
@@ -3111,7 +3097,7 @@ To extract the coefficients, use the function <code>coef()</code>.
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <ul>
 <li>Where in the summary can you find the p-values?</li>
-<li>Which of the covariates have a statistically significant effect (for <span class="math inline">\(\alpha = 5%\)</span>)?</li>
+<li>Which of the covariates have a statistically significant effect (for <span class="math inline">\(\alpha = 5\%\)</span>)?</li>
 </ul>
 </div>
 </div>
@@ -3123,16 +3109,16 @@ To extract the coefficients, use the function <code>coef()</code>.
 <h3>Task 4</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>What does the model summary tell you about the model fit?</p>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4601935024">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_5437665890">
 Hint
 </button>
-<div id="hint_4601935024" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_5437665890" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 The model summary contains the <span class="math inline">\(R^2\)</span> and adjusted <span class="math inline">\(R^2\)</span>.
 </div>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8595004935">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_712465128">
 Hint
 </button>
-<div id="hint_8595004935" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_712465128" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 The model summary contains info on an omnibus test (F-statistic).
 </div>
 </div>
@@ -3156,17 +3142,17 @@ The model summary contains info on an omnibus test (F-statistic).
 <h3>Task 1</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Get the 90% confidence intervals of the model.</p>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4231215536">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4601935024">
 Hint
 </button>
-<div id="hint_4231215536" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_4601935024" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the function <code>confint()</code>.
 </div>
 </div>
 </div>
 <div id="solution-1-2" class="section level3">
 <h3>Solution 1</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">confint</span>(mod1, <span class="dt">level =</span> <span class="fl">0.9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">confint</span>(mod1, <span class="dt">level =</span> <span class="fl">0.9</span>)</a></code></pre></div>
 <pre><code>##                      5 %        95 %
 ## (Intercept) 2480.3496976 3652.272245
 ## age          -14.8907558   17.447597
@@ -3182,6 +3168,8 @@ Use the function <code>confint()</code>.
 </div>
 <div id="solution-2-2" class="section level3">
 <h3>Solution 2</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">cbind</span>(<span class="dt">estimate =</span> <span class="kw">coef</span>(mod1),</a>
+<a class="sourceLine" id="cb17-2" title="2">      <span class="kw">confint</span>(mod1))</a></code></pre></div>
 <pre><code>##                estimate        2.5 %      97.5 %
 ## (Intercept) 3066.310971 2367.0109618 3765.610981
 ## age            1.278421  -18.0182561   20.575097
@@ -3204,18 +3192,18 @@ Note:
 <h3>Task 1</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Re-code <code>race</code> and <code>smoke</code> as <code>factor</code>.</p>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_6317257567">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8595004935">
 Hint
 </button>
-<div id="hint_6317257567" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+<div id="hint_8595004935" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the function <code>factor()</code>.
 </div>
 </div>
 </div>
 <div id="solution-1-3" class="section level3">
 <h3>Solution 1</h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>birthwt<span class="op">$</span>race &lt;-<span class="st"> </span><span class="kw">factor</span>(birthwt<span class="op">$</span>race)</span>
-<span id="cb18-2"><a href="#cb18-2"></a>birthwt<span class="op">$</span>smoke &lt;-<span class="st"> </span><span class="kw">factor</span>(birthwt<span class="op">$</span>smoke)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">birthwt<span class="op">$</span>race &lt;-<span class="st"> </span><span class="kw">factor</span>(birthwt<span class="op">$</span>race)</a>
+<a class="sourceLine" id="cb19-2" title="2">birthwt<span class="op">$</span>smoke &lt;-<span class="st"> </span><span class="kw">factor</span>(birthwt<span class="op">$</span>smoke)</a></code></pre></div>
 </div>
 <div id="task-2-3" class="section level3">
 <h3>Task 2</h3>
@@ -3229,8 +3217,8 @@ Use the function <code>factor()</code>.
 </div>
 <div id="solution-2-3" class="section level3">
 <h3>Solution 2</h3>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(bwt <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>lwt <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>smoke, <span class="dt">data =</span> birthwt)</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="kw">summary</span>(mod2)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(bwt <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>lwt <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>smoke, <span class="dt">data =</span> birthwt)</a>
+<a class="sourceLine" id="cb20-2" title="2"><span class="kw">summary</span>(mod2)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = bwt ~ age + lwt + race + smoke, data = birthwt)
