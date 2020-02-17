@@ -11,7 +11,7 @@
 
 <meta name="author" content="Nicole Erler, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-15" />
+<meta name="date" content="2020-02-17" />
 
 <title>Demo: Functions for exploring data</title>
 
@@ -1518,14 +1518,14 @@ div.tocify {
 
 <h1 class="title toc-ignore">Demo: Functions for exploring data</h1>
 <h4 class="author">Nicole Erler, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">15 February 2020</h4>
+<h4 class="date">17 February 2020</h4>
 
 </div>
 
 
 <div id="dataset" class="section level2">
 <h2>Dataset</h2>
-<p>We will explore the datasets <code>swiss</code> and <code>esoph</code> (both automatically availabe in R).</p>
+<p>We will explore the datasets <code>swiss</code> and <code>esoph</code> (both automatically available in R).</p>
 </div>
 <div id="what-type-of-object-do-i-have" class="section level2">
 <h2>What type of object do I have?</h2>
@@ -1542,7 +1542,7 @@ div.tocify {
 <pre><code>## [1] 47</code></pre>
 <pre class="r"><code>ncol(swiss)</code></pre>
 <pre><code>## [1] 6</code></pre>
-<p>Be carefull:</p>
+<p>Be careful:</p>
 <pre class="r"><code>length(swiss)</code></pre>
 <pre><code>## [1] 6</code></pre>
 <p>Why is that? Because a <code>data.frame</code> is also a <code>list</code>:</p>
@@ -1558,8 +1558,7 @@ div.tocify {
 <h2>How does the dataset look like?</h2>
 <p>Names of all the variables in the data:</p>
 <pre class="r"><code>names(swiss)</code></pre>
-<pre><code>## [1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;      &quot;Education&quot;        &quot;Catholic&quot;        
-## [6] &quot;Infant.Mortality&quot;</code></pre>
+<pre><code>## [1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;      &quot;Education&quot;        &quot;Catholic&quot;         &quot;Infant.Mortality&quot;</code></pre>
 <p>Show me the first and last few rows:</p>
 <pre class="r"><code>head(swiss)</code></pre>
 <pre><code>##              Fertility Agriculture Examination Education Catholic Infant.Mortality
@@ -1606,13 +1605,13 @@ str(swiss)</code></pre>
 <div id="summary-of-a-data.frame-or-matrix" class="section level3">
 <h3>Summary of a <code>data.frame</code> or <code>matrix</code></h3>
 <pre class="r"><code>summary(esoph)</code></pre>
-<pre><code>##    agegp          alcgp         tobgp        ncases         ncontrols    
-##  25-34:15   0-39g/day:23   0-9g/day:24   Min.   : 0.000   Min.   : 1.00  
-##  35-44:15   40-79    :23   10-19   :24   1st Qu.: 0.000   1st Qu.: 3.00  
-##  45-54:16   80-119   :21   20-29   :20   Median : 1.000   Median : 6.00  
-##  55-64:16   120+     :21   30+     :20   Mean   : 2.273   Mean   :11.08  
-##  65-74:15                                3rd Qu.: 4.000   3rd Qu.:14.00  
-##  75+  :11                                Max.   :17.000   Max.   :60.00</code></pre>
+<pre><code>##    agegp          alcgp         tobgp        ncases         ncontrols     av_case_by_age    med_case_by_age
+##  25-34:15   0-39g/day:23   0-9g/day:24   Min.   : 0.000   Min.   : 1.00   Min.   :0.06667   Min.   :0.000  
+##  35-44:15   40-79    :23   10-19   :24   1st Qu.: 0.000   1st Qu.: 3.00   1st Qu.:0.60000   1st Qu.:0.000  
+##  45-54:16   80-119   :21   20-29   :20   Median : 1.000   Median : 6.00   Median :2.87500   Median :3.000  
+##  55-64:16   120+     :21   30+     :20   Mean   : 2.273   Mean   :11.08   Mean   :2.27273   Mean   :1.909  
+##  65-74:15                                3rd Qu.: 4.000   3rd Qu.:14.00   3rd Qu.:3.66667   3rd Qu.:3.000  
+##  75+  :11                                Max.   :17.000   Max.   :60.00   Max.   :4.75000   Max.   :4.000</code></pre>
 </div>
 <div id="summaries-per-variable" class="section level3">
 <h3>Summaries per variable</h3>
@@ -1645,26 +1644,26 @@ str(swiss)</code></pre>
 <pre><code>## [1] 156.0425</code></pre>
 <p>All the above functions (<code>min</code>, <code>max</code>, <code>range</code>, <code>mean</code>, <code>median</code>, <code>quantile</code>, <code>sd</code>, <code>var</code>) have an argument <code>na.rm</code> which is by default set to <code>FALSE</code>.</p>
 <pre class="r"><code>(x &lt;- c(rnorm(5), NA))</code></pre>
-<pre><code>## [1]  0.6012424 -2.2994466  0.3545604  0.2448361 -0.5662363         NA</code></pre>
+<pre><code>## [1]  0.9933042  0.6252886 -0.2000261 -0.1123438 -0.8083464         NA</code></pre>
 <pre class="r"><code>min(x)</code></pre>
 <pre><code>## [1] NA</code></pre>
 <pre class="r"><code>min(x, na.rm = TRUE)</code></pre>
-<pre><code>## [1] -2.299447</code></pre>
+<pre><code>## [1] -0.8083464</code></pre>
 <p>Another helpful function to summarize continuous data is <code>ave()</code>. It calculates a summary measure of a continuous variable per group, that are defined by one or more categorical variables:</p>
 <pre class="r"><code>esoph$av_case_by_age &lt;- ave(esoph$ncases, esoph$agegp)
 esoph[12:22, ]</code></pre>
-<pre><code>##    agegp     alcgp    tobgp ncases ncontrols av_case_by_age
-## 12 25-34      120+ 0-9g/day      0         1     0.06666667
-## 13 25-34      120+    10-19      1         1     0.06666667
-## 14 25-34      120+    20-29      0         1     0.06666667
-## 15 25-34      120+      30+      0         2     0.06666667
-## 16 35-44 0-39g/day 0-9g/day      0        60     0.60000000
-## 17 35-44 0-39g/day    10-19      1        14     0.60000000
-## 18 35-44 0-39g/day    20-29      0         7     0.60000000
-## 19 35-44 0-39g/day      30+      0         8     0.60000000
-## 20 35-44     40-79 0-9g/day      0        35     0.60000000
-## 21 35-44     40-79    10-19      3        23     0.60000000
-## 22 35-44     40-79    20-29      1        14     0.60000000</code></pre>
+<pre><code>##    agegp     alcgp    tobgp ncases ncontrols av_case_by_age med_case_by_age
+## 12 25-34      120+ 0-9g/day      0         1     0.06666667               0
+## 13 25-34      120+    10-19      1         1     0.06666667               0
+## 14 25-34      120+    20-29      0         1     0.06666667               0
+## 15 25-34      120+      30+      0         2     0.06666667               0
+## 16 35-44 0-39g/day 0-9g/day      0        60     0.60000000               0
+## 17 35-44 0-39g/day    10-19      1        14     0.60000000               0
+## 18 35-44 0-39g/day    20-29      0         7     0.60000000               0
+## 19 35-44 0-39g/day      30+      0         8     0.60000000               0
+## 20 35-44     40-79 0-9g/day      0        35     0.60000000               0
+## 21 35-44     40-79    10-19      3        23     0.60000000               0
+## 22 35-44     40-79    20-29      1        14     0.60000000               0</code></pre>
 <p><code>ave()</code> also works with other functions than the mean:</p>
 <pre class="r"><code>esoph$med_case_by_age &lt;- ave(esoph$ncases, esoph$agegp, FUN = median)
 esoph[28:36, ]</code></pre>
@@ -1680,10 +1679,8 @@ esoph[28:36, ]</code></pre>
 ## 36 45-54     40-79    10-19      4        21          2.875               3</code></pre>
 <p>And we can split the data by multiple categorical variables:</p>
 <pre class="r"><code>ave(esoph$ncases, esoph$agegp, esoph$alcgp, FUN = median)</code></pre>
-<pre><code>##  [1] 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.5 0.5 0.5 0.5 0.0 0.0
-## [26] 0.0 0.0 2.0 2.0 2.0 0.0 0.0 0.0 0.0 5.0 5.0 5.0 5.0 2.5 2.5 2.5 2.5 3.5 3.5 3.5 3.5 3.0 3.0 3.0 3.0
-## [51] 5.0 5.0 5.0 5.0 6.0 6.0 6.0 6.0 5.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 1.0 1.0
-## [76] 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.5 1.5</code></pre>
+<pre><code>##  [1] 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.5 0.5 0.5 0.5 0.0 0.0 0.0 0.0 2.0 2.0 2.0 0.0 0.0 0.0 0.0 5.0 5.0 5.0 5.0 2.5 2.5 2.5 2.5 3.5 3.5
+## [45] 3.5 3.5 3.0 3.0 3.0 3.0 5.0 5.0 5.0 5.0 6.0 6.0 6.0 6.0 5.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.5 1.5</code></pre>
 </div>
 </div>
 <div id="tables" class="section level2">
@@ -1698,16 +1695,16 @@ esoph[28:36, ]</code></pre>
 <p>By default, table only shows observations. The argument <code>exclude</code> can be set to <code>NULL</code> to also include missing values:</p>
 <pre class="r"><code>(x &lt;- factor(c(NA, sample(LETTERS[1:3], size = 10, replace = TRUE)),
              levels = LETTERS[1:5]))</code></pre>
-<pre><code>##  [1] &lt;NA&gt; A    C    B    B    A    B    C    A    C    B   
+<pre><code>##  [1] &lt;NA&gt; B    B    A    B    A    B    A    C    A    C   
 ## Levels: A B C D E</code></pre>
 <pre class="r"><code>table(x)</code></pre>
 <pre><code>## x
 ## A B C D E 
-## 3 4 3 0 0</code></pre>
+## 4 4 2 0 0</code></pre>
 <pre class="r"><code>table(x, exclude = NULL)</code></pre>
 <pre><code>## x
 ##    A    B    C    D    E &lt;NA&gt; 
-##    3    4    3    0    0    1</code></pre>
+##    4    4    2    0    0    1</code></pre>
 <p>We can also get tables for multiple variables.</p>
 <pre class="r"><code>table(age = esoph$agegp, alc = esoph$alcgp)</code></pre>
 <pre><code>##        alc
@@ -1927,18 +1924,14 @@ addmargins(tab)</code></pre>
 <pre><code>##        Fertility      Agriculture      Examination        Education         Catholic Infant.Mortality 
 ##          3296.70          2381.00           775.00           516.00          1933.76           937.30</code></pre>
 <pre class="r"><code>rowMeans(swiss)</code></pre>
-<pre><code>##   Courtelary     Delemont Franches-Mnt      Moutier   Neuveville   Porrentruy        Broye        Glane 
-##     26.06000     41.70667     42.63333     32.56167     29.69333     40.76167     48.90833     50.71000 
-##      Gruyere       Sarine      Veveyse        Aigle      Aubonne     Avenches     Cossonay    Echallens 
-##     45.56167     45.48000     49.11833     30.68667     29.46167     31.28833     29.92000     34.38333 
-##     Grandson     Lausanne    La Vallee       Lavaux       Morges       Moudon        Nyone         Orbe 
-##     25.66667     26.90167     22.24167     31.49000     30.08833     27.33667     28.89000     26.16667 
-##         Oron      Payerne Paysd&#39;enhaut        Rolle        Vevey      Yverdon      Conthey    Entremont 
-##     30.01667     30.55500     27.51000     28.55333     28.07667     27.75000     46.86833     47.78000 
-##       Herens     Martigwy      Monthey   St Maurice       Sierre         Sion       Boudry La Chauxdfnd 
-##     48.71667     47.51000     45.45333     45.96000     49.76000     47.22167     28.78667     24.61500 
-##     Le Locle    Neuchatel   Val de Ruz ValdeTravers V. De Geneve  Rive Droite  Rive Gauche 
-##     25.75333     31.48667     27.02833     24.40833     31.09000     34.15500     33.18833</code></pre>
+<pre><code>##   Courtelary     Delemont Franches-Mnt      Moutier   Neuveville   Porrentruy        Broye        Glane      Gruyere       Sarine      Veveyse        Aigle      Aubonne     Avenches 
+##     26.06000     41.70667     42.63333     32.56167     29.69333     40.76167     48.90833     50.71000     45.56167     45.48000     49.11833     30.68667     29.46167     31.28833 
+##     Cossonay    Echallens     Grandson     Lausanne    La Vallee       Lavaux       Morges       Moudon        Nyone         Orbe         Oron      Payerne Paysd&#39;enhaut        Rolle 
+##     29.92000     34.38333     25.66667     26.90167     22.24167     31.49000     30.08833     27.33667     28.89000     26.16667     30.01667     30.55500     27.51000     28.55333 
+##        Vevey      Yverdon      Conthey    Entremont       Herens     Martigwy      Monthey   St Maurice       Sierre         Sion       Boudry La Chauxdfnd     Le Locle    Neuchatel 
+##     28.07667     27.75000     46.86833     47.78000     48.71667     47.51000     45.45333     45.96000     49.76000     47.22167     28.78667     24.61500     25.75333     31.48667 
+##   Val de Ruz ValdeTravers V. De Geneve  Rive Droite  Rive Gauche 
+##     27.02833     24.40833     31.09000     34.15500     33.18833</code></pre>
 <p>To use other functions (like <code>min</code>, <code>max</code>, <code>median</code>, <code>sd</code>, …) on a whole <code>matrix</code> or <code>data.frame</code> we need some more programming and the help of <code>if (...)</code>, <code>for (...)</code> and/or <code>apply()</code> (will be covered later).</p>
 </div>
 <div id="variance-covariance-and-correlation" class="section level3">
@@ -1964,7 +1957,7 @@ addmargins(tab)</code></pre>
 ## Education        -0.6637889 -0.63952252   0.6984153  1.00000000 -0.1538589      -0.09932185
 ## Catholic          0.4636847  0.40109505  -0.5727418 -0.15385892  1.0000000       0.17549591
 ## Infant.Mortality  0.4165560 -0.06085861  -0.1140216 -0.09932185  0.1754959       1.00000000</code></pre>
-<p>The correlation matrix can be obtained directly using <code>cor()</code>. The argument <code>method</code> allows the choice of pearson“,”kendall&quot; or “spearman” correation.</p>
+<p>The correlation matrix can be obtained directly using <code>cor()</code>. The argument <code>method</code> allows the choice of pearson“,”kendall&quot; or “spearman” correlation.</p>
 <pre class="r"><code>cor(swiss, method = &#39;kendall&#39;)</code></pre>
 <pre><code>##                   Fertility Agriculture Examination    Education    Catholic Infant.Mortality
 ## Fertility         1.0000000  0.17954653 -0.47624374 -0.330611161  0.24537037      0.315647384
@@ -1979,88 +1972,86 @@ addmargins(tab)</code></pre>
 <h2>Duplicates and Comparison</h2>
 <p>To find duplicates in a <code>data.frame</code>, <code>matrix</code> or a <code>vector</code> we can use the function <code>duplicated()</code>:</p>
 <pre class="r"><code>duplicated(esoph)</code></pre>
-<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [17] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [33] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [65] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [81] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [30] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [59] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [88] FALSE</code></pre>
 <pre class="r"><code>(x &lt;- sample(LETTERS[1:5], 10, replace = TRUE))</code></pre>
-<pre><code>##  [1] &quot;A&quot; &quot;D&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;A&quot; &quot;E&quot; &quot;C&quot; &quot;C&quot;</code></pre>
+<pre><code>##  [1] &quot;B&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;E&quot; &quot;B&quot; &quot;A&quot; &quot;C&quot; &quot;E&quot;</code></pre>
 <pre class="r"><code>duplicated(x)</code></pre>
-<pre><code>##  [1] FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE</code></pre>
+<pre><code>##  [1] FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
 <p>Let’s set the original variable and the duplication indicator next to each other to see what is happening:</p>
 <pre class="r"><code>cbind(x, duplicated(x))</code></pre>
 <pre><code>##       x          
-##  [1,] &quot;A&quot; &quot;FALSE&quot;
-##  [2,] &quot;D&quot; &quot;FALSE&quot;
-##  [3,] &quot;A&quot; &quot;TRUE&quot; 
-##  [4,] &quot;B&quot; &quot;FALSE&quot;
+##  [1,] &quot;B&quot; &quot;FALSE&quot;
+##  [2,] &quot;B&quot; &quot;TRUE&quot; 
+##  [3,] &quot;A&quot; &quot;FALSE&quot;
+##  [4,] &quot;B&quot; &quot;TRUE&quot; 
 ##  [5,] &quot;C&quot; &quot;FALSE&quot;
-##  [6,] &quot;D&quot; &quot;TRUE&quot; 
-##  [7,] &quot;A&quot; &quot;TRUE&quot; 
-##  [8,] &quot;E&quot; &quot;FALSE&quot;
+##  [6,] &quot;E&quot; &quot;FALSE&quot;
+##  [7,] &quot;B&quot; &quot;TRUE&quot; 
+##  [8,] &quot;A&quot; &quot;TRUE&quot; 
 ##  [9,] &quot;C&quot; &quot;TRUE&quot; 
-## [10,] &quot;C&quot; &quot;TRUE&quot;</code></pre>
+## [10,] &quot;E&quot; &quot;TRUE&quot;</code></pre>
 <p>(We will get to know the function <code>cbind()</code> later). Using the argument <code>fromLast = TRUE</code> checks for duplicates starting from the last value:</p>
 <pre class="r"><code>cbind(x,
       duplFirst = duplicated(x),
       duplLast = duplicated(x, fromLast = TRUE))</code></pre>
 <pre><code>##       x   duplFirst duplLast
-##  [1,] &quot;A&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
-##  [2,] &quot;D&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
-##  [3,] &quot;A&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
-##  [4,] &quot;B&quot; &quot;FALSE&quot;   &quot;FALSE&quot; 
+##  [1,] &quot;B&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
+##  [2,] &quot;B&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
+##  [3,] &quot;A&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
+##  [4,] &quot;B&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
 ##  [5,] &quot;C&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
-##  [6,] &quot;D&quot; &quot;TRUE&quot;    &quot;FALSE&quot; 
-##  [7,] &quot;A&quot; &quot;TRUE&quot;    &quot;FALSE&quot; 
-##  [8,] &quot;E&quot; &quot;FALSE&quot;   &quot;FALSE&quot; 
-##  [9,] &quot;C&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
-## [10,] &quot;C&quot; &quot;TRUE&quot;    &quot;FALSE&quot;</code></pre>
+##  [6,] &quot;E&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
+##  [7,] &quot;B&quot; &quot;TRUE&quot;    &quot;FALSE&quot; 
+##  [8,] &quot;A&quot; &quot;TRUE&quot;    &quot;FALSE&quot; 
+##  [9,] &quot;C&quot; &quot;TRUE&quot;    &quot;FALSE&quot; 
+## [10,] &quot;E&quot; &quot;TRUE&quot;    &quot;FALSE&quot;</code></pre>
 <p>Return only the unique values:</p>
 <pre class="r"><code>unique(x)</code></pre>
-<pre><code>## [1] &quot;A&quot; &quot;D&quot; &quot;B&quot; &quot;C&quot; &quot;E&quot;</code></pre>
+<pre><code>## [1] &quot;B&quot; &quot;A&quot; &quot;C&quot; &quot;E&quot;</code></pre>
 <p>This also works for <code>data.frame</code> and <code>matrix</code>.</p>
 <pre class="r"><code>(dat &lt;- data.frame(x = x,
                   y = rbinom(length(x), size = 1, prob = 0.5))
 )</code></pre>
 <pre><code>##    x y
-## 1  A 0
-## 2  D 0
+## 1  B 0
+## 2  B 0
 ## 3  A 0
-## 4  B 0
-## 5  C 0
-## 6  D 0
-## 7  A 0
-## 8  E 1
-## 9  C 0
-## 10 C 0</code></pre>
+## 4  B 1
+## 5  C 1
+## 6  E 0
+## 7  B 1
+## 8  A 0
+## 9  C 1
+## 10 E 0</code></pre>
 <pre class="r"><code>unique(dat)</code></pre>
 <pre><code>##   x y
-## 1 A 0
-## 2 D 0
-## 4 B 0
-## 5 C 0
-## 8 E 1</code></pre>
+## 1 B 0
+## 3 A 0
+## 4 B 1
+## 5 C 1
+## 6 E 0</code></pre>
 <pre class="r"><code>(mat &lt;- as.matrix(dat))</code></pre>
 <pre><code>##       x   y  
-##  [1,] &quot;A&quot; &quot;0&quot;
-##  [2,] &quot;D&quot; &quot;0&quot;
+##  [1,] &quot;B&quot; &quot;0&quot;
+##  [2,] &quot;B&quot; &quot;0&quot;
 ##  [3,] &quot;A&quot; &quot;0&quot;
-##  [4,] &quot;B&quot; &quot;0&quot;
-##  [5,] &quot;C&quot; &quot;0&quot;
-##  [6,] &quot;D&quot; &quot;0&quot;
-##  [7,] &quot;A&quot; &quot;0&quot;
-##  [8,] &quot;E&quot; &quot;1&quot;
-##  [9,] &quot;C&quot; &quot;0&quot;
-## [10,] &quot;C&quot; &quot;0&quot;</code></pre>
+##  [4,] &quot;B&quot; &quot;1&quot;
+##  [5,] &quot;C&quot; &quot;1&quot;
+##  [6,] &quot;E&quot; &quot;0&quot;
+##  [7,] &quot;B&quot; &quot;1&quot;
+##  [8,] &quot;A&quot; &quot;0&quot;
+##  [9,] &quot;C&quot; &quot;1&quot;
+## [10,] &quot;E&quot; &quot;0&quot;</code></pre>
 <pre class="r"><code>unique(mat)</code></pre>
 <pre><code>##      x   y  
-## [1,] &quot;A&quot; &quot;0&quot;
-## [2,] &quot;D&quot; &quot;0&quot;
-## [3,] &quot;B&quot; &quot;0&quot;
-## [4,] &quot;C&quot; &quot;0&quot;
-## [5,] &quot;E&quot; &quot;1&quot;</code></pre>
+## [1,] &quot;B&quot; &quot;0&quot;
+## [2,] &quot;A&quot; &quot;0&quot;
+## [3,] &quot;B&quot; &quot;1&quot;
+## [4,] &quot;C&quot; &quot;1&quot;
+## [5,] &quot;E&quot; &quot;0&quot;</code></pre>
 <p>With the function <code>data.frame()</code> we create a <code>data.frame</code> and the function <code>as.matrix()</code> allows us to convert an object to a <code>matrix</code>.</p>
 </div>
 
