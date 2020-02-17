@@ -526,7 +526,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 
-For each data set (**heart** and **retinopathy**), select only the patients that had an event.
+For each data set (**heart** and **retinopathy**), select only the observation that report an event.
 
 
 ```{r fun10_hint, eval = static, results = 'asis', echo = FALSE}
@@ -559,13 +559,13 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 
-Create a function with the name `dt_events` that takes as input a list with data sets (let's call it `dt_list`) and a vector indicating the name of the event variable for each data set (let's call it `event_name`). The function will return a list consisting of each data set but including only the patients that had an event. Create a list that consists of the data sets **heart** and **retinopathy** and apply the function.
+Create a function with the name `dt_events` that takes as input a list with data sets (let's call it `dt_list`) and a vector indicating the name of the event variable for each data set (let's call it `event_name`). The function will return a list consisting of each data set but including only the observations/rows that had an event. Create a list that consists of the data sets **heart** and **retinopathy** and apply the function.
 
 
 ```{r fun11_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun11">Hint</button>
 <div id = "fun11" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use a for loop. Note that the variable name of the events is diffent for the two data sets.
+Use a for loop. Note that the variable name of the events is different for the two data sets.
 </div>')
 ```
 

@@ -365,7 +365,7 @@ asis_output("#### Solution 1\\n")
 ```
 
 ```{r list-solution, solution = TRUE}
-list(heart$stop, retinopathy$id, retinopathy$risk)
+list(stop_heart = heart$stop, id_retini = retinopathy$id, risk_reti = retinopathy$risk)
 ```
 
 
@@ -579,6 +579,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 Categorize `futime` from data set **retinopathy** as follows: \
+
 * `short`: [minimum `futime` until 2). \
 * `medium`: [25 until 45). \
 * `long`: [45 until maximum `futime`). \
@@ -620,6 +621,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 Create 2 vectors of size 50 as follows: \
+
 * `Sex`: takes 2 values 0 and 1. \
 * `Age`: takes values from 20 till 80. \
 * Convert the `Sex` variable into a factor with levels 0: `female` and 1: `male`. \
@@ -662,6 +664,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 Create a data frame with the name `DF` as follows: \
+
 * Include the following vectors: `Sex`, `Age`, `AgeCat` form the previous Task. \
 * Use the names: `Gender`, `StandardizedAge`, `DichotomousAge`. \
 
@@ -687,6 +690,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 Create 2 vectors of size 150 as follows: \
+
 * `Treatment`: takes 2 values 1 and 2. \
 * `Weight`: takes values from 50 till 100. \
 * Convert the `Treatment` variable into a factor with levels 1: `no` and 2: `yes`. \
@@ -726,6 +730,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 Create a list called `my_list` with the following: \
+
 * `let`: `a` to `i`. \
 * `sex`: factor taking the values `males` and `females` and length 50. \
 * `mat`: matrix 
@@ -806,6 +811,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 Using the **retinopathy** data set: \
+
 * Obtain the median and interquartile range for `age`. \ \
 * Obtain the percentage per `type`. \
 * Check whether there are missing in the variable `age`.
@@ -841,6 +847,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 Using the data frame `DF` from the exercise before (Task 5): \
+
 * Calculate the mean of the variable `StandardizedAge`. \
 * Calculate the standard deviation of the variable `StandardizedAge`. \
 * Calculate the frequencies of the variable `Gender`. \
@@ -886,6 +893,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 Using the **heart** data set: \
+
 * Create a scatterplot with the variables `age` and `year`  \
 * Change the labels of the axis. In particular, give the name `Age` for the x-axis and `Year of acceptance` for the y-axis. \
 * Give a different color to the patients that had a transplant. \
@@ -922,6 +930,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 Using the **retinopathy** data set: \
+
 * Create a boxplot of `age` per `status`.\
 * Change the colour to blue and green respectively.
 
@@ -953,6 +962,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 Using the **retinopathy** data set: \
+
 * Create a smooth plot of `age` with `risk`. \
 * Create a density plot of `age` per `type` group.
 
@@ -993,6 +1003,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 Using the **heart** data set: \
+
 * Select the first row. \
 * Select the first column. \
 * Select the column `surgery`.
@@ -1024,6 +1035,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 Using the **retinopathy** data set: \
+
 * Select the `futime` for all `adult` patients. \
 * Select all the variables for patients that received treatment. \
 
@@ -1050,6 +1062,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 Using the **retinopathy** data set: \
+
 * Select the `age` for patients that have `futime` more than 20. \
 * Select the `age` for patients that have `futime` more than 20 and are adults. \
 * Select patients that have no missing values in age.

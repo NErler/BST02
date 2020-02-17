@@ -2957,9 +2957,9 @@ div.tocify {
 <h3>R packages</h3>
 <p>In this practical, a number of R packages are used. The packages used (with versions that were used to generate the solutions) are:</p>
 <ul>
-<li>R version 3.6.2 (2019-12-12)</li>
-<li><code>survival</code> (version: 3.1.8)</li>
-<li><code>memisc</code> (version: 0.99.21)</li>
+<li>R version 3.6.1 (2019-07-05)</li>
+<li><code>survival</code> (version: 2.44.1.1)</li>
+<li><code>memisc</code> (version: 0.99.22)</li>
 <li><code>ggplot2</code> (version: 3.2.1)</li>
 </ul>
 </div>
@@ -3401,8 +3401,8 @@ Hint
 </div>
 <div id="solution-1-2" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">list</span>(heart<span class="op">$</span>stop, retinopathy<span class="op">$</span>id, retinopathy<span class="op">$</span>risk)</a></code></pre></div>
-<pre><code>## [[1]]
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">list</span>(<span class="dt">stop_heart =</span> heart<span class="op">$</span>stop, <span class="dt">id_retini =</span> retinopathy<span class="op">$</span>id, <span class="dt">risk_reti =</span> retinopathy<span class="op">$</span>risk)</a></code></pre></div>
+<pre><code>## $stop_heart
 ##   [1]   50.0    6.0    1.0   16.0   36.0   39.0   18.0    3.0   51.0  675.0   40.0   85.0   12.0
 ##  [14]   58.0   26.0  153.0    8.0   17.0   81.0   37.0 1387.0    1.0   28.0  308.0   36.0   20.0
 ##  [27]   43.0   37.0   18.0   28.0    8.0 1032.0   12.0   51.0    3.0  733.0   83.0  219.0   25.0
@@ -3418,7 +3418,7 @@ Hint
 ## [157]    4.0  165.0    2.0   16.0   13.0  180.0   21.0  131.0   96.0  109.0   21.0   38.0   39.0
 ## [170]   31.0   11.0    6.0
 ## 
-## [[2]]
+## $id_retini
 ##   [1]    5    5   14   14   16   16   25   25   29   29   46   46   49   49   56   56   61   61   71
 ##  [20]   71  100  100  112  112  120  120  127  127  133  133  150  150  167  167  176  176  185  185
 ##  [39]  190  190  202  202  214  214  220  220  243  243  255  255  264  264  266  266  284  284  295
@@ -3441,7 +3441,7 @@ Hint
 ## [362] 1600 1603 1603 1619 1619 1627 1627 1636 1636 1640 1640 1643 1643 1649 1649 1666 1666 1672 1672
 ## [381] 1683 1683 1688 1688 1705 1705 1717 1717 1727 1727 1746 1746 1749 1749
 ## 
-## [[3]]
+## $risk_reti
 ##   [1]  9  9  8  6 11 11 11 11  9 10  9  9  8  6  8  9  9 10  9  9  9  9 11 12 11  6  6 10 10  9  9
 ##  [32] 10 12  9  9  9  6  8 11 12  9  9  9 12 10 10 12 11 12  9  9 11  9 11 10 12 11 11 10  9  9  9
 ##  [63] 10  8  9  8  9  9  9 11 11 12 11  8  9  9  9  9 10 12 10  9  8 12 10 12 10 10 11 10 10 10 11
@@ -3606,10 +3606,15 @@ Hint
 <h4>Task 3</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Categorize <code>futime</code> from data set <strong>retinopathy</strong> as follows:<br />
-* <code>short</code>: [minimum <code>futime</code> until 2).<br />
-* <code>medium</code>: [25 until 45).<br />
-* <code>long</code>: [45 until maximum <code>futime</code>).<br />
-Give this variable the name <code>futimeCat</code>. Print the first 6 rows of the data.</p>
+</p>
+<ul>
+<li><code>short</code>: [minimum <code>futime</code> until 2).<br />
+</li>
+<li><code>medium</code>: [25 until 45).<br />
+</li>
+<li><code>long</code>: [45 until maximum <code>futime</code>).<br />
+Give this variable the name <code>futimeCat</code>. Print the first 6 rows of the data.</li>
+</ul>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#man3">
 Hint
 </button>
@@ -3633,12 +3638,20 @@ Hint
 <h4>Task 4</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Create 2 vectors of size 50 as follows:<br />
-* <code>Sex</code>: takes 2 values 0 and 1.<br />
-* <code>Age</code>: takes values from 20 till 80.<br />
-* Convert the <code>Sex</code> variable into a factor with levels 0: <code>female</code> and 1: <code>male</code>.<br />
-* Define the new variable <code>AgeCat</code> as dichotomous with <code>Age</code> &lt;= 50 to be 0 and 1 otherwise.<br />
-* Convert the <code>AgeCat</code> variable into a factor with levels 0: <code>young</code> and 1: <code>old</code>.<br />
-* Overwrite the <code>Age</code> variable by <span class="math inline">\(\frac{Age-mean(Age)}{sd(Age)}\)</span>.</p>
+</p>
+<ul>
+<li><code>Sex</code>: takes 2 values 0 and 1.<br />
+</li>
+<li><code>Age</code>: takes values from 20 till 80.<br />
+</li>
+<li>Convert the <code>Sex</code> variable into a factor with levels 0: <code>female</code> and 1: <code>male</code>.<br />
+</li>
+<li>Define the new variable <code>AgeCat</code> as dichotomous with <code>Age</code> &lt;= 50 to be 0 and 1 otherwise.<br />
+</li>
+<li>Convert the <code>AgeCat</code> variable into a factor with levels 0: <code>young</code> and 1: <code>old</code>.<br />
+</li>
+<li>Overwrite the <code>Age</code> variable by <span class="math inline">\(\frac{Age-mean(Age)}{sd(Age)}\)</span>.</li>
+</ul>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#man4">
 Hint
 </button>
@@ -3660,9 +3673,13 @@ Hint
 <h4>Task 5</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Create a data frame with the name <code>DF</code> as follows:<br />
-* Include the following vectors: <code>Sex</code>, <code>Age</code>, <code>AgeCat</code> form the previous Task.<br />
-* Use the names: <code>Gender</code>, <code>StandardizedAge</code>, <code>DichotomousAge</code>.<br />
 </p>
+<ul>
+<li>Include the following vectors: <code>Sex</code>, <code>Age</code>, <code>AgeCat</code> form the previous Task.<br />
+</li>
+<li>Use the names: <code>Gender</code>, <code>StandardizedAge</code>, <code>DichotomousAge</code>.<br />
+</li>
+</ul>
 </div>
 </div>
 <div id="solution-5-1" class="section level4">
@@ -3674,12 +3691,19 @@ Hint
 <h4>Task 6</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Create 2 vectors of size 150 as follows:<br />
-* <code>Treatment</code>: takes 2 values 1 and 2.<br />
-* <code>Weight</code>: takes values from 50 till 100.<br />
-* Convert the <code>Treatment</code> variable into a factor with levels 1: <code>no</code> and 2: <code>yes</code>.<br />
-* Overwrite the <code>Weight</code> variable by <code>Weight</code> * 1000.<br />
-* Create a data frame including <code>Treatment</code> and <code>Weight</code>.<br />
 </p>
+<ul>
+<li><code>Treatment</code>: takes 2 values 1 and 2.<br />
+</li>
+<li><code>Weight</code>: takes values from 50 till 100.<br />
+</li>
+<li>Convert the <code>Treatment</code> variable into a factor with levels 1: <code>no</code> and 2: <code>yes</code>.<br />
+</li>
+<li>Overwrite the <code>Weight</code> variable by <code>Weight</code> * 1000.<br />
+</li>
+<li>Create a data frame including <code>Treatment</code> and <code>Weight</code>.<br />
+</li>
+</ul>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#man6">
 Hint
 </button>
@@ -3697,18 +3721,21 @@ Hint
 <a class="sourceLine" id="cb31-5" title="5"><span class="kw">data.frame</span>(Treatment, Weight)</a></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["Treatment"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["Weight"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"no","2":"73000"},{"1":"no","2":"58000"},{"1":"yes","2":"59000"},{"1":"no","2":"56000"},{"1":"no","2":"63000"},{"1":"no","2":"98000"},{"1":"yes","2":"71000"},{"1":"yes","2":"96000"},{"1":"no","2":"84000"},{"1":"yes","2":"81000"},{"1":"no","2":"51000"},{"1":"yes","2":"65000"},{"1":"yes","2":"67000"},{"1":"yes","2":"100000"},{"1":"no","2":"68000"},{"1":"yes","2":"62000"},{"1":"no","2":"100000"},{"1":"no","2":"73000"},{"1":"no","2":"62000"},{"1":"no","2":"67000"},{"1":"no","2":"80000"},{"1":"yes","2":"99000"},{"1":"no","2":"67000"},{"1":"no","2":"75000"},{"1":"yes","2":"76000"},{"1":"no","2":"84000"},{"1":"yes","2":"61000"},{"1":"yes","2":"54000"},{"1":"no","2":"80000"},{"1":"no","2":"79000"},{"1":"yes","2":"100000"},{"1":"yes","2":"83000"},{"1":"yes","2":"89000"},{"1":"yes","2":"71000"},{"1":"yes","2":"63000"},{"1":"yes","2":"64000"},{"1":"no","2":"85000"},{"1":"no","2":"63000"},{"1":"no","2":"66000"},{"1":"yes","2":"94000"},{"1":"no","2":"61000"},{"1":"yes","2":"66000"},{"1":"yes","2":"50000"},{"1":"no","2":"51000"},{"1":"yes","2":"99000"},{"1":"no","2":"80000"},{"1":"no","2":"82000"},{"1":"no","2":"95000"},{"1":"yes","2":"91000"},{"1":"yes","2":"66000"},{"1":"yes","2":"90000"},{"1":"yes","2":"59000"},{"1":"yes","2":"88000"},{"1":"yes","2":"56000"},{"1":"yes","2":"76000"},{"1":"no","2":"77000"},{"1":"no","2":"62000"},{"1":"no","2":"57000"},{"1":"no","2":"87000"},{"1":"no","2":"62000"},{"1":"no","2":"96000"},{"1":"yes","2":"75000"},{"1":"yes","2":"91000"},{"1":"no","2":"69000"},{"1":"yes","2":"50000"},{"1":"no","2":"75000"},{"1":"no","2":"68000"},{"1":"yes","2":"50000"},{"1":"yes","2":"99000"},{"1":"yes","2":"94000"},{"1":"no","2":"96000"},{"1":"yes","2":"94000"},{"1":"no","2":"92000"},{"1":"yes","2":"87000"},{"1":"yes","2":"92000"},{"1":"yes","2":"98000"},{"1":"no","2":"60000"},{"1":"yes","2":"52000"},{"1":"no","2":"91000"},{"1":"yes","2":"75000"},{"1":"yes","2":"75000"},{"1":"yes","2":"55000"},{"1":"no","2":"96000"},{"1":"yes","2":"52000"},{"1":"yes","2":"100000"},{"1":"no","2":"82000"},{"1":"no","2":"69000"},{"1":"no","2":"71000"},{"1":"no","2":"81000"},{"1":"no","2":"72000"},{"1":"yes","2":"73000"},{"1":"yes","2":"89000"},{"1":"yes","2":"75000"},{"1":"no","2":"53000"},{"1":"no","2":"100000"},{"1":"yes","2":"88000"},{"1":"yes","2":"73000"},{"1":"yes","2":"51000"},{"1":"yes","2":"51000"},{"1":"yes","2":"71000"},{"1":"yes","2":"69000"},{"1":"no","2":"96000"},{"1":"no","2":"53000"},{"1":"yes","2":"56000"},{"1":"yes","2":"70000"},{"1":"no","2":"54000"},{"1":"no","2":"54000"},{"1":"yes","2":"96000"},{"1":"no","2":"50000"},{"1":"no","2":"90000"},{"1":"yes","2":"72000"},{"1":"no","2":"99000"},{"1":"yes","2":"73000"},{"1":"no","2":"68000"},{"1":"yes","2":"78000"},{"1":"no","2":"85000"},{"1":"no","2":"66000"},{"1":"no","2":"69000"},{"1":"no","2":"98000"},{"1":"yes","2":"59000"},{"1":"no","2":"68000"},{"1":"no","2":"96000"},{"1":"yes","2":"97000"},{"1":"yes","2":"99000"},{"1":"yes","2":"63000"},{"1":"no","2":"68000"},{"1":"yes","2":"58000"},{"1":"no","2":"60000"},{"1":"yes","2":"55000"},{"1":"no","2":"91000"},{"1":"yes","2":"52000"},{"1":"no","2":"99000"},{"1":"yes","2":"53000"},{"1":"yes","2":"63000"},{"1":"no","2":"63000"},{"1":"yes","2":"66000"},{"1":"no","2":"96000"},{"1":"yes","2":"62000"},{"1":"yes","2":"56000"},{"1":"yes","2":"53000"},{"1":"no","2":"98000"},{"1":"no","2":"79000"},{"1":"no","2":"86000"},{"1":"no","2":"86000"},{"1":"no","2":"93000"},{"1":"yes","2":"61000"},{"1":"no","2":"83000"},{"1":"no","2":"60000"},{"1":"no","2":"60000"},{"1":"no","2":"87000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["Treatment"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["Weight"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"no","2":"63000"},{"1":"yes","2":"83000"},{"1":"yes","2":"56000"},{"1":"yes","2":"50000"},{"1":"yes","2":"50000"},{"1":"yes","2":"67000"},{"1":"no","2":"65000"},{"1":"yes","2":"98000"},{"1":"yes","2":"69000"},{"1":"yes","2":"100000"},{"1":"yes","2":"55000"},{"1":"no","2":"98000"},{"1":"no","2":"73000"},{"1":"no","2":"72000"},{"1":"no","2":"62000"},{"1":"yes","2":"99000"},{"1":"yes","2":"83000"},{"1":"no","2":"65000"},{"1":"no","2":"68000"},{"1":"no","2":"70000"},{"1":"yes","2":"55000"},{"1":"yes","2":"69000"},{"1":"yes","2":"65000"},{"1":"no","2":"86000"},{"1":"yes","2":"60000"},{"1":"no","2":"87000"},{"1":"yes","2":"74000"},{"1":"yes","2":"56000"},{"1":"no","2":"54000"},{"1":"yes","2":"80000"},{"1":"no","2":"77000"},{"1":"yes","2":"87000"},{"1":"yes","2":"91000"},{"1":"yes","2":"53000"},{"1":"yes","2":"90000"},{"1":"no","2":"86000"},{"1":"no","2":"89000"},{"1":"yes","2":"84000"},{"1":"no","2":"90000"},{"1":"no","2":"56000"},{"1":"no","2":"78000"},{"1":"yes","2":"65000"},{"1":"no","2":"58000"},{"1":"yes","2":"94000"},{"1":"yes","2":"74000"},{"1":"no","2":"60000"},{"1":"no","2":"96000"},{"1":"no","2":"52000"},{"1":"yes","2":"97000"},{"1":"yes","2":"76000"},{"1":"no","2":"98000"},{"1":"no","2":"62000"},{"1":"no","2":"54000"},{"1":"no","2":"73000"},{"1":"yes","2":"82000"},{"1":"no","2":"78000"},{"1":"no","2":"61000"},{"1":"yes","2":"85000"},{"1":"no","2":"76000"},{"1":"yes","2":"86000"},{"1":"no","2":"86000"},{"1":"no","2":"54000"},{"1":"no","2":"80000"},{"1":"yes","2":"99000"},{"1":"no","2":"88000"},{"1":"no","2":"59000"},{"1":"yes","2":"58000"},{"1":"no","2":"64000"},{"1":"no","2":"55000"},{"1":"no","2":"61000"},{"1":"no","2":"75000"},{"1":"yes","2":"82000"},{"1":"no","2":"51000"},{"1":"no","2":"79000"},{"1":"no","2":"53000"},{"1":"yes","2":"79000"},{"1":"yes","2":"97000"},{"1":"yes","2":"89000"},{"1":"yes","2":"85000"},{"1":"yes","2":"64000"},{"1":"yes","2":"56000"},{"1":"no","2":"94000"},{"1":"yes","2":"70000"},{"1":"yes","2":"66000"},{"1":"no","2":"66000"},{"1":"yes","2":"64000"},{"1":"no","2":"93000"},{"1":"yes","2":"62000"},{"1":"yes","2":"96000"},{"1":"yes","2":"64000"},{"1":"no","2":"90000"},{"1":"yes","2":"93000"},{"1":"yes","2":"89000"},{"1":"no","2":"77000"},{"1":"yes","2":"72000"},{"1":"yes","2":"60000"},{"1":"yes","2":"85000"},{"1":"yes","2":"64000"},{"1":"yes","2":"53000"},{"1":"no","2":"52000"},{"1":"yes","2":"96000"},{"1":"no","2":"51000"},{"1":"yes","2":"53000"},{"1":"yes","2":"50000"},{"1":"no","2":"92000"},{"1":"no","2":"71000"},{"1":"yes","2":"83000"},{"1":"yes","2":"61000"},{"1":"no","2":"100000"},{"1":"yes","2":"71000"},{"1":"no","2":"92000"},{"1":"no","2":"53000"},{"1":"yes","2":"100000"},{"1":"no","2":"77000"},{"1":"no","2":"84000"},{"1":"yes","2":"74000"},{"1":"yes","2":"69000"},{"1":"no","2":"66000"},{"1":"no","2":"82000"},{"1":"yes","2":"94000"},{"1":"yes","2":"95000"},{"1":"yes","2":"61000"},{"1":"yes","2":"76000"},{"1":"no","2":"84000"},{"1":"no","2":"66000"},{"1":"yes","2":"57000"},{"1":"no","2":"65000"},{"1":"no","2":"87000"},{"1":"no","2":"76000"},{"1":"no","2":"84000"},{"1":"yes","2":"67000"},{"1":"yes","2":"100000"},{"1":"yes","2":"97000"},{"1":"no","2":"99000"},{"1":"no","2":"98000"},{"1":"no","2":"68000"},{"1":"yes","2":"57000"},{"1":"yes","2":"52000"},{"1":"yes","2":"90000"},{"1":"yes","2":"60000"},{"1":"yes","2":"57000"},{"1":"yes","2":"77000"},{"1":"no","2":"70000"},{"1":"yes","2":"90000"},{"1":"no","2":"78000"},{"1":"yes","2":"91000"},{"1":"yes","2":"85000"},{"1":"no","2":"80000"},{"1":"no","2":"70000"},{"1":"yes","2":"83000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 <div id="task-7-1" class="section level4">
 <h4>Task 7</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-
-Create a list called <code>my_list</code> with the following:<br />
-* <code>let</code>: <code>a</code> to <code>i</code>.<br />
-* <code>sex</code>: factor taking the values <code>males</code> and <code>females</code> and length 50.<br />
-* <code>mat</code>: matrix
+<p>Create a list called <code>my_list</code> with the following:<br />
+</p>
+<ul>
+<li><code>let</code>: <code>a</code> to <code>i</code>.<br />
+</li>
+<li><code>sex</code>: factor taking the values <code>males</code> and <code>females</code> and length 50.<br />
+</li>
+<li><code>mat</code>: matrix
 <TABLE>
 <TR>
 <TD>
@@ -3726,7 +3753,8 @@ Create a list called <code>my_list</code> with the following:<br />
 4
 </TD>
 </TR>
-</TABLE>
+</TABLE></li>
+</ul>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#man7">
 Hint
 </button>
@@ -3770,9 +3798,14 @@ Hint
 <h4>Task 2</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Using the <strong>retinopathy</strong> data set:<br />
-* Obtain the median and interquartile range for <code>age</code>.  <br />
-* Obtain the percentage per <code>type</code>.<br />
-* Check whether there are missing in the variable <code>age</code>.</p>
+</p>
+<ul>
+<li>Obtain the median and interquartile range for <code>age</code>.  <br />
+</li>
+<li>Obtain the percentage per <code>type</code>.<br />
+</li>
+<li>Check whether there are missing in the variable <code>age</code>.</li>
+</ul>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#exp2">
 Hint
 </button>
@@ -3808,12 +3841,20 @@ Hint
 <h4>Task 3</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Using the data frame <code>DF</code> from the exercise before (Task 5):<br />
-* Calculate the mean of the variable <code>StandardizedAge</code>.<br />
-* Calculate the standard deviation of the variable <code>StandardizedAge</code>.<br />
-* Calculate the frequencies of the variable <code>Gender</code>.<br />
-* Calculate the frequencies of the variable <code>DichotomousAge</code>.<br />
-* Calculate the frequencies of both variables <code>Gender</code> and <code>DichotomousAge</code> (crosstab table).<br />
-* What are the dimensions of the data.frame?</p>
+</p>
+<ul>
+<li>Calculate the mean of the variable <code>StandardizedAge</code>.<br />
+</li>
+<li>Calculate the standard deviation of the variable <code>StandardizedAge</code>.<br />
+</li>
+<li>Calculate the frequencies of the variable <code>Gender</code>.<br />
+</li>
+<li>Calculate the frequencies of the variable <code>DichotomousAge</code>.<br />
+</li>
+<li>Calculate the frequencies of both variables <code>Gender</code> and <code>DichotomousAge</code> (crosstab table).<br />
+</li>
+<li>What are the dimensions of the data.frame?</li>
+</ul>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#exp3">
 Hint
 </button>
@@ -3825,22 +3866,22 @@ Hint
 <div id="solution-3-2" class="section level4">
 <h4>Solution 3</h4>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="kw">mean</span>(DF<span class="op">$</span>StandardizedAge)</a></code></pre></div>
-<pre><code>## [1] -1.111307e-16</code></pre>
+<pre><code>## [1] 1.650156e-16</code></pre>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="kw">sd</span>(DF<span class="op">$</span>StandardizedAge)</a></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">length</span>(DF<span class="op">$</span>Gender[DF<span class="op">$</span>Gender <span class="op">==</span><span class="st"> &quot;female&quot;</span>])</a></code></pre></div>
-<pre><code>## [1] 34</code></pre>
+<pre><code>## [1] 26</code></pre>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="kw">length</span>(DF<span class="op">$</span>Gender[DF<span class="op">$</span>Gender <span class="op">==</span><span class="st"> &quot;male&quot;</span>])</a></code></pre></div>
-<pre><code>## [1] 16</code></pre>
+<pre><code>## [1] 24</code></pre>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="kw">table</span>(DF<span class="op">$</span>Gender)</a></code></pre></div>
 <pre><code>## 
 ## female   male 
-##     34     16</code></pre>
+##     26     24</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="kw">table</span>(DF<span class="op">$</span>Gender, DF<span class="op">$</span>DichotomousAge)</a></code></pre></div>
 <pre><code>##         
 ##          young old
-##   female    19  15
-##   male       6  10</code></pre>
+##   female    19   7
+##   male      13  11</code></pre>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="kw">dim</span>(DF)</a></code></pre></div>
 <pre><code>## [1] 50  3</code></pre>
 </div>
@@ -3852,10 +3893,16 @@ Hint
 <h4>Task 1</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Using the <strong>heart</strong> data set:<br />
-* Create a scatterplot with the variables <code>age</code> and <code>year</code><br />
-* Change the labels of the axis. In particular, give the name <code>Age</code> for the x-axis and <code>Year of acceptance</code> for the y-axis.<br />
-* Give a different color to the patients that had a transplant.<br />
-* Add a legend.</p>
+</p>
+<ul>
+<li>Create a scatterplot with the variables <code>age</code> and <code>year</code><br />
+</li>
+<li>Change the labels of the axis. In particular, give the name <code>Age</code> for the x-axis and <code>Year of acceptance</code> for the y-axis.<br />
+</li>
+<li>Give a different color to the patients that had a transplant.<br />
+</li>
+<li>Add a legend.</li>
+</ul>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#plot1">
 Hint
 </button>
@@ -3878,8 +3925,12 @@ Hint
 <h4>Task 2</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Using the <strong>retinopathy</strong> data set:<br />
-* Create a boxplot of <code>age</code> per <code>status</code>.<br />
-* Change the colour to blue and green respectively.</p>
+</p>
+<ul>
+<li>Create a boxplot of <code>age</code> per <code>status</code>.<br />
+</li>
+<li>Change the colour to blue and green respectively.</li>
+</ul>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#plot2">
 Hint
 </button>
@@ -3899,8 +3950,12 @@ Hint
 <h4>Task 3</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Using the <strong>retinopathy</strong> data set:<br />
-* Create a smooth plot of <code>age</code> with <code>risk</code>.<br />
-* Create a density plot of <code>age</code> per <code>type</code> group.</p>
+</p>
+<ul>
+<li>Create a smooth plot of <code>age</code> with <code>risk</code>.<br />
+</li>
+<li>Create a density plot of <code>age</code> per <code>type</code> group.</li>
+</ul>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#plot3">
 Hint
 </button>
@@ -3936,9 +3991,14 @@ Hint
 <h4>Task</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Using the <strong>heart</strong> data set:<br />
-* Select the first row.<br />
-* Select the first column.<br />
-* Select the column <code>surgery</code>.</p>
+</p>
+<ul>
+<li>Select the first row.<br />
+</li>
+<li>Select the first column.<br />
+</li>
+<li>Select the column <code>surgery</code>.</li>
+</ul>
 </div>
 </div>
 <div id="solution-9" class="section level4">
@@ -3996,9 +4056,13 @@ Hint
 <h4>Task 1</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Using the <strong>retinopathy</strong> data set:<br />
-* Select the <code>futime</code> for all <code>adult</code> patients.<br />
-* Select all the variables for patients that received treatment.<br />
 </p>
+<ul>
+<li>Select the <code>futime</code> for all <code>adult</code> patients.<br />
+</li>
+<li>Select all the variables for patients that received treatment.<br />
+</li>
+</ul>
 </div>
 </div>
 <div id="solution-1-6" class="section level4">
@@ -4027,9 +4091,14 @@ Hint
 <h4>Task 2</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Using the <strong>retinopathy</strong> data set:<br />
-* Select the <code>age</code> for patients that have <code>futime</code> more than 20.<br />
-* Select the <code>age</code> for patients that have <code>futime</code> more than 20 and are adults.<br />
-* Select patients that have no missing values in age.</p>
+</p>
+<ul>
+<li>Select the <code>age</code> for patients that have <code>futime</code> more than 20.<br />
+</li>
+<li>Select the <code>age</code> for patients that have <code>futime</code> more than 20 and are adults.<br />
+</li>
+<li>Select patients that have no missing values in age.</li>
+</ul>
 </div>
 </div>
 <div id="solution-2-6" class="section level4">
