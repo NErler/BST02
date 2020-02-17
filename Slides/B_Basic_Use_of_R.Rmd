@@ -491,6 +491,7 @@ list1
 * Specialized functions for importing data from other programs
   - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{read.spss()}}, \textbf{\textcolor{red}{read.dta()}}
   - package: \textbf{\textcolor{red}{Hmisc}}, function: \textbf{\textcolor{red}{sas.get()}}
+  - package: \textbf{\textcolor{red}{openxlsx}}, function: \textbf{\textcolor{red}{read.xlsx()}}  
   - package: \textbf{\textcolor{red}{readxl}}, function: \textbf{\textcolor{red}{read\_excel()}}
   - package: \textbf{\textcolor{red}{haven}}, function: \textbf{\textcolor{red}{read\_spss()}}
   - \textit{etc}
@@ -520,6 +521,7 @@ list1
 * Specialized functions for exporting data to other programs
   - function: \textbf{\textcolor{red}{write.table()}}, \textbf{\textcolor{red}{write.csv()}}
   - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{write.spss()}}, \textbf{\textcolor{red}{write.dta()}}
+  - package: \textbf{\textcolor{red}{openxlsx}}, function: \textbf{\textcolor{red}{write.xlsx()}}
   - \textit{etc}
 
 
