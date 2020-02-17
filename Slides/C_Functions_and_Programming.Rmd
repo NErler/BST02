@@ -639,8 +639,8 @@ Manipulate \blue{vectors} or slices of data from \blue{matrices}, \blue{data fra
 
 * Operates on \blue{\texttt{matrix}} and \blue{\texttt{data.frame}}
 
-\begincols[t]
-\begincol{0.5\linewidth}
+\begincols[t, onlytextwidth]
+\begincol{0.47\linewidth}
 * By column
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mat <- matrix(1:6, 3, 3)
@@ -651,7 +651,7 @@ apply(mat, 2, sum)
 \pause
 
 \endcol
-\begincol{0.5\linewidth}
+\begincol{0.47\linewidth}
 * By row
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 apply(mat, 1, sum)
@@ -665,8 +665,8 @@ apply(mat, 1, sum)
 
 * Operates on \blue{\texttt{matrix}} and \blue{\texttt{data.frame}}
 
-\begincols[t]
-\begincol{0.5\linewidth}
+\begincols[t, onlytextwidth]
+\begincol{0.47\linewidth}
 * By column
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mat <- matrix(1:6, 3, 3)
@@ -677,7 +677,7 @@ apply(mat, 2, mean)
 \pause
 
 \endcol
-\begincol{0.5\linewidth}
+\begincol{0.47\linewidth}
 * By row
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 apply(mat, 1, mean)
@@ -691,8 +691,8 @@ apply(mat, 1, mean)
 
 * You can also apply your own functions
 
-\begincols[t]
-\begincol{0.5\linewidth}
+\begincols[t, onlytextwidth]
+\begincol{0.47\linewidth}
 * By column
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mat <- matrix(1:6, 3, 3)
@@ -704,7 +704,7 @@ apply(mat, 2, function(x)
 \pause
 
 \endcol
-\begincol{0.5\linewidth}
+\begincol{0.47\linewidth}
 * By row
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 apply(mat, 1, function(x) 
@@ -728,8 +728,8 @@ apply(mat, 1, function(x)
 
 ## How To Use lapply() in R (cont'd)
 
-\begincols[t]
-\begincol{0.5\linewidth}
+\begincols[t, onlytextwidth]
+\begincol{0.47\linewidth}
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 myList <- list(x = c(1:6), 
@@ -741,7 +741,7 @@ myList
 \pause
 
 \endcol
-\begincol{0.5\linewidth}
+\begincol{0.47\linewidth}
 * Use pre-specified functions
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 lapply(myList, length)
@@ -753,8 +753,8 @@ lapply(myList, length)
 
 ## How To Use lapply() in R (cont'd)
 
-\begincols[t]
-\begincol{0.5\linewidth}
+\begincols[t, onlytextwidth]
+\begincol{0.47\linewidth}
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 myList <- list(x = c(1:6), 
@@ -765,7 +765,7 @@ myList
 
 
 \endcol
-\begincol{0.5\linewidth}
+\begincol{0.47\linewidth}
 * Use pre-specified functions
 ```{r, eval = TRUE, include = TRUE, echo = TRUE, warning = FALSE}
 lapply(myList, median)
@@ -780,8 +780,8 @@ lapply(myList, median)
 
 * \blue{\texttt{sapply()}} is similar to \blue{\texttt{lapply()}}, but it tries to simplify the output
 
-\begincols[t]
-\begincol{0.5\linewidth}
+\begincols[t, onlytextwidth]
+\begincol{0.47\linewidth}
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 myList <- list(x = c(1:6), 
@@ -793,7 +793,7 @@ myList
 \pause
 
 \endcol
-\begincol{0.5\linewidth}
+\begincol{0.47\linewidth}
 * Use pre-specified functions
 ```{r, eval = TRUE, include = TRUE, echo = TRUE, warning = FALSE}
 sapply(myList, length)
@@ -839,9 +839,9 @@ mapply(length, pbc)
 
 * Overlapping between functions
 
-\begincols[t]
-\begincol{0.5\linewidth}
-
+\begincols[t, onlytextwidth]
+\begincol{0.47\linewidth}
+\vspace*{-3ex}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 myList <- list(x = c(1:6), 
                y = c("m", "f"), 
@@ -853,7 +853,7 @@ mapply(length, myList,
 \pause
 
 \endcol
-\begincol{0.5\linewidth}
+\begincol{0.47\linewidth}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE, warning = FALSE}
 lapply(myList, length)
 ```
@@ -865,8 +865,8 @@ lapply(myList, length)
 ## Useful Summary: Apply Family
 
 \begin{columns}[onlytextwidth,T]
-\begin{column}{0.5\linewidth}
-\textbf{\textcolor{blue}{Vectors}}
+\begin{column}{0.47\linewidth}
+\blue{Vectors}
 \begin{itemize}\vspace*{-0.5ex}
 \item \texttt{tapply()}
 \item \texttt{mapply()}
@@ -874,7 +874,7 @@ lapply(myList, length)
 
 \bigskip
 
-\textbf{\textcolor{blue}{Matrices}}
+\blue{Matrices}
 \begin{itemize}
 \item \texttt{apply()}
 \item \texttt{tapply()}
@@ -885,8 +885,8 @@ lapply(myList, length)
 \end{column}
 
 
-\begin{column}{0.5\linewidth}
-\textbf{\textcolor{blue}{Data frames}}
+\begin{column}{0.47\linewidth}
+\blue{Data frames}
 \begin{itemize}
 \item \texttt{apply()}
 \item \texttt{tapply()}
@@ -897,7 +897,7 @@ lapply(myList, length)
 
 \bigskip
 
-\textbf{\textcolor{blue}{Lists}}
+\blue{Lists}
 \begin{itemize}
 \item \texttt{lapply()}
 \item \texttt{sapply()}

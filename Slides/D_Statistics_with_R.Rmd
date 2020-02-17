@@ -27,6 +27,7 @@ knitr::opts_chunk$set(echo = TRUE, nospace = TRUE, nospaceafter = TRUE,
                       fig.align = 'center', out.width = "100%")
 
 
+library(ggplot2)
 EMCdark <- "#0c2074"
 # \definecolor{EMCdark}{HTML}{0c2074}
 # \definecolor{EMC80}{HTML}{3d4d90}
@@ -48,7 +49,7 @@ drkred <- rgb(204, 0, 0, maxColorValue = 255)
   \end{itemize}
 \item (Generalized) linear regression
 \item Useful functions for regression models
-\item Modeling non-linear effectss
+\item Modeling non-linear effects
 \end{itemize}
 
 
@@ -77,7 +78,7 @@ drkred <- rgb(204, 0, 0, maxColorValue = 255)
 ## Wilcoxon Test: `wilcox.test()`
 \blue{Wilcoxon Signed Rank Test}
 
-* tests if \blue{one sample} (or the differences between two paired samples) is/are 
+* tests if \blue{one sample} (or the difference between two paired samples) is 
   \blue{symmetric about $\mu$}
 
 \pause\bigskip
@@ -110,7 +111,7 @@ See also [BBR Sections 7.2 & 7.3 (http://hbiostat.org/doc/bbr.pdf)](http://hbios
 \item \blue{Friedman Rank Sum Test:} \texttt{friedman.test()}\newline
   non-parametric test for two or more related samples
   
-\item ...
+\item \ldots
 \end{itemize}
 
 
@@ -264,6 +265,8 @@ where
 
 To fit a \blue{linear regression} in R we use the function \blue{\texttt{lm()}}.
 
+\bigskip
+
 The most important arguments are
 
 \begin{itemize}\itemsep2mm
@@ -283,6 +286,8 @@ for example
 ```{r, eval = FALSE}
 y ~ x1 + x2 + x3
 ```
+
+\bigskip\pause 
 
 \begin{itemize}\itemsep2mm
 \item Variables are separated by "\texttt{\blue{+}}" signs.
@@ -367,9 +372,9 @@ where $g(\ )$ is a link function and $y$ is from the exponential family.
 \vfill\pause
 
 For example \blue{logistic regression} for binary $y$:
-$$log\left(\frac{P(y = 1)}{1-P(y = 1)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p$$
+$$\log\left(\frac{P(y = 1)}{1-P(y = 1)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p$$
 
-$log\left(\frac{p}{1-p}\right)$ is the \blue{logit} link.
+$\log\left(\frac{p}{1-p}\right)$ is the \blue{logit} link.
 
 ## Generalized Linear Regression (GLM)
 To fit a \blue{GLM} in R we use the function \blue{\texttt{glm()}}.
@@ -449,10 +454,53 @@ the default link is used.
 
 Evaluate the assumptions of a linear regression model visually, for example:
 
-* Histogram
-* Normal QQ-plot
-* Plot residuals vs fitted values
+* Histogram of residuals
+* Normal QQ-plot of residuals
+* Scatterplot residuals vs fitted values
 
+```{r}
+set.seed(2020)
+N <- 2500
+invS <- rWishart(1, df = 5, Sigma = diag(4))[, , 1]
+
+x <- MASS::mvrnorm(N, rep(0, 4), solve(invS))
+beta <- runif(ncol(x) + 1, -2, 2)
+
+y <- cbind(1, x) %*% beta + rnorm(N, 0, 0.5)
+
+lm_mod <- lm(y ~ x)
+
+plotDF <- data.frame(resid = lm_mod$residuals,
+                     fitted = lm_mod$fitted.values)
+
+
+temp <- list(theme(panel.grid = element_blank(),
+                   panel.background = element_rect(fill = grey(0.95)))
+)
+
+ggpubr::ggarrange(
+ggplot(plotDF, aes(x = resid)) +
+  geom_histogram(bins = 100, fill = EMCdark, alpha = 0.5, color = EMCdark) +
+  xlab('Residuals') +
+  temp,
+
+ggplot(plotDF, aes(x = fitted, y = resid)) +
+  geom_point(color = EMCdark, alpha = 0.5) +
+  geom_smooth(method = 'loess', se = FALSE, color = drkred) +
+  temp,
+
+ggplot(data.frame(r = quantile(rstandard(lm_mod), seq(0, 1, length = 200)),
+                  n = quantile(rnorm(N), seq(0, 1, length = 200))),
+       aes(x = n, y = r)) +
+  geom_abline(intercept = 0, slope = 1, color = drkred) +
+  geom_point(color = EMCdark, alpha = 0.5, size = 2) +
+  temp +
+  xlab('theoretical quantiles') +
+  ylab('observed quantiles') +
+  scale_x_continuous(breaks = seq(-5, 5, 1)) +
+  scale_y_continuous(breaks = seq(-5, 5, 1))
+), ncol = 3, nrow = 1)
+```
 
 
 
