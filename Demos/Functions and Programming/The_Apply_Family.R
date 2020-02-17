@@ -12,14 +12,21 @@
 # install.packages("survival") 
 library(survival)
 
+#' Load data set from package
+pbc <- survival::pbc
+
 
 #' **apply** \
 
-#' Obtain the mean of columns `time` and `age` in the pbc data set
+#' Obtain the mean of columns `time` and `age` in the `pbc` data set
 apply(pbc[, c(2,5)], 2, mean)
 apply(pbc[, c("time", "age")], 2, mean)
 
-#' Obtain the standardized values of columns `time`, `age` and `bili` in the pbc data set
+#' Obtain the mean of rows in the `pbc` data set \
+#' Before running the code, think if it is meaningful
+# apply(pbc[, ], 1, mean)
+
+#' Obtain the standardized values of columns `time`, `age` and `bili` in the `pbc` data set
 head(apply(pbc[, c("time", "age", "bili")], 2, function(x) (x-mean(x))/sd(x)))
 
 #' Other examples \
@@ -51,19 +58,25 @@ rowSums(Mat)
 #' Obtain the summary of the pbc data set
 lapply(pbc, summary)
 
+#' Ontain the number of missing values per `pbc` variable
+lapply(pbc, function(x) sum(is.na(x))) 
+
 #' Obtain the quadratic term of the vector `1:3` \
 #' Present the results as a list
 lapply(1:3, function(x) x^2)
 
 #' Create a list that consist of `Mat` and `Mat^2` \
-#' Obtain the mean of each element. Present the results as a list
+#' Obtain the mean of each element \
+#' Present the results as a list
 X <- list(Mat, Mat^2)
 lapply(X, mean)
 
-#' Select elements in a list
+#'Create a list
 A <- matrix(1:9, 3,3)
 B <- matrix(4:15, 4,3)
 C <- matrix(8:10, 3,2)
+
+#' Select elements in a list
 MyList <- list(A,B,C) 
 
 #' Select the first row of each element \
@@ -76,6 +89,9 @@ lapply(MyList,"[", , 2)
 
 
 #' **sapply** \
+
+#' Ontain the number of missing values per `pbc` variable
+lapply(pbc, function(x) sum(is.na(x))) 
 
 #' Obtain the quadratic term of the vector `1:3` \
 #' Present the results as a vector
@@ -173,7 +189,7 @@ head(duplicated(pbcseq[c("id")]))
 head(duplicated(pbcseq[c("id")], fromLast = TRUE))
 head(!duplicated(pbcseq[c("id")], fromLast = TRUE))
 
-### alternative run: pbcseq.idNEW2 <- pbcseq[unlist(tapply(rownames(pbcseq), pbcseq$id, tail,  1)), ]
+### alternative run: pbcseq.idNEW2 <- pbcseq[tapply(rownames(pbcseq), pbcseq$id, tail,  1), ]
 
 #' Obtain the mean `serum bilirubin` per `status` group
 tapply(pbcseq.idNEW2$bili, pbcseq.idNEW2$status, mean)
@@ -195,7 +211,7 @@ head(duplicated(pbcseq[c("id")]))
 head(duplicated(pbcseq[c("id")], fromLast = TRUE))
 head(!duplicated(pbcseq[c("id")], fromLast = TRUE))
 
-### alternative run: pbcseq.idNEW3 <- pbcseq[unlist(tapply(rownames(pbcseq), pbcseq$id, tail,  1)), ]
+### alternative run: pbcseq.idNEW3 <- pbcseq[tapply(rownames(pbcseq), pbcseq$id, tail,  1), ]
 
 #' Obtain the mean `serum bilirubin` per `status` group
 tapply(pbcseq.idNEW3$bili, pbcseq.idNEW3$status, mean)

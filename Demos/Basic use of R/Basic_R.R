@@ -20,9 +20,6 @@ pbc <- survival::pbc
 #' Print the first 6 rows of the data set
 head(pbc)
 
-#' Select the first 5 rows and columns 1 until 6, 11, 12
-pbc[1:5, c(1:6,11,12)]
-
 #' What is the average `age`?
 mean(pbc$age)
 
@@ -58,7 +55,7 @@ x
 #' NOTE! `o == 3` \
 #' \
 #' Case sensitive \
-#' `mean(pbc$Age)` will not run because there is a typo \
+#' `pbc$Age` will not run because there is a typo \
 #' We need to check the names first
 names(pbc)
 pbc$age

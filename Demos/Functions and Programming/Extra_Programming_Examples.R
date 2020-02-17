@@ -12,6 +12,8 @@
 # install.packages("survival") 
 library(survival)
 
+pbc <- survival::pbc
+
 
 #' Create a matrix \
 A <- matrix(rnorm(1e06), 1000, 1000)
@@ -71,7 +73,7 @@ for (i in 1:dim(pbc)[1]) {
   pbc$ageCat[i] <- as.numeric(pbc$age[i] > 42)
 }
 
-#' Explore what it is happening \
+#' Explore what is happening \
 #' This will help you later create more complicated functions
 i <- 1
 pbc$ageCat[i] <- as.numeric(pbc$age[i] > 42)
@@ -173,7 +175,6 @@ for (i in 1:length(datlist)) {
 #' Now make a function that takes as input the data sets in a list format, the name of the `gender` variable and the name of the `male` category \
 #' This function returns only the data sets, where more than 49% of the patients are `males` \
 #' The output should be a list
-
 subset_data <- function(dataset = x, sex_var = "sex", male_cat = "male"){
   newList <- list()
   k <- 1
@@ -190,3 +191,21 @@ subset_data <- function(dataset = x, sex_var = "sex", male_cat = "male"){
 res <- subset_data(dataset = datlist, sex_var = "sex", male_cat = "male")
 
 length(res)
+
+
+#' Make a function that takes as input a data set, the name of a continuous variable and the name of a categorical variable
+#' This function calculates the mean and standard deviation of the continuous variable for each group in the categorical variable
+des <- function(data = x, cont = "age", cat = "group"){
+  tapply(data[[cont]], data[[cat]], mean)
+}
+
+#' Apply the function to the `pbc` data set
+#' Use `age` and `gender` as continuous and categorical variables
+des(data = pbc, cont = "age", cat = "sex")
+
+#' Now change the `des` function so that the user would specify the function applied to the data
+des <- function(data = x, cont = "age", cat = "group", fun = mean){
+  tapply(data[[cont]], data[[cat]], fun)
+}
+
+des(data = pbc, cont = "age", cat = "sex", fun = function(x) sum(x))

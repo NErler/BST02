@@ -29,8 +29,6 @@ matrix(1:4, 2, 2, byrow = TRUE)
 #' There are multiple ways to create a matrix
 weight_columns <- cbind(pbc$age, pbc$time)
 weight_Rows <- rbind(pbc$age, pbc$time)
-head(matrix(weight_columns, , 2))
-head(matrix(weight_Rows, , 2, byrow = TRUE))
 
 #' TAKE CARE
 Columns_com <- cbind(c(1:4), c(1:8))
@@ -39,6 +37,7 @@ Columns_com <- cbind(c(1:4), c(1:8))
 DF <- data.frame(Age = c(30, 20, 50),
                  Sex = c("male", "female", "female"),
                  Drug = c("yes", "yes", "no"))
+head(DF)
 
 DF <- data.frame(Age = runif(30, 1, 80),
                  Sex = sample(1:2, 30, replace = TRUE),

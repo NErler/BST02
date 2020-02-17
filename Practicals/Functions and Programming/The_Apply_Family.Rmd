@@ -245,7 +245,7 @@ summary_continuous <- function(x) {
 <br>}
 <br><br>summary_categorical <- function(x) {
 <br>  &nbsp;&nbsp; tab <- prop.table(table(x))
-<br>  &nbsp;&nbsp; paste0(tab * 100, "% ", names(tab), collapse = ", ")
+<br>  &nbsp;&nbsp; paste0(round(tab * 100, 1), "% ", names(tab), collapse = ", ")
 <br>}
 </div>')
 ```

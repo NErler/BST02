@@ -19,7 +19,7 @@ pbc <- survival::pbc
 pbcseq <- survival::pbcseq
 
 #' Round continuous variables
-pbc$bili <- round(pbc$bili, digits = 2)
+pbc$ast <- round(pbc$ast, digits = 1)
 pbc$age <- round(pbc$age, digits = 2)
 head(pbc)
 
@@ -47,21 +47,34 @@ pbc$ageST <- (pbc$age-mean(pbc$age))/(sd(pbc$age))
 head(pbc)
 
 
-#' **Wide/long format**
+#' **Wide/long format** \
+#' Long to wide data set
 head(pbcseq)
 
-#' Select the first (or last) row of each patient
-head(pbcseq[unlist(tapply(rownames(pbcseq), pbcseq$id, head,  1)), ])
-head(pbcseq[unlist(tapply(rownames(pbcseq), pbcseq$id, tail,  1)), ])
+#' Select the first (or last) row of each patient  \ \
+#' Using the following way will remove a lot of information
+head(pbcseq[!duplicated(pbcseq[c("id")]), ])
+head(pbcseq[!duplicated(pbcseq[c("id")], fromLast = TRUE), ])
 
-#' Check how many repeated measurements we have per patient
+#' Step by step
+head(duplicated(pbcseq[c("id")]))
+head(!duplicated(pbcseq[c("id")]))
+
+head(duplicated(pbcseq[c("id")]))
+head(duplicated(pbcseq[c("id")], fromLast = TRUE))
+head(!duplicated(pbcseq[c("id")], fromLast = TRUE))
+
+
+
+#' Using the following way will keep all the information \
+#' Step 1: Obtain how many repeated measurements we have per patient
 vec <- table(pbcseq$id)
 
-#' Take a sequence of the visits of each patient
+#' Step 2: Take a sequence of the visits of each patient
 vec2 <- sequence(vec)
 pbcseq$visits <- vec2
 
-#' Obtain wide format `pbcseq` data set
+#' Step 3: Obtain the wide format `pbcseq` data set
 pbcseqWide <- reshape(pbcseq, idvar = c("id"), 
                     drop = c("futime", "status", "trt", "age", "sex", 
                              "day", "ascites", "hepato", "spiders", 
@@ -72,7 +85,7 @@ pbcseqWide <- reshape(pbcseq, idvar = c("id"),
 head(pbcseqWide)
 
 
-
+#' Wide to long data set  \
 #' Obtain the long format `pbcseqWide` data set 
 pbcLong <- reshape(pbcseqWide, idvar = c("id"), timevar = "time", 
                     varying = list(names(pbcseqWide)[2:17]),

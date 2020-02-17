@@ -265,6 +265,8 @@ y
   - are coded as \textbf{\textcolor{blue}{NA}} (i.e., not available) \textbf{\textcolor{blue}{is.na()}}
 * Infinity
   - is coded as \textbf{\textcolor{blue}{Inf}} (plus infinity) or \textbf{\textcolor{blue}{-Inf}} (minus infinity) \textbf{\textcolor{blue}{is.finite()}}
+* The Null objects
+  - are coded as \textbf{\textcolor{blue}{NULL}}
 * Not a number
   - is coded as \textbf{\textcolor{blue}{NaN}} (Not a Number). Example: 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -349,12 +351,12 @@ mode(pbc$age)
 
 ## Common R Objects (cont'd)
 
-* Every object in R has a class
+* Data structure:
 
-  - \textbf{\textcolor{red}{Vectors}} have the same type of elements with the same length (one dimension)
-  - \textbf{\textcolor{red}{Matrices}} have the same type of elements with the same length (two dimensions)
-  - \textbf{\textcolor{red}{Data.frames}} have elements of different type with the same length (two dimensions)
-  - \textbf{\textcolor{red}{Lists}} have elements of different type and length (any dimension)
+  - \textbf{\textcolor{red}{Vectors}} have the same type of elements
+  - \textbf{\textcolor{red}{Matrices}} have the same type of elements with the same length 
+  - \textbf{\textcolor{red}{Data.frames}} have elements of different type with the same length 
+  - \textbf{\textcolor{red}{Lists}} have elements of different type and length 
 
 
 ## Common R Objects (cont'd)
@@ -506,6 +508,7 @@ list1
 * Remove any comments in your data set
 * Make sure that any missing values in your data set are indicated with the same value (or no value)
 
+
 ## Importing Data and Saving your Work (cont'd)
 
 * \textbf{\textcolor{red}{save()}}
@@ -515,6 +518,8 @@ list1
   - be careful about overwriting
 * Using \textbf{\textcolor{red}{saveRDS}} and \textbf{\textcolor{red}{readRDS}} you can save and read a single R object
   - The result has to be assigned to a variable
+
+  
 
 \vspace*{3ex}
 
@@ -626,13 +631,13 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 ## Data Exploration
 
 * Common questions
-  - What is the mean and sd for age?
-  - What is the mean and sd for time?
+  - What is the mean and standard deviation for age?
+  - What is the mean and standard deviation for time?
   - What is the median and interquartile range for age?
   - What is the percentage of placebo patients?
   - What is the percentage of females?
-  - What is the mean and sd for age in males?
-  - What is the mean and sd for baseline serum bilirubin?
+  - What is the mean and standard deviation for age in males?
+  - What is the mean and standard deviation for baseline serum bilirubin?
   - What is the percentage of missings in serum bilirubin?
   
 \vspace*{0.3cm}
@@ -645,10 +650,16 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 * \blue{Hints}
 
 \vspace*{3ex}  
+    - Check functions: \textbf{\textcolor{blue}{mean(...)}}, \textbf{\textcolor{blue}{sd(...)}}, \textbf{\textcolor{blue}{percent(...)}}, \textbf{\textcolor{blue}{median(...)}}, \textbf{\textcolor{blue}{IQR(...)}}
 
-  - Check functions: \textbf{\textcolor{blue}{mean(...)}}, \textbf{\textcolor{blue}{sd(...)}}, \textbf{\textcolor{blue}{percent(...)}}, \textbf{\textcolor{blue}{median(...)}}, \textbf{\textcolor{blue}{IQR(...)}}
+\pause
+\vspace*{3ex} 
 
-
+What is the mean value for age?
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+mean(pbc$age)
+```  
+ 
 
 ## Data Exploration (cont'd)
 
@@ -698,15 +709,7 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 
 ## Data Visualization (cont'd)
 
-Continuous variables
-```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
-plot(pbc$age, pbc$bili)
-```
-
-
-## Data Visualization (cont'd)
-
-Important plotting functions
+Important plotting basic functions
 
 * \textbf{\textcolor{blue}{plot()}}: scatter plot (and others)
 * \textbf{\textcolor{blue}{barplot()}}: bar plots
@@ -716,6 +719,14 @@ Important plotting functions
 * \textbf{\textcolor{blue}{pie()}}: pie charts
 * \textbf{\textcolor{blue}{qqnorm()}}, \textbf{\textcolor{blue}{qqline()}}, \textbf{\textcolor{blue}{qqplot()}}: distribution plots
 * \textbf{\textcolor{blue}{pairs()}}: for multivariate data
+
+
+## Data Visualization (cont'd)
+
+Continuous variables
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+plot(pbc$age, pbc$bili)
+```
 
 
 ## Data Visualization (cont'd)
@@ -734,6 +745,24 @@ Continuous variables
 plot(pbc$age, pbc$bili, xlab = "age", ylab = "bili", 
      cex.lab = 1.9, cex.axis = 1.5, col = "red")
 ```  
+
+
+## Data Visualization (cont'd)
+
+* For more options check 
+```{r, eval = FALSE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+?plot
+```  
+
+
+## Data Visualization (cont'd)
+
+Continuous variables per group
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+plot(pbc$age, pbc$bili, xlab = "age", ylab = "bili", 
+     cex.lab = 1.9, cex.axis = 1.5, col = pbc$sex)
+```  
+
 
 ## Data Visualization (cont'd)
 
@@ -1017,7 +1046,7 @@ mat[2, ]
 ## Indexing/Subsetting (cont'd)
 
 \blue{Indexing with \blue{\texttt{data.frame}}}
-
+* Works with single and double index
 * When using a single index the data frame acts like a list of variables
 
 \begincols[t]
@@ -1069,11 +1098,11 @@ DF
 \begincol{0.5\linewidth}
 * Use position indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-DF[2, 2]
+DF[2, ]
 ```  
 * Use logical indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-DF[DF$y < 30, 2]
+DF[DF$y < 30, ]
 ```  
 \endcol
 \endcols
@@ -1184,7 +1213,7 @@ In order to run the app you will need to install the packages:
 \blue{Vectors}
 \begin{itemize}\vspace*{-0.5ex}
 \item \texttt{[]}
-\item \texttt{[""]}
+\item \texttt{[""]} - for categorical variables
 \end{itemize}
 
 \bigskip

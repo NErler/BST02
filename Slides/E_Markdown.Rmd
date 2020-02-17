@@ -369,6 +369,6 @@ With \textbf{\textcolor{blue}{spinr}} we can do this!
 
 * spinr syntax
   - When you want a line to be interpreted as markdown prepend it with \textcolor{blue}{\#'}
-  - When you want start a new code chunk (with different options) use \textcolor{blue}{\#+}
+  - When you want to start a new code chunk (with different options) use \textcolor{blue}{\#+}
   
   

@@ -27,7 +27,7 @@ pbcseq <- survival::pbcseq
 #' Basic plot with 1 variable
 plot(pbc$bili)
 
-#' Basic plot with 2 variables
+#' Basic plot with 2 variables - checking the correlation between `age` and `bili`
 plot(pbc$age, pbc$bili)
 
 #' Basic plot with 2 variables - add axis labels
@@ -40,7 +40,7 @@ plot(pbc$age, pbc$bili, ylab = "Serum bilirubin", xlab = "Age", cex.axis = 1.5, 
 plot(pbc$age, pbc$bili, ylab = "Serum bilirubin", xlab = "Age", cex.axis = 1.5, cex.lab = 1.9, col = pbc$sex, pch = 16)
 legend(30, 25, legend = c("male", "female"), col = c(1,2), pch = 16)
 
-#' Histogram
+#' Histogram for continuous variables - checking the distribution of `bili`
 hist(pbc$bili, breaks = 50)
 hist(pbc$bili, breaks = seq(min(pbc$bili), max(pbc$bili), length = 20))
 
@@ -51,18 +51,18 @@ hist(pbc$chol, prob=T)
 hist(pbc$albumin, prob=T)
 hist(pbc$alk.phos, prob=T)
 
-#' Barchart
+#' Barchart for categorical variables - checking the frequency of `males` and `females`
 barchart(pbc$sex)
 
 plot(pbc$sex)
 
-#' Boxplot
+#' Boxplot for investigating the distribution of a continuous variable per group - cheking the distribution of `age` per `sex` group
 boxplot(pbc$age ~ pbc$sex, ylab = "Age", xlab = "Gender")
 
 #' Multivariate plot
 pairs(cbind(pbc$bili, pbc$chol, pbc$albumin))
 
-#' Density plots of `serum bilirubin` per `sex`
+#' Density plots of `serum bilirubin` per `sex` group
 pbc_male_bili <- pbc$bili[pbc$sex == "m"]
 pbc_female_bili <- pbc$bili[pbc$sex == "f"]
 plot(density(pbc_male_bili), col = rgb(0,0,1,0.5), ylim = c(0,0.40),
@@ -73,40 +73,43 @@ polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), border = "red")
 legend(20,0.03, c("male", "female"), 
        col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)  
 
-#' Lattice family - `serum bilirubin` with `age`
+#' **lattice** \
+#' lattice family - correlation between `serum bilirubin` and `age`
 xyplot(bili ~ age, data = pbc, type = "p", lwd = 2)
 
-#' Lattice family - smooth evolution of `serum bilirubin` with `age`
+#' lattice family - smooth evolution of `serum bilirubin` with `age`
 xyplot(bili ~ age, data = pbc, type = "smooth", lwd = 2)
 
-#' Lattice family - smooth evolution of `serum bilirubin` with `age` per `sex`
+#' lattice family - smooth evolution of `serum bilirubin` with `age` per `sex`
 xyplot(bili ~ age, group = sex, data = pbc, type = "smooth", lwd = 2, col = c("red", "blue"))
 
-#' Lattice family - smooth evolution with points of `serum bilirubin` with `age` per `sex`
+#' lattice family - smooth evolution with points of `serum bilirubin` with `age` per `sex`
 xyplot(bili ~ age, group = sex, data = pbc, type = c("p", "smooth"), lwd = 2, col = c("red", "blue"))
 
-#' Lattice family - smooth evolution with points of `serum bilirubin` with `age` per `sex` (as separate panel)
+#' lattice family - smooth evolution with points of `serum bilirubin` with `age` per `sex` (as separate panel)
 xyplot(bili ~ age | sex, data = pbc, type = c("p", "smooth"), lwd = 2, col = c("red"))   
 
-#' Lattice family - smooth evolution with points of `serum bilirubin` with `age` per `status` (as separate panel)
+#' lattice family - smooth evolution with points of `serum bilirubin` with `age` per `status` (as separate panel)
 xyplot(bili ~ age | status, data = pbc, type = c("p", "smooth"), lwd = 2, col = c("red"))  
 
-#' Lattice family - smooth evolution with points of `serum bilirubin` with `age` per `status` (as separate panel - change layout)
+#' lattice family - smooth evolution with points of `serum bilirubin` with `age` per `status` (as separate panel - change layout)
 xyplot(bili ~ age | status, data = pbc, type = c("p", "smooth"), lwd = 2, col = c("red"), layout = c(2,2)) 
 
-#' Lattice family - smooth evolution with points of `serum bilirubin` with `age` per `status` (as separate panel - change layout) \
+#' lattice family - smooth evolution with points of `serum bilirubin` with `age` per `status` (as separate panel - change layout) \
 #' Add labels for `status`
 pbc$status <- factor(pbc$status, levels = c(0, 1, 2), labels = c("censored", "transplant", "dead"))
 xyplot(bili ~ age | status, data = pbc, type = c("p", "smooth"), lwd = 2, col = c("red"), layout = c(3,1))  
 
-#' Lattice family - individual patient plot
+#' lattice family - individual patient plot
 xyplot(bili ~ day, group = id, data = pbcseq, type ="l", col = "black")
 
-#' Lattice family - individual patient plot per `status`
+#' lattice family - individual patient plot per `status`
 pbcseq$status <- factor(pbcseq$status, levels = c(0, 1, 2), labels = c("censored", "transplant", "dead"))
 xyplot(bili ~ day | status, group = id, data = pbcseq, type ="l", col = "black", layout = c(3,1),
        grid = TRUE, xlab = "Days", ylab = "Serum bilirubin")
 
+
+#' **ggplot** \
 #' ggplot family - plot `age` with `serum bilirubin` \
 #' Each `sex` has a different colour
 ggplot(pbc, aes(age, bili, colour = sex)) + 
@@ -159,12 +162,9 @@ text(x1, y1, labels=emoji('face_with_head_bandage'), cex=1.5, col='blue', family
 #' Using google data
 google.trends1 = gtrends(c("feyenoord"), gprop = "web", time = "all")[[1]]
 
-ggplot(data = google.trends1, aes(x = date, y = hits, group = keyword, col = keyword)) +
+ggplot(data = google.trends1, aes(x = date, y = hits)) +
   geom_line() +
-  xlab('Time') +
-  ylab('Feyenoord') + 
-  theme_bw() +
-  theme(legend.title = element_blank(), legend.position = "bottom", legend.text = element_text(size = 12)) +
+  labs(y = "Feyenoord", x = "Time") +
   ggtitle("Hits on Google")
 
 

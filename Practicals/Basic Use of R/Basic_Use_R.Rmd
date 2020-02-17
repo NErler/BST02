@@ -902,7 +902,7 @@ Using the **heart** data set: \
 ```{r plot1_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#plot1">Hint</button>
 <div id = "plot1" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use the function plot(..., xlab, ylab, col). Note that colour should be a number (use the function as.numeric(...)). Use the function legend(...) to add a legend to the plot.
+Use the function plot(..., xlab, ylab, col). Use the function legend(...) to add a legend to the plot.
 </div>')
 ```
 
@@ -915,7 +915,7 @@ asis_output("#### Solution 1\\n")
 ```{r plot1-solution, solution = TRUE}
 plot(heart$age, heart$year)
 plot(heart$age, heart$year, xlab = "Age", ylab = "Year of acceptance")
-plot(heart$age, heart$year, xlab = "Age", ylab = "Year of acceptance", col = as.numeric(heart$transplant))
+plot(heart$age, heart$year, xlab = "Age", ylab = "Year of acceptance", col = heart$transplant)
 legend(-40, 6, c("no", "yes"), col = c("black", "red"), pch = 1)
 ```
 

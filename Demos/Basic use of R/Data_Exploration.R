@@ -17,12 +17,12 @@ library(memisc)
 #' Load data set from package
 pbc <- survival::pbc
 
-#' What is the mean and sd for `age`?
+#' What is the mean and standard deviation for `age`?
 mean(pbc$age)
 mean(pbc$age, na.rm = TRUE)
 sd(pbc$age)
 
-#' What is the mean and sd for `time`?
+#' What is the mean and standard deviation for `time`?
 mean(pbc$time)
 mean(pbc$time, na.rm = TRUE)
 sd(pbc$time)
@@ -38,12 +38,12 @@ percent(pbc$trt)
 #' What is the percentage of `females` and `males`?
 percent(pbc$sex)
 
-#' What is the mean and sd for `age` in `males`?
+#' What is the mean and standard deviation for `age` in `males`?
 pbc_males <- pbc[pbc$sex == "m", ]
 mean(pbc_males$age)
 sd(pbc_males$age)
 
-#' What is the mean and sd for `serum bilirubin`?
+#' What is the mean and standard deviation for `serum bilirubin`?
 mean(pbc$bili)
 sd(pbc$bili)
 
@@ -59,7 +59,7 @@ DF <- pbc[complete.cases(pbc$chol), ]
 dim(pbc)
 dim(DF)
 
-#' Obtain data set where the `serum cholesterol` variable has missing
+#' Obtain the rows of the `pbc` data set where the `serum cholesterol` variable has missing values
 pbc_chol_na <- pbc[is.na(pbc$chol) == TRUE, ]
 head(pbc_chol_na)
 pbc_chol_na <- pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
@@ -67,10 +67,10 @@ pbc_chol_na <- pbc[is.na(pbc$chol) == TRUE, c("id", "time", "status",
                                "bili", "chol")]
 head(pbc_chol_na)
 
-#' Obtain the dimensions of the data set where the `serum cholesterol` variable has missing
+#' Obtain the dimensions of the `pbc` data set where the `serum cholesterol` variable has missing
 dim(pbc_chol_na)
 
-#' Check for outliers: e.g. let's assume that patients with `serum bilirun` values > 25 are outliers  \
+#' Outliers: e.g. let's assume that patients with `serum bilirun` values > 25 are outliers  \
 #' Check whether there are outliers \
 #' Obtain all rows from the data set which correspond to `serum bilirun` outliers
 pbc_out_bili <- pbc[pbc$bili > 25, ]

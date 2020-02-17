@@ -19,7 +19,8 @@ pbcseq <- survival::pbcseq
 #' Select the 3rd element for vector age
 pbc$age[3]
 
-#' Select the 3rd column of the pbc data set
+#' Select the 3rd column of the pbc data set \ 
+#' Different ways exist to obtain that
 pbc[, 3]
 pbc[, 3]
 
@@ -72,7 +73,7 @@ sd(pbc[pbc$sex == "f", "bili"])
 hist(pbc[pbc$sex == "f", "bili"])
 
 #' Select all rows where the `serum bilirubin` measurements are smaller that 10
-pbc[pbc$bili < 10, ]
+head(pbc[pbc$bili < 10, ])
 
 #' Make a boxplot of `serum bilirubin` per `sex` using the previous selection
 new_pbc <- pbc[pbc$bili < 10, ]
@@ -92,6 +93,7 @@ myList[[3]]
 
 #' Select the third element (the output should be a vector) \
 #' Then, from the third element, select the elements that are smaller than 20
+#' Tips: use small steps
 newData <- myList[[3]]
 newData[newData < 20]
 
