@@ -265,6 +265,8 @@ y
   - are coded as \textbf{\textcolor{blue}{NA}} (i.e., not available) \textbf{\textcolor{blue}{is.na()}}
 * Infinity
   - is coded as \textbf{\textcolor{blue}{Inf}} (plus infinity) or \textbf{\textcolor{blue}{-Inf}} (minus infinity) \textbf{\textcolor{blue}{is.finite()}}
+* The Null objects
+  - are coded as \textbf{\textcolor{blue}{NULL}}
 * Not a number
   - is coded as \textbf{\textcolor{blue}{NaN}} (Not a Number). Example: 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -280,7 +282,7 @@ y
 \begin{block}{Demos}
 \begin{itemize}
 \item Basic R 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/01_Basic_R.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/01_Basic_R.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Basic_R.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Basic_R.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -349,12 +351,12 @@ mode(pbc$age)
 
 ## Common R Objects (cont'd)
 
-* Every object in R has a class
+* Data structure:
 
-  - \textbf{\textcolor{red}{Vectors}} have the same type of elements with the same length (one dimension)
-  - \textbf{\textcolor{red}{Matrices}} have the same type of elements with the same length (two dimensions)
-  - \textbf{\textcolor{red}{Data.frames}} have elements of different type with the same length (two dimensions)
-  - \textbf{\textcolor{red}{Lists}} have elements of different type and length (any dimension)
+  - \textbf{\textcolor{red}{Vectors}} have the same type of elements
+  - \textbf{\textcolor{red}{Matrices}} have the same type of elements with the same length 
+  - \textbf{\textcolor{red}{Data.frames}} have elements of different type with the same length 
+  - \textbf{\textcolor{red}{Lists}} have elements of different type and length 
 
 
 ## Common R Objects (cont'd)
@@ -467,7 +469,7 @@ list1
 \begin{block}{Demos}
 \begin{itemize}
 \item Common R Objects 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/02_Common_R_objects.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/02_Common_R_objects.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Common_R_objects.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Common_R_objects.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -491,6 +493,7 @@ list1
 * Specialized functions for importing data from other programs
   - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{read.spss()}}, \textbf{\textcolor{red}{read.dta()}}
   - package: \textbf{\textcolor{red}{Hmisc}}, function: \textbf{\textcolor{red}{sas.get()}}
+  - package: \textbf{\textcolor{red}{openxlsx}}, function: \textbf{\textcolor{red}{read.xlsx()}}  
   - package: \textbf{\textcolor{red}{readxl}}, function: \textbf{\textcolor{red}{read\_excel()}}
   - package: \textbf{\textcolor{red}{haven}}, function: \textbf{\textcolor{red}{read\_spss()}}
   - \textit{etc}
@@ -505,6 +508,7 @@ list1
 * Remove any comments in your data set
 * Make sure that any missing values in your data set are indicated with the same value (or no value)
 
+
 ## Importing Data and Saving your Work (cont'd)
 
 * \textbf{\textcolor{red}{save()}}
@@ -515,11 +519,14 @@ list1
 * Using \textbf{\textcolor{red}{saveRDS}} and \textbf{\textcolor{red}{readRDS}} you can save and read a single R object
   - The result has to be assigned to a variable
 
+  
+
 \vspace*{3ex}
 
 * Specialized functions for exporting data to other programs
   - function: \textbf{\textcolor{red}{write.table()}}, \textbf{\textcolor{red}{write.csv()}}
   - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{write.spss()}}, \textbf{\textcolor{red}{write.dta()}}
+  - package: \textbf{\textcolor{red}{openxlsx}}, function: \textbf{\textcolor{red}{write.xlsx()}}
   - \textit{etc}
 
 
@@ -530,8 +537,8 @@ list1
 \begin{block}{Demos}
 \begin{itemize}
 \item Importing and Saving 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/03_Importing_Saving.R}{R} 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/03_Importing_Saving.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Importing_Saving.R}{R} 
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Importing_Saving.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -611,7 +618,7 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 \begin{block}{Demos}
 \begin{itemize}
 \item Data Transformation 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/04_Data_Transformation.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/04_Data_Transformation.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Transformation.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Transformation.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -624,13 +631,13 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 ## Data Exploration
 
 * Common questions
-  - What is the mean and sd for age?
-  - What is the mean and sd for time?
+  - What is the mean and standard deviation for age?
+  - What is the mean and standard deviation for time?
   - What is the median and interquartile range for age?
   - What is the percentage of placebo patients?
   - What is the percentage of females?
-  - What is the mean and sd for age in males?
-  - What is the mean and sd for baseline serum bilirubin?
+  - What is the mean and standard deviation for age in males?
+  - What is the mean and standard deviation for baseline serum bilirubin?
   - What is the percentage of missings in serum bilirubin?
   
 \vspace*{0.3cm}
@@ -643,10 +650,16 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 * \blue{Hints}
 
 \vspace*{3ex}  
+    - Check functions: \textbf{\textcolor{blue}{mean(...)}}, \textbf{\textcolor{blue}{sd(...)}}, \textbf{\textcolor{blue}{percent(...)}}, \textbf{\textcolor{blue}{median(...)}}, \textbf{\textcolor{blue}{IQR(...)}}
 
-  - Check functions: \textbf{\textcolor{blue}{mean(...)}}, \textbf{\textcolor{blue}{sd(...)}}, \textbf{\textcolor{blue}{percent(...)}}, \textbf{\textcolor{blue}{median(...)}}, \textbf{\textcolor{blue}{IQR(...)}}
+\pause
+\vspace*{3ex} 
 
-
+What is the mean value for age?
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+mean(pbc$age)
+```  
+ 
 
 ## Data Exploration (cont'd)
 
@@ -655,8 +668,8 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 \begin{block}{Demos}
 \begin{itemize}
 \item Data Exploration 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/05_Data_Exploration.R}{R} 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/05_Data_Exploration.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Exploration.R}{R} 
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Exploration.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -696,15 +709,7 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 
 ## Data Visualization (cont'd)
 
-Continuous variables
-```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
-plot(pbc$age, pbc$bili)
-```
-
-
-## Data Visualization (cont'd)
-
-Important plotting functions
+Important plotting basic functions
 
 * \textbf{\textcolor{blue}{plot()}}: scatter plot (and others)
 * \textbf{\textcolor{blue}{barplot()}}: bar plots
@@ -714,6 +719,14 @@ Important plotting functions
 * \textbf{\textcolor{blue}{pie()}}: pie charts
 * \textbf{\textcolor{blue}{qqnorm()}}, \textbf{\textcolor{blue}{qqline()}}, \textbf{\textcolor{blue}{qqplot()}}: distribution plots
 * \textbf{\textcolor{blue}{pairs()}}: for multivariate data
+
+
+## Data Visualization (cont'd)
+
+Continuous variables
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+plot(pbc$age, pbc$bili)
+```
 
 
 ## Data Visualization (cont'd)
@@ -732,6 +745,24 @@ Continuous variables
 plot(pbc$age, pbc$bili, xlab = "age", ylab = "bili", 
      cex.lab = 1.9, cex.axis = 1.5, col = "red")
 ```  
+
+
+## Data Visualization (cont'd)
+
+* For more options check 
+```{r, eval = FALSE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+?plot
+```  
+
+
+## Data Visualization (cont'd)
+
+Continuous variables per group
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+plot(pbc$age, pbc$bili, xlab = "age", ylab = "bili", 
+     cex.lab = 1.9, cex.axis = 1.5, col = pbc$sex)
+```  
+
 
 ## Data Visualization (cont'd)
 
@@ -796,7 +827,7 @@ pie(prop.table(table(pbc$status)),
 \begin{block}{Demos}
 \begin{itemize}
 \item Data Visualization 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/06_Data_Visualization.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/06_Data_Visualization.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Visualization.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Visualization.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -810,7 +841,7 @@ pie(prop.table(table(pbc$status)),
 
 \begin{columns}[onlytextwidth,T]
 \begin{column}{0.35\linewidth}
-\textbf{\textcolor{blue}{Common R objects}}
+\blue{Common R objects}
 \begin{itemize}\vspace*{-0.5ex}
 \item \texttt{c()}
 \item \texttt{matrix()}
@@ -821,7 +852,7 @@ pie(prop.table(table(pbc$status)),
 
 \bigskip
 
-\textbf{\textcolor{blue}{Transformation}}
+\blue{Transformation}
 \begin{itemize}\vspace*{-0.5ex}
 \item \texttt{factor()}
 \item \texttt{reshape()}
@@ -831,7 +862,7 @@ pie(prop.table(table(pbc$status)),
 \end{column}
 
 \begin{column}{0.30\linewidth}
-\textbf{\textcolor{blue}{Exploration}}
+\blue{Exploration}
 \begin{itemize}\vspace*{-0.5ex}
 \item \texttt{is.na()}
 \item \texttt{dim()}
@@ -842,7 +873,7 @@ pie(prop.table(table(pbc$status)),
 
 \bigskip
 
-\textbf{\textcolor{blue}{Visualization}}
+\blue{Visualization}
 \begin{itemize}
 \item \texttt{plot()}, \texttt{legend()}
 \item \texttt{hist()}
@@ -855,7 +886,7 @@ pie(prop.table(table(pbc$status)),
 \end{column}
 
 \begin{column}{0.35\linewidth}
-\textbf{\textcolor{blue}{Import/Save/Present}}
+\blue{Import/Save/Present}
 \begin{itemize}
 \item \texttt{head()}
 \item \texttt{save()}, \texttt{saveRDS()}
@@ -865,7 +896,7 @@ pie(prop.table(table(pbc$status)),
 
 \bigskip
 
-\textbf{\textcolor{blue}{Other}}
+\blue{Other}
 \begin{itemize}
 \item \texttt{install.packages()}
 \item \texttt{library()}, \texttt{getwd()}
@@ -1015,7 +1046,7 @@ mat[2, ]
 ## Indexing/Subsetting (cont'd)
 
 \blue{Indexing with \blue{\texttt{data.frame}}}
-
+* Works with single and double index
 * When using a single index the data frame acts like a list of variables
 
 \begincols[t]
@@ -1067,11 +1098,11 @@ DF
 \begincol{0.5\linewidth}
 * Use position indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-DF[2, 2]
+DF[2, ]
 ```  
 * Use logical indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-DF[DF$y < 30, 2]
+DF[DF$y < 30, ]
 ```  
 \endcol
 \endcols
@@ -1162,7 +1193,7 @@ https://emcbiostatistics.shinyapps.io/indexing/
 \begin{column}{0.52\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Shiny app indexing subsetting \button{https://nerler.github.io/BST02/demo/basic-use-of-r/08_shiny_app_indexing.R}{R} 
+\item Shiny app indexing subsetting \button{https://nerler.github.io/BST02/demo/basic-use-of-r/shiny_app_indexing.R}{R} 
 \end{itemize}
 \end{block}
 \end{column}
@@ -1179,15 +1210,15 @@ In order to run the app you will need to install the packages:
 
 \begin{columns}[onlytextwidth,T]
 \begin{column}{0.5\linewidth}
-\textbf{\textcolor{blue}{Vectors}}
+\blue{Vectors}
 \begin{itemize}\vspace*{-0.5ex}
 \item \texttt{[]}
-\item \texttt{[""]}
+\item \texttt{[""]} - for categorical variables
 \end{itemize}
 
 \bigskip
 
-\textbf{\textcolor{blue}{Matrices}}
+\blue{Matrices}
 \begin{itemize}
 \item \texttt{[,]}
 \end{itemize}
@@ -1195,7 +1226,7 @@ In order to run the app you will need to install the packages:
 
 
 \begin{column}{0.5\linewidth}
-\textbf{\textcolor{blue}{Data frames}}
+\blue{Data frames}
 \begin{itemize}
 \item \texttt{[,]}
 \item \texttt{[[]]}
@@ -1204,7 +1235,7 @@ In order to run the app you will need to install the packages:
 
 \bigskip
 
-\textbf{\textcolor{blue}{Lists}}
+\blue{Lists}
 \begin{itemize}
 \item \texttt{[]}
 \item \texttt{[[]]}
@@ -1225,7 +1256,7 @@ In order to run the app you will need to install the packages:
 \begin{block}{Demos}
 \begin{itemize}
 \item Indexing Subsetting 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/07_Indexing_Subsetting.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/07_Indexing_Subsetting.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Indexing_Subsetting.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Indexing_Subsetting.html}{html}
 \end{itemize}
 \end{block}
 \end{column}

@@ -830,10 +830,19 @@ tapply(pbc$bili, pbc$sex, function(x) sum(x)/(length(x)-1))
 * Its purpose is to be able to vectorize arguments to a function that is not usually accepting \blue{\texttt{vectors}} as arguments
 * \blue{\texttt{mapply()}} applies a function to multiple \blue{\texttt{list}} or multiple \blue{\texttt{vector}} arguments
 
-```{r, eval = TRUE, include = TRUE, echo = TRUE}
+\vspace*{2ex}
+```{r, echo = FALSE}
+options(width = 70)
+```
+```{r, eval = FALSE, echo = TRUE}
 mapply(length, pbc)
 ```
-
+\vspace*{-2ex}
+```{r, eval = TRUE, echo = FALSE}
+# this is necessary to adjust the spacing between echo and output on the slide
+mapply(length, pbc)
+```
+\vspace*{-3ex}
 
 ## How To Use mapply() in R (cont'd)
 

@@ -3,9 +3,9 @@ title: "Statistical Report"
 author: "Eleni-Rosalina Andrinopoulou"
 date: "`r Sys.setenv(LANG = 'en_US.UTF-8'); format(Sys.Date(), '%d %B %Y')`"
 output:
-  word_document: default
   html_document:
     df_print: paged
+  word_document: default
 ---
 
 # Introduction
@@ -16,7 +16,7 @@ The aim of this study is to investigate whether an association exists between se
 
 * We are going to used the pbc data set from the survival library. 
 
-* Continuous data are presented as mean and standard deviation while categorical variables as counts and percentages. Differences between males and females were analyzed by the unpaired Student's t tests for continuous variables. To investigate the association between serum bilirubin with sex, age, treatment and standardised blood clotting time a linear regression was performed. A p-value <0.05 was considered statistically significant and no correction for multiple testing was performed.
+* Continuous variables are presented as mean and standard deviation while categorical variables as counts and percentages. Differences between males and females were analyzed by the unpaired Student's t tests for continuous variables. To investigate the association between serum bilirubin with sex, age, treatment and standardised blood clotting time a linear regression was performed. A p-value <0.05 was considered statistically significant and no correction for multiple testing was performed.
 
 ```{r, echo=TRUE, warning = FALSE, message = FALSE}
 library(lattice)

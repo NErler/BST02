@@ -313,7 +313,7 @@ fun4(test_lm, modeltype = 'lm')
 Now that the function "works", i.e., runs for both types of models, we can come
 back to the other question:
 
-For a logistic model: is this the output that we are intersted in?
+For a logistic model: is this the output that we are interested in?
 </div>
 
 ### Solution 3

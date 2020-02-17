@@ -64,7 +64,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/basic-use-of-r/</guid>
-      <description> 01 Basic R [html] [R] 02 Common R objects [html] [R] 03 Importing Saving [html] [R] 04 Data Transformation [html] [R] 05 Data Exploration [html] [R] 06 Data Visualization [html] [R] 07 Indexing Subsetting [html] [R] 08 shiny app indexing [html] [R]  </description>
+      <description> Basic R [html] [R] Common R objects [html] [R] Data Exploration [html] [R] Data Transformation [html] [R] Data Visualization [html] [R] Importing Saving [html] [R] Indexing Subsetting [html] [R] shiny app indexing [html] [R]  </description>
     </item>
     
     <item>
@@ -100,7 +100,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/functions-and-programming/</guid>
-      <description> 01 The Apply Family [html] [R] 02 Extra Programming Examples [html] [R] Control Flow [html] [R] Functions for Data Exploration [html] [R] Functions for Data Manipulation [html] [R] shiny app apply family [html] [R]  </description>
+      <description> Control Flow [html] [R] Extra Programming Examples [html] [R] Functions for Data Exploration [html] [R] Functions for Data Manipulation [html] [R] shiny app apply family [html] [R] The Apply Family [html] [R]  </description>
     </item>
     
     <item>
@@ -118,7 +118,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/markdown/</guid>
-      <description> Markdown Code [Rmd]  </description>
+      <description> Markdown Code [html] [Rmd]  </description>
     </item>
     
     <item>
@@ -127,7 +127,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/statistics-with-r/</guid>
-      <description> Model Evaluation [html] [R] Regression [html] Regression Basics [R] Tests for Categorical Data [html] [R] Tests for Continuous Data [html] [R]  </description>
+      <description> Model Evaluation [html] [R] Regression Basics [html] [R] Tests for Categorical Data [html] [R] Tests for Continuous Data [html] [R]  </description>
     </item>
     
     <item>
@@ -136,7 +136,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/practical/statistics-with-r/</guid>
-      <description> Linear Regression [html] Logistic Regression and More [html] Logistic Regression II [html] Statistical Tests [html]  </description>
+      <description> Linear Regression [html] Logistic Regression and More [html] Logistic Regression II [html] Model Summary Function [html] Statistical Tests [html]  </description>
     </item>
     
   </channel>

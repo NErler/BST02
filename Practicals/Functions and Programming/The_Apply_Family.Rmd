@@ -233,7 +233,7 @@ asis_output("#### Task 3\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-* Do you remember the practical `Writing your own function (Task 1 and 2)`? Now try to create again the same function (called `summary_df`) but avoid the use of a for loop. Apply the function to the **retinopathy** dat set.
+* Do you remember the practical `Control_Flow_and_Functions` -> `Writing your own function (Task 1 and 2)`? Now try to create again the same function (called `summary_df`) but avoid the use of a for loop. Apply the function to the **retinopathy** dat set.
 
 ```{r sapply3_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#sapply3">Hint</button>
@@ -245,7 +245,7 @@ summary_continuous <- function(x) {
 <br>}
 <br><br>summary_categorical <- function(x) {
 <br>  &nbsp;&nbsp; tab <- prop.table(table(x))
-<br>  &nbsp;&nbsp; paste0(tab * 100, "% ", names(tab), collapse = ", ")
+<br>  &nbsp;&nbsp; paste0(round(tab * 100, 1), "% ", names(tab), collapse = ", ")
 <br>}
 </div>')
 ```
@@ -264,7 +264,7 @@ summary_continuous <- function(x) {
 
 summary_categorical <- function(x) {
   tab <- prop.table(table(x))
-  paste0(tab * 100, "% ", names(tab), collapse = ", ")
+  paste0(round(tab * 100, 1), "% ", names(tab), collapse = ", ")
 }
 
 
@@ -324,6 +324,7 @@ asis_output("#### Solution 2\\n")
 ```
 
 ```{r tapply2-solution, solution = TRUE}
-tapply(heart$year, list(heart$transplant, heart$surgery), function(x) {mean(x)/(length(x) - 2)})
+Fun1 <- function(x) {mean(x)/(length(x) - 2)}
+tapply(heart$year, list(heart$transplant, heart$surgery), Fun1)
 tapply(retinopathy$futime, list(retinopathy$status, retinopathy$type, retinopathy$trt), mean)
 ```

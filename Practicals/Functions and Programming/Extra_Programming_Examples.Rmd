@@ -189,13 +189,13 @@ asis_output("#### Task 3\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Define a function (with the name `mysummary`) that takes one parameter (let’s call it `x`) that investigates if it is a data frame a factor or a numeric variable and return the message "This is a data.frame" if `x` is a data frame, "This is a factor" is `x` is a factor and "This is numeric" if `x` is numeric.  
+Define a function (with the name `mysummary`) that takes one parameter (let’s call it `x`) that investigates if it is a data frame, a factor, or a numeric variable and returns the message "This is a data.frame" if `x` is a data frame, "This is a factor" is `x` is a factor and "This is numeric" if `x` is numeric.  
 
 
 ```{r fun3_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun3">Hint</button>
 <div id = "fun3" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use an if statement. When you want to display results from the function you cant to use the print(...) function.
+Use an if statement. When you want to display results from the function you can use the print(...) function.
 </div>')
 ```
 
@@ -387,7 +387,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 
-Create a for loop that goes through the columns of the **retinopathy** data set and plots each column. If the column is a numerical variable then use a density plot, if the column is categorical variable then use a barchart. Create a plot with multiple panel
+Create a for loop that goes through the columns of the **retinopathy** data set and plots each column. If the column is a numerical variable then use a density plot, if the column is a categorical variable then use a barchart. Create a plot with multiple panel
 
 
 ```{r fun7_hint, eval = static, results = 'asis', echo = FALSE}
@@ -431,7 +431,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 
-Create a function that applies the previous code in any data set. The name of the function will be `plot_summary` and it will take as input a data frame (let's call it `dt`) and the dimension of the panel that include the plots. In particular, `dim_row` represents the rows and `dim_col` the columns. The function will return a plot for each column. If the column is a numerical variable then use a density plot, if the column is categorical variable then use a barchart. Apply this function to the **retinopathy** data set.
+Create a function that applies the previous code in any data set. The name of the function will be `plot_summary` and it will take as input a data frame (let's call it `dt`) and the dimension of the panel that includes the plots. In particular, `dim_row` represents the rows and `dim_col` the columns. The function will return a plot for each column. If the column is a numerical variable then use a density plot, if the column is categorical variable then use a barchart. Apply this function to the **retinopathy** data set.
 
 
 ```{r fun8_hint, eval = static, results = 'asis', echo = FALSE}
@@ -526,7 +526,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 
-For each data set (**heart** and **retinopathy**), select only the patients that had an event.
+For each data set (**heart** and **retinopathy**), select only the observations that report an event.
 
 
 ```{r fun10_hint, eval = static, results = 'asis', echo = FALSE}
@@ -559,13 +559,13 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 
-Create a function with the name `dt_events` that takes as input a list with data sets (let's call it `dt_list`) and a vector indicating the name of the event variable for each data set (let's call it `event_name`). The function will return a list consisting of each data set but including only the patients that had an event. Create a list that consists of the data sets **heart** and **retinopathy** and apply the function.
+Create a function with the name `dt_events` that takes as input a list with data sets (let's call it `dt_list`) and a vector indicating the name of the event variable for each data set (let's call it `event_name`). The function will return a list consisting of each data set but including only the observations/rows that had an event. Create a list that consists of the data sets **heart** and **retinopathy** and apply the function.
 
 
 ```{r fun11_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun11">Hint</button>
 <div id = "fun11" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use a for loop. Note that the variable name of the events is diffent for the two data sets.
+Use a for loop. Note that the variable name of the events is different for the two data sets.
 </div>')
 ```
 
@@ -626,7 +626,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 
-Create a function with the name `summary_list` that takes as input a list with data sets (let's call it `dt_list`), a vector with the names of the continuous variables (let's call it `dt_cont`) and a vector with the names of the categorical variables (let's call it `dt_cat`) and returns the mean of the continuous variable per group for each data set. Apply the function to the **heart** and **retinopathy** data sets. In particular, use the continuous variables `year` (from the **heart** data set) and `risk` (from the **retinopathy** data set) and the categorical variables `surgery` (from the **heart** data set) and `type` (from the **retinopathy** data set).
+Create a function with the name `summary_list` that takes as input a list with data sets (let's call it `dt_list`), a vector with the names of the continuous variables (let's call it `dt_cont`) and a vector with the names of the categorical variables (let's call it `dt_cat`) and returns the mean of the continuous variable per group (categorical variable) for each data set. Apply the function to the **heart** and **retinopathy** data sets. In particular, use the continuous variables `year` (from the **heart** data set) and `risk` (from the **retinopathy** data set) and the categorical variables `surgery` (from the **heart** data set) and `type` (from the **retinopathy** data set).
 
 ```{r fun13_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun13">Hint</button>

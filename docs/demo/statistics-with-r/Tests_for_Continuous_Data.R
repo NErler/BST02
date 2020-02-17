@@ -14,7 +14,7 @@
 # This is not part of the demo. 
 # It just allows the output to be wider (to make the html look nicer)
 options(width = 105)
-
+set.seed(2020)
 
 #-------------------------------------------------------------------------------
 #' ## t-test
@@ -71,14 +71,14 @@ t.test(x - y)
 #' ### Using the formula specification
 #' It is also possible to specify the test using a formula. This can be more
 #' convenient when we have the data in a `data.frame`
-dat <- data.frame(z = c(x, y),
+dat <- data.frame(value = c(x, y),
                   group  = rep(c('x', 'y'), c(length(x), length(y))))
 
 summary(dat)
-t.test(z ~ group, data = dat)
+t.test(value ~ group, data = dat)
 
 #' or
-t.test(z ~ group, data = dat, paired = TRUE)
+t.test(value ~ group, data = dat, paired = TRUE)
 
 
 
