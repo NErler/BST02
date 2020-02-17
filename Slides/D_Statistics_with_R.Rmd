@@ -49,7 +49,7 @@ drkred <- rgb(204, 0, 0, maxColorValue = 255)
   \end{itemize}
 \item (Generalized) linear regression
 \item Useful functions for regression models
-\item Modeling non-linear effects
+\item Modelling non-linear effects
 \end{itemize}
 
 
@@ -103,7 +103,7 @@ See also [BBR Sections 7.2 & 7.3 (http://hbiostat.org/doc/bbr.pdf)](http://hbios
 ## Other tests for continuous data
 
 \begin{itemize}\itemsep5mm
-\item \blue{Kolmogoriv-Smirnov Test:} \texttt{ks.test()}\newline
+\item \blue{Kolmogorov-Smirnov Test:} \texttt{ks.test()}\newline
   tests if two samples are drawn from the same continuous distribution
   
 \item \blue{Shapiro-Wilk Normality Test:} \texttt{shapiro.test()}
@@ -420,7 +420,7 @@ The `family` argument in `glm()` can be specified in the following ways:
 \pause
 \begin{column}{0.5\linewidth}
 \blue{Note:}\\
-When the link is not explicitely specified (i.e. options 2-4),
+When the link is not explicitly specified (i.e. options 2-4),
 the default link is used.
 \end{column}
 \end{columns}
@@ -452,13 +452,13 @@ the default link is used.
 
 \blue{Linear model:}
 
-Evaluate the assumptions of a linear regression model visually, for example:
+Evaluate the \blue{assumptions} of a linear regression model visually, for example:
 
 * Histogram of residuals
 * Normal QQ-plot of residuals
 * Scatterplot residuals vs fitted values
 
-```{r}
+```{r, fig.width = 8, fig.height = 2, echo = FALSE, out.width = "100%"}
 set.seed(2020)
 N <- 2500
 invS <- rWishart(1, df = 5, Sigma = diag(4))[, , 1]
@@ -479,27 +479,30 @@ temp <- list(theme(panel.grid = element_blank(),
 )
 
 ggpubr::ggarrange(
-ggplot(plotDF, aes(x = resid)) +
-  geom_histogram(bins = 100, fill = EMCdark, alpha = 0.5, color = EMCdark) +
-  xlab('Residuals') +
-  temp,
-
-ggplot(plotDF, aes(x = fitted, y = resid)) +
-  geom_point(color = EMCdark, alpha = 0.5) +
-  geom_smooth(method = 'loess', se = FALSE, color = drkred) +
-  temp,
-
-ggplot(data.frame(r = quantile(rstandard(lm_mod), seq(0, 1, length = 200)),
-                  n = quantile(rnorm(N), seq(0, 1, length = 200))),
-       aes(x = n, y = r)) +
-  geom_abline(intercept = 0, slope = 1, color = drkred) +
-  geom_point(color = EMCdark, alpha = 0.5, size = 2) +
-  temp +
-  xlab('theoretical quantiles') +
-  ylab('observed quantiles') +
-  scale_x_continuous(breaks = seq(-5, 5, 1)) +
-  scale_y_continuous(breaks = seq(-5, 5, 1))
-), ncol = 3, nrow = 1)
+  ggplot(plotDF, aes(x = resid)) +
+    geom_histogram(bins = 50, fill = EMCdark, alpha = 0.5, color = EMCdark, size = 0.1) +
+    xlab('Residuals') +
+    temp,
+  
+  ggplot(data.frame(r = quantile(rstandard(lm_mod), seq(0, 1, length = 200)),
+                    n = quantile(rnorm(N), seq(0, 1, length = 200))),
+         aes(x = n, y = r)) +
+    geom_abline(intercept = 0, slope = 1, color = drkred) +
+    geom_point(color = EMCdark, alpha = 0.3, size = 1) +
+    temp +
+    xlab('theoretical quantiles') +
+    ylab('observed quantiles') +
+    scale_x_continuous(breaks = seq(-5, 5, 1)) +
+    scale_y_continuous(breaks = seq(-5, 5, 1)),
+  
+  
+    ggplot(plotDF, aes(x = fitted, y = resid)) +
+    geom_point(color = EMCdark, alpha = 0.3, size = 1) +
+    geom_smooth(method = 'loess', se = FALSE, color = drkred) +
+    temp +
+    xlab('fitted values') +
+    ylab('residuals'),
+ncol = 3, nrow = 1)
 ```
 
 
@@ -531,11 +534,11 @@ The model with the \blue{smaller} AIC (or BIC) has the \blue{better} fit.
 ## Model Evaluation
 
 \begin{center}
-\begin{columns}[T,onlytextwidth]
+\begin{columns}
 \begin{column}{0.47\linewidth}
 \begin{block}{Demo}
 \begin{itemize}
-\item Model Evaluation \button{https://nerler.github.io/BST02/demo/statistics-with-r/Model_Evaluation.R}{R} \button{https://nerler.github.io/BST02/demo/statistics-with-r/Model_Evaluation.html}{R}
+\item Model Evaluation \button{https://nerler.github.io/BST02/demo/statistics-with-r/Model_Evaluation.R}{R} \button{https://nerler.github.io/BST02/demo/statistics-with-r/Model_Evaluation.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -713,6 +716,8 @@ that need to be interpreted as
 * arithmetic operators and 
 * formula operators
 
+\bigskip\pause
+
 Example:
 ```{r, eval = FALSE}
 y ~ I(a + b)
@@ -781,7 +786,7 @@ p0 <- ggplot(dat, aes(x = x, y = y)) +
 ## Complex Non-linear Effects
 \begincols[t, onlytextwidth]
 \begincol{0.35\linewidth}
-Non-linear effects may be \blue{more complex} than can be modeled with a simple
+Non-linear effects may be \blue{more complex} than can be modelled with a simple
 transformation or polynomial.
 \endcol
 \begincol{0.65\linewidth}
@@ -799,7 +804,7 @@ p0
 ## B-Splines
 A \blue{B-Spline} is a linear combination of a set of \blue{basis functions}.
 
-These basis functions are defined so that they are 
+These basis functions are defined so that they are \vspace*{-2ex}
 
 * a \blue{polynomial functions} inside a given interval, and
 * zero outside that interval.
@@ -1004,7 +1009,7 @@ survival::pbc
 ## Non-linear Effects
 
 \begin{columns}[T,onlytextwidth]
-\begin{column}{0.47\linewidth}
+\begin{column}{0.37\linewidth}
 \begin{block}{Demo}
 \begin{itemize}
 \item Splines \button{https://nerler.github.io/BST02/demo/statistics-with-r/}{R}
@@ -1013,11 +1018,12 @@ survival::pbc
 \end{block}
 \end{column}
 
-\begin{column}{0.47\linewidth}
-\begin{block}{Practical}
+\begin{column}{0.57\linewidth}
+\begin{block}{Practicals}
 \begin{itemize}
 \item Logistic Regression \& More \button{https://nerler.github.io/BST02/practical/statistics-with-r/Logistic_Regression_and_More.html}{html}
 \item Logistic Regression II \button{https://nerler.github.io/BST02/practical/statistics-with-r/Logistic_Regression_II.html}{html}
+\item Custom Model Summary Function \button{https://nerler.github.io/BST02/practical/statistics-with-r/Model_Summary_Function.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
