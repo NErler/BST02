@@ -1,0 +1,548 @@
+---
+title: 'Model Summary Function'
+output: 
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+    number_sections: false
+    theme: spacelab
+    highlight: tango
+    includes:
+      after_body: ../footerNE.html
+    css: ../style.css
+---
+
+
+```{r setup, include = FALSE}
+library(knitr)
+library(kableExtra)
+
+opts_chunk$set(echo = TRUE)
+
+hint <- function(text) {
+  id <- paste0('hint_', sample.int(1e10, size = 1))
+    cat(
+    paste0('\n',
+      '<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" ',
+      'data-target="#', id, '">Hint</button>',
+      '<div id = "', id, '" class="collapse" style="border:1px; ',
+      'border-style:solid; padding: 1em; border-color:#1F78B4">',
+      text, '</div>')
+  )
+}
+
+set.seed(2020)
+```
+
+
+The aim of this practical is to write a function that returns a nice looking
+summary of the results from a linear or logistic regression model.
+
+## Creating Data {.tabset .tabset-pills .tabset-fade}
+### Task
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Create a `data.frame` with example data that we can use to fit example models
+to test our function.
+```{r, echo = FALSE, results = 'asis'}
+hint('To create data, you could draw random numbers from a normal distribution, 
+using `rnorm()`, from a uniform distribution, using `runif()` or from a 
+binomial distribution, using `rbinom()`. The functions `sample()` and `factor()`
+could also be useful.')
+```
+</div>
+
+
+### Solution
+```{r}
+N <- 1000
+testdat <- data.frame(y = rnorm(N),
+                      ybin = factor(rbinom(N, size = 1, prob = 0.7)),
+                      x1 = runif(N, min = 0, max = 4),
+                      x2 = factor(sample(paste0('cat', 1:4), size = N, replace = TRUE))
+)
+
+testdat$x3 <- 0.5 * testdat$y + 0.5 * as.numeric(testdat$ybin) + rnorm(N, 0, 1)
+
+summary(testdat)
+```
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
+We create one variable that is (strongly) associated with the outcome variables
+to make sure we have some significant p-values.
+</div>
+
+
+## Example Models {.tabset .tabset-pills .tabset-fade}
+### Task
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Using your test data, fit a linear and a logistic regression model.
+</div>
+
+
+### Solution
+```{r}
+test_lm <- lm(y ~ ., data = testdat)
+test_logit <- glm(ybin ~ ., data = testdat, family = binomial())
+```
+
+## Building the Summary {.tabset .tabset-pills .tabset-fade}
+### Task 1
+Our summary should contain the estimates of the regression coefficients, 
+the 95% confidence interval, and the p-value.
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Explore the `summary()` of the linear regression model (not the printed output
+but the object that is returned) to find out how you can access the p-values
+from a `lm`.
+</div>
+
+### Solution 1
+```{r}
+summary_lm <- summary(test_lm)
+class(summary_lm)
+names(summary_lm)
+is.list(summary_lm)
+
+summary_lm$coefficients
+class(summary_lm$coefficients)
+```
+
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Combine the regression coefficients, the 95% confidence interval and the 
+p-values from the linear regression model into one `data.frame`.
+
+Make sure the columns are named properly (for example: `estimate`, `2.5 %`, `97.5 %`, `p-value`).
+
+```{r, echo = FALSE, results = 'asis'}
+hint('Try the argument `check.names = FALSE`.')
+```
+</div>
+
+### Solution 2
+```{r}
+dat <- data.frame(estimate = coef(test_lm),
+                  confint(test_lm),
+                  'p-value' = summary(test_lm)$coefficients[, 'Pr(>|t|)'],
+                  check.names = FALSE)
+dat
+```
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
+We need to wrap `p-value` in quotes because it does contain a "-" and is not
+a syntactically valid name. 
+
+`estimate` is a syntactically valid name.
+</div>
+
+### Task 3
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+* Write a function that has a linear regression model as input and returns a 
+  summary like the one we have constructed in the previous solution.
+* Test the function with the example linear regression.
+</div>
+
+
+### Solution 3
+```{r}
+fun1 <- function(model) {
+  dat <- data.frame(estimate = coef(test_lm),
+                  confint(test_lm),
+                  'p-value' = summary(test_lm)$coefficients[, 'Pr(>|t|)'],
+                  check.names = FALSE)
+  
+  dat
+}
+
+fun1(test_lm)
+```
+
+
+## Improving the Look {.tabset .tabset-pills .tabset-fade}
+### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+To make the output look nicer, we want to limit the decimal places in the
+output to a number specified by the user.
+Implement this using an argument `decimals` and decide on a default value for it.
+</div>
+
+
+### Solution 1
+```{r}
+fun2 <- function(model, decimals = 3) {
+  dat <- data.frame(estimate = coef(model),
+                  confint(model),
+                  'p-value' = summary(model)$coefficients[, 'Pr(>|t|)'],
+                  check.names = FALSE)
+  
+  round(dat, decimals)
+}
+
+fun2(test_lm)
+```
+
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Previously, we have seen that the function `format.pval()` will convert values
+below a certain value in to "<..." notation. 
+
+Use this in our summary function.
+```{r, results = 'asis', echo = FALSE}
+hint('`format.pval()` has the additional arguments `digits` and `eps`.')
+hint('To use the `$` to select a column with a syntactically invalid name you
+need to wrap the name in "`", i.e., &#x60;the name&#x60;.')
+hint('Values can also be represented as $10^(-3)$.')
+```
+</div>
+
+### Solution 2
+```{r}
+fun3 <- function(model, decimals = 3) {
+  dat <- data.frame(estimate = coef(model),
+                    confint(model),
+                    check.names = FALSE)
+  
+  dat <- round(dat, decimals)
+  
+  dat$`p-value` <- format.pval(summary(model)$coefficients[, 'Pr(>|t|)'],
+                               eps = 10^(-decimals), digits = decimals)
+  
+  dat
+}
+
+fun3(test_lm)
+fun3(test_lm, decimals = 5)
+fun3(test_lm, decimals = 1)
+```
+
+
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
+<p style = "color:#009B8F; font-weight:bold;">Note:</p>
+We do not want to first round the p-value and then apply `format.pval()` because
+this might give wrong results in specific cases, for example:
+```{r}
+pv <- 0.0009
+format.pval(pv, digits = 2, eps = 0.001)
+
+round(pv, 3)
+format.pval(round(pv, 3), digits = 2, eps = 0.001)
+```
+</div>
+
+## Logistic Regression {.tabset .tabset-pills .tabset-fade}
+### Task 1
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+We also would like to use this function for output from logistic regression models.
+
+Does the current version of the function work with logistic regression models?
+
+* If it does: does it give us the summary that we are interested in?
+* If it does not: investigate what the problem is.
+</div>
+
+### Solution 1
+```{r, error = TRUE}
+fun3(test_logit)
+```
+
+We get an error message "subscript out of bounds". This means we are 
+trying to select an element that does not exist.
+
+To find the problem, we check each part of the function body, replacing
+`model` by `test_logit`:
+```{r, error = TRUE}
+decimals <- 3
+
+dat <- data.frame(estimate = coef(test_logit),
+                  confint(test_logit),
+                  check.names = FALSE)
+
+dat <- round(dat, decimals)
+
+dat$`p-value` <- format.pval(summary(test_logit)$coefficients[, 'Pr(>|t|)'],
+                             eps = 10^(-decimals), digits = decimals)
+```
+
+The problem is in the p-value column, so we split this syntax up further:
+```{r, error = TRUE}
+summary(test_logit)$coefficients[, 'Pr(>|t|)']
+```
+Same error, so probably the column `'Pr(>|t|)'` does not exist.
+
+```{r}
+summary(test_logit)$coefficients
+```
+Indeed, for a logistic regression model, the column is called `Pr(>|z|)`!
+
+
+### Task 2
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Adjust the function so that it works with both linear and logistic regression models.
+</div>
+
+### Solution 2
+```{r}
+fun4 <- function(model, decimals = 3, modeltype) {
+  dat <- data.frame(estimate = coef(model),
+                    confint(model),
+                    check.names = FALSE)
+  
+  dat <- round(dat, decimals)
+  
+  if (modeltype == 'lm') {
+    dat$`p-value` <- format.pval(summary(model)$coefficients[, 'Pr(>|t|)'],
+                                 eps = 10^(-decimals), digits = decimals)
+  } else {
+    dat$`p-value` <- format.pval(summary(model)$coefficients[, 'Pr(>|z|)'],
+                                 eps = 10^(-decimals), digits = decimals)
+  }
+  
+  dat
+}
+
+fun4(test_logit, modeltype = 'logit')
+fun4(test_lm, modeltype = 'lm')
+```
+
+### Task 3
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Now that the function "works", i.e., runs for both types of models, we can come
+back to the other question:
+
+For a logistic model: is this the output that we are intersted in?
+</div>
+
+### Solution 3
+For a logistic regression model, the effects are usually reported as odds ratios.
+In our current version, we present the effects on the log odds scale.
+
+
+### Task 4
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Adjust the function so that for logistic regression models the summary is 
+given as odds ratios. 
+
+Do not forget to change the column name(s).
+</div>
+
+### Solution 4
+```{r}
+fun5 <- function(model, decimals = 3, modeltype) {
+  dat <- data.frame(estimate = coef(model),
+                    confint(model),
+                    check.names = FALSE)
+  
+  if (modeltype == 'lm') {
+    dat <- round(dat, decimals)
+    
+    dat$`p-value` <- format.pval(summary(model)$coefficients[, 'Pr(>|t|)'],
+                                 eps = 10^(-decimals), digits = decimals)
+  } else {
+    dat <- round(exp(dat), decimals)
+    
+    dat$`p-value` <- format.pval(summary(model)$coefficients[, 'Pr(>|z|)'],
+                                 eps = 10^(-decimals), digits = decimals)
+    
+    names(dat)[1] <- 'OR'
+  }
+  
+  dat
+}
+
+fun5(test_logit, modeltype = 'logit')
+fun5(test_lm, modeltype = 'lm')
+```
+
+
+### Task 5
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+To make the function more convenient to use, we want to automatically identify
+the model type, so that the user does not need to provide the `modeltype`.
+```{r}
+hint('The function `family()` can be used on regression models.')
+```
+
+</div>
+
+### Solution 5
+A first idea might be to use `class(model)` to identify the type of model.
+```{r, collapse=TRUE}
+class(test_lm)
+class(test_logit)
+```
+
+
+The problem with this would be that a user might also have used `glm()` to fit 
+a linear regression model:
+```{r}
+class(glm(formula = y ~ ., data = testdat, family = gaussian()))
+```
+
+
+Moreover, not all GLMs use a logit link (not even all binary GLMs do!) and
+using `exp()` would then not give an odds ratio:
+```{r}
+class(glm(formula = ybin ~ ., data = testdat, family = binomial(link = 'probit')))
+```
+
+
+Using `family()` we can extract the model family and the link function:
+```{r}
+family(test_lm)
+family(test_logit)
+```
+
+We need to inspect this further to figure out how to access that information:
+```{r}
+fam_lm <- family(test_lm)
+str(fam_lm)
+
+fam_lm$family
+fam_lm$link
+
+
+family(test_logit)$family
+family(test_logit)$link
+```
+
+Using this information we can adapt our function:
+
+```{r}
+fun6 <- function(model, decimals = 3) {
+
+  # extract the family and link  
+  fam <- family(model)$family
+  link <- family(model)$link
+  
+  modeltype <- if (fam == 'binomial' & link == 'logit') {
+    'logit'
+  } else {
+    if (fam == 'gaussian' & link == 'identity') {
+      'lm'
+    }
+  }
+  
+  dat <- data.frame(estimate = coef(model),
+                    confint(model),
+                    check.names = FALSE)
+  
+  if (modeltype == 'lm') {
+    dat <- round(dat, decimals)
+    
+    dat$`p-value` <- format.pval(summary(model)$coefficients[, 'Pr(>|t|)'],
+                                 eps = 10^(-decimals), digits = decimals)
+  } else {
+    dat <- round(exp(dat), decimals)
+    
+    dat$`p-value` <- format.pval(summary(model)$coefficients[, 'Pr(>|z|)'],
+                                 eps = 10^(-decimals), digits = decimals)
+    
+    names(dat)[1] <- 'OR'
+  }
+  
+  dat
+}
+```
+
+### Task 6
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+What would happen if we would apply our function to a model that is not
+a standard linear regression (with identity link) or logistic regression model?
+
+Try to figure this out by looking at the syntax without trying it out!
+</div>
+
+### Solution 6
+If we provide a `model` that does not fit either of the criteria
+`fam == 'binomial' & link == 'logit'` or `fam == 'gaussian' & link == 'identity'`
+the value of `modeltype` will be `NULL`.<br>
+
+Why?<br>
+The first condition (`fam == 'binomial' & link == 'logit'`) would be `FALSE`
+so we would end up in the `else` part.
+There, the condition (`fam == 'gaussian' & link == 'identity'`) would also
+be `FALSE`. Since this `if()` does not provide any alternative, it will return
+`NULL`.
+
+
+The question is what happens when we try to evaluate `if (modeltype == 'lm')`
+when `modeltype = NULL`.
+
+The comparison of `NULL` with `'lm'` will result in a `logical` vector of length
+zero:
+```{r}
+NULL == 'lm'
+```
+
+Using a `logical` vector of length zero as condition to `if()` results in an error:
+```{r, error = TRUE}
+if (NULL == 'lm') {}
+```
+
+
+```{r, error = TRUE}
+test_probit <- glm(ybin ~ ., family = binomial(link = 'probit'), data = testdat)
+fun6(test_probit)
+```
+
+
+### Task 7
+<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
+Prevent this error from occuring by stopping the evaluation of the function
+before it happens and provide an informative error message.
+```{r, echo = FALSE, results = 'asis'}
+hint("To create an error message, use `stop()`.")
+hint("You could use the function `is.null()`.")
+```
+</div>
+
+### Solution 7
+```{r}
+fun7 <- function(model, decimals = 3) {
+
+  # extract the family and link  
+  fam <- family(model)$family
+  link <- family(model)$link
+  
+  modeltype <- if (fam == 'binomial' & link == 'logit') {
+    'logit'
+  } else {
+    if (fam == 'gaussian' & link == 'identity') {
+      'lm'
+    }
+  }
+  
+  if (is.null(modeltype)) {
+    stop("I do not know how to create the summary for the type of model you have provided.")
+  }
+  
+  dat <- data.frame(estimate = coef(model),
+                    confint(model),
+                    check.names = FALSE)
+  
+  if (modeltype == 'lm') {
+    dat <- round(dat, decimals)
+    
+    dat$`p-value` <- format.pval(summary(model)$coefficients[, 'Pr(>|t|)'],
+                                 eps = 10^(-decimals), digits = decimals)
+  } else {
+    dat <- round(exp(dat), decimals)
+    
+    dat$`p-value` <- format.pval(summary(model)$coefficients[, 'Pr(>|z|)'],
+                                 eps = 10^(-decimals), digits = decimals)
+    
+    names(dat)[1] <- 'OR'
+  }
+  
+  dat
+}
+```
+
+```{r, error = TRUE}
+fun7(test_probit)
+```
+
