@@ -3,27 +3,33 @@
 #' subtitle: "NIHES BST02"
 #' author: "Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center"
 #' date: "`r Sys.setenv(LANG = 'en_US.UTF-8'); format(Sys.Date(), '%d %B %Y')`"
-#' output: html_document
+#' output: 
+#'   html_document:
+#'     toc: true
+#'     toc_float:
+#'       collapsed: false
 #' ---
 #' 
 
-#' Load packages \
+#' ## Load packages 
 #' If you are using the package for the first time, you will have to first install it
 # install.packages("survival") 
 library(survival)
 
+#' ## Get data
 #' Load data set from package
 pbc <- survival::pbc
 
+#' ## Wide format data
 
-#' **apply** \
+#' ### apply
 
 #' Obtain the mean of columns `time` and `age` in the `pbc` data set
 apply(pbc[, c(2,5)], 2, mean)
 apply(pbc[, c("time", "age")], 2, mean)
 
 #' Obtain the mean of rows in the `pbc` data set \
-#' Before running the code, think if it is meaningful
+#' Before running the code, think if it is meaningful 
 # apply(pbc[, ], 1, mean)
 
 #' Obtain the standardized values of columns `time`, `age` and `bili` in the `pbc` data set
@@ -53,14 +59,15 @@ colSums(Mat)
 rowSums(Mat)
 
 
-#' **lapply** \
+#' ### lapply
 
-#' Obtain the summary of the pbc data set
+#' Obtain the summary of the `pbc` data set
 lapply(pbc, summary)
 
 #' Ontain the number of missing values per `pbc` variable
 lapply(pbc, function(x) sum(is.na(x))) 
 
+#' Other examples
 #' Obtain the quadratic term of the vector `1:3` \
 #' Present the results as a list
 lapply(1:3, function(x) x^2)
@@ -88,11 +95,12 @@ lapply(MyList,"[", 1, )
 lapply(MyList,"[", , 2)
 
 
-#' **sapply** \
+#' ### sapply
 
 #' Ontain the number of missing values per `pbc` variable
 lapply(pbc, function(x) sum(is.na(x))) 
 
+#' Other examples
 #' Obtain the quadratic term of the vector `1:3` \
 #' Present the results as a vector
 sapply(1:3, function(x) x^2)
@@ -108,7 +116,7 @@ sapply(X, mean)
 sapply(MyList,"[", 2, 1)
 
 
-#' **tapply** \
+#' ### tapply
 
 #' Obtain the mean `age` and `time` per `sex`
 tapply(pbc$age, pbc$sex, mean)
@@ -123,7 +131,7 @@ tapply(pbc$age, list(pbc$status, pbc$sex), mean)
 tapply(pbc$time, list(pbc$status, pbc$sex), mean)
 
 
-#' **mapply** \
+#' ### mapply
 
 #' Create a list: \
 #' 1st element: repeats 1 four times \
@@ -170,8 +178,7 @@ mapply(function(x,y) {x^y}, x = c(2, 3), y = c(4))
 #### alternative run: list(2^4, 3^4)
 
 
-#' **Long format data** \
-
+#' ## Long format data
 
 #' Let's assume that only the long format data set `pbcseq` is available \
 #' We want to obtain the mean `serum bilirubin` of the last follow-up measurement per `status` group \

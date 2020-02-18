@@ -11,7 +11,7 @@
 #' ---
 #' 
 
-#' ## Load packages \
+#' ## Load packages 
 #' If you are using the package for the first time, you will have to first install it \
 # install.packages("survival") 
 # install.packages("memisc") 
