@@ -15,13 +15,13 @@ classoption: aspectratio=169
 ---
 
 ```{r setup, include=FALSE}
-knitr::knit_hooks$set(
-  nospace = function(before, options, envir) {
-    if (before) {
-      knitr::asis_output("\\vspace*{-1.5ex}")
-    }
-  }
-)
+# knitr::knit_hooks$set(
+#   nospace = function(before, options, envir) {
+#     if (before) {
+#       knitr::asis_output("\\vspace*{-1.5ex}")
+#     }
+#   }
+# )
 
 knitr::opts_chunk$set(echo = TRUE, nospace = TRUE, nospaceafter = TRUE)
 ```
