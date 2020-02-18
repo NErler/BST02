@@ -78,10 +78,7 @@ for (xxx in dir('Demos', full.names = TRUE)) {
   }
 }
 
-sapply(c('.log', '.tex', '.aux', '.out', '.vrb', '.snm', '.nav', '.toc'),
-       function(k) {
-         file.remove(gsub('.Rmd$', k, "Demos/Markdown/Markdown_Code.Rmd"))
-       })
+
 
 # remove content of website/content/demo and website/static/demo
 unlink('website/content/demo/*')
