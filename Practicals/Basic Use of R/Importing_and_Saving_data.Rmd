@@ -75,14 +75,14 @@ https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
 It is important to save your work.
 
 ```{r, eval = static, echo = FALSE}
-asis_output("#### Task\\n")
+asis_output("#### Task 1\\n")
 ```
 
 ```{r, eval = static, echo = FALSE}
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Save the vectors `numbers <- c(34, 24, 19, 23, 16)`, `numbers_2 <- c(1:200)` and `treatment <- c("yes", "yes", "no", "no", "no", "yes")`. Use the name `new_vectors`. These variables can be taken from the exercise called `Vectors`.
+Save the vectors `numbers <- c(34, 24, 19, 23, 16)`, `numbers_2 <- c(1:200)` and `treatment <- c("yes", "yes", "no", "no", "no", "yes")`. Use the name `new_vectors`.
 
 ```{r save_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#save">Hint</button>
@@ -95,7 +95,7 @@ Use the function save(...). Note that you need to set the working directory.
 ```{r, eval = static, echo = FALSE}
 asis_output("</div>")
 
-asis_output("#### Solution\\n")
+asis_output("#### Solution 1\\n")
 ```
 
 ```{r save-solution, solution = TRUE}
@@ -103,6 +103,40 @@ numbers <- c(34, 24, 19, 23, 16)
 numbers_2 <- c(1:200)
 treatment <- c("yes", "yes", "no", "no", "no", "yes")
 save(numbers, numbers_2, treatment, file = "new_vectors.RData")
+```
+
+
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Save the vectors `events <- heart$event` and `eyes <- retinopathy$eye`. Use the name `vectors_survival`. 
+
+```{r save2_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#save2">Hint</button>
+<div id = "save2 class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use the function save(...). Note that you need to set the working directory.
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r save2-solution, solution = TRUE}
+events <- heart$event
+eyes <- retinopathy$eye
+save(events, eyes, file = "vectors_survival.RData")
 ```
 
 
@@ -144,7 +178,7 @@ load("new_vectors.RData")
 Remove unnecessary objects.
 
 ```{r, eval = static, echo = FALSE}
-asis_output("#### Task\\n")
+asis_output("#### Task 1\\n")
 ```
 
 ```{r, eval = static, echo = FALSE}
@@ -164,10 +198,40 @@ Use the function rm(...).
 ```{r, eval = static, echo = FALSE}
 asis_output("</div>")
 
-asis_output("#### Solution\\n")
+asis_output("#### Solution 1\\n")
 ```
 
 ```{r rm-solution, solution = TRUE}
 rm(numbers, numbers_2, treatment)
+```
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Remove the vectors `events` and `eyes`.
+
+```{r rm2_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#rm2">Hint</button>
+<div id = "rm2" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use the function rm(...).
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r rm2-solution, solution = TRUE}
+rm(events, eyes)
 ```
 

@@ -233,7 +233,7 @@ asis_output("#### Task 3\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-* Do you remember the practical `Control_Flow_and_Functions` -> `Writing your own function (Task 1 and 2)`? Now try to create again the same function (called `summary_df`) but avoid the use of a for loop. Apply the function to the **retinopathy** dat set.
+* Do you remember the practical `Control_Flow_and_Functions`: `Writing your own function (Task 1 and 2)`? Now try to create again the same function (called `summary_df`) but avoid the use of a for loop. Apply the function to the **retinopathy** dat set.
 
 ```{r sapply3_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#sapply3">Hint</button>

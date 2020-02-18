@@ -16,6 +16,14 @@ classoption: aspectratio=169
 ---
 
 ```{r setup, include=FALSE}
+knitr::knit_hooks$set(
+  nospace = function(before, options, envir) {
+    if (before) {
+      knitr::asis_output("\\vspace*{-1.5ex}")
+    }
+  }
+)
+
 knitr::opts_chunk$set(echo = FALSE, comment=NA)
 
 library(survival)
@@ -44,7 +52,7 @@ library(dplyr)
 
 * Indexing/Subsetting
 
-Lots of practising
+* Lots of practising
 
 ## Using R
 

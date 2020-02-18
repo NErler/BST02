@@ -16,6 +16,14 @@ classoption: aspectratio=169
 ---
 
 ```{r setup, include=FALSE}
+knitr::knit_hooks$set(
+  nospace = function(before, options, envir) {
+    if (before) {
+      knitr::asis_output("\\vspace*{-1.5ex}")
+    }
+  }
+)
+
 knitr::opts_chunk$set(echo = FALSE, comment=NA)
 
 library(survival)
@@ -48,11 +56,9 @@ library(survival)
 \begincols[t]
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Input
 
-\vspace*{3ex} 
 
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
 # Methods
@@ -64,11 +70,10 @@ library(survival)
 \endcol
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Output
 
-\vspace*{3ex} 
+\vspace*{0.35cm}
 
 \large Methods \
 \normalsize Data selection \
@@ -87,11 +92,11 @@ library(survival)
 \begincols[t]
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
+
 
 * Input
 
-\vspace*{3ex} 
+
 
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
 *Methods*
@@ -103,11 +108,10 @@ __Methods__
 \endcol
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Output
 
-\vspace*{3ex} 
+\vspace*{0.35cm}
 
 *Methods* \
 _Methods_ \
@@ -126,11 +130,9 @@ __Methods__
 \begincols[t]
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Input
 
-\vspace*{3ex} 
 
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
 * Method 1
@@ -142,11 +144,10 @@ __Methods__
 \endcol
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Output
 
-\vspace*{3ex} 
+\vspace*{0.35cm}
 
 * Method 1 
 - Method 2 
@@ -165,11 +166,9 @@ __Methods__
 \begincols[t]
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Input
 
-\vspace*{3ex} 
 
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
 [link](https://cran.r-project.org/)
@@ -178,11 +177,10 @@ __Methods__
 \endcol
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Output
 
-\vspace*{4ex} 
+\vspace*{0.35cm} 
 
 \ \ \ \ \ \ [link](https://cran.r-project.org/)
 
@@ -198,11 +196,9 @@ __Methods__
 \begincols[t]
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Input
 
-\vspace*{3ex} 
 
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
 ![Rsymbol](Rsymbol.png)
@@ -211,11 +207,10 @@ __Methods__
 \endcol
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Output
 
-\vspace*{4ex} 
+\vspace*{0.35cm}
 
 ![Rsymbol](E_Markdown_files\\figure-beamer\\Rsymbol.png)
 
@@ -231,11 +226,9 @@ __Methods__
 \begincols[t]
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Input
 
-\vspace*{3ex} 
 
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
 ![Rsymbol](Rsymbol.png){width=10%}
@@ -244,11 +237,10 @@ __Methods__
 \endcol
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Output
 
-\vspace*{4ex} 
+\vspace*{0.35cm}
 
 ![Rsymbol](E_Markdown_files\\figure-beamer\\Rsymbol.png){width=10%}
 
@@ -265,11 +257,9 @@ __Methods__
 \begincols[t]
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Input
 
-\vspace*{3ex} 
 
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
 ---
@@ -278,11 +268,10 @@ __Methods__
 \endcol
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Output
 
-\vspace*{4ex} 
+\vspace*{0.45cm}
 
 \hrule
 
@@ -298,11 +287,8 @@ __Methods__
 \begincols[t]
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Input
-
-\vspace*{3ex} 
 
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
 \*Method\*
@@ -311,11 +297,10 @@ __Methods__
 \endcol
 \begincol{0.5\linewidth}
 
-\vspace*{3ex} 
 
 * Output
 
-\vspace*{4ex} 
+\vspace*{0.35cm}
 
 \*Method\*
 
