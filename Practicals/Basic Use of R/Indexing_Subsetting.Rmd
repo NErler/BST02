@@ -1,0 +1,162 @@
+---
+title: 'Indexing and Subsetting'
+output: 
+  html_document:
+    code_folding: show
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+    number_sections: false
+    theme: spacelab
+    highlight: tango
+    includes:
+      after_body: ../footerEA.html
+    css: ../style.css
+---
+
+```{r, echo = FALSE, purl = FALSE}
+knitr::knit_hooks$set(purl = knitr::hook_purl)
+
+options(purl = FALSE)
+
+knitr::opts_chunk$set(purl = FALSE)
+```
+
+```{r, include = FALSE}
+knitr::opts_hooks$set(eval = function(opt) {
+  if (any(opt$exercise))
+    opt$eval <- opt$include <- FALSE
+  
+  opt
+})
+
+
+static <- TRUE
+
+options(width = 100)
+
+```
+
+
+```{r packages, include = FALSE}
+library(kableExtra)
+library(knitr)
+```
+
+
+```{r load_data, context="data", include=FALSE}
+library(survival)
+```
+
+
+## Preface {data-progressive=FALSE}
+### R packages
+In this practical, a number of R packages are used.
+The packages used (with versions that were used to generate the solutions) are:
+
+* `r R.version.string`
+* `survival` (version: `r packageVersion("survival")`)
+
+
+### Dataset {.tabset .tabset-fade .tabset-pills}
+
+For this practical, we will use the **heart** and **retinopathy** data sets from the `survival` package. More details about the data sets can be found in:
+
+https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html
+
+https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
+
+
+## Indexing and Subsetting
+
+Sometimes we want to obtain a subset of the data sets before investigating the descriptive statistics and performing the statistical analysis.
+
+### Indexing {.tabset .tabset-fade .tabset-pills}
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Using the **heart** data set: \
+
+* Select the first row. \
+* Select the first column. \
+* Select the column `surgery`.
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution\\n")
+```
+
+```{r ind1-solution, solution = TRUE}
+heart[1, ]
+heart[, 1]
+heart["surgery"]
+heart[["surgery"]]
+heart[, "surgery"]
+```
+
+
+### Subsetting {.tabset .tabset-fade .tabset-pills}
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 1\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Using the **retinopathy** data set: \
+
+* Select the `futime` for all `adult` patients. \
+* Select all the variables for patients that received treatment. \
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 1\\n")
+```
+
+```{r sub1-solution, solution = TRUE}
+retinopathy$futime[retinopathy$type == "adult"]
+retinopathy[retinopathy$trt == 1, ]
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Using the **retinopathy** data set: \
+
+* Select the `age` for patients that have `futime` more than 20. \
+* Select the `age` for patients that have `futime` more than 20 and are adults. \
+* Select patients that have no missing values in age.
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r sub2-solution, solution = TRUE}
+retinopathy$age[retinopathy$futime > 20]
+retinopathy$age[retinopathy$futime > 20 & retinopathy$type == "adult"]
+retinopathy[!is.na(retinopathy$age), ]
+```
+

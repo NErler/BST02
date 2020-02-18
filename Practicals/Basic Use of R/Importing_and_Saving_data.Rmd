@@ -1,0 +1,173 @@
+---
+title: 'Importing and Saving Data'
+output: 
+  html_document:
+    code_folding: show
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+    number_sections: false
+    theme: spacelab
+    highlight: tango
+    includes:
+      after_body: ../footerEA.html
+    css: ../style.css
+---
+
+```{r, echo = FALSE, purl = FALSE}
+knitr::knit_hooks$set(purl = knitr::hook_purl)
+
+options(purl = FALSE)
+
+knitr::opts_chunk$set(purl = FALSE)
+```
+
+```{r, include = FALSE}
+knitr::opts_hooks$set(eval = function(opt) {
+  if (any(opt$exercise))
+    opt$eval <- opt$include <- FALSE
+  
+  opt
+})
+
+
+static <- TRUE
+
+options(width = 100)
+
+```
+
+
+```{r packages, include = FALSE}
+library(kableExtra)
+library(knitr)
+```
+
+
+```{r load_data, context="data", include=FALSE}
+library(survival)
+```
+
+
+## Preface {data-progressive=FALSE}
+### R packages
+In this practical, a number of R packages are used.
+The packages used (with versions that were used to generate the solutions) are:
+
+* `r R.version.string`
+* `survival` (version: `r packageVersion("survival")`)
+
+
+### Dataset {.tabset .tabset-fade .tabset-pills}
+
+For this practical, we will use the **heart** and **retinopathy** data sets from the `survival` package. More details about the data sets can be found in:
+
+https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html
+
+https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
+
+
+
+## Importing and Saving Data
+### Save your work {.tabset .tabset-fade .tabset-pills}
+
+It is important to save your work.
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Save the vectors `numbers <- c(34, 24, 19, 23, 16)`, `numbers_2 <- c(1:200)` and `treatment <- c("yes", "yes", "no", "no", "no", "yes")`. Use the name `new_vectors`. These variables can be taken from the exercise called `Vectors`.
+
+```{r save_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#save">Hint</button>
+<div id = "save" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use the function save(...). Note that you need to set the working directory.
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution\\n")
+```
+
+```{r save-solution, solution = TRUE}
+numbers <- c(34, 24, 19, 23, 16)
+numbers_2 <- c(1:200)
+treatment <- c("yes", "yes", "no", "no", "no", "yes")
+save(numbers, numbers_2, treatment, file = "new_vectors.RData")
+```
+
+
+### Load your work {.tabset .tabset-fade .tabset-pills}
+
+Let's continue working on the data sets by loading our results.
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Load the file `new_vectors`.
+
+```{r load_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#load">Hint</button>
+<div id = "load" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use the function load(...).
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution\\n")
+```
+
+```{r load-solution, solution = TRUE}
+load("new_vectors.RData")
+```
+
+
+### Remove your work {.tabset .tabset-fade .tabset-pills}
+
+Remove unnecessary objects.
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Remove the vectors `numbers`, `numbers_2` and `treatment`.
+
+```{r rm_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#rm">Hint</button>
+<div id = "rm" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use the function rm(...).
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution\\n")
+```
+
+```{r rm-solution, solution = TRUE}
+rm(numbers, numbers_2, treatment)
+```
+
