@@ -11,7 +11,7 @@
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-19" />
+<meta name="date" content="2020-02-20" />
 
 <title>Demo: Data Exploration</title>
 
@@ -1519,7 +1519,7 @@ div.tocify {
 <h1 class="title toc-ignore">Demo: Data Exploration</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">19 February 2020</h4>
+<h4 class="date">20 February 2020</h4>
 
 </div>
 
@@ -1584,48 +1584,33 @@ mean(pbc_males$age)</code></pre>
 <h2>Handeling missing values and outliers</h2>
 <p>Check if there are missing values</p>
 <pre class="r"><code>is.na(pbc$chol)</code></pre>
-<pre><code>##   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [11] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [21] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [31] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
-##  [41]  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE
-##  [51] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
-##  [71] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [81] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [91] FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE
-## [101] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
-## [111] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [121] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
-## [131] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [141] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
-## [151] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [161] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
-## [171]  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE
-## [181] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
-## [191] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [201] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-## [211]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE
-## [221] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [231] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [241] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [251] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [261] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [271] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
-## [281] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [291] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
-## [301] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [311] FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [321]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [331]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [341]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [351]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [361]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [371]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [381]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [391]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [401]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [411]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre><code>##   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+##  [17] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [33] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
+##  [49]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [65] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [81] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
+##  [97] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+## [113] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE
+## [129] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [145] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [161] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE
+## [177] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+## [193] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+## [209] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+## [225] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [241] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [257] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [273] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [289] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+## [305] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [321]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [337]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [353]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [369]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [385]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [401]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [417]  TRUE  TRUE</code></pre>
 <p>Obtain complete cases for the variable <code>serum cholesterol</code></p>
 <pre class="r"><code>DF &lt;- pbc[complete.cases(pbc$chol), ]</code></pre>
 <p>Obtain dimensions</p>
@@ -1636,20 +1621,20 @@ mean(pbc_males$age)</code></pre>
 <p>Obtain the rows of the <code>pbc</code> data set where the <code>serum cholesterol</code> variable has missing values</p>
 <pre class="r"><code>pbc_chol_na &lt;- pbc[is.na(pbc$chol) == TRUE, ]
 head(pbc_chol_na)</code></pre>
-<pre><code>##    id time status trt      age sex ascites hepato spiders edema bili
-## 14 14 1217      2   2 56.22177   m       1      1       0     1  0.8
-## 40 40 4467      0   1 46.66940   f       0      0       0     0  1.3
-## 41 41 1350      2   1 33.63450   f       0      1       0     0  6.8
-## 42 42 4453      0   2 33.69473   f       0      1       1     0  2.1
-## 45 45 4025      0   2 41.79329   f       0      0       0     0  0.6
-## 49 49  708      2   2 61.15264   f       0      1       0     0  0.8
-##    chol albumin copper alk.phos    ast trig platelet protime stage
-## 14   NA    2.27     43    728.0  71.00   NA      156    11.0     4
-## 40   NA    3.34    105  11046.6 104.49   NA      358    11.0     4
-## 41   NA    3.26     96   1215.0 151.90   NA      226    11.7     4
-## 42   NA    3.54    122   8778.0  56.76   NA      344    11.0     4
-## 45   NA    3.93     19   1826.0  71.30   NA      474    10.9     2
-## 49   NA    3.82     58    678.0  97.65   NA      233    11.0     4</code></pre>
+<pre><code>##    id time status trt      age sex ascites hepato spiders edema bili chol albumin copper alk.phos    ast
+## 14 14 1217      2   2 56.22177   m       1      1       0     1  0.8   NA    2.27     43    728.0  71.00
+## 40 40 4467      0   1 46.66940   f       0      0       0     0  1.3   NA    3.34    105  11046.6 104.49
+## 41 41 1350      2   1 33.63450   f       0      1       0     0  6.8   NA    3.26     96   1215.0 151.90
+## 42 42 4453      0   2 33.69473   f       0      1       1     0  2.1   NA    3.54    122   8778.0  56.76
+## 45 45 4025      0   2 41.79329   f       0      0       0     0  0.6   NA    3.93     19   1826.0  71.30
+## 49 49  708      2   2 61.15264   f       0      1       0     0  0.8   NA    3.82     58    678.0  97.65
+##    trig platelet protime stage
+## 14   NA      156    11.0     4
+## 40   NA      358    11.0     4
+## 41   NA      226    11.7     4
+## 42   NA      344    11.0     4
+## 45   NA      474    10.9     2
+## 49   NA      233    11.0     4</code></pre>
 <p>Obtain the dimensions of the <code>pbc</code> data set where the <code>serum cholesterol</code> variable has missing</p>
 <pre class="r"><code>dim(pbc_chol_na)</code></pre>
 <pre><code>## [1] 134  20</code></pre>
@@ -1660,15 +1645,12 @@ head(pbc_chol_na)</code></pre>
 </ul>
 <pre class="r"><code>pbc_out_bili &lt;- pbc[pbc$bili &gt; 25, ]
 head(pbc_out_bili)</code></pre>
-<pre><code>##      id time status trt      age sex ascites hepato spiders edema
-## 144 144  943      2   2 52.28747   f       0      1       0   0.5
-## 156 156  853      2   2 59.40862   f       0      1       0   0.0
-##     bili chol albumin copper alk.phos   ast trig platelet protime
-## 144 28.0  556    3.26    152     3896 198.4  171      335    10.0
-## 156 25.5  358    3.52    219     2468 201.5  205      151    11.5
-##     stage
-## 144     3
-## 156     2</code></pre>
+<pre><code>##      id time status trt      age sex ascites hepato spiders edema bili chol albumin copper alk.phos
+## 144 144  943      2   2 52.28747   f       0      1       0   0.5 28.0  556    3.26    152     3896
+## 156 156  853      2   2 59.40862   f       0      1       0   0.0 25.5  358    3.52    219     2468
+##       ast trig platelet protime stage
+## 144 198.4  171      335    10.0     3
+## 156 201.5  205      151    11.5     2</code></pre>
 </div>
 
 
