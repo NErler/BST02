@@ -17,8 +17,9 @@
 library(survival)
 
 #' ## Get data
-#' Load data set from package
+#' Load data sets from package
 pbc <- survival::pbc
+pbcseq <- survival::pbcseq
 
 #' ## Wide format data
 
@@ -67,7 +68,7 @@ lapply(pbc, summary)
 #' Ontain the number of missing values per `pbc` variable
 lapply(pbc, function(x) sum(is.na(x))) 
 
-#' Other examples
+#' Other examples \
 #' Obtain the quadratic term of the vector `1:3` \
 #' Present the results as a list
 lapply(1:3, function(x) x^2)
@@ -97,10 +98,10 @@ lapply(MyList,"[", , 2)
 
 #' ### sapply
 
-#' Ontain the number of missing values per `pbc` variable
-lapply(pbc, function(x) sum(is.na(x))) 
+#' Obtain the number of missing values per `pbc` variable
+sapply(pbc, function(x) sum(is.na(x))) 
 
-#' Other examples
+#' Other examples \
 #' Obtain the quadratic term of the vector `1:3` \
 #' Present the results as a vector
 sapply(1:3, function(x) x^2)
@@ -112,7 +113,7 @@ X <- list(Mat, Mat^2)
 sapply(X, mean)
 
 #' Select the second column and first row of each element \
-#' Present the results as a list
+#' Present the results as a vector
 sapply(MyList,"[", 2, 1)
 
 
@@ -122,7 +123,7 @@ sapply(MyList,"[", 2, 1)
 tapply(pbc$age, pbc$sex, mean)
 tapply(pbc$time, pbc$sex, mean)
 
-#' Obtain the mean `age` and `time` (both devided by two) per `sex`
+#' Obtain the mean `age` and `time` (both elements of the variables devided by two) per `sex`
 tapply(pbc$age, pbc$sex, function(x) mean(x/2))
 tapply(pbc$time, pbc$sex, function(x) mean(x/2))
 
@@ -134,26 +135,29 @@ tapply(pbc$time, list(pbc$status, pbc$sex), mean)
 #' ### mapply
 
 #' Create a list: \
-#' 1st element: repeats 1 four times \
-#' 2nd element: repeats 2 three times  \  \
-#' 3rd element: repeats 3 two times  \ \
-#' 4th element: repeats 4 one time
+#' 
+#' * 1st element: repeats 1 four times \
+#' * 2nd element: repeats 2 three times  \  \
+#' * 3rd element: repeats 3 two times  \ \
+#' * 4th element: repeats 4 one time
 mapply(rep, 1:4, 4:1)
 #### alternative run: list(rep(1, 4), rep(2, 3), rep(3, 2), rep(4, 1))
 
 #' Create a list: \
-#' 1st element: repeats 4 one times \
-#' 2nd element: repeats 4 two times \  \
-#' 3rd element: repeats 4 three times \  \
-#' 4th element: repeats 4 four time
+#' 
+#' * 1st element: repeats 4 one times \
+#' * 2nd element: repeats 4 two times \  \
+#' * 3rd element: repeats 4 three times \  \
+#' * 4th element: repeats 4 four time
 mapply(rep, times = 1:4, x = 4)
 #### alternative run: list(rep(4, times = 1), rep(4, times = 2), rep(4, times = 3), rep(4, times = 4))
 
 #' Create a list: \
-#' 1st element: repeats 1 four times \ \
-#' 2nd element: repeats 2 four times \ \
-#' 3rd element: repeats 3 four times \  \
-#' 4th element: repeats 4 four time
+#'
+#' * 1st element: repeats 1 four times \ \
+#' * 2nd element: repeats 2 four times \ \
+#' * 3rd element: repeats 3 four times \  \
+#' * 4th element: repeats 4 four time
 mapply(rep,1:4, 4, SIMPLIFY = FALSE)
 ### alternative run: list(rep(1, 4), rep(2, 4), rep(3, 4), rep(4, 4))
 
@@ -189,14 +193,12 @@ head(pbcseq)
 pbcseq <- pbcseq[order(pbcseq$id, pbcseq$day), ]
 
 #' Select the last follow-up measurement of each patient
-pbcseq.idNEW2 <- pbcseq[!duplicated(pbcseq[c("id")], fromLast = TRUE), ]
+pbcseq.idNEW2 <- pbcseq[tapply(rownames(pbcseq), pbcseq$id, tail,  1), ]
 
 #' Step by step
-head(duplicated(pbcseq[c("id")]))
-head(duplicated(pbcseq[c("id")], fromLast = TRUE))
-head(!duplicated(pbcseq[c("id")], fromLast = TRUE))
+tapply(rownames(pbcseq), pbcseq$id, tail,  1)
 
-### alternative run: pbcseq.idNEW2 <- pbcseq[tapply(rownames(pbcseq), pbcseq$id, tail,  1), ]
+### alternative run: pbcseq.idNEW2 <- pbcseq[!duplicated(pbcseq[c("id")], fromLast = TRUE), ]
 
 #' Obtain the mean `serum bilirubin` per `status` group
 tapply(pbcseq.idNEW2$bili, pbcseq.idNEW2$status, mean)
@@ -211,14 +213,12 @@ head(pbcseq)
 pbcseq <- pbcseq[order(pbcseq$id, pbcseq$edema), ]
 
 #' Select the last stage of `edema` of each patient
-pbcseq.idNEW3 <- pbcseq[!duplicated(pbcseq[c("id")], fromLast = TRUE), ]
+pbcseq.idNEW3 <- pbcseq[tapply(rownames(pbcseq), pbcseq$id, tail,  1), ]
 
 #' Step by step
-head(duplicated(pbcseq[c("id")]))
-head(duplicated(pbcseq[c("id")], fromLast = TRUE))
-head(!duplicated(pbcseq[c("id")], fromLast = TRUE))
+tapply(rownames(pbcseq), pbcseq$id, tail,  1)
 
-### alternative run: pbcseq.idNEW3 <- pbcseq[tapply(rownames(pbcseq), pbcseq$id, tail,  1), ]
+### alternative run: pbcseq.idNEW3 <- pbcseq[!duplicated(pbcseq[c("id")], fromLast = TRUE), ]
 
 #' Obtain the mean `serum bilirubin` per `status` group
 tapply(pbcseq.idNEW3$bili, pbcseq.idNEW3$status, mean)
