@@ -145,7 +145,7 @@ Using the **retinopathy** data set: \
 
 * Select the `age` for patients that have `futime` more than 20. \
 * Select the `age` for patients that have `futime` more than 20 and are adults. \
-* Select patients that have no missing values in age.
+* Select patients that have no missing values in `age`.
 
 
 ```{r, eval = static, echo = FALSE}
