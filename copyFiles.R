@@ -171,6 +171,26 @@ for (x in pdfs) {
 
 
 
+
+################################################################################
+## make the .zip file
+################################################################################
+
+demos <- sapply(list.dirs('Demos', recursive = FALSE), function(x) {
+  grep('.html$|.R$|.Rmd$', dir(x, full.names = TRUE), value = TRUE)
+})
+
+practicals <- sapply(list.dirs('Practicals', recursive = FALSE), function(x) {
+  grep('.html$', dir(x, full.names = TRUE), value = TRUE)
+})
+
+slides <- grep(".pdf$", dir('Slides', recursive = FALSE, full.names = TRUE), value = TRUE)
+
+
+# create a .zip
+zip(zipfile = 'website/static/BST02_2020', files = unlist(c(demos, practicals, slides)))
+
+
 ################################################################################
 ## update webpage
 ################################################################################
