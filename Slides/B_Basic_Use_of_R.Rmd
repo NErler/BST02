@@ -131,14 +131,15 @@ dt <- format(dt, digits = 7)
 dt %>%
  mutate(
    dt = row.names(.),
-   age = cell_spec(age, "latex", color = ifelse(age >= 70, "red", "black"), bold = ifelse(age >= 70, "TRUE", "FALSE"), align = c("c", rep("c", 4))),
-   time = cell_spec(time, align = c("c", rep("c", 4))),
-   id = cell_spec(id, align = c("c", rep("c", 4))),
-   sex = cell_spec(sex, align = c("c", rep("c", 4))),
-   status = cell_spec(status, align = c("c", rep("c", 4))),
-   trt = cell_spec(trt, align = c("c", rep("c", 4))),
-   bili = cell_spec(bili, align = c("c", rep("c", 4))),
-   chol = cell_spec(chol, align = c("c", rep("c", 4))),
+   age = cell_spec(age, "latex", color = ifelse(age >= 70, "red", "black"), 
+                   bold = ifelse(age >= 70, "TRUE", "FALSE"), align = c("c", rep("c", 4))),
+   time = cell_spec(time, "latex", align = c("c", rep("c", 4))),
+   id = cell_spec(id, "latex", align = c("c", rep("c", 4))),
+   sex = cell_spec(sex, "latex", align = c("c", rep("c", 4))),
+   status = cell_spec(status, "latex", align = c("c", rep("c", 4))),
+   trt = cell_spec(trt, "latex", align = c("c", rep("c", 4))),
+   bili = cell_spec(bili, "latex", align = c("c", rep("c", 4))),
+   chol = cell_spec(chol, "latex", align = c("c", rep("c", 4))),
    )%>%
 select(id, time, status, trt, age, sex, bili, chol) %>%
 kable("latex", escape = F, booktabs = T, align = "c")  %>%
