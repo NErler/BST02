@@ -3,18 +3,55 @@
 #' subtitle: "NIHES BST02"
 #' author: "Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center"
 #' date: "`r Sys.setenv(LANG = 'en_US.UTF-8'); format(Sys.Date(), '%d %B %Y')`"
-#' output: html_document
+#' output: 
+#'   html_document:
+#'     toc: true
+#'     toc_float:
+#'       collapsed: false
 #' ---
 #' 
 
-#' Load packages \
+#' ## Load packages 
 #' If you are using the package for the first time, you will have to first install it
 # install.packages("survival") 
 library(survival)
 
+#' ## Get data
 pbc <- survival::pbc
 
+#' ## Smart programming
+#' * Keep good notes! \
+#' 
+#' Code 1:
+x<-10
+y<-10/2
+z<-x+y
 
+#' Code 2
+# store a value
+x <- 10
+# take half of the stored value
+y <- x/2
+# get the sum of both values
+z <- x + y
+
+#' Which code (1 or 2) would you prefer? \
+#' 
+#' * Always check if you can make your code faster
+marks = sample(0:100, 200, replace = TRUE)
+system.time({ifelse(marks >= 40, "pass", "fail")})
+
+system.time({
+  for (j in 1:length(marks)){
+    if(marks[j] >= 40) {
+      print("pass") 
+    } else {
+      print("fail")
+    }
+  }
+})
+
+#' Other example \
 #' Create a matrix \
 A <- matrix(rnorm(1e06), 1000, 1000)
 A[1:10 , 1:10]
@@ -65,16 +102,15 @@ system.time({
   cumsum(x)
 }) # better
 
-#' More than one ways exist to code something in R! \
-#' 
-#' 
+#' Other example \
 #' Create a dichotomous variable for `age` (assume as cut-off point the value 42)
 for (i in 1:dim(pbc)[1]) {
   pbc$ageCat[i] <- as.numeric(pbc$age[i] > 42)
 }
 
+
 #' Explore what is happening \
-#' This will help you later create more complicated functions
+#' This will help you later create more complicated loops
 i <- 1
 pbc$ageCat[i] <- as.numeric(pbc$age[i] > 42)
 
@@ -86,7 +122,9 @@ pbc[i, ]
 #' Do the same thing without a loop
 pbc$ageCat <- as.numeric(pbc$age > 42)
 
-
+#' More than one ways exist to code something in R! \
+#' 
+#' ## Functions and loops
 #' Calculate the mean weight for `males` and `females` in 100 datasets \
 #' Since we do not have 100 data sets, we will create them! \
 #' Let's do that first manually...
@@ -171,6 +209,7 @@ for (i in 1:length(datlist)) {
     k <- k + 1
   }
 }
+
 
 #' Now make a function that takes as input the data sets in a list format, the name of the `gender` variable and the name of the `male` category \
 #' This function returns only the data sets, where more than 49% of the patients are `males` \

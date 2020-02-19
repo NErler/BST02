@@ -2979,7 +2979,7 @@ div.tocify {
 <ul>
 <li>Obtain the mean of the columns <code>start</code>, <code>stop</code>, <code>event</code>, <code>age</code>, <code>year</code>, <code>surgery</code> of the <strong>heart</strong> data set.<br />
 </li>
-<li>Obtain the mean of the columns <code>age</code>, <code>futime</code>, <code>risk</code> and <strong>retinopathy</strong> data sets.</li>
+<li>Obtain the mean of the columns <code>age</code>, <code>futime</code>, <code>risk</code> of the <strong>retinopathy</strong> data set.</li>
 </ul>
 </div>
 </div>
@@ -3022,7 +3022,7 @@ div.tocify {
 <div id="task-1-1" class="section level4">
 <h4>Task 1</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-<p>Create the following function <code>DerivativeFunction &lt;- function(x) {log10(x) + 10}</code>. Apply the <code>DerivativeFunction</code> to <code>dataset1 &lt;- cbind(A = 1:30, B = sample(1:100, 30))</code>.</p>
+<p>Create the following function <code>DerivativeFunction &lt;- function(x) {log10(x) + 10}</code>. Apply the <code>DerivativeFunction</code> to <code>dataset1 &lt;- cbind(A = 1:30, B = sample(1:100, 30))</code>. The output should be a list.</p>
 </div>
 </div>
 <div id="solution-1-1" class="section level4">
@@ -3216,7 +3216,7 @@ div.tocify {
 <ul>
 <li>Create a list that consist of the variables <code>age</code> and <code>year</code> from the <strong>heart</strong> data set and the variable <code>risk</code> from the <strong>retinopathy</strong> data set. Give the name <code>list1</code> to this list.<br />
 </li>
-<li>Obtain the median of each element of the list.</li>
+<li>Obtain the median of each element of the list. The output should be a list.</li>
 </ul>
 </div>
 </div>
@@ -3255,7 +3255,7 @@ div.tocify {
 <h4>Task 2</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <ul>
-<li>Create a list that consist of the variable <code>transplant</code> from the <strong>heart</strong> data set and the variables <code>status</code> from the <strong>retinopathy</strong> data set. Give the name <code>list2</code> to this list.<br />
+<li>Create a list that consist of the variable <code>transplant</code> from the <strong>heart</strong> data set and the variable <code>status</code> from the <strong>retinopathy</strong> data set. Give the name <code>list2</code> to this list.<br />
 </li>
 <li>Obtain the percentages of 0 of each element of the list in a simplified output (as a vector).</li>
 <li>Obtain the percentages of 1 of each element of the list in a simplified output (as a vector).</li>
@@ -3306,14 +3306,10 @@ Hint
 <a class="sourceLine" id="cb18-16" title="16">}</a>
 <a class="sourceLine" id="cb18-17" title="17"></a>
 <a class="sourceLine" id="cb18-18" title="18"><span class="kw">summary_df</span>(<span class="dt">dat =</span> retinopathy)</a></code></pre></div>
-<pre><code>##                                 laser                                   eye 
-##            &quot;50.8% xenon, 49.2% argon&quot;             &quot;45.2% right, 54.8% left&quot; 
-##                                  type                                   trt 
-##         &quot;57.9% juvenile, 42.1% adult&quot;                        &quot;50% 0, 50% 1&quot; 
-##                                status                                ageCat 
-##                    &quot;60.7% 0, 39.3% 1&quot;              &quot;60.9% young, 39.1% old&quot; 
-##                             futimeCat 
-## &quot;34.9% short, 27% medium, 38.2% long&quot; 
+<pre><code>##                         laser                           eye                          type 
+##    &quot;50.8% xenon, 49.2% argon&quot;     &quot;45.2% right, 54.8% left&quot; &quot;57.9% juvenile, 42.1% adult&quot; 
+##                           trt                        status 
+##                &quot;50% 0, 50% 1&quot;            &quot;60.7% 0, 39.3% 1&quot; 
 ##              id             age          futime            risk 
 ## &quot;873.2 (495.5)&quot;   &quot;20.8 (14.8)&quot;   &quot;35.6 (21.4)&quot;     &quot;9.7 (1.5)&quot;</code></pre>
 </div>
@@ -3355,7 +3351,7 @@ Hint
 <h4>Solution 2</h4>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">Fun1 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">mean</span>(x)<span class="op">/</span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)}</a>
 <a class="sourceLine" id="cb24-2" title="2"><span class="kw">tapply</span>(heart<span class="op">$</span>year, <span class="kw">list</span>(heart<span class="op">$</span>transplant, heart<span class="op">$</span>surgery), Fun1)</a></code></pre></div>
-<pre><code>##           no       yes
+<pre><code>##            0         1
 ## 0 0.03820181 0.2818764
 ## 1 0.06362334 0.3910915</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">tapply</span>(retinopathy<span class="op">$</span>futime, <span class="kw">list</span>(retinopathy<span class="op">$</span>status, retinopathy<span class="op">$</span>type, retinopathy<span class="op">$</span>trt), mean)</a></code></pre></div>
