@@ -10,15 +10,17 @@ output:
 
 # Introduction
 
-The aim of this study is to investigate whether an association exists between serum bilirubin with sex, age, serum cholesterol and blood vessel malformations in the skin
+The aim of this study is to investigate whether an association exists between serum bilirubin with sex, age, treatment and standardised blood clotting time.
 
-# Statistical Analysis
+# Methods
+
+## Statistical Analysis
 
 * We are going to used the pbc data set from the survival library. 
 
-* Continuous variables are presented as mean and standard deviation while categorical variables as counts and percentages. Differences between males and females were analyzed by the unpaired Student's t tests for continuous variables. To investigate the association between serum bilirubin with sex, age, treatment and standardised blood clotting time a linear regression was performed. A p-value <0.05 was considered statistically significant and no correction for multiple testing was performed.
+* Continuous variables are presented as mean and standard deviation while categorical variables as counts and percentages. Differences in serum bilirubin, age and standardised blood clotting time between males and females were analyzed by the unpaired Student's t tests for continuous variables. To investigate the association between serum bilirubin with sex, age, treatment and standardised blood clotting time a linear regression was performed. A p-value <0.05 was considered statistically significant and no correction for multiple testing was performed.
 
-```{r, echo=TRUE, warning = FALSE, message = FALSE}
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
 library(lattice)
 library(knitr)
 library(survival)
@@ -26,7 +28,7 @@ library(effects)
 library(arsenal)
 ```
 
-```{r, results='asis', echo=TRUE, warning = FALSE}
+```{r, results='asis', echo=TRUE, message=FALSE, warning=FALSE}
 R.Version()$version.string
 packageVersion("lattice")
 packageVersion("knitr")
@@ -39,16 +41,16 @@ packageVersion("arsenal")
 
 Table 1 presents descriptive statistics with the results of the t-test analysis.
 
-```{r, echo=FALSE, include=TRUE, results = 'asis'}
+```{r, echo=FALSE, include=TRUE, results='asis'}
 pbc$trt <- factor(pbc$trt, levels = c(1, 2, NA), 
                   labels = c("D-penicillmain", "placebo"))
-tab1 <- tableby(sex ~ bili + chol + age + spiders, data = pbc)
+tab1 <- tableby(sex ~ bili + age + protime, data = pbc)
 kable(summary(tab1), caption = "Table 1: Descriptive statistics with test")
 ```
 
 Figure 1 represents the desnity plots of serum bilirubin per gender.
 
-```{r, echo=FALSE, include=TRUE, fig.cap = "Figure 1: Density plots of serum bilirubin per gender"}
+```{r, echo=FALSE, include=TRUE, fig.cap="Figure 1: Density plots of serum bilirubin per gender"}
 pbc_male_bili <- pbc$bili[pbc$sex == "m"]
 pbc_female_bili <- pbc$bili[pbc$sex == "f"]
 plot(density(pbc_male_bili), col = rgb(0,0,1,0.5), ylim = c(0,0.40), main = "Density plots", xlab = "bili", ylab = "")
@@ -62,7 +64,7 @@ legend(20,0.03, c("male", "female"),
 
 ## Regression analysis {.tabset .tabset-fade}
 
-The results of the regression analysis are presented in Table 2. Both a regression without interaction and with interaction were assumed.
+The results of the regression analysis are presented in Table 2. Since we expect that the effect of sex, treatment and standardised blood clotting time on serum bilirubin would be different per age range, we assumed two models. One model includes only main effects and the other model includes an interaction term of age with all the other variables.
 
 ### Linear regression without interactions
 ```{r, echo=FALSE}
@@ -80,23 +82,25 @@ kable(tab[, c(1,2,4)], dig = 4, caption = "Table 2: The coefficients, standard e
 
 ## Effect plots {.tabset .tabset-fade}
 
+The effect plots are based on the model with interaction terms.
+
 ### Serum bilirubin with age
-```{r, echo=TRUE, message = FALSE, warning = FALSE}
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
 plot(effect("age", fm2))
 ```
 
 ### Serum bilirubin with treatment
-```{r, echo=TRUE, message = FALSE, warning = FALSE}
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
 plot(effect("trt", fm2))
 ```
 
 ### Serum bilirubin with standardised blood clotting time
-```{r, echo=TRUE, message = FALSE, warning = FALSE}
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
 plot(effect("protime", fm2))
 ```
 
 ### Serum bilirubin with standardised blood clotting time and sex
-```{r, echo=TRUE, message = FALSE, warning = FALSE}
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
 plot(effect(c("protime", "sex"), fm2))
 ```
 
@@ -107,13 +111,13 @@ plot(effect(c("protime", "sex"), fm2))
 
 We may conclude that:
 
-* A strong association was found between serum cholesterol, spiders and serum bilirubin
+* A strong clinical association was found between serum cholesterol and standardised blood clotting time
 * A weak association was found between sex and serum bilirubin
-  * The same holds for age
+  * The same holds for age and treatment
 
 
-Strengths and weknesses of our study are:
+Strengths and weaknesses of our study are:
 
 1. Small sample size
-2. No simulation study was performed
+
 

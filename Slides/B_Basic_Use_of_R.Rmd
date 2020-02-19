@@ -126,6 +126,7 @@ More details: https://stat.ethz.ch/R-manual/R-devel/library/survival/html/pbc.ht
 * What is a \blue{scalar}/vector/matrix
 
 ```{r example data b, include=TRUE}
+
 dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
 dt <- format(dt, digits = 7)
 dt %>%
@@ -350,7 +351,7 @@ The simplest data structures are:
 * \textbf{\textcolor{red}{character}} : qualitative data
 * \textbf{\textcolor{red}{integer}} : whole numbers
 * \textbf{\textcolor{red}{logical}} : TRUE or FALSE
-* \textbf{\textcolor{red}{factors}} : qualitative data (ordered)
+* \textbf{\textcolor{red}{factors}} : qualitative data (levels)
 
 To find out what type of object you have, you can use the following function
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
