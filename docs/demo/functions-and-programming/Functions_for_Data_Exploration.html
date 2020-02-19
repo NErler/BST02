@@ -1679,8 +1679,9 @@ esoph[28:36, ]</code></pre>
 ## 36 45-54     40-79    10-19      4        21          2.875               3</code></pre>
 <p>And we can split the data by multiple categorical variables:</p>
 <pre class="r"><code>ave(esoph$ncases, esoph$agegp, esoph$alcgp, FUN = median)</code></pre>
-<pre><code>##  [1] 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.5 0.5 0.5 0.5 0.0 0.0 0.0 0.0 2.0 2.0 2.0 0.0 0.0 0.0 0.0 5.0 5.0 5.0 5.0 2.5 2.5 2.5 2.5 3.5 3.5
-## [45] 3.5 3.5 3.0 3.0 3.0 3.0 5.0 5.0 5.0 5.0 6.0 6.0 6.0 6.0 5.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.5 1.5</code></pre>
+<pre><code>##  [1] 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.5 0.5 0.5 0.5 0.0 0.0 0.0 0.0 2.0 2.0 2.0 0.0 0.0
+## [33] 0.0 0.0 5.0 5.0 5.0 5.0 2.5 2.5 2.5 2.5 3.5 3.5 3.5 3.5 3.0 3.0 3.0 3.0 5.0 5.0 5.0 5.0 6.0 6.0 6.0 6.0 5.0 5.0 5.0 5.0 3.0 3.0
+## [65] 3.0 3.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.5 1.5</code></pre>
 </div>
 </div>
 <div id="tables" class="section level2">
@@ -1924,14 +1925,16 @@ addmargins(tab)</code></pre>
 <pre><code>##        Fertility      Agriculture      Examination        Education         Catholic Infant.Mortality 
 ##          3296.70          2381.00           775.00           516.00          1933.76           937.30</code></pre>
 <pre class="r"><code>rowMeans(swiss)</code></pre>
-<pre><code>##   Courtelary     Delemont Franches-Mnt      Moutier   Neuveville   Porrentruy        Broye        Glane      Gruyere       Sarine      Veveyse        Aigle      Aubonne     Avenches 
-##     26.06000     41.70667     42.63333     32.56167     29.69333     40.76167     48.90833     50.71000     45.56167     45.48000     49.11833     30.68667     29.46167     31.28833 
-##     Cossonay    Echallens     Grandson     Lausanne    La Vallee       Lavaux       Morges       Moudon        Nyone         Orbe         Oron      Payerne Paysd&#39;enhaut        Rolle 
-##     29.92000     34.38333     25.66667     26.90167     22.24167     31.49000     30.08833     27.33667     28.89000     26.16667     30.01667     30.55500     27.51000     28.55333 
-##        Vevey      Yverdon      Conthey    Entremont       Herens     Martigwy      Monthey   St Maurice       Sierre         Sion       Boudry La Chauxdfnd     Le Locle    Neuchatel 
-##     28.07667     27.75000     46.86833     47.78000     48.71667     47.51000     45.45333     45.96000     49.76000     47.22167     28.78667     24.61500     25.75333     31.48667 
-##   Val de Ruz ValdeTravers V. De Geneve  Rive Droite  Rive Gauche 
-##     27.02833     24.40833     31.09000     34.15500     33.18833</code></pre>
+<pre><code>##   Courtelary     Delemont Franches-Mnt      Moutier   Neuveville   Porrentruy        Broye        Glane      Gruyere       Sarine 
+##     26.06000     41.70667     42.63333     32.56167     29.69333     40.76167     48.90833     50.71000     45.56167     45.48000 
+##      Veveyse        Aigle      Aubonne     Avenches     Cossonay    Echallens     Grandson     Lausanne    La Vallee       Lavaux 
+##     49.11833     30.68667     29.46167     31.28833     29.92000     34.38333     25.66667     26.90167     22.24167     31.49000 
+##       Morges       Moudon        Nyone         Orbe         Oron      Payerne Paysd&#39;enhaut        Rolle        Vevey      Yverdon 
+##     30.08833     27.33667     28.89000     26.16667     30.01667     30.55500     27.51000     28.55333     28.07667     27.75000 
+##      Conthey    Entremont       Herens     Martigwy      Monthey   St Maurice       Sierre         Sion       Boudry La Chauxdfnd 
+##     46.86833     47.78000     48.71667     47.51000     45.45333     45.96000     49.76000     47.22167     28.78667     24.61500 
+##     Le Locle    Neuchatel   Val de Ruz ValdeTravers V. De Geneve  Rive Droite  Rive Gauche 
+##     25.75333     31.48667     27.02833     24.40833     31.09000     34.15500     33.18833</code></pre>
 <p>To use other functions (like <code>min</code>, <code>max</code>, <code>median</code>, <code>sd</code>, …) on a whole <code>matrix</code> or <code>data.frame</code> we need some more programming and the help of <code>if (...)</code>, <code>for (...)</code> and/or <code>apply()</code> (will be covered later).</p>
 </div>
 <div id="variance-covariance-and-correlation" class="section level3">
@@ -1972,10 +1975,11 @@ addmargins(tab)</code></pre>
 <h2>Duplicates and Comparison</h2>
 <p>To find duplicates in a <code>data.frame</code>, <code>matrix</code> or a <code>vector</code> we can use the function <code>duplicated()</code>:</p>
 <pre class="r"><code>duplicated(esoph)</code></pre>
-<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [30] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [59] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [88] FALSE</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [22] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [43] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [64] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [85] FALSE FALSE FALSE FALSE</code></pre>
 <pre class="r"><code>(x &lt;- sample(LETTERS[1:5], 10, replace = TRUE))</code></pre>
 <pre><code>##  [1] &quot;B&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;E&quot; &quot;B&quot; &quot;A&quot; &quot;C&quot; &quot;E&quot;</code></pre>
 <pre class="r"><code>duplicated(x)</code></pre>

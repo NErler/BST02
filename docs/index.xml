@@ -18,8 +18,8 @@
       <pubDate>Thu, 02 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/home/</guid>
-      <description>Under construction! This website contains materials for the NIHES course Using R for Statistics in Clinical Research (BST02):
- lecture slides demos of R functions and syntax practicals  To download and install R, go to https://cran.r-project.org/.</description>
+      <description>input.MyButton { padding: 0px 5px; cursor: pointer; font-weight: bold; background: #fff; color: #485167; border-radius: 5px; border: 1px solid #485167; font-size: 100%; } input.MyButton:hover { color: #fff; background: #485167; border: 1px solid #485167; }  This website contains materials for the NIHES course Using R for Statistics in Clinical Research (BST02):
+ lecture slides demos of R functions and syntax practicals  Download a .zip file with all materials To download and install R, go to https://cran.</description>
     </item>
     
     <item>
@@ -118,7 +118,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nerler.github.io/BST02/demo/markdown/</guid>
-      <description> Markdown Code [docx] [html] [Rmd]  </description>
+      <description> Markdown Code [html] [Rmd]  </description>
     </item>
     
     <item>
