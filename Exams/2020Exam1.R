@@ -69,12 +69,12 @@ name_fun(bladder$stop, bladder$rx)
 # a) Obtain the mean stop variable for all patients with size equal or smaller than 3 using the bladder data set.
 # b) Now create a function that takes as input:
 #      dat: a data set
-#      cont_var: the name of a continuous variable (such as stop)
-#      ord_var: an ordered variable (such as size) 
+#      cont_var: the name of a continuous variable (such as "stop")
+#      ord_var: an ordered variable (such as "size") 
 #      z: a number (that takes the values of the ordered variable)
 # This function should return the mean value of the continuous variable of all the patients were the ordered variable is equal or smaller than z.
 # The name of the function should be sub_mean.
-# Check if this fuction gives you the same results when in a) when dat = bladder, cont_vat = bladder$stop, ord_var = bladder$size and z = 3.
+# Check if this fuction gives you the same result is in a) when dat = bladder, cont_vat = "stop", ord_var = "size" and z = 3.
 
 mean(bladder$stop[bladder$size <= 3])
 
