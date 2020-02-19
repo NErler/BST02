@@ -1643,13 +1643,15 @@ summary {
 
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>The aim of this study is to investigate whether an association exists between serum bilirubin with sex, age, serum cholesterol and blood vessel malformations in the skin</p>
+<p>The aim of this study is to investigate whether an association exists between serum bilirubin with sex, age, treatment and standardised blood clotting time.</p>
 </div>
-<div id="statistical-analysis" class="section level1">
-<h1>Statistical Analysis</h1>
+<div id="methods" class="section level1">
+<h1>Methods</h1>
+<div id="statistical-analysis" class="section level2">
+<h2>Statistical Analysis</h2>
 <ul>
 <li><p>We are going to used the pbc data set from the survival library.</p></li>
-<li><p>Continuous variables are presented as mean and standard deviation while categorical variables as counts and percentages. Differences between males and females were analyzed by the unpaired Student’s t tests for continuous variables. To investigate the association between serum bilirubin with sex, age, treatment and standardised blood clotting time a linear regression was performed. A p-value &lt;0.05 was considered statistically significant and no correction for multiple testing was performed.</p></li>
+<li><p>Continuous variables are presented as mean and standard deviation while categorical variables as counts and percentages. Differences in serum bilirubin, age and standardised blood clotting time between males and females were analyzed by the unpaired Student’s t tests for continuous variables. To investigate the association between serum bilirubin with sex, age, treatment and standardised blood clotting time a linear regression was performed. A p-value &lt;0.05 was considered statistically significant and no correction for multiple testing was performed.</p></li>
 </ul>
 <pre class="r"><code>library(lattice)
 library(knitr)
@@ -1668,6 +1670,7 @@ library(arsenal)</code></pre>
 <p>[1] ‘4.1.4’</p>
 <pre class="r"><code>packageVersion(&quot;arsenal&quot;)</code></pre>
 <p>[1] ‘3.4.0’</p>
+</div>
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>
@@ -1706,34 +1709,6 @@ library(arsenal)</code></pre>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td><strong>chol</strong></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.848</td>
-</tr>
-<tr class="odd">
-<td>   N-Miss</td>
-<td align="left">9</td>
-<td align="left">125</td>
-<td align="left">134</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td>   Mean (SD)</td>
-<td align="left">362.457 (178.993)</td>
-<td align="left">370.502 (238.727)</td>
-<td align="left">369.511 (231.945)</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td>   Range</td>
-<td align="left">151.000 - 1000.000</td>
-<td align="left">120.000 - 1775.000</td>
-<td align="left">120.000 - 1775.000</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
 <td><strong>age</strong></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1755,31 +1730,31 @@ library(arsenal)</code></pre>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td><strong>spiders</strong></td>
+<td><strong>protime</strong></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.012</td>
+<td align="left">0.151</td>
 </tr>
 <tr class="even">
 <td>   N-Miss</td>
-<td align="left">8</td>
-<td align="left">98</td>
-<td align="left">106</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">2</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td>   Mean (SD)</td>
-<td align="left">0.111 (0.319)</td>
-<td align="left">0.312 (0.464)</td>
-<td align="left">0.288 (0.454)</td>
+<td align="left">10.941 (0.931)</td>
+<td align="left">10.707 (1.031)</td>
+<td align="left">10.732 (1.022)</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td>   Range</td>
-<td align="left">0.000 - 1.000</td>
-<td align="left">0.000 - 1.000</td>
-<td align="left">0.000 - 1.000</td>
+<td align="left">9.700 - 14.100</td>
+<td align="left">9.000 - 18.000</td>
+<td align="left">9.000 - 18.000</td>
 <td align="left"></td>
 </tr>
 </tbody>
@@ -1793,7 +1768,7 @@ Figure 1: Density plots of serum bilirubin per gender
 </div>
 <div id="regression-analysis" class="section level2 tabset tabset-fade">
 <h2>Regression analysis</h2>
-<p>The results of the regression analysis are presented in Table 2. Both a regression without interaction and with interaction were assumed.</p>
+<p>The results of the regression analysis are presented in Table 2. Since we expect that the effect of sex, treatment and standardised blood clotting time on serum bilirubin would be different per age range, we assumed two models. One model includes only main effects and the other model includes an interaction term of age with all the other variables.</p>
 <div id="linear-regression-without-interactions" class="section level3">
 <h3>Linear regression without interactions</h3>
 <table>
@@ -1907,6 +1882,7 @@ Figure 1: Density plots of serum bilirubin per gender
 </div>
 <div id="effect-plots" class="section level2 tabset tabset-fade">
 <h2>Effect plots</h2>
+<p>The effect plots are based on the model with interaction terms.</p>
 <div id="serum-bilirubin-with-age" class="section level3">
 <h3>Serum bilirubin with age</h3>
 <pre class="r"><code>plot(effect(&quot;age&quot;, fm2))</code></pre>
@@ -1933,16 +1909,15 @@ Figure 1: Density plots of serum bilirubin per gender
 <h1>Conclusions</h1>
 <p>We may conclude that:</p>
 <ul>
-<li>A strong association was found between serum cholesterol, spiders and serum bilirubin</li>
+<li>A strong clinical association was found between serum cholesterol and standardised blood clotting time</li>
 <li>A weak association was found between sex and serum bilirubin
 <ul>
-<li>The same holds for age</li>
+<li>The same holds for age and treatment</li>
 </ul></li>
 </ul>
-<p>Strengths and weknesses of our study are:</p>
+<p>Strengths and weaknesses of our study are:</p>
 <ol style="list-style-type: decimal">
 <li>Small sample size</li>
-<li>No simulation study was performed</li>
 </ol>
 </div>
 
