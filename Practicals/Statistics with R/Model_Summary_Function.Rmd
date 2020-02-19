@@ -117,6 +117,8 @@ p-values from the linear regression model into one `data.frame`.
 Make sure the columns are named properly (for example: `estimate`, `2.5 %`, `97.5 %`, `p-value`).
 
 ```{r, echo = FALSE, results = 'asis'}
+hint('You cannot get the confidence interval from the model itself, but you 
+     have already seen and used a function that gives you the confidence interval.')
 hint('Try the argument `check.names = FALSE`.')
 ```
 </div>
@@ -149,9 +151,9 @@ a syntactically valid name.
 ### Solution 3
 ```{r}
 fun1 <- function(model) {
-  dat <- data.frame(estimate = coef(test_lm),
-                  confint(test_lm),
-                  'p-value' = summary(test_lm)$coefficients[, 'Pr(>|t|)'],
+  dat <- data.frame(estimate = coef(model),
+                  confint(model),
+                  'p-value' = summary(model)$coefficients[, 'Pr(>|t|)'],
                   check.names = FALSE)
   
   dat
@@ -167,6 +169,10 @@ fun1(test_lm)
 To make the output look nicer, we want to limit the decimal places in the
 output to a number specified by the user.
 Implement this using an argument `decimals` and decide on a default value for it.
+```{r, echo = FALSE, results = 'asis'}
+hint('You can use the function `round()`.')
+```
+
 </div>
 
 
@@ -187,15 +193,15 @@ fun2(test_lm)
 
 ### Task 2
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-Previously, we have seen that the function `format.pval()` will convert values
-below a certain value in to "<..." notation. 
+In another practical, we have seen that the function `format.pval()` will 
+convert values below a certain value in to "<..." notation. 
 
 Use this in our summary function.
 ```{r, results = 'asis', echo = FALSE}
 hint('`format.pval()` has the additional arguments `digits` and `eps`.')
 hint('To use the `$` to select a column with a syntactically invalid name you
 need to wrap the name in "`", i.e., &#x60;the name&#x60;.')
-hint('Values can also be represented as $10^(-3)$.')
+hint('Values can also be represented as $10^{-3}$.')
 ```
 </div>
 
@@ -362,7 +368,7 @@ fun5(test_lm, modeltype = 'lm')
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 To make the function more convenient to use, we want to automatically identify
 the model type, so that the user does not need to provide the `modeltype`.
-```{r}
+```{r, echo = FALSE, results = 'asis'}
 hint('The function `family()` can be used on regression models.')
 ```
 

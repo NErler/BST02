@@ -290,7 +290,7 @@ By setting the argument `check.names = FALSE` in `data.frame()` we prevent that
 R "cleanes" the variable names (replaces the "-" with ".", because a "-" in a 
 variable name is usually rather inconvenient and can give problems.).
 
-The argument `eps` in `format.pvals()` controls the cutoff at which the "<..." 
+The argument `eps` in `format.pval()` controls the cutoff at which the "<..." 
 notation is used, the argument `digits` sets the number of significant digits
 are used (significant has nothing to do with statistical significance in this case).
 </div>

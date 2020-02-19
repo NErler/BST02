@@ -95,7 +95,7 @@ To test the function, we create a dataset that allows us to check easily
 if what the function returns is correct:
 ```{r}
 exdat <- data.frame(a = 1:10,
-                    b = factor(sample(c('A', 'B'), size = 10, replace = TRUE))
+                    b = sample(c('A', 'B'), size = 10, replace = TRUE)
 )
 ```
 ```{r, eval = FALSE}
