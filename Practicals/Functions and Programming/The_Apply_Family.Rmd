@@ -68,7 +68,7 @@ https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html
 
 https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
 
-Always check your data.
+
 
 
 ## The Apply Family 

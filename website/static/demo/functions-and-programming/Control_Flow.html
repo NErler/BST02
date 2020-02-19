@@ -1535,8 +1535,7 @@ ifelse(x &lt; 0, &quot;&lt;0&quot;, &quot;&gt;0&quot;)</code></pre>
 } else {
   &quot;&gt;0&quot;
 }</code></pre>
-<pre><code>## Warning in if (x &lt; 0) {: the condition has length &gt; 1 and only the
-## first element will be used</code></pre>
+<pre><code>## Warning in if (x &lt; 0) {: the condition has length &gt; 1 and only the first element will be used</code></pre>
 <pre><code>## [1] &quot;&lt;0&quot;</code></pre>
 <p>The problem here is that <code>if()</code> expects an expression that either returns <code>TRUE</code> or <code>FALSE</code>, but we gave it a vector:</p>
 <pre class="r"><code>x &lt; 0</code></pre>
@@ -1558,8 +1557,7 @@ x</code></pre>
 ## [1] 5
 ## 
 ## $b
-## [1]  0.25331851 -0.02854676 -0.04287046  1.36860228 -0.22577099
-## [6]  1.51647060 -1.54875280
+## [1]  0.25331851 -0.02854676 -0.04287046  1.36860228 -0.22577099  1.51647060 -1.54875280
 ## 
 ## $c
 ## [1] 0.5846137 0.1238542 0.2159416 0.3796395</code></pre>
@@ -1577,8 +1575,7 @@ x</code></pre>
 ## [1] 5
 ## 
 ## $b
-## [1]  0.25331851 -0.02854676 -0.04287046  1.36860228 -0.22577099
-## [6]  1.51647060 -1.54875280
+## [1]  0.25331851 -0.02854676 -0.04287046  1.36860228 -0.22577099  1.51647060 -1.54875280
 ## 
 ## $c
 ## [1] 0.5846137 0.1238542 0.2159416 0.3796395</code></pre>
@@ -1655,17 +1652,9 @@ while (x &lt; 5 &amp; i &lt; 25) {
   i &lt;- i + 1
 }
 xvec</code></pre>
-<<<<<<< HEAD
 <pre><code>##  [1] -0.2357004 -1.2621213 -1.9725278 -1.7156441 -1.9623360 -2.3098786 -3.2614972 -3.3065249 -4.0914294 -5.7593713 -6.1395978
 ## [12] -5.2206012 -5.7959482 -5.1879838 -6.8058665 -6.8614285 -6.3420213 -6.0408679 -5.9351918 -6.5758978 -7.4256021 -8.4497309
 ## [23] -8.3320843 -9.2795589 -9.7701164</code></pre>
-=======
-<pre><code>##  [1] -0.2357004 -1.2621213 -1.9725278 -1.7156441 -1.9623360 -2.3098786
-##  [7] -3.2614972 -3.3065249 -4.0914294 -5.7593713 -6.1395978 -5.2206012
-## [13] -5.7959482 -5.1879838 -6.8058665 -6.8614285 -6.3420213 -6.0408679
-## [19] -5.9351918 -6.5758978 -7.4256021 -8.4497309 -8.3320843 -9.2795589
-## [25] -9.7701164</code></pre>
->>>>>>> 0173f416d6817e14023d180d3dafdec361ff5a2b
 <p>Now we will get a maximum of 25 iterations. The loop stops as soon as <code>x</code> is larger than or equal to 5, or if 25 iterations are reached.</p>
 </div>
 
