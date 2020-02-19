@@ -127,19 +127,26 @@ More details: https://stat.ethz.ch/R-manual/R-devel/library/survival/html/pbc.ht
 
 ```{r example data b, include=TRUE}
 dttest <- as.data.frame(pbc[1:5,c(1:6,11,12)])
-dttest <- format(dt, digits = 7)
-dttest %>%
- mutate(
-   dttest = row.names(.),
-   age = cell_spec(age, "latex", color = ifelse(age >= 70, "red", "black"), bold = ifelse(age >= 70, "TRUE", "FALSE"), align = c("c", rep("c", 4))),
-   time = cell_spec(time, align = c("c", rep("c", 4))),
-   id = cell_spec(id, align = c("c", rep("c", 4))),
-   sex = cell_spec(sex, align = c("c", rep("c", 4))),
-   status = cell_spec(status, align = c("c", rep("c", 4))),
-   trt = cell_spec(trt, align = c("c", rep("c", 4))),
-   bili = cell_spec(bili, align = c("c", rep("c", 4))),
-   chol = cell_spec(chol, align = c("c", rep("c", 4))),
-   )%>%
+dttest <- format(dttest, digits = 7)
+# dttest %>%
+#  mutate(
+#    dttest = row.names(.),
+#    age = cell_spec(age, "latex", color = ifelse(age >= 70, "red", "black"), bold = ifelse(age >= 70, "TRUE", "FALSE"), align = c("c", rep("c", 4))),
+#    time = cell_spec(time, align = c("c", rep("c", 4))),
+#    id = cell_spec(id, align = c("c", rep("c", 4))),
+#    sex = cell_spec(sex, align = c("c", rep("c", 4))),
+#    status = cell_spec(status, align = c("c", rep("c", 4))),
+#    trt = cell_spec(trt, align = c("c", rep("c", 4))),
+#    bili = cell_spec(bili, align = c("c", rep("c", 4))),
+#    chol = cell_spec(chol, align = c("c", rep("c", 4))),
+#    )%>%
+# select(id, time, status, trt, age, sex, bili, chol) %>%
+# kable("latex", escape = F, booktabs = T, align = "c")  %>%
+# kable_styling(position = "center", full_width = F)
+
+
+dttest %>% 
+    mutate_all(~cell_spec(.x, color = ifelse(.x == 0, "red"," black"), bold = ifelse(.x == 0, "TRUE", "FALSE"))) %>%
 select(id, time, status, trt, age, sex, bili, chol) %>%
 kable("latex", escape = F, booktabs = T, align = "c")  %>%
 kable_styling(position = "center", full_width = F)
