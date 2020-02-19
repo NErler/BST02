@@ -42,6 +42,9 @@ options(width = 100)
 ```{r packages, include = FALSE}
 library(kableExtra)
 library(knitr)
+
+retinopathy <- survival::retinopathy
+heart <- survival::heart
 ```
 
 
@@ -189,7 +192,7 @@ asis_output("#### Task 3\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Define a function (with the name `mysummary`) that takes one parameter (let’s call it `x`) that investigates if it is a data frame, a factor, or a numeric variable and returns the message "This is a data.frame" if `x` is a data frame, "This is a factor" is `x` is a factor and "This is numeric" if `x` is numeric.  
+Define a function (with the name `mysummary`) that takes one parameter (let’s call it `x`) and investigates if it is a data frame, a factor, or a numeric variable and returns the message "This is a data.frame" if `x` is a data frame, "This is a factor" is `x` is a factor and "This is numeric" if `x` is numeric.  
 
 
 ```{r fun3_hint, eval = static, results = 'asis', echo = FALSE}
@@ -237,7 +240,7 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Extend the previous function `mysummary` to take again one parameter (let’s call it `x`) but to return also some descriptive statistics. We therefore modify the function in such a way that a frequency table is given for factors and the mean and sd are given for numeric data.
+Extend the previous function `mysummary` to take again one parameter (let’s call it `x`) but to return also some descriptive statistics. We therefore modify the function in such a way that a frequency table is given for factors and the mean and standard deviation are given for numeric data.
 
 ```{r fun4_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun4">Hint</button>
@@ -631,7 +634,7 @@ Create a function with the name `summary_list` that takes as input a list with d
 ```{r fun13_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun13">Hint</button>
 <div id = "fun13" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use a for loop. 
+Use a for loop. Use the print(...) function to print the results.
 </div>')
 ```
 

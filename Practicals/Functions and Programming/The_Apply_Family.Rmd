@@ -84,7 +84,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 * Obtain the mean of the columns `start`, `stop`, `event`, `age`, `year`, `surgery` of the **heart** data set. \
-* Obtain the mean of the columns `age`, `futime`, `risk` and **retinopathy** data sets. 
+* Obtain the mean of the columns `age`, `futime`, `risk` of the **retinopathy** data set. 
 
 
 ```{r, eval = static, echo = FALSE}
@@ -134,7 +134,7 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Create the following function `DerivativeFunction <- function(x) {log10(x) + 10}`. Apply the `DerivativeFunction` to `dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))`.
+Create the following function `DerivativeFunction <- function(x) {log10(x) + 10}`. Apply the `DerivativeFunction` to `dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))`. The output should be a list.
 
 ```{r, eval = static, echo = FALSE}
 asis_output("</div>")
@@ -159,7 +159,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 * Create a list that consist of the variables `age` and `year` from the **heart** data set and the variable `risk` from the **retinopathy** data set. Give the name `list1` to this list. \
-* Obtain the median of each element of the list.
+* Obtain the median of each element of the list. The output should be a list.
 
 ```{r, eval = static, echo = FALSE}
 asis_output("</div>")
@@ -208,7 +208,7 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-* Create a list that consist of the variable `transplant` from the **heart** data set and the variables `status` from the **retinopathy** data set. Give the name `list2` to this list. \
+* Create a list that consist of the variable `transplant` from the **heart** data set and the variable `status` from the **retinopathy** data set. Give the name `list2` to this list. \
 * Obtain the percentages of 0 of each element of the list in a simplified output (as a vector).
 * Obtain the percentages of 1 of each element of the list in a simplified output (as a vector).
 
