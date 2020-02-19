@@ -65,7 +65,7 @@ The most valuable tool of a modern quantitative researcher is his/her personal c
   - How to get help in R ?
   - Disadvantages of R
 
-## Agenda (cont'd)
+## Agenda  
 
 * **Part B**:
   - Using R
@@ -79,7 +79,7 @@ The most valuable tool of a modern quantitative researcher is his/her personal c
   - Indexing
   
   
-## Agenda (cont'd)
+## Agenda  
 
 * **Part C**:
   - Merging data sets
@@ -89,7 +89,7 @@ The most valuable tool of a modern quantitative researcher is his/her personal c
   - Combine everything we learned
   
   
-## Agenda (cont'd)
+## Agenda  
 
 * **Part D**:
   - Statistical tests
@@ -99,7 +99,7 @@ The most valuable tool of a modern quantitative researcher is his/her personal c
   - Visualization of results
   
   
-## Agenda (cont'd)
+## Agenda  
 
 * **Part E**
   - Markdown
@@ -139,7 +139,7 @@ The most valuable tool of a modern quantitative researcher is his/her personal c
   - **more than what we are going to cover!**
   
   
-## Structure & Material (cont'd)
+## Structure & Material  
 
 * You are welcome to try along
 

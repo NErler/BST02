@@ -626,7 +626,7 @@ Manipulate \blue{vectors} or slices of data from \blue{matrices}, \blue{data fra
   - Other vectorized functions, which return more complex structures like lists, vectors and matrices
   
   
-## What is the apply Family (cont'd)
+## What is the apply Family  
 
 \blue{apply(), lapply() , sapply(), tapply(), mapply()}
 
@@ -661,7 +661,7 @@ apply(mat, 1, sum)
 \endcols
 
 
-## How To Use apply() in R (cont'd)
+## How To Use apply() in R  
 
 * Operates on \blue{\texttt{matrix}} and \blue{\texttt{data.frame}}
 
@@ -687,7 +687,7 @@ apply(mat, 1, mean)
 \endcols
 
 
-## How To Use apply() in R (cont'd)
+## How To Use apply() in R  
 
 * You can also apply your own functions
 
@@ -726,7 +726,7 @@ apply(mat, 1, function(x)
   - The output returned is a list
 
 
-## How To Use lapply() in R (cont'd)
+## How To Use lapply() in R  
 
 \begincols[t, onlytextwidth]
 \begincol{0.47\linewidth}
@@ -751,7 +751,7 @@ lapply(myList, length)
 \endcols
 
 
-## How To Use lapply() in R (cont'd)
+## How To Use lapply() in R  
 
 \begincols[t, onlytextwidth]
 \begincol{0.47\linewidth}
@@ -815,7 +815,7 @@ tapply(pbc$age, pbc$sex, median)
 ```
 
 
-## How To Use tapply() in R (cont'd)
+## How To Use tapply() in R  
 
 * You can also apply your own functions
 
@@ -844,7 +844,7 @@ mapply(length, pbc)
 ```
 \vspace*{-3ex}
 
-## How To Use mapply() in R (cont'd)
+## How To Use mapply() in R  
 
 * Overlapping between functions
 
@@ -918,7 +918,7 @@ lapply(myList, length)
 
 \end{columns}
 
-## Useful Summary: Apply Family (cont'd)
+## Useful Summary: Apply Family  
 
 * Use the following webpage to further investigate the apply family \
 https://emcbiostatistics.shinyapps.io/the_apply_family/
@@ -943,7 +943,7 @@ In order to run the app you will need to install the packages:
    * `shiny`
 
 
-## Useful Summary: Apply Family (cont'd)
+## Useful Summary: Apply Family  
 
 
 \begin{columns}[T,onlytextwidth]

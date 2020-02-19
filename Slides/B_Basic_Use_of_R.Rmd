@@ -67,7 +67,7 @@ library(dplyr)
 \blue{You will become more familiar with the syntax as you use it}
 
 
-## Using R (cont'd)
+## Using R  
 
 * Strongly advisable to use a suitable text editor - Some available options:
   - RWinEdt (for Windows; you also need WinEdt installed)
@@ -79,7 +79,7 @@ library(dplyr)
   - for more check https://r-dir.com/blog/2013/01/list-of-r-editors.html
   
   
-##  Using R (cont'd)
+##  Using R  
 
 * For this course: Rstudio (http://www.rstudio.org/)
   - free
@@ -87,7 +87,7 @@ library(dplyr)
   - helpful with errors
   
   
-##  Using R (cont'd)
+##  Using R  
 
 * Can I use R without Rstudio?
 
@@ -107,7 +107,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 ```
 
 
-## Practical Examples (cont'd)
+## Practical Examples  
 
 * \textbf{\textcolor{red}{id}}:	case number
 * \textbf{\textcolor{red}{time}}:	number of days between registration and the earlier of death, transplantation, or study analysis in July, 1986
@@ -121,7 +121,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 More details: https://stat.ethz.ch/R-manual/R-devel/library/survival/html/pbc.html
 
 
-## Practical Examples (cont'd)
+## Practical Examples  
 
 * What is a \blue{scalar}/vector/matrix
 
@@ -146,7 +146,7 @@ kable_styling(position = "center", full_width = F)
 ```
 
 
-## Practical Examples (cont'd)
+## Practical Examples  
 
 * What is a scalar/\blue{vector}/matrix
 
@@ -158,7 +158,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 ```
 
 
-## Practical Examples (cont'd)
+## Practical Examples  
 
 * What is a scalar/\blue{vector}/matrix
 
@@ -170,7 +170,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 ```
 
 
-## Practical Examples (cont'd)
+## Practical Examples  
 
 * What is a scalar/vector/\blue{matrix}
 
@@ -182,7 +182,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 ```
 
 
-## Practical Examples (cont'd)
+## Practical Examples  
 
 * What is a scalar/vector/\blue{matrix}
 
@@ -194,7 +194,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 ```
 
 
-## Practical Examples (cont'd)
+## Practical Examples  
 
 * Common questions
    - What is the average age?
@@ -216,7 +216,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 * An \textbf{\textcolor{blue}{assignment}} evaluates an expression and passes the value to a variable - the result is not automatically printed
 
 
-## Basics in R (cont'd)
+## Basics in R  
 
 Expression is given as a command,
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -239,7 +239,7 @@ x
 ```
 
 
-## Basics in R (cont'd)
+## Basics in R  
 
 \blue{You can use R as a calculator!}
 
@@ -256,7 +256,7 @@ y
 * Complicated arithmetics
 
 
-## Basics in R (cont'd)
+## Basics in R  
 
 \blue{Tips:}
 
@@ -267,7 +267,7 @@ y
 * Assign a value to an object by \textbf{\textcolor{blue}{<-}} or \textbf{\textcolor{blue}{=}}
 
 
-## Basics in R (cont'd)
+## Basics in R  
 
 * Missing values
   - are coded as \textbf{\textcolor{blue}{NA}} (i.e., not available) \textbf{\textcolor{blue}{is.na()}}
@@ -282,7 +282,7 @@ y
 ```
 
 
-## Basics in R (cont'd)
+## Basics in R  
 
 
 \begin{columns}[T,onlytextwidth]
@@ -314,7 +314,7 @@ kable(dt, "latex", booktabs = T, digits = 2) %>%
 ```
 
 
-## Common R Objects (cont'd)
+## Common R Objects  
 
 * in R Everything (data, results, ...) is an object
 
@@ -333,7 +333,7 @@ rm(list=ls(all=TRUE))
 ```
 
 
-## Common R Objects (cont'd)
+## Common R Objects  
 
 * To investigate a specific object (e.g. pbc)
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -341,7 +341,7 @@ str(pbc[,c("id", "time", "status", "trt", "age", "sex", "bili", "chol")])
 ```
 
 
-## Common R Objects (cont'd)
+## Common R Objects  
 
 The simplest data structures are:
 
@@ -357,7 +357,7 @@ mode(pbc$age)
 ```
 
 
-## Common R Objects (cont'd)
+## Common R Objects  
 
 * Data structure:
 
@@ -367,14 +367,14 @@ mode(pbc$age)
   - \textbf{\textcolor{red}{Lists}} have elements of different type and length 
 
 
-## Common R Objects (cont'd)
+## Common R Objects  
 
 * Differences between \blue{vector}, matrix, data.frame and list
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbc[1:6, c("age")]
 ```
 
-## Common R Objects (cont'd)
+## Common R Objects  
 
 * Differences between vector, \blue{matrix}, data.frame and list
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -382,7 +382,7 @@ pbc[1:6, c("age", "bili", "chol")]
 ```
 
 
-## Common R Objects (cont'd)
+## Common R Objects  
 
 * Differences between vector, matrix, \blue{data.frame} and list
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -390,7 +390,7 @@ pbc[1:6, c("id", "sex", "bili", "chol")]
 ```
 
 
-## Common R Objects (cont'd)
+## Common R Objects  
 
 * Differences between vector, matrix, data.frame and \blue{list}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -398,7 +398,7 @@ list(pbc[1:6, c("sex")], pbc[1:2, c("sex", "bili")], pbc$age[1:4])
 ```
 
 
-## Common R Objects (cont'd)
+## Common R Objects  
 \blue{Create a vector}
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -410,7 +410,7 @@ vec
 
 
 
-## Common R Objects (cont'd)
+## Common R Objects  
 \blue{Create a matrix}
 
 \begincols[t]
@@ -436,7 +436,7 @@ mat
 
 
 
-## Common R Objects (cont'd)
+## Common R Objects  
 \blue{Create a data frame}
 
 \begincols[t]
@@ -460,7 +460,7 @@ dtf[1:3,]
 
 
 
-## Common R Objects (cont'd)
+## Common R Objects  
 \blue{Create a list}
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -470,7 +470,7 @@ list1
 
 
 
-## Common R Objects (cont'd)
+## Common R Objects  
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.47\linewidth}
@@ -507,7 +507,7 @@ list1
   - \textit{etc}
 
 
-## Importing Data and Saving your Work (cont'd)
+## Importing Data and Saving your Work  
 
 \blue{Tips:}
 * Short names are prefered over longer names
@@ -517,7 +517,7 @@ list1
 * Make sure that any missing values in your data set are indicated with the same value (or no value)
 
 
-## Importing Data and Saving your Work (cont'd)
+## Importing Data and Saving your Work  
 
 * \textbf{\textcolor{red}{save()}}
   - can be used to save a list of R objects
@@ -538,7 +538,7 @@ list1
   - \textit{etc}
 
 
-## Importing Data and Saving your Work (cont'd)
+## Importing Data and Saving your Work  
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.47\linewidth}
@@ -566,7 +566,7 @@ list1
 * Data sets of \textbf{\textcolor{red}{wide}} $\Longleftrightarrow$ \textbf{\textcolor{red}{long}} format
 
 
-## Data Transformation (cont'd)
+## Data Transformation  
 
 * \textbf{\textcolor{red}{Round}} continuous variables
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -576,7 +576,7 @@ head(DF)
 ```
 
 
-## Data Transformation (cont'd)
+## Data Transformation  
 
 * Convert \textbf{\textcolor{red}{numeric}} variables to \textbf{\textcolor{red}{factors}}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -588,7 +588,7 @@ head(DF)
 ```
 
 
-## Data Transformation (cont'd)
+## Data Transformation  
 
 * Compute \textbf{\textcolor{red}{new variables}}
   - transform variables
@@ -601,7 +601,7 @@ head(DF)
 ``` 
   
   
-## Data Transformation (cont'd)
+## Data Transformation  
 
 * Data sets of \textbf{\textcolor{red}{wide}} $\Longleftrightarrow$ long format  
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -610,7 +610,7 @@ head(pbc[,c("id", "time", "status", "trt", "age",
 ```  
   
   
-## Data Transformation (cont'd)
+## Data Transformation  
 
 * Data sets of wide $\Longleftrightarrow$ \textbf{\textcolor{red}{long}} format  
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -619,7 +619,7 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 ```  
   
 
-## Data Transformation (cont'd)
+## Data Transformation  
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.47\linewidth}
@@ -653,7 +653,7 @@ head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
 \blue{All these questions can be answered using R!}
 
 
-## Data Exploration (cont'd)
+## Data Exploration  
 
 * \blue{Hints}
 
@@ -669,7 +669,7 @@ mean(pbc$age)
 ```  
  
 
-## Data Exploration (cont'd)
+## Data Exploration  
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.47\linewidth}
@@ -697,7 +697,7 @@ mean(pbc$age)
   - Linear/nonlinear evolutions
   
   
-## Data Visualization (cont'd)
+## Data Visualization  
 
 * R has very powerful graphics capabilities
 * Some good references are
@@ -705,7 +705,7 @@ mean(pbc$age)
   - Sarkar, D. (2008) Lattice Multivariate Data Visualization with R. New York: Springer-Verlag.
 
 
-## Data Visualization (cont'd)
+## Data Visualization  
 
 * Traditional graphics system
   - package \textbf{\textcolor{blue}{graphics}}
@@ -715,7 +715,7 @@ mean(pbc$age)
   - packages \textbf{\textcolor{blue}{ggplot}} & \textbf{\textcolor{blue}{ggplot2}}
 
 
-## Data Visualization (cont'd)
+## Data Visualization  
 
 Important plotting basic functions
 
@@ -729,7 +729,7 @@ Important plotting basic functions
 * \textbf{\textcolor{blue}{pairs()}}: for multivariate data
 
 
-## Data Visualization (cont'd)
+## Data Visualization  
 
 Continuous variables
 ```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
@@ -737,7 +737,7 @@ plot(pbc$age, pbc$bili)
 ```
 
 
-## Data Visualization (cont'd)
+## Data Visualization  
 
 Continuous variables
 ```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
@@ -746,7 +746,7 @@ plot(pbc$age, pbc$bili, xlab = "age", ylab = "bili",
 ```  
 
 
-## Data Visualization (cont'd)
+## Data Visualization  
 
 Continuous variables
 ```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
@@ -755,7 +755,7 @@ plot(pbc$age, pbc$bili, xlab = "age", ylab = "bili",
 ```  
 
 
-## Data Visualization (cont'd)
+## Data Visualization  
 
 * For more options check 
 ```{r, eval = FALSE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
@@ -763,7 +763,7 @@ plot(pbc$age, pbc$bili, xlab = "age", ylab = "bili",
 ```  
 
 
-## Data Visualization (cont'd)
+## Data Visualization  
 
 Continuous variables per group
 ```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
@@ -772,7 +772,7 @@ plot(pbc$age, pbc$bili, xlab = "age", ylab = "bili",
 ```  
 
 
-## Data Visualization (cont'd)
+## Data Visualization  
 
 Continuous variables per group
 ```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
@@ -781,7 +781,7 @@ boxplot(pbc$age ~ pbc$sex, xlab = "sex", ylab = "age",
 ```  
 
 
-## Data Visualization (cont'd)
+## Data Visualization  
 
 Continuous variables per group
 ```{r, eval = FALSE, include = TRUE, echo = TRUE, fig.height = 3.5, fig.width = 15}
@@ -799,7 +799,7 @@ legend(8,0.2, c("male", "female"),
 ```  
 
 
-## Data Visualization (cont'd)
+## Data Visualization  
 
 Continuous variables per group
 ```{r, eval = TRUE, include = TRUE, echo = FALSE, fig.height = 6, fig.width = 15}
@@ -817,7 +817,7 @@ legend(8,0.2, c("male", "female"),
 ``` 
 
 
-## Data Visualization (cont'd)
+## Data Visualization  
 
 Categorical variables 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 5, fig.width = 15}
@@ -828,7 +828,7 @@ pie(prop.table(table(pbc$status)),
 ``` 
 
 
-## Data Visualization (cont'd)
+## Data Visualization  
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.47\linewidth}
@@ -928,7 +928,7 @@ pie(prop.table(table(pbc$status)),
       * the first measurement per patient
     
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 * This can be done using square bracket (\textbf{\textcolor{blue}{[ ]}}) notation and indices.
 * Three basic types
@@ -937,7 +937,7 @@ pie(prop.table(table(pbc$status)),
   - name indexing
   
   
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{vector}}}
 
@@ -954,7 +954,7 @@ x[c(2,3,4)]
 ```
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{vector}}}
 
@@ -966,7 +966,7 @@ x[c(2,2,2)]
 ```
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{vector}}}
 
@@ -982,7 +982,7 @@ x[-5]
 * \textbf{Positive and negative indices cannot be combined}
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{vector}}}
 
@@ -994,7 +994,7 @@ x[y]
 ```
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{vector}}}
 
@@ -1007,7 +1007,7 @@ x[x > 7 | x > 9]
 ```
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{vector}}}
 
@@ -1020,7 +1020,7 @@ x[c('foo', 'one')]
 * Use the function `names` to obtain the names
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{matrix}}}
 
@@ -1039,7 +1039,7 @@ mat[2, 2]
 ```  
   
   
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{matrix}}}
 
@@ -1051,7 +1051,7 @@ mat[2, ]
 ```  
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{data.frame}}}
 * Works with single and double index
@@ -1077,7 +1077,7 @@ DF[2]
 \endcols
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{data.frame}}}
 
@@ -1087,7 +1087,7 @@ head(pbc$time)
 ```  
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{data.frame}}}
 
@@ -1116,7 +1116,7 @@ DF[DF$y < 30, ]
 \endcols
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{data.frame}}}
 
@@ -1127,7 +1127,7 @@ head(pbc[pbc$sex == "m", 1:7])
 ```  
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{data.frame}}}
 
@@ -1138,7 +1138,7 @@ head(pbc[pbc$age > 30 | pbc$sex == "f", 1:7])
 ```  
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{data.frame}}}
 
@@ -1149,7 +1149,7 @@ head(pbc[pbc$age > 30 & pbc$sex == "f", 1:7])
 ``` 
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{list}}}
 
@@ -1164,7 +1164,7 @@ mylist[2]
 ```  
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{list}}}
 
@@ -1179,7 +1179,7 @@ mylist[[2]]
 ```  
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 \blue{Indexing with \blue{\texttt{list}}}
 
@@ -1191,7 +1191,7 @@ mylist$y
 ```  
 
 
-## Indexing/Subsetting (cont'd)
+## Indexing/Subsetting  
 
 * Use the following webpage to further investigate indexing and subsetting \
 https://emcbiostatistics.shinyapps.io/indexing/
@@ -1257,7 +1257,7 @@ In order to run the app you will need to install the packages:
 
 
 
-## Useful Summary: Indexing/Subsetting (cont'd)
+## Useful Summary: Indexing/Subsetting  
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.47\linewidth}
