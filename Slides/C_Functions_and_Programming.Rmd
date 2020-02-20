@@ -930,7 +930,7 @@ https://emcbiostatistics.shinyapps.io/the_apply_family/
 \begin{column}{0.52\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Shiny app apply family \button{shiny_app_apply_family.R}{R} 
+\item Shiny app apply family \button{https://nerler.github.io/BST02/demo/functions-and-programming/}{R} 
 \end{itemize}
 \end{block}
 \end{column}
@@ -951,7 +951,7 @@ In order to run the app you will need to install the packages:
 \begin{block}{Demos}
 \begin{itemize}
 \item The Apply Family 
-\button{https://nerler.github.io/BST02/demo/functions-and-programming/01_The_Apply_Family.R}{R} \button{https://nerler.github.io/BST02/demo/functions-and-programming/01_The_Apply_Family.html}{html}
+\button{https://nerler.github.io/BST02/demo/functions-and-programming/The_Apply_Family.R}{R} \button{https://nerler.github.io/BST02/demo/functions-and-programming/The_Apply_Family.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
