@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Demos on BST02: Using R for Statistics in Medical Research</title>
+    <link>/BST02/demo/</link>
+    <description>Recent content in Demos on BST02: Using R for Statistics in Medical Research</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-uk</language>
+    <copyright>&amp;copy; 2020. All rights reserved.</copyright>
+    
+	<atom:link href="/BST02/demo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Basic use of R</title>
+      <link>/BST02/demo/basic-use-of-r/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/BST02/demo/basic-use-of-r/</guid>
+      <description> Basic R [html] [R] Common R Objects [html] [R] Data Exploration [html] [R] Data Transformation [html] [R] Data Visualization [html] [R] Importing Saving [html] [R] Indexing Subsetting [html] [R] shiny app indexing [R]  </description>
+    </item>
+    
+    <item>
+      <title>Functions and Programming</title>
+      <link>/BST02/demo/functions-and-programming/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/BST02/demo/functions-and-programming/</guid>
+      <description> Control Flow [html] [R] Extra Programming Examples [html] [R] Functions for Data Exploration [html] [R] Functions for Data Manipulation [html] [R] shiny app apply family [R] The Apply Family [html] [R]  </description>
+    </item>
+    
+    <item>
+      <title>Markdown</title>
+      <link>/BST02/demo/markdown/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/BST02/demo/markdown/</guid>
+      <description> Markdown Code [Rmd]  </description>
+    </item>
+    
+    <item>
+      <title>Statistics with R</title>
+      <link>/BST02/demo/statistics-with-r/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/BST02/demo/statistics-with-r/</guid>
+      <description> Model Evaluation [R] Regression Basics [R] Tests for Categorical Data [R] Tests for Continuous Data [R]  </description>
+    </item>
+    
+  </channel>
+</rss>
