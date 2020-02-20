@@ -64,7 +64,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/BST02/demo/basic-use-of-r/</guid>
-      <description> Basic R [html] [R] Common R Objects [html] [R] Data Exploration [html] [R] Data Transformation [html] [R] Data Visualization [html] [R] Importing Saving [html] [R] Indexing Subsetting [html] [R] shiny app indexing [R]  </description>
+      <description> Basic R [html] [R] Common R objects [html] [R] Data Exploration [html] [R] Data Transformation [html] [R] Data Visualization [html] [R] Importing Saving [html] [R] Indexing Subsetting [html] [R] shiny app indexing [R]  </description>
     </item>
     
     <item>
@@ -118,7 +118,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/BST02/demo/markdown/</guid>
-      <description> Markdown Code [html] [Rmd]  </description>
+      <description> Markdown Code [Rmd]  </description>
     </item>
     
     <item>
@@ -127,7 +127,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/BST02/demo/statistics-with-r/</guid>
-      <description> Model Evaluation [html] [R] Regression Basics [html] [R] Tests for Categorical Data [html] [R] Tests for Continuous Data [html] [R]  </description>
+      <description> Model Evaluation [R] Regression Basics [R] Tests for Categorical Data [R] Tests for Continuous Data [R]  </description>
     </item>
     
     <item>

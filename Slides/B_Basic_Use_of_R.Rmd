@@ -479,7 +479,7 @@ list1
 \begin{block}{Demos}
 \begin{itemize}
 \item Common R Objects 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Common_R_Objects.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Common_R_Objects.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Common_R_objects.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Common_R_objects.html}{html}
 \end{itemize}
 \end{block}
 \end{column}

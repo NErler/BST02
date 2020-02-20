@@ -3,7 +3,7 @@ title: Basic use of R
 ---
 
  * Basic R [[html]](/demo/basic-use-of-r/Basic_R.html)  [[R]](/demo/basic-use-of-r/Basic_R.R)
-* Common R Objects [[html]](/demo/basic-use-of-r/Common_R_Objects.html)  [[R]](/demo/basic-use-of-r/Common_R_Objects.R)
+* Common R objects [[html]](/demo/basic-use-of-r/Common_R_objects.html)  [[R]](/demo/basic-use-of-r/Common_R_objects.R)
 * Data Exploration [[html]](/demo/basic-use-of-r/Data_Exploration.html)  [[R]](/demo/basic-use-of-r/Data_Exploration.R)
 * Data Transformation [[html]](/demo/basic-use-of-r/Data_Transformation.html)  [[R]](/demo/basic-use-of-r/Data_Transformation.R)
 * Data Visualization [[html]](/demo/basic-use-of-r/Data_Visualization.html)  [[R]](/demo/basic-use-of-r/Data_Visualization.R)
