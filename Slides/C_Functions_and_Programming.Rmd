@@ -952,6 +952,8 @@ In order to run the app you will need to install the packages:
 \begin{itemize}
 \item The Apply Family 
 \button{https://nerler.github.io/BST02/demo/functions-and-programming/The_Apply_Family.R}{R} \button{https://nerler.github.io/BST02/demo/functions-and-programming/The_Apply_Family.html}{html}
+\item Extra Programming 
+\button{https://nerler.github.io/BST02/demo/functions-and-programming/Extra_Programming_Examples.R}{R} \button{https://nerler.github.io/BST02/demo/functions-and-programming/Extra_Programming_Examples.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
@@ -960,6 +962,7 @@ In order to run the app you will need to install the packages:
 \begin{block}{Practicals}
 \begin{itemize}
 \item The Apply Family \button{https://nerler.github.io/BST02/practical/functions-and-programming/The_Apply_Family.html}{html}
+\item Extra Programming \button{https://nerler.github.io/BST02/practical/functions-and-programming/Extra_Programming_Examples.html}{html}
 \end{itemize}
 \end{block}
 \end{column}

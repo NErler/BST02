@@ -868,7 +868,7 @@ pie(prop.table(table(pbc$status)),
 ## Useful Summary: Data manipulation
 
 \begin{columns}[onlytextwidth,T]
-\begin{column}{0.35\linewidth}
+\begin{column}{0.30\linewidth}
 \blue{Common R objects}
 \begin{itemize}\vspace*{-0.5ex}
 \item \texttt{c()}
@@ -907,13 +907,12 @@ pie(prop.table(table(pbc$status)),
 \item \texttt{hist()}
 \item \texttt{barchart()}
 \item \texttt{boxplot()}
+\item \texttt{xyplot()}, \texttt{ggplot()}
 \item \texttt{par()}
-\item \texttt{xyplot()}
-\item \texttt{ggplot()}
 \end{itemize}
 \end{column}
 
-\begin{column}{0.35\linewidth}
+\begin{column}{0.38\linewidth}
 \blue{Import/Save/Present}
 \begin{itemize}
 \item \texttt{head()}
@@ -926,9 +925,8 @@ pie(prop.table(table(pbc$status)),
 
 \blue{Other}
 \begin{itemize}
-\item \texttt{install.packages()}
-\item \texttt{library()}, \texttt{getwd()}
-\item \texttt{ls()}, \texttt{objects()}
+\item \texttt{install.packages()}, \texttt{library()}
+\item \texttt{ls()}, \texttt{objects()}, \texttt{getwd()}
 \end{itemize}
 
 \end{column}
