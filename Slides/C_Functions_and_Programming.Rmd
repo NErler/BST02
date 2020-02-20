@@ -930,7 +930,7 @@ https://emcbiostatistics.shinyapps.io/the_apply_family/
 \begin{column}{0.52\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
-\item Shiny app apply family \button{https://nerler.github.io/BST02/demo/functions-and-programming/}{R} 
+\item Shiny app apply family \button{https://nerler.github.io/BST02/demo/functions-and-programming/shiny_app_apply_family.R}{R} 
 \end{itemize}
 \end{block}
 \end{column}

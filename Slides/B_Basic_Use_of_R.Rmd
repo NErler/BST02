@@ -479,12 +479,18 @@ list1
 \begin{block}{Demos}
 \begin{itemize}
 \item Common R Objects 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Common_R_objects.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Common_R_objects.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Common_R_Objects.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Common_R_Objects.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
 
 \begin{column}{0.47\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Common R Objects 
+\button{https://nerler.github.io/BST02/practical/basic-use-of-r/Common_R_Objects.html}{html}
+\end{itemize}
+\end{block}
 \end{column}
 \end{columns}
 
@@ -543,7 +549,7 @@ list1
 ## Importing Data and Saving your Work  
 
 \begin{columns}[T,onlytextwidth]
-\begin{column}{0.47\linewidth}
+\begin{column}{0.50\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
 \item Importing and Saving 
@@ -553,7 +559,13 @@ list1
 \end{block}
 \end{column}
 
-\begin{column}{0.47\linewidth}
+\begin{column}{0.45\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Importing and Saving 
+\button{https://nerler.github.io/BST02/practical/basic-use-of-r/Importing_and_Saving_data.html}{html}
+\end{itemize}
+\end{block}
 \end{column}
 \end{columns}
 
@@ -843,6 +855,12 @@ pie(prop.table(table(pbc$status)),
 \end{column}
 
 \begin{column}{0.47\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Data Manipulation 
+\button{https://nerler.github.io/BST02/practical/basic-use-of-r/Data_Transformation_Exploration_Visualization.html}{html}
+\end{itemize}
+\end{block}
 \end{column}
 \end{columns}
 
@@ -1215,6 +1233,27 @@ In order to run the app you will need to install the packages:
    * `survival`
    * `shiny`
 
+## Useful Summary: Indexing/Subsetting  
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Indexing/Subsetting 
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Indexing_Subsetting.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Indexing_Subsetting.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Indexing/Subsetting  \button{https://nerler.github.io/BST02/practical/basic-use-of-r/Indexing_Subsetting.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
 
 ## Useful Summary: Indexing/Subsetting
 
@@ -1259,25 +1298,6 @@ In order to run the app you will need to install the packages:
 
 
 
-## Useful Summary: Indexing/Subsetting  
 
-\begin{columns}[T,onlytextwidth]
-\begin{column}{0.47\linewidth}
-\begin{block}{Demos}
-\begin{itemize}
-\item Indexing Subsetting 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Indexing_Subsetting.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Indexing_Subsetting.html}{html}
-\end{itemize}
-\end{block}
-\end{column}
-
-\begin{column}{0.47\linewidth}
-\begin{block}{Practicals}
-\begin{itemize}
-\item Basic Use R \button{https://nerler.github.io/BST02/practical/basic-use-of-r/Basic_Use_R.html}{html}
-\end{itemize}
-\end{block}
-\end{column}
-\end{columns}
 
 
