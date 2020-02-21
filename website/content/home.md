@@ -34,7 +34,7 @@ This website contains materials for the NIHES course [Using R for Statistics in 
 * practicals
 
 Download a .zip file with all materials
-<input class="MyButton" type="button" value="here" onclick="window.open('/BST02_2020.zip')"/>
+<input class="MyButton" type="button" value="here" onclick="window.open('/slide/BST02_2020.zip')"/>
 
 To download and install **R**, go to [https://cran.r-project.org/](https://cran.r-project.org/).
 
