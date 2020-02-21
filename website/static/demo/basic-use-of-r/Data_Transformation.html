@@ -11,7 +11,7 @@
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-20" />
+<meta name="date" content="2020-02-21" />
 
 <title>Demo: Data Transformation</title>
 
@@ -1519,7 +1519,7 @@ div.tocify {
 <h1 class="title toc-ignore">Demo: Data Transformation</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">20 February 2020</h4>
+<h4 class="date">21 February 2020</h4>
 
 </div>
 
@@ -1556,26 +1556,22 @@ head(pbc)</code></pre>
 <p>Set <code>sex</code> as factor with labels <code>m</code> for <code>male</code> and <code>f</code> for <code>female</code></p>
 <pre class="r"><code>factor(pbc$sex, levels = c(&quot;m&quot;, &quot;f&quot;),
        labels = c(&quot;male&quot;,&quot;female&quot;))</code></pre>
-<pre><code>##   [1] female female male   female female female female female female female female female female male   female female female female female female
-##  [21] male   female female male   female female female female female female female female female female female female female female female female
-##  [41] female female female female female female female male   female female female male   female female male   female female male   female female
-##  [61] male   female female female female male   female female female female female female female female female female female female female male  
-##  [81] female female female female female female female female female male   female female female female female female male   female male   male  
-## [101] female female female female female female female female female female female female female male   female female female female female male  
-## [121] male   female female male   female female female female female female female female male   female female female female male   female female
-## [141] female female female female female female female female male   female female male   female male   female female female female male   female
-## [161] female female female female male   female male   female female female female female female female female female female female female female
-## [181] female female female female female female female female female female female female female female female female female female female female
-## [201] female female female female female female female female female male   female female female female female female female female female female
-## [221] female female female female female female male   female female female female female female female female female female female female female
-## [241] female female female female female female female female female female female female male   female female female female female female male  
-## [261] female female female female female female female female female female female female female female female female female female female female
-## [281] female female female female female female female female male   female female male   female male   male   female male   female female female
-## [301] female female female female female female female female female female female female female female female female female female female female
-## [321] male   female female female female female female female female male   female female female female female female female female female female
-## [341] female female female female female female female male   female female female female female female female female female female female female
-## [361] female female female female female female female female female female female female female female female male   female female female female
-## [381] male   female female female female male   female female female male   female female female female female female female female female female
+<pre><code>##   [1] female female male   female female female female female female female female female female male   female female female female female female male   female female male   female
+##  [26] female female female female female female female female female female female female female female female female female female female female female female male   female female
+##  [51] female male   female female male   female female male   female female male   female female female female male   female female female female female female female female female
+##  [76] female female female female male   female female female female female female female female female male   female female female female female female male   female male   male  
+## [101] female female female female female female female female female female female female female male   female female female female female male   male   female female male   female
+## [126] female female female female female female female male   female female female female male   female female female female female female female female female female male   female
+## [151] female male   female male   female female female female male   female female female female female male   female male   female female female female female female female female
+## [176] female female female female female female female female female female female female female female female female female female female female female female female female female
+## [201] female female female female female female female female female male   female female female female female female female female female female female female female female female
+## [226] female male   female female female female female female female female female female female female female female female female female female female female female female female
+## [251] female female male   female female female female female female male   female female female female female female female female female female female female female female female
+## [276] female female female female female female female female female female female female female male   female female male   female male   male   female male   female female female
+## [301] female female female female female female female female female female female female female female female female female female female female male   female female female female
+## [326] female female female female male   female female female female female female female female female female female female female female female female female male   female female
+## [351] female female female female female female female female female female female female female female female female female female female female female female female female female
+## [376] male   female female female female male   female female female female male   female female female male   female female female female female female female female female female
 ## [401] female female female female female female male   female female female female female female female female female female female
 ## Levels: male female</code></pre>
 </div>
@@ -1615,20 +1611,13 @@ head(pbc)</code></pre>
 <p>Standardize <code>age</code></p>
 <pre class="r"><code>pbc$ageST &lt;- (pbc$age-mean(pbc$age))/(sd(pbc$age))
 head(pbc)</code></pre>
-<pre><code>##   id time status trt   age sex ascites hepato spiders edema bili chol albumin copper alk.phos   ast trig platelet protime stage age40higher
-## 1  1  400      2   1 58.77   f       1      1       1   1.0 14.5  261    2.60    156   1718.0 137.9  172      190    12.2     4         old
-## 2  2 4500      0   1 56.45   f       0      1       1   0.0  1.1  302    4.14     54   7394.8 113.5   88      221    10.6     3         old
-## 3  3 1012      2   1 70.07   m       0      0       0   0.5  1.4  176    3.48    210    516.0  96.1   55      151    12.0     4         old
-## 4  4 1925      2   1 54.74   f       0      1       1   0.5  1.8  244    2.54     64   6121.8  60.6   92      183    10.3     4         old
-## 5  5 1504      1   2 38.11   f       0      1       1   0.0  3.4  279    3.53    143    671.0 113.2   72      136    10.9     3       young
-## 6  6 2503      2   2 66.26   f       0      1       0   0.0  0.8  248    3.98     50    944.0  93.0   63       NA    11.0     3         old
-##        ageST
-## 1  0.7685000
-## 2  0.5464312
-## 3  1.8501280
-## 4  0.3827512
-## 5 -1.2090606
-## 6  1.4854375</code></pre>
+<pre><code>##   id time status trt   age sex ascites hepato spiders edema bili chol albumin copper alk.phos   ast trig platelet protime stage age40higher      ageST
+## 1  1  400      2   1 58.77   f       1      1       1   1.0 14.5  261    2.60    156   1718.0 137.9  172      190    12.2     4         old  0.7685000
+## 2  2 4500      0   1 56.45   f       0      1       1   0.0  1.1  302    4.14     54   7394.8 113.5   88      221    10.6     3         old  0.5464312
+## 3  3 1012      2   1 70.07   m       0      0       0   0.5  1.4  176    3.48    210    516.0  96.1   55      151    12.0     4         old  1.8501280
+## 4  4 1925      2   1 54.74   f       0      1       1   0.5  1.8  244    2.54     64   6121.8  60.6   92      183    10.3     4         old  0.3827512
+## 5  5 1504      1   2 38.11   f       0      1       1   0.0  3.4  279    3.53    143    671.0 113.2   72      136    10.9     3       young -1.2090606
+## 6  6 2503      2   2 66.26   f       0      1       0   0.0  0.8  248    3.98     50    944.0  93.0   63       NA    11.0     3         old  1.4854375</code></pre>
 </div>
 <div id="widelong-format" class="section level2">
 <h2>Wide/long format<br />

@@ -363,7 +363,7 @@ asis_output("#### Solution 1\\n")
 ```
 
 ```{r list-solution, solution = TRUE}
-list(stop_heart = heart$stop, id_retini = retinopathy$id, risk_reti = retinopathy$risk)
+list(stop_heart = heart$stop, id_reti = retinopathy$id, risk_reti = retinopathy$risk)
 ```
 
 
