@@ -1532,7 +1532,6 @@ div.tocify {
 # install.packages(&quot;openxlsx&quot;) 
 library(survival)
 library(openxlsx)</code></pre>
-<pre><code>## Warning: package &#39;openxlsx&#39; was built under R version 3.6.2</code></pre>
 </div>
 <div id="get-data" class="section level2">
 <h2>Get data</h2>
@@ -1540,11 +1539,110 @@ library(openxlsx)</code></pre>
 <pre class="r"><code>pbc &lt;- survival::pbc</code></pre>
 <p>List all your R objects</p>
 <pre class="r"><code>ls()</code></pre>
-<pre><code>##  [1] &quot;age_time&quot;            &quot;age_time_sex&quot;        &quot;Columns_com&quot;         &quot;DF&quot;                  &quot;google.trends1&quot;      &quot;hi&quot;                  &quot;k&quot;                   &quot;list_pbc&quot;           
-##  [9] &quot;mylist&quot;              &quot;myList&quot;              &quot;number&quot;              &quot;p&quot;                   &quot;pbc&quot;                 &quot;pbc_chol_na&quot;         &quot;pbc_female_bili&quot;     &quot;pbc_male_bili&quot;      
-## [17] &quot;pbc_males&quot;           &quot;pbc_out_bili&quot;        &quot;pbcLong&quot;             &quot;pbcseq&quot;              &quot;pbcseqWide&quot;          &quot;Rfiles&quot;              &quot;shinyFiles&quot;          &quot;vec&quot;                
-## [25] &quot;vec1&quot;                &quot;vec2&quot;                &quot;vec3&quot;                &quot;vec4&quot;                &quot;write_Demos_md&quot;      &quot;write_Practicals_md&quot; &quot;write_Slides_md&quot;     &quot;x&quot;                  
-## [33] &quot;x1&quot;                  &quot;x2&quot;                  &quot;xxx&quot;                 &quot;y1&quot;                  &quot;y2&quot;</code></pre>
+<pre><code>##   [1] &quot;a&quot;                   &quot;A&quot;                  
+##   [3] &quot;Age&quot;                 &quot;age_time&quot;           
+##   [5] &quot;age_time_sex&quot;        &quot;AgeCat&quot;             
+##   [7] &quot;b&quot;                   &quot;B&quot;                  
+##   [9] &quot;basedat&quot;             &quot;birthwt&quot;            
+##  [11] &quot;C&quot;                   &quot;cal_sd&quot;             
+##  [13] &quot;cal_var&quot;             &quot;Columns_com&quot;        
+##  [15] &quot;cSum&quot;                &quot;dat&quot;                
+##  [17] &quot;dat1&quot;                &quot;dat2&quot;               
+##  [19] &quot;dat3&quot;                &quot;dat4&quot;               
+##  [21] &quot;dataset1&quot;            &quot;dataset2&quot;           
+##  [23] &quot;datlist&quot;             &quot;decimals&quot;           
+##  [25] &quot;demos&quot;               &quot;DerivativeFunction&quot; 
+##  [27] &quot;des&quot;                 &quot;DF&quot;                 
+##  [29] &quot;df_test&quot;             &quot;df1_test&quot;           
+##  [31] &quot;df2_test&quot;            &quot;dice&quot;               
+##  [33] &quot;die&quot;                 &quot;dt&quot;                 
+##  [35] &quot;dt_events&quot;           &quot;esoph&quot;              
+##  [37] &quot;exdat&quot;               &quot;fam_lm&quot;             
+##  [39] &quot;files&quot;               &quot;fm1&quot;                
+##  [41] &quot;fm2&quot;                 &quot;fmla1&quot;              
+##  [43] &quot;fmla2&quot;               &quot;fmla3&quot;              
+##  [45] &quot;fmla4&quot;               &quot;fmla5&quot;              
+##  [47] &quot;FUdat&quot;               &quot;fun1&quot;               
+##  [49] &quot;Fun1&quot;                &quot;fun2&quot;               
+##  [51] &quot;fun3&quot;                &quot;fun4&quot;               
+##  [53] &quot;fun4_correct&quot;        &quot;fun5&quot;               
+##  [55] &quot;fun5b&quot;               &quot;fun6&quot;               
+##  [57] &quot;fun7&quot;                &quot;Function2&quot;          
+##  [59] &quot;google.trends1&quot;      &quot;h&quot;                  
+##  [61] &quot;heart&quot;               &quot;hi&quot;                 
+##  [63] &quot;hint&quot;                &quot;html_files&quot;         
+##  [65] &quot;i&quot;                   &quot;img&quot;                
+##  [67] &quot;j&quot;                   &quot;k&quot;                  
+##  [69] &quot;labdat&quot;              &quot;let&quot;                
+##  [71] &quot;list_pbc&quot;            &quot;list_test&quot;          
+##  [73] &quot;list1&quot;               &quot;list2&quot;              
+##  [75] &quot;lung&quot;                &quot;M&quot;                  
+##  [77] &quot;marks&quot;               &quot;mat&quot;                
+##  [79] &quot;Mat&quot;                 &quot;mat_test&quot;           
+##  [81] &quot;mdat&quot;                &quot;mdat_all&quot;           
+##  [83] &quot;mdat_x&quot;              &quot;mdat_y&quot;             
+##  [85] &quot;mdat3&quot;               &quot;means&quot;              
+##  [87] &quot;MHtest&quot;              &quot;mod&quot;                
+##  [89] &quot;mod_chol&quot;            &quot;mod_chol2&quot;          
+##  [91] &quot;mod_lm&quot;              &quot;mod_sub&quot;            
+##  [93] &quot;mod1&quot;                &quot;mod1b&quot;              
+##  [95] &quot;mod1c&quot;               &quot;mod2&quot;               
+##  [97] &quot;mod2a&quot;               &quot;mod2b&quot;              
+##  [99] &quot;mod2c&quot;               &quot;mod3&quot;               
+## [101] &quot;my_list&quot;             &quot;mylist&quot;             
+## [103] &quot;myList&quot;              &quot;MyList&quot;             
+## [105] &quot;mysummary&quot;           &quot;N&quot;                  
+## [107] &quot;new_pbc&quot;             &quot;newData&quot;            
+## [109] &quot;newList&quot;             &quot;nrj&quot;                
+## [111] &quot;number&quot;              &quot;otherlist&quot;          
+## [113] &quot;out&quot;                 &quot;output&quot;             
+## [115] &quot;p&quot;                   &quot;p_adj_BH&quot;           
+## [117] &quot;p_adj_Bonf&quot;          &quot;p4&quot;                 
+## [119] &quot;padj&quot;                &quot;patient&quot;            
+## [121] &quot;pbc&quot;                 &quot;pbc_chol_na&quot;        
+## [123] &quot;pbc_female_bili&quot;     &quot;pbc_male_bili&quot;      
+## [125] &quot;pbc_males&quot;           &quot;pbc_out_bili&quot;       
+## [127] &quot;pbc_sub&quot;             &quot;pbcLong&quot;            
+## [129] &quot;pbcseq&quot;              &quot;pbcseq.idNEW2&quot;      
+## [131] &quot;pbcseq.idNEW3&quot;       &quot;pbcseqWide&quot;         
+## [133] &quot;pdfs&quot;                &quot;plot_summary&quot;       
+## [135] &quot;plotdat&quot;             &quot;practicals&quot;         
+## [137] &quot;props&quot;               &quot;pv&quot;                 
+## [139] &quot;pval1&quot;               &quot;pval2&quot;              
+## [141] &quot;pval3&quot;               &quot;pvals&quot;              
+## [143] &quot;res&quot;                 &quot;res1&quot;               
+## [145] &quot;res2&quot;                &quot;res3&quot;               
+## [147] &quot;results&quot;             &quot;retinopathy&quot;        
+## [149] &quot;Rfiles&quot;              &quot;Rmd_files&quot;          
+## [151] &quot;Rmdfiles&quot;            &quot;scalar_test&quot;        
+## [153] &quot;sex&quot;                 &quot;Sex&quot;                
+## [155] &quot;shinyFiles&quot;          &quot;slides&quot;             
+## [157] &quot;smod_chol&quot;           &quot;smod1&quot;              
+## [159] &quot;smod1c&quot;              &quot;smod2&quot;              
+## [161] &quot;static&quot;              &quot;std_num&quot;            
+## [163] &quot;stratum&quot;             &quot;subset_data&quot;        
+## [165] &quot;summary_categorical&quot; &quot;summary_continuous&quot; 
+## [167] &quot;summary_df&quot;          &quot;summary_list&quot;       
+## [169] &quot;summary_lm&quot;          &quot;survey&quot;             
+## [171] &quot;tab&quot;                 &quot;tab1&quot;               
+## [173] &quot;test_lm&quot;             &quot;test_logit&quot;         
+## [175] &quot;test_probit&quot;         &quot;testdat&quot;            
+## [177] &quot;testres&quot;             &quot;textdat&quot;            
+## [179] &quot;Treatment&quot;           &quot;ttest1&quot;             
+## [181] &quot;ttest2&quot;              &quot;vec&quot;                
+## [183] &quot;vec_test&quot;            &quot;vec1&quot;               
+## [185] &quot;vec1_test&quot;           &quot;vec2&quot;               
+## [187] &quot;vec2_test&quot;           &quot;vec3&quot;               
+## [189] &quot;vec4&quot;                &quot;weight&quot;             
+## [191] &quot;Weight&quot;              &quot;write_Demos_md&quot;     
+## [193] &quot;write_Practicals_md&quot; &quot;write_Slides_md&quot;    
+## [195] &quot;wtest&quot;               &quot;x&quot;                  
+## [197] &quot;X&quot;                   &quot;x1&quot;                 
+## [199] &quot;x2&quot;                  &quot;xnew&quot;               
+## [201] &quot;xvec&quot;                &quot;xxx&quot;                
+## [203] &quot;y&quot;                   &quot;Y&quot;                  
+## [205] &quot;y1&quot;                  &quot;y2&quot;                 
+## [207] &quot;z&quot;</code></pre>
 </div>
 <div id="save-your-work" class="section level2">
 <h2>Save your work</h2>

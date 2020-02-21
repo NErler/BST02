@@ -1049,13 +1049,23 @@ x[c('foo', 'one')]
 
 \pause
 
-* Use position indexing as:
+\begincols[t]
+\begincol{0.5\linewidth}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mat <- matrix(1:6, 3, 3)
+mat <- matrix(1:4, 2, 2)
 mat
-mat[2, 2]
 ```  
   
+\endcol
+\begincol{0.5\linewidth}
+* Use position indexing as:
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+mat <- matrix(1:4, 2, 2)
+mat[2, 2]
+```  
+\endcol
+\endcols
+
   
 ## Indexing/Subsetting  
 
@@ -1063,7 +1073,7 @@ mat[2, 2]
 
 * When we leave a position blank all elements are selected
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mat <- matrix(1:6, 3, 3)
+mat <- matrix(1:4, 2, 2)
 mat
 mat[2, ]
 ```  
@@ -1276,7 +1286,7 @@ In order to run the app you will need to install the packages:
 \blue{Data frames}
 \begin{itemize}
 \item \texttt{[,]}
-\item \texttt{[[]]}
+\item \texttt{[[]]}, \texttt{[]}
 \item \texttt{\$}
 \end{itemize}
 
