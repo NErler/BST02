@@ -192,7 +192,7 @@ slides <- grep(".pdf$", dir('Slides', recursive = FALSE, full.names = TRUE), val
 
 
 # create a .zip
-zip(zipfile = 'website/static/BST02_2020', files = unlist(c(demos, practicals, slides)))
+zip(zipfile = 'website/static/slide/BST02_2020', files = unlist(c(demos, practicals, slides)))
 
 
 ################################################################################
