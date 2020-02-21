@@ -180,7 +180,7 @@ server <- function(input, output) {
     } else {
       stats3 <- input$stats3
     }
-    return(paste0(input$applys3, "(pbc[ , ", input$continuous3, "], ", stats3, ", na.rm = TRUE)"))
+    return(paste0(input$applys3, "(pbc[ , ", input$continuous3, "], ", stats3, ")"))
   })
   
   output$Routput3 <- renderPrint({
@@ -189,7 +189,7 @@ server <- function(input, output) {
     } else {
       stats3 <- input$stats3
     }
-    code1 <- paste0(input$applys3, "(pbc[, ", input$continuous3, "], ", stats3, ", na.rm = TRUE)")
+    code1 <- paste0(input$applys3, "(pbc[, ", input$continuous3, "], ", stats3, ")")
     eval(parse(text = code1))
   })
   
