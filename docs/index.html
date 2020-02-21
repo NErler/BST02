@@ -137,8 +137,8 @@
 <div class="content">
   
   <style>
-input.MyButton {
-padding: 0px 5px; 
+.btn {
+padding: 2px 10px; 
 cursor: pointer; 
 font-weight: bold;
 background: #fff; 
@@ -148,8 +148,10 @@ border: 1px solid #485167;
 font-size: 100%;
 }
 
-input.MyButton:hover {
-color: #fff;
+
+/* Darker background on mouse-over */
+.btn:hover {
+  color: #fff;
 background: #485167;
 border: 1px solid #485167;
 }
@@ -163,8 +165,9 @@ border: 1px solid #485167;
 <li>practicals</li>
 </ul>
 
-<p>Download a .zip file with all materials
-<input class="MyButton" type="button" value="here" onclick="window.open('/slide/BST02_2020.zip')"/></p>
+<p>Download a .zip file with all materials: <a href="https://nerler.github.io/BST02/slide/BST02_2020.zip">
+<button class="btn"><i class="fa fa-download"></i></button>
+</a></p>
 
 <p>To download and install <strong>R</strong>, go to <a href="https://cran.r-project.org/">https://cran.r-project.org/</a>.</p>
 
