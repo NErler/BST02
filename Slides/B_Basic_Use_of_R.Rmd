@@ -479,12 +479,18 @@ list1
 \begin{block}{Demos}
 \begin{itemize}
 \item Common R Objects 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Common_R_objects.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Common_R_objects.html}{html}
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Common_R_Objects.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Common_R_Objects.html}{html}
 \end{itemize}
 \end{block}
 \end{column}
 
 \begin{column}{0.47\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Common R Objects 
+\button{https://nerler.github.io/BST02/practical/basic-use-of-r/Common_R_Objects.html}{html}
+\end{itemize}
+\end{block}
 \end{column}
 \end{columns}
 
@@ -543,7 +549,7 @@ list1
 ## Importing Data and Saving your Work  
 
 \begin{columns}[T,onlytextwidth]
-\begin{column}{0.47\linewidth}
+\begin{column}{0.50\linewidth}
 \begin{block}{Demos}
 \begin{itemize}
 \item Importing and Saving 
@@ -553,7 +559,13 @@ list1
 \end{block}
 \end{column}
 
-\begin{column}{0.47\linewidth}
+\begin{column}{0.45\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Importing and Saving 
+\button{https://nerler.github.io/BST02/practical/basic-use-of-r/Importing_and_Saving_data.html}{html}
+\end{itemize}
+\end{block}
 \end{column}
 \end{columns}
 
@@ -843,6 +855,12 @@ pie(prop.table(table(pbc$status)),
 \end{column}
 
 \begin{column}{0.47\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Data Manipulation 
+\button{https://nerler.github.io/BST02/practical/basic-use-of-r/Data_Transformation_Exploration_Visualization.html}{html}
+\end{itemize}
+\end{block}
 \end{column}
 \end{columns}
 
@@ -850,7 +868,7 @@ pie(prop.table(table(pbc$status)),
 ## Useful Summary: Data manipulation
 
 \begin{columns}[onlytextwidth,T]
-\begin{column}{0.35\linewidth}
+\begin{column}{0.30\linewidth}
 \blue{Common R objects}
 \begin{itemize}\vspace*{-0.5ex}
 \item \texttt{c()}
@@ -889,13 +907,12 @@ pie(prop.table(table(pbc$status)),
 \item \texttt{hist()}
 \item \texttt{barchart()}
 \item \texttt{boxplot()}
+\item \texttt{xyplot()}, \texttt{ggplot()}
 \item \texttt{par()}
-\item \texttt{xyplot()}
-\item \texttt{ggplot()}
 \end{itemize}
 \end{column}
 
-\begin{column}{0.35\linewidth}
+\begin{column}{0.38\linewidth}
 \blue{Import/Save/Present}
 \begin{itemize}
 \item \texttt{head()}
@@ -908,9 +925,8 @@ pie(prop.table(table(pbc$status)),
 
 \blue{Other}
 \begin{itemize}
-\item \texttt{install.packages()}
-\item \texttt{library()}, \texttt{getwd()}
-\item \texttt{ls()}, \texttt{objects()}
+\item \texttt{install.packages()}, \texttt{library()}
+\item \texttt{ls()}, \texttt{objects()}, \texttt{getwd()}
 \end{itemize}
 
 \end{column}
@@ -1033,13 +1049,23 @@ x[c('foo', 'one')]
 
 \pause
 
-* Use position indexing as:
+\begincols[t]
+\begincol{0.5\linewidth}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mat <- matrix(1:6, 3, 3)
+mat <- matrix(1:4, 2, 2)
 mat
-mat[2, 2]
 ```  
   
+\endcol
+\begincol{0.5\linewidth}
+* Use position indexing as:
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+mat <- matrix(1:4, 2, 2)
+mat[2, 2]
+```  
+\endcol
+\endcols
+
   
 ## Indexing/Subsetting  
 
@@ -1047,7 +1073,7 @@ mat[2, 2]
 
 * When we leave a position blank all elements are selected
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mat <- matrix(1:6, 3, 3)
+mat <- matrix(1:4, 2, 2)
 mat
 mat[2, ]
 ```  
@@ -1215,6 +1241,27 @@ In order to run the app you will need to install the packages:
    * `survival`
    * `shiny`
 
+## Useful Summary: Indexing/Subsetting  
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Indexing/Subsetting 
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Indexing_Subsetting.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Indexing_Subsetting.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Indexing/Subsetting  \button{https://nerler.github.io/BST02/practical/basic-use-of-r/Indexing_Subsetting.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
 
 ## Useful Summary: Indexing/Subsetting
 
@@ -1239,7 +1286,7 @@ In order to run the app you will need to install the packages:
 \blue{Data frames}
 \begin{itemize}
 \item \texttt{[,]}
-\item \texttt{[[]]}
+\item \texttt{[[]]}, \texttt{[]}
 \item \texttt{\$}
 \end{itemize}
 
@@ -1259,25 +1306,6 @@ In order to run the app you will need to install the packages:
 
 
 
-## Useful Summary: Indexing/Subsetting  
 
-\begin{columns}[T,onlytextwidth]
-\begin{column}{0.47\linewidth}
-\begin{block}{Demos}
-\begin{itemize}
-\item Indexing Subsetting 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Indexing_Subsetting.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Indexing_Subsetting.html}{html}
-\end{itemize}
-\end{block}
-\end{column}
-
-\begin{column}{0.47\linewidth}
-\begin{block}{Practicals}
-\begin{itemize}
-\item Basic Use R \button{https://nerler.github.io/BST02/practical/basic-use-of-r/Basic_Use_R.html}{html}
-\end{itemize}
-\end{block}
-\end{column}
-\end{columns}
 
 

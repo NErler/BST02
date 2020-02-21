@@ -58,10 +58,10 @@ pbc[pbc$sex == "m" | pbc$bili > 5, "age"]
 pbc$age[pbc$sex == "m" | pbc$bili > 5]
 
 #' Select the first measurement per patient using the `pbcseq` data set
-head(pbcseq[tapply(row.names(pbcseq), pbcseq$id, head, 1), ])
+head(pbcseq[!duplicated(pbcseq[c("id")]), ])
 
 #' Select the last measurement per patient using the `pbcseq` data set
-head(pbcseq[tapply(row.names(pbcseq), pbcseq$id, tail, 1), ])
+head(pbcseq[!duplicated(pbcseq[c("id")], fromLast = TRUE), ])
 
 #' Select all `male` patients that died
 pbc[pbc$sex == "m" & pbc$status == 2, ]      
