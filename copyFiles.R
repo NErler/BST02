@@ -73,6 +73,8 @@ write_Slides_md <- function(x) {
 # Render all R files in Demos to html
 for (xxx in dir('Demos', full.names = TRUE)) {
   Rfiles <- grep('.R$|.Rmd$', dir(xxx, full.names = TRUE), value = TRUE)
+  htmlfiles <- grep('.html$', dir(xxx, full.names = TRUE), value = TRUE)
+  file.remove(htmlfiles)
   if (length(grep("shiny", Rfiles)) >= 1) {
     shinyFiles <- grep("shiny", Rfiles)
     Rfiles <- Rfiles[-shinyFiles]
@@ -106,8 +108,11 @@ for (x in dir('Demos')) {
 ################################################################################
 # Render all R files in Practicals to html
 for (x in list.dirs('Practicals', recursive = FALSE)) {
-  Rmd_files <- grep('.Rmd$', dir(x), value = TRUE)
-  for (k in file.path(x, Rmd_files)) {
+  Rmd_files <- grep('.Rmd$', dir(x, full.names = TRUE), value = TRUE)
+  html_files <- grep('.html$', dir(x, full.names = TRUE), value = TRUE)
+  file.remove(html_files)
+  
+  for (k in Rmd_files) {
     rmarkdown::render(k)
   }
 }
