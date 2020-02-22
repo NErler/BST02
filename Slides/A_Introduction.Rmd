@@ -209,7 +209,7 @@ http://cran.r-project.org/other-docs.html
   
 ## How does R work ?
 
-  - Packaged built for specific tasks
+  - Packages built for specific tasks
   - Download R packages from the CRAN web site $\rightarrow$ within R
     + Packages
     + Install package(s) . . .
