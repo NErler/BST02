@@ -430,7 +430,7 @@ Using the data frame `DF` from the exercise before (Task 5): \
 ```{r exp3_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#exp3">Hint</button>
 <div id = "exp3" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-To calculate the frequencies, use the functions length() or table(). To obtain the dimensions use the function dim(...).
+To calculate the frequencies, use the functions length(...) or table(...). To obtain the dimensions use the function dim(...).
 </div>')
 ```
 

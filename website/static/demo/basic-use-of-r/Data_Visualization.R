@@ -76,7 +76,7 @@ plot(density(pbc_male_bili), col = rgb(0,0,1,0.5), ylim = c(0,0.40),
 polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), border = "blue")
 lines(density(pbc_female_bili), col = rgb(1,0,0,0.5))
 polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), border = "red")
-legend(20,0.03, c("male", "female"), 
+legend(5,0.3, c("male", "female"), 
        col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)  
 
 #' ## Lattice family
