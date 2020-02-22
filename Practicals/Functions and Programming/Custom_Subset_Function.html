@@ -2570,9 +2570,9 @@ window.onload = function() {
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -2582,16 +2582,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -2600,9 +2598,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  background-color: #f8f8f8; }
+  { background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -2923,16 +2921,16 @@ Note:
 </div>
 <div id="solution-2" class="section level3">
 <h3>Solution 2</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>fun1 &lt;-<span class="st"> </span><span class="cf">function</span>(dat, variable, interval) {</span>
-<span id="cb1-2"><a href="#cb1-2"></a>  filter &lt;-<span class="st"> </span>dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">2</span>]</span>
-<span id="cb1-3"><a href="#cb1-3"></a>  </span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="kw">subset</span>(dat, <span class="dt">subset =</span> filter)</span>
-<span id="cb1-5"><a href="#cb1-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">fun1 &lt;-<span class="st"> </span><span class="cf">function</span>(dat, variable, interval) {</a>
+<a class="sourceLine" id="cb1-2" title="2">  filter &lt;-<span class="st"> </span>dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb1-3" title="3">  </a>
+<a class="sourceLine" id="cb1-4" title="4">  <span class="kw">subset</span>(dat, <span class="dt">subset =</span> filter)</a>
+<a class="sourceLine" id="cb1-5" title="5">}</a></code></pre></div>
 <p>To test the function, we create a dataset that allows us to check easily if what the function returns is correct:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>exdat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
-<span id="cb2-2"><a href="#cb2-2"></a>                    <span class="dt">b =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>exdat</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">exdat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb2-2" title="2">                    <span class="dt">b =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb2-3" title="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">exdat</a></code></pre></div>
 <pre><code>##     a b
 ## 1   1 B
 ## 2   2 B
@@ -2945,7 +2943,7 @@ Note:
 ## 9   9 B
 ## 10 10 B</code></pre>
 <p>For <code>interval = c(3, 7)</code> the output should be those rows with <code>a</code> equal to 4, 5, or 6:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">fun1</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">fun1</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>))</a></code></pre></div>
 <pre><code>##   a b
 ## 4 4 B
 ## 5 5 B
@@ -2963,31 +2961,31 @@ Note:
 </div>
 <div id="solution-3" class="section level3">
 <h3>Solution 3</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>fun2 &lt;-<span class="st"> </span><span class="cf">function</span>(dat, variable, interval, <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>) {</span>
-<span id="cb7-2"><a href="#cb7-2"></a>  </span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="co"># check if boundaries should be included</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>  filter &lt;-<span class="st"> </span><span class="cf">if</span> (incl_boundaries) {</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    </span>
-<span id="cb7-6"><a href="#cb7-6"></a>    <span class="co"># syntax for subset including boundaries</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>    dat[, variable] <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>]</span>
-<span id="cb7-8"><a href="#cb7-8"></a>    </span>
-<span id="cb7-9"><a href="#cb7-9"></a>  } <span class="cf">else</span> {</span>
-<span id="cb7-10"><a href="#cb7-10"></a>    </span>
-<span id="cb7-11"><a href="#cb7-11"></a>    <span class="co"># syntax for subset not including boundaries</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a>    dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">2</span>]</span>
-<span id="cb7-13"><a href="#cb7-13"></a>  }</span>
-<span id="cb7-14"><a href="#cb7-14"></a>  </span>
-<span id="cb7-15"><a href="#cb7-15"></a>  <span class="kw">subset</span>(dat, <span class="dt">subset =</span> filter)</span>
-<span id="cb7-16"><a href="#cb7-16"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">fun2 &lt;-<span class="st"> </span><span class="cf">function</span>(dat, variable, interval, <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>) {</a>
+<a class="sourceLine" id="cb7-2" title="2">  </a>
+<a class="sourceLine" id="cb7-3" title="3">  <span class="co"># check if boundaries should be included</span></a>
+<a class="sourceLine" id="cb7-4" title="4">  filter &lt;-<span class="st"> </span><span class="cf">if</span> (incl_boundaries) {</a>
+<a class="sourceLine" id="cb7-5" title="5">    </a>
+<a class="sourceLine" id="cb7-6" title="6">    <span class="co"># syntax for subset including boundaries</span></a>
+<a class="sourceLine" id="cb7-7" title="7">    dat[, variable] <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb7-8" title="8">    </a>
+<a class="sourceLine" id="cb7-9" title="9">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb7-10" title="10">    </a>
+<a class="sourceLine" id="cb7-11" title="11">    <span class="co"># syntax for subset not including boundaries</span></a>
+<a class="sourceLine" id="cb7-12" title="12">    dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb7-13" title="13">  }</a>
+<a class="sourceLine" id="cb7-14" title="14">  </a>
+<a class="sourceLine" id="cb7-15" title="15">  <span class="kw">subset</span>(dat, <span class="dt">subset =</span> filter)</a>
+<a class="sourceLine" id="cb7-16" title="16">}</a></code></pre></div>
 <p>With the default setting to include the boundaries, <code>fun2()</code> should return the rows of <code>exdat</code> where <code>a</code> is 3, …, 6:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">fun2</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">fun2</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">6</span>))</a></code></pre></div>
 <pre><code>##   a b
 ## 3 3 A
 ## 4 4 B
 ## 5 5 B
 ## 6 6 A</code></pre>
 <p>When we set <code>incl_boundaries = FALSE</code> the rows where <code>a = 3</code> and <code>a = 6</code> should be excluded:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">fun2</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">6</span>), <span class="dt">incl_boundaries =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">fun2</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">6</span>), <span class="dt">incl_boundaries =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>##   a b
 ## 4 4 B
 ## 5 5 B</code></pre>
@@ -3007,37 +3005,37 @@ Note:
 </div>
 <div id="solution-1-1" class="section level3">
 <h3>Solution 1</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>fun3 &lt;-<span class="st"> </span><span class="cf">function</span>(dat, variable, interval, <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>) {</span>
-<span id="cb12-2"><a href="#cb12-2"></a>  </span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="co"># check if boundaries should be included</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a>  filter &lt;-<span class="st"> </span><span class="cf">if</span> (incl_boundaries) {</span>
-<span id="cb12-5"><a href="#cb12-5"></a>    </span>
-<span id="cb12-6"><a href="#cb12-6"></a>    <span class="co"># check if values outside (or inside) the interval should be selected</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a>    <span class="cf">if</span> (outside) {</span>
-<span id="cb12-8"><a href="#cb12-8"></a>      <span class="co"># syntax for subset including boundaries</span></span>
-<span id="cb12-9"><a href="#cb12-9"></a>      dat[, variable] <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">|</span><span class="st"> </span>dat[, variable] <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">2</span>]</span>
-<span id="cb12-10"><a href="#cb12-10"></a>    } <span class="cf">else</span> {</span>
-<span id="cb12-11"><a href="#cb12-11"></a>      <span class="co"># syntax for subset including boundaries</span></span>
-<span id="cb12-12"><a href="#cb12-12"></a>      dat[, variable] <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>]</span>
-<span id="cb12-13"><a href="#cb12-13"></a>    }</span>
-<span id="cb12-14"><a href="#cb12-14"></a>    </span>
-<span id="cb12-15"><a href="#cb12-15"></a>  } <span class="cf">else</span> {</span>
-<span id="cb12-16"><a href="#cb12-16"></a>    </span>
-<span id="cb12-17"><a href="#cb12-17"></a>    <span class="co"># check if values outside (or inside) the interval should be selected</span></span>
-<span id="cb12-18"><a href="#cb12-18"></a>    <span class="cf">if</span> (outside) {</span>
-<span id="cb12-19"><a href="#cb12-19"></a>      <span class="co"># syntax for subset not including boundaries</span></span>
-<span id="cb12-20"><a href="#cb12-20"></a>      dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">|</span><span class="st"> </span>dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">2</span>]</span>
-<span id="cb12-21"><a href="#cb12-21"></a>    } <span class="cf">else</span> {</span>
-<span id="cb12-22"><a href="#cb12-22"></a>      <span class="co"># syntax for subset not including boundaries</span></span>
-<span id="cb12-23"><a href="#cb12-23"></a>      dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">2</span>]</span>
-<span id="cb12-24"><a href="#cb12-24"></a>    }</span>
-<span id="cb12-25"><a href="#cb12-25"></a>  }</span>
-<span id="cb12-26"><a href="#cb12-26"></a>  </span>
-<span id="cb12-27"><a href="#cb12-27"></a>  <span class="kw">subset</span>(dat, <span class="dt">subset =</span> filter)</span>
-<span id="cb12-28"><a href="#cb12-28"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">fun3 &lt;-<span class="st"> </span><span class="cf">function</span>(dat, variable, interval, <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>) {</a>
+<a class="sourceLine" id="cb12-2" title="2">  </a>
+<a class="sourceLine" id="cb12-3" title="3">  <span class="co"># check if boundaries should be included</span></a>
+<a class="sourceLine" id="cb12-4" title="4">  filter &lt;-<span class="st"> </span><span class="cf">if</span> (incl_boundaries) {</a>
+<a class="sourceLine" id="cb12-5" title="5">    </a>
+<a class="sourceLine" id="cb12-6" title="6">    <span class="co"># check if values outside (or inside) the interval should be selected</span></a>
+<a class="sourceLine" id="cb12-7" title="7">    <span class="cf">if</span> (outside) {</a>
+<a class="sourceLine" id="cb12-8" title="8">      <span class="co"># syntax for subset including boundaries</span></a>
+<a class="sourceLine" id="cb12-9" title="9">      dat[, variable] <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">|</span><span class="st"> </span>dat[, variable] <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb12-10" title="10">    } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb12-11" title="11">      <span class="co"># syntax for subset including boundaries</span></a>
+<a class="sourceLine" id="cb12-12" title="12">      dat[, variable] <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb12-13" title="13">    }</a>
+<a class="sourceLine" id="cb12-14" title="14">    </a>
+<a class="sourceLine" id="cb12-15" title="15">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb12-16" title="16">    </a>
+<a class="sourceLine" id="cb12-17" title="17">    <span class="co"># check if values outside (or inside) the interval should be selected</span></a>
+<a class="sourceLine" id="cb12-18" title="18">    <span class="cf">if</span> (outside) {</a>
+<a class="sourceLine" id="cb12-19" title="19">      <span class="co"># syntax for subset not including boundaries</span></a>
+<a class="sourceLine" id="cb12-20" title="20">      dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">|</span><span class="st"> </span>dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb12-21" title="21">    } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb12-22" title="22">      <span class="co"># syntax for subset not including boundaries</span></a>
+<a class="sourceLine" id="cb12-23" title="23">      dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb12-24" title="24">    }</a>
+<a class="sourceLine" id="cb12-25" title="25">  }</a>
+<a class="sourceLine" id="cb12-26" title="26">  </a>
+<a class="sourceLine" id="cb12-27" title="27">  <span class="kw">subset</span>(dat, <span class="dt">subset =</span> filter)</a>
+<a class="sourceLine" id="cb12-28" title="28">}</a></code></pre></div>
 <p>We test all four scenarios (different combinations of <code>incl_boundaries</code> and <code>outside</code>) with <code>interval = c(3, 7)</code>:</p>
 <p><code>incl_boundaries = TRUE, outside = FALSE</code> should include values 3, …, 7:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">fun3</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">fun3</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>##   a b
 ## 3 3 A
 ## 4 4 B
@@ -3045,7 +3043,7 @@ Note:
 ## 6 6 A
 ## 7 7 A</code></pre>
 <p><code>incl_boundaries = TRUE, outside = TRUE</code> should include values 1, 2, 3, and 7, …, 10:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">fun3</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">fun3</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>##     a b
 ## 1   1 B
 ## 2   2 B
@@ -3055,13 +3053,13 @@ Note:
 ## 9   9 B
 ## 10 10 B</code></pre>
 <p><code>incl_boundaries = FALSE, outside = FALSE</code> should include values 4, 5, 6:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">fun3</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">FALSE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">fun3</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">FALSE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>##   a b
 ## 4 4 B
 ## 5 5 B
 ## 6 6 A</code></pre>
 <p><code>incl_boundaries = FALSE, outside = TRUE</code> should include values 1, 2 and 8, 9, 10:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">fun3</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">FALSE</span>, <span class="dt">outside =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">fun3</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">FALSE</span>, <span class="dt">outside =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>##     a b
 ## 1   1 B
 ## 2   2 B
@@ -3095,19 +3093,19 @@ Hint
 <div id="solution-2-1" class="section level3">
 <h3>Solution 2</h3>
 <p>Our first idea might be to try this function:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>fun4_false &lt;-<span class="st"> </span><span class="cf">function</span>(dat, variable, interval, <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>) {</span>
-<span id="cb21-2"><a href="#cb21-2"></a>  </span>
-<span id="cb21-3"><a href="#cb21-3"></a>  filter &lt;-<span class="st"> </span><span class="cf">if</span> (incl_boundaries) {</span>
-<span id="cb21-4"><a href="#cb21-4"></a>    dat[, variable] <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>]  <span class="co"># version 1</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a>  } <span class="cf">else</span> {</span>
-<span id="cb21-6"><a href="#cb21-6"></a>    dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">2</span>]    <span class="co"># version 2</span></span>
-<span id="cb21-7"><a href="#cb21-7"></a>  }</span>
-<span id="cb21-8"><a href="#cb21-8"></a>  </span>
-<span id="cb21-9"><a href="#cb21-9"></a>  <span class="cf">if</span> (outside) </span>
-<span id="cb21-10"><a href="#cb21-10"></a>    filter &lt;-<span class="st"> </span><span class="op">!</span>filter</span>
-<span id="cb21-11"><a href="#cb21-11"></a>  </span>
-<span id="cb21-12"><a href="#cb21-12"></a>  <span class="kw">subset</span>(dat, filter)</span>
-<span id="cb21-13"><a href="#cb21-13"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">fun4_false &lt;-<span class="st"> </span><span class="cf">function</span>(dat, variable, interval, <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>) {</a>
+<a class="sourceLine" id="cb21-2" title="2">  </a>
+<a class="sourceLine" id="cb21-3" title="3">  filter &lt;-<span class="st"> </span><span class="cf">if</span> (incl_boundaries) {</a>
+<a class="sourceLine" id="cb21-4" title="4">    dat[, variable] <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>]  <span class="co"># version 1</span></a>
+<a class="sourceLine" id="cb21-5" title="5">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb21-6" title="6">    dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">2</span>]    <span class="co"># version 2</span></a>
+<a class="sourceLine" id="cb21-7" title="7">  }</a>
+<a class="sourceLine" id="cb21-8" title="8">  </a>
+<a class="sourceLine" id="cb21-9" title="9">  <span class="cf">if</span> (outside) </a>
+<a class="sourceLine" id="cb21-10" title="10">    filter &lt;-<span class="st"> </span><span class="op">!</span>filter</a>
+<a class="sourceLine" id="cb21-11" title="11">  </a>
+<a class="sourceLine" id="cb21-12" title="12">  <span class="kw">subset</span>(dat, filter)</a>
+<a class="sourceLine" id="cb21-13" title="13">}</a></code></pre></div>
 <ul>
 <li>Depending on the <code>incl_boundary</code> argument, the <code>filter</code> selects either the inside of the interval, or the inside AND the boundaries.</li>
 <li>Depending on the argument <code>outside</code>, we then use <code>filter</code> directly (when we want to return the inside of the interval) or negate it (i.e., turn <code>TRUE</code> into <code>FALSE</code> and vice versa) when <code>outside = TRUE</code>.</li>
@@ -3246,22 +3244,22 @@ FALSE
 </table>
 <p>We note that we need to choose version 1 when <code>incl_boundary != outside</code> and version 2 when <code>incl_boundary == outside</code>!</p>
 <p>With this we can fix our function, which now is a lot shorter than <code>fun3</code>:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>fun4_correct &lt;-<span class="st"> </span><span class="cf">function</span>(dat, variable, interval, <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>) {</span>
-<span id="cb22-2"><a href="#cb22-2"></a>  </span>
-<span id="cb22-3"><a href="#cb22-3"></a>  filter &lt;-<span class="st"> </span><span class="cf">if</span> (incl_boundaries <span class="op">!=</span><span class="st"> </span>outside) {</span>
-<span id="cb22-4"><a href="#cb22-4"></a>    dat[, variable] <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>]</span>
-<span id="cb22-5"><a href="#cb22-5"></a>  } <span class="cf">else</span> {</span>
-<span id="cb22-6"><a href="#cb22-6"></a>    dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">2</span>]</span>
-<span id="cb22-7"><a href="#cb22-7"></a>  }</span>
-<span id="cb22-8"><a href="#cb22-8"></a>  </span>
-<span id="cb22-9"><a href="#cb22-9"></a>  <span class="cf">if</span> (outside) </span>
-<span id="cb22-10"><a href="#cb22-10"></a>    filter &lt;-<span class="st"> </span><span class="op">!</span>filter</span>
-<span id="cb22-11"><a href="#cb22-11"></a>  </span>
-<span id="cb22-12"><a href="#cb22-12"></a>  <span class="kw">subset</span>(dat, filter)</span>
-<span id="cb22-13"><a href="#cb22-13"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">fun4_correct &lt;-<span class="st"> </span><span class="cf">function</span>(dat, variable, interval, <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>) {</a>
+<a class="sourceLine" id="cb22-2" title="2">  </a>
+<a class="sourceLine" id="cb22-3" title="3">  filter &lt;-<span class="st"> </span><span class="cf">if</span> (incl_boundaries <span class="op">!=</span><span class="st"> </span>outside) {</a>
+<a class="sourceLine" id="cb22-4" title="4">    dat[, variable] <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb22-5" title="5">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb22-6" title="6">    dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb22-7" title="7">  }</a>
+<a class="sourceLine" id="cb22-8" title="8">  </a>
+<a class="sourceLine" id="cb22-9" title="9">  <span class="cf">if</span> (outside) </a>
+<a class="sourceLine" id="cb22-10" title="10">    filter &lt;-<span class="st"> </span><span class="op">!</span>filter</a>
+<a class="sourceLine" id="cb22-11" title="11">  </a>
+<a class="sourceLine" id="cb22-12" title="12">  <span class="kw">subset</span>(dat, filter)</a>
+<a class="sourceLine" id="cb22-13" title="13">}</a></code></pre></div>
 <p>We repeat the same set of tests as before, with <code>interval = c(3, 7)</code>:</p>
 <p><code>incl_boundaries = TRUE, outside = FALSE</code> should include values 3, …, 7:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">fun4_correct</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">fun4_correct</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>##   a b
 ## 3 3 A
 ## 4 4 B
@@ -3269,7 +3267,7 @@ FALSE
 ## 6 6 A
 ## 7 7 A</code></pre>
 <p><code>incl_boundaries = TRUE, outside = TRUE</code> should include values 1, 2, 3, and 7, …, 10:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">fun4_correct</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">fun4_correct</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>##     a b
 ## 1   1 B
 ## 2   2 B
@@ -3279,13 +3277,13 @@ FALSE
 ## 9   9 B
 ## 10 10 B</code></pre>
 <p><code>incl_boundaries = FALSE, outside = FALSE</code> should include values 4, 5, 6:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">fun4_correct</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">FALSE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">fun4_correct</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">FALSE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>##   a b
 ## 4 4 B
 ## 5 5 B
 ## 6 6 A</code></pre>
 <p><code>incl_boundaries = FALSE, outside = TRUE</code> should include values 1, 2 and 8, 9, 10:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">fun4_correct</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">FALSE</span>, <span class="dt">outside =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">fun4_correct</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;a&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>), <span class="dt">incl_boundaries =</span> <span class="ot">FALSE</span>, <span class="dt">outside =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>##     a b
 ## 1   1 B
 ## 2   2 B
@@ -3311,7 +3309,7 @@ Note:
 <div id="solution-1-2" class="section level3">
 <h3>Solution 1</h3>
 <p>We can easily check that:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">fun4_correct</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">fun4_correct</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>))</a></code></pre></div>
 <pre><code>## Warning in Ops.factor(dat[, variable], interval[1]): &#39;&gt;=&#39; not meaningful for factors</code></pre>
 <pre><code>## Warning in Ops.factor(dat[, variable], interval[2]): &#39;&lt;=&#39; not meaningful for factors</code></pre>
 <div data-pagedtable="false">
@@ -3335,52 +3333,52 @@ You can use the function <code>is.numeric()</code> to check this.
 <div id="solution-2-2" class="section level3">
 <h3>Solution 2</h3>
 <p>With the functions that we have seen so far, one solution would be:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>fun5 &lt;-<span class="st"> </span><span class="cf">function</span>(dat, variable, interval, <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>) {</span>
-<span id="cb34-2"><a href="#cb34-2"></a>  </span>
-<span id="cb34-3"><a href="#cb34-3"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(dat[, variable])) {</span>
-<span id="cb34-4"><a href="#cb34-4"></a>    <span class="kw">print</span>(<span class="st">&#39;The variable you selected is not numeric!&#39;</span>)</span>
-<span id="cb34-5"><a href="#cb34-5"></a>    </span>
-<span id="cb34-6"><a href="#cb34-6"></a>  } <span class="cf">else</span> { </span>
-<span id="cb34-7"><a href="#cb34-7"></a>  </span>
-<span id="cb34-8"><a href="#cb34-8"></a>  filter &lt;-<span class="st"> </span><span class="cf">if</span> (incl_boundaries <span class="op">!=</span><span class="st"> </span>outside) {</span>
-<span id="cb34-9"><a href="#cb34-9"></a>    dat[, variable] <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>]</span>
-<span id="cb34-10"><a href="#cb34-10"></a>  } <span class="cf">else</span> {</span>
-<span id="cb34-11"><a href="#cb34-11"></a>    dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">2</span>]</span>
-<span id="cb34-12"><a href="#cb34-12"></a>  }</span>
-<span id="cb34-13"><a href="#cb34-13"></a>  </span>
-<span id="cb34-14"><a href="#cb34-14"></a>  <span class="cf">if</span> (outside) {</span>
-<span id="cb34-15"><a href="#cb34-15"></a>    filter &lt;-<span class="st"> </span><span class="op">!</span>filter</span>
-<span id="cb34-16"><a href="#cb34-16"></a>  }</span>
-<span id="cb34-17"><a href="#cb34-17"></a>  </span>
-<span id="cb34-18"><a href="#cb34-18"></a>  <span class="kw">subset</span>(dat, filter)</span>
-<span id="cb34-19"><a href="#cb34-19"></a>  }</span>
-<span id="cb34-20"><a href="#cb34-20"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="kw">fun5</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">fun5 &lt;-<span class="st"> </span><span class="cf">function</span>(dat, variable, interval, <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>) {</a>
+<a class="sourceLine" id="cb34-2" title="2">  </a>
+<a class="sourceLine" id="cb34-3" title="3">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(dat[, variable])) {</a>
+<a class="sourceLine" id="cb34-4" title="4">    <span class="kw">print</span>(<span class="st">&#39;The variable you selected is not numeric!&#39;</span>)</a>
+<a class="sourceLine" id="cb34-5" title="5">    </a>
+<a class="sourceLine" id="cb34-6" title="6">  } <span class="cf">else</span> { </a>
+<a class="sourceLine" id="cb34-7" title="7">  </a>
+<a class="sourceLine" id="cb34-8" title="8">  filter &lt;-<span class="st"> </span><span class="cf">if</span> (incl_boundaries <span class="op">!=</span><span class="st"> </span>outside) {</a>
+<a class="sourceLine" id="cb34-9" title="9">    dat[, variable] <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb34-10" title="10">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb34-11" title="11">    dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb34-12" title="12">  }</a>
+<a class="sourceLine" id="cb34-13" title="13">  </a>
+<a class="sourceLine" id="cb34-14" title="14">  <span class="cf">if</span> (outside) {</a>
+<a class="sourceLine" id="cb34-15" title="15">    filter &lt;-<span class="st"> </span><span class="op">!</span>filter</a>
+<a class="sourceLine" id="cb34-16" title="16">  }</a>
+<a class="sourceLine" id="cb34-17" title="17">  </a>
+<a class="sourceLine" id="cb34-18" title="18">  <span class="kw">subset</span>(dat, filter)</a>
+<a class="sourceLine" id="cb34-19" title="19">  }</a>
+<a class="sourceLine" id="cb34-20" title="20">}</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">fun5</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>))</a></code></pre></div>
 <pre><code>## [1] &quot;The variable you selected is not numeric!&quot;</code></pre>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
 <p style="color:#009B8F; font-weight:bold;">
 Note:
 </p>
 <p>Typically we would not just want to print a message but either create a <code>warning()</code> or an error message (using <code>stop()</code>) which would immediately stop the execution of the function:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>fun5b &lt;-<span class="st"> </span><span class="cf">function</span>(dat, variable, interval, <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>) {</span>
-<span id="cb37-2"><a href="#cb37-2"></a>  </span>
-<span id="cb37-3"><a href="#cb37-3"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(dat[, variable])) {</span>
-<span id="cb37-4"><a href="#cb37-4"></a>    <span class="kw">stop</span>(<span class="st">&#39;The variable you selected is not numeric!&#39;</span>, <span class="dt">call. =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb37-5"><a href="#cb37-5"></a>  }</span>
-<span id="cb37-6"><a href="#cb37-6"></a>  </span>
-<span id="cb37-7"><a href="#cb37-7"></a>  filter &lt;-<span class="st"> </span><span class="cf">if</span> (incl_boundaries <span class="op">!=</span><span class="st"> </span>outside) {</span>
-<span id="cb37-8"><a href="#cb37-8"></a>    dat[, variable] <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>]</span>
-<span id="cb37-9"><a href="#cb37-9"></a>  } <span class="cf">else</span> {</span>
-<span id="cb37-10"><a href="#cb37-10"></a>    dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">2</span>]</span>
-<span id="cb37-11"><a href="#cb37-11"></a>  }</span>
-<span id="cb37-12"><a href="#cb37-12"></a>  </span>
-<span id="cb37-13"><a href="#cb37-13"></a>  <span class="cf">if</span> (outside) {</span>
-<span id="cb37-14"><a href="#cb37-14"></a>    filter &lt;-<span class="st"> </span><span class="op">!</span>filter</span>
-<span id="cb37-15"><a href="#cb37-15"></a>  }</span>
-<span id="cb37-16"><a href="#cb37-16"></a>  </span>
-<span id="cb37-17"><a href="#cb37-17"></a>  <span class="kw">subset</span>(dat, filter)</span>
-<span id="cb37-18"><a href="#cb37-18"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">fun5b</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">fun5b &lt;-<span class="st"> </span><span class="cf">function</span>(dat, variable, interval, <span class="dt">incl_boundaries =</span> <span class="ot">TRUE</span>, <span class="dt">outside =</span> <span class="ot">FALSE</span>) {</a>
+<a class="sourceLine" id="cb37-2" title="2">  </a>
+<a class="sourceLine" id="cb37-3" title="3">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(dat[, variable])) {</a>
+<a class="sourceLine" id="cb37-4" title="4">    <span class="kw">stop</span>(<span class="st">&#39;The variable you selected is not numeric!&#39;</span>, <span class="dt">call. =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb37-5" title="5">  }</a>
+<a class="sourceLine" id="cb37-6" title="6">  </a>
+<a class="sourceLine" id="cb37-7" title="7">  filter &lt;-<span class="st"> </span><span class="cf">if</span> (incl_boundaries <span class="op">!=</span><span class="st"> </span>outside) {</a>
+<a class="sourceLine" id="cb37-8" title="8">    dat[, variable] <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb37-9" title="9">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb37-10" title="10">    dat[, variable] <span class="op">&gt;</span><span class="st"> </span>interval[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>dat[, variable] <span class="op">&lt;</span><span class="st"> </span>interval[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb37-11" title="11">  }</a>
+<a class="sourceLine" id="cb37-12" title="12">  </a>
+<a class="sourceLine" id="cb37-13" title="13">  <span class="cf">if</span> (outside) {</a>
+<a class="sourceLine" id="cb37-14" title="14">    filter &lt;-<span class="st"> </span><span class="op">!</span>filter</a>
+<a class="sourceLine" id="cb37-15" title="15">  }</a>
+<a class="sourceLine" id="cb37-16" title="16">  </a>
+<a class="sourceLine" id="cb37-17" title="17">  <span class="kw">subset</span>(dat, filter)</a>
+<a class="sourceLine" id="cb37-18" title="18">}</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">fun5b</span>(exdat, <span class="dt">variable =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>))</a></code></pre></div>
 <pre><code>## Error: The variable you selected is not numeric!</code></pre>
 <p>When we use <code>stop()</code> we do not need the <code>else</code> part of the <code>if()</code> statement because the function will be stopped immediately and the rest of the syntax will not be evaluated.</p>
 </div>

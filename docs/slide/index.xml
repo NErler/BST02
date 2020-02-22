@@ -1,58 +1,58 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Slides on BST02: Using R for Statistics in Medical Research</title>
-    <link>https://nerler.github.io/BST02/slide/</link>
+    <link>/BST02/slide/</link>
     <description>Recent content in Slides on BST02: Using R for Statistics in Medical Research</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
     <copyright>&amp;copy; 2020. All rights reserved.</copyright>
     
-	<atom:link href="https://nerler.github.io/BST02/slide/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/BST02/slide/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>A: Introduction</title>
-      <link>https://nerler.github.io/BST02/slide/a_introduction/</link>
+      <link>/BST02/slide/a_introduction/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/slide/a_introduction/</guid>
+      <guid>/BST02/slide/a_introduction/</guid>
       <description></description>
     </item>
     
     <item>
       <title>B: Basic Use of R</title>
-      <link>https://nerler.github.io/BST02/slide/b_basic_use_of_r/</link>
+      <link>/BST02/slide/b_basic_use_of_r/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/slide/b_basic_use_of_r/</guid>
+      <guid>/BST02/slide/b_basic_use_of_r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>C: Functions and Programming</title>
-      <link>https://nerler.github.io/BST02/slide/c_functions_and_programming/</link>
+      <link>/BST02/slide/c_functions_and_programming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/slide/c_functions_and_programming/</guid>
+      <guid>/BST02/slide/c_functions_and_programming/</guid>
       <description></description>
     </item>
     
     <item>
       <title>D: Statistics with R</title>
-      <link>https://nerler.github.io/BST02/slide/d_statistics_with_r/</link>
+      <link>/BST02/slide/d_statistics_with_r/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/slide/d_statistics_with_r/</guid>
+      <guid>/BST02/slide/d_statistics_with_r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>E: Markdown</title>
-      <link>https://nerler.github.io/BST02/slide/e_markdown/</link>
+      <link>/BST02/slide/e_markdown/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nerler.github.io/BST02/slide/e_markdown/</guid>
+      <guid>/BST02/slide/e_markdown/</guid>
       <description></description>
     </item>
     

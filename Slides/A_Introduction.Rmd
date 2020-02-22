@@ -39,7 +39,7 @@ The most valuable tool of a modern quantitative researcher is his/her personal c
 \end{block}
 
 
-## What is this Course About (cont’d)
+## What is this Course About
 
 * \blue{Part A}: General Introduction
   - how does the programming language **R** work
