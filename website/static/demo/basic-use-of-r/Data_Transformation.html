@@ -1543,61 +1543,73 @@ pbcseq &lt;- survival::pbcseq</code></pre>
 <pre class="r"><code>pbc$ast &lt;- round(pbc$ast, digits = 1)
 pbc$age &lt;- round(pbc$age, digits = 2)
 head(pbc)</code></pre>
-<pre><code>##   id time status trt   age sex ascites hepato spiders edema bili chol albumin copper
-## 1  1  400      2   1 58.77   f       1      1       1   1.0 14.5  261    2.60    156
-## 2  2 4500      0   1 56.45   f       0      1       1   0.0  1.1  302    4.14     54
-## 3  3 1012      2   1 70.07   m       0      0       0   0.5  1.4  176    3.48    210
-## 4  4 1925      2   1 54.74   f       0      1       1   0.5  1.8  244    2.54     64
-## 5  5 1504      1   2 38.11   f       0      1       1   0.0  3.4  279    3.53    143
-## 6  6 2503      2   2 66.26   f       0      1       0   0.0  0.8  248    3.98     50
-##   alk.phos   ast trig platelet protime stage
-## 1   1718.0 137.9  172      190    12.2     4
-## 2   7394.8 113.5   88      221    10.6     3
-## 3    516.0  96.1   55      151    12.0     4
-## 4   6121.8  60.6   92      183    10.3     4
-## 5    671.0 113.2   72      136    10.9     3
-## 6    944.0  93.0   63       NA    11.0     3</code></pre>
+<pre><code>##   id time status trt   age sex ascites hepato spiders edema bili chol
+## 1  1  400      2   1 58.77   f       1      1       1   1.0 14.5  261
+## 2  2 4500      0   1 56.45   f       0      1       1   0.0  1.1  302
+## 3  3 1012      2   1 70.07   m       0      0       0   0.5  1.4  176
+## 4  4 1925      2   1 54.74   f       0      1       1   0.5  1.8  244
+## 5  5 1504      1   2 38.11   f       0      1       1   0.0  3.4  279
+## 6  6 2503      2   2 66.26   f       0      1       0   0.0  0.8  248
+##   albumin copper alk.phos   ast trig platelet protime stage
+## 1    2.60    156   1718.0 137.9  172      190    12.2     4
+## 2    4.14     54   7394.8 113.5   88      221    10.6     3
+## 3    3.48    210    516.0  96.1   55      151    12.0     4
+## 4    2.54     64   6121.8  60.6   92      183    10.3     4
+## 5    3.53    143    671.0 113.2   72      136    10.9     3
+## 6    3.98     50    944.0  93.0   63       NA    11.0     3</code></pre>
 </div>
 <div id="create-factors" class="section level2">
 <h2>Create factors</h2>
 <p>Set <code>sex</code> as factor with labels <code>m</code> for <code>male</code> and <code>f</code> for <code>female</code></p>
 <pre class="r"><code>factor(pbc$sex, levels = c(&quot;m&quot;, &quot;f&quot;),
        labels = c(&quot;male&quot;,&quot;female&quot;))</code></pre>
-<pre><code>##   [1] female female male   female female female female female female female female female
-##  [13] female male   female female female female female female male   female female male  
-##  [25] female female female female female female female female female female female female
-##  [37] female female female female female female female female female female female male  
-##  [49] female female female male   female female male   female female male   female female
-##  [61] male   female female female female male   female female female female female female
-##  [73] female female female female female female female male   female female female female
-##  [85] female female female female female male   female female female female female female
-##  [97] male   female male   male   female female female female female female female female
-## [109] female female female female female male   female female female female female male  
-## [121] male   female female male   female female female female female female female female
-## [133] male   female female female female male   female female female female female female
-## [145] female female female female male   female female male   female male   female female
-## [157] female female male   female female female female female male   female male   female
-## [169] female female female female female female female female female female female female
-## [181] female female female female female female female female female female female female
-## [193] female female female female female female female female female female female female
-## [205] female female female female female male   female female female female female female
-## [217] female female female female female female female female female female male   female
-## [229] female female female female female female female female female female female female
-## [241] female female female female female female female female female female female female
-## [253] male   female female female female female female male   female female female female
-## [265] female female female female female female female female female female female female
-## [277] female female female female female female female female female female female female
-## [289] male   female female male   female male   male   female male   female female female
-## [301] female female female female female female female female female female female female
-## [313] female female female female female female female female male   female female female
-## [325] female female female female female male   female female female female female female
-## [337] female female female female female female female female female female female male  
-## [349] female female female female female female female female female female female female
-## [361] female female female female female female female female female female female female
-## [373] female female female male   female female female female male   female female female
-## [385] female male   female female female male   female female female female female female
-## [397] female female female female female female female female female female male   female
-## [409] female female female female female female female female female female
+<pre><code>##   [1] female female male   female female female female female female
+##  [10] female female female female male   female female female female
+##  [19] female female male   female female male   female female female
+##  [28] female female female female female female female female female
+##  [37] female female female female female female female female female
+##  [46] female female male   female female female male   female female
+##  [55] male   female female male   female female male   female female
+##  [64] female female male   female female female female female female
+##  [73] female female female female female female female male   female
+##  [82] female female female female female female female female male  
+##  [91] female female female female female female male   female male  
+## [100] male   female female female female female female female female
+## [109] female female female female female male   female female female
+## [118] female female male   male   female female male   female female
+## [127] female female female female female female male   female female
+## [136] female female male   female female female female female female
+## [145] female female female female male   female female male   female
+## [154] male   female female female female male   female female female
+## [163] female female male   female male   female female female female
+## [172] female female female female female female female female female
+## [181] female female female female female female female female female
+## [190] female female female female female female female female female
+## [199] female female female female female female female female female
+## [208] female female male   female female female female female female
+## [217] female female female female female female female female female
+## [226] female male   female female female female female female female
+## [235] female female female female female female female female female
+## [244] female female female female female female female female female
+## [253] male   female female female female female female male   female
+## [262] female female female female female female female female female
+## [271] female female female female female female female female female
+## [280] female female female female female female female female female
+## [289] male   female female male   female male   male   female male  
+## [298] female female female female female female female female female
+## [307] female female female female female female female female female
+## [316] female female female female female male   female female female
+## [325] female female female female female male   female female female
+## [334] female female female female female female female female female
+## [343] female female female female female male   female female female
+## [352] female female female female female female female female female
+## [361] female female female female female female female female female
+## [370] female female female female female female male   female female
+## [379] female female male   female female female female male   female
+## [388] female female male   female female female female female female
+## [397] female female female female female female female female female
+## [406] female male   female female female female female female female
+## [415] female female female female
 ## Levels: male female</code></pre>
 </div>
 <div id="transform-continuous-variables" class="section level2">
@@ -1613,57 +1625,78 @@ head(pbc)</code></pre>
 </ul>
 <pre class="r"><code>pbc$age40higher &lt;- as.numeric(pbc$age40higher)
 head(pbc)</code></pre>
-<pre><code>##   id time status trt   age sex ascites hepato spiders edema bili chol albumin copper
-## 1  1  400      2   1 58.77   f       1      1       1   1.0 14.5  261    2.60    156
-## 2  2 4500      0   1 56.45   f       0      1       1   0.0  1.1  302    4.14     54
-## 3  3 1012      2   1 70.07   m       0      0       0   0.5  1.4  176    3.48    210
-## 4  4 1925      2   1 54.74   f       0      1       1   0.5  1.8  244    2.54     64
-## 5  5 1504      1   2 38.11   f       0      1       1   0.0  3.4  279    3.53    143
-## 6  6 2503      2   2 66.26   f       0      1       0   0.0  0.8  248    3.98     50
-##   alk.phos   ast trig platelet protime stage age40higher
-## 1   1718.0 137.9  172      190    12.2     4           1
-## 2   7394.8 113.5   88      221    10.6     3           1
-## 3    516.0  96.1   55      151    12.0     4           1
-## 4   6121.8  60.6   92      183    10.3     4           1
-## 5    671.0 113.2   72      136    10.9     3           0
-## 6    944.0  93.0   63       NA    11.0     3           1</code></pre>
+<pre><code>##   id time status trt   age sex ascites hepato spiders edema bili chol
+## 1  1  400      2   1 58.77   f       1      1       1   1.0 14.5  261
+## 2  2 4500      0   1 56.45   f       0      1       1   0.0  1.1  302
+## 3  3 1012      2   1 70.07   m       0      0       0   0.5  1.4  176
+## 4  4 1925      2   1 54.74   f       0      1       1   0.5  1.8  244
+## 5  5 1504      1   2 38.11   f       0      1       1   0.0  3.4  279
+## 6  6 2503      2   2 66.26   f       0      1       0   0.0  0.8  248
+##   albumin copper alk.phos   ast trig platelet protime stage
+## 1    2.60    156   1718.0 137.9  172      190    12.2     4
+## 2    4.14     54   7394.8 113.5   88      221    10.6     3
+## 3    3.48    210    516.0  96.1   55      151    12.0     4
+## 4    2.54     64   6121.8  60.6   92      183    10.3     4
+## 5    3.53    143    671.0 113.2   72      136    10.9     3
+## 6    3.98     50    944.0  93.0   63       NA    11.0     3
+##   age40higher
+## 1           1
+## 2           1
+## 3           1
+## 4           1
+## 5           0
+## 6           1</code></pre>
 <ul>
 <li>Step 3: Transform a numeric variable into a factor</li>
 </ul>
 <pre class="r"><code>pbc$age40higher &lt;- factor(pbc$age40higher, levels = c(0:1),
                               labels = c(&quot;young&quot;,&quot;old&quot;))
 head(pbc)</code></pre>
-<pre><code>##   id time status trt   age sex ascites hepato spiders edema bili chol albumin copper
-## 1  1  400      2   1 58.77   f       1      1       1   1.0 14.5  261    2.60    156
-## 2  2 4500      0   1 56.45   f       0      1       1   0.0  1.1  302    4.14     54
-## 3  3 1012      2   1 70.07   m       0      0       0   0.5  1.4  176    3.48    210
-## 4  4 1925      2   1 54.74   f       0      1       1   0.5  1.8  244    2.54     64
-## 5  5 1504      1   2 38.11   f       0      1       1   0.0  3.4  279    3.53    143
-## 6  6 2503      2   2 66.26   f       0      1       0   0.0  0.8  248    3.98     50
-##   alk.phos   ast trig platelet protime stage age40higher
-## 1   1718.0 137.9  172      190    12.2     4         old
-## 2   7394.8 113.5   88      221    10.6     3         old
-## 3    516.0  96.1   55      151    12.0     4         old
-## 4   6121.8  60.6   92      183    10.3     4         old
-## 5    671.0 113.2   72      136    10.9     3       young
-## 6    944.0  93.0   63       NA    11.0     3         old</code></pre>
+<pre><code>##   id time status trt   age sex ascites hepato spiders edema bili chol
+## 1  1  400      2   1 58.77   f       1      1       1   1.0 14.5  261
+## 2  2 4500      0   1 56.45   f       0      1       1   0.0  1.1  302
+## 3  3 1012      2   1 70.07   m       0      0       0   0.5  1.4  176
+## 4  4 1925      2   1 54.74   f       0      1       1   0.5  1.8  244
+## 5  5 1504      1   2 38.11   f       0      1       1   0.0  3.4  279
+## 6  6 2503      2   2 66.26   f       0      1       0   0.0  0.8  248
+##   albumin copper alk.phos   ast trig platelet protime stage
+## 1    2.60    156   1718.0 137.9  172      190    12.2     4
+## 2    4.14     54   7394.8 113.5   88      221    10.6     3
+## 3    3.48    210    516.0  96.1   55      151    12.0     4
+## 4    2.54     64   6121.8  60.6   92      183    10.3     4
+## 5    3.53    143    671.0 113.2   72      136    10.9     3
+## 6    3.98     50    944.0  93.0   63       NA    11.0     3
+##   age40higher
+## 1         old
+## 2         old
+## 3         old
+## 4         old
+## 5       young
+## 6         old</code></pre>
 <p>Standardize <code>age</code></p>
 <pre class="r"><code>pbc$ageST &lt;- (pbc$age-mean(pbc$age))/(sd(pbc$age))
 head(pbc)</code></pre>
-<pre><code>##   id time status trt   age sex ascites hepato spiders edema bili chol albumin copper
-## 1  1  400      2   1 58.77   f       1      1       1   1.0 14.5  261    2.60    156
-## 2  2 4500      0   1 56.45   f       0      1       1   0.0  1.1  302    4.14     54
-## 3  3 1012      2   1 70.07   m       0      0       0   0.5  1.4  176    3.48    210
-## 4  4 1925      2   1 54.74   f       0      1       1   0.5  1.8  244    2.54     64
-## 5  5 1504      1   2 38.11   f       0      1       1   0.0  3.4  279    3.53    143
-## 6  6 2503      2   2 66.26   f       0      1       0   0.0  0.8  248    3.98     50
-##   alk.phos   ast trig platelet protime stage age40higher      ageST
-## 1   1718.0 137.9  172      190    12.2     4         old  0.7685000
-## 2   7394.8 113.5   88      221    10.6     3         old  0.5464312
-## 3    516.0  96.1   55      151    12.0     4         old  1.8501280
-## 4   6121.8  60.6   92      183    10.3     4         old  0.3827512
-## 5    671.0 113.2   72      136    10.9     3       young -1.2090606
-## 6    944.0  93.0   63       NA    11.0     3         old  1.4854375</code></pre>
+<pre><code>##   id time status trt   age sex ascites hepato spiders edema bili chol
+## 1  1  400      2   1 58.77   f       1      1       1   1.0 14.5  261
+## 2  2 4500      0   1 56.45   f       0      1       1   0.0  1.1  302
+## 3  3 1012      2   1 70.07   m       0      0       0   0.5  1.4  176
+## 4  4 1925      2   1 54.74   f       0      1       1   0.5  1.8  244
+## 5  5 1504      1   2 38.11   f       0      1       1   0.0  3.4  279
+## 6  6 2503      2   2 66.26   f       0      1       0   0.0  0.8  248
+##   albumin copper alk.phos   ast trig platelet protime stage
+## 1    2.60    156   1718.0 137.9  172      190    12.2     4
+## 2    4.14     54   7394.8 113.5   88      221    10.6     3
+## 3    3.48    210    516.0  96.1   55      151    12.0     4
+## 4    2.54     64   6121.8  60.6   92      183    10.3     4
+## 5    3.53    143    671.0 113.2   72      136    10.9     3
+## 6    3.98     50    944.0  93.0   63       NA    11.0     3
+##   age40higher      ageST
+## 1         old  0.7685000
+## 2         old  0.5464312
+## 3         old  1.8501280
+## 4         old  0.3827512
+## 5       young -1.2090606
+## 6         old  1.4854375</code></pre>
 </div>
 <div id="widelong-format" class="section level2">
 <h2>Wide/long format<br />
@@ -1671,52 +1704,52 @@ head(pbc)</code></pre>
 <div id="long-to-wide-data-set" class="section level3">
 <h3>Long to wide data set</h3>
 <pre class="r"><code>head(pbcseq)</code></pre>
-<pre><code>##   id futime status trt      age sex day ascites hepato spiders edema bili chol albumin
-## 1  1    400      2   1 58.76523   f   0       1      1       1     1 14.5  261    2.60
-## 2  1    400      2   1 58.76523   f 192       1      1       1     1 21.3   NA    2.94
-## 3  2   5169      0   1 56.44627   f   0       0      1       1     0  1.1  302    4.14
-## 4  2   5169      0   1 56.44627   f 182       0      1       1     0  0.8   NA    3.60
-## 5  2   5169      0   1 56.44627   f 365       0      1       1     0  1.0   NA    3.55
-## 6  2   5169      0   1 56.44627   f 768       0      1       1     0  1.9   NA    3.92
-##   alk.phos   ast platelet protime stage
-## 1     1718 138.0      190    12.2     4
-## 2     1612   6.2      183    11.2     4
-## 3     7395 113.5      221    10.6     3
-## 4     2107 139.5      188    11.0     3
-## 5     1711 144.2      161    11.6     3
-## 6     1365 144.2      122    10.6     3</code></pre>
+<pre><code>##   id futime status trt      age sex day ascites hepato spiders edema
+## 1  1    400      2   1 58.76523   f   0       1      1       1     1
+## 2  1    400      2   1 58.76523   f 192       1      1       1     1
+## 3  2   5169      0   1 56.44627   f   0       0      1       1     0
+## 4  2   5169      0   1 56.44627   f 182       0      1       1     0
+## 5  2   5169      0   1 56.44627   f 365       0      1       1     0
+## 6  2   5169      0   1 56.44627   f 768       0      1       1     0
+##   bili chol albumin alk.phos   ast platelet protime stage
+## 1 14.5  261    2.60     1718 138.0      190    12.2     4
+## 2 21.3   NA    2.94     1612   6.2      183    11.2     4
+## 3  1.1  302    4.14     7395 113.5      221    10.6     3
+## 4  0.8   NA    3.60     2107 139.5      188    11.0     3
+## 5  1.0   NA    3.55     1711 144.2      161    11.6     3
+## 6  1.9   NA    3.92     1365 144.2      122    10.6     3</code></pre>
 <p>Select the first (or last) row of each patient  <br />
 We will remove a lot of information by using the following way</p>
 <pre class="r"><code>head(pbcseq[!duplicated(pbcseq[c(&quot;id&quot;)]), ])</code></pre>
-<pre><code>##    id futime status trt      age sex day ascites hepato spiders edema bili chol albumin
-## 1   1    400      2   1 58.76523   f   0       1      1       1   1.0 14.5  261    2.60
-## 3   2   5169      0   1 56.44627   f   0       0      1       1   0.0  1.1  302    4.14
-## 12  3   1012      2   1 70.07255   m   0       0      0       0   0.5  1.4  176    3.48
-## 16  4   1925      2   1 54.74059   f   0       0      1       1   0.5  1.8  244    2.54
-## 23  5   1505      1   0 38.10541   f   0       0      1       1   0.0  3.4  279    3.53
-## 29  6   2503      2   0 66.25873   f   0       0      1       0   0.0  0.8  248    3.98
-##    alk.phos   ast platelet protime stage
-## 1      1718 138.0      190    12.2     4
-## 3      7395 113.5      221    10.6     3
-## 12      516  96.1      151    12.0     4
-## 16     6122  60.6      183    10.3     4
-## 23      671 113.2      136    10.9     3
-## 29      944  93.0       NA    11.0     3</code></pre>
+<pre><code>##    id futime status trt      age sex day ascites hepato spiders edema
+## 1   1    400      2   1 58.76523   f   0       1      1       1   1.0
+## 3   2   5169      0   1 56.44627   f   0       0      1       1   0.0
+## 12  3   1012      2   1 70.07255   m   0       0      0       0   0.5
+## 16  4   1925      2   1 54.74059   f   0       0      1       1   0.5
+## 23  5   1505      1   0 38.10541   f   0       0      1       1   0.0
+## 29  6   2503      2   0 66.25873   f   0       0      1       0   0.0
+##    bili chol albumin alk.phos   ast platelet protime stage
+## 1  14.5  261    2.60     1718 138.0      190    12.2     4
+## 3   1.1  302    4.14     7395 113.5      221    10.6     3
+## 12  1.4  176    3.48      516  96.1      151    12.0     4
+## 16  1.8  244    2.54     6122  60.6      183    10.3     4
+## 23  3.4  279    3.53      671 113.2      136    10.9     3
+## 29  0.8  248    3.98      944  93.0       NA    11.0     3</code></pre>
 <pre class="r"><code>head(pbcseq[!duplicated(pbcseq[c(&quot;id&quot;)], fromLast = TRUE), ])</code></pre>
-<pre><code>##    id futime status trt      age sex  day ascites hepato spiders edema bili chol albumin
-## 2   1    400      2   1 58.76523   f  192       1      1       1   1.0 21.3   NA    2.94
-## 11  2   5169      0   1 56.44627   f 3226       1      1       1   1.0  4.6  237    2.67
-## 15  3   1012      2   1 70.07255   m  743       0      0       1   0.5  1.8  185    3.25
-## 22  4   1925      2   1 54.74059   f 1824       1      1       1   1.0  5.3  140    1.83
-## 28  5   1505      1   0 38.10541   f 1455       0      1       1   0.5 19.0   91    2.09
-## 34  6   2503      2   0 66.25873   f 2453      NA     NA      NA   0.0  0.7   NA    4.20
-##    alk.phos   ast platelet protime stage
-## 2      1612   6.2      183    11.2     4
-## 11      669  88.0      100    11.5     3
-## 15      447  88.4      109    13.3     4
-## 22      623 131.8      101    17.0     4
-## 28      377 156.0      101    13.9     4
-## 34       NA  60.0       NA    10.5     4</code></pre>
+<pre><code>##    id futime status trt      age sex  day ascites hepato spiders
+## 2   1    400      2   1 58.76523   f  192       1      1       1
+## 11  2   5169      0   1 56.44627   f 3226       1      1       1
+## 15  3   1012      2   1 70.07255   m  743       0      0       1
+## 22  4   1925      2   1 54.74059   f 1824       1      1       1
+## 28  5   1505      1   0 38.10541   f 1455       0      1       1
+## 34  6   2503      2   0 66.25873   f 2453      NA     NA      NA
+##    edema bili chol albumin alk.phos   ast platelet protime stage
+## 2    1.0 21.3   NA    2.94     1612   6.2      183    11.2     4
+## 11   1.0  4.6  237    2.67      669  88.0      100    11.5     3
+## 15   0.5  1.8  185    3.25      447  88.4      109    13.3     4
+## 22   1.0  5.3  140    1.83      623 131.8      101    17.0     4
+## 28   0.5 19.0   91    2.09      377 156.0      101    13.9     4
+## 34   0.0  0.7   NA    4.20       NA  60.0       NA    10.5     4</code></pre>
 <p>Step by step</p>
 <pre class="r"><code>head(duplicated(pbcseq[c(&quot;id&quot;)]))</code></pre>
 <pre><code>## [1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE</code></pre>
@@ -1750,20 +1783,20 @@ pbcseq$visits &lt;- vec2</code></pre>
                     timevar = &quot;visits&quot;, direction = &quot;wide&quot;)
 
 head(pbcseqWide)</code></pre>
-<pre><code>##    id bili.1 bili.2 bili.3 bili.4 bili.5 bili.6 bili.7 bili.8 bili.9 bili.10 bili.11
-## 1   1   14.5   21.3     NA     NA     NA     NA     NA     NA     NA      NA      NA
-## 3   2    1.1    0.8    1.0    1.9    2.6    3.6    4.2    3.6    4.6      NA      NA
-## 12  3    1.4    1.1    1.5    1.8     NA     NA     NA     NA     NA      NA      NA
-## 16  4    1.8    1.6    1.7    3.2    3.7    4.0    5.3     NA     NA      NA      NA
-## 23  5    3.4    1.9    2.5    5.7    5.2   19.0     NA     NA     NA      NA      NA
-## 29  6    0.8    0.8    0.9    0.7    0.6    0.7     NA     NA     NA      NA      NA
-##    bili.12 bili.13 bili.14 bili.15 bili.16
-## 1       NA      NA      NA      NA      NA
-## 3       NA      NA      NA      NA      NA
-## 12      NA      NA      NA      NA      NA
-## 16      NA      NA      NA      NA      NA
-## 23      NA      NA      NA      NA      NA
-## 29      NA      NA      NA      NA      NA</code></pre>
+<pre><code>##    id bili.1 bili.2 bili.3 bili.4 bili.5 bili.6 bili.7 bili.8 bili.9
+## 1   1   14.5   21.3     NA     NA     NA     NA     NA     NA     NA
+## 3   2    1.1    0.8    1.0    1.9    2.6    3.6    4.2    3.6    4.6
+## 12  3    1.4    1.1    1.5    1.8     NA     NA     NA     NA     NA
+## 16  4    1.8    1.6    1.7    3.2    3.7    4.0    5.3     NA     NA
+## 23  5    3.4    1.9    2.5    5.7    5.2   19.0     NA     NA     NA
+## 29  6    0.8    0.8    0.9    0.7    0.6    0.7     NA     NA     NA
+##    bili.10 bili.11 bili.12 bili.13 bili.14 bili.15 bili.16
+## 1       NA      NA      NA      NA      NA      NA      NA
+## 3       NA      NA      NA      NA      NA      NA      NA
+## 12      NA      NA      NA      NA      NA      NA      NA
+## 16      NA      NA      NA      NA      NA      NA      NA
+## 23      NA      NA      NA      NA      NA      NA      NA
+## 29      NA      NA      NA      NA      NA      NA      NA</code></pre>
 </div>
 <div id="wide-to-long-data-set" class="section level3">
 <h3>Wide to long data set<br />

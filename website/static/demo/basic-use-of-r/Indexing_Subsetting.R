@@ -41,7 +41,6 @@ pbc$age[pbc$sex == "f"]
 #' ## Matrix and data frame indexing
 #' Select the 3rd column of the pbc data set \ 
 pbc[, 3]
-pbc[, 3]
 
 #' Different ways exist to obtain that
 pbc[[3]]
@@ -53,7 +52,7 @@ pbc[pbc$id == 5, ]
 pbc[pbc$sex == "m", "bili"]
 pbc$bili[pbc$sex == "m"]
 
-#' Select the age for `male` patients or patients that have `serum bilirubin` more than 3
+#' Select the `age` for `male` patients or patients that have `serum bilirubin` more than 3
 pbc[pbc$sex == "m" | pbc$bili > 5, "age"]
 pbc$age[pbc$sex == "m" | pbc$bili > 5]
 
