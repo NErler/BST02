@@ -2621,9 +2621,9 @@ window.onload = function() {
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -2633,14 +2633,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -2649,9 +2651,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -2984,7 +2986,7 @@ div.tocify {
 </div>
 <div id="solution-1" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">apply</span>(heart[, <span class="kw">c</span>(<span class="st">&quot;start&quot;</span>, <span class="st">&quot;stop&quot;</span>, <span class="st">&quot;event&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;surgery&quot;</span>)], <span class="dv">2</span>, mean)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">apply</span>(heart[, <span class="kw">c</span>(<span class="st">&quot;start&quot;</span>, <span class="st">&quot;stop&quot;</span>, <span class="st">&quot;event&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;surgery&quot;</span>)], <span class="dv">2</span>, mean)</span></code></pre></div>
 <pre><code>## Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA
 
 ## Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA
@@ -2998,7 +3000,7 @@ div.tocify {
 ## Warning in mean.default(newX[, i], ...): argument is not numeric or logical: returning NA</code></pre>
 <pre><code>##   start    stop   event     age    year surgery 
 ##      NA      NA      NA      NA      NA      NA</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">apply</span>(retinopathy[, <span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;futime&quot;</span>, <span class="st">&quot;risk&quot;</span>)], <span class="dv">2</span>, mean)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">apply</span>(retinopathy[, <span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;futime&quot;</span>, <span class="st">&quot;risk&quot;</span>)], <span class="dv">2</span>, mean)</span></code></pre></div>
 <pre><code>##      age   futime     risk 
 ## 20.78173 35.57929  9.69797</code></pre>
 </div>
@@ -3010,8 +3012,8 @@ div.tocify {
 </div>
 <div id="solution-2" class="section level4">
 <h4>Solution 2</h4>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">dataset1 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">A =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">B =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">30</span>))</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">apply</span>(dataset1, <span class="dv">1</span>, median)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>dataset1 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">A =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">B =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">30</span>))</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">apply</span>(dataset1, <span class="dv">1</span>, median)</span></code></pre></div>
 <pre><code>##  [1] 33.5 48.5 41.5 40.5  3.0 22.0  5.0 18.5 17.0 27.5 27.0 50.5 41.0 36.0 57.5 54.0 26.0 21.0 34.5
 ## [20] 26.5 14.0 15.0 39.5 18.5 56.5 47.0 23.0 25.5 52.0 36.0</code></pre>
 </div>
@@ -3026,9 +3028,9 @@ div.tocify {
 </div>
 <div id="solution-1-1" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">DerivativeFunction &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">log10</span>(x) <span class="op">+</span><span class="st"> </span><span class="dv">10</span>}</a>
-<a class="sourceLine" id="cb8-2" title="2">dataset1 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">A =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">B =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">30</span>))</a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="kw">lapply</span>(dataset1, DerivativeFunction)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>DerivativeFunction &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">log10</span>(x) <span class="op">+</span><span class="st"> </span><span class="dv">10</span>}</span>
+<span id="cb8-2"><a href="#cb8-2"></a>dataset1 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">A =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">B =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">30</span>))</span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="kw">lapply</span>(dataset1, DerivativeFunction)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 10
 ## 
@@ -3221,8 +3223,8 @@ div.tocify {
 </div>
 <div id="solution-2-1" class="section level4">
 <h4>Solution 2</h4>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">list1 &lt;-<span class="st"> </span><span class="kw">list</span>(heart<span class="op">$</span>age, heart<span class="op">$</span>year, retinopathy<span class="op">$</span>risk)</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw">lapply</span>(list1, median)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>list1 &lt;-<span class="st"> </span><span class="kw">list</span>(heart<span class="op">$</span>age, heart<span class="op">$</span>year, retinopathy<span class="op">$</span>risk)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">lapply</span>(list1, median)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] -0.1136208
 ## 
@@ -3243,9 +3245,9 @@ div.tocify {
 </div>
 <div id="solution-1-2" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">Function2 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">exp</span>(x) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>}</a>
-<a class="sourceLine" id="cb12-2" title="2">dataset2 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">A =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="kw">sapply</span>(dataset2, Function2)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>Function2 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">exp</span>(x) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>}</span>
+<span id="cb12-2"><a href="#cb12-2"></a>dataset2 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">A =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="kw">sapply</span>(dataset2, Function2)</span></code></pre></div>
 <pre><code>##  [1] 2.818282e+00 7.489056e+00 2.018554e+01 5.469815e+01 1.485132e+02 4.035288e+02 1.096733e+03
 ##  [8] 2.981058e+03 8.103184e+03 2.202657e+04 2.496550e-01 1.347263e+00 4.684401e+00 1.493833e+00
 ## [15] 1.703530e+00 3.206571e-01 1.308962e+00 3.383961e+00 5.384803e-01 3.022336e+00</code></pre>
@@ -3263,11 +3265,11 @@ div.tocify {
 </div>
 <div id="solution-2-2" class="section level4">
 <h4>Solution 2</h4>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">list2 &lt;-<span class="st"> </span><span class="kw">list</span>(heart<span class="op">$</span>transplant, retinopathy<span class="op">$</span>status)</a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="kw">sapply</span>(list2, <span class="cf">function</span>(x) <span class="kw">table</span>(x)[<span class="dv">1</span>]<span class="op">/</span><span class="kw">length</span>(x))</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>list2 &lt;-<span class="st"> </span><span class="kw">list</span>(heart<span class="op">$</span>transplant, retinopathy<span class="op">$</span>status)</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="kw">sapply</span>(list2, <span class="cf">function</span>(x) <span class="kw">table</span>(x)[<span class="dv">1</span>]<span class="op">/</span><span class="kw">length</span>(x))</span></code></pre></div>
 <pre><code>##         0         0 
 ## 0.5988372 0.6065990</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">sapply</span>(list2, <span class="cf">function</span>(x) <span class="kw">table</span>(x)[<span class="dv">2</span>]<span class="op">/</span><span class="kw">length</span>(x))</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">sapply</span>(list2, <span class="cf">function</span>(x) <span class="kw">table</span>(x)[<span class="dv">2</span>]<span class="op">/</span><span class="kw">length</span>(x))</span></code></pre></div>
 <pre><code>##         1         1 
 ## 0.4011628 0.3934010</code></pre>
 </div>
@@ -3287,24 +3289,24 @@ Hint
 </div>
 <div id="solution-3" class="section level4">
 <h4>Solution 3</h4>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">summary_continuous &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb18-2" title="2">  <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="kw">round</span>(<span class="kw">sd</span>(x), <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>)</a>
-<a class="sourceLine" id="cb18-3" title="3">}</a>
-<a class="sourceLine" id="cb18-4" title="4"></a>
-<a class="sourceLine" id="cb18-5" title="5">summary_categorical &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb18-6" title="6">  tab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(x))</a>
-<a class="sourceLine" id="cb18-7" title="7">  <span class="kw">paste0</span>(<span class="kw">round</span>(tab <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;% &quot;</span>, <span class="kw">names</span>(tab), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</a>
-<a class="sourceLine" id="cb18-8" title="8">}</a>
-<a class="sourceLine" id="cb18-9" title="9"></a>
-<a class="sourceLine" id="cb18-10" title="10"></a>
-<a class="sourceLine" id="cb18-11" title="11">summary_df &lt;-<span class="st"> </span><span class="cf">function</span>(dat) {</a>
-<a class="sourceLine" id="cb18-12" title="12">  vec_categorical &lt;-<span class="st"> </span><span class="kw">sapply</span>(dat, is.factor)</a>
-<a class="sourceLine" id="cb18-13" title="13">  <span class="kw">print</span>(<span class="kw">sapply</span>(dat[,vec_categorical], summary_categorical))</a>
-<a class="sourceLine" id="cb18-14" title="14">  vec_continuous &lt;-<span class="st"> </span><span class="kw">sapply</span>(dat, is.numeric)</a>
-<a class="sourceLine" id="cb18-15" title="15">  <span class="kw">print</span>(<span class="kw">sapply</span>(dat[,vec_continuous], summary_continuous))</a>
-<a class="sourceLine" id="cb18-16" title="16">}</a>
-<a class="sourceLine" id="cb18-17" title="17"></a>
-<a class="sourceLine" id="cb18-18" title="18"><span class="kw">summary_df</span>(<span class="dt">dat =</span> retinopathy)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>summary_continuous &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="kw">round</span>(<span class="kw">sd</span>(x), <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>)</span>
+<span id="cb18-3"><a href="#cb18-3"></a>}</span>
+<span id="cb18-4"><a href="#cb18-4"></a></span>
+<span id="cb18-5"><a href="#cb18-5"></a>summary_categorical &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb18-6"><a href="#cb18-6"></a>  tab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(x))</span>
+<span id="cb18-7"><a href="#cb18-7"></a>  <span class="kw">paste0</span>(<span class="kw">round</span>(tab <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;% &quot;</span>, <span class="kw">names</span>(tab), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</span>
+<span id="cb18-8"><a href="#cb18-8"></a>}</span>
+<span id="cb18-9"><a href="#cb18-9"></a></span>
+<span id="cb18-10"><a href="#cb18-10"></a></span>
+<span id="cb18-11"><a href="#cb18-11"></a>summary_df &lt;-<span class="st"> </span><span class="cf">function</span>(dat) {</span>
+<span id="cb18-12"><a href="#cb18-12"></a>  vec_categorical &lt;-<span class="st"> </span><span class="kw">sapply</span>(dat, is.factor)</span>
+<span id="cb18-13"><a href="#cb18-13"></a>  <span class="kw">print</span>(<span class="kw">sapply</span>(dat[,vec_categorical], summary_categorical))</span>
+<span id="cb18-14"><a href="#cb18-14"></a>  vec_continuous &lt;-<span class="st"> </span><span class="kw">sapply</span>(dat, is.numeric)</span>
+<span id="cb18-15"><a href="#cb18-15"></a>  <span class="kw">print</span>(<span class="kw">sapply</span>(dat[,vec_continuous], summary_continuous))</span>
+<span id="cb18-16"><a href="#cb18-16"></a>}</span>
+<span id="cb18-17"><a href="#cb18-17"></a></span>
+<span id="cb18-18"><a href="#cb18-18"></a><span class="kw">summary_df</span>(<span class="dt">dat =</span> retinopathy)</span></code></pre></div>
 <pre><code>##                         laser                           eye                          type 
 ##    &quot;50.8% xenon, 49.2% argon&quot;     &quot;45.2% right, 54.8% left&quot; &quot;57.9% juvenile, 42.1% adult&quot; 
 ##                           trt                        status 
@@ -3328,10 +3330,10 @@ Hint
 </div>
 <div id="solution-1-3" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">tapply</span>(heart<span class="op">$</span>year, heart<span class="op">$</span>transplant, median)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">tapply</span>(heart<span class="op">$</span>year, heart<span class="op">$</span>transplant, median)</span></code></pre></div>
 <pre><code>##       0       1 
 ## 3.47707 3.92334</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">tapply</span>(retinopathy<span class="op">$</span>futime, retinopathy<span class="op">$</span>status, median)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">tapply</span>(retinopathy<span class="op">$</span>futime, retinopathy<span class="op">$</span>status, median)</span></code></pre></div>
 <pre><code>##     0     1 
 ## 48.53 13.83</code></pre>
 </div>
@@ -3348,12 +3350,12 @@ Hint
 </div>
 <div id="solution-2-3" class="section level4">
 <h4>Solution 2</h4>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">Fun1 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">mean</span>(x)<span class="op">/</span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)}</a>
-<a class="sourceLine" id="cb24-2" title="2"><span class="kw">tapply</span>(heart<span class="op">$</span>year, <span class="kw">list</span>(heart<span class="op">$</span>transplant, heart<span class="op">$</span>surgery), Fun1)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>Fun1 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">mean</span>(x)<span class="op">/</span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)}</span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="kw">tapply</span>(heart<span class="op">$</span>year, <span class="kw">list</span>(heart<span class="op">$</span>transplant, heart<span class="op">$</span>surgery), Fun1)</span></code></pre></div>
 <pre><code>##            0         1
 ## 0 0.03820181 0.2818764
 ## 1 0.06362334 0.3910915</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">tapply</span>(retinopathy<span class="op">$</span>futime, <span class="kw">list</span>(retinopathy<span class="op">$</span>status, retinopathy<span class="op">$</span>type, retinopathy<span class="op">$</span>trt), mean)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">tapply</span>(retinopathy<span class="op">$</span>futime, <span class="kw">list</span>(retinopathy<span class="op">$</span>status, retinopathy<span class="op">$</span>type, retinopathy<span class="op">$</span>trt), mean)</span></code></pre></div>
 <pre><code>## , , 0
 ## 
 ##   juvenile    adult

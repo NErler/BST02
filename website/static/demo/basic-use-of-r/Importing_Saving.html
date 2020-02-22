@@ -11,7 +11,7 @@
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-02-21" />
+<meta name="date" content="2020-02-22" />
 
 <title>Demo: Importing and Saving your Work</title>
 
@@ -1519,7 +1519,7 @@ div.tocify {
 <h1 class="title toc-ignore">Demo: Importing and Saving your Work</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">21 February 2020</h4>
+<h4 class="date">22 February 2020</h4>
 
 </div>
 
@@ -1539,21 +1539,35 @@ library(openxlsx)</code></pre>
 <pre class="r"><code>pbc &lt;- survival::pbc</code></pre>
 <p>List all your R objects</p>
 <pre class="r"><code>ls()</code></pre>
-<pre><code>##  [1] &quot;age_time&quot;            &quot;age_time_sex&quot;        &quot;Columns_com&quot;         &quot;DF&quot;                  &quot;google.trends1&quot;     
-##  [6] &quot;hi&quot;                  &quot;k&quot;                   &quot;list_pbc&quot;            &quot;mylist&quot;              &quot;myList&quot;             
-## [11] &quot;number&quot;              &quot;p&quot;                   &quot;pbc&quot;                 &quot;pbc_chol_na&quot;         &quot;pbc_female_bili&quot;    
-## [16] &quot;pbc_male_bili&quot;       &quot;pbc_males&quot;           &quot;pbc_out_bili&quot;        &quot;pbcLong&quot;             &quot;pbcseq&quot;             
-## [21] &quot;pbcseqWide&quot;          &quot;Rfiles&quot;              &quot;shinyFiles&quot;          &quot;vec&quot;                 &quot;vec1&quot;               
-## [26] &quot;vec2&quot;                &quot;vec3&quot;                &quot;vec4&quot;                &quot;write_Demos_md&quot;      &quot;write_Practicals_md&quot;
-## [31] &quot;write_Slides_md&quot;     &quot;x&quot;                   &quot;x1&quot;                  &quot;x2&quot;                  &quot;xxx&quot;                
-## [36] &quot;y1&quot;                  &quot;y2&quot;</code></pre>
+<pre><code>##  [1] &quot;a&quot;                   &quot;A&quot;                   &quot;age_time&quot;            &quot;age_time_sex&quot;       
+##  [5] &quot;b&quot;                   &quot;B&quot;                   &quot;C&quot;                   &quot;Columns_com&quot;        
+##  [9] &quot;cSum&quot;                &quot;dat&quot;                 &quot;dat1&quot;                &quot;dat2&quot;               
+## [13] &quot;datlist&quot;             &quot;des&quot;                 &quot;DF&quot;                  &quot;dt&quot;                 
+## [17] &quot;esoph&quot;               &quot;google.trends1&quot;      &quot;hi&quot;                  &quot;html_files&quot;         
+## [21] &quot;htmlfiles&quot;           &quot;i&quot;                   &quot;j&quot;                   &quot;k&quot;                  
+## [25] &quot;list_pbc&quot;            &quot;list1&quot;               &quot;M&quot;                   &quot;marks&quot;              
+## [29] &quot;mat&quot;                 &quot;Mat&quot;                 &quot;mdat&quot;                &quot;mdat_all&quot;           
+## [33] &quot;mdat_x&quot;              &quot;mdat_y&quot;              &quot;mdat3&quot;               &quot;means&quot;              
+## [37] &quot;mylist&quot;              &quot;myList&quot;              &quot;MyList&quot;              &quot;new_pbc&quot;            
+## [41] &quot;newData&quot;             &quot;newList&quot;             &quot;number&quot;              &quot;otherlist&quot;          
+## [45] &quot;output&quot;              &quot;p&quot;                   &quot;patient&quot;             &quot;pbc&quot;                
+## [49] &quot;pbc_chol_na&quot;         &quot;pbc_female_bili&quot;     &quot;pbc_male_bili&quot;       &quot;pbc_males&quot;          
+## [53] &quot;pbc_out_bili&quot;        &quot;pbcLong&quot;             &quot;pbcseq&quot;              &quot;pbcseq.idNEW2&quot;      
+## [57] &quot;pbcseq.idNEW3&quot;       &quot;pbcseqWide&quot;          &quot;res&quot;                 &quot;res1&quot;               
+## [61] &quot;res2&quot;                &quot;Rfiles&quot;              &quot;Rmd_files&quot;           &quot;sex&quot;                
+## [65] &quot;shinyFiles&quot;          &quot;subset_data&quot;         &quot;tab&quot;                 &quot;vec&quot;                
+## [69] &quot;vec1&quot;                &quot;vec2&quot;                &quot;vec3&quot;                &quot;vec4&quot;               
+## [73] &quot;weight&quot;              &quot;write_Demos_md&quot;      &quot;write_Practicals_md&quot; &quot;write_Slides_md&quot;    
+## [77] &quot;x&quot;                   &quot;X&quot;                   &quot;x1&quot;                  &quot;x2&quot;                 
+## [81] &quot;xvec&quot;                &quot;xxx&quot;                 &quot;y&quot;                   &quot;Y&quot;                  
+## [85] &quot;y1&quot;                  &quot;y2&quot;                  &quot;z&quot;</code></pre>
 </div>
 <div id="save-your-work" class="section level2">
 <h2>Save your work</h2>
 <p>Take care: first you need to set your working directory (Rstudio: Session -&gt; Set Working Directory -&gt; Choose Directory…)<br />
 Use also the function <code>setwd(...)</code> to set the working directory</p>
 <pre class="r"><code>getwd()</code></pre>
-<pre><code>## [1] &quot;N:/Teaching/BST02/Demos/Basic use of R&quot;</code></pre>
+<pre><code>## [1] &quot;C:/Users/erler/Documents/Work/Projects/Teaching/BST02/Demos/Basic use of R&quot;</code></pre>
 <pre class="r"><code>dt &lt;- pbc[1:6, c(&quot;id&quot;, &quot;sex&quot;, &quot;bili&quot;, &quot;chol&quot;)]
 p &lt;- 1
 
