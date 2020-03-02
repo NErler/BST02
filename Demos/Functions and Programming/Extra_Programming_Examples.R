@@ -93,8 +93,8 @@ z <- numeric() # empty vector
 system.time({
   cSum <- 0
   for (i in 1:length(x)){
-    cSum <- cSum + x[k]
-    z[k] <- cSum
+    cSum <- cSum + x[i]
+    z[i] <- cSum
   }
 })
 
@@ -235,7 +235,8 @@ length(res)
 #' Make a function that takes as input a data set, the name of a continuous variable and the name of a categorical variable
 #' This function calculates the mean and standard deviation of the continuous variable for each group in the categorical variable
 des <- function(data = x, cont = "age", cat = "group"){
-  tapply(data[[cont]], data[[cat]], mean)
+  print(tapply(data[[cont]], data[[cat]], mean))
+  print(tapply(data[[cont]], data[[cat]], sd))
 }
 
 #' Apply the function to the `pbc` data set

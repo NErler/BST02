@@ -185,7 +185,7 @@ mapply(function(x,y) {x^y}, x = c(2, 3), y = c(4))
 #' ## Long format data
 
 #' Let's assume that only the long format data set `pbcseq` is available \
-#' We want to obtain the mean `serum bilirubin` of the last follow-up measurement per `status` group \
+#' We want to obtain the mean `serum bilirubin` of the last follow-up measurement (specified as `day`) per `status` group \
 #' Each patient is counted once! \
 head(pbcseq)
 
@@ -205,12 +205,12 @@ tapply(pbcseq.idNEW2$bili, pbcseq.idNEW2$status, mean)
 
 
 #' Let's again assume that only the long format data set `pbcseq` is available \
-#' We want to obtain the mean `serum bilirubin` of the last stage of `edema` per `status` group \
+#' We want to obtain the mean `serum bilirubin` of the last stage of `edema` (for multiple cases select last follow-up measurement) per `status` group \
 #' Each patient and `edema` stage is counted once! \
 head(pbcseq)
 
 #' Sort data
-pbcseq <- pbcseq[order(pbcseq$id, pbcseq$edema), ]
+pbcseq <- pbcseq[order(pbcseq$id, pbcseq$edema, pbcseq$day), ]
 
 #' Select the last stage of `edema` of each patient
 pbcseq.idNEW3 <- pbcseq[tapply(rownames(pbcseq), pbcseq$id, tail,  1), ]
