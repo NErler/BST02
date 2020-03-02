@@ -248,4 +248,4 @@ des <- function(data = x, cont = "age", cat = "group", fun = mean){
   tapply(data[[cont]], data[[cat]], fun)
 }
 
-des(data = pbc, cont = "age", cat = "sex", fun = function(x) sum(x))
+des(data = pbc, cont = "age", cat = "sex", fun = function(x) { sum(x) } )
