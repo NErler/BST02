@@ -137,7 +137,7 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Create the following function `DerivativeFunction <- function(x) {log10(x) + 10}`. Apply the `DerivativeFunction` to `dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))`. The output should be a list.
+Create the following function `DerivativeFunction <- function(x) { log10(x) + 10 }`. Apply the `DerivativeFunction` to `dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))`. The output should be a list.
 
 ```{r, eval = static, echo = FALSE}
 asis_output("</div>")
@@ -146,7 +146,7 @@ asis_output("#### Solution 1\\n")
 ```
 
 ```{r lapply1-solution, solution = TRUE}
-DerivativeFunction <- function(x) {log10(x) + 10}
+DerivativeFunction <- function(x) { log10(x) + 10 }
 dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))
 lapply(dataset1, DerivativeFunction)
 ```
@@ -187,7 +187,7 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Create the following function `Function2 <- function(x) {exp(x) + 0.1}`. Apply the `Function2` to `dataset2 <- cbind(A = c(1:10), B = rnorm(10, 0, 1))`. The output should be simplified.
+Create the following function `Function2 <- function(x) { exp(x) + 0.1 }`. Apply the `Function2` to `dataset2 <- cbind(A = c(1:10), B = rnorm(10, 0, 1))`. The output should be simplified.
 
 ```{r, eval = static, echo = FALSE}
 asis_output("</div>")
@@ -196,7 +196,7 @@ asis_output("#### Solution 1\\n")
 ```
 
 ```{r sapply1-solution, solution = TRUE}
-Function2 <- function(x) {exp(x) + 0.1}
+Function2 <- function(x) { exp(x) + 0.1 }
 dataset2 <- cbind(A = c(1:10), B = rnorm(10, 0, 1))
 sapply(dataset2, Function2)
 ```
@@ -223,8 +223,8 @@ asis_output("#### Solution 2\\n")
 
 ```{r sapply2-solution, solution = TRUE}
 list2 <- list(heart$transplant, retinopathy$status)
-sapply(list2, function(x) percent(x))
-sapply(list2, function(x) percent(x))
+sapply(list2, function(x) { percent(x) } )
+sapply(list2, function(x) { percent(x) } )
 ```
 
 
@@ -317,7 +317,7 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-* Apply the function `Fun1 <- function(x) {mean(x)/(length(x) - 2)}` to `year` per `transplant` and `surgery` group using the **heart** data set. \
+* Apply the function `Fun1 <- function(x) { mean(x)/(length(x) - 2) }` to `year` per `transplant` and `surgery` group using the **heart** data set. \
 * Obtain the mean `futime` per `status`, `type` and `trt` group using the **retinopathy** data set. \
 
 ```{r, eval = static, echo = FALSE}
@@ -327,7 +327,7 @@ asis_output("#### Solution 2\\n")
 ```
 
 ```{r tapply2-solution, solution = TRUE}
-Fun1 <- function(x) {mean(x)/(length(x) - 2)}
+Fun1 <- function(x) { mean(x)/(length(x) - 2) }
 tapply(heart$year, list(heart$transplant, heart$surgery), Fun1)
 tapply(retinopathy$futime, list(retinopathy$status, retinopathy$type, retinopathy$trt), mean)
 ```

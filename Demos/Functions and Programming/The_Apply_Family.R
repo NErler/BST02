@@ -34,7 +34,7 @@ apply(pbc[, c("time", "age")], 2, mean)
 # apply(pbc[, ], 1, mean)
 
 #' Obtain the standardized values of columns `time`, `age` and `bili` in the `pbc` data set
-head(apply(pbc[, c("time", "age", "bili")], 2, function(x) (x-mean(x))/sd(x)))
+head(apply(pbc[, c("time", "age", "bili")], 2, function(x) { (x-mean(x))/sd(x) } ))
 
 #' Other examples \
 #' Create a matrix
@@ -49,11 +49,11 @@ apply(Mat, 2, mean)
 
 #' Calculate the sum of each column for matrix `Mat`
 apply(Mat, 2, sum)
-apply(Mat, 2, function(x) sum(x))
+apply(Mat, 2, function(x) { sum(x) } )
 
 #' Calculate the sum of each row for matrix `Mat`
 apply(Mat, 1, sum)
-apply(Mat, 1, function(x) sum(x))
+apply(Mat, 1, function(x) { sum(x) } )
 
 #' There is no one way of doing things in R!
 colSums(Mat)
@@ -66,12 +66,12 @@ rowSums(Mat)
 lapply(pbc, summary)
 
 #' Ontain the number of missing values per `pbc` variable
-lapply(pbc, function(x) sum(is.na(x))) 
+lapply(pbc, function(x) { sum(is.na(x)) } ) 
 
 #' Other examples \
 #' Obtain the quadratic term of the vector `1:3` \
 #' Present the results as a list
-lapply(1:3, function(x) x^2)
+lapply(1:3, function(x) { x^2 } )
 
 #' Create a list that consist of `Mat` and `Mat^2` \
 #' Obtain the mean of each element \
@@ -85,7 +85,7 @@ B <- matrix(4:15, 4,3)
 C <- matrix(8:10, 3,2)
 
 #' Select elements in a list
-MyList <- list(A,B,C) 
+MyList <- list(A, B, C) 
 
 #' Select the first row of each element \
 #' Present the results as a list
@@ -99,12 +99,12 @@ lapply(MyList,"[", , 2)
 #' ### sapply
 
 #' Obtain the number of missing values per `pbc` variable
-sapply(pbc, function(x) sum(is.na(x))) 
+sapply(pbc, function(x) { sum(is.na(x)) } ) 
 
 #' Other examples \
 #' Obtain the quadratic term of the vector `1:3` \
 #' Present the results as a vector
-sapply(1:3, function(x) x^2)
+sapply(1:3, function(x) { x^2 } )
 
 #' Create a list that consist of `Mat` and `Mat^2` \
 #' Obtain the mean of each element \
@@ -124,8 +124,8 @@ tapply(pbc$age, pbc$sex, mean)
 tapply(pbc$time, pbc$sex, mean)
 
 #' Obtain the mean `age` and `time` (both elements of the variables devided by two) per `sex`
-tapply(pbc$age, pbc$sex, function(x) mean(x/2))
-tapply(pbc$time, pbc$sex, function(x) mean(x/2))
+tapply(pbc$age, pbc$sex, function(x) { mean(x/2) } )
+tapply(pbc$time, pbc$sex, function(x) { mean(x/2) } )
 
 #' Obtain the mean `age` and `time` per `sex` and `status`
 tapply(pbc$age, list(pbc$status, pbc$sex), mean)
@@ -166,7 +166,7 @@ mapply(rep,1:4, 4, SIMPLIFY = TRUE)
 ### alternative run: matrix(c(rep(1, 4), rep(2, 4), rep(3, 4), rep(4, 4)), 4, 4)
 
 #' Other examples
-mapply(function(x,y) seq_len(x) + y,
+mapply(function(x,y) { seq_len(x) + y },
        c(a = 1, b = 2, c = 3),  
        c(A = 10, B = 0, C = -10))
 #### alternative run: list(c(1) + 10, c(1, 2) + 0, c(1, 2, 3) - 10)
@@ -178,7 +178,7 @@ mapply(mean, X)
 mapply(mean, MyList)
 sapply(MyList, mean)
 
-mapply(function(x,y) {x^y}, x = c(2, 3), y = c(4))
+mapply(function(x,y) { x^y }, x = c(2, 3), y = c(4))
 #### alternative run: list(2^4, 3^4)
 
 

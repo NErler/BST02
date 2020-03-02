@@ -3001,8 +3001,8 @@ div.tocify {
 <h4>Solution 2</h4>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">dataset1 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">A =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">B =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">30</span>))</a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw">apply</span>(dataset1, <span class="dv">1</span>, sum)</a></code></pre></div>
-<pre><code>##  [1]  69  92  16  99  66 104  81  90  35  48  64  48  71 103  99  47  87  22 113  28  77  71  65  69
-## [25] 104  72  51  94  62 122</code></pre>
+<pre><code>##  [1]  68  98  89  53  52  94  99  11  57  14  79  49  75  78  28  71 117  99  76  36  42  78  58  39
+## [25] 123  64  80  72  56 125</code></pre>
 </div>
 </div>
 <div id="lapply" class="section level3 tabset tabset-fade tabset-pills">
@@ -3010,12 +3010,12 @@ div.tocify {
 <div id="task-1-1" class="section level4">
 <h4>Task 1</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-<p>Create the following function <code>DerivativeFunction &lt;- function(x) {log10(x) + 10}</code>. Apply the <code>DerivativeFunction</code> to <code>dataset1 &lt;- cbind(A = 1:30, B = sample(1:100, 30))</code>. The output should be a list.</p>
+<p>Create the following function <code>DerivativeFunction &lt;- function(x) { log10(x) + 10 }</code>. Apply the <code>DerivativeFunction</code> to <code>dataset1 &lt;- cbind(A = 1:30, B = sample(1:100, 30))</code>. The output should be a list.</p>
 </div>
 </div>
 <div id="solution-1-1" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">DerivativeFunction &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">log10</span>(x) <span class="op">+</span><span class="st"> </span><span class="dv">10</span>}</a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">DerivativeFunction &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="kw">log10</span>(x) <span class="op">+</span><span class="st"> </span><span class="dv">10</span> }</a>
 <a class="sourceLine" id="cb7-2" title="2">dataset1 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">A =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">B =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">30</span>))</a>
 <a class="sourceLine" id="cb7-3" title="3"><span class="kw">lapply</span>(dataset1, DerivativeFunction)</a></code></pre></div>
 <pre><code>## [[1]]
@@ -3109,94 +3109,94 @@ div.tocify {
 ## [1] 11.47712
 ## 
 ## [[31]]
-## [1] 11.25527
-## 
-## [[32]]
-## [1] 11.70757
-## 
-## [[33]]
-## [1] 11.83251
-## 
-## [[34]]
-## [1] 11.49136
-## 
-## [[35]]
-## [1] 11.27875
-## 
-## [[36]]
-## [1] 11.75587
-## 
-## [[37]]
-## [1] 10.95424
-## 
-## [[38]]
-## [1] 11.86923
-## 
-## [[39]]
-## [1] 11.85733
-## 
-## [[40]]
-## [1] 11.90309
-## 
-## [[41]]
-## [1] 11.94939
-## 
-## [[42]]
 ## [1] 11.43136
 ## 
-## [[43]]
-## [1] 11.68124
-## 
-## [[44]]
-## [1] 11.79934
-## 
-## [[45]]
-## [1] 11.86332
-## 
-## [[46]]
-## [1] 11.44716
-## 
-## [[47]]
-## [1] 11.88649
-## 
-## [[48]]
-## [1] 11.5563
-## 
-## [[49]]
-## [1] 11.38021
-## 
-## [[50]]
+## [[32]]
 ## [1] 12
 ## 
+## [[33]]
+## [1] 11.91908
+## 
+## [[34]]
+## [1] 11.73239
+## 
+## [[35]]
+## [1] 11.90309
+## 
+## [[36]]
+## [1] 11.5563
+## 
+## [[37]]
+## [1] 11.50515
+## 
+## [[38]]
+## [1] 11.90849
+## 
+## [[39]]
+## [1] 11.83251
+## 
+## [[40]]
+## [1] 11.47712
+## 
+## [[41]]
+## [1] 11.77085
+## 
+## [[42]]
+## [1] 11.86923
+## 
+## [[43]]
+## [1] 11.75587
+## 
+## [[44]]
+## [1] 11.20412
+## 
+## [[45]]
+## [1] 11.34242
+## 
+## [[46]]
+## [1] 11.98227
+## 
+## [[47]]
+## [1] 10.69897
+## 
+## [[48]]
+## [1] 11.4624
+## 
+## [[49]]
+## [1] 11.32222
+## 
+## [[50]]
+## [1] 11.68124
+## 
 ## [[51]]
-## [1] 11.87506
+## [1] 10.90309
 ## 
 ## [[52]]
-## [1] 11.78533
+## [1] 11.49136
 ## 
 ## [[53]]
-## [1] 10.77815
+## [1] 11.41497
 ## 
 ## [[54]]
-## [1] 11.79239
+## [1] 11.96379
 ## 
 ## [[55]]
-## [1] 11.36173
+## [1] 11.69897
 ## 
 ## [[56]]
-## [1] 11.66276
+## [1] 11.99564
 ## 
 ## [[57]]
-## [1] 11.5682
+## [1] 11.07918
 ## 
 ## [[58]]
-## [1] 11.61278
+## [1] 11.82607
 ## 
 ## [[59]]
-## [1] 11.97772
+## [1] 11.59106
 ## 
 ## [[60]]
-## [1] 11.07918</code></pre>
+## [1] 11.77815</code></pre>
 </div>
 <div id="task-2-1" class="section level4">
 <h4>Task 2</h4>
@@ -3227,17 +3227,17 @@ div.tocify {
 <div id="task-1-2" class="section level4">
 <h4>Task 1</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-<p>Create the following function <code>Function2 &lt;- function(x) {exp(x) + 0.1}</code>. Apply the <code>Function2</code> to <code>dataset2 &lt;- cbind(A = c(1:10), B = rnorm(10, 0, 1))</code>. The output should be simplified.</p>
+<p>Create the following function <code>Function2 &lt;- function(x) { exp(x) + 0.1 }</code>. Apply the <code>Function2</code> to <code>dataset2 &lt;- cbind(A = c(1:10), B = rnorm(10, 0, 1))</code>. The output should be simplified.</p>
 </div>
 </div>
 <div id="solution-1-2" class="section level4">
 <h4>Solution 1</h4>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">Function2 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">exp</span>(x) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>}</a>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">Function2 &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="kw">exp</span>(x) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span> }</a>
 <a class="sourceLine" id="cb11-2" title="2">dataset2 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">A =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb11-3" title="3"><span class="kw">sapply</span>(dataset2, Function2)</a></code></pre></div>
 <pre><code>##  [1] 2.818282e+00 7.489056e+00 2.018554e+01 5.469815e+01 1.485132e+02 4.035288e+02 1.096733e+03
-##  [8] 2.981058e+03 8.103184e+03 2.202657e+04 2.276785e+00 1.938227e+00 1.275596e+00 7.003055e-01
-## [15] 5.762683e-01 2.846876e+00 4.692274e+00 1.195122e+00 5.059284e-01 4.913664e-01</code></pre>
+##  [8] 2.981058e+03 8.103184e+03 2.202657e+04 2.073067e+00 1.822938e+00 7.242668e-01 1.248296e+00
+## [15] 6.966448e+00 1.175114e+00 3.545517e+00 7.643435e-01 2.524021e+00 2.169390e+00</code></pre>
 </div>
 <div id="task-2-2" class="section level4">
 <h4>Task 2</h4>
@@ -3253,12 +3253,12 @@ div.tocify {
 <div id="solution-2-2" class="section level4">
 <h4>Solution 2</h4>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">list2 &lt;-<span class="st"> </span><span class="kw">list</span>(heart<span class="op">$</span>transplant, retinopathy<span class="op">$</span>status)</a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="kw">sapply</span>(list2, <span class="cf">function</span>(x) <span class="kw">percent</span>(x))</a></code></pre></div>
+<a class="sourceLine" id="cb13-2" title="2"><span class="kw">sapply</span>(list2, <span class="cf">function</span>(x) { <span class="kw">percent</span>(x) } )</a></code></pre></div>
 <pre><code>##        [,1]     [,2]
 ## 0  59.88372  60.6599
 ## 1  40.11628  39.3401
 ## N 172.00000 394.0000</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">sapply</span>(list2, <span class="cf">function</span>(x) <span class="kw">percent</span>(x))</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">sapply</span>(list2, <span class="cf">function</span>(x) { <span class="kw">percent</span>(x) } )</a></code></pre></div>
 <pre><code>##        [,1]     [,2]
 ## 0  59.88372  60.6599
 ## 1  40.11628  39.3401
@@ -3337,7 +3337,7 @@ Hint
 <h4>Task 2</h4>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <ul>
-<li>Apply the function <code>Fun1 &lt;- function(x) {mean(x)/(length(x) - 2)}</code> to <code>year</code> per <code>transplant</code> and <code>surgery</code> group using the <strong>heart</strong> data set.<br />
+<li>Apply the function <code>Fun1 &lt;- function(x) { mean(x)/(length(x) - 2) }</code> to <code>year</code> per <code>transplant</code> and <code>surgery</code> group using the <strong>heart</strong> data set.<br />
 </li>
 <li>Obtain the mean <code>futime</code> per <code>status</code>, <code>type</code> and <code>trt</code> group using the <strong>retinopathy</strong> data set.<br />
 </li>
@@ -3346,7 +3346,7 @@ Hint
 </div>
 <div id="solution-2-3" class="section level4">
 <h4>Solution 2</h4>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">Fun1 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">mean</span>(x)<span class="op">/</span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)}</a>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">Fun1 &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="kw">mean</span>(x)<span class="op">/</span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>) }</a>
 <a class="sourceLine" id="cb23-2" title="2"><span class="kw">tapply</span>(heart<span class="op">$</span>year, <span class="kw">list</span>(heart<span class="op">$</span>transplant, heart<span class="op">$</span>surgery), Fun1)</a></code></pre></div>
 <pre><code>##            0         1
 ## 0 0.03820181 0.2818764

@@ -697,8 +697,8 @@ apply(mat, 1, mean)
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mat <- matrix(1:4, 2, 2)
 mat
-apply(mat, 2, function(x) 
-          sum(x)/(length(x)-1))
+apply(mat, 2, function(x) {
+          sum(x)/(length(x)-1) } )
 ```
 
 \pause
@@ -707,8 +707,8 @@ apply(mat, 2, function(x)
 \begincol{0.47\linewidth}
 * By row
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-apply(mat, 1, function(x) 
-          sum(x)/(length(x)-1))
+apply(mat, 1, function(x) {
+       sum(x)/(length(x)-1) } )
 ```
 
 \endcol
@@ -820,7 +820,7 @@ tapply(pbc$age, pbc$sex, median)
 * You can also apply your own functions
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-tapply(pbc$bili, pbc$sex, function(x) sum(x)/(length(x)-1))
+tapply(pbc$bili, pbc$sex, function(x) { sum(x)/(length(x)-1) } )
 ```
 
 
