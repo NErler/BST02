@@ -152,7 +152,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 
 Categorize `futime` from data set **retinopathy** as follows: \
 
-* `short`: [minimum `futime` until 2). \
+* `short`: [minimum `futime` until 25). \
 * `medium`: [25 until 45). \
 * `long`: [45 until maximum `futime`). \
 Give this variable the name `futimeCat`. Print the first 6 rows of the data.
@@ -165,6 +165,17 @@ Create a variable that is identical to the futime variable (use the name futimeC
 </div>')
 ```
 
+
+```{r man3a_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#man3a">Hint</button>
+<div id = "man3a" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+E.g. you can create the low category as: \\
+`retinopathy$futimeCut <- retinopathy$futime` \\
+`retinopathy$futimeCut[retinopathy$futime < 25] <- "short" `\\
+Now continue with the other categories.
+</div>')
+```
+
 ```{r, eval = static, echo = FALSE}
 asis_output("</div>")
 
@@ -173,9 +184,9 @@ asis_output("#### Solution 3\\n")
 
 ```{r man3-solution, solution = TRUE}
 retinopathy$futimeCut <- retinopathy$futime
-retinopathy$futimeCut[retinopathy$futime < 25] <- "low"
-retinopathy$futimeCut[retinopathy$futime >= 25 & retinopathy$futime < 45] <- "med"
-retinopathy$futimeCut[retinopathy$futime >= 45] <- "high"
+retinopathy$futimeCut[retinopathy$futime < 25] <- "short"
+retinopathy$futimeCut[retinopathy$futime >= 25 & retinopathy$futime < 45] <- "medium"
+retinopathy$futimeCut[retinopathy$futime >= 45] <- "long"
 head(retinopathy)
 ```
 
