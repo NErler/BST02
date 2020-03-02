@@ -260,7 +260,7 @@ mysummary <- function(x){
     print('A data.frame')
     print('Not yet implemented')
   }else if(is.factor(x)){
-    print('This is afactor')
+    print('This is a factor')
     print(table(x))
   }else if(is.numeric(x)){
     print('This variabele is numeric')
@@ -365,12 +365,12 @@ heart$transplant <- as.factor(heart$transplant)
 heart$id <- as.factor(heart$id)
 
 std_num <- function(DF){
-  for (j in 1:dim(DF)[2]){
-    if (is.numeric(DF[,j])){
-      DF[colnames(DF)[j]] <- (DF[colnames(DF)[j]] - mean(DF[[colnames(DF)[j]]]))/sd(DF[[colnames(DF)[j]]])
-    }
-  }
-  DF
+  	 for (j in 1:dim(DF)[2]){
+    		if (is.numeric(DF[,j])){
+      	     DF[,j] <- (DF[,j] - mean(DF[,j]))/sd(DF[,j])
+	      }
+ 			}
+      DF
 }
 std_num(heart)
 ```
@@ -388,7 +388,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 
-Create a for loop that goes through the columns of the **retinopathy** data set and plots each column. If the column is a numerical variable then use a density plot, if the column is a categorical variable then use a barchart. Create a plot with multiple panel
+Create a for loop that goes through the columns of the **retinopathy** data set and plots each column. If the column is a numerical variable then use a density plot, if the column is a categorical variable then use a barchart. Create a plot with multiple panels.
 
 
 ```{r fun7_hint, eval = static, results = 'asis', echo = FALSE}
@@ -584,7 +584,7 @@ dt_events <- function(dt_lists, event_name){
       dt <- dt_lists[[k]]
       new_dt[[k]] <- dt[dt[[event_name[k]]] == 1, ]
   }
-  new_dt
+  print(new_dt)
 }
 
 dt_events(dt_lists = list(heart, retinopathy), event_name = c("event", "status"))

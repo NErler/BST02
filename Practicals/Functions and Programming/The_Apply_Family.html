@@ -3001,8 +3001,8 @@ div.tocify {
 <h4>Solution 2</h4>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">dataset1 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">A =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">B =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">30</span>))</a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw">apply</span>(dataset1, <span class="dv">1</span>, sum)</a></code></pre></div>
-<pre><code>##  [1]  79  61  95   5  11  90  53  46  20  82  18 107  94 114  75  84  37  30 118  25  61  78 110  71
-## [25]  82  36  59 111  96 112</code></pre>
+<pre><code>##  [1]  69  92  16  99  66 104  81  90  35  48  64  48  71 103  99  47  87  22 113  28  77  71  65  69
+## [25] 104  72  51  94  62 122</code></pre>
 </div>
 </div>
 <div id="lapply" class="section level3 tabset tabset-fade tabset-pills">
@@ -3109,94 +3109,94 @@ div.tocify {
 ## [1] 11.47712
 ## 
 ## [[31]]
-## [1] 11.99123
+## [1] 11.25527
 ## 
 ## [[32]]
-## [1] 11.47712
+## [1] 11.70757
 ## 
 ## [[33]]
-## [1] 11.74819
-## 
-## [[34]]
-## [1] 11.64345
-## 
-## [[35]]
-## [1] 10.30103
-## 
-## [[36]]
-## [1] 11.94448
-## 
-## [[37]]
-## [1] 11.96848
-## 
-## [[38]]
-## [1] 11.30103
-## 
-## [[39]]
-## [1] 11.32222
-## 
-## [[40]]
-## [1] 11.716
-## 
-## [[41]]
-## [1] 11.61278
-## 
-## [[42]]
 ## [1] 11.83251
 ## 
-## [[43]]
-## [1] 11.77815
+## [[34]]
+## [1] 11.49136
 ## 
-## [[44]]
-## [1] 11.92942
+## [[35]]
+## [1] 11.27875
 ## 
-## [[45]]
-## [1] 11.17609
+## [[36]]
+## [1] 11.75587
 ## 
-## [[46]]
-## [1] 11.97772
+## [[37]]
+## [1] 10.95424
 ## 
-## [[47]]
+## [[38]]
 ## [1] 11.86923
 ## 
+## [[39]]
+## [1] 11.85733
+## 
+## [[40]]
+## [1] 11.90309
+## 
+## [[41]]
+## [1] 11.94939
+## 
+## [[42]]
+## [1] 11.43136
+## 
+## [[43]]
+## [1] 11.68124
+## 
+## [[44]]
+## [1] 11.79934
+## 
+## [[45]]
+## [1] 11.86332
+## 
+## [[46]]
+## [1] 11.44716
+## 
+## [[47]]
+## [1] 11.88649
+## 
 ## [[48]]
-## [1] 11.53148
+## [1] 11.5563
 ## 
 ## [[49]]
-## [1] 11.11394
+## [1] 11.38021
 ## 
 ## [[50]]
-## [1] 11.39794
+## [1] 12
 ## 
 ## [[51]]
-## [1] 11.98227
+## [1] 11.87506
 ## 
 ## [[52]]
-## [1] 11.82607
+## [1] 11.78533
 ## 
 ## [[53]]
-## [1] 11.8451
+## [1] 10.77815
 ## 
 ## [[54]]
-## [1] 11.59106
+## [1] 11.79239
 ## 
 ## [[55]]
-## [1] 11.97313
+## [1] 11.36173
 ## 
 ## [[56]]
-## [1] 11.04139
+## [1] 11.66276
 ## 
 ## [[57]]
-## [1] 10.60206
+## [1] 11.5682
 ## 
 ## [[58]]
-## [1] 11.62325
+## [1] 11.61278
 ## 
 ## [[59]]
-## [1] 11.41497
+## [1] 11.97772
 ## 
 ## [[60]]
-## [1] 11</code></pre>
+## [1] 11.07918</code></pre>
 </div>
 <div id="task-2-1" class="section level4">
 <h4>Task 2</h4>
@@ -3236,8 +3236,8 @@ div.tocify {
 <a class="sourceLine" id="cb11-2" title="2">dataset2 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">A =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb11-3" title="3"><span class="kw">sapply</span>(dataset2, Function2)</a></code></pre></div>
 <pre><code>##  [1] 2.818282e+00 7.489056e+00 2.018554e+01 5.469815e+01 1.485132e+02 4.035288e+02 1.096733e+03
-##  [8] 2.981058e+03 8.103184e+03 2.202657e+04 1.324567e+00 9.501508e-01 3.907438e-01 1.158539e+00
-## [15] 4.606644e-01 7.105956e-01 4.451709e-01 9.697087e-01 1.446280e+00 5.603390e-01</code></pre>
+##  [8] 2.981058e+03 8.103184e+03 2.202657e+04 2.276785e+00 1.938227e+00 1.275596e+00 7.003055e-01
+## [15] 5.762683e-01 2.846876e+00 4.692274e+00 1.195122e+00 5.059284e-01 4.913664e-01</code></pre>
 </div>
 <div id="task-2-2" class="section level4">
 <h4>Task 2</h4>
@@ -3274,7 +3274,14 @@ div.tocify {
 Hint
 </button>
 <div id="sapply3" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-<p>Use the functions summary_continuous() and summary_categorical(). <code> summary_continuous &lt;- function(x) { <br>    paste0(round(mean(x), 1), &#39; ( ‘, round(sd(x), 1),’) &#39;) <br> } </code> <br><br>summary_categorical &lt;- function(x) { <br>    tab &lt;- prop.table(table(x)) <br>    paste0(round(tab * 100, 1), “%”, names(tab), collapse = “,”) <br>}</p>
+<p>Use the functions summary_continuous() and summary_categorical().<br />
+<code>summary_continuous &lt;- function(x) {</code><br />
+   <code>paste0(round(mean(x), 1), &quot; ( &quot;, round(sd(x), 1), &quot;) &quot;)</code><br />
+<code>}</code></p>
+<p><code>summary_categorical &lt;- function(x) {</code><br />
+   <code>tab &lt;- prop.table(table(x))</code><br />
+   <code>paste0(round(tab * 100, 1), &quot;% &quot;, names(tab), collapse = &quot;, &quot;)</code><br />
+<code>}</code></p>
 </div>
 </div>
 </div>

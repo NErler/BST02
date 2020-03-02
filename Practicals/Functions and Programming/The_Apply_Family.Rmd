@@ -241,18 +241,15 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```{r sapply3_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#sapply3">Hint</button>
 <div id = "sapply3" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use the functions summary_continuous() and summary_categorical().
-<code>
-summary_continuous <- function(x) { 
-<br>
-  &nbsp;&nbsp; paste0(round(mean(x), 1), &apos; ( &apos;, round(sd(x), 1), &apos;) &apos;)
-<br>
-}
-</code>
-<br><br>summary_categorical <- function(x) {
-<br>  &nbsp;&nbsp; tab <- prop.table(table(x))
-<br>  &nbsp;&nbsp; paste0(round(tab * 100, 1), "% ", names(tab), collapse = ", ")
-<br>}
+Use the functions summary_continuous() and summary_categorical(). \\
+`summary_continuous <- function(x) { ` \\
+ &nbsp;&nbsp;  `paste0(round(mean(x), 1), " ( ", round(sd(x), 1), ") ") ` \\
+`}`
+
+`summary_categorical <- function(x) {` \\
+ &nbsp;&nbsp; `tab <- prop.table(table(x)) `\\
+ &nbsp;&nbsp; `paste0(round(tab * 100, 1), "% ", names(tab), collapse = ", ")`\\
+`}`
 </div>')
 ```
 
