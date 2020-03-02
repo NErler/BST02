@@ -637,13 +637,13 @@ Manipulate \blue{vectors} or slices of data from \blue{matrices}, \blue{data fra
 
 ## How To Use apply() in R
 
-* Operates on \blue{\texttt{matrix}} and \blue{\texttt{data.frame}}
+* Operates on \blue{\texttt{matrix}}
 
 \begincols[t, onlytextwidth]
 \begincol{0.47\linewidth}
 * By column
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mat <- matrix(1:6, 3, 3)
+mat <- matrix(1:4, 2, 2)
 mat
 apply(mat, 2, sum)
 ```
@@ -663,13 +663,13 @@ apply(mat, 1, sum)
 
 ## How To Use apply() in R  
 
-* Operates on \blue{\texttt{matrix}} and \blue{\texttt{data.frame}}
+* Operates on \blue{\texttt{matrix}}
 
 \begincols[t, onlytextwidth]
 \begincol{0.47\linewidth}
 * By column
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mat <- matrix(1:6, 3, 3)
+mat <- matrix(1:4, 2, 2)
 mat
 apply(mat, 2, mean)
 ```
@@ -695,7 +695,7 @@ apply(mat, 1, mean)
 \begincol{0.47\linewidth}
 * By column
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mat <- matrix(1:6, 3, 3)
+mat <- matrix(1:4, 2, 2)
 mat
 apply(mat, 2, function(x) 
           sum(x)/(length(x)-1))
