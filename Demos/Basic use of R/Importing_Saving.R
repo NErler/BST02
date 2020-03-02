@@ -35,11 +35,11 @@ dt <- pbc[1:6, c("id", "sex", "bili", "chol")]
 p <- 1
 
 #save(dt, p, file = "data.RData")
-#saveRDS(dt, file = "data.RData")
+#saveRDS(dt, file = "data1.RData")
 
 #' ## Load previous work
 #load("data.RData")
-#readRDS("data.RData")
+#readRDS("data1.RData")
 
 #' ## Transform a RData data set into xls, csv or text format
 #write.csv(dt, "mydata.csv")
