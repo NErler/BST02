@@ -36,12 +36,15 @@ static <- TRUE
 
 options(width = 100)
 
+heart <- survival::heart
+
 ```
 
 
 ```{r packages, include = FALSE}
 library(kableExtra)
 library(knitr)
+library(memisc)
 ```
 
 
@@ -109,7 +112,7 @@ asis_output("#### Task 2\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Create the matrix `dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))` and find the row medians of `dataset1`.
+Create the matrix `dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))` and find the row sum of `dataset1`.
 
 
 ```{r, eval = static, echo = FALSE}
@@ -120,7 +123,7 @@ asis_output("#### Solution 2\\n")
 
 ```{r apply2-solution, solution = TRUE}
 dataset1 <- cbind(A = 1:30, B = sample(1:100, 30))
-apply(dataset1, 1, median)
+apply(dataset1, 1, sum)
 ```
 
 
@@ -209,8 +212,8 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 * Create a list that consist of the variable `transplant` from the **heart** data set and the variable `status` from the **retinopathy** data set. Give the name `list2` to this list. \
-* Obtain the percentages of 0 of each element of the list in a simplified output (as a vector).
-* Obtain the percentages of 1 of each element of the list in a simplified output (as a vector).
+* Obtain the percentages of 0 cases of each element of the list in a simplified output (as a vector).
+* Obtain the percentages of 1 cases of each element of the list in a simplified output (as a vector).
 
 ```{r, eval = static, echo = FALSE}
 asis_output("</div>")
@@ -220,8 +223,8 @@ asis_output("#### Solution 2\\n")
 
 ```{r sapply2-solution, solution = TRUE}
 list2 <- list(heart$transplant, retinopathy$status)
-sapply(list2, function(x) table(x)[1]/length(x))
-sapply(list2, function(x) table(x)[2]/length(x))
+sapply(list2, function(x) percent(x))
+sapply(list2, function(x) percent(x))
 ```
 
 
@@ -239,10 +242,13 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#sapply3">Hint</button>
 <div id = "sapply3" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the functions summary_continuous() and summary_categorical().
-<br><br>
+<code>
 summary_continuous <- function(x) { 
-<br>  &nbsp;&nbsp; paste0(round(mean(x), 1), " (", round(sd(x), 1), ")")
-<br>}
+<br>
+  &nbsp;&nbsp; paste0(round(mean(x), 1), &apos; ( &apos;, round(sd(x), 1), &apos;) &apos;)
+<br>
+}
+</code>
 <br><br>summary_categorical <- function(x) {
 <br>  &nbsp;&nbsp; tab <- prop.table(table(x))
 <br>  &nbsp;&nbsp; paste0(round(tab * 100, 1), "% ", names(tab), collapse = ", ")

@@ -71,11 +71,11 @@ https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
 
 
 
-## Data Manipulation, Exploration and Visualization
+## Data Transformation, Exploration and Visualization
 
 Before starting with any statistical analysis it is important to transform and explore your data set.
 
-### Data Manipulation {.tabset .tabset-fade .tabset-pills}
+### Data Transformation {.tabset .tabset-fade .tabset-pills}
 
 
 ```{r, eval = static, echo = FALSE}
@@ -161,7 +161,7 @@ Give this variable the name `futimeCat`. Print the first 6 rows of the data.
 ```{r man3_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#man3">Hint</button>
 <div id = "man3" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
-Use the function cut(..., right = FALSE) to convert a continuous variable to a categorical variable. If you need help check ?cut. Use the function factor(...) to convert a variable into a factor. 
+Create a variable that is identical to the futime variable (use the name futimeCut). Then use indexing to select the correct subset and set it to the new categorical variable.
 </div>')
 ```
 
@@ -172,8 +172,10 @@ asis_output("#### Solution 3\\n")
 ```
 
 ```{r man3-solution, solution = TRUE}
-retinopathy$futimeCat <- cut(retinopathy$futime, c(min(retinopathy$futime), 25, 45, max(retinopathy$futime)), right = FALSE)
-retinopathy$futimeCat <- factor(retinopathy$futimeCat, levels = c("[0.3,25)", "[25,45)", "[45,75)"), labels = c("short", "medium", "long"))
+retinopathy$futimeCut <- retinopathy$futime
+retinopathy$futimeCut[retinopathy$futime < 25] <- "low"
+retinopathy$futimeCut[retinopathy$futime >= 25 & retinopathy$futime < 45] <- "med"
+retinopathy$futimeCut[retinopathy$futime >= 45] <- "high"
 head(retinopathy)
 ```
 
@@ -466,7 +468,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 
 Using the **heart** data set: \
 
-* Create a scatterplot with the variables `age` and `year`  \
+* Create a scatterplot with the variables `age` and `year`. \
 * Change the labels of the axis. In particular, give the name `Age` for the x-axis and `Year of acceptance` for the y-axis. \
 * Give a different color to the patients that had a transplant. \
 * Add a legend.
