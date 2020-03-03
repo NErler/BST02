@@ -1524,17 +1524,29 @@ div.tocify {
 </div>
 
 
+
 <div id="linear-regression" class="section level2">
 <h2>Linear Regression</h2>
 <p>Fit a linear regression model</p>
+
+<pre class="r"><code>mod &lt;- lm(Infant.Mortality ~ Fertility + Agriculture + Education + Catholic,
+          data = swiss)</code></pre>
 </div>
 <div id="model-formula" class="section level2">
 <h2>Model Formula</h2>
 <p>We can extract the model formula using the <code>formula()</code> function:</p>
+
+<pre class="r"><code>formula(mod)</code></pre>
 <pre><code>Infant.Mortality ~ Fertility + Agriculture + Education + Catholic</code></pre>
 <p>Add an interaction term:</p>
+
+<pre class="r"><code>fmla1 &lt;- Infant.Mortality ~ Fertility * Agriculture + Education + Catholic
+fmla1</code></pre>
 <pre><code>Infant.Mortality ~ Fertility * Agriculture + Education + Catholic</code></pre>
 <p>Within <code>lm()</code> a <code>model.matrix</code> is generated from the model <code>formula</code> and the <code>data</code>. We can do the same to see how a <code>formula</code> is translated into variables:</p>
+
+<pre class="r"><code>X &lt;- model.matrix(fmla1, data = swiss)
+head(X)</code></pre>
 <pre><code>             (Intercept) Fertility Agriculture Education Catholic Fertility:Agriculture
 Courtelary             1      80.2        17.0        12     9.96               1363.40
 Delemont               1      83.1        45.1         9    84.84               3747.81
@@ -1543,6 +1555,9 @@ Moutier                1      85.8        36.5         7    33.77               
 Neuveville             1      76.9        43.5        15     5.16               3345.15
 Porrentruy             1      76.1        35.3         7    90.57               2686.33</code></pre>
 <p>To get all pairwise interaction terms:</p>
+
+<pre class="r"><code>fmla2 &lt;- Infant.Mortality ~ (Fertility + Agriculture + Education + Catholic)^2
+head(model.matrix(fmla2, data = swiss))</code></pre>
 <pre><code>             (Intercept) Fertility Agriculture Education Catholic Fertility:Agriculture
 Courtelary             1      80.2        17.0        12     9.96               1363.40
 Delemont               1      83.1        45.1         9    84.84               3747.81
@@ -1565,6 +1580,11 @@ Moutier                  236.39
 Neuveville                77.40
 Porrentruy               633.99</code></pre>
 <p>Remove the intercept:</p>
+
+<pre class="r"><code>fmla3 &lt;- Infant.Mortality ~ 0 + Fertility + Agriculture + Education + Catholic
+fmla4 &lt;- Infant.Mortality ~ -1 + Fertility + Agriculture + Education + Catholic
+
+head(model.matrix(fmla3, data = swiss))</code></pre>
 <pre><code>             Fertility Agriculture Education Catholic
 Courtelary        80.2        17.0        12     9.96
 Delemont          83.1        45.1         9    84.84
@@ -1572,6 +1592,7 @@ Franches-Mnt      92.5        39.7         5    93.40
 Moutier           85.8        36.5         7    33.77
 Neuveville        76.9        43.5        15     5.16
 Porrentruy        76.1        35.3         7    90.57</code></pre>
+<pre class="r"><code>head(model.matrix(fmla4, data = swiss))</code></pre>
 <pre><code>             Fertility Agriculture Education Catholic
 Courtelary        80.2        17.0        12     9.96
 Delemont          83.1        45.1         9    84.84
@@ -1580,6 +1601,9 @@ Moutier           85.8        36.5         7    33.77
 Neuveville        76.9        43.5        15     5.16
 Porrentruy        76.1        35.3         7    90.57</code></pre>
 <p>Use all 2-way interactions except for one:</p>
+
+<pre class="r"><code>fmla5 &lt;- Infant.Mortality ~ (Fertility + Agriculture + Education + Catholic)^2 - Agriculture:Education
+head(model.matrix(fmla5, data = swiss))</code></pre>
 <pre><code>             (Intercept) Fertility Agriculture Education Catholic Fertility:Agriculture
 Courtelary             1      80.2        17.0        12     9.96               1363.40
 Delemont               1      83.1        45.1         9    84.84               3747.81
@@ -1597,6 +1621,11 @@ Porrentruy                 532.7           6892.377             3197.121        
 </div>
 <div id="the-subset-argument" class="section level2">
 <h2>The <code>subset</code> argument:</h2>
+
+<pre class="r"><code>mod_sub &lt;- lm(Infant.Mortality ~ Fertility + Agriculture + Education + Catholic,
+              data = swiss, subset = Catholic &gt; 5)
+
+summary(mod_sub)</code></pre>
 <pre><code>
 Call:
 lm(formula = Infant.Mortality ~ Fertility + Agriculture + Education + 
@@ -1619,9 +1648,18 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Residual standard error: 2.42 on 31 degrees of freedom
 Multiple R-squared:  0.304, Adjusted R-squared:  0.2141 
 F-statistic: 3.384 on 4 and 31 DF,  p-value: 0.02078</code></pre>
+
 </div>
 <div id="logistic-regression" class="section level2">
 <h2>Logistic Regression</h2>
+
+<pre class="r"><code>mod2 &lt;- glm(case ~ age + education + spontaneous, data = infert, family = binomial())
+
+mod2a &lt;- glm(case ~ age + education + spontaneous, data = infert, family = binomial)
+mod2b &lt;- glm(case ~ age + education + spontaneous, data = infert, family = &#39;binomial&#39;)
+mod2c &lt;- glm(case ~ age + education + spontaneous, data = infert, family = binomial(link = &#39;probit&#39;))
+
+mod2</code></pre>
 <pre><code>
 Call:  glm(formula = case ~ age + education + spontaneous, family = binomial(), 
     data = infert)
@@ -1633,6 +1671,7 @@ Coefficients:
 Degrees of Freedom: 247 Total (i.e. Null);  243 Residual
 Null Deviance:      316.2 
 Residual Deviance: 283.4    AIC: 293.4</code></pre>
+<pre class="r"><code>mod2a</code></pre>
 <pre><code>
 Call:  glm(formula = case ~ age + education + spontaneous, family = binomial, 
     data = infert)
@@ -1644,6 +1683,7 @@ Coefficients:
 Degrees of Freedom: 247 Total (i.e. Null);  243 Residual
 Null Deviance:      316.2 
 Residual Deviance: 283.4    AIC: 293.4</code></pre>
+<pre class="r"><code>mod2b</code></pre>
 <pre><code>
 Call:  glm(formula = case ~ age + education + spontaneous, family = &quot;binomial&quot;, 
     data = infert)
@@ -1655,6 +1695,7 @@ Coefficients:
 Degrees of Freedom: 247 Total (i.e. Null);  243 Residual
 Null Deviance:      316.2 
 Residual Deviance: 283.4    AIC: 293.4</code></pre>
+<pre class="r"><code>mod2c</code></pre>
 <pre><code>
 Call:  glm(formula = case ~ age + education + spontaneous, family = binomial(link = &quot;probit&quot;), 
     data = infert)
@@ -1667,6 +1708,11 @@ Degrees of Freedom: 247 Total (i.e. Null);  243 Residual
 Null Deviance:      316.2 
 Residual Deviance: 283.4    AIC: 293.4</code></pre>
 <p>We can also fit a linear regression model using glm:</p>
+
+<pre class="r"><code>mod_lm &lt;- glm(Infant.Mortality ~ Fertility + Agriculture + Education + Catholic,
+              data = swiss, family = gaussian())
+
+mod_lm</code></pre>
 <pre><code>
 Call:  glm(formula = Infant.Mortality ~ Fertility + Agriculture + Education + 
     Catholic, family = gaussian(), data = swiss)
@@ -1678,6 +1724,7 @@ Coefficients:
 Degrees of Freedom: 46 Total (i.e. Null);  42 Residual
 Null Deviance:      390.3 
 Residual Deviance: 296.1    AIC: 231.9</code></pre>
+<pre class="r"><code>mod</code></pre>
 <pre><code>
 Call:
 lm(formula = Infant.Mortality ~ Fertility + Agriculture + Education + 
@@ -1690,6 +1737,8 @@ Coefficients:
 <div id="formula-categorical-covariates" class="section level2">
 <h2>Formula: Categorical covariates</h2>
 <p>When we have categorical covariates (coded as <code>factor</code>) R automatically creates dummy variables:</p>
+
+<pre class="r"><code>head(model.matrix(formula(mod2), data = infert))</code></pre>
 <pre><code>  (Intercept) age education6-11yrs education12+ yrs spontaneous
 1           1  26                0                0           2
 2           1  42                0                0           0
@@ -1698,11 +1747,15 @@ Coefficients:
 5           1  35                1                0           1
 6           1  36                1                0           1</code></pre>
 <p><code>contrasts()</code> shows us the coding of the variable that is used:</p>
+
+<pre class="r"><code>contrasts(infert$education)</code></pre>
 <pre><code>        6-11yrs 12+ yrs
 0-5yrs        0       0
 6-11yrs       1       0
 12+ yrs       0       1</code></pre>
 <p>Note that for <strong>ordered</strong> factors R does not use dummy coding:</p>
+
+<pre class="r"><code>contrasts(as.ordered(infert$education))</code></pre>
 <pre><code>                .L         .Q
 [1,] -7.071068e-01  0.4082483
 [2,] -7.850462e-17 -0.8164966
@@ -1711,6 +1764,8 @@ Coefficients:
 <div id="model-results" class="section level2">
 <h2>Model results</h2>
 <p>Get the model summary</p>
+
+<pre class="r"><code>summary(mod)</code></pre>
 <pre><code>
 Call:
 lm(formula = Infant.Mortality ~ Fertility + Agriculture + Education + 
@@ -1733,6 +1788,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Residual standard error: 2.655 on 42 degrees of freedom
 Multiple R-squared:  0.2412,    Adjusted R-squared:  0.1689 
 F-statistic: 3.337 on 4 and 42 DF,  p-value: 0.01844</code></pre>
+<pre class="r"><code>summary(mod2)</code></pre>
 <pre><code>
 Call:
 glm(formula = case ~ age + education + spontaneous, family = binomial(), 
@@ -1760,17 +1816,23 @@ AIC: 293.4
 
 Number of Fisher Scoring iterations: 4</code></pre>
 <p>Note: Coefficients are on the scale of the linear predictor, i.e., the log odds ratio for a logistic regression model. Extract the regression coefficients</p>
+
+<pre class="r"><code>coef(mod)</code></pre>
 <pre><code> (Intercept)    Fertility  Agriculture    Education     Catholic 
  9.609098835  0.147984123 -0.014851920  0.073460957 -0.002446186 </code></pre>
+<pre class="r"><code>coef(mod2)</code></pre>
 <pre><code>     (Intercept)              age education6-11yrs education12+ yrs      spontaneous 
      -1.64882982       0.01280384      -0.11687389      -0.16938304       1.07697251 </code></pre>
 <p>Obtain the confidence interval</p>
+
+<pre class="r"><code>confint(mod)</code></pre>
 <pre><code>                  2.5 %      97.5 %
 (Intercept) -0.08203297 19.30023064
 Fertility    0.04223708  0.25373117
 Agriculture -0.06865983  0.03895599
 Education   -0.08314788  0.23006980
 Catholic    -0.02838390  0.02349153</code></pre>
+<pre class="r"><code>confint(mod2)</code></pre>
 <pre><code>Waiting for profiling to be done...</code></pre>
 <pre><code>                       2.5 %     97.5 %
 (Intercept)      -4.12569474 0.74226630
@@ -1779,6 +1841,8 @@ education6-11yrs -1.44077386 1.35368212
 education12+ yrs -1.53126736 1.32456784
 spontaneous       0.69768248 1.47805996</code></pre>
 <p>The function <code>confint()</code> also has arguments <code>parm</code> and <code>level</code> that let us specify for which parameters we want to get the confidence interval and the confidence level.</p>
+
+<pre class="r"><code>confint(mod, level = 0.9, parm = -1)</code></pre>
 <pre><code>                    5 %       95 %
 Fertility    0.05985018 0.23611806
 Agriculture -0.05969765 0.02999381

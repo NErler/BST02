@@ -2619,6 +2619,105 @@ window.onload = function() {
 </script>
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <style type="text/css">
@@ -2852,6 +2951,7 @@ div.tocify {
 </div>
 
 
+
 <div id="preface" class="section level2" data-progressive="FALSE">
 <h2>Preface</h2>
 <div id="r-packages" class="section level3">
@@ -2868,8 +2968,10 @@ div.tocify {
 <p><a href="https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html" class="uri">https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html</a></p>
 <p><a href="https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html" class="uri">https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html</a></p>
 <p>Always check your data.</p>
+
 <div id="task" class="section level4">
 <h4>Task</h4>
+
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Explore the <strong>heart</strong> and <strong>retinopathy</strong> data sets - print the first six and last six rows.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#data">
@@ -2882,21 +2984,27 @@ Hint
 </div>
 <div id="solution" class="section level4">
 <h4>Solution</h4>
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(survival)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">head</span>(heart)</a></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["start"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["stop"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["event"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["age"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["surgery"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["transplant"],"name":[7],"type":["fctr"],"align":["left"]},{"label":["id"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"0","2":"50","3":"1","4":"-17.155373","5":"0.1232033","6":"0","7":"0","8":"1","_rn_":"1"},{"1":"0","2":"6","3":"1","4":"3.835729","5":"0.2546201","6":"0","7":"0","8":"2","_rn_":"2"},{"1":"0","2":"1","3":"0","4":"6.297057","5":"0.2655715","6":"0","7":"0","8":"3","_rn_":"3"},{"1":"1","2":"16","3":"1","4":"6.297057","5":"0.2655715","6":"0","7":"1","8":"3","_rn_":"4"},{"1":"0","2":"36","3":"0","4":"-7.737166","5":"0.4900753","6":"0","7":"0","8":"4","_rn_":"5"},{"1":"36","2":"39","3":"1","4":"-7.737166","5":"0.4900753","6":"0","7":"1","8":"4","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">tail</span>(heart)</a></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["start"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["stop"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["event"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["age"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["surgery"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["transplant"],"name":[7],"type":["fctr"],"align":["left"]},{"label":["id"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"0","2":"21","3":"1","4":"1.834360","5":"6.23408624","6":"0","7":"0","8":"99","_rn_":"167"},{"1":"0","2":"38","3":"0","4":"-12.939083","5":"6.39561944","6":"1","7":"0","8":"100","_rn_":"168"},{"1":"38","2":"39","3":"0","4":"-12.939083","5":"6.39561944","6":"1","7":"1","8":"100","_rn_":"169"},{"1":"0","2":"31","3":"0","4":"1.516769","5":"6.41752225","6":"0","7":"0","8":"101","_rn_":"170"},{"1":"0","2":"11","3":"0","4":"-7.608487","5":"6.47227926","6":"0","7":"0","8":"102","_rn_":"171"},{"1":"0","2":"6","3":"1","4":"-8.684463","5":"-0.04928131","6":"0","7":"0","8":"103","_rn_":"172"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">head</span>(retinopathy)</a></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["laser"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["eye"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["age"],"name":[4],"type":["int"],"align":["right"]},{"label":["type"],"name":[5],"type":["fctr"],"align":["left"]},{"label":["trt"],"name":[6],"type":["fctr"],"align":["left"]},{"label":["futime"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["status"],"name":[8],"type":["fctr"],"align":["left"]},{"label":["risk"],"name":[9],"type":["int"],"align":["right"]}],"data":[{"1":"5","2":"argon","3":"left","4":"28","5":"adult","6":"1","7":"46.23","8":"0","9":"9","_rn_":"1"},{"1":"5","2":"argon","3":"left","4":"28","5":"adult","6":"0","7":"46.23","8":"0","9":"9","_rn_":"2"},{"1":"14","2":"argon","3":"right","4":"12","5":"juvenile","6":"1","7":"42.50","8":"0","9":"8","_rn_":"3"},{"1":"14","2":"argon","3":"right","4":"12","5":"juvenile","6":"0","7":"31.30","8":"1","9":"6","_rn_":"4"},{"1":"16","2":"xenon","3":"right","4":"9","5":"juvenile","6":"1","7":"42.27","8":"0","9":"11","_rn_":"5"},{"1":"16","2":"xenon","3":"right","4":"9","5":"juvenile","6":"0","7":"42.27","8":"0","9":"11","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">tail</span>(retinopathy)</a></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["laser"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["eye"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["age"],"name":[4],"type":["int"],"align":["right"]},{"label":["type"],"name":[5],"type":["fctr"],"align":["left"]},{"label":["trt"],"name":[6],"type":["fctr"],"align":["left"]},{"label":["futime"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["status"],"name":[8],"type":["fctr"],"align":["left"]},{"label":["risk"],"name":[9],"type":["int"],"align":["right"]}],"data":[{"1":"1727","2":"argon","3":"right","4":"33","5":"adult","6":"1","7":"49.97","8":"0","9":"9","_rn_":"389"},{"1":"1727","2":"argon","3":"right","4":"33","5":"adult","6":"0","7":"2.90","8":"1","9":"10","_rn_":"390"},{"1":"1746","2":"argon","3":"right","4":"3","5":"juvenile","6":"1","7":"45.90","8":"0","9":"10","_rn_":"391"},{"1":"1746","2":"argon","3":"right","4":"3","5":"juvenile","6":"0","7":"1.43","8":"1","9":"10","_rn_":"392"},{"1":"1749","2":"argon","3":"right","4":"32","5":"adult","6":"1","7":"41.93","8":"0","9":"9","_rn_":"393"},{"1":"1749","2":"argon","3":"right","4":"32","5":"adult","6":"0","7":"41.93","8":"0","9":"9","_rn_":"394"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2911,8 +3019,10 @@ Hint
 <div id="vectors" class="section level3 tabset tabset-fade tabset-pills">
 <h3>Vectors</h3>
 <p>Let’s investigate some vectors.</p>
+
 <div id="task-1" class="section level4">
 <h4>Task 1</h4>
+
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>View the vectors <code>event</code> and <code>age</code> from the <strong>heart</strong> data set.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#vec">
@@ -2925,10 +3035,13 @@ Hint
 </div>
 <div id="solution-1" class="section level4">
 <h4>Solution 1</h4>
+
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">heart<span class="op">$</span>event</a></code></pre></div>
 <pre><code>  [1] 1 1 0 1 0 1 1 1 0 1 1 1 0 1 0 1 1 0 1 0 1 1 0 1 1 0 1 1 0 1 0 1 0 1 0 1 0 1 0 0 0 1 0 1 1 0 1
  [48] 1 0 1 0 0 0 0 1 0 1 0 1 0 1 0 1 0 0 0 0 1 1 1 0 1 0 1 0 1 1 0 0 0 1 0 1 1 0 1 1 0 1 0 0 1 0 1
  [95] 0 0 0 1 1 1 0 0 0 1 0 1 1 0 1 0 1 0 0 0 1 0 0 0 0 0 1 0 1 1 0 0 1 0 0 0 1 0 0 0 0 0 0 1 0 1 1
 [142] 0 0 0 1 0 0 0 1 0 1 1 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 0 0 0 0 1</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">heart<span class="op">$</span>age</a></code></pre></div>
 <pre><code>  [1] -17.15537303   3.83572895   6.29705681   6.29705681  -7.73716632  -7.73716632 -27.21423682
   [8]   6.59548255   2.86926762   2.86926762  -2.65023956  -0.83778234  -5.49760438  -5.49760438
  [15]  -0.01916496  -0.01916496   5.19370294   6.57357974   6.57357974   6.01232033   6.01232033
@@ -2954,9 +3067,11 @@ Hint
 [155]  -0.24914442  -0.24914442  -4.15879535  -4.15879535  -7.71800137  -7.71800137 -21.34976044
 [162] -21.34976044 -24.38329911 -24.38329911 -19.37029432 -19.37029432   1.83436003 -12.93908282
 [169] -12.93908282   1.51676934  -7.60848734  -8.68446270</code></pre>
+
 </div>
 <div id="task-2" class="section level4">
 <h4>Task 2</h4>
+
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>View the vectors <code>eye</code> and <code>risk</code> from the <strong>retinopathy</strong> data set.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#vec2">
@@ -2969,6 +3084,8 @@ Hint
 </div>
 <div id="solution-2" class="section level4">
 <h4>Solution 2</h4>
+
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">retinopathy<span class="op">$</span>eye</a></code></pre></div>
 <pre><code>  [1] left  left  right right right right left  left  left  left  right right right right right
  [16] right right right right right left  left  right right left  left  right right right right
  [31] left  left  left  left  right right right right right right left  left  right right right
@@ -2997,6 +3114,7 @@ Hint
 [376] right left  left  left  left  right right left  left  left  left  left  left  right right
 [391] right right right right
 Levels: right left</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">retinopathy<span class="op">$</span>risk</a></code></pre></div>
 <pre><code>  [1]  9  9  8  6 11 11 11 11  9 10  9  9  8  6  8  9  9 10  9  9  9  9 11 12 11  6  6 10 10  9  9
  [32] 10 12  9  9  9  6  8 11 12  9  9  9 12 10 10 12 11 12  9  9 11  9 11 10 12 11 11 10  9  9  9
  [63] 10  8  9  8  9  9  9 11 11 12 11  8  9  9  9  9 10 12 10  9  8 12 10 12 10 10 11 10 10 10 11
@@ -3010,9 +3128,11 @@ Levels: right left</code></pre>
 [311]  6  6 11 11 11 11 10  9  8 12 11 11 11 11  9 10  8 12  9  9  9  8 11  9 11  9  9  9 12 11 10
 [342]  9  9  9 12 10 12 11 10  9  9  9  9  9  9 10  8 12  9 10 10 10  9  9  9 12 10 12  6  6 11  9
 [373]  9  9 10 12  6  8  9  9 10  8 11 10  8  8 12 11  9 10 10 10  9  9</code></pre>
+
 </div>
 <div id="task-3" class="section level4">
 <h4>Task 3</h4>
+
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Create a numerical vector that consists of the values: 34, 24, 19, 23, 16. Give the name <code>numbers</code> to this new vector.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#vec3">
@@ -3025,9 +3145,13 @@ Hint
 </div>
 <div id="solution-3" class="section level4">
 <h4>Solution 3</h4>
+
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">34</span>, <span class="dv">24</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">16</span>)</a></code></pre></div>
+
 </div>
 <div id="task-4" class="section level4">
 <h4>Task 4</h4>
+
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Create a numerical vector that takes the integer values from 1 until 200. Give the name <code>numbers_2</code> to this new vector.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#vec4">
@@ -3040,9 +3164,13 @@ Hint
 </div>
 <div id="solution-4" class="section level4">
 <h4>Solution 4</h4>
+
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">numbers_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">200</span>)</a></code></pre></div>
+
 </div>
 <div id="task-5" class="section level4">
 <h4>Task 5</h4>
+
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Create a categorical vector that consists of the values: yes, yes, no, no, no, yes. Give the name <code>treatment</code> to this new vector.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#vec5">
@@ -3055,13 +3183,17 @@ Hint
 </div>
 <div id="solution-5" class="section level4">
 <h4>Solution 5</h4>
+
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">treatment &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;yes&quot;</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;yes&quot;</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="matrices-and-data-frames" class="section level3 tabset tabset-fade tabset-pills">
 <h3>Matrices and Data Frames</h3>
 <p>Let’s investigate some matrices and data frames.</p>
+
 <div id="task-1-1" class="section level4">
 <h4>Task 1</h4>
+
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Create a matrix using the vectors <code>id</code> and <code>age</code> from the <strong>heart</strong> data set. This matrix should have 2 columns where each column represents each variable.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#mat">
@@ -3074,6 +3206,8 @@ Hint
 </div>
 <div id="solution-1-1" class="section level4">
 <h4>Solution 1</h4>
+
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">matrix</span>(<span class="kw">c</span>(heart<span class="op">$</span>id, heart<span class="op">$</span>age), , <span class="dv">2</span>) </a></code></pre></div>
 <pre><code>       [,1]         [,2]
   [1,]    1 -17.15537303
   [2,]    2   3.83572895
@@ -3247,9 +3381,11 @@ Hint
 [170,]  101   1.51676934
 [171,]  102  -7.60848734
 [172,]  103  -8.68446270</code></pre>
+
 </div>
 <div id="task-2-1" class="section level4">
 <h4>Task 2</h4>
+
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Create a data frame using the vectors <code>id</code>, <code>type</code> and <code>trt</code> from the <strong>retinopathy</strong> data set. This data frame should have 3 columns, where each column represents each variable.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#df">
@@ -3262,6 +3398,8 @@ Hint
 </div>
 <div id="solution-2-1" class="section level4">
 <h4>Solution 2</h4>
+
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">data.frame</span>(<span class="dt">id =</span> retinopathy<span class="op">$</span>id, <span class="dt">type =</span> retinopathy<span class="op">$</span>type, <span class="dt">trt =</span> retinopathy<span class="op">$</span>trt) </a></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["type"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["trt"],"name":[3],"type":["fctr"],"align":["left"]}],"data":[{"1":"5","2":"adult","3":"1"},{"1":"5","2":"adult","3":"0"},{"1":"14","2":"juvenile","3":"1"},{"1":"14","2":"juvenile","3":"0"},{"1":"16","2":"juvenile","3":"1"},{"1":"16","2":"juvenile","3":"0"},{"1":"25","2":"juvenile","3":"1"},{"1":"25","2":"juvenile","3":"0"},{"1":"29","2":"juvenile","3":"1"},{"1":"29","2":"juvenile","3":"0"},{"1":"46","2":"juvenile","3":"1"},{"1":"46","2":"juvenile","3":"0"},{"1":"49","2":"juvenile","3":"1"},{"1":"49","2":"juvenile","3":"0"},{"1":"56","2":"juvenile","3":"1"},{"1":"56","2":"juvenile","3":"0"},{"1":"61","2":"juvenile","3":"1"},{"1":"61","2":"juvenile","3":"0"},{"1":"71","2":"adult","3":"1"},{"1":"71","2":"adult","3":"0"},{"1":"100","2":"adult","3":"1"},{"1":"100","2":"adult","3":"0"},{"1":"112","2":"adult","3":"1"},{"1":"112","2":"adult","3":"0"},{"1":"120","2":"adult","3":"1"},{"1":"120","2":"adult","3":"0"},{"1":"127","2":"adult","3":"1"},{"1":"127","2":"adult","3":"0"},{"1":"133","2":"adult","3":"1"},{"1":"133","2":"adult","3":"0"},{"1":"150","2":"juvenile","3":"1"},{"1":"150","2":"juvenile","3":"0"},{"1":"167","2":"adult","3":"1"},{"1":"167","2":"adult","3":"0"},{"1":"176","2":"juvenile","3":"1"},{"1":"176","2":"juvenile","3":"0"},{"1":"185","2":"adult","3":"1"},{"1":"185","2":"adult","3":"0"},{"1":"190","2":"juvenile","3":"1"},{"1":"190","2":"juvenile","3":"0"},{"1":"202","2":"juvenile","3":"1"},{"1":"202","2":"juvenile","3":"0"},{"1":"214","2":"adult","3":"1"},{"1":"214","2":"adult","3":"0"},{"1":"220","2":"juvenile","3":"1"},{"1":"220","2":"juvenile","3":"0"},{"1":"243","2":"juvenile","3":"1"},{"1":"243","2":"juvenile","3":"0"},{"1":"255","2":"juvenile","3":"1"},{"1":"255","2":"juvenile","3":"0"},{"1":"264","2":"juvenile","3":"1"},{"1":"264","2":"juvenile","3":"0"},{"1":"266","2":"adult","3":"1"},{"1":"266","2":"adult","3":"0"},{"1":"284","2":"adult","3":"1"},{"1":"284","2":"adult","3":"0"},{"1":"295","2":"juvenile","3":"1"},{"1":"295","2":"juvenile","3":"0"},{"1":"300","2":"adult","3":"1"},{"1":"300","2":"adult","3":"0"},{"1":"302","2":"juvenile","3":"1"},{"1":"302","2":"juvenile","3":"0"},{"1":"315","2":"juvenile","3":"1"},{"1":"315","2":"juvenile","3":"0"},{"1":"324","2":"adult","3":"1"},{"1":"324","2":"adult","3":"0"},{"1":"328","2":"juvenile","3":"1"},{"1":"328","2":"juvenile","3":"0"},{"1":"335","2":"juvenile","3":"1"},{"1":"335","2":"juvenile","3":"0"},{"1":"342","2":"juvenile","3":"1"},{"1":"342","2":"juvenile","3":"0"},{"1":"349","2":"adult","3":"1"},{"1":"349","2":"adult","3":"0"},{"1":"357","2":"adult","3":"1"},{"1":"357","2":"adult","3":"0"},{"1":"368","2":"juvenile","3":"1"},{"1":"368","2":"juvenile","3":"0"},{"1":"385","2":"juvenile","3":"1"},{"1":"385","2":"juvenile","3":"0"},{"1":"396","2":"adult","3":"1"},{"1":"396","2":"adult","3":"0"},{"1":"405","2":"juvenile","3":"1"},{"1":"405","2":"juvenile","3":"0"},{"1":"409","2":"adult","3":"1"},{"1":"409","2":"adult","3":"0"},{"1":"419","2":"adult","3":"1"},{"1":"419","2":"adult","3":"0"},{"1":"429","2":"adult","3":"1"},{"1":"429","2":"adult","3":"0"},{"1":"433","2":"adult","3":"1"},{"1":"433","2":"adult","3":"0"},{"1":"445","2":"juvenile","3":"1"},{"1":"445","2":"juvenile","3":"0"},{"1":"454","2":"juvenile","3":"1"},{"1":"454","2":"juvenile","3":"0"},{"1":"468","2":"juvenile","3":"1"},{"1":"468","2":"juvenile","3":"0"},{"1":"480","2":"juvenile","3":"1"},{"1":"480","2":"juvenile","3":"0"},{"1":"485","2":"juvenile","3":"1"},{"1":"485","2":"juvenile","3":"0"},{"1":"491","2":"adult","3":"1"},{"1":"491","2":"adult","3":"0"},{"1":"503","2":"adult","3":"1"},{"1":"503","2":"adult","3":"0"},{"1":"515","2":"adult","3":"1"},{"1":"515","2":"adult","3":"0"},{"1":"522","2":"juvenile","3":"1"},{"1":"522","2":"juvenile","3":"0"},{"1":"538","2":"adult","3":"1"},{"1":"538","2":"adult","3":"0"},{"1":"547","2":"adult","3":"1"},{"1":"547","2":"adult","3":"0"},{"1":"550","2":"juvenile","3":"1"},{"1":"550","2":"juvenile","3":"0"},{"1":"554","2":"juvenile","3":"1"},{"1":"554","2":"juvenile","3":"0"},{"1":"557","2":"juvenile","3":"1"},{"1":"557","2":"juvenile","3":"0"},{"1":"561","2":"juvenile","3":"1"},{"1":"561","2":"juvenile","3":"0"},{"1":"568","2":"juvenile","3":"1"},{"1":"568","2":"juvenile","3":"0"},{"1":"572","2":"juvenile","3":"1"},{"1":"572","2":"juvenile","3":"0"},{"1":"576","2":"juvenile","3":"1"},{"1":"576","2":"juvenile","3":"0"},{"1":"581","2":"adult","3":"1"},{"1":"581","2":"adult","3":"0"},{"1":"606","2":"juvenile","3":"1"},{"1":"606","2":"juvenile","3":"0"},{"1":"610","2":"juvenile","3":"1"},{"1":"610","2":"juvenile","3":"0"},{"1":"615","2":"juvenile","3":"1"},{"1":"615","2":"juvenile","3":"0"},{"1":"618","2":"juvenile","3":"1"},{"1":"618","2":"juvenile","3":"0"},{"1":"624","2":"juvenile","3":"1"},{"1":"624","2":"juvenile","3":"0"},{"1":"631","2":"juvenile","3":"1"},{"1":"631","2":"juvenile","3":"0"},{"1":"636","2":"juvenile","3":"1"},{"1":"636","2":"juvenile","3":"0"},{"1":"645","2":"juvenile","3":"1"},{"1":"645","2":"juvenile","3":"0"},{"1":"653","2":"juvenile","3":"1"},{"1":"653","2":"juvenile","3":"0"},{"1":"662","2":"juvenile","3":"1"},{"1":"662","2":"juvenile","3":"0"},{"1":"664","2":"juvenile","3":"1"},{"1":"664","2":"juvenile","3":"0"},{"1":"683","2":"adult","3":"1"},{"1":"683","2":"adult","3":"0"},{"1":"687","2":"juvenile","3":"1"},{"1":"687","2":"juvenile","3":"0"},{"1":"701","2":"juvenile","3":"1"},{"1":"701","2":"juvenile","3":"0"},{"1":"706","2":"adult","3":"1"},{"1":"706","2":"adult","3":"0"},{"1":"717","2":"adult","3":"1"},{"1":"717","2":"adult","3":"0"},{"1":"722","2":"juvenile","3":"1"},{"1":"722","2":"juvenile","3":"0"},{"1":"731","2":"juvenile","3":"1"},{"1":"731","2":"juvenile","3":"0"},{"1":"740","2":"juvenile","3":"1"},{"1":"740","2":"juvenile","3":"0"},{"1":"749","2":"adult","3":"1"},{"1":"749","2":"adult","3":"0"},{"1":"757","2":"juvenile","3":"1"},{"1":"757","2":"juvenile","3":"0"},{"1":"760","2":"juvenile","3":"1"},{"1":"760","2":"juvenile","3":"0"},{"1":"766","2":"adult","3":"1"},{"1":"766","2":"adult","3":"0"},{"1":"769","2":"juvenile","3":"1"},{"1":"769","2":"juvenile","3":"0"},{"1":"772","2":"juvenile","3":"1"},{"1":"772","2":"juvenile","3":"0"},{"1":"778","2":"adult","3":"1"},{"1":"778","2":"adult","3":"0"},{"1":"780","2":"juvenile","3":"1"},{"1":"780","2":"juvenile","3":"0"},{"1":"793","2":"adult","3":"1"},{"1":"793","2":"adult","3":"0"},{"1":"800","2":"adult","3":"1"},{"1":"800","2":"adult","3":"0"},{"1":"804","2":"adult","3":"1"},{"1":"804","2":"adult","3":"0"},{"1":"810","2":"juvenile","3":"1"},{"1":"810","2":"juvenile","3":"0"},{"1":"815","2":"adult","3":"1"},{"1":"815","2":"adult","3":"0"},{"1":"832","2":"juvenile","3":"1"},{"1":"832","2":"juvenile","3":"0"},{"1":"834","2":"juvenile","3":"1"},{"1":"834","2":"juvenile","3":"0"},{"1":"838","2":"adult","3":"1"},{"1":"838","2":"adult","3":"0"},{"1":"857","2":"juvenile","3":"1"},{"1":"857","2":"juvenile","3":"0"},{"1":"866","2":"adult","3":"1"},{"1":"866","2":"adult","3":"0"},{"1":"887","2":"adult","3":"1"},{"1":"887","2":"adult","3":"0"},{"1":"903","2":"adult","3":"1"},{"1":"903","2":"adult","3":"0"},{"1":"910","2":"adult","3":"1"},{"1":"910","2":"adult","3":"0"},{"1":"920","2":"juvenile","3":"1"},{"1":"920","2":"juvenile","3":"0"},{"1":"925","2":"adult","3":"1"},{"1":"925","2":"adult","3":"0"},{"1":"931","2":"juvenile","3":"1"},{"1":"931","2":"juvenile","3":"0"},{"1":"936","2":"juvenile","3":"1"},{"1":"936","2":"juvenile","3":"0"},{"1":"945","2":"juvenile","3":"1"},{"1":"945","2":"juvenile","3":"0"},{"1":"949","2":"juvenile","3":"1"},{"1":"949","2":"juvenile","3":"0"},{"1":"952","2":"juvenile","3":"1"},{"1":"952","2":"juvenile","3":"0"},{"1":"962","2":"juvenile","3":"1"},{"1":"962","2":"juvenile","3":"0"},{"1":"964","2":"juvenile","3":"1"},{"1":"964","2":"juvenile","3":"0"},{"1":"971","2":"adult","3":"1"},{"1":"971","2":"adult","3":"0"},{"1":"978","2":"juvenile","3":"1"},{"1":"978","2":"juvenile","3":"0"},{"1":"983","2":"juvenile","3":"1"},{"1":"983","2":"juvenile","3":"0"},{"1":"987","2":"juvenile","3":"1"},{"1":"987","2":"juvenile","3":"0"},{"1":"1002","2":"juvenile","3":"1"},{"1":"1002","2":"juvenile","3":"0"},{"1":"1017","2":"adult","3":"1"},{"1":"1017","2":"adult","3":"0"},{"1":"1029","2":"adult","3":"1"},{"1":"1029","2":"adult","3":"0"},{"1":"1034","2":"juvenile","3":"1"},{"1":"1034","2":"juvenile","3":"0"},{"1":"1037","2":"adult","3":"1"},{"1":"1037","2":"adult","3":"0"},{"1":"1042","2":"adult","3":"1"},{"1":"1042","2":"adult","3":"0"},{"1":"1069","2":"adult","3":"1"},{"1":"1069","2":"adult","3":"0"},{"1":"1074","2":"juvenile","3":"1"},{"1":"1074","2":"juvenile","3":"0"},{"1":"1098","2":"juvenile","3":"1"},{"1":"1098","2":"juvenile","3":"0"},{"1":"1102","2":"juvenile","3":"1"},{"1":"1102","2":"juvenile","3":"0"},{"1":"1112","2":"juvenile","3":"1"},{"1":"1112","2":"juvenile","3":"0"},{"1":"1117","2":"juvenile","3":"1"},{"1":"1117","2":"juvenile","3":"0"},{"1":"1126","2":"adult","3":"1"},{"1":"1126","2":"adult","3":"0"},{"1":"1135","2":"juvenile","3":"1"},{"1":"1135","2":"juvenile","3":"0"},{"1":"1145","2":"adult","3":"1"},{"1":"1145","2":"adult","3":"0"},{"1":"1148","2":"adult","3":"1"},{"1":"1148","2":"adult","3":"0"},{"1":"1167","2":"juvenile","3":"1"},{"1":"1167","2":"juvenile","3":"0"},{"1":"1184","2":"adult","3":"1"},{"1":"1184","2":"adult","3":"0"},{"1":"1191","2":"adult","3":"1"},{"1":"1191","2":"adult","3":"0"},{"1":"1205","2":"juvenile","3":"1"},{"1":"1205","2":"juvenile","3":"0"},{"1":"1213","2":"juvenile","3":"1"},{"1":"1213","2":"juvenile","3":"0"},{"1":"1228","2":"adult","3":"1"},{"1":"1228","2":"adult","3":"0"},{"1":"1247","2":"juvenile","3":"1"},{"1":"1247","2":"juvenile","3":"0"},{"1":"1250","2":"adult","3":"1"},{"1":"1250","2":"adult","3":"0"},{"1":"1253","2":"juvenile","3":"1"},{"1":"1253","2":"juvenile","3":"0"},{"1":"1267","2":"adult","3":"1"},{"1":"1267","2":"adult","3":"0"},{"1":"1281","2":"adult","3":"1"},{"1":"1281","2":"adult","3":"0"},{"1":"1287","2":"juvenile","3":"1"},{"1":"1287","2":"juvenile","3":"0"},{"1":"1293","2":"juvenile","3":"1"},{"1":"1293","2":"juvenile","3":"0"},{"1":"1296","2":"juvenile","3":"1"},{"1":"1296","2":"juvenile","3":"0"},{"1":"1309","2":"adult","3":"1"},{"1":"1309","2":"adult","3":"0"},{"1":"1312","2":"juvenile","3":"1"},{"1":"1312","2":"juvenile","3":"0"},{"1":"1317","2":"juvenile","3":"1"},{"1":"1317","2":"juvenile","3":"0"},{"1":"1321","2":"juvenile","3":"1"},{"1":"1321","2":"juvenile","3":"0"},{"1":"1333","2":"juvenile","3":"1"},{"1":"1333","2":"juvenile","3":"0"},{"1":"1347","2":"juvenile","3":"1"},{"1":"1347","2":"juvenile","3":"0"},{"1":"1361","2":"juvenile","3":"1"},{"1":"1361","2":"juvenile","3":"0"},{"1":"1366","2":"adult","3":"1"},{"1":"1366","2":"adult","3":"0"},{"1":"1373","2":"juvenile","3":"1"},{"1":"1373","2":"juvenile","3":"0"},{"1":"1397","2":"adult","3":"1"},{"1":"1397","2":"adult","3":"0"},{"1":"1410","2":"adult","3":"1"},{"1":"1410","2":"adult","3":"0"},{"1":"1413","2":"juvenile","3":"1"},{"1":"1413","2":"juvenile","3":"0"},{"1":"1425","2":"adult","3":"1"},{"1":"1425","2":"adult","3":"0"},{"1":"1447","2":"juvenile","3":"1"},{"1":"1447","2":"juvenile","3":"0"},{"1":"1461","2":"adult","3":"1"},{"1":"1461","2":"adult","3":"0"},{"1":"1469","2":"adult","3":"1"},{"1":"1469","2":"adult","3":"0"},{"1":"1480","2":"adult","3":"1"},{"1":"1480","2":"adult","3":"0"},{"1":"1487","2":"adult","3":"1"},{"1":"1487","2":"adult","3":"0"},{"1":"1491","2":"adult","3":"1"},{"1":"1491","2":"adult","3":"0"},{"1":"1499","2":"adult","3":"1"},{"1":"1499","2":"adult","3":"0"},{"1":"1503","2":"adult","3":"1"},{"1":"1503","2":"adult","3":"0"},{"1":"1513","2":"adult","3":"1"},{"1":"1513","2":"adult","3":"0"},{"1":"1524","2":"adult","3":"1"},{"1":"1524","2":"adult","3":"0"},{"1":"1533","2":"adult","3":"1"},{"1":"1533","2":"adult","3":"0"},{"1":"1537","2":"juvenile","3":"1"},{"1":"1537","2":"juvenile","3":"0"},{"1":"1552","2":"juvenile","3":"1"},{"1":"1552","2":"juvenile","3":"0"},{"1":"1554","2":"adult","3":"1"},{"1":"1554","2":"adult","3":"0"},{"1":"1562","2":"adult","3":"1"},{"1":"1562","2":"adult","3":"0"},{"1":"1572","2":"adult","3":"1"},{"1":"1572","2":"adult","3":"0"},{"1":"1581","2":"adult","3":"1"},{"1":"1581","2":"adult","3":"0"},{"1":"1585","2":"adult","3":"1"},{"1":"1585","2":"adult","3":"0"},{"1":"1596","2":"juvenile","3":"1"},{"1":"1596","2":"juvenile","3":"0"},{"1":"1600","2":"juvenile","3":"1"},{"1":"1600","2":"juvenile","3":"0"},{"1":"1603","2":"juvenile","3":"1"},{"1":"1603","2":"juvenile","3":"0"},{"1":"1619","2":"adult","3":"1"},{"1":"1619","2":"adult","3":"0"},{"1":"1627","2":"juvenile","3":"1"},{"1":"1627","2":"juvenile","3":"0"},{"1":"1636","2":"juvenile","3":"1"},{"1":"1636","2":"juvenile","3":"0"},{"1":"1640","2":"juvenile","3":"1"},{"1":"1640","2":"juvenile","3":"0"},{"1":"1643","2":"juvenile","3":"1"},{"1":"1643","2":"juvenile","3":"0"},{"1":"1649","2":"juvenile","3":"1"},{"1":"1649","2":"juvenile","3":"0"},{"1":"1666","2":"juvenile","3":"1"},{"1":"1666","2":"juvenile","3":"0"},{"1":"1672","2":"juvenile","3":"1"},{"1":"1672","2":"juvenile","3":"0"},{"1":"1683","2":"adult","3":"1"},{"1":"1683","2":"adult","3":"0"},{"1":"1688","2":"juvenile","3":"1"},{"1":"1688","2":"juvenile","3":"0"},{"1":"1705","2":"juvenile","3":"1"},{"1":"1705","2":"juvenile","3":"0"},{"1":"1717","2":"adult","3":"1"},{"1":"1717","2":"adult","3":"0"},{"1":"1727","2":"adult","3":"1"},{"1":"1727","2":"adult","3":"0"},{"1":"1746","2":"juvenile","3":"1"},{"1":"1746","2":"juvenile","3":"0"},{"1":"1749","2":"adult","3":"1"},{"1":"1749","2":"adult","3":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -3272,8 +3410,10 @@ Hint
 <div id="lists" class="section level3 tabset tabset-fade tabset-pills">
 <h3>Lists</h3>
 <p>Let’s investigate some lists.</p>
+
 <div id="task-1-2" class="section level4">
 <h4>Task 1</h4>
+
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Create a list using the vectors <code>stop</code> from the <strong>heart</strong> data set and <code>id</code>, <code>risk</code> from the <strong>retinopathy</strong> data set. Give the names <code>stop_heart</code>, <code>id_reti</code> and <code>risk_reti</code>.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#list">
@@ -3286,6 +3426,8 @@ Hint
 </div>
 <div id="solution-1-2" class="section level4">
 <h4>Solution 1</h4>
+
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">list</span>(<span class="dt">stop_heart =</span> heart<span class="op">$</span>stop, <span class="dt">id_reti =</span> retinopathy<span class="op">$</span>id, <span class="dt">risk_reti =</span> retinopathy<span class="op">$</span>risk)</a></code></pre></div>
 <pre><code>$stop_heart
   [1]   50.0    6.0    1.0   16.0   36.0   39.0   18.0    3.0   51.0  675.0   40.0   85.0   12.0
  [14]   58.0   26.0  153.0    8.0   17.0   81.0   37.0 1387.0    1.0   28.0  308.0   36.0   20.0
@@ -3339,9 +3481,11 @@ $risk_reti
 [311]  6  6 11 11 11 11 10  9  8 12 11 11 11 11  9 10  8 12  9  9  9  8 11  9 11  9  9  9 12 11 10
 [342]  9  9  9 12 10 12 11 10  9  9  9  9  9  9 10  8 12  9 10 10 10  9  9  9 12 10 12  6  6 11  9
 [373]  9  9 10 12  6  8  9  9 10  8 11 10  8  8 12 11  9 10 10 10  9  9</code></pre>
+
 </div>
 <div id="task-2-2" class="section level4">
 <h4>Task 2</h4>
+
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Create a list using the vectors <code>numbers</code>, <code>numbers_2</code> and <code>treatment</code>. These variables can be taken from the exercise called <code>Vectors</code>. Give the names: <code>numbers</code>, <code>many_numbers</code> and <code>treatment</code>.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#list2">
@@ -3354,6 +3498,8 @@ Hint
 </div>
 <div id="solution-2-2" class="section level4">
 <h4>Solution 2</h4>
+
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">list</span>(<span class="dt">numbers =</span> numbers, <span class="dt">many_numbers =</span> numbers_<span class="dv">2</span>, <span class="dt">treatment =</span> treatment)</a></code></pre></div>
 <pre><code>$numbers
 [1] 34 24 19 23 16
 

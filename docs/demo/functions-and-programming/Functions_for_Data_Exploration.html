@@ -1526,32 +1526,51 @@ div.tocify {
 <div id="dataset" class="section level2">
 <h2>Dataset</h2>
 <p>We will explore the datasets <code>swiss</code> and <code>esoph</code> (both automatically available in R).</p>
+
 </div>
 <div id="what-type-of-object-do-i-have" class="section level2">
 <h2>What type of object do I have?</h2>
+
+<pre class="r"><code>class(swiss)</code></pre>
 <pre><code>[1] &quot;data.frame&quot;</code></pre>
 </div>
 <div id="how-large-is-this-dataset" class="section level2">
 <h2>How large is this dataset?</h2>
 <p>Dimension of a <code>data.frame</code> or a <code>matrix</code>:</p>
+
+<pre class="r"><code>dim(swiss)</code></pre>
 <pre><code>[1] 47  6</code></pre>
 <p>We can also get the rows and columns separately:</p>
+
+<pre class="r"><code>nrow(swiss)</code></pre>
 <pre><code>[1] 47</code></pre>
+<pre class="r"><code>ncol(swiss)</code></pre>
 <pre><code>[1] 6</code></pre>
 <p>Be careful:</p>
+
+<pre class="r"><code>length(swiss)</code></pre>
 <pre><code>[1] 6</code></pre>
 <p>Why is that? Because a <code>data.frame</code> is also a <code>list</code>:</p>
+
+<pre class="r"><code>is.list(swiss)</code></pre>
 <pre><code>[1] TRUE</code></pre>
+<pre class="r"><code>is.data.frame(swiss)</code></pre>
 <pre><code>[1] TRUE</code></pre>
 <p>but:</p>
+
+<pre class="r"><code>length(swiss$Fertility)</code></pre>
 <pre><code>[1] 47</code></pre>
 </div>
 <div id="how-does-the-dataset-look-like" class="section level2">
 <h2>How does the dataset look like?</h2>
 <p>Names of all the variables in the data:</p>
+
+<pre class="r"><code>names(swiss)</code></pre>
 <pre><code>[1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;     
 [4] &quot;Education&quot;        &quot;Catholic&quot;         &quot;Infant.Mortality&quot;</code></pre>
 <p>Show me the first and last few rows:</p>
+
+<pre class="r"><code>head(swiss)</code></pre>
 <pre><code>             Fertility Agriculture Examination Education Catholic
 Courtelary        80.2        17.0          15        12     9.96
 Delemont          83.1        45.1           6         9    84.84
@@ -1566,6 +1585,7 @@ Franches-Mnt             20.2
 Moutier                  20.3
 Neuveville               20.6
 Porrentruy               26.6</code></pre>
+<pre class="r"><code>tail(swiss)</code></pre>
 <pre><code>             Fertility Agriculture Examination Education Catholic
 Neuchatel         64.4        17.6          35        32    16.92
 Val de Ruz        77.6        37.6          15         7     4.97
@@ -1581,6 +1601,8 @@ V. De Geneve             18.0
 Rive Droite              18.2
 Rive Gauche              19.3</code></pre>
 <p>We can adjust how many rows are shown:</p>
+
+<pre class="r"><code>head(swiss, n = 10)</code></pre>
 <pre><code>             Fertility Agriculture Examination Education Catholic
 Courtelary        80.2        17.0          15        12     9.96
 Delemont          83.1        45.1           6         9    84.84
@@ -1603,6 +1625,8 @@ Broye                    23.6
 Glane                    24.9
 Gruyere                  21.0
 Sarine                   24.4</code></pre>
+<pre class="r"><code># Structure of the dataset:
+str(swiss)</code></pre>
 <pre><code>&#39;data.frame&#39;:   47 obs. of  6 variables:
  $ Fertility       : num  80.2 83.1 92.5 85.8 76.9 76.1 83.8 92.4 82.4 82.9 ...
  $ Agriculture     : num  17 45.1 39.7 36.5 43.5 35.3 70.2 67.8 53.3 45.2 ...
@@ -1611,11 +1635,14 @@ Sarine                   24.4</code></pre>
  $ Catholic        : num  9.96 84.84 93.4 33.77 5.16 ...
  $ Infant.Mortality: num  22.2 22.2 20.2 20.3 20.6 26.6 23.6 24.9 21 24.4 ...</code></pre>
 <p>The function <code>str</code> has many arguments to customize the output, but we will skip that here.</p>
+
 </div>
 <div id="descriptive-statistics" class="section level2">
 <h2>Descriptive Statistics</h2>
 <div id="summary-of-a-data.frame-or-matrix" class="section level3">
 <h3>Summary of a <code>data.frame</code> or <code>matrix</code></h3>
+
+<pre class="r"><code>summary(esoph)</code></pre>
 <pre><code>   agegp          alcgp         tobgp        ncases      
  25-34:15   0-39g/day:23   0-9g/day:24   Min.   : 0.000  
  35-44:15   40-79    :23   10-19   :24   1st Qu.: 0.000  
@@ -1634,27 +1661,49 @@ Sarine                   24.4</code></pre>
 <div id="summaries-per-variable" class="section level3">
 <h3>Summaries per variable</h3>
 <p>We can also get the summary of a single variable</p>
+
+<pre class="r"><code>summary(swiss$Fertility)</code></pre>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   35.00   64.70   70.40   70.14   78.45   92.50 </code></pre>
 <p>or you can do all the work yourself:</p>
+
+<pre class="r"><code>min(swiss$Fertility)</code></pre>
 <pre><code>[1] 35</code></pre>
+<pre class="r"><code>max(swiss$Fertility)</code></pre>
 <pre><code>[1] 92.5</code></pre>
+<pre class="r"><code>range(swiss$Fertility)</code></pre>
 <pre><code>[1] 35.0 92.5</code></pre>
+<pre class="r"><code>mean(swiss$Fertility)</code></pre>
 <pre><code>[1] 70.14255</code></pre>
+<pre class="r"><code>median(swiss$Fertility)</code></pre>
 <pre><code>[1] 70.4</code></pre>
+<pre class="r"><code>quantile(swiss$Fertility, probs = c(0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.99))</code></pre>
 <pre><code>   10%    25%    50%    75%    90%    95%    99% 
 56.240 64.700 70.400 78.450 84.600 90.670 92.454 </code></pre>
 <p>Inter quartile range:</p>
+
+<pre class="r"><code>IQR(swiss$Fertility)</code></pre>
 <pre><code>[1] 13.75</code></pre>
 <p>Standard deviation</p>
+
+<pre class="r"><code>sd(swiss$Fertility)</code></pre>
 <pre><code>[1] 12.4917</code></pre>
 <p>Variance</p>
+
+<pre class="r"><code>var(swiss$Fertility)</code></pre>
 <pre><code>[1] 156.0425</code></pre>
 <p>All the above functions (<code>min</code>, <code>max</code>, <code>range</code>, <code>mean</code>, <code>median</code>, <code>quantile</code>, <code>sd</code>, <code>var</code>) have an argument <code>na.rm</code> which is by default set to <code>FALSE</code>.</p>
+
+<pre class="r"><code>(x &lt;- c(rnorm(5), NA))</code></pre>
 <pre><code>[1]  0.9933042  0.6252886 -0.2000261 -0.1123438 -0.8083464         NA</code></pre>
+<pre class="r"><code>min(x)</code></pre>
 <pre><code>[1] NA</code></pre>
+<pre class="r"><code>min(x, na.rm = TRUE)</code></pre>
 <pre><code>[1] -0.8083464</code></pre>
 <p>Another helpful function to summarize continuous data is <code>ave()</code>. It calculates a summary measure of a continuous variable per group, that are defined by one or more categorical variables:</p>
+
+<pre class="r"><code>esoph$av_case_by_age &lt;- ave(esoph$ncases, esoph$agegp)
+esoph[12:22, ]</code></pre>
 <pre><code>   agegp     alcgp    tobgp ncases ncontrols av_case_by_age
 12 25-34      120+ 0-9g/day      0         1     0.06666667
 13 25-34      120+    10-19      1         1     0.06666667
@@ -1680,6 +1729,9 @@ Sarine                   24.4</code></pre>
 21               0
 22               0</code></pre>
 <p><code>ave()</code> also works with other functions than the mean:</p>
+
+<pre class="r"><code>esoph$med_case_by_age &lt;- ave(esoph$ncases, esoph$agegp, FUN = median)
+esoph[28:36, ]</code></pre>
 <pre><code>   agegp     alcgp    tobgp ncases ncontrols av_case_by_age
 28 35-44      120+ 0-9g/day      2         3          0.600
 29 35-44      120+    10-19      0         3          0.600
@@ -1701,31 +1753,44 @@ Sarine                   24.4</code></pre>
 35               3
 36               3</code></pre>
 <p>And we can split the data by multiple categorical variables:</p>
+
+<pre class="r"><code>ave(esoph$ncases, esoph$agegp, esoph$alcgp, FUN = median)</code></pre>
 <pre><code> [1] 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
 [17] 0.0 0.0 0.0 0.5 0.5 0.5 0.5 0.0 0.0 0.0 0.0 2.0 2.0 2.0 0.0 0.0
 [33] 0.0 0.0 5.0 5.0 5.0 5.0 2.5 2.5 2.5 2.5 3.5 3.5 3.5 3.5 3.0 3.0
 [49] 3.0 3.0 5.0 5.0 5.0 5.0 6.0 6.0 6.0 6.0 5.0 5.0 5.0 5.0 3.0 3.0
 [65] 3.0 3.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
 [81] 1.0 1.0 1.0 1.0 1.0 1.0 1.5 1.5</code></pre>
+
 </div>
 </div>
 <div id="tables" class="section level2">
 <h2>Tables</h2>
 <p>The above summaries were all for continuous variables. For categorical variables we may be interested to see the different categories and how many observations there are per category:</p>
+
+<pre class="r"><code>levels(esoph$agegp)</code></pre>
 <pre><code>[1] &quot;25-34&quot; &quot;35-44&quot; &quot;45-54&quot; &quot;55-64&quot; &quot;65-74&quot; &quot;75+&quot;  </code></pre>
+<pre class="r"><code>table(esoph$agegp)</code></pre>
 <pre><code>
 25-34 35-44 45-54 55-64 65-74   75+ 
    15    15    16    16    15    11 </code></pre>
 <p>By default, table only shows observations. The argument <code>exclude</code> can be set to <code>NULL</code> to also include missing values:</p>
+
+<pre class="r"><code>(x &lt;- factor(c(NA, sample(LETTERS[1:3], size = 10, replace = TRUE)),
+             levels = LETTERS[1:5]))</code></pre>
 <pre><code> [1] &lt;NA&gt; B    B    A    B    A    B    A    C    A    C   
 Levels: A B C D E</code></pre>
+<pre class="r"><code>table(x)</code></pre>
 <pre><code>x
 A B C D E 
 4 4 2 0 0 </code></pre>
+<pre class="r"><code>table(x, exclude = NULL)</code></pre>
 <pre><code>x
    A    B    C    D    E &lt;NA&gt; 
    4    4    2    0    0    1 </code></pre>
 <p>We can also get tables for multiple variables.</p>
+
+<pre class="r"><code>table(age = esoph$agegp, alc = esoph$alcgp)</code></pre>
 <pre><code>       alc
 age     0-39g/day 40-79 80-119 120+
   25-34         4     4      3    4
@@ -1737,6 +1802,9 @@ age     0-39g/day 40-79 80-119 120+
 <div id="tables-margins" class="section level3">
 <h3>Tables: Margins</h3>
 <p>To add summaries (e.g. the sum) for each column and/or row:</p>
+
+<pre class="r"><code>tab &lt;- table(age = esoph$agegp, alc = esoph$alcgp)
+addmargins(tab)</code></pre>
 <pre><code>       alc
 age     0-39g/day 40-79 80-119 120+ Sum
   25-34         4     4      3    4  15
@@ -1746,6 +1814,7 @@ age     0-39g/day 40-79 80-119 120+ Sum
   65-74         4     3      4    4  15
   75+           3     4      2    2  11
   Sum          23    23     21   21  88</code></pre>
+<pre class="r"><code>addmargins(tab, margin = 1)</code></pre>
 <pre><code>       alc
 age     0-39g/day 40-79 80-119 120+
   25-34         4     4      3    4
@@ -1755,6 +1824,7 @@ age     0-39g/day 40-79 80-119 120+
   65-74         4     3      4    4
   75+           3     4      2    2
   Sum          23    23     21   21</code></pre>
+<pre class="r"><code>addmargins(tab, margin = 2, FUN = mean)</code></pre>
 <pre><code>       alc
 age     0-39g/day 40-79 80-119 120+ mean
   25-34      4.00  4.00   3.00 4.00 3.75
@@ -1764,6 +1834,8 @@ age     0-39g/day 40-79 80-119 120+ mean
   65-74      4.00  3.00   4.00 4.00 3.75
   75+        3.00  4.00   2.00 2.00 2.75</code></pre>
 <p>It is also possible to use different functions per margin:</p>
+
+<pre class="r"><code>addmargins(tab, FUN = c(mean, sum))</code></pre>
 <pre><code>Margins computed over dimensions
 in the following order:
 1: age
@@ -1781,6 +1853,8 @@ age     0-39g/day     40-79    80-119      120+       sum
 <div id="tables-proportions" class="section level3">
 <h3>Tables: Proportions</h3>
 <p>To convert the table to proportions:</p>
+
+<pre class="r"><code>prop.table(tab)</code></pre>
 <pre><code>       alc
 age      0-39g/day      40-79     80-119       120+
   25-34 0.04545455 0.04545455 0.03409091 0.04545455
@@ -1790,8 +1864,12 @@ age      0-39g/day      40-79     80-119       120+
   65-74 0.04545455 0.03409091 0.04545455 0.04545455
   75+   0.03409091 0.04545455 0.02272727 0.02272727</code></pre>
 <p>Here, the sum over all cells is 1:</p>
+
+<pre class="r"><code>sum(prop.table(tab)) </code></pre>
 <pre><code>[1] 1</code></pre>
 <p>The argument <code>margin</code> allows us to get proportions relative to the row- or column sum:</p>
+
+<pre class="r"><code>prop.table(tab, margin = 1)</code></pre>
 <pre><code>       alc
 age     0-39g/day     40-79    80-119      120+
   25-34 0.2666667 0.2666667 0.2000000 0.2666667
@@ -1801,6 +1879,8 @@ age     0-39g/day     40-79    80-119      120+
   65-74 0.2666667 0.2000000 0.2666667 0.2666667
   75+   0.2727273 0.3636364 0.1818182 0.1818182</code></pre>
 <p>In the above table, the sum in each row is equal to 1:</p>
+
+<pre class="r"><code>addmargins(prop.table(tab, margin = 1))</code></pre>
 <pre><code>       alc
 age     0-39g/day     40-79    80-119      120+       Sum
   25-34 0.2666667 0.2666667 0.2000000 0.2666667 1.0000000
@@ -1814,6 +1894,8 @@ age     0-39g/day     40-79    80-119      120+       Sum
 <div id="tables-more-dimensions" class="section level3">
 <h3>Tables: More Dimensions</h3>
 <p>It is possible to get tables with &gt; 2 dimensions:</p>
+
+<pre class="r"><code>table(esoph[, 1:3]) # same as table(esoph$agegp, esoph$alcgp, esoph$tobgp)</code></pre>
 <pre><code>, , tobgp = 0-9g/day
 
        alcgp
@@ -1858,6 +1940,8 @@ agegp   0-39g/day 40-79 80-119 120+
   65-74         1     0      1    1
   75+           1     1      0    0</code></pre>
 <p>In that case a “flat table” can be more clear:</p>
+
+<pre class="r"><code>ftable(table(esoph[, 1:3]))</code></pre>
 <pre><code>                tobgp 0-9g/day 10-19 20-29 30+
 agegp alcgp                                   
 25-34 0-39g/day              1     1     1   1
@@ -1885,6 +1969,8 @@ agegp alcgp
       80-119                 1     1     0   0
       120+                   1     1     0   0</code></pre>
 <p>With the help of the arguments <code>row.vars</code> and <code>col.vars</code> we can determine which variables are given in the rows and which in the columns:</p>
+
+<pre class="r"><code>ftable(table(esoph[, 1:3]), row.vars = c(1))</code></pre>
 <pre><code>      alcgp 0-39g/day                    40-79                   80-119                     120+                
       tobgp  0-9g/day 10-19 20-29 30+ 0-9g/day 10-19 20-29 30+ 0-9g/day 10-19 20-29 30+ 0-9g/day 10-19 20-29 30+
 agegp                                                                                                           
@@ -1894,6 +1980,7 @@ agegp
 55-64               1     1     1   1        1     1     1   1        1     1     1   1        1     1     1   1
 65-74               1     1     1   1        1     1     1   0        1     1     1   1        1     1     1   1
 75+                 1     1     0   1        1     1     1   1        1     1     0   0        1     1     0   0</code></pre>
+<pre class="r"><code>ftable(table(esoph[, 1:3]), row.vars = c(3, 2))</code></pre>
 <pre><code>                   agegp 25-34 35-44 45-54 55-64 65-74 75+
 tobgp    alcgp                                            
 0-9g/day 0-39g/day           1     1     1     1     1   1
@@ -1912,6 +1999,7 @@ tobgp    alcgp
          40-79               1     1     1     1     0   1
          80-119              1     1     1     1     1   0
          120+                1     0     1     1     1   0</code></pre>
+
 </div>
 </div>
 <div id="functions-for-matrices" class="section level2">
@@ -1919,17 +2007,24 @@ tobgp    alcgp
 <div id="sums-and-means" class="section level3">
 <h3>Sums and Means</h3>
 <p>The function <code>colMeans()</code> allows us to calculate the mean for each column in a <code>matrix</code> or <code>data.frame</code>:</p>
+
+<pre class="r"><code>colMeans(swiss)</code></pre>
 <pre><code>       Fertility      Agriculture      Examination        Education 
         70.14255         50.65957         16.48936         10.97872 
         Catholic Infant.Mortality 
         41.14383         19.94255 </code></pre>
 <p>We can’t use <code>colMeans()</code> on the <code>esoph</code> data because there not all variables are numeric:</p>
+
+<pre class="r"><code>colMeans(esoph)</code></pre>
 <pre><code>Error in colMeans(esoph): &#39;x&#39; must be numeric</code></pre>
 <p>The functions <code>colSums()</code>, <code>rowMeans()</code> and <code>rowSums()</code> work correspondingly, but are usually less useful to summarize a whole dataset.</p>
+
+<pre class="r"><code>colSums(swiss)</code></pre>
 <pre><code>       Fertility      Agriculture      Examination        Education 
          3296.70          2381.00           775.00           516.00 
         Catholic Infant.Mortality 
          1933.76           937.30 </code></pre>
+<pre class="r"><code>rowMeans(swiss)</code></pre>
 <pre><code>  Courtelary     Delemont Franches-Mnt      Moutier   Neuveville 
     26.06000     41.70667     42.63333     32.56167     29.69333 
   Porrentruy        Broye        Glane      Gruyere       Sarine 
@@ -1955,6 +2050,8 @@ tobgp    alcgp
 <div id="variance-covariance-and-correlation" class="section level3">
 <h3>Variance, Covariance and Correlation</h3>
 <p>The functions <code>var</code>, and <code>cov</code> return the variance-covariance matrix when used on a <code>matrix</code> or <code>data.frame</code>:</p>
+
+<pre class="r"><code>var(swiss)</code></pre>
 <pre><code>                 Fertility Agriculture Examination   Education
 Fertility        156.04250  100.169149  -64.366929  -79.729510
 Agriculture      100.16915  515.799417 -124.392831 -139.657401
@@ -1970,8 +2067,12 @@ Education         -61.69883        -2.781684
 Catholic         1739.29454        21.318116
 Infant.Mortality   21.31812         8.483802</code></pre>
 <p>This of course only gives meaningful resuls when the data are continuous:</p>
+
+<pre class="r"><code>cov(esoph)</code></pre>
 <pre><code>Error in cov(esoph): is.numeric(x) || is.logical(x) is not TRUE</code></pre>
 <p>When there are missing values in the data: Specify the argument <code>use = &quot;pairs&quot;</code> to exclude missing values (which would otherwise result in a <code>NA</code> value for the (co)variance) A (co)variance matrix can be converted to a (pearson) correlation matrix with the help of the function <code>cov2cor()</code>:</p>
+
+<pre class="r"><code>cov2cor(var(swiss))</code></pre>
 <pre><code>                  Fertility Agriculture Examination   Education
 Fertility         1.0000000  0.35307918  -0.6458827 -0.66378886
 Agriculture       0.3530792  1.00000000  -0.6865422 -0.63952252
@@ -1987,6 +2088,8 @@ Education        -0.1538589      -0.09932185
 Catholic          1.0000000       0.17549591
 Infant.Mortality  0.1754959       1.00000000</code></pre>
 <p>The correlation matrix can be obtained directly using <code>cor()</code>. The argument <code>method</code> allows the choice of pearson“,”kendall&quot; or “spearman” correlation.</p>
+
+<pre class="r"><code>cor(swiss, method = &#39;kendall&#39;)</code></pre>
 <pre><code>                  Fertility Agriculture Examination    Education
 Fertility         1.0000000  0.17954653 -0.47624374 -0.330611161
 Agriculture       0.1795465  1.00000000 -0.45052216 -0.476164563
@@ -2001,11 +2104,14 @@ Examination      -0.32127554     -0.031357320
 Education        -0.08479652     -0.002874323
 Catholic          1.00000000      0.054935680
 Infant.Mortality  0.05493568      1.000000000</code></pre>
+
 </div>
 </div>
 <div id="duplicates-and-comparison" class="section level2">
 <h2>Duplicates and Comparison</h2>
 <p>To find duplicates in a <code>data.frame</code>, <code>matrix</code> or a <code>vector</code> we can use the function <code>duplicated()</code>:</p>
+
+<pre class="r"><code>duplicated(esoph)</code></pre>
 <pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [12] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [23] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -2014,9 +2120,13 @@ Infant.Mortality  0.05493568      1.000000000</code></pre>
 [56] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [67] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [78] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<pre class="r"><code>(x &lt;- sample(LETTERS[1:5], 10, replace = TRUE))</code></pre>
 <pre><code> [1] &quot;B&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;E&quot; &quot;B&quot; &quot;A&quot; &quot;C&quot; &quot;E&quot;</code></pre>
+<pre class="r"><code>duplicated(x)</code></pre>
 <pre><code> [1] FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
 <p>Let’s set the original variable and the duplication indicator next to each other to see what is happening:</p>
+
+<pre class="r"><code>cbind(x, duplicated(x))</code></pre>
 <pre><code>      x          
  [1,] &quot;B&quot; &quot;FALSE&quot;
  [2,] &quot;B&quot; &quot;TRUE&quot; 
@@ -2029,6 +2139,10 @@ Infant.Mortality  0.05493568      1.000000000</code></pre>
  [9,] &quot;C&quot; &quot;TRUE&quot; 
 [10,] &quot;E&quot; &quot;TRUE&quot; </code></pre>
 <p>(We will get to know the function <code>cbind()</code> later). Using the argument <code>fromLast = TRUE</code> checks for duplicates starting from the last value:</p>
+
+<pre class="r"><code>cbind(x,
+      duplFirst = duplicated(x),
+      duplLast = duplicated(x, fromLast = TRUE))</code></pre>
 <pre><code>      x   duplFirst duplLast
  [1,] &quot;B&quot; &quot;FALSE&quot;   &quot;TRUE&quot;  
  [2,] &quot;B&quot; &quot;TRUE&quot;    &quot;TRUE&quot;  
@@ -2041,8 +2155,14 @@ Infant.Mortality  0.05493568      1.000000000</code></pre>
  [9,] &quot;C&quot; &quot;TRUE&quot;    &quot;FALSE&quot; 
 [10,] &quot;E&quot; &quot;TRUE&quot;    &quot;FALSE&quot; </code></pre>
 <p>Return only the unique values:</p>
+
+<pre class="r"><code>unique(x)</code></pre>
 <pre><code>[1] &quot;B&quot; &quot;A&quot; &quot;C&quot; &quot;E&quot;</code></pre>
 <p>This also works for <code>data.frame</code> and <code>matrix</code>.</p>
+
+<pre class="r"><code>(dat &lt;- data.frame(x = x,
+                  y = rbinom(length(x), size = 1, prob = 0.5))
+)</code></pre>
 <pre><code>   x y
 1  B 0
 2  B 0
@@ -2054,12 +2174,14 @@ Infant.Mortality  0.05493568      1.000000000</code></pre>
 8  A 0
 9  C 1
 10 E 0</code></pre>
+<pre class="r"><code>unique(dat)</code></pre>
 <pre><code>  x y
 1 B 0
 3 A 0
 4 B 1
 5 C 1
 6 E 0</code></pre>
+<pre class="r"><code>(mat &lt;- as.matrix(dat))</code></pre>
 <pre><code>      x   y  
  [1,] &quot;B&quot; &quot;0&quot;
  [2,] &quot;B&quot; &quot;0&quot;
@@ -2071,6 +2193,7 @@ Infant.Mortality  0.05493568      1.000000000</code></pre>
  [8,] &quot;A&quot; &quot;0&quot;
  [9,] &quot;C&quot; &quot;1&quot;
 [10,] &quot;E&quot; &quot;0&quot;</code></pre>
+<pre class="r"><code>unique(mat)</code></pre>
 <pre><code>     x   y  
 [1,] &quot;B&quot; &quot;0&quot;
 [2,] &quot;A&quot; &quot;0&quot;

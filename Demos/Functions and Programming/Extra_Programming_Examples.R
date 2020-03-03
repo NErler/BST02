@@ -27,7 +27,7 @@ x<-10
 y<-10/2
 z<-x+y
 
-#' Code 2
+#' Code 2:
 # store a value
 x <- 10
 # take half of the stored value
@@ -225,7 +225,7 @@ subset_data <- function(dataset = x, sex_var = "sex", male_cat = "male"){
       newList[[i]] <- dat
     }
   }
-  print(newList[!sapply(newList, is.null)])
+  newList <- newList[!sapply(newList, is.null)]
 }
 
 res <- subset_data(dataset = datlist, sex_var = "sex", male_cat = "male")

@@ -1528,41 +1528,72 @@ div.tocify {
 <h2>Load packages</h2>
 <p>If you are using the package for the first time, you will have to first install it<br />
 </p>
+
+<pre class="r"><code># install.packages(&quot;survival&quot;) 
+# install.packages(&quot;memisc&quot;)
+library(survival)
+library(memisc)</code></pre>
 </div>
 <div id="get-data" class="section level2">
 <h2>Get data</h2>
 <p>Load data set from package</p>
+
+<pre class="r"><code>pbc &lt;- survival::pbc</code></pre>
 </div>
 <div id="common-questions-that-can-be-answered-in-r" class="section level2">
 <h2>Common questions that can be answered in R</h2>
 <p>What is the mean and standard deviation for <code>age</code>?</p>
+
+<pre class="r"><code>mean(pbc$age)</code></pre>
 <pre><code>[1] 50.74155</code></pre>
+<pre class="r"><code>mean(pbc$age, na.rm = TRUE)</code></pre>
 <pre><code>[1] 50.74155</code></pre>
+<pre class="r"><code>sd(pbc$age)</code></pre>
 <pre><code>[1] 10.44721</code></pre>
 <p>What is the mean and standard deviation for <code>time</code>?</p>
+
+<pre class="r"><code>mean(pbc$time)</code></pre>
 <pre><code>[1] 1917.782</code></pre>
+<pre class="r"><code>mean(pbc$time, na.rm = TRUE)</code></pre>
 <pre><code>[1] 1917.782</code></pre>
+<pre class="r"><code>sd(pbc$time)</code></pre>
 <pre><code>[1] 1104.673</code></pre>
 <p>What is the median and interquartile range for <code>age</code>?</p>
+
+<pre class="r"><code>median(pbc$age)</code></pre>
 <pre><code>[1] 51.00068</code></pre>
+<pre class="r"><code>IQR(pbc$age)</code></pre>
 <pre><code>[1] 15.40862</code></pre>
 <p>What is the percentage of <code>placebo</code> and <code>treatment</code> patients?<br />
 In order to use the <code>percent()</code> function you will need to load the <code>memisc</code> package</p>
+
+<pre class="r"><code>percent(pbc$trt)</code></pre>
 <pre><code>        1         2         N 
  50.64103  49.35897 312.00000 </code></pre>
 <p>What is the percentage of <code>females</code> and <code>males</code>?</p>
+
+<pre class="r"><code>percent(pbc$sex)</code></pre>
 <pre><code>        m         f         N 
  10.52632  89.47368 418.00000 </code></pre>
 <p>What is the mean and standard deviation for <code>age</code> in <code>males</code>?</p>
+
+<pre class="r"><code>pbc_males &lt;- pbc[pbc$sex == &quot;m&quot;, ]
+mean(pbc_males$age)</code></pre>
 <pre><code>[1] 55.71072</code></pre>
+<pre class="r"><code>sd(pbc_males$age)</code></pre>
 <pre><code>[1] 10.9778</code></pre>
 <p>What is the mean and standard deviation for <code>serum bilirubin</code>?</p>
+
+<pre class="r"><code>mean(pbc$bili)</code></pre>
 <pre><code>[1] 3.220813</code></pre>
+<pre class="r"><code>sd(pbc$bili)</code></pre>
 <pre><code>[1] 4.407506</code></pre>
 </div>
 <div id="handeling-missing-values-and-outliers" class="section level2">
 <h2>Handeling missing values and outliers</h2>
 <p>Check if there are missing values</p>
+
+<pre class="r"><code>is.na(pbc$chol)</code></pre>
 <pre><code>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
  [11] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
  [21] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -1606,10 +1637,18 @@ In order to use the <code>percent()</code> function you will need to load the <c
 [401]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 [411]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
 <p>Obtain complete cases for the variable <code>serum cholesterol</code></p>
+
+<pre class="r"><code>DF &lt;- pbc[complete.cases(pbc$chol), ]</code></pre>
 <p>Obtain dimensions</p>
+
+<pre class="r"><code>dim(pbc)</code></pre>
 <pre><code>[1] 418  20</code></pre>
+<pre class="r"><code>dim(DF)</code></pre>
 <pre><code>[1] 284  20</code></pre>
 <p>Obtain the rows of the <code>pbc</code> data set where the <code>serum cholesterol</code> variable has missing values</p>
+
+<pre class="r"><code>pbc_chol_na &lt;- pbc[is.na(pbc$chol) == TRUE, ]
+head(pbc_chol_na)</code></pre>
 <pre><code>   id time status trt      age sex ascites hepato spiders edema bili
 14 14 1217      2   2 56.22177   m       1      1       0     1  0.8
 40 40 4467      0   1 46.66940   f       0      0       0     0  1.3
@@ -1625,12 +1664,17 @@ In order to use the <code>percent()</code> function you will need to load the <c
 45   NA    3.93     19   1826.0  71.30   NA      474    10.9     2
 49   NA    3.82     58    678.0  97.65   NA      233    11.0     4</code></pre>
 <p>Obtain the dimensions of the <code>pbc</code> data set where the <code>serum cholesterol</code> variable has missing</p>
+
+<pre class="r"><code>dim(pbc_chol_na)</code></pre>
 <pre><code>[1] 134  20</code></pre>
 <p>Outliers: e.g. let’s assume that patients with <code>serum bilirun</code> values &gt; 25 are outliers<br />
 </p>
 <ul>
 <li>Check whether there are any outliers: obtain all rows from the data set which correspond to <code>serum bilirun</code> outliers</li>
 </ul>
+
+<pre class="r"><code>pbc_out_bili &lt;- pbc[pbc$bili &gt; 25, ]
+head(pbc_out_bili)</code></pre>
 <pre><code>     id time status trt      age sex ascites hepato spiders edema
 144 144  943      2   2 52.28747   f       0      1       0   0.5
 156 156  853      2   2 59.40862   f       0      1       0   0.0

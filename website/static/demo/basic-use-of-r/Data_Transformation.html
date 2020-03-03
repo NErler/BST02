@@ -1527,13 +1527,25 @@ div.tocify {
 <div id="load-packages" class="section level2">
 <h2>Load packages</h2>
 <p>If you are using the package for the first time, you will have to first install it</p>
+
+<pre class="r"><code># install.packages(&quot;survival&quot;) 
+# install.packages(&quot;reshape2&quot;)
+library(survival)
+library(reshape2)</code></pre>
 </div>
 <div id="get-data" class="section level2">
 <h2>Get data</h2>
 <p>Load data set from package</p>
+
+<pre class="r"><code>pbc &lt;- survival::pbc
+pbcseq &lt;- survival::pbcseq</code></pre>
 </div>
 <div id="round-continuous-variables" class="section level2">
 <h2>Round continuous variables</h2>
+
+<pre class="r"><code>pbc$ast &lt;- round(pbc$ast, digits = 1)
+pbc$age &lt;- round(pbc$age, digits = 2)
+head(pbc)</code></pre>
 <pre><code>  id time status trt   age sex ascites hepato spiders edema bili chol
 1  1  400      2   1 58.77   f       1      1       1   1.0 14.5  261
 2  2 4500      0   1 56.45   f       0      1       1   0.0  1.1  302
@@ -1552,6 +1564,9 @@ div.tocify {
 <div id="create-factors" class="section level2">
 <h2>Create factors</h2>
 <p>Set <code>sex</code> as factor with labels <code>m</code> for <code>male</code> and <code>f</code> for <code>female</code></p>
+
+<pre class="r"><code>factor(pbc$sex, levels = c(&quot;m&quot;, &quot;f&quot;),
+       labels = c(&quot;male&quot;,&quot;female&quot;))</code></pre>
 <pre><code>  [1] female female male   female female female female female female
  [10] female female female female male   female female female female
  [19] female female male   female female male   female female female
@@ -1606,9 +1621,16 @@ Levels: male female</code></pre>
 </h2>
 <p>Categorize <code>age</code> (take as cut off value 40)</p>
 <ul>
-<li><p>Step 1: Check whether the age variable of each patient is above 40</p></li>
-<li><p>Step 2: Transform a logical variable into a numeric</p></li>
+<li>Step 1: Check whether the age variable of each patient is above 40</li>
 </ul>
+
+<pre class="r"><code>pbc$age40higher &lt;- pbc$age &gt; 40</code></pre>
+<ul>
+<li>Step 2: Transform a logical variable into a numeric</li>
+</ul>
+
+<pre class="r"><code>pbc$age40higher &lt;- as.numeric(pbc$age40higher)
+head(pbc)</code></pre>
 <pre><code>  id time status trt   age sex ascites hepato spiders edema bili chol
 1  1  400      2   1 58.77   f       1      1       1   1.0 14.5  261
 2  2 4500      0   1 56.45   f       0      1       1   0.0  1.1  302
@@ -1633,6 +1655,10 @@ Levels: male female</code></pre>
 <ul>
 <li>Step 3: Transform a numeric variable into a factor</li>
 </ul>
+
+<pre class="r"><code>pbc$age40higher &lt;- factor(pbc$age40higher, levels = c(0:1),
+                              labels = c(&quot;young&quot;,&quot;old&quot;))
+head(pbc)</code></pre>
 <pre><code>  id time status trt   age sex ascites hepato spiders edema bili chol
 1  1  400      2   1 58.77   f       1      1       1   1.0 14.5  261
 2  2 4500      0   1 56.45   f       0      1       1   0.0  1.1  302
@@ -1655,6 +1681,9 @@ Levels: male female</code></pre>
 5       young
 6         old</code></pre>
 <p>Standardize <code>age</code></p>
+
+<pre class="r"><code>pbc$ageST &lt;- (pbc$age-mean(pbc$age))/(sd(pbc$age))
+head(pbc)</code></pre>
 <pre><code>  id time status trt   age sex ascites hepato spiders edema bili chol
 1  1  400      2   1 58.77   f       1      1       1   1.0 14.5  261
 2  2 4500      0   1 56.45   f       0      1       1   0.0  1.1  302
@@ -1682,6 +1711,8 @@ Levels: male female</code></pre>
 </h2>
 <div id="long-to-wide-data-set" class="section level3">
 <h3>Long to wide data set</h3>
+
+<pre class="r"><code>head(pbcseq)</code></pre>
 <pre><code>  id futime status trt      age sex day ascites hepato spiders edema
 1  1    400      2   1 58.76523   f   0       1      1       1     1
 2  1    400      2   1 58.76523   f 192       1      1       1     1
@@ -1698,6 +1729,8 @@ Levels: male female</code></pre>
 6  1.9   NA    3.92     1365 144.2      122    10.6     3</code></pre>
 <p>Select the first (or last) row of each patient  <br />
 We will remove a lot of information by using the following way</p>
+
+<pre class="r"><code>head(pbcseq[!duplicated(pbcseq[c(&quot;id&quot;)]), ])</code></pre>
 <pre><code>   id futime status trt      age sex day ascites hepato spiders edema
 1   1    400      2   1 58.76523   f   0       1      1       1   1.0
 3   2   5169      0   1 56.44627   f   0       0      1       1   0.0
@@ -1712,6 +1745,7 @@ We will remove a lot of information by using the following way</p>
 16  1.8  244    2.54     6122  60.6      183    10.3     4
 23  3.4  279    3.53      671 113.2      136    10.9     3
 29  0.8  248    3.98      944  93.0       NA    11.0     3</code></pre>
+<pre class="r"><code>head(pbcseq[!duplicated(pbcseq[c(&quot;id&quot;)], fromLast = TRUE), ])</code></pre>
 <pre><code>   id futime status trt      age sex  day ascites hepato spiders
 2   1    400      2   1 58.76523   f  192       1      1       1
 11  2   5169      0   1 56.44627   f 3226       1      1       1
@@ -1727,18 +1761,42 @@ We will remove a lot of information by using the following way</p>
 28   0.5 19.0   91    2.09      377 156.0      101    13.9     4
 34   0.0  0.7   NA    4.20       NA  60.0       NA    10.5     4</code></pre>
 <p>Step by step</p>
+
+<pre class="r"><code>head(duplicated(pbcseq[c(&quot;id&quot;)]))</code></pre>
 <pre><code>[1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE</code></pre>
+<pre class="r"><code>head(!duplicated(pbcseq[c(&quot;id&quot;)]))</code></pre>
 <pre><code>[1]  TRUE FALSE  TRUE FALSE FALSE FALSE</code></pre>
+<pre class="r"><code>head(duplicated(pbcseq[c(&quot;id&quot;)]))</code></pre>
 <pre><code>[1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE</code></pre>
+<pre class="r"><code>head(duplicated(pbcseq[c(&quot;id&quot;)], fromLast = TRUE))</code></pre>
 <pre><code>[1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre class="r"><code>head(!duplicated(pbcseq[c(&quot;id&quot;)], fromLast = TRUE))</code></pre>
 <pre><code>[1] FALSE  TRUE FALSE FALSE FALSE FALSE</code></pre>
 <p>We will keep all the observations by using the following way<br />
 </p>
 <ul>
-<li><p>Step 1: Obtain how many repeated measurements we have per patient</p></li>
-<li><p>Step 2: Take a sequence of the visits of each patient</p></li>
-<li><p>Step 3: Obtain the wide format <code>pbcseq</code> data set using the function <code>reshape()</code> from the <code>reshape2</code> package</p></li>
+<li>Step 1: Obtain how many repeated measurements we have per patient</li>
 </ul>
+
+<pre class="r"><code>vec &lt;- table(pbcseq$id)</code></pre>
+<ul>
+<li>Step 2: Take a sequence of the visits of each patient</li>
+</ul>
+
+<pre class="r"><code>vec2 &lt;- sequence(vec)
+pbcseq$visits &lt;- vec2</code></pre>
+<ul>
+<li>Step 3: Obtain the wide format <code>pbcseq</code> data set using the function <code>reshape()</code> from the <code>reshape2</code> package</li>
+</ul>
+
+<pre class="r"><code>pbcseqWide &lt;- reshape(pbcseq, idvar = c(&quot;id&quot;), 
+                    drop = c(&quot;futime&quot;, &quot;status&quot;, &quot;trt&quot;, &quot;age&quot;, &quot;sex&quot;, 
+                             &quot;day&quot;, &quot;ascites&quot;, &quot;hepato&quot;, &quot;spiders&quot;, 
+                             &quot;edema&quot;, &quot;chol&quot;, &quot;albumin&quot;, &quot;alk.phos&quot;, 
+                             &quot;ast&quot;, &quot;platelet&quot;, &quot;protime&quot;, &quot;stage&quot;),
+                    timevar = &quot;visits&quot;, direction = &quot;wide&quot;)
+
+head(pbcseqWide)</code></pre>
 <pre><code>   id bili.1 bili.2 bili.3 bili.4 bili.5 bili.6 bili.7 bili.8 bili.9
 1   1   14.5   21.3     NA     NA     NA     NA     NA     NA     NA
 3   2    1.1    0.8    1.0    1.9    2.6    3.6    4.2    3.6    4.6
@@ -1758,6 +1816,11 @@ We will remove a lot of information by using the following way</p>
 <h3>Wide to long data set<br />
 </h3>
 <p>Obtain the long format <code>pbcseqWide</code> data set using the function <code>reshape()</code> from the <code>reshape2</code> package</p>
+
+<pre class="r"><code>pbcLong &lt;- reshape(pbcseqWide, idvar = c(&quot;id&quot;), timevar = &quot;time&quot;, 
+                    varying = list(names(pbcseqWide)[2:17]),
+                    v.names = &quot;bili&quot;, direction = &quot;long&quot;, times = 1:16)
+head(pbcLong)</code></pre>
 <pre><code>    id time bili
 1.1  1    1 14.5
 2.1  2    1  1.1
@@ -1766,6 +1829,9 @@ We will remove a lot of information by using the following way</p>
 5.1  5    1  3.4
 6.1  6    1  0.8</code></pre>
 <p>Extra step: Order the data set by <code>id</code> number</p>
+
+<pre class="r"><code>pbcLong &lt;- pbcLong[order(pbcLong$id),]
+head(pbcLong)</code></pre>
 <pre><code>    id time bili
 1.1  1    1 14.5
 1.2  1    2 21.3

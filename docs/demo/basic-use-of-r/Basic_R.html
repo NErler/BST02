@@ -1528,11 +1528,20 @@ div.tocify {
 <h2>Load packages</h2>
 <p>If you are using the package for the first time, you will have to first install it<br />
 </p>
+
+<pre class="r"><code># install.packages(&quot;survival&quot;) 
+# install.packages(&quot;memisc&quot;) 
+library(survival)
+library(memisc)</code></pre>
 </div>
 <div id="get-and-view-data" class="section level2">
 <h2>Get and view data</h2>
 <p>Load data set from package</p>
+
+<pre class="r"><code>pbc &lt;- survival::pbc</code></pre>
 <p>Print the first 6 rows of the data set</p>
+
+<pre class="r"><code>head(pbc)</code></pre>
 <pre><code>  id time status trt      age sex ascites hepato spiders edema bili
 1  1  400      2   1 58.76523   f       1      1       1   1.0 14.5
 2  2 4500      0   1 56.44627   f       0      1       1   0.0  1.1
@@ -1548,30 +1557,54 @@ div.tocify {
 5  279    3.53    143    671.0 113.15   72      136    10.9     3
 6  248    3.98     50    944.0  93.00   63       NA    11.0     3</code></pre>
 <p>View data</p>
+
+<pre class="r"><code>view(pbc)</code></pre>
 </div>
 <div id="common-questions-that-can-be-answered-in-r" class="section level2">
 <h2>Common questions that can be answered in R</h2>
 <p>What is the average <code>age</code>?</p>
+
+<pre class="r"><code>mean(pbc$age)</code></pre>
 <pre><code>[1] 50.74155</code></pre>
 <p>What is the average <code>serum bilirubin</code>?</p>
+
+<pre class="r"><code>mean(pbc$bili)</code></pre>
 <pre><code>[1] 3.220813</code></pre>
 <p>What is the average <code>serum cholesterol</code>?</p>
+
+<pre class="r"><code>mean(pbc$chol)</code></pre>
 <pre><code>[1] NA</code></pre>
 <p>The previous code would not work because we have missing data</p>
+
+<pre class="r"><code>mean(pbc$chol, na.rm = TRUE)</code></pre>
 <pre><code>[1] 369.5106</code></pre>
 <p>What is the percentage of <code>females</code>?<br />
 In order to use the function <code>percent()</code>, the package <code>memisc</code> should be loaded first</p>
+
+<pre class="r"><code>percent(pbc$sex)</code></pre>
 <pre><code>        m         f         N 
  10.52632  89.47368 418.00000 </code></pre>
 <p>We obtained a lot of information in R but we did not save anything<br />
 </p>
+
+<pre class="r"><code>&quot;Hello&quot;</code></pre>
 <pre><code>[1] &quot;Hello&quot;</code></pre>
 <p>In order to store information, the expression should assign the command</p>
+
+<pre class="r"><code>hi &lt;- &quot;Hello&quot;
+hi</code></pre>
 <pre><code>[1] &quot;Hello&quot;</code></pre>
 <p>We need to define any object before we use it<br />
 E.g. <code>number</code> and <code>x</code> are first defined<br />
 </p>
+
+<pre class="r"><code># number
+number &lt;- 10
+number</code></pre>
 <pre><code>[1] 10</code></pre>
+<pre class="r"><code># x
+x = 1
+x</code></pre>
 <pre><code>[1] 1</code></pre>
 </div>
 <div id="things-to-remember" class="section level2">
@@ -1582,10 +1615,13 @@ E.g. <code>number</code> and <code>x</code> are first defined<br />
 <li><strong>R</strong> is sensitive, e.g. <code>pbc$Age</code> will not run because there is a typo<br />
 We need to check the names first using the function <code>names()</code></li>
 </ul>
+
+<pre class="r"><code>names(pbc)</code></pre>
 <pre><code> [1] &quot;id&quot;       &quot;time&quot;     &quot;status&quot;   &quot;trt&quot;      &quot;age&quot;      &quot;sex&quot;     
  [7] &quot;ascites&quot;  &quot;hepato&quot;   &quot;spiders&quot;  &quot;edema&quot;    &quot;bili&quot;     &quot;chol&quot;    
 [13] &quot;albumin&quot;  &quot;copper&quot;   &quot;alk.phos&quot; &quot;ast&quot;      &quot;trig&quot;     &quot;platelet&quot;
 [19] &quot;protime&quot;  &quot;stage&quot;   </code></pre>
+<pre class="r"><code>pbc$age</code></pre>
 <pre><code>  [1] 58.76523 56.44627 70.07255 54.74059 38.10541 66.25873 55.53457
   [8] 53.05681 42.50787 70.55989 53.71389 59.13758 45.68925 56.22177
  [15] 64.64613 40.44353 52.18344 53.93018 49.56057 59.95346 64.18891
@@ -1650,8 +1686,12 @@ We need to check the names first using the function <code>names()</code></li>
 <div id="data-checks" class="section level2">
 <h2>Data checks</h2>
 <p>Check for missing data</p>
+
+<pre class="r"><code>is.na(x)</code></pre>
 <pre><code>[1] FALSE</code></pre>
 <p>The function <code>head()</code> can be used when the output is expected to be long</p>
+
+<pre class="r"><code>head(is.na(pbc))</code></pre>
 <pre><code>        id  time status   trt   age   sex ascites hepato spiders
 [1,] FALSE FALSE  FALSE FALSE FALSE FALSE   FALSE  FALSE   FALSE
 [2,] FALSE FALSE  FALSE FALSE FALSE FALSE   FALSE  FALSE   FALSE
@@ -1674,9 +1714,12 @@ We need to check the names first using the function <code>names()</code></li>
 [5,]   FALSE FALSE
 [6,]   FALSE FALSE</code></pre>
 <p>If you are looking at the whole data set, you need to get a summary</p>
+
+<pre class="r"><code>table(is.na(pbc))</code></pre>
 <pre><code>
 FALSE  TRUE 
  7327  1033 </code></pre>
+<pre class="r"><code>is.na(pbc$age)</code></pre>
 <pre><code>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
  [11] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
  [21] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -1719,10 +1762,13 @@ FALSE  TRUE
 [391] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [401] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [411] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<pre class="r"><code>table(is.na(pbc$age)) </code></pre>
 <pre><code>
 FALSE 
   418 </code></pre>
 <p>Check for infinity data</p>
+
+<pre class="r"><code>is.infinite(pbc$age)</code></pre>
 <pre><code>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
  [11] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
  [21] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE

@@ -1527,9 +1527,14 @@ div.tocify {
 <div id="load-packages" class="section level2">
 <h2>Load packages</h2>
 <p>If you are using the package for the first time, you will have to first install it</p>
+
+<pre class="r"><code># install.packages(&quot;survival&quot;) 
+library(survival)</code></pre>
 </div>
 <div id="get-data" class="section level2">
 <h2>Get data</h2>
+
+<pre class="r"><code>pbc &lt;- survival::pbc</code></pre>
 </div>
 <div id="smart-programming" class="section level2">
 <h2>Smart programming</h2>
@@ -1538,14 +1543,37 @@ div.tocify {
 </li>
 </ul>
 <p>Code 1:</p>
-<p>Code 2</p>
+
+<pre class="r"><code>x&lt;-10
+y&lt;-10/2
+z&lt;-x+y</code></pre>
+<p>Code 2:</p>
+
+<pre class="r"><code># store a value
+x &lt;- 10
+# take half of the stored value
+y &lt;- x/2
+# get the sum of both values
+z &lt;- x + y</code></pre>
 <p>Which code (1 or 2) would you prefer?<br />
 </p>
 <ul>
 <li>Always check if you can make your code faster</li>
 </ul>
+
+<pre class="r"><code>marks = sample(0:100, 150, replace = TRUE)
+system.time({ifelse(marks &gt;= 40, &quot;pass&quot;, &quot;fail&quot;)})</code></pre>
 <pre><code>   user  system elapsed 
       0       0       0 </code></pre>
+<pre class="r"><code>system.time({
+  for (j in 1:length(marks)){
+    if(marks[j] &gt;= 40) {
+      print(&quot;pass&quot;) 
+    } else {
+      print(&quot;fail&quot;)
+    }
+  }
+})</code></pre>
 <pre><code>[1] &quot;fail&quot;
 [1] &quot;fail&quot;
 [1] &quot;fail&quot;
@@ -1701,6 +1729,9 @@ div.tocify {
 <p>Other example<br />
 Create a matrix<br />
 </p>
+
+<pre class="r"><code>A &lt;- matrix(rnorm(1e06), 1000, 1000)
+A[1:10 , 1:10]</code></pre>
 <pre><code>             [,1]        [,2]       [,3]       [,4]        [,5]
  [1,] -0.28400139  1.01912548 -1.9096331  1.6605347  0.78847580
  [2,]  1.09185644  0.67567316 -0.3404026 -0.6766292 -1.47549050
@@ -1724,22 +1755,70 @@ Create a matrix<br />
  [9,]  1.06376340 -0.45046780 -0.19420518 -0.50473036 -1.62140741
 [10,] -1.06399579  0.80677315  0.25421034  0.69125555  1.74385911</code></pre>
 <p>Calculate the sum per row</p>
+
+<pre class="r"><code>head(apply(A, 1, sum))</code></pre>
 <pre><code>[1] -11.80121  32.44390 -19.99763  15.95648 -28.03451 -21.92083</code></pre>
+<pre class="r"><code>#?rnorm</code></pre>
 <p>Calculate the sum per row, repeat this procedure 100 times</p>
+
+<pre class="r"><code>res1 &lt;- replicate(100, z &lt;- apply(A, 1, sum))
+res2 &lt;- replicate(100, z &lt;- rowSums(A)) # Use specialized functions</code></pre>
 <p>Compute the cumulative sum<br />
 Cumulative sum of 1, 2, 3, 4 is 1, 3, 6, 10</p>
+
+<pre class="r"><code>x &lt;- rnorm(1000000, 10, 10)
+
+cSum &lt;- 0 # cumulative sum in the beginning is 0
+z &lt;- numeric() # empty vector
+for (k in 1:length(x)){
+  cSum &lt;- cSum + x[k]
+  z[k] &lt;- cSum
+}</code></pre>
 <p>Explore how it works</p>
+
+<pre class="r"><code>i &lt;- 1
+cSum &lt;- 0
+cSum &lt;- cSum + x[i]
+x[1]</code></pre>
 <pre><code>[1] 5.02252</code></pre>
+<pre class="r"><code>i &lt;- 2
+cSum &lt;- cSum + x[i]
+
+
+res &lt;- cumsum(x)
+tail(res)</code></pre>
 <pre><code>[1] 10013292 10013282 10013296 10013329 10013338 10013360</code></pre>
 <p>Explore the timing of the code</p>
+
+<pre class="r"><code>cSum &lt;- 0 # cumulative sum in the beginning is 0
+z &lt;- numeric() # empty vector
+system.time({
+  cSum &lt;- 0
+  for (i in 1:length(x)){
+    cSum &lt;- cSum + x[i]
+    z[i] &lt;- cSum
+  }
+})</code></pre>
 <pre><code>   user  system elapsed 
-   0.30    0.05    0.34 </code></pre>
+   0.35    0.07    0.42 </code></pre>
+<pre class="r"><code>system.time({
+  cumsum(x)
+}) # better</code></pre>
 <pre><code>   user  system elapsed 
       0       0       0 </code></pre>
 <p>Other example<br />
 Create a dichotomous variable for <code>age</code> (assume as cut-off point the value 42)</p>
+
+<pre class="r"><code>for (i in 1:dim(pbc)[1]) {
+  pbc$ageCat[i] &lt;- as.numeric(pbc$age[i] &gt; 42)
+}</code></pre>
 <p>Explore what is happening<br />
 This will help you later create more complicated loops</p>
+
+<pre class="r"><code>i &lt;- 1
+pbc$ageCat[i] &lt;- as.numeric(pbc$age[i] &gt; 42)
+
+head(pbc)</code></pre>
 <pre><code>  id time status trt      age sex ascites hepato spiders edema bili
 1  1  400      2   1 58.76523   f       1      1       1   1.0 14.5
 2  2 4500      0   1 56.44627   f       0      1       1   0.0  1.1
@@ -1761,6 +1840,7 @@ This will help you later create more complicated loops</p>
 4      1
 5      0
 6      1</code></pre>
+<pre class="r"><code>pbc[i, ]</code></pre>
 <pre><code>  id time status trt      age sex ascites hepato spiders edema bili
 1  1  400      2   1 58.76523   f       1      1       1     1 14.5
   chol albumin copper alk.phos    ast trig platelet protime stage
@@ -1768,6 +1848,8 @@ This will help you later create more complicated loops</p>
   ageCat
 1      1</code></pre>
 <p>Do the same thing without a loop</p>
+
+<pre class="r"><code>pbc$ageCat &lt;- as.numeric(pbc$age &gt; 42)</code></pre>
 <p>More than one ways exist to code something in R!<br />
 </p>
 </div>
@@ -1776,10 +1858,58 @@ This will help you later create more complicated loops</p>
 <p>Calculate the mean weight for <code>males</code> and <code>females</code> in 100 datasets<br />
 Since we do not have 100 data sets, we will create them!<br />
 Let’s do that first manually…</p>
+
+<pre class="r"><code>datlist &lt;- list()
+
+i &lt;- 1
+set.seed(2015+i)
+patient &lt;- c(1:20)
+weight &lt;- rnorm(20, 70, 10)
+sex &lt;- sample(1:2, 20, replace = TRUE)
+sex &lt;- factor(sex, levels = 1:2, labels = c(&quot;male&quot;, &quot;female&quot;))
+
+datlist[[i]] &lt;- data.frame(patient, weight, sex)
+
+i &lt;- 2
+set.seed(2015+i)
+patient &lt;- c(1:20)
+weight &lt;- rnorm(20, 70, 10)
+sex &lt;- sample(1:2, 20, replace = T)
+sex &lt;- factor(sex, levels = 1:2, labels = c(&quot;male&quot;, &quot;female&quot;))
+
+datlist[[i]] &lt;- data.frame(patient, weight, sex)
+# ..... </code></pre>
 <p>It is too much work! Now use a loop</p>
+
+<pre class="r"><code>for (i in 1:100) {
+  set.seed(2015+i)
+  patient &lt;- c(1:20)
+  weight &lt;- rnorm(20, 70, 10)
+  sex &lt;- sample(1:2, 20, replace = T)
+  sex &lt;- factor(sex, levels = 1:2, labels = c(&quot;male&quot;, &quot;female&quot;))
+  
+  datlist[[i]] &lt;- data.frame(patient, weight, sex)
+}</code></pre>
 <p>Now that we have 100 data sets we need to calculate the mean <code>age</code> per <code>gender</code> in each of them<br />
 Let’s do that manually…</p>
+
+<pre class="r"><code>means &lt;- matrix(NA, length(datlist), 2)
+
+i &lt;- 1
+dat &lt;- datlist[[i]]
+means[i, ] &lt;- tapply(dat$weight, dat$sex, mean)
+
+i &lt;- 2
+dat &lt;- datlist[[i]]
+means[i, ] &lt;- tapply(dat$weight, dat$sex, mean)</code></pre>
 <p>Now use a loop</p>
+
+<pre class="r"><code>for (i in 1:length(datlist)) {
+  dat &lt;- datlist[[i]]
+  means[i, ] &lt;- tapply(dat$weight, dat$sex, mean)
+}
+
+means</code></pre>
 <pre><code>           [,1]     [,2]
   [1,] 66.87221 70.23012
   [2,] 69.32428 71.10880
@@ -1882,1496 +2012,83 @@ Let’s do that manually…</p>
  [99,] 70.71719 66.66810
 [100,] 73.99102 69.82842</code></pre>
 <p>Select the data sets, where more than 39% of the patients are <code>females</code></p>
+
+<pre class="r"><code>newList &lt;- list()
+
+for (i in 1:length(datlist)) {
+  dat &lt;- datlist[[i]]
+  if (sum(dat$sex == &quot;female&quot;)/20 &gt; 0.39) {
+    newList[[i]] &lt;- dat
+  }
+}</code></pre>
 <p>Now we need to remove the elements of the list that are NULL</p>
+
+<pre class="r"><code>newList &lt;- newList[!sapply(newList, is.null)]
+length(newList)</code></pre>
 <pre><code>[1] 90</code></pre>
 <p>Select the data sets, where more than 49% of the patients are <code>males</code></p>
+
+<pre class="r"><code>newList &lt;- list()
+
+for (i in 1:length(datlist)) {
+  dat &lt;- datlist[[i]]
+  if (sum(dat$sex == &quot;male&quot;)/20 &gt; 0.49) {
+    newList[[i]] &lt;- dat
+  }
+}</code></pre>
 <p>Now we need to remove the elements of the list that are NULL</p>
+
+<pre class="r"><code>newList &lt;- newList[!sapply(newList, is.null)]
+length(newList)</code></pre>
 <pre><code>[1] 64</code></pre>
 <p>Now make a function that takes as input the data sets in a list format, the name of the <code>gender</code> variable and the name of the <code>male</code> category<br />
 This function returns only the data sets, where more than 49% of the patients are <code>males</code><br />
 The output should be a list</p>
-<pre><code>[[1]]
-   patient   weight    sex
-1        1 60.85258   male
-2        2 80.01248   male
-3        3 69.43577 female
-4        4 72.96645   male
-5        5 42.08529   male
-6        6 67.17260 female
-7        7 62.36491   male
-8        8 63.14990 female
-9        9 73.67074   male
-10      10 71.82997 female
-11      11 65.68149   male
-12      12 67.18386 female
-13      13 83.39109 female
-14      14 60.94410 female
-15      15 85.94919 female
-16      16 73.33835   male
-17      17 61.22908   male
-18      18 80.41160   male
-19      19 62.98133   male
-20      20 63.01460 female
 
-[[2]]
-   patient   weight    sex
-1        1 84.34201   male
-2        2 69.22708 female
-3        3 77.39137 female
-4        4 52.41395   male
-5        5 69.30175   male
-6        6 74.51906 female
-7        7 50.41634   male
-8        8 69.98476   male
-9        9 67.34664 female
-10      10 85.63223   male
-11      11 73.42768 female
-12      12 85.72425 female
-13      13 62.53265 female
-14      14 73.06650   male
-15      15 55.69514   male
-16      16 81.94427   male
-17      17 65.17932   male
-18      18 83.17862   male
-19      19 58.70168 female
-20      20 60.73649   male
+<pre class="r"><code>subset_data &lt;- function(dataset = x, sex_var = &quot;sex&quot;, male_cat = &quot;male&quot;){
+  newList &lt;- list()
+  for (i in 1:length(dataset)) {
+    dat &lt;- dataset[[i]]
+    if (sum(dat[[sex_var]] == male_cat)/20 &gt; 0.49) {
+      newList[[i]] &lt;- dat
+    }
+  }
+  newList &lt;- newList[!sapply(newList, is.null)]
+}
 
-[[3]]
-   patient   weight    sex
-1        1 65.77016   male
-2        2 54.50122 female
-3        3 69.35571 female
-4        4 72.70881   male
-5        5 87.35284   male
-6        6 67.35289   male
-7        7 90.99471 female
-8        8 78.63351   male
-9        9 63.89413 female
-10      10 76.37056   male
-11      11 63.56965 female
-12      12 59.69971 female
-13      13 77.12481   male
-14      14 65.54228   male
-15      15 72.48980   male
-16      16 59.25806 female
-17      17 51.72738 female
-18      18 70.15492   male
-19      19 53.15639 female
-20      20 72.04468 female
+res &lt;- subset_data(dataset = datlist, sex_var = &quot;sex&quot;, male_cat = &quot;male&quot;)
 
-[[4]]
-   patient   weight    sex
-1        1 68.77540   male
-2        2 75.52457   male
-3        3 73.48650 female
-4        4 73.59632 female
-5        5 78.98054   male
-6        6 50.77430   male
-7        7 72.61744 female
-8        8 79.15566 female
-9        9 70.13772 female
-10      10 87.29963 female
-11      11 59.17795   male
-12      12 67.27175   male
-13      13 71.81995 female
-14      14 85.08542   male
-15      15 86.04470 female
-16      16 51.58524   male
-17      17 86.23310 female
-18      18 71.31389 female
-19      19 84.81122   male
-20      20 85.13318   male
-
-[[5]]
-   patient   weight    sex
-1        1 79.00142   male
-2        2 58.26654 female
-3        3 61.02515 female
-4        4 55.55499 female
-5        5 66.68986   male
-6        6 40.99371 female
-7        7 59.40744   male
-8        8 72.77955 female
-9        9 77.49486 female
-10      10 72.41583 female
-11      11 80.06186   male
-12      12 68.14854 female
-13      13 60.18173   male
-14      14 70.92908   male
-15      15 69.47216 female
-16      16 69.19672   male
-17      17 63.45896   male
-18      18 60.49316   male
-19      19 80.19562   male
-20      20 78.59046 female
-
-[[6]]
-   patient   weight    sex
-1        1 79.81969 female
-2        2 74.68715 female
-3        3 68.92029   male
-4        4 67.87122   male
-5        5 81.58098   male
-6        6 82.92355 female
-7        7 75.34647 female
-8        8 68.72965 female
-9        9 57.75125 female
-10      10 58.78649   male
-11      11 53.28075 female
-12      12 74.68918   male
-13      13 78.32190   male
-14      14 72.93022 female
-15      15 37.25714 female
-16      16 68.51889   male
-17      17 60.70061   male
-18      18 74.54214 female
-19      19 53.93893   male
-20      20 49.88529   male
-
-[[7]]
-   patient   weight    sex
-1        1 75.20589 female
-2        2 59.20309 female
-3        3 71.39238 female
-4        4 69.15251   male
-5        5 63.33360 female
-6        6 44.83911   male
-7        7 62.64853   male
-8        8 59.79878   male
-9        9 71.13554 female
-10      10 65.26209   male
-11      11 65.91785   male
-12      12 62.69567   male
-13      13 67.78563 female
-14      14 67.74183   male
-15      15 44.53119 female
-16      16 83.47001   male
-17      17 76.16408   male
-18      18 72.17564 female
-19      19 61.95281 female
-20      20 76.89747 female
-
-[[8]]
-   patient   weight    sex
-1        1 60.65122 female
-2        2 63.06137   male
-3        3 64.52055   male
-4        4 77.66271   male
-5        5 88.52100   male
-6        6 77.54123   male
-7        7 59.15021   male
-8        8 63.70453 female
-9        9 54.16043 female
-10      10 62.50212 female
-11      11 55.92260   male
-12      12 64.77148   male
-13      13 75.73754   male
-14      14 82.38505   male
-15      15 68.26118 female
-16      16 57.22384 female
-17      17 80.33907   male
-18      18 70.82679 female
-19      19 70.69808 female
-20      20 92.15937   male
-
-[[9]]
-   patient   weight    sex
-1        1 70.96409   male
-2        2 72.92376   male
-3        3 44.27490   male
-4        4 88.97737 female
-5        5 91.86229   male
-6        6 70.01879   male
-7        7 61.26837 female
-8        8 52.82786   male
-9        9 72.00567 female
-10      10 68.90858 female
-11      11 54.02718 female
-12      12 81.69296   male
-13      13 55.99107   male
-14      14 57.95383 female
-15      15 62.42041   male
-16      16 68.12938   male
-17      17 67.86391   male
-18      18 57.68472 female
-19      19 56.50650 female
-20      20 82.72779   male
-
-[[10]]
-   patient   weight    sex
-1        1 56.35425   male
-2        2 52.68089   male
-3        3 67.75390 female
-4        4 68.72229   male
-5        5 74.65450 female
-6        6 80.62409 female
-7        7 84.78633   male
-8        8 78.29415 female
-9        9 81.59541 female
-10      10 82.18073   male
-11      11 64.51710   male
-12      12 65.08525   male
-13      13 71.09257 female
-14      14 41.76615 female
-15      15 61.05199   male
-16      16 73.65218 female
-17      17 83.99677   male
-18      18 74.27856   male
-19      19 82.58470   male
-20      20 58.49835   male
-
-[[11]]
-   patient   weight    sex
-1        1 68.66173 female
-2        2 72.02010   male
-3        3 64.65350   male
-4        4 76.45545   male
-5        5 66.87963   male
-6        6 70.13569   male
-7        7 67.74642 female
-8        8 69.43591   male
-9        9 87.91957 female
-10      10 48.17603 female
-11      11 75.32627 female
-12      12 84.30157   male
-13      13 55.15887 female
-14      14 72.71228   male
-15      15 53.61498   male
-16      16 74.02617   male
-17      17 82.84322 female
-18      18 81.04002   male
-19      19 66.29735 female
-20      20 72.96207 female
-
-[[12]]
-   patient   weight    sex
-1        1 72.41140   male
-2        2 79.88171   male
-3        3 83.67028   male
-4        4 79.37623 female
-5        5 91.62410   male
-6        6 82.94263 female
-7        7 65.52905   male
-8        8 83.38378 female
-9        9 75.27098 female
-10      10 81.52505   male
-11      11 62.60396 female
-12      12 61.36195 female
-13      13 95.62070   male
-14      14 72.99221 female
-15      15 64.40429 female
-16      16 58.06112   male
-17      17 67.26684   male
-18      18 72.33124   male
-19      19 74.50352 female
-20      20 60.82155 female
-
-[[13]]
-   patient   weight    sex
-1        1 71.18539   male
-2        2 78.03052 female
-3        3 70.11425 female
-4        4 67.80004   male
-5        5 64.69386 female
-6        6 64.56235 female
-7        7 77.13652   male
-8        8 66.84055   male
-9        9 50.14143   male
-10      10 78.58642 female
-11      11 70.25344   male
-12      12 83.97203   male
-13      13 67.05637 female
-14      14 67.22533   male
-15      15 80.09433 female
-16      16 71.46360   male
-17      17 79.17938   male
-18      18 67.96285 female
-19      19 86.60467   male
-20      20 78.40477 female
-
-[[14]]
-   patient   weight    sex
-1        1 85.81867   male
-2        2 55.13225   male
-3        3 73.29236 female
-4        4 69.03928   male
-5        5 62.60763 female
-6        6 64.36727   male
-7        7 66.48475   male
-8        8 65.00343 female
-9        9 66.45902 female
-10      10 69.11504 female
-11      11 72.29207 female
-12      12 68.86989 female
-13      13 53.43560   male
-14      14 79.30029 female
-15      15 80.08297   male
-16      16 66.56756   male
-17      17 53.55625 female
-18      18 81.70488   male
-19      19 51.15219 female
-20      20 84.58422   male
-
-[[15]]
-   patient   weight    sex
-1        1 71.77463 female
-2        2 81.45078   male
-3        3 81.96742 female
-4        4 80.96605   male
-5        5 89.01576   male
-6        6 53.00105   male
-7        7 81.00584 female
-8        8 68.02365   male
-9        9 71.25615 female
-10      10 60.18920 female
-11      11 65.60155 female
-12      12 78.22083 female
-13      13 85.72182 female
-14      14 82.02706 female
-15      15 77.44283   male
-16      16 68.46020   male
-17      17 71.09624   male
-18      18 69.53442   male
-19      19 71.76446   male
-20      20 60.35265   male
-
-[[16]]
-   patient   weight    sex
-1        1 61.96446   male
-2        2 75.98628 female
-3        3 77.35690   male
-4        4 69.59202 female
-5        5 74.92169   male
-6        6 71.97127   male
-7        7 88.19553   male
-8        8 68.47120   male
-9        9 68.26984 female
-10      10 85.69570 female
-11      11 49.78523   male
-12      12 75.00697 female
-13      13 64.33150   male
-14      14 77.30924 female
-15      15 87.28405 female
-16      16 90.62918 female
-17      17 67.72003   male
-18      18 64.97403   male
-19      19 86.33545   male
-20      20 67.17303   male
-
-[[17]]
-   patient   weight    sex
-1        1 65.51945 female
-2        2 86.63230 female
-3        3 78.55685   male
-4        4 68.87193   male
-5        5 72.63282 female
-6        6 69.41486 female
-7        7 63.37633 female
-8        8 73.86933 female
-9        9 64.75445   male
-10      10 51.47371   male
-11      11 62.58809   male
-12      12 56.88512 female
-13      13 79.13835 female
-14      14 55.26864   male
-15      15 68.58383 female
-16      16 72.30088   male
-17      17 81.89460 female
-18      18 82.51550   male
-19      19 71.88319   male
-20      20 52.04177   male
-
-[[18]]
-   patient   weight    sex
-1        1 79.86190   male
-2        2 75.85565   male
-3        3 64.81414   male
-4        4 65.64978   male
-5        5 74.00273 female
-6        6 79.51273 female
-7        7 74.26314 female
-8        8 83.73813 female
-9        9 60.59037   male
-10      10 67.91393   male
-11      11 79.11105 female
-12      12 81.21047 female
-13      13 50.21129 female
-14      14 72.02875   male
-15      15 90.74798 female
-16      16 62.76838   male
-17      17 74.85432   male
-18      18 60.13511   male
-19      19 87.79435   male
-20      20 83.72709 female
-
-[[19]]
-   patient   weight    sex
-1        1 65.34460 female
-2        2 78.96343 female
-3        3 70.06472 female
-4        4 71.90599 female
-5        5 79.91827   male
-6        6 77.24199   male
-7        7 65.16421 female
-8        8 73.99331   male
-9        9 72.79661   male
-10      10 69.56675 female
-11      11 63.37820 female
-12      12 86.57948   male
-13      13 66.47321   male
-14      14 81.96996 female
-15      15 70.75094   male
-16      16 67.06108 female
-17      17 63.10362   male
-18      18 77.94651 female
-19      19 68.89501   male
-20      20 58.07959   male
-
-[[20]]
-   patient   weight    sex
-1        1 77.57105   male
-2        2 69.30796 female
-3        3 73.49020 female
-4        4 80.95916   male
-5        5 63.12346   male
-6        6 82.11748   male
-7        7 88.55675   male
-8        8 77.26497   male
-9        9 74.74867   male
-10      10 57.37481 female
-11      11 73.42630 female
-12      12 61.21234   male
-13      13 54.27418 female
-14      14 92.97805 female
-15      15 60.42980   male
-16      16 56.43629   male
-17      17 86.08575 female
-18      18 79.44540 female
-19      19 68.79954   male
-20      20 68.38312 female
-
-[[21]]
-   patient   weight    sex
-1        1 54.07874   male
-2        2 65.29330 female
-3        3 61.46013   male
-4        4 54.16424   male
-5        5 69.67995 female
-6        6 60.89288   male
-7        7 55.71589   male
-8        8 78.10373 female
-9        9 70.19968   male
-10      10 57.35028 female
-11      11 59.13165   male
-12      12 64.36377   male
-13      13 77.76930 female
-14      14 72.51384 female
-15      15 71.61844   male
-16      16 83.87129   male
-17      17 61.48344 female
-18      18 54.54424 female
-19      19 79.46540 female
-20      20 72.49344   male
-
-[[22]]
-   patient   weight    sex
-1        1 69.45756   male
-2        2 70.91821   male
-3        3 49.07835 female
-4        4 67.50631   male
-5        5 74.80418 female
-6        6 57.58454   male
-7        7 61.22624 female
-8        8 79.84580 female
-9        9 59.99118   male
-10      10 76.98955 female
-11      11 67.89176   male
-12      12 78.54742   male
-13      13 65.58597 female
-14      14 70.46515   male
-15      15 79.61623   male
-16      16 65.42698   male
-17      17 71.72156 female
-18      18 59.87008 female
-19      19 68.05970 female
-20      20 61.31490 female
-
-[[23]]
-   patient   weight    sex
-1        1 74.01771   male
-2        2 62.38754   male
-3        3 53.78958   male
-4        4 67.84310 female
-5        5 63.07816 female
-6        6 66.67189 female
-7        7 63.07773 female
-8        8 61.30294 female
-9        9 58.12208   male
-10      10 46.10194   male
-11      11 75.54892 female
-12      12 83.46351   male
-13      13 63.23676   male
-14      14 53.69589 female
-15      15 75.94901 female
-16      16 80.45305   male
-17      17 59.01277   male
-18      18 65.44151 female
-19      19 70.18772   male
-20      20 58.85805 female
-
-[[24]]
-   patient   weight    sex
-1        1 75.29362 female
-2        2 64.19407 female
-3        3 71.63298 female
-4        4 58.81455   male
-5        5 68.75006   male
-6        6 94.44686   male
-7        7 84.36484   male
-8        8 69.05593   male
-9        9 77.54439   male
-10      10 73.68498   male
-11      11 90.10136 female
-12      12 78.23341 female
-13      13 90.34811   male
-14      14 74.76274   male
-15      15 64.16044 female
-16      16 77.54806 female
-17      17 81.54717 female
-18      18 49.49444   male
-19      19 67.72600   male
-20      20 73.67517   male
-
-[[25]]
-   patient   weight    sex
-1        1 70.44664   male
-2        2 65.62804   male
-3        3 75.55281   male
-4        4 73.35382   male
-5        5 58.17715   male
-6        6 61.76325   male
-7        7 64.40257 female
-8        8 71.26606 female
-9        9 85.14630 female
-10      10 83.58930   male
-11      11 70.74657   male
-12      12 54.52355   male
-13      13 81.42549 female
-14      14 67.79489   male
-15      15 80.90079 female
-16      16 72.55208 female
-17      17 72.94025 female
-18      18 67.17720   male
-19      19 60.07460 female
-20      20 84.56573 female
-
-[[26]]
-   patient   weight    sex
-1        1 79.54789   male
-2        2 71.10084   male
-3        3 62.31669   male
-4        4 69.10281 female
-5        5 78.74992   male
-6        6 69.67999   male
-7        7 71.82886   male
-8        8 54.77765   male
-9        9 60.46128 female
-10      10 72.26378   male
-11      11 81.43254   male
-12      12 64.51771   male
-13      13 70.85110   male
-14      14 78.17959   male
-15      15 69.47468 female
-16      16 64.15679   male
-17      17 59.79807 female
-18      18 62.03830 female
-19      19 58.51376 female
-20      20 82.33572 female
-
-[[27]]
-   patient   weight    sex
-1        1 59.66471 female
-2        2 72.27299   male
-3        3 68.89526 female
-4        4 74.43045   male
-5        5 70.84425 female
-6        6 65.95856 female
-7        7 63.54941   male
-8        8 67.34938   male
-9        9 82.88330   male
-10      10 71.21797   male
-11      11 81.30551   male
-12      12 81.16144   male
-13      13 63.91865   male
-14      14 79.24739 female
-15      15 72.58433   male
-16      16 81.23621 female
-17      17 77.76328   male
-18      18 72.58085   male
-19      19 82.73703   male
-20      20 72.89640   male
-
-[[28]]
-   patient   weight    sex
-1        1 59.33397 female
-2        2 71.50756   male
-3        3 63.80119   male
-4        4 68.19531   male
-5        5 68.47445 female
-6        6 67.43291   male
-7        7 89.51549 female
-8        8 74.98227   male
-9        9 75.66382 female
-10      10 69.51974 female
-11      11 76.80629   male
-12      12 74.66339   male
-13      13 73.19097 female
-14      14 67.68578   male
-15      15 80.83248 female
-16      16 52.91993   male
-17      17 67.74022 female
-18      18 81.04263   male
-19      19 66.50986   male
-20      20 50.52996 female
-
-[[29]]
-   patient   weight    sex
-1        1 73.03834   male
-2        2 60.67114 female
-3        3 66.84095 female
-4        4 57.67650   male
-5        5 65.24276   male
-6        6 61.30982   male
-7        7 54.30782 female
-8        8 69.80159 female
-9        9 73.02598   male
-10      10 60.58613   male
-11      11 75.56634 female
-12      12 68.87831 female
-13      13 86.23334 female
-14      14 79.77793   male
-15      15 60.49388 female
-16      16 53.06124   male
-17      17 57.89794   male
-18      18 72.36422   male
-19      19 71.63466   male
-20      20 66.26602   male
-
-[[30]]
-   patient   weight    sex
-1        1 67.23629   male
-2        2 69.93772   male
-3        3 66.48761 female
-4        4 60.57731   male
-5        5 61.18959 female
-6        6 66.86438 female
-7        7 68.42451 female
-8        8 58.90698   male
-9        9 86.58345   male
-10      10 61.52627 female
-11      11 53.48680 female
-12      12 90.81923   male
-13      13 66.28998 female
-14      14 75.02837   male
-15      15 60.14445   male
-16      16 58.23226 female
-17      17 68.10084 female
-18      18 67.06680 female
-19      19 67.41497   male
-20      20 65.37986   male
-
-[[31]]
-   patient   weight    sex
-1        1 67.90900 female
-2        2 65.96508   male
-3        3 74.10314   male
-4        4 71.60042 female
-5        5 60.43688   male
-6        6 72.51678   male
-7        7 66.14565   male
-8        8 62.52163   male
-9        9 61.17059   male
-10      10 74.66914 female
-11      11 63.75284   male
-12      12 90.19495   male
-13      13 66.89050 female
-14      14 81.28590 female
-15      15 54.13576   male
-16      16 79.26247 female
-17      17 75.54644   male
-18      18 75.68246 female
-19      19 77.02977 female
-20      20 85.29639 female
-
-[[32]]
-   patient   weight    sex
-1        1 62.68666   male
-2        2 65.06854 female
-3        3 69.28613 female
-4        4 61.78161   male
-5        5 70.16007 female
-6        6 63.48992   male
-7        7 79.07537 female
-8        8 71.32304   male
-9        9 55.09910   male
-10      10 79.45874 female
-11      11 67.01965 female
-12      12 84.37191   male
-13      13 67.72984 female
-14      14 40.41859   male
-15      15 67.10900 female
-16      16 61.47156   male
-17      17 76.89834 female
-18      18 66.84315 female
-19      19 49.42409   male
-20      20 79.42229   male
-
-[[33]]
-   patient   weight    sex
-1        1 72.85586   male
-2        2 66.85928 female
-3        3 61.44739   male
-4        4 84.81094 female
-5        5 83.17611   male
-6        6 65.76553   male
-7        7 55.72279   male
-8        8 74.14734   male
-9        9 70.67322   male
-10      10 77.53197   male
-11      11 62.23431 female
-12      12 80.76944 female
-13      13 66.78619 female
-14      14 73.44353 female
-15      15 67.94220   male
-16      16 73.95657 female
-17      17 85.97251   male
-18      18 61.88477 female
-19      19 63.39766   male
-20      20 56.23906 female
-
-[[34]]
-   patient   weight    sex
-1        1 74.56866 female
-2        2 74.25406   male
-3        3 70.78263   male
-4        4 54.89843   male
-5        5 70.89268   male
-6        6 62.78270   male
-7        7 59.26004   male
-8        8 61.40808 female
-9        9 84.91513 female
-10      10 52.91984 female
-11      11 75.74363 female
-12      12 85.17623 female
-13      13 56.92430   male
-14      14 82.38335   male
-15      15 50.29728 female
-16      16 75.06268 female
-17      17 66.05324 female
-18      18 65.56596   male
-19      19 68.27967   male
-20      20 67.64061   male
-
-[[35]]
-   patient   weight    sex
-1        1 84.51154   male
-2        2 70.51284 female
-3        3 53.11680   male
-4        4 76.19693   male
-5        5 66.77670   male
-6        6 49.61260 female
-7        7 62.04316 female
-8        8 69.75735   male
-9        9 57.40589 female
-10      10 74.80282   male
-11      11 63.13643 female
-12      12 86.52722 female
-13      13 91.37660 female
-14      14 59.23545   male
-15      15 51.15201   male
-16      16 67.12565   male
-17      17 66.05393   male
-18      18 76.21634 female
-19      19 68.22425 female
-20      20 83.21184 female
-
-[[36]]
-   patient    weight    sex
-1        1  71.97562   male
-2        2  81.16112 female
-3        3  57.41339 female
-4        4  86.21150   male
-5        5  66.88019   male
-6        6  76.46562   male
-7        7  74.92541   male
-8        8  55.32430 female
-9        9  78.33095 female
-10      10  57.22520 female
-11      11  85.64093   male
-12      12  64.10320   male
-13      13  62.77529 female
-14      14  64.39468 female
-15      15  70.68204   male
-16      16  77.61240 female
-17      17  57.54672   male
-18      18  76.46342 female
-19      19 101.21652   male
-20      20  72.38680   male
-
-[[37]]
-   patient   weight    sex
-1        1 77.58943   male
-2        2 66.90285   male
-3        3 80.12530 female
-4        4 72.82457 female
-5        5 62.70983   male
-6        6 74.86048 female
-7        7 71.66778 female
-8        8 81.55759   male
-9        9 57.93562 female
-10      10 95.14869 female
-11      11 55.56011   male
-12      12 80.67941 female
-13      13 71.39579   male
-14      14 81.88362   male
-15      15 65.22692 female
-16      16 71.25746   male
-17      17 66.75682   male
-18      18 71.12318 female
-19      19 62.97488   male
-20      20 87.14080   male
-
-[[38]]
-   patient   weight    sex
-1        1 58.09825 female
-2        2 79.12021   male
-3        3 58.75028   male
-4        4 59.45079 female
-5        5 82.02091 female
-6        6 66.06143 female
-7        7 68.63731   male
-8        8 72.75979   male
-9        9 60.61737 female
-10      10 79.15939 female
-11      11 83.24830   male
-12      12 93.92448   male
-13      13 74.24508 female
-14      14 79.35680   male
-15      15 45.58138   male
-16      16 96.70283 female
-17      17 68.63425   male
-18      18 70.16369 female
-19      19 77.57759   male
-20      20 89.64681 female
-
-[[39]]
-   patient   weight    sex
-1        1 75.82275   male
-2        2 72.43195   male
-3        3 70.92116   male
-4        4 81.74051   male
-5        5 79.64209   male
-6        6 61.80026   male
-7        7 62.43527 female
-8        8 87.32742   male
-9        9 87.53952   male
-10      10 77.65936 female
-11      11 78.70616   male
-12      12 81.01417 female
-13      13 61.22457   male
-14      14 64.70159 female
-15      15 76.57466   male
-16      16 59.70442   male
-17      17 48.87398 female
-18      18 78.23446   male
-19      19 71.62348 female
-20      20 76.77578 female
-
-[[40]]
-   patient   weight    sex
-1        1 73.50667 female
-2        2 62.83841   male
-3        3 78.73850   male
-4        4 76.18586   male
-5        5 78.62499   male
-6        6 66.94806   male
-7        7 68.17353   male
-8        8 47.38121 female
-9        9 79.82315 female
-10      10 62.02096   male
-11      11 71.83116   male
-12      12 57.79487 female
-13      13 67.26735   male
-14      14 64.64890 female
-15      15 55.42336 female
-16      16 65.98734   male
-17      17 49.83338   male
-18      18 63.15400 female
-19      19 91.97028 female
-20      20 87.22680 female
-
-[[41]]
-   patient   weight    sex
-1        1 73.22870 female
-2        2 73.59654 female
-3        3 77.19742   male
-4        4 72.96437   male
-5        5 83.90151 female
-6        6 55.96057   male
-7        7 72.88911   male
-8        8 75.12477   male
-9        9 63.96783   male
-10      10 59.63106 female
-11      11 88.54643   male
-12      12 77.58267   male
-13      13 77.85263 female
-14      14 83.06055 female
-15      15 69.15836 female
-16      16 75.41909   male
-17      17 56.63859   male
-18      18 61.96035   male
-19      19 66.76313 female
-20      20 85.18940 female
-
-[[42]]
-   patient   weight    sex
-1        1 61.32001   male
-2        2 82.67011   male
-3        3 65.56605 female
-4        4 72.86201   male
-5        5 55.07217   male
-6        6 75.35735   male
-7        7 72.22293 female
-8        8 60.38121   male
-9        9 71.98078   male
-10      10 79.03059 female
-11      11 62.88484   male
-12      12 74.35790 female
-13      13 78.45076 female
-14      14 72.70111 female
-15      15 72.66991   male
-16      16 74.21354 female
-17      17 65.83063   male
-18      18 56.06955   male
-19      19 65.33100 female
-20      20 75.36166   male
-
-[[43]]
-   patient   weight    sex
-1        1 69.39267   male
-2        2 81.38728   male
-3        3 74.47462   male
-4        4 79.10720 female
-5        5 58.24775 female
-6        6 65.72174 female
-7        7 85.60296   male
-8        8 77.97661 female
-9        9 70.99772   male
-10      10 89.56211 female
-11      11 62.65544   male
-12      12 77.73592   male
-13      13 53.46616   male
-14      14 82.79007 female
-15      15 57.20661 female
-16      16 52.17981 female
-17      17 64.36587 female
-18      18 72.53977   male
-19      19 76.02840   male
-20      20 55.74965   male
-
-[[44]]
-   patient   weight    sex
-1        1 78.84830   male
-2        2 81.49700   male
-3        3 82.49814 female
-4        4 92.65140   male
-5        5 58.63679   male
-6        6 59.02685 female
-7        7 63.28146   male
-8        8 54.32113   male
-9        9 44.98651 female
-10      10 68.24707 female
-11      11 82.49102 female
-12      12 78.25029   male
-13      13 62.22415   male
-14      14 62.03201   male
-15      15 64.85508 female
-16      16 63.37427 female
-17      17 65.35569 female
-18      18 48.94496   male
-19      19 63.15091 female
-20      20 61.33078   male
-
-[[45]]
-   patient   weight    sex
-1        1 76.28340 female
-2        2 61.17616 female
-3        3 47.07384 female
-4        4 63.00867 female
-5        5 73.71193   male
-6        6 90.20343   male
-7        7 63.85106 female
-8        8 72.20705 female
-9        9 73.11302 female
-10      10 62.56880   male
-11      11 57.60214 female
-12      12 80.58796   male
-13      13 78.90975 female
-14      14 76.91687   male
-15      15 74.67442   male
-16      16 75.01419   male
-17      17 73.76206   male
-18      18 73.86829   male
-19      19 89.92894   male
-20      20 66.08641 female
-
-[[46]]
-   patient   weight    sex
-1        1 77.68924 female
-2        2 72.17216 female
-3        3 67.67818 female
-4        4 63.68947 female
-5        5 64.76991 female
-6        6 74.49041   male
-7        7 55.29324 female
-8        8 55.72417   male
-9        9 60.48980   male
-10      10 86.31563   male
-11      11 84.80371 female
-12      12 86.12146   male
-13      13 70.58473   male
-14      14 90.44435   male
-15      15 59.02055 female
-16      16 79.74831   male
-17      17 82.34522   male
-18      18 81.17503   male
-19      19 68.21143   male
-20      20 84.23391 female
-
-[[47]]
-   patient   weight    sex
-1        1 87.97071   male
-2        2 63.03055   male
-3        3 69.70225   male
-4        4 61.23343 female
-5        5 61.94012   male
-6        6 65.59907   male
-7        7 65.64268   male
-8        8 72.51269   male
-9        9 86.92842   male
-10      10 51.65218 female
-11      11 72.95739   male
-12      12 58.30507   male
-13      13 68.49912 female
-14      14 59.89588 female
-15      15 74.94174   male
-16      16 61.73191   male
-17      17 77.95085 female
-18      18 85.33844   male
-19      19 77.11886 female
-20      20 59.79095 female
-
-[[48]]
-   patient   weight    sex
-1        1 84.63136   male
-2        2 62.81431   male
-3        3 70.62953 female
-4        4 85.96582 female
-5        5 75.31264 female
-6        6 76.51950   male
-7        7 71.76701   male
-8        8 67.72021   male
-9        9 89.03185   male
-10      10 83.38658 female
-11      11 80.16264   male
-12      12 76.51533 female
-13      13 85.26514   male
-14      14 46.50343   male
-15      15 59.65259   male
-16      16 88.36031 female
-17      17 74.58965   male
-18      18 65.81582   male
-19      19 64.48006 female
-20      20 81.56478   male
-
-[[49]]
-   patient   weight    sex
-1        1 80.74691   male
-2        2 68.99045   male
-3        3 73.71921   male
-4        4 60.71418 female
-5        5 46.36038   male
-6        6 72.36018   male
-7        7 85.17777   male
-8        8 73.32157   male
-9        9 65.67246   male
-10      10 58.45072   male
-11      11 78.29885   male
-12      12 75.16450   male
-13      13 71.17488   male
-14      14 75.64231 female
-15      15 85.46749   male
-16      16 70.06125 female
-17      17 58.30340   male
-18      18 70.13796 female
-19      19 75.31145   male
-20      20 59.09578   male
-
-[[50]]
-   patient   weight    sex
-1        1 63.43272   male
-2        2 57.29026 female
-3        3 78.32985 female
-4        4 55.50105   male
-5        5 69.25006   male
-6        6 78.22078 female
-7        7 84.26771   male
-8        8 67.35013 female
-9        9 71.95106   male
-10      10 74.72295 female
-11      11 62.39303   male
-12      12 66.89363 female
-13      13 89.88303   male
-14      14 64.62223   male
-15      15 70.83034   male
-16      16 76.77539 female
-17      17 68.36751   male
-18      18 68.63366   male
-19      19 90.97649   male
-20      20 82.64527 female
-
-[[51]]
-   patient   weight    sex
-1        1 52.92704   male
-2        2 64.94335   male
-3        3 76.31579 female
-4        4 73.34012   male
-5        5 44.42760 female
-6        6 86.58546   male
-7        7 75.69197 female
-8        8 69.46535   male
-9        9 55.79982 female
-10      10 83.32878   male
-11      11 53.33333 female
-12      12 77.09973 female
-13      13 60.57753 female
-14      14 78.48929   male
-15      15 92.63491   male
-16      16 64.24433 female
-17      17 74.27249   male
-18      18 63.11789   male
-19      19 76.51200 female
-20      20 81.82293 female
-
-[[52]]
-   patient   weight    sex
-1        1 71.91344 female
-2        2 55.12183 female
-3        3 59.40445   male
-4        4 56.01665   male
-5        5 76.65750 female
-6        6 66.64945   male
-7        7 74.91837   male
-8        8 73.38722 female
-9        9 70.36328   male
-10      10 53.06389   male
-11      11 72.76645 female
-12      12 60.54223 female
-13      13 53.25456 female
-14      14 75.30743 female
-15      15 96.40013   male
-16      16 52.91316 female
-17      17 80.34868 female
-18      18 62.02572   male
-19      19 75.80900   male
-20      20 64.56459   male
-
-[[53]]
-   patient   weight    sex
-1        1 81.47367 female
-2        2 72.67504   male
-3        3 88.55117   male
-4        4 82.83458 female
-5        5 65.72488 female
-6        6 80.14024 female
-7        7 74.03026   male
-8        8 76.74394   male
-9        9 73.42018 female
-10      10 84.16932 female
-11      11 68.55007 female
-12      12 80.90931 female
-13      13 61.95397   male
-14      14 65.76949 female
-15      15 76.05847   male
-16      16 77.77648   male
-17      17 69.81176   male
-18      18 61.13764   male
-19      19 87.14164 female
-20      20 67.39790   male
-
-[[54]]
-   patient   weight    sex
-1        1 80.89770   male
-2        2 74.16653   male
-3        3 83.37647   male
-4        4 80.47564   male
-5        5 67.90673   male
-6        6 62.88032   male
-7        7 71.61510   male
-8        8 50.77131 female
-9        9 70.89425   male
-10      10 73.76236   male
-11      11 64.66709   male
-12      12 66.44813 female
-13      13 47.15103   male
-14      14 64.40360   male
-15      15 52.78618   male
-16      16 62.63479   male
-17      17 79.40620 female
-18      18 71.66538 female
-19      19 72.39287   male
-20      20 91.44459 female
-
-[[55]]
-   patient   weight    sex
-1        1 61.09449   male
-2        2 37.23670   male
-3        3 55.50214   male
-4        4 55.58051 female
-5        5 76.61479   male
-6        6 84.88655 female
-7        7 69.58674 female
-8        8 62.88398 female
-9        9 71.32853   male
-10      10 63.49861   male
-11      11 70.11987 female
-12      12 79.90491 female
-13      13 76.11467 female
-14      14 84.88293 female
-15      15 69.89026 female
-16      16 77.00580   male
-17      17 72.93121   male
-18      18 76.51611   male
-19      19 68.37882   male
-20      20 95.66705 female
-
-[[56]]
-   patient   weight    sex
-1        1 72.91451   male
-2        2 70.55965 female
-3        3 82.12738   male
-4        4 69.92789   male
-5        5 72.42920   male
-6        6 58.21904 female
-7        7 65.19154 female
-8        8 58.17644   male
-9        9 56.60922   male
-10      10 56.71735 female
-11      11 62.48035 female
-12      12 68.06461   male
-13      13 85.87085   male
-14      14 68.36784 female
-15      15 77.72041 female
-16      16 75.81797 female
-17      17 61.92067   male
-18      18 58.62822 female
-19      19 71.08762 female
-20      20 79.97162   male
-
-[[57]]
-   patient   weight    sex
-1        1 72.25155 female
-2        2 66.26844 female
-3        3 75.22868 female
-4        4 52.65148   male
-5        5 68.35649   male
-6        6 61.58052 female
-7        7 70.67899   male
-8        8 86.15143 female
-9        9 67.81328   male
-10      10 80.30005   male
-11      11 76.42060   male
-12      12 62.14673   male
-13      13 59.92077   male
-14      14 57.55456   male
-15      15 59.23790   male
-16      16 71.59027 female
-17      17 60.57493 female
-18      18 57.42613   male
-19      19 65.82761   male
-20      20 62.51994   male
-
-[[58]]
-   patient   weight    sex
-1        1 82.89993 female
-2        2 67.71515   male
-3        3 77.56470   male
-4        4 70.90968   male
-5        5 70.54421 female
-6        6 69.38858   male
-7        7 67.13477 female
-8        8 69.75821   male
-9        9 69.54735 female
-10      10 74.76587 female
-11      11 82.74229 female
-12      12 79.69871 female
-13      13 91.09213   male
-14      14 76.21340   male
-15      15 73.13316   male
-16      16 68.80499   male
-17      17 67.87671 female
-18      18 87.30176   male
-19      19 78.39577   male
-20      20 75.91074   male
-
-[[59]]
-   patient   weight    sex
-1        1 68.78356   male
-2        2 63.27282   male
-3        3 70.20972 female
-4        4 70.52193 female
-5        5 72.92849   male
-6        6 82.48371   male
-7        7 67.71339 female
-8        8 72.72711   male
-9        9 82.06742 female
-10      10 74.42124   male
-11      11 71.61534 female
-12      12 68.69759   male
-13      13 82.59715 female
-14      14 63.29522   male
-15      15 65.40953   male
-16      16 63.63898   male
-17      17 72.55367 female
-18      18 51.41864   male
-19      19 51.03407   male
-20      20 63.11186 female
-
-[[60]]
-   patient   weight    sex
-1        1 63.11342   male
-2        2 80.76264 female
-3        3 61.26222   male
-4        4 82.48626 female
-5        5 81.85653   male
-6        6 66.13076   male
-7        7 66.63719   male
-8        8 73.93843 female
-9        9 76.41846 female
-10      10 53.96607 female
-11      11 81.98569 female
-12      12 65.72547   male
-13      13 61.75844   male
-14      14 81.26038 female
-15      15 78.30758 female
-16      16 66.23998 female
-17      17 71.85369 female
-18      18 70.02353   male
-19      19 45.08948   male
-20      20 71.83873   male
-
-[[61]]
-   patient   weight    sex
-1        1 75.01852   male
-2        2 77.12848   male
-3        3 67.77356   male
-4        4 62.12505 female
-5        5 62.67049 female
-6        6 80.29500 female
-7        7 60.21233   male
-8        8 79.48876   male
-9        9 81.96251   male
-10      10 78.63746 female
-11      11 74.57477   male
-12      12 73.42743   male
-13      13 68.10669 female
-14      14 54.43436   male
-15      15 70.49365 female
-16      16 60.38491   male
-17      17 56.85808   male
-18      18 83.10958   male
-19      19 79.53517   male
-20      20 66.76246 female
-
-[[62]]
-   patient   weight    sex
-1        1 74.20457 female
-2        2 70.16530   male
-3        3 70.80172 female
-4        4 63.22478 female
-5        5 52.74257   male
-6        6 79.99036   male
-7        7 75.04293 female
-8        8 69.76866   male
-9        9 64.18985 female
-10      10 78.32602   male
-11      11 73.26613   male
-12      12 69.33036   male
-13      13 80.24091   male
-14      14 73.89744   male
-15      15 49.69271   male
-16      16 62.73167   male
-17      17 58.41751 female
-18      18 60.40325   male
-19      19 77.14229 female
-20      20 74.10240   male
-
-[[63]]
-   patient   weight    sex
-1        1 61.00890   male
-2        2 67.13791 female
-3        3 60.84560   male
-4        4 66.62089   male
-5        5 66.18237   male
-6        6 71.33764 female
-7        7 68.29233   male
-8        8 78.29162   male
-9        9 60.02778   male
-10      10 84.69279 female
-11      11 56.28609 female
-12      12 71.33793 female
-13      13 61.55388 female
-14      14 87.07438   male
-15      15 57.56114   male
-16      16 79.86660 female
-17      17 51.48158   male
-18      18 68.09415   male
-19      19 65.14045   male
-20      20 72.46820 female
-
-[[64]]
-   patient   weight    sex
-1        1 75.49903   male
-2        2 83.75201   male
-3        3 78.11252   male
-4        4 69.78905   male
-5        5 80.40305   male
-6        6 71.21666 female
-7        7 67.94574 female
-8        8 91.45291 female
-9        9 86.01039   male
-10      10 74.17350   male
-11      11 66.64419   male
-12      12 64.04199 female
-13      13 75.37545   male
-14      14 77.03267 female
-15      15 74.81513 female
-16      16 69.13296   male
-17      17 72.80887 female
-18      18 52.75158 female
-19      19 72.53776   male
-20      20 57.94824   male</code></pre>
+length(res)</code></pre>
 <pre><code>[1] 64</code></pre>
 <p>Make a function that takes as input a data set, the name of a continuous variable and the name of a categorical variable This function calculates the mean and standard deviation of the continuous variable for each group in the categorical variable</p>
+
+<pre class="r"><code>des &lt;- function(data = x, cont = &quot;age&quot;, cat = &quot;group&quot;){
+  print(tapply(data[[cont]], data[[cat]], mean))
+  print(tapply(data[[cont]], data[[cat]], sd))
+}</code></pre>
 <p>Apply the function to the <code>pbc</code> data set Use <code>age</code> and <code>gender</code> as continuous and categorical variables</p>
+
+<pre class="r"><code>des(data = pbc, cont = &quot;age&quot;, cat = &quot;sex&quot;)</code></pre>
 <pre><code>       m        f 
 55.71072 50.15694 
        m        f 
 10.97780 10.24065 </code></pre>
 <p>Be careful! If we remove the function <code>print(...)</code>, then only the last task will be presented</p>
+
+<pre class="r"><code>des &lt;- function(data = x, cont = &quot;age&quot;, cat = &quot;group&quot;){
+  tapply(data[[cont]], data[[cat]], mean)
+  tapply(data[[cont]], data[[cat]], sd)
+}
+des(data = pbc, cont = &quot;age&quot;, cat = &quot;sex&quot;)</code></pre>
 <pre><code>       m        f 
 10.97780 10.24065 </code></pre>
 <p>Now change the <code>des</code> function so that the user would specify the function applied to the data</p>
+
+<pre class="r"><code>des &lt;- function(data = x, cont = &quot;age&quot;, cat = &quot;group&quot;, fun = mean){
+  tapply(data[[cont]], data[[cat]], fun)
+}
+
+des(data = pbc, cont = &quot;age&quot;, cat = &quot;sex&quot;, fun = function(x) { sum(x) } )</code></pre>
 <pre><code>        m         f 
  2451.272 18758.697 </code></pre>
 </div>

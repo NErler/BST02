@@ -1611,7 +1611,7 @@ div.tocify {
 
 <div id="data" class="section level2">
 <h2>Data</h2>
-<p>For this practical, we simulate data using the following syntax:</p>
+<p>For this practical, we simulate data using the following syntax: </p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">set.seed</span>(<span class="dv">2020</span>)</a>
 <a class="sourceLine" id="cb1-2" title="2">nrj &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">sex =</span> <span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&#39;male&#39;</span>, <span class="st">&#39;female&#39;</span>), <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)),</a>
 <a class="sourceLine" id="cb1-3" title="3">                  <span class="dt">kcal =</span> <span class="kw">round</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">2200</span>, <span class="dt">sd =</span> <span class="dv">250</span>)),</a>
@@ -1621,7 +1621,7 @@ div.tocify {
 <a class="sourceLine" id="cb1-7" title="7">                  <span class="dt">sports =</span> <span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&#39;never&#39;</span>, <span class="st">&#39;sometimes&#39;</span>, <span class="st">&#39;regularly&#39;</span>),</a>
 <a class="sourceLine" id="cb1-8" title="8">                                         <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>), <span class="dt">ordered =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb1-9" title="9">)</a></code></pre></div>
-The first six rows of the resulting <code>data.frame</code> are:
+The first six rows of the resulting <code>data.frame</code> are: 
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1810,6 +1810,7 @@ You could use <code>nrj$sex == &quot;male&quot;</code> as the <code>test</code>.
 </div>
 <div id="solution-2" class="section level3">
 <h3>Solution 2</h3>
+
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">nrj<span class="op">$</span>BMR1 &lt;-<span class="st"> </span><span class="kw">ifelse</span>(nrj<span class="op">$</span>sex <span class="op">==</span><span class="st"> &#39;male&#39;</span>,</a>
 <a class="sourceLine" id="cb2-2" title="2">                  <span class="fl">13.75</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>weight <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>height <span class="op">-</span><span class="st"> </span><span class="fl">6.76</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>age <span class="op">+</span><span class="st"> </span><span class="dv">66</span>,</a>
 <a class="sourceLine" id="cb2-3" title="3">                  <span class="fl">9.56</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>weight <span class="op">+</span><span class="st"> </span><span class="fl">1.85</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>height <span class="op">-</span><span class="st"> </span><span class="fl">4.68</span> <span class="op">*</span><span class="st"> </span>nrj<span class="op">$</span>age <span class="op">+</span><span class="st"> </span><span class="dv">655</span></a>
@@ -1847,10 +1848,7 @@ We now want to calculate the BMR using <code>if() ... else ...</code>.
 <div id="task-5" class="section level3">
 <h3>Task 5</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-<p>Calculate the BMR using <code>if() ... else ...</code> and add it to the <strong>nrj</strong> data as a new variable <code>BMR2</code>.</p>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8814228142">
-Hint
-</button>
+Calculate the BMR using <code>if() ... else ...</code> and add it to the <strong>nrj</strong> data as a new variable <code>BMR2</code>.  <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8814228142">Hint</button>
 <div id="hint_8814228142" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 You need a sequence from 1 to the number of rows of <strong>nrj</strong>.
 </div>
@@ -1870,7 +1868,7 @@ Don’t forget that you now need to use indices.
 </div>
 <div id="solution-5" class="section level3">
 <h3>Solution 5</h3>
-<p>Our syntax needs to have the general form:</p>
+<p>Our syntax needs to have the general form: </p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="op">&lt;</span><span class="st">&quot;columns of nrj&quot;</span><span class="op">&gt;</span>) {</a>
 <a class="sourceLine" id="cb4-2" title="2">  </a>
 <a class="sourceLine" id="cb4-3" title="3">  <span class="cf">if</span> (<span class="st">&quot;&lt;subject is male&quot;</span><span class="op">&gt;</span>) {</a>
@@ -1883,6 +1881,7 @@ Don’t forget that you now need to use indices.
 <a class="sourceLine" id="cb4-10" title="10"><span class="st">    </span></a>
 <a class="sourceLine" id="cb4-11" title="11"><span class="st">  </span>}</a>
 <a class="sourceLine" id="cb4-12" title="12">}</a></code></pre></div>
+
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">nrj<span class="op">$</span>BMR2 &lt;-<span class="st"> </span><span class="ot">NA</span>   <span class="co"># &quot;empty&quot; version of BMR2</span></a>
 <a class="sourceLine" id="cb5-2" title="2"></a>
 <a class="sourceLine" id="cb5-3" title="3"><span class="co"># loop over all rows</span></a>
@@ -1910,7 +1909,7 @@ Don’t forget that you now need to use indices.
 </div>
 <div id="solution-6" class="section level3">
 <h3>Solution 6</h3>
-<p>There are multiple possible ways to check this:</p>
+<p>There are multiple possible ways to check this: </p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">all.equal</span>(nrj<span class="op">$</span>BMR1, nrj<span class="op">$</span>BMR2)</a></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">identical</span>(nrj<span class="op">$</span>BMR1, nrj<span class="op">$</span>BMR2)</a></code></pre></div>
@@ -1933,18 +1932,16 @@ TRUE
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <ul>
 <li>Get the mean and standard deviation of the variable <code>kcal</code>.</li>
-<li>Get the proportion of observations in each category for the variable <code>sports</code>.</li>
-</ul>
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_6623032433">
-Hint
-</button>
+<li>Get the proportion of observations in each category for the variable <code>sports</code>.  <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_6623032433">Hint</button>
 <div id="hint_6623032433" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 You might use <code>mean()</code>, <code>sd()</code>, <code>table()</code> and <code>prop.table()</code>.
-</div>
+</div></li>
+</ul>
 </div>
 </div>
 <div id="solution-1-1" class="section level3">
 <h3>Solution 1</h3>
+
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">mean</span>(nrj<span class="op">$</span>kcal)</a></code></pre></div>
 <pre><code>[1] 2200.36</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">sd</span>(nrj<span class="op">$</span>kcal)</a></code></pre></div>
@@ -1978,6 +1975,7 @@ You might also want to use the function <code>round()</code> to reduce the numbe
 </div>
 <div id="solution-2-1" class="section level3">
 <h3>Solution 2</h3>
+
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># for &quot;kcal&quot;:</span></a>
 <a class="sourceLine" id="cb20-2" title="2"><span class="kw">paste0</span>(<span class="st">&quot;kcal: &quot;</span>, <span class="kw">round</span>(<span class="kw">mean</span>(nrj<span class="op">$</span>kcal), <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="kw">round</span>(<span class="kw">sd</span>(nrj<span class="op">$</span>kcal), <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>)</a></code></pre></div>
 <pre><code>[1] &quot;kcal: 2200.4 (294.9)&quot;</code></pre>
@@ -2014,7 +2012,7 @@ You need to autmatically check for each variable if it is a <code>factor()</code
 </div>
 <div id="solution-3-1" class="section level3">
 <h3>Solution 3</h3>
-<p>Our syntax has the general form:</p>
+<p>Our syntax has the general form: </p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="op">&lt;</span><span class="st">&quot;columns of nrj&quot;</span><span class="op">&gt;</span>) {</a>
 <a class="sourceLine" id="cb24-2" title="2">  </a>
 <a class="sourceLine" id="cb24-3" title="3">  <span class="cf">if</span> (<span class="st">&quot;&lt;variable is factor&quot;</span><span class="op">&gt;</span>) {</a>
@@ -2027,6 +2025,7 @@ You need to autmatically check for each variable if it is a <code>factor()</code
 <a class="sourceLine" id="cb24-10" title="10"><span class="st">    </span></a>
 <a class="sourceLine" id="cb24-11" title="11"><span class="st">  </span>}</a>
 <a class="sourceLine" id="cb24-12" title="12">}</a></code></pre></div>
+
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co"># loop over all columns</span></a>
 <a class="sourceLine" id="cb25-2" title="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(nrj)) {</a>
 <a class="sourceLine" id="cb25-3" title="3">  </a>
@@ -2079,7 +2078,7 @@ The general form of a function is <code>function(){...}</code>.
 <div id="solution-1-2" class="section level3">
 <h3>Solution 1</h3>
 <p>We can re-use the syntax we used before, and only remove the part that adds the variable name.</p>
-<p>Our functions have one argument, which we call <code>x</code> here:</p>
+<p>Our functions have one argument, which we call <code>x</code> here: </p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">summary_continuous &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb27-2" title="2">  <span class="kw">paste0</span>(<span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="kw">round</span>(<span class="kw">sd</span>(x), <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>)</a>
 <a class="sourceLine" id="cb27-3" title="3">}</a>
@@ -2102,7 +2101,7 @@ The general form of a function is <code>function(){...}</code>.
 </div>
 <div id="solution-2-2" class="section level3">
 <h3>Solution 2</h3>
-<p>This function also has one argument which we call <code>dat</code>. We can, again, re-use syntax from above:</p>
+<p>This function also has one argument which we call <code>dat</code>. We can, again, re-use syntax from above: </p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">summary_df &lt;-<span class="st"> </span><span class="cf">function</span>(dat) {</a>
 <a class="sourceLine" id="cb31-2" title="2">  </a>
 <a class="sourceLine" id="cb31-3" title="3">  <span class="co"># loop over all columns</span></a>
@@ -2151,7 +2150,7 @@ The function <code>summary_df()</code> that we created in the previous solution 
 </div>
 <div id="solution-3-2" class="section level3">
 <h3>Solution 3</h3>
-<p>To adjust the function, the only row that needs changing is the one in which we print the summary:</p>
+<p>To adjust the function, the only row that needs changing is the one in which we print the summary: </p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">summary_df &lt;-<span class="st"> </span><span class="cf">function</span>(dat) {</a>
 <a class="sourceLine" id="cb33-2" title="2">  </a>
 <a class="sourceLine" id="cb33-3" title="3">  <span class="co"># loop over all columns</span></a>

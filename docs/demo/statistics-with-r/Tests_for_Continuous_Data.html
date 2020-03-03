@@ -1524,11 +1524,17 @@ div.tocify {
 </div>
 
 
+
 <div id="t-test" class="section level2">
 <h2>t-test</h2>
 <div id="one-sample-t-test" class="section level3">
 <h3>One-sample t-test</h3>
+
+<pre class="r"><code># make data:
+x &lt;- rnorm(250, mean = 20.5, sd = 4)</code></pre>
 <p>Test if the mean of <code>x</code> is equal to 0:</p>
+
+<pre class="r"><code>t.test(x)</code></pre>
 <pre><code>
     One Sample t-test
 
@@ -1541,6 +1547,8 @@ sample estimates:
 mean of x 
  20.52745 </code></pre>
 <p>Test if the mean of <code>x</code> is equal to 21:</p>
+
+<pre class="r"><code>t.test(x, mu = 21)</code></pre>
 <pre><code>
     One Sample t-test
 
@@ -1553,6 +1561,8 @@ sample estimates:
 mean of x 
  20.52745 </code></pre>
 <p>By default, a two-sided test is performed. To do a one-sided test, the argument <code>alternative</code> can be set to <code>less</code> or <code>greater</code>:</p>
+
+<pre class="r"><code>t.test(x, mu = 21, alternative = &#39;less&#39;)</code></pre>
 <pre><code>
     One Sample t-test
 
@@ -1565,19 +1575,31 @@ sample estimates:
 mean of x 
  20.52745 </code></pre>
 <p>Note that the lower limit of the confidence interval became <code>-Inf</code>, because we look at a one-sided test, and that the upper bound reduced compared to the two sided-test. The output we see is produced by the <code>print()</code> function that is automatically called. To access the elements of the test results separately:</p>
+
+<pre class="r"><code>testres &lt;- t.test(x, mu = 21, alternative = &#39;less&#39;, conf.level = 0.975)
+names(testres)</code></pre>
 <pre><code> [1] &quot;statistic&quot;   &quot;parameter&quot;   &quot;p.value&quot;     &quot;conf.int&quot;    &quot;estimate&quot;    &quot;null.value&quot;  &quot;stderr&quot;     
  [8] &quot;alternative&quot; &quot;method&quot;      &quot;data.name&quot;  </code></pre>
+<pre class="r"><code>class(testres)</code></pre>
 <pre><code>[1] &quot;htest&quot;</code></pre>
+<pre class="r"><code>is.list(testres)</code></pre>
 <pre><code>[1] TRUE</code></pre>
 <p>This means we can treat <code>testres</code> as a <code>list</code>:</p>
+
+<pre class="r"><code>testres$p.value</code></pre>
 <pre><code>[1] 0.04833812</code></pre>
+<pre class="r"><code>testres$conf.int</code></pre>
 <pre><code>[1]    -Inf 21.0856
 attr(,&quot;conf.level&quot;)
 [1] 0.975</code></pre>
 </div>
 <div id="two-samples-t-test" class="section level3">
 <h3>Two-samples t-test</h3>
+
+<pre class="r"><code>y &lt;- rnorm(250, mean = 20, sd = 2)</code></pre>
 <p>By default, the test assumes that the two samples have different variances and that the samples are independent. How can you know this? It is written in the help file!</p>
+
+<pre class="r"><code>t.test(x, y)</code></pre>
 <pre><code>
     Welch Two Sample t-test
 
@@ -1589,6 +1611,7 @@ alternative hypothesis: true difference in means is not equal to 0
 sample estimates:
 mean of x mean of y 
  20.52745  19.76795 </code></pre>
+<pre class="r"><code>t.test(x, y, var.equal = TRUE)</code></pre>
 <pre><code>
     Two Sample t-test
 
@@ -1604,6 +1627,8 @@ mean of x mean of y
 <div id="paired-samples-t-test" class="section level3">
 <h3>Paired-samples t-test</h3>
 <p>A t-test for a paired sample can be performed by setting the argument <code>paired = TRUE</code>:</p>
+
+<pre class="r"><code>t.test(x, y, paired = TRUE)</code></pre>
 <pre><code>
     Paired t-test
 
@@ -1616,6 +1641,8 @@ sample estimates:
 mean of the differences 
               0.7595035 </code></pre>
 <p>Again, we can change <code>mean</code> to test if the difference is different from that value instead of testing for a difference equal to zero. This is equivalent to performing a one-sampe t-test of the differences <code>x - y</code>:</p>
+
+<pre class="r"><code>t.test(x - y)</code></pre>
 <pre><code>
     One Sample t-test
 
@@ -1631,6 +1658,11 @@ mean of x
 <div id="using-the-formula-specification" class="section level3">
 <h3>Using the formula specification</h3>
 <p>It is also possible to specify the test using a formula. This can be more convenient when we have the data in a <code>data.frame</code></p>
+
+<pre class="r"><code>dat &lt;- data.frame(value = c(x, y),
+                  group  = rep(c(&#39;x&#39;, &#39;y&#39;), c(length(x), length(y))))
+
+summary(dat)</code></pre>
 <pre><code>     value        group  
  Min.   : 8.273   x:250  
  1st Qu.:18.259   y:250  
@@ -1638,6 +1670,7 @@ mean of x
  Mean   :20.148          
  3rd Qu.:22.009          
  Max.   :33.307          </code></pre>
+<pre class="r"><code>t.test(value ~ group, data = dat)</code></pre>
 <pre><code>
     Welch Two Sample t-test
 
@@ -1650,6 +1683,8 @@ sample estimates:
 mean in group x mean in group y 
        20.52745        19.76795 </code></pre>
 <p>or</p>
+
+<pre class="r"><code>t.test(value ~ group, data = dat, paired = TRUE)</code></pre>
 <pre><code>
     Paired t-test
 
@@ -1661,12 +1696,15 @@ alternative hypothesis: true difference in means is not equal to 0
 sample estimates:
 mean of the differences 
               0.7595035 </code></pre>
+
 </div>
 </div>
 <div id="wilcoxon-test" class="section level2">
 <h2>Wilcoxon Test</h2>
 <div id="wilcoxon-signed-rank-test" class="section level3">
 <h3>Wilcoxon Signed Rank Test</h3>
+
+<pre class="r"><code>wilcox.test(x, mu = 20)</code></pre>
 <pre><code>
     Wilcoxon signed rank test with continuity correction
 
@@ -1674,6 +1712,8 @@ data:  x
 V = 17954, p-value = 0.04772
 alternative hypothesis: true location is not equal to 20</code></pre>
 <p>The function <code>wilcox.test()</code> has similar arguments as <code>t.test()</code> (<code>x</code>, <code>y</code>, <code>alternative</code>, <code>mu</code>, <code>paired</code>, <code>conf.level</code>). Note that conidence intervals are only returned if <code>conf.int = TRUE</code>:</p>
+
+<pre class="r"><code>wilcox.test(x, conf.int = TRUE, mu = 20)</code></pre>
 <pre><code>
     Wilcoxon signed rank test with continuity correction
 
@@ -1686,6 +1726,8 @@ sample estimates:
 (pseudo)median 
       20.57061 </code></pre>
 <p>The additional argument <code>exact</code> controls if exact p-values and confidence intervals are calculated or if the normal approximation is used. In the latter case, the argument <code>correct</code> determins if a continuity correction is applied.</p>
+
+<pre class="r"><code>wilcox.test(x, conf.int = TRUE, exact = TRUE, mu = 20) </code></pre>
 <pre><code>
     Wilcoxon signed rank test
 
@@ -1700,6 +1742,8 @@ sample estimates:
 </div>
 <div id="wilcoxon-rank-sum-test" class="section level3">
 <h3>Wilcoxon Rank Sum Test</h3>
+
+<pre class="r"><code>wilcox.test(x, y, correct = TRUE, conf.int = TRUE)</code></pre>
 <pre><code>
     Wilcoxon rank sum test with continuity correction
 
@@ -1712,23 +1756,36 @@ sample estimates:
 difference in location 
              0.8913422 </code></pre>
 <p>Like for the <code>t.test()</code>, we can also use a formula specification and the test output is of the same class, i.e., the p-value etc. can be accessed like elements of a list.</p>
+
 </div>
 </div>
 <div id="kruskal-wallis-rank-sum-test" class="section level2">
 <h2>Kruskal-Wallis Rank Sum Test</h2>
 <p>This test is an extension to the Wilcoxon rank sum test to more than two groups We can povide the data as a <code>list()</code>:</p>
+
+<pre class="r"><code>x &lt;- list(x1 = rnorm(100, mean = 12, sd = 1.5),
+          x2 = rnorm(100, mean = 11, sd = 2),
+          x3 = rnorm(100, mean = 11.5, sd = 1.8))
+
+kruskal.test(x)</code></pre>
 <pre><code>
     Kruskal-Wallis rank sum test
 
 data:  x
 Kruskal-Wallis chi-squared = 18.862, df = 2, p-value = 8.02e-05</code></pre>
 <p>or as a <code>data.frame</code> with one variable per column:</p>
+
+<pre class="r"><code>kruskal.test(as.data.frame(x))</code></pre>
 <pre><code>
     Kruskal-Wallis rank sum test
 
 data:  as.data.frame(x)
 Kruskal-Wallis chi-squared = 18.862, df = 2, p-value = 8.02e-05</code></pre>
 <p>or using the formula specification</p>
+
+<pre class="r"><code>dat &lt;- data.frame(x = c(x$x1, x$x2, x$x3),
+                  group = rep(c(&#39;x1&#39;, &#39;x2&#39;, &#39;x3&#39;), each = 100))
+head(dat)</code></pre>
 <pre><code>         x group
 1 13.81018    x1
 2 11.96685    x1
@@ -1736,15 +1793,19 @@ Kruskal-Wallis chi-squared = 18.862, df = 2, p-value = 8.02e-05</code></pre>
 4 12.16031    x1
 5 14.31159    x1
 6 10.68284    x1</code></pre>
+<pre class="r"><code>kruskal.test(x ~ group, data = dat)</code></pre>
 <pre><code>
     Kruskal-Wallis rank sum test
 
 data:  x by group
 Kruskal-Wallis chi-squared = 18.862, df = 2, p-value = 8.02e-05</code></pre>
+
 </div>
 <div id="testing-the-correlation" class="section level2">
 <h2>Testing the Correlation</h2>
 <p>While we can calculate a correlation matrix for a whole set of variables, the function <code>cor.test()</code> can only handle two variables at a time:</p>
+
+<pre class="r"><code>cor.test(x = swiss$Fertility, y = swiss$Agriculture)</code></pre>
 <pre><code>
     Pearson&#39;s product-moment correlation
 
@@ -1769,6 +1830,9 @@ sample estimates:
 <li><code>exact</code> (only for <code>kendall</code> and <code>spearman</code>)</li>
 </ul>
 <p>We additionally have the argument <code>continuity</code> that allows us to use continuity correction for <code>method = &quot;kendall&quot;</code> and <code>method = &quot;spearman&quot;</code>.</p>
+
+<pre class="r"><code>cor.test(x = swiss$Fertility, y = swiss$Agriculture, method = &quot;kendall&quot;,
+         exact = FALSE, continuity = TRUE)</code></pre>
 <pre><code>
     Kendall&#39;s rank correlation tau
 
@@ -1779,6 +1843,8 @@ sample estimates:
       tau 
 0.1795465 </code></pre>
 <p>It is possible to use a <code>formula</code> specification:</p>
+
+<pre class="r"><code>cor.test(~ Fertility + Agriculture, data = swiss)</code></pre>
 <pre><code>
     Pearson&#39;s product-moment correlation
 
@@ -1791,6 +1857,8 @@ sample estimates:
       cor 
 0.3530792 </code></pre>
 <p>This allows us to use the argument <code>subset</code> to select only part of the data:</p>
+
+<pre class="r"><code>cor.test(~ Fertility + Agriculture, data = swiss, subset = Infant.Mortality &gt; 18)</code></pre>
 <pre><code>
     Pearson&#39;s product-moment correlation
 
@@ -1807,13 +1875,29 @@ sample estimates:
 <h2>Multiple Testing Adjustment</h2>
 <p>Testing multiple hypotheses at a significance level will result in an overall chance of at least one false positive result that is larger than that significance level. We then need to correct for multiple testing.</p>
 <p>This can be done easily using the function <code>p.adjust()</code>:</p>
+
+<pre class="r"><code>pval1 &lt;- t.test(swiss$Fertility, mu = 50)$p.value
+pval2 &lt;- t.test(swiss$Agriculture, mu = 50)$p.value
+pval3 &lt;- t.test(swiss$Examination, mu = 30)$p.value
+
+# combine the unadjusted p-values in one vector
+(pvals &lt;- c(Fert = pval1, Agri = pval2, Exam = pval3))</code></pre>
 <pre><code>        Fert         Agri         Exam 
 1.525636e-14 8.430616e-01 2.864543e-15 </code></pre>
+<pre class="r"><code># Adjustment using the Bonferroni method:
+p_adj_Bonf &lt;- p.adjust(pvals, method = &#39;bonferroni&#39;)
+
+# Adjustment using the Benjamini-Hochberg method
+p_adj_BH &lt;- p.adjust(pvals, method = &quot;BH&quot;)
+
+cbind(pvals, p_adj_Bonf, p_adj_BH)</code></pre>
 <pre><code>            pvals   p_adj_Bonf     p_adj_BH
 Fert 1.525636e-14 4.576907e-14 2.288453e-14
 Agri 8.430616e-01 1.000000e+00 8.430616e-01
 Exam 2.864543e-15 8.593628e-15 8.593628e-15</code></pre>
 <p>The available correction methods are available in the vector <code>p.adjust.methods</code>:</p>
+
+<pre class="r"><code>p.adjust.methods</code></pre>
 <pre><code>[1] &quot;holm&quot;       &quot;hochberg&quot;   &quot;hommel&quot;     &quot;bonferroni&quot; &quot;BH&quot;         &quot;BY&quot;         &quot;fdr&quot;       
 [8] &quot;none&quot;      </code></pre>
 </div>
