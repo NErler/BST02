@@ -2951,7 +2951,6 @@ div.tocify {
 </div>
 
 
-
 <div id="preface" class="section level2" data-progressive="FALSE">
 <h2>Preface</h2>
 <div id="r-packages" class="section level3">
@@ -2974,10 +2973,8 @@ div.tocify {
 <div id="save-your-work" class="section level3 tabset tabset-fade tabset-pills">
 <h3>Save your work</h3>
 <p>It is important to save your work.</p>
-
 <div id="task-1" class="section level4">
 <h4>Task 1</h4>
-
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Save the vectors <code>numbers &lt;- c(34, 24, 19, 23, 16)</code>, <code>numbers_2 &lt;- c(1:200)</code> and <code>treatment &lt;- c(&quot;yes&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;yes&quot;)</code>. Use the name <code>new_vectors</code>.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#save">
@@ -2990,16 +2987,13 @@ Hint
 </div>
 <div id="solution-1" class="section level4">
 <h4>Solution 1</h4>
-
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">34</span>, <span class="dv">24</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">16</span>)</a>
 <a class="sourceLine" id="cb1-2" title="2">numbers_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">200</span>)</a>
 <a class="sourceLine" id="cb1-3" title="3">treatment &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;yes&quot;</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;yes&quot;</span>)</a>
 <a class="sourceLine" id="cb1-4" title="4"><span class="kw">save</span>(numbers, numbers_<span class="dv">2</span>, treatment, <span class="dt">file =</span> <span class="st">&quot;new_vectors.RData&quot;</span>)</a></code></pre></div>
-
 </div>
 <div id="task-2" class="section level4">
 <h4>Task 2</h4>
-
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Save the vectors <code>events &lt;- heart$event</code> and <code>eyes &lt;- retinopathy$eye</code>. Use the name <code>vectors_survival</code>.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#save2">
@@ -3012,7 +3006,6 @@ Use the function save(...). Note that you need to set the working directory.
 </div>
 <div id="solution-2" class="section level4">
 <h4>Solution 2</h4>
-
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">events &lt;-<span class="st"> </span>heart<span class="op">$</span>event</a>
 <a class="sourceLine" id="cb2-2" title="2">eyes &lt;-<span class="st"> </span>retinopathy<span class="op">$</span>eye</a>
 <a class="sourceLine" id="cb2-3" title="3"><span class="kw">save</span>(events, eyes, <span class="dt">file =</span> <span class="st">&quot;vectors_survival.RData&quot;</span>)</a></code></pre></div>
@@ -3021,10 +3014,8 @@ Use the function save(...). Note that you need to set the working directory.
 <div id="load-your-work" class="section level3 tabset tabset-fade tabset-pills">
 <h3>Load your work</h3>
 <p>Let’s continue working on the data sets by loading our results.</p>
-
 <div id="task" class="section level4">
 <h4>Task</h4>
-
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Load the file <code>new_vectors</code>.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#load">
@@ -3037,17 +3028,14 @@ Hint
 </div>
 <div id="solution" class="section level4">
 <h4>Solution</h4>
-
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">load</span>(<span class="st">&quot;new_vectors.RData&quot;</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="remove-your-work" class="section level3 tabset tabset-fade tabset-pills">
 <h3>Remove your work</h3>
 <p>Remove unnecessary objects.</p>
-
 <div id="task-1-1" class="section level4">
 <h4>Task 1</h4>
-
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Remove the vectors <code>numbers</code>, <code>numbers_2</code> and <code>treatment</code>.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#rm">
@@ -3060,13 +3048,10 @@ Hint
 </div>
 <div id="solution-1-1" class="section level4">
 <h4>Solution 1</h4>
-
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">rm</span>(numbers, numbers_<span class="dv">2</span>, treatment)</a></code></pre></div>
-
 </div>
 <div id="task-2-1" class="section level4">
 <h4>Task 2</h4>
-
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Remove the vectors <code>events</code> and <code>eyes</code>.</p>
 <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#rm2">
@@ -3079,7 +3064,6 @@ Hint
 </div>
 <div id="solution-2-1" class="section level4">
 <h4>Solution 2</h4>
-
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">rm</span>(events, eyes)</a></code></pre></div>
 </div>
 </div>

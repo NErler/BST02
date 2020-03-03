@@ -10,7 +10,6 @@
 #'       collapsed: false
 #' ---
 
-#+  echo = FALSE
 # This is not part of the demo. 
 # It just allows the output to be wider (to make the html look nicer)
 options(width = 105)

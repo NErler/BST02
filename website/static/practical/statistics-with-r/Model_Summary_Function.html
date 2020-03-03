@@ -1606,7 +1606,10 @@ div.tocify {
 <div id="task" class="section level3">
 <h3>Task</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-Create a <code>data.frame</code> with example data that we can use to fit example models to test our function.  <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4879487297">Hint</button>
+<p>Create a <code>data.frame</code> with example data that we can use to fit example models to test our function.</p>
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4879487297">
+Hint
+</button>
 <div id="hint_4879487297" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 To create data, you could draw random numbers from a normal distribution, using <code>rnorm()</code>, from a uniform distribution, using <code>runif()</code> or from a binomial distribution, using <code>rbinom()</code>. The functions <code>sample()</code> and <code>factor()</code> could also be useful.
 </div>
@@ -1614,7 +1617,6 @@ To create data, you could draw random numbers from a normal distribution, using 
 </div>
 <div id="solution" class="section level3">
 <h3>Solution</h3>
-
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">N &lt;-<span class="st"> </span><span class="dv">1000</span></a>
 <a class="sourceLine" id="cb1-2" title="2">testdat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">y =</span> <span class="kw">rnorm</span>(N),</a>
 <a class="sourceLine" id="cb1-3" title="3">                      <span class="dt">ybin =</span> <span class="kw">factor</span>(<span class="kw">rbinom</span>(N, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> <span class="fl">0.7</span>)),</a>
@@ -1625,13 +1627,13 @@ To create data, you could draw random numbers from a normal distribution, using 
 <a class="sourceLine" id="cb1-8" title="8">testdat<span class="op">$</span>x3 &lt;-<span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span>testdat<span class="op">$</span>y <span class="op">+</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span><span class="kw">as.numeric</span>(testdat<span class="op">$</span>ybin) <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb1-9" title="9"></a>
 <a class="sourceLine" id="cb1-10" title="10"><span class="kw">summary</span>(testdat)</a></code></pre></div>
-<pre><code>       y            ybin          x1              x2            x3          
- Min.   :-3.16613   0:323   Min.   :0.002036   cat1:226   Min.   :-3.21724  
- 1st Qu.:-0.71303   1:677   1st Qu.:1.055275   cat2:243   1st Qu.:-0.01074  
- Median :-0.05912           Median :1.909885   cat3:287   Median : 0.82795  
- Mean   :-0.02762           Mean   :1.960608   cat4:244   Mean   : 0.82695  
- 3rd Qu.: 0.63855           3rd Qu.:2.954759              3rd Qu.: 1.62160  
- Max.   : 3.70290           Max.   :3.999473              Max.   : 4.36887  </code></pre>
+<pre><code>##        y            ybin          x1              x2            x3          
+##  Min.   :-3.16613   0:323   Min.   :0.002036   cat1:226   Min.   :-3.21724  
+##  1st Qu.:-0.71303   1:677   1st Qu.:1.055275   cat2:243   1st Qu.:-0.01074  
+##  Median :-0.05912           Median :1.909885   cat3:287   Median : 0.82795  
+##  Mean   :-0.02762           Mean   :1.960608   cat4:244   Mean   : 0.82695  
+##  3rd Qu.: 0.63855           3rd Qu.:2.954759              3rd Qu.: 1.62160  
+##  Max.   : 3.70290           Max.   :3.999473              Max.   : 4.36887</code></pre>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
 <p style="color:#009B8F; font-weight:bold;">
 Note:
@@ -1650,7 +1652,6 @@ Note:
 </div>
 <div id="solution-1" class="section level3">
 <h3>Solution</h3>
-
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">test_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> testdat)</a>
 <a class="sourceLine" id="cb3-2" title="2">test_logit &lt;-<span class="st"> </span><span class="kw">glm</span>(ybin <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> testdat, <span class="dt">family =</span> <span class="kw">binomial</span>())</a></code></pre></div>
 </div>
@@ -1666,26 +1667,25 @@ Note:
 </div>
 <div id="solution-1-1" class="section level3">
 <h3>Solution 1</h3>
-
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">summary_lm &lt;-<span class="st"> </span><span class="kw">summary</span>(test_lm)</a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="kw">class</span>(summary_lm)</a></code></pre></div>
-<pre><code>[1] &quot;summary.lm&quot;</code></pre>
+<pre><code>## [1] &quot;summary.lm&quot;</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">names</span>(summary_lm)</a></code></pre></div>
-<pre><code> [1] &quot;call&quot;          &quot;terms&quot;         &quot;residuals&quot;     &quot;coefficients&quot;  &quot;aliased&quot;       &quot;sigma&quot;        
- [7] &quot;df&quot;            &quot;r.squared&quot;     &quot;adj.r.squared&quot; &quot;fstatistic&quot;    &quot;cov.unscaled&quot; </code></pre>
+<pre><code>##  [1] &quot;call&quot;          &quot;terms&quot;         &quot;residuals&quot;     &quot;coefficients&quot;  &quot;aliased&quot;       &quot;sigma&quot;        
+##  [7] &quot;df&quot;            &quot;r.squared&quot;     &quot;adj.r.squared&quot; &quot;fstatistic&quot;    &quot;cov.unscaled&quot;</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">is.list</span>(summary_lm)</a></code></pre></div>
-<pre><code>[1] TRUE</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">summary_lm<span class="op">$</span>coefficients</a></code></pre></div>
-<pre><code>               Estimate Std. Error    t value     Pr(&gt;|t|)
-(Intercept) -0.22409323 0.09212938 -2.4323754 1.517595e-02
-ybin1       -0.22828842 0.06517862 -3.5025048 4.814306e-04
-x1          -0.01443955 0.02641363 -0.5466703 5.847281e-01
-x2cat2       0.10598917 0.08662939  1.2234782 2.214394e-01
-x2cat3       0.08122001 0.08320072  0.9761936 3.292063e-01
-x2cat4       0.03061912 0.08629760  0.3548085 7.228084e-01
-x3           0.39034164 0.02553041 15.2892816 1.504170e-47</code></pre>
+<pre><code>##                Estimate Std. Error    t value     Pr(&gt;|t|)
+## (Intercept) -0.22409323 0.09212938 -2.4323754 1.517595e-02
+## ybin1       -0.22828842 0.06517862 -3.5025048 4.814306e-04
+## x1          -0.01443955 0.02641363 -0.5466703 5.847281e-01
+## x2cat2       0.10598917 0.08662939  1.2234782 2.214394e-01
+## x2cat3       0.08122001 0.08320072  0.9761936 3.292063e-01
+## x2cat4       0.03061912 0.08629760  0.3548085 7.228084e-01
+## x3           0.39034164 0.02553041 15.2892816 1.504170e-47</code></pre>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">class</span>(summary_lm<span class="op">$</span>coefficients)</a></code></pre></div>
-<pre><code>[1] &quot;matrix&quot;</code></pre>
+<pre><code>## [1] &quot;matrix&quot;</code></pre>
 </div>
 <div id="task-2" class="section level3">
 <h3>Task 2</h3>
@@ -1708,20 +1708,19 @@ Try the argument <code>check.names = FALSE</code>.
 </div>
 <div id="solution-2" class="section level3">
 <h3>Solution 2</h3>
-
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">estimate =</span> <span class="kw">coef</span>(test_lm),</a>
 <a class="sourceLine" id="cb14-2" title="2">                  <span class="kw">confint</span>(test_lm),</a>
 <a class="sourceLine" id="cb14-3" title="3">                  <span class="st">&#39;p-value&#39;</span> =<span class="st"> </span><span class="kw">summary</span>(test_lm)<span class="op">$</span>coefficients[, <span class="st">&#39;Pr(&gt;|t|)&#39;</span>],</a>
 <a class="sourceLine" id="cb14-4" title="4">                  <span class="dt">check.names =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb14-5" title="5">dat</a></code></pre></div>
-<pre><code>               estimate       2.5 %      97.5 %      p-value
-(Intercept) -0.22409323 -0.40488386 -0.04330261 1.517595e-02
-ybin1       -0.22828842 -0.35619205 -0.10038478 4.814306e-04
-x1          -0.01443955 -0.06627250  0.03739340 5.847281e-01
-x2cat2       0.10598917 -0.06400852  0.27598686 2.214394e-01
-x2cat3       0.08122001 -0.08204942  0.24448944 3.292063e-01
-x2cat4       0.03061912 -0.13872748  0.19996573 7.228084e-01
-x3           0.39034164  0.34024189  0.44044139 1.504170e-47</code></pre>
+<pre><code>##                estimate       2.5 %      97.5 %      p-value
+## (Intercept) -0.22409323 -0.40488386 -0.04330261 1.517595e-02
+## ybin1       -0.22828842 -0.35619205 -0.10038478 4.814306e-04
+## x1          -0.01443955 -0.06627250  0.03739340 5.847281e-01
+## x2cat2       0.10598917 -0.06400852  0.27598686 2.214394e-01
+## x2cat3       0.08122001 -0.08204942  0.24448944 3.292063e-01
+## x2cat4       0.03061912 -0.13872748  0.19996573 7.228084e-01
+## x3           0.39034164  0.34024189  0.44044139 1.504170e-47</code></pre>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
 <p style="color:#009B8F; font-weight:bold;">
 Note:
@@ -1741,7 +1740,6 @@ Note:
 </div>
 <div id="solution-3" class="section level3">
 <h3>Solution 3</h3>
-
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">fun1 &lt;-<span class="st"> </span><span class="cf">function</span>(model) {</a>
 <a class="sourceLine" id="cb16-2" title="2">  dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">estimate =</span> <span class="kw">coef</span>(model),</a>
 <a class="sourceLine" id="cb16-3" title="3">                  <span class="kw">confint</span>(model),</a>
@@ -1752,14 +1750,14 @@ Note:
 <a class="sourceLine" id="cb16-8" title="8">}</a>
 <a class="sourceLine" id="cb16-9" title="9"></a>
 <a class="sourceLine" id="cb16-10" title="10"><span class="kw">fun1</span>(test_lm)</a></code></pre></div>
-<pre><code>               estimate       2.5 %      97.5 %      p-value
-(Intercept) -0.22409323 -0.40488386 -0.04330261 1.517595e-02
-ybin1       -0.22828842 -0.35619205 -0.10038478 4.814306e-04
-x1          -0.01443955 -0.06627250  0.03739340 5.847281e-01
-x2cat2       0.10598917 -0.06400852  0.27598686 2.214394e-01
-x2cat3       0.08122001 -0.08204942  0.24448944 3.292063e-01
-x2cat4       0.03061912 -0.13872748  0.19996573 7.228084e-01
-x3           0.39034164  0.34024189  0.44044139 1.504170e-47</code></pre>
+<pre><code>##                estimate       2.5 %      97.5 %      p-value
+## (Intercept) -0.22409323 -0.40488386 -0.04330261 1.517595e-02
+## ybin1       -0.22828842 -0.35619205 -0.10038478 4.814306e-04
+## x1          -0.01443955 -0.06627250  0.03739340 5.847281e-01
+## x2cat2       0.10598917 -0.06400852  0.27598686 2.214394e-01
+## x2cat3       0.08122001 -0.08204942  0.24448944 3.292063e-01
+## x2cat4       0.03061912 -0.13872748  0.19996573 7.228084e-01
+## x3           0.39034164  0.34024189  0.44044139 1.504170e-47</code></pre>
 </div>
 </div>
 <div id="improving-the-look" class="section level2 tabset tabset-pills tabset-fade">
@@ -1767,7 +1765,10 @@ x3           0.39034164  0.34024189  0.44044139 1.504170e-47</code></pre>
 <div id="task-1-2" class="section level3">
 <h3>Task 1</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-To make the output look nicer, we want to limit the decimal places in the output to a number specified by the user. Implement this using an argument <code>decimals</code> and decide on a default value for it.  <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4103614795">Hint</button>
+<p>To make the output look nicer, we want to limit the decimal places in the output to a number specified by the user. Implement this using an argument <code>decimals</code> and decide on a default value for it.</p>
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4103614795">
+Hint
+</button>
 <div id="hint_4103614795" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 You can use the function <code>round()</code>.
 </div>
@@ -1775,7 +1776,6 @@ You can use the function <code>round()</code>.
 </div>
 <div id="solution-1-2" class="section level3">
 <h3>Solution 1</h3>
-
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">fun2 &lt;-<span class="st"> </span><span class="cf">function</span>(model, <span class="dt">decimals =</span> <span class="dv">3</span>) {</a>
 <a class="sourceLine" id="cb18-2" title="2">  dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">estimate =</span> <span class="kw">coef</span>(model),</a>
 <a class="sourceLine" id="cb18-3" title="3">                  <span class="kw">confint</span>(model),</a>
@@ -1786,20 +1786,23 @@ You can use the function <code>round()</code>.
 <a class="sourceLine" id="cb18-8" title="8">}</a>
 <a class="sourceLine" id="cb18-9" title="9"></a>
 <a class="sourceLine" id="cb18-10" title="10"><span class="kw">fun2</span>(test_lm)</a></code></pre></div>
-<pre><code>            estimate  2.5 % 97.5 % p-value
-(Intercept)   -0.224 -0.405 -0.043   0.015
-ybin1         -0.228 -0.356 -0.100   0.000
-x1            -0.014 -0.066  0.037   0.585
-x2cat2         0.106 -0.064  0.276   0.221
-x2cat3         0.081 -0.082  0.244   0.329
-x2cat4         0.031 -0.139  0.200   0.723
-x3             0.390  0.340  0.440   0.000</code></pre>
+<pre><code>##             estimate  2.5 % 97.5 % p-value
+## (Intercept)   -0.224 -0.405 -0.043   0.015
+## ybin1         -0.228 -0.356 -0.100   0.000
+## x1            -0.014 -0.066  0.037   0.585
+## x2cat2         0.106 -0.064  0.276   0.221
+## x2cat3         0.081 -0.082  0.244   0.329
+## x2cat4         0.031 -0.139  0.200   0.723
+## x3             0.390  0.340  0.440   0.000</code></pre>
 </div>
 <div id="task-2-1" class="section level3">
 <h3>Task 2</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>In another practical, we have seen that the function <code>format.pval()</code> will convert values below a certain value in to “&lt;…” notation.</p>
-Use this in our summary function.  <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1093903584">Hint</button>
+<p>Use this in our summary function.</p>
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1093903584">
+Hint
+</button>
 <div id="hint_1093903584" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 <code>format.pval()</code> has the additional arguments <code>digits</code> and <code>eps</code>.
 </div>
@@ -1819,7 +1822,6 @@ Values can also be represented as <span class="math inline">\(10^{-3}\)</span>.
 </div>
 <div id="solution-2-1" class="section level3">
 <h3>Solution 2</h3>
-
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">fun3 &lt;-<span class="st"> </span><span class="cf">function</span>(model, <span class="dt">decimals =</span> <span class="dv">3</span>) {</a>
 <a class="sourceLine" id="cb20-2" title="2">  dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">estimate =</span> <span class="kw">coef</span>(model),</a>
 <a class="sourceLine" id="cb20-3" title="3">                    <span class="kw">confint</span>(model),</a>
@@ -1834,44 +1836,44 @@ Values can also be represented as <span class="math inline">\(10^{-3}\)</span>.
 <a class="sourceLine" id="cb20-12" title="12">}</a>
 <a class="sourceLine" id="cb20-13" title="13"></a>
 <a class="sourceLine" id="cb20-14" title="14"><span class="kw">fun3</span>(test_lm)</a></code></pre></div>
-<pre><code>            estimate  2.5 % 97.5 % p-value
-(Intercept)   -0.224 -0.405 -0.043  0.0152
-ybin1         -0.228 -0.356 -0.100  &lt;0.001
-x1            -0.014 -0.066  0.037  0.5847
-x2cat2         0.106 -0.064  0.276  0.2214
-x2cat3         0.081 -0.082  0.244  0.3292
-x2cat4         0.031 -0.139  0.200  0.7228
-x3             0.390  0.340  0.440  &lt;0.001</code></pre>
+<pre><code>##             estimate  2.5 % 97.5 % p-value
+## (Intercept)   -0.224 -0.405 -0.043  0.0152
+## ybin1         -0.228 -0.356 -0.100  &lt;0.001
+## x1            -0.014 -0.066  0.037  0.5847
+## x2cat2         0.106 -0.064  0.276  0.2214
+## x2cat3         0.081 -0.082  0.244  0.3292
+## x2cat4         0.031 -0.139  0.200  0.7228
+## x3             0.390  0.340  0.440  &lt;0.001</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">fun3</span>(test_lm, <span class="dt">decimals =</span> <span class="dv">5</span>)</a></code></pre></div>
-<pre><code>            estimate    2.5 %   97.5 %    p-value
-(Intercept) -0.22409 -0.40488 -0.04330 0.01517595
-ybin1       -0.22829 -0.35619 -0.10038 0.00048143
-x1          -0.01444 -0.06627  0.03739 0.58472808
-x2cat2       0.10599 -0.06401  0.27599 0.22143938
-x2cat3       0.08122 -0.08205  0.24449 0.32920630
-x2cat4       0.03062 -0.13873  0.19997 0.72280840
-x3           0.39034  0.34024  0.44044    &lt; 1e-05</code></pre>
+<pre><code>##             estimate    2.5 %   97.5 %    p-value
+## (Intercept) -0.22409 -0.40488 -0.04330 0.01517595
+## ybin1       -0.22829 -0.35619 -0.10038 0.00048143
+## x1          -0.01444 -0.06627  0.03739 0.58472808
+## x2cat2       0.10599 -0.06401  0.27599 0.22143938
+## x2cat3       0.08122 -0.08205  0.24449 0.32920630
+## x2cat4       0.03062 -0.13873  0.19997 0.72280840
+## x3           0.39034  0.34024  0.44044    &lt; 1e-05</code></pre>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">fun3</span>(test_lm, <span class="dt">decimals =</span> <span class="dv">1</span>)</a></code></pre></div>
-<pre><code>            estimate 2.5 % 97.5 % p-value
-(Intercept)     -0.2  -0.4    0.0    &lt;0.1
-ybin1           -0.2  -0.4   -0.1    &lt;0.1
-x1               0.0  -0.1    0.0     0.6
-x2cat2           0.1  -0.1    0.3     0.2
-x2cat3           0.1  -0.1    0.2     0.3
-x2cat4           0.0  -0.1    0.2     0.7
-x3               0.4   0.3    0.4    &lt;0.1</code></pre>
+<pre><code>##             estimate 2.5 % 97.5 % p-value
+## (Intercept)     -0.2  -0.4    0.0    &lt;0.1
+## ybin1           -0.2  -0.4   -0.1    &lt;0.1
+## x1               0.0  -0.1    0.0     0.6
+## x2cat2           0.1  -0.1    0.3     0.2
+## x2cat3           0.1  -0.1    0.2     0.3
+## x2cat4           0.0  -0.1    0.2     0.7
+## x3               0.4   0.3    0.4    &lt;0.1</code></pre>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
 <p style="color:#009B8F; font-weight:bold;">
 Note:
 </p>
-<p>We do not want to first round the p-value and then apply <code>format.pval()</code> because this might give wrong results in specific cases, for example: </p>
+<p>We do not want to first round the p-value and then apply <code>format.pval()</code> because this might give wrong results in specific cases, for example:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">pv &lt;-<span class="st"> </span><span class="fl">0.0009</span></a>
 <a class="sourceLine" id="cb26-2" title="2"><span class="kw">format.pval</span>(pv, <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">eps =</span> <span class="fl">0.001</span>)</a></code></pre></div>
-<pre><code>[1] &quot;&lt;0.001&quot;</code></pre>
+<pre><code>## [1] &quot;&lt;0.001&quot;</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">round</span>(pv, <span class="dv">3</span>)</a></code></pre></div>
-<pre><code>[1] 0.001</code></pre>
+<pre><code>## [1] 0.001</code></pre>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">format.pval</span>(<span class="kw">round</span>(pv, <span class="dv">3</span>), <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">eps =</span> <span class="fl">0.001</span>)</a></code></pre></div>
-<pre><code>[1] &quot;0.001&quot;</code></pre>
+<pre><code>## [1] &quot;0.001&quot;</code></pre>
 </div>
 </div>
 </div>
@@ -1890,37 +1892,35 @@ Note:
 </div>
 <div id="solution-1-3" class="section level3">
 <h3>Solution 1</h3>
-
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">fun3</span>(test_logit)</a></code></pre></div>
-<pre><code>Waiting for profiling to be done...</code></pre>
-<pre><code>Error in summary(model)$coefficients[, &quot;Pr(&gt;|t|)&quot;]: subscript out of bounds</code></pre>
+<pre><code>## Waiting for profiling to be done...</code></pre>
+<pre><code>## Error in summary(model)$coefficients[, &quot;Pr(&gt;|t|)&quot;]: subscript out of bounds</code></pre>
 <p>We get an error message “subscript out of bounds”. This means we are trying to select an element that does not exist.</p>
-<p>To find the problem, we check each part of the function body, replacing <code>model</code> by <code>test_logit</code>: </p>
+<p>To find the problem, we check each part of the function body, replacing <code>model</code> by <code>test_logit</code>:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">decimals &lt;-<span class="st"> </span><span class="dv">3</span></a>
 <a class="sourceLine" id="cb35-2" title="2"></a>
 <a class="sourceLine" id="cb35-3" title="3">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">estimate =</span> <span class="kw">coef</span>(test_logit),</a>
 <a class="sourceLine" id="cb35-4" title="4">                  <span class="kw">confint</span>(test_logit),</a>
 <a class="sourceLine" id="cb35-5" title="5">                  <span class="dt">check.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>Waiting for profiling to be done...</code></pre>
+<pre><code>## Waiting for profiling to be done...</code></pre>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">dat &lt;-<span class="st"> </span><span class="kw">round</span>(dat, decimals)</a>
 <a class="sourceLine" id="cb37-2" title="2"></a>
 <a class="sourceLine" id="cb37-3" title="3">dat<span class="op">$</span><span class="st">`</span><span class="dt">p-value</span><span class="st">`</span> &lt;-<span class="st"> </span><span class="kw">format.pval</span>(<span class="kw">summary</span>(test_logit)<span class="op">$</span>coefficients[, <span class="st">&#39;Pr(&gt;|t|)&#39;</span>],</a>
 <a class="sourceLine" id="cb37-4" title="4">                             <span class="dt">eps =</span> <span class="dv">10</span><span class="op">^</span>(<span class="op">-</span>decimals), <span class="dt">digits =</span> decimals)</a></code></pre></div>
-<pre><code>Error in summary(test_logit)$coefficients[, &quot;Pr(&gt;|t|)&quot;]: subscript out of bounds</code></pre>
-<p>The problem is in the p-value column, so we split this syntax up further: </p>
+<pre><code>## Error in summary(test_logit)$coefficients[, &quot;Pr(&gt;|t|)&quot;]: subscript out of bounds</code></pre>
+<p>The problem is in the p-value column, so we split this syntax up further:</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">summary</span>(test_logit)<span class="op">$</span>coefficients[, <span class="st">&#39;Pr(&gt;|t|)&#39;</span>]</a></code></pre></div>
-<pre><code>Error in summary(test_logit)$coefficients[, &quot;Pr(&gt;|t|)&quot;]: subscript out of bounds</code></pre>
+<pre><code>## Error in summary(test_logit)$coefficients[, &quot;Pr(&gt;|t|)&quot;]: subscript out of bounds</code></pre>
 <p>Same error, so probably the column <code>&#39;Pr(&gt;|t|)&#39;</code> does not exist.</p>
-
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw">summary</span>(test_logit)<span class="op">$</span>coefficients</a></code></pre></div>
-<pre><code>              Estimate Std. Error    z value     Pr(&gt;|z|)
-(Intercept)  0.3866473 0.19527421  1.9800226 4.770099e-02
-y           -0.2611655 0.07590243 -3.4408056 5.799851e-04
-x1          -0.1111445 0.06261764 -1.7749710 7.590268e-02
-x2cat2       0.4532677 0.20868071  2.1720631 2.985090e-02
-x2cat3       0.1598570 0.19434209  0.8225549 4.107611e-01
-x2cat4       0.1164228 0.20042718  0.5808733 5.613258e-01
-x3           0.5353623 0.06973867  7.6766919 1.632494e-14</code></pre>
+<pre><code>##               Estimate Std. Error    z value     Pr(&gt;|z|)
+## (Intercept)  0.3866473 0.19527421  1.9800226 4.770099e-02
+## y           -0.2611655 0.07590243 -3.4408056 5.799851e-04
+## x1          -0.1111445 0.06261764 -1.7749710 7.590268e-02
+## x2cat2       0.4532677 0.20868071  2.1720631 2.985090e-02
+## x2cat3       0.1598570 0.19434209  0.8225549 4.107611e-01
+## x2cat4       0.1164228 0.20042718  0.5808733 5.613258e-01
+## x3           0.5353623 0.06973867  7.6766919 1.632494e-14</code></pre>
 <p>Indeed, for a logistic regression model, the column is called <code>Pr(&gt;|z|)</code>!</p>
 </div>
 <div id="task-2-2" class="section level3">
@@ -1931,7 +1931,6 @@ x3           0.5353623 0.06973867  7.6766919 1.632494e-14</code></pre>
 </div>
 <div id="solution-2-2" class="section level3">
 <h3>Solution 2</h3>
-
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">fun4 &lt;-<span class="st"> </span><span class="cf">function</span>(model, <span class="dt">decimals =</span> <span class="dv">3</span>, modeltype) {</a>
 <a class="sourceLine" id="cb43-2" title="2">  dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">estimate =</span> <span class="kw">coef</span>(model),</a>
 <a class="sourceLine" id="cb43-3" title="3">                    <span class="kw">confint</span>(model),</a>
@@ -1951,24 +1950,24 @@ x3           0.5353623 0.06973867  7.6766919 1.632494e-14</code></pre>
 <a class="sourceLine" id="cb43-17" title="17">}</a>
 <a class="sourceLine" id="cb43-18" title="18"></a>
 <a class="sourceLine" id="cb43-19" title="19"><span class="kw">fun4</span>(test_logit, <span class="dt">modeltype =</span> <span class="st">&#39;logit&#39;</span>)</a></code></pre></div>
-<pre><code>Waiting for profiling to be done...</code></pre>
-<pre><code>            estimate  2.5 % 97.5 % p-value
-(Intercept)    0.387  0.006  0.772  0.0477
-y             -0.261 -0.411 -0.113  &lt;0.001
-x1            -0.111 -0.234  0.011  0.0759
-x2cat2         0.453  0.046  0.865  0.0299
-x2cat3         0.160 -0.222  0.541  0.4108
-x2cat4         0.116 -0.277  0.510  0.5613
-x3             0.535  0.401  0.674  &lt;0.001</code></pre>
+<pre><code>## Waiting for profiling to be done...</code></pre>
+<pre><code>##             estimate  2.5 % 97.5 % p-value
+## (Intercept)    0.387  0.006  0.772  0.0477
+## y             -0.261 -0.411 -0.113  &lt;0.001
+## x1            -0.111 -0.234  0.011  0.0759
+## x2cat2         0.453  0.046  0.865  0.0299
+## x2cat3         0.160 -0.222  0.541  0.4108
+## x2cat4         0.116 -0.277  0.510  0.5613
+## x3             0.535  0.401  0.674  &lt;0.001</code></pre>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">fun4</span>(test_lm, <span class="dt">modeltype =</span> <span class="st">&#39;lm&#39;</span>)</a></code></pre></div>
-<pre><code>            estimate  2.5 % 97.5 % p-value
-(Intercept)   -0.224 -0.405 -0.043  0.0152
-ybin1         -0.228 -0.356 -0.100  &lt;0.001
-x1            -0.014 -0.066  0.037  0.5847
-x2cat2         0.106 -0.064  0.276  0.2214
-x2cat3         0.081 -0.082  0.244  0.3292
-x2cat4         0.031 -0.139  0.200  0.7228
-x3             0.390  0.340  0.440  &lt;0.001</code></pre>
+<pre><code>##             estimate  2.5 % 97.5 % p-value
+## (Intercept)   -0.224 -0.405 -0.043  0.0152
+## ybin1         -0.228 -0.356 -0.100  &lt;0.001
+## x1            -0.014 -0.066  0.037  0.5847
+## x2cat2         0.106 -0.064  0.276  0.2214
+## x2cat3         0.081 -0.082  0.244  0.3292
+## x2cat4         0.031 -0.139  0.200  0.7228
+## x3             0.390  0.340  0.440  &lt;0.001</code></pre>
 </div>
 <div id="task-3-1" class="section level3">
 <h3>Task 3</h3>
@@ -1990,7 +1989,6 @@ x3             0.390  0.340  0.440  &lt;0.001</code></pre>
 </div>
 <div id="solution-4" class="section level3">
 <h3>Solution 4</h3>
-
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">fun5 &lt;-<span class="st"> </span><span class="cf">function</span>(model, <span class="dt">decimals =</span> <span class="dv">3</span>, modeltype) {</a>
 <a class="sourceLine" id="cb48-2" title="2">  dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">estimate =</span> <span class="kw">coef</span>(model),</a>
 <a class="sourceLine" id="cb48-3" title="3">                    <span class="kw">confint</span>(model),</a>
@@ -2014,29 +2012,32 @@ x3             0.390  0.340  0.440  &lt;0.001</code></pre>
 <a class="sourceLine" id="cb48-21" title="21">}</a>
 <a class="sourceLine" id="cb48-22" title="22"></a>
 <a class="sourceLine" id="cb48-23" title="23"><span class="kw">fun5</span>(test_logit, <span class="dt">modeltype =</span> <span class="st">&#39;logit&#39;</span>)</a></code></pre></div>
-<pre><code>Waiting for profiling to be done...</code></pre>
-<pre><code>               OR 2.5 % 97.5 % p-value
-(Intercept) 1.472 1.006  2.164  0.0477
-y           0.770 0.663  0.893  &lt;0.001
-x1          0.895 0.791  1.011  0.0759
-x2cat2      1.573 1.047  2.374  0.0299
-x2cat3      1.173 0.801  1.718  0.4108
-x2cat4      1.123 0.758  1.665  0.5613
-x3          1.708 1.493  1.963  &lt;0.001</code></pre>
+<pre><code>## Waiting for profiling to be done...</code></pre>
+<pre><code>##                OR 2.5 % 97.5 % p-value
+## (Intercept) 1.472 1.006  2.164  0.0477
+## y           0.770 0.663  0.893  &lt;0.001
+## x1          0.895 0.791  1.011  0.0759
+## x2cat2      1.573 1.047  2.374  0.0299
+## x2cat3      1.173 0.801  1.718  0.4108
+## x2cat4      1.123 0.758  1.665  0.5613
+## x3          1.708 1.493  1.963  &lt;0.001</code></pre>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="kw">fun5</span>(test_lm, <span class="dt">modeltype =</span> <span class="st">&#39;lm&#39;</span>)</a></code></pre></div>
-<pre><code>            estimate  2.5 % 97.5 % p-value
-(Intercept)   -0.224 -0.405 -0.043  0.0152
-ybin1         -0.228 -0.356 -0.100  &lt;0.001
-x1            -0.014 -0.066  0.037  0.5847
-x2cat2         0.106 -0.064  0.276  0.2214
-x2cat3         0.081 -0.082  0.244  0.3292
-x2cat4         0.031 -0.139  0.200  0.7228
-x3             0.390  0.340  0.440  &lt;0.001</code></pre>
+<pre><code>##             estimate  2.5 % 97.5 % p-value
+## (Intercept)   -0.224 -0.405 -0.043  0.0152
+## ybin1         -0.228 -0.356 -0.100  &lt;0.001
+## x1            -0.014 -0.066  0.037  0.5847
+## x2cat2         0.106 -0.064  0.276  0.2214
+## x2cat3         0.081 -0.082  0.244  0.3292
+## x2cat4         0.031 -0.139  0.200  0.7228
+## x3             0.390  0.340  0.440  &lt;0.001</code></pre>
 </div>
 <div id="task-5" class="section level3">
 <h3>Task 5</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-To make the function more convenient to use, we want to automatically identify the model type, so that the user does not need to provide the <code>modeltype</code>.  <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_3996707912">Hint</button>
+<p>To make the function more convenient to use, we want to automatically identify the model type, so that the user does not need to provide the <code>modeltype</code>.</p>
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_3996707912">
+Hint
+</button>
 <div id="hint_3996707912" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 The function <code>family()</code> can be used on regression models.
 </div>
@@ -2044,52 +2045,51 @@ The function <code>family()</code> can be used on regression models.
 </div>
 <div id="solution-5" class="section level3">
 <h3>Solution 5</h3>
-<p>A first idea might be to use <code>class(model)</code> to identify the type of model. </p>
+<p>A first idea might be to use <code>class(model)</code> to identify the type of model.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="kw">class</span>(test_lm)</a>
-<a class="sourceLine" id="cb53-2" title="2">[<span class="dv">1</span>] <span class="st">&quot;lm&quot;</span></a>
+<a class="sourceLine" id="cb53-2" title="2"><span class="co">## [1] &quot;lm&quot;</span></a>
 <a class="sourceLine" id="cb53-3" title="3"><span class="kw">class</span>(test_logit)</a>
-<a class="sourceLine" id="cb53-4" title="4">[<span class="dv">1</span>] <span class="st">&quot;glm&quot;</span> <span class="st">&quot;lm&quot;</span> </a></code></pre></div>
-<p>The problem with this would be that a user might also have used <code>glm()</code> to fit a linear regression model: </p>
+<a class="sourceLine" id="cb53-4" title="4"><span class="co">## [1] &quot;glm&quot; &quot;lm&quot;</span></a></code></pre></div>
+<p>The problem with this would be that a user might also have used <code>glm()</code> to fit a linear regression model:</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="kw">class</span>(<span class="kw">glm</span>(<span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> testdat, <span class="dt">family =</span> <span class="kw">gaussian</span>()))</a></code></pre></div>
-<pre><code>[1] &quot;glm&quot; &quot;lm&quot; </code></pre>
-<p>Moreover, not all GLMs use a logit link (not even all binary GLMs do!) and using <code>exp()</code> would then not give an odds ratio: </p>
+<pre><code>## [1] &quot;glm&quot; &quot;lm&quot;</code></pre>
+<p>Moreover, not all GLMs use a logit link (not even all binary GLMs do!) and using <code>exp()</code> would then not give an odds ratio:</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="kw">class</span>(<span class="kw">glm</span>(<span class="dt">formula =</span> ybin <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> testdat, <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&#39;probit&#39;</span>)))</a></code></pre></div>
-<pre><code>[1] &quot;glm&quot; &quot;lm&quot; </code></pre>
-<p>Using <code>family()</code> we can extract the model family and the link function: </p>
+<pre><code>## [1] &quot;glm&quot; &quot;lm&quot;</code></pre>
+<p>Using <code>family()</code> we can extract the model family and the link function:</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="kw">family</span>(test_lm)</a></code></pre></div>
-<pre><code>
-Family: gaussian 
-Link function: identity </code></pre>
+<pre><code>## 
+## Family: gaussian 
+## Link function: identity</code></pre>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="kw">family</span>(test_logit)</a></code></pre></div>
-<pre><code>
-Family: binomial 
-Link function: logit </code></pre>
-<p>We need to inspect this further to figure out how to access that information: </p>
+<pre><code>## 
+## Family: binomial 
+## Link function: logit</code></pre>
+<p>We need to inspect this further to figure out how to access that information:</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">fam_lm &lt;-<span class="st"> </span><span class="kw">family</span>(test_lm)</a>
 <a class="sourceLine" id="cb62-2" title="2"><span class="kw">str</span>(fam_lm)</a></code></pre></div>
-<pre><code>List of 11
- $ family    : chr &quot;gaussian&quot;
- $ link      : chr &quot;identity&quot;
- $ linkfun   :function (mu)  
- $ linkinv   :function (eta)  
- $ variance  :function (mu)  
- $ dev.resids:function (y, mu, wt)  
- $ aic       :function (y, n, mu, wt, dev)  
- $ mu.eta    :function (eta)  
- $ initialize:  expression({  n &lt;- rep.int(1, nobs)  if (is.null(etastart) &amp;&amp; is.null(start) &amp;&amp; is.null(mustart) &amp;&amp; ((family$link| __truncated__
- $ validmu   :function (mu)  
- $ valideta  :function (eta)  
- - attr(*, &quot;class&quot;)= chr &quot;family&quot;</code></pre>
+<pre><code>## List of 11
+##  $ family    : chr &quot;gaussian&quot;
+##  $ link      : chr &quot;identity&quot;
+##  $ linkfun   :function (mu)  
+##  $ linkinv   :function (eta)  
+##  $ variance  :function (mu)  
+##  $ dev.resids:function (y, mu, wt)  
+##  $ aic       :function (y, n, mu, wt, dev)  
+##  $ mu.eta    :function (eta)  
+##  $ initialize:  expression({  n &lt;- rep.int(1, nobs)  if (is.null(etastart) &amp;&amp; is.null(start) &amp;&amp; is.null(mustart) &amp;&amp; ((family$link| __truncated__
+##  $ validmu   :function (mu)  
+##  $ valideta  :function (eta)  
+##  - attr(*, &quot;class&quot;)= chr &quot;family&quot;</code></pre>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">fam_lm<span class="op">$</span>family</a></code></pre></div>
-<pre><code>[1] &quot;gaussian&quot;</code></pre>
+<pre><code>## [1] &quot;gaussian&quot;</code></pre>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">fam_lm<span class="op">$</span>link</a></code></pre></div>
-<pre><code>[1] &quot;identity&quot;</code></pre>
+<pre><code>## [1] &quot;identity&quot;</code></pre>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="kw">family</span>(test_logit)<span class="op">$</span>family</a></code></pre></div>
-<pre><code>[1] &quot;binomial&quot;</code></pre>
+<pre><code>## [1] &quot;binomial&quot;</code></pre>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="kw">family</span>(test_logit)<span class="op">$</span>link</a></code></pre></div>
-<pre><code>[1] &quot;logit&quot;</code></pre>
+<pre><code>## [1] &quot;logit&quot;</code></pre>
 <p>Using this information we can adapt our function:</p>
-
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1">fun6 &lt;-<span class="st"> </span><span class="cf">function</span>(model, <span class="dt">decimals =</span> <span class="dv">3</span>) {</a>
 <a class="sourceLine" id="cb72-2" title="2"></a>
 <a class="sourceLine" id="cb72-3" title="3">  <span class="co"># extract the family and link  </span></a>
@@ -2137,22 +2137,24 @@ Link function: logit </code></pre>
 <p>If we provide a <code>model</code> that does not fit either of the criteria <code>fam == &#39;binomial&#39; &amp; link == &#39;logit&#39;</code> or <code>fam == &#39;gaussian&#39; &amp; link == &#39;identity&#39;</code> the value of <code>modeltype</code> will be <code>NULL</code>.<br></p>
 <p>Why?<br> The first condition (<code>fam == &#39;binomial&#39; &amp; link == &#39;logit&#39;</code>) would be <code>FALSE</code> so we would end up in the <code>else</code> part. There, the condition (<code>fam == &#39;gaussian&#39; &amp; link == &#39;identity&#39;</code>) would also be <code>FALSE</code>. Since this <code>if()</code> does not provide any alternative, it will return <code>NULL</code>.</p>
 <p>The question is what happens when we try to evaluate <code>if (modeltype == &#39;lm&#39;)</code> when <code>modeltype = NULL</code>.</p>
-<p>The comparison of <code>NULL</code> with <code>&#39;lm&#39;</code> will result in a <code>logical</code> vector of length zero: </p>
+<p>The comparison of <code>NULL</code> with <code>&#39;lm&#39;</code> will result in a <code>logical</code> vector of length zero:</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="ot">NULL</span> <span class="op">==</span><span class="st"> &#39;lm&#39;</span></a></code></pre></div>
-<pre><code>logical(0)</code></pre>
-<p>Using a <code>logical</code> vector of length zero as condition to <code>if()</code> results in an error: </p>
+<pre><code>## logical(0)</code></pre>
+<p>Using a <code>logical</code> vector of length zero as condition to <code>if()</code> results in an error:</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="cf">if</span> (<span class="ot">NULL</span> <span class="op">==</span><span class="st"> &#39;lm&#39;</span>) {}</a></code></pre></div>
-<pre><code>Error in if (NULL == &quot;lm&quot;) {: argument is of length zero</code></pre>
-
+<pre><code>## Error in if (NULL == &quot;lm&quot;) {: argument is of length zero</code></pre>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1">test_probit &lt;-<span class="st"> </span><span class="kw">glm</span>(ybin <span class="op">~</span><span class="st"> </span>., <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&#39;probit&#39;</span>), <span class="dt">data =</span> testdat)</a>
 <a class="sourceLine" id="cb77-2" title="2"><span class="kw">fun6</span>(test_probit)</a></code></pre></div>
-<pre><code>Waiting for profiling to be done...</code></pre>
-<pre><code>Error in if (modeltype == &quot;lm&quot;) {: argument is of length zero</code></pre>
+<pre><code>## Waiting for profiling to be done...</code></pre>
+<pre><code>## Error in if (modeltype == &quot;lm&quot;) {: argument is of length zero</code></pre>
 </div>
 <div id="task-7" class="section level3">
 <h3>Task 7</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-Prevent this error from occuring by stopping the evaluation of the function before it happens and provide an informative error message.  <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_6809709182">Hint</button>
+<p>Prevent this error from occuring by stopping the evaluation of the function before it happens and provide an informative error message.</p>
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_6809709182">
+Hint
+</button>
 <div id="hint_6809709182" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 To create an error message, use <code>stop()</code>.
 </div>
@@ -2166,7 +2168,6 @@ You could use the function <code>is.null()</code>.
 </div>
 <div id="solution-7" class="section level3">
 <h3>Solution 7</h3>
-
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1">fun7 &lt;-<span class="st"> </span><span class="cf">function</span>(model, <span class="dt">decimals =</span> <span class="dv">3</span>) {</a>
 <a class="sourceLine" id="cb80-2" title="2"></a>
 <a class="sourceLine" id="cb80-3" title="3">  <span class="co"># extract the family and link  </span></a>
@@ -2205,9 +2206,8 @@ You could use the function <code>is.null()</code>.
 <a class="sourceLine" id="cb80-36" title="36">  </a>
 <a class="sourceLine" id="cb80-37" title="37">  dat</a>
 <a class="sourceLine" id="cb80-38" title="38">}</a></code></pre></div>
-
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="kw">fun7</span>(test_probit)</a></code></pre></div>
-<pre><code>Error in fun7(test_probit): I do not know how to create the summary for the type of model you have provided.</code></pre>
+<pre><code>## Error in fun7(test_probit): I do not know how to create the summary for the type of model you have provided.</code></pre>
 </div>
 </div>
 

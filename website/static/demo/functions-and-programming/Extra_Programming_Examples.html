@@ -1527,13 +1527,11 @@ div.tocify {
 <div id="load-packages" class="section level2">
 <h2>Load packages</h2>
 <p>If you are using the package for the first time, you will have to first install it</p>
-
 <pre class="r"><code># install.packages(&quot;survival&quot;) 
 library(survival)</code></pre>
 </div>
 <div id="get-data" class="section level2">
 <h2>Get data</h2>
-
 <pre class="r"><code>pbc &lt;- survival::pbc</code></pre>
 </div>
 <div id="smart-programming" class="section level2">
@@ -1543,12 +1541,10 @@ library(survival)</code></pre>
 </li>
 </ul>
 <p>Code 1:</p>
-
 <pre class="r"><code>x&lt;-10
 y&lt;-10/2
 z&lt;-x+y</code></pre>
 <p>Code 2:</p>
-
 <pre class="r"><code># store a value
 x &lt;- 10
 # take half of the stored value
@@ -1560,11 +1556,10 @@ z &lt;- x + y</code></pre>
 <ul>
 <li>Always check if you can make your code faster</li>
 </ul>
-
 <pre class="r"><code>marks = sample(0:100, 150, replace = TRUE)
 system.time({ifelse(marks &gt;= 40, &quot;pass&quot;, &quot;fail&quot;)})</code></pre>
-<pre><code>   user  system elapsed 
-      0       0       0 </code></pre>
+<pre><code>##    user  system elapsed 
+##       0       0       0</code></pre>
 <pre class="r"><code>system.time({
   for (j in 1:length(marks)){
     if(marks[j] &gt;= 40) {
@@ -1574,198 +1569,183 @@ system.time({ifelse(marks &gt;= 40, &quot;pass&quot;, &quot;fail&quot;)})</code>
     }
   }
 })</code></pre>
-<pre><code>[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;fail&quot;
-[1] &quot;pass&quot;
-[1] &quot;fail&quot;</code></pre>
-<pre><code>   user  system elapsed 
-   0.01    0.00    0.02 </code></pre>
+<pre><code>## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;fail&quot;
+## [1] &quot;pass&quot;
+## [1] &quot;fail&quot;</code></pre>
+<pre><code>##    user  system elapsed 
+##       0       0       0</code></pre>
 <p>Other example<br />
 Create a matrix<br />
 </p>
-
 <pre class="r"><code>A &lt;- matrix(rnorm(1e06), 1000, 1000)
 A[1:10 , 1:10]</code></pre>
-<pre><code>             [,1]        [,2]       [,3]       [,4]        [,5]
- [1,] -0.28400139  1.01912548 -1.9096331  1.6605347  0.78847580
- [2,]  1.09185644  0.67567316 -0.3404026 -0.6766292 -1.47549050
- [3,]  0.16021636 -0.27749805 -2.0663715 -0.4024120 -0.34753348
- [4,]  2.70816828  0.65390914 -1.0042945  1.0447024 -1.59333095
- [5,]  0.28628993  0.08035019  0.5645607  0.8099777 -0.50955080
- [6,] -0.03251025  0.45590261 -1.9408074 -0.4525268  1.02319903
- [7,] -0.98967802  0.83453206  0.7889533 -1.5929838 -0.04047933
- [8,]  0.21180993 -0.69272397 -1.1304727 -0.4720390 -0.32472180
- [9,] -0.97201753 -1.57178773  0.5733813  0.3123988  1.31259258
-[10,]  0.54922401  0.96750738 -0.9349319  1.1008419  1.40025676
-             [,6]        [,7]        [,8]        [,9]       [,10]
- [1,]  0.83510847 -1.16827543  1.52102530 -3.48780266 -0.72728659
- [2,]  0.81295544 -0.04711955 -0.41894263 -0.27702174  0.19855085
- [3,]  1.55808734  1.00112216  0.11719544 -0.24250630 -0.46717427
- [4,]  0.73181289  0.83345499  0.88144661 -0.08711148 -0.53944327
- [5,] -0.02576341  0.41991932 -1.26216381  1.50971943  1.04842492
- [6,] -1.91159625  0.17136595 -0.15805455  0.90728315 -0.04375297
- [7,]  0.10423875  0.47309774 -0.04985447  1.21674772 -0.59494136
- [8,] -1.52315331  0.13158853  2.36926362 -0.06473489 -0.06513549
- [9,]  1.06376340 -0.45046780 -0.19420518 -0.50473036 -1.62140741
-[10,] -1.06399579  0.80677315  0.25421034  0.69125555  1.74385911</code></pre>
+<pre><code>##              [,1]        [,2]       [,3]       [,4]        [,5]        [,6]        [,7]        [,8]        [,9]       [,10]
+##  [1,] -0.28400139  1.01912548 -1.9096331  1.6605347  0.78847580  0.83510847 -1.16827543  1.52102530 -3.48780266 -0.72728659
+##  [2,]  1.09185644  0.67567316 -0.3404026 -0.6766292 -1.47549050  0.81295544 -0.04711955 -0.41894263 -0.27702174  0.19855085
+##  [3,]  0.16021636 -0.27749805 -2.0663715 -0.4024120 -0.34753348  1.55808734  1.00112216  0.11719544 -0.24250630 -0.46717427
+##  [4,]  2.70816828  0.65390914 -1.0042945  1.0447024 -1.59333095  0.73181289  0.83345499  0.88144661 -0.08711148 -0.53944327
+##  [5,]  0.28628993  0.08035019  0.5645607  0.8099777 -0.50955080 -0.02576341  0.41991932 -1.26216381  1.50971943  1.04842492
+##  [6,] -0.03251025  0.45590261 -1.9408074 -0.4525268  1.02319903 -1.91159625  0.17136595 -0.15805455  0.90728315 -0.04375297
+##  [7,] -0.98967802  0.83453206  0.7889533 -1.5929838 -0.04047933  0.10423875  0.47309774 -0.04985447  1.21674772 -0.59494136
+##  [8,]  0.21180993 -0.69272397 -1.1304727 -0.4720390 -0.32472180 -1.52315331  0.13158853  2.36926362 -0.06473489 -0.06513549
+##  [9,] -0.97201753 -1.57178773  0.5733813  0.3123988  1.31259258  1.06376340 -0.45046780 -0.19420518 -0.50473036 -1.62140741
+## [10,]  0.54922401  0.96750738 -0.9349319  1.1008419  1.40025676 -1.06399579  0.80677315  0.25421034  0.69125555  1.74385911</code></pre>
 <p>Calculate the sum per row</p>
-
 <pre class="r"><code>head(apply(A, 1, sum))</code></pre>
-<pre><code>[1] -11.80121  32.44390 -19.99763  15.95648 -28.03451 -21.92083</code></pre>
+<pre><code>## [1] -11.80121  32.44390 -19.99763  15.95648 -28.03451 -21.92083</code></pre>
 <pre class="r"><code>#?rnorm</code></pre>
 <p>Calculate the sum per row, repeat this procedure 100 times</p>
-
 <pre class="r"><code>res1 &lt;- replicate(100, z &lt;- apply(A, 1, sum))
 res2 &lt;- replicate(100, z &lt;- rowSums(A)) # Use specialized functions</code></pre>
 <p>Compute the cumulative sum<br />
 Cumulative sum of 1, 2, 3, 4 is 1, 3, 6, 10</p>
-
 <pre class="r"><code>x &lt;- rnorm(1000000, 10, 10)
 
 cSum &lt;- 0 # cumulative sum in the beginning is 0
@@ -1775,21 +1755,19 @@ for (k in 1:length(x)){
   z[k] &lt;- cSum
 }</code></pre>
 <p>Explore how it works</p>
-
 <pre class="r"><code>i &lt;- 1
 cSum &lt;- 0
 cSum &lt;- cSum + x[i]
 x[1]</code></pre>
-<pre><code>[1] 5.02252</code></pre>
+<pre><code>## [1] 5.02252</code></pre>
 <pre class="r"><code>i &lt;- 2
 cSum &lt;- cSum + x[i]
 
 
 res &lt;- cumsum(x)
 tail(res)</code></pre>
-<pre><code>[1] 10013292 10013282 10013296 10013329 10013338 10013360</code></pre>
+<pre><code>## [1] 10013292 10013282 10013296 10013329 10013338 10013360</code></pre>
 <p>Explore the timing of the code</p>
-
 <pre class="r"><code>cSum &lt;- 0 # cumulative sum in the beginning is 0
 z &lt;- numeric() # empty vector
 system.time({
@@ -1799,56 +1777,35 @@ system.time({
     z[i] &lt;- cSum
   }
 })</code></pre>
-<pre><code>   user  system elapsed 
-   0.35    0.07    0.42 </code></pre>
+<pre><code>##    user  system elapsed 
+##    0.37    0.03    0.43</code></pre>
 <pre class="r"><code>system.time({
   cumsum(x)
 }) # better</code></pre>
-<pre><code>   user  system elapsed 
-      0       0       0 </code></pre>
+<pre><code>##    user  system elapsed 
+##    0.00    0.01    0.02</code></pre>
 <p>Other example<br />
 Create a dichotomous variable for <code>age</code> (assume as cut-off point the value 42)</p>
-
 <pre class="r"><code>for (i in 1:dim(pbc)[1]) {
   pbc$ageCat[i] &lt;- as.numeric(pbc$age[i] &gt; 42)
 }</code></pre>
 <p>Explore what is happening<br />
 This will help you later create more complicated loops</p>
-
 <pre class="r"><code>i &lt;- 1
 pbc$ageCat[i] &lt;- as.numeric(pbc$age[i] &gt; 42)
 
 head(pbc)</code></pre>
-<pre><code>  id time status trt      age sex ascites hepato spiders edema bili
-1  1  400      2   1 58.76523   f       1      1       1   1.0 14.5
-2  2 4500      0   1 56.44627   f       0      1       1   0.0  1.1
-3  3 1012      2   1 70.07255   m       0      0       0   0.5  1.4
-4  4 1925      2   1 54.74059   f       0      1       1   0.5  1.8
-5  5 1504      1   2 38.10541   f       0      1       1   0.0  3.4
-6  6 2503      2   2 66.25873   f       0      1       0   0.0  0.8
-  chol albumin copper alk.phos    ast trig platelet protime stage
-1  261    2.60    156   1718.0 137.95  172      190    12.2     4
-2  302    4.14     54   7394.8 113.52   88      221    10.6     3
-3  176    3.48    210    516.0  96.10   55      151    12.0     4
-4  244    2.54     64   6121.8  60.63   92      183    10.3     4
-5  279    3.53    143    671.0 113.15   72      136    10.9     3
-6  248    3.98     50    944.0  93.00   63       NA    11.0     3
-  ageCat
-1      1
-2      1
-3      1
-4      1
-5      0
-6      1</code></pre>
+<pre><code>##   id time status trt      age sex ascites hepato spiders edema bili chol albumin copper alk.phos    ast trig platelet protime stage ageCat
+## 1  1  400      2   1 58.76523   f       1      1       1   1.0 14.5  261    2.60    156   1718.0 137.95  172      190    12.2     4      1
+## 2  2 4500      0   1 56.44627   f       0      1       1   0.0  1.1  302    4.14     54   7394.8 113.52   88      221    10.6     3      1
+## 3  3 1012      2   1 70.07255   m       0      0       0   0.5  1.4  176    3.48    210    516.0  96.10   55      151    12.0     4      1
+## 4  4 1925      2   1 54.74059   f       0      1       1   0.5  1.8  244    2.54     64   6121.8  60.63   92      183    10.3     4      1
+## 5  5 1504      1   2 38.10541   f       0      1       1   0.0  3.4  279    3.53    143    671.0 113.15   72      136    10.9     3      0
+## 6  6 2503      2   2 66.25873   f       0      1       0   0.0  0.8  248    3.98     50    944.0  93.00   63       NA    11.0     3      1</code></pre>
 <pre class="r"><code>pbc[i, ]</code></pre>
-<pre><code>  id time status trt      age sex ascites hepato spiders edema bili
-1  1  400      2   1 58.76523   f       1      1       1     1 14.5
-  chol albumin copper alk.phos    ast trig platelet protime stage
-1  261     2.6    156     1718 137.95  172      190    12.2     4
-  ageCat
-1      1</code></pre>
+<pre><code>##   id time status trt      age sex ascites hepato spiders edema bili chol albumin copper alk.phos    ast trig platelet protime stage ageCat
+## 1  1  400      2   1 58.76523   f       1      1       1     1 14.5  261     2.6    156     1718 137.95  172      190    12.2     4      1</code></pre>
 <p>Do the same thing without a loop</p>
-
 <pre class="r"><code>pbc$ageCat &lt;- as.numeric(pbc$age &gt; 42)</code></pre>
 <p>More than one ways exist to code something in R!<br />
 </p>
@@ -1858,7 +1815,6 @@ head(pbc)</code></pre>
 <p>Calculate the mean weight for <code>males</code> and <code>females</code> in 100 datasets<br />
 Since we do not have 100 data sets, we will create them!<br />
 Let’s do that first manually…</p>
-
 <pre class="r"><code>datlist &lt;- list()
 
 i &lt;- 1
@@ -1880,7 +1836,6 @@ sex &lt;- factor(sex, levels = 1:2, labels = c(&quot;male&quot;, &quot;female&qu
 datlist[[i]] &lt;- data.frame(patient, weight, sex)
 # ..... </code></pre>
 <p>It is too much work! Now use a loop</p>
-
 <pre class="r"><code>for (i in 1:100) {
   set.seed(2015+i)
   patient &lt;- c(1:20)
@@ -1892,7 +1847,6 @@ datlist[[i]] &lt;- data.frame(patient, weight, sex)
 }</code></pre>
 <p>Now that we have 100 data sets we need to calculate the mean <code>age</code> per <code>gender</code> in each of them<br />
 Let’s do that manually…</p>
-
 <pre class="r"><code>means &lt;- matrix(NA, length(datlist), 2)
 
 i &lt;- 1
@@ -1903,116 +1857,114 @@ i &lt;- 2
 dat &lt;- datlist[[i]]
 means[i, ] &lt;- tapply(dat$weight, dat$sex, mean)</code></pre>
 <p>Now use a loop</p>
-
 <pre class="r"><code>for (i in 1:length(datlist)) {
   dat &lt;- datlist[[i]]
   means[i, ] &lt;- tapply(dat$weight, dat$sex, mean)
 }
 
 means</code></pre>
-<pre><code>           [,1]     [,2]
-  [1,] 66.87221 70.23012
-  [2,] 69.32428 71.10880
-  [3,] 73.35006 63.82016
-  [4,] 68.84998 66.25908
-  [5,] 67.04163 70.26612
-  [6,] 70.71196 77.17049
-  [7,] 68.96159 65.47418
-  [8,] 64.35831 73.27005
-  [9,] 66.32138 67.72680
- [10,] 71.55249 72.48613
- [11,] 65.76905 66.36133
- [12,] 73.48102 63.50352
- [13,] 68.47477 64.66653
- [14,] 69.56143 71.17912
- [15,] 69.29229 70.56164
- [16,] 71.38866 69.45462
- [17,] 76.79215 71.76611
- [18,] 65.71939 69.49420
- [19,] 71.98203 72.16730
- [20,] 69.34998 67.93628
- [21,] 63.21352 72.26006
- [22,] 70.72174 66.16482
- [23,] 71.91892 75.30717
- [24,] 65.58916 64.65397
- [25,] 70.26669 78.72166
- [26,] 66.02550 71.79470
- [27,] 70.64065 70.19797
- [28,] 70.20606 77.39163
- [29,] 71.78320 71.13655
- [30,] 71.92905 72.75175
- [31,] 70.96654 73.94545
- [32,] 75.58260 69.19083
- [33,] 67.41139 68.88708
- [34,] 64.36274 68.46705
- [35,] 68.74053 66.84963
- [36,] 63.34794 68.82594
- [37,] 65.07727 65.14672
- [38,] 73.55567 75.33889
- [39,] 74.01027 70.32720
- [40,] 68.06847 74.80821
- [41,] 70.72333 65.96066
- [42,] 65.42156 71.96316
- [43,] 69.14935 65.91266
- [44,] 74.04650 70.97440
- [45,] 69.59519 70.53345
- [46,] 70.97698 69.22818
- [47,] 58.30949 67.73015
- [48,] 65.99013 67.84917
- [49,] 67.51769 72.63818
- [50,] 70.20286 63.76691
- [51,] 67.86270 75.51401
- [52,] 62.94888 70.86488
- [53,] 70.78478 69.66490
- [54,] 66.69677 69.57164
- [55,] 68.94568 69.57028
- [56,] 73.93241 72.08760
- [57,] 66.87292 70.82672
- [58,] 75.27587 67.85564
- [59,] 71.42993 74.39911
- [60,] 72.75904 73.61665
- [61,] 74.74384 69.01195
- [62,] 68.04087 68.99214
- [63,] 70.75011 74.70910
- [64,] 67.70502 72.73423
- [65,] 70.91187 69.68420
- [66,] 67.45621 65.99839
- [67,] 77.12369 65.93115
- [68,] 75.96823 69.92782
- [69,] 64.32795 70.02376
- [70,] 71.27700 65.16304
- [71,] 72.77217 77.80718
- [72,] 75.89081 75.24157
- [73,] 68.61311 74.60519
- [74,] 70.47600 69.13892
- [75,] 71.67574 72.77853
- [76,] 73.91047 66.58250
- [77,] 67.92155 67.22125
- [78,] 72.61366 77.01334
- [79,] 76.22293 69.00145
- [80,] 72.58301 67.69118
- [81,] 68.66738 71.94712
- [82,] 66.01072 74.95175
- [83,] 70.80124 66.47900
- [84,] 64.68112 70.52083
- [85,] 66.51895 69.75434
- [86,] 75.51569 74.40123
- [87,] 66.50925 72.54881
- [88,] 71.67315 68.66200
- [89,] 69.97492 72.45629
- [90,] 65.34358 74.72192
- [91,] 68.07291 73.52073
- [92,] 71.06988 69.87011
- [93,] 68.81983 69.00338
- [94,] 65.88510 70.58513
- [95,] 69.14958 74.72742
- [96,] 63.78094 70.16301
- [97,] 71.57882 73.66845
- [98,] 74.11485 71.50819
- [99,] 70.71719 66.66810
-[100,] 73.99102 69.82842</code></pre>
+<pre><code>##            [,1]     [,2]
+##   [1,] 66.87221 70.23012
+##   [2,] 69.32428 71.10880
+##   [3,] 73.35006 63.82016
+##   [4,] 68.84998 66.25908
+##   [5,] 67.04163 70.26612
+##   [6,] 70.71196 77.17049
+##   [7,] 68.96159 65.47418
+##   [8,] 64.35831 73.27005
+##   [9,] 66.32138 67.72680
+##  [10,] 71.55249 72.48613
+##  [11,] 65.76905 66.36133
+##  [12,] 73.48102 63.50352
+##  [13,] 68.47477 64.66653
+##  [14,] 69.56143 71.17912
+##  [15,] 69.29229 70.56164
+##  [16,] 71.38866 69.45462
+##  [17,] 76.79215 71.76611
+##  [18,] 65.71939 69.49420
+##  [19,] 71.98203 72.16730
+##  [20,] 69.34998 67.93628
+##  [21,] 63.21352 72.26006
+##  [22,] 70.72174 66.16482
+##  [23,] 71.91892 75.30717
+##  [24,] 65.58916 64.65397
+##  [25,] 70.26669 78.72166
+##  [26,] 66.02550 71.79470
+##  [27,] 70.64065 70.19797
+##  [28,] 70.20606 77.39163
+##  [29,] 71.78320 71.13655
+##  [30,] 71.92905 72.75175
+##  [31,] 70.96654 73.94545
+##  [32,] 75.58260 69.19083
+##  [33,] 67.41139 68.88708
+##  [34,] 64.36274 68.46705
+##  [35,] 68.74053 66.84963
+##  [36,] 63.34794 68.82594
+##  [37,] 65.07727 65.14672
+##  [38,] 73.55567 75.33889
+##  [39,] 74.01027 70.32720
+##  [40,] 68.06847 74.80821
+##  [41,] 70.72333 65.96066
+##  [42,] 65.42156 71.96316
+##  [43,] 69.14935 65.91266
+##  [44,] 74.04650 70.97440
+##  [45,] 69.59519 70.53345
+##  [46,] 70.97698 69.22818
+##  [47,] 58.30949 67.73015
+##  [48,] 65.99013 67.84917
+##  [49,] 67.51769 72.63818
+##  [50,] 70.20286 63.76691
+##  [51,] 67.86270 75.51401
+##  [52,] 62.94888 70.86488
+##  [53,] 70.78478 69.66490
+##  [54,] 66.69677 69.57164
+##  [55,] 68.94568 69.57028
+##  [56,] 73.93241 72.08760
+##  [57,] 66.87292 70.82672
+##  [58,] 75.27587 67.85564
+##  [59,] 71.42993 74.39911
+##  [60,] 72.75904 73.61665
+##  [61,] 74.74384 69.01195
+##  [62,] 68.04087 68.99214
+##  [63,] 70.75011 74.70910
+##  [64,] 67.70502 72.73423
+##  [65,] 70.91187 69.68420
+##  [66,] 67.45621 65.99839
+##  [67,] 77.12369 65.93115
+##  [68,] 75.96823 69.92782
+##  [69,] 64.32795 70.02376
+##  [70,] 71.27700 65.16304
+##  [71,] 72.77217 77.80718
+##  [72,] 75.89081 75.24157
+##  [73,] 68.61311 74.60519
+##  [74,] 70.47600 69.13892
+##  [75,] 71.67574 72.77853
+##  [76,] 73.91047 66.58250
+##  [77,] 67.92155 67.22125
+##  [78,] 72.61366 77.01334
+##  [79,] 76.22293 69.00145
+##  [80,] 72.58301 67.69118
+##  [81,] 68.66738 71.94712
+##  [82,] 66.01072 74.95175
+##  [83,] 70.80124 66.47900
+##  [84,] 64.68112 70.52083
+##  [85,] 66.51895 69.75434
+##  [86,] 75.51569 74.40123
+##  [87,] 66.50925 72.54881
+##  [88,] 71.67315 68.66200
+##  [89,] 69.97492 72.45629
+##  [90,] 65.34358 74.72192
+##  [91,] 68.07291 73.52073
+##  [92,] 71.06988 69.87011
+##  [93,] 68.81983 69.00338
+##  [94,] 65.88510 70.58513
+##  [95,] 69.14958 74.72742
+##  [96,] 63.78094 70.16301
+##  [97,] 71.57882 73.66845
+##  [98,] 74.11485 71.50819
+##  [99,] 70.71719 66.66810
+## [100,] 73.99102 69.82842</code></pre>
 <p>Select the data sets, where more than 39% of the patients are <code>females</code></p>
-
 <pre class="r"><code>newList &lt;- list()
 
 for (i in 1:length(datlist)) {
@@ -2022,12 +1974,10 @@ for (i in 1:length(datlist)) {
   }
 }</code></pre>
 <p>Now we need to remove the elements of the list that are NULL</p>
-
 <pre class="r"><code>newList &lt;- newList[!sapply(newList, is.null)]
 length(newList)</code></pre>
-<pre><code>[1] 90</code></pre>
+<pre><code>## [1] 90</code></pre>
 <p>Select the data sets, where more than 49% of the patients are <code>males</code></p>
-
 <pre class="r"><code>newList &lt;- list()
 
 for (i in 1:length(datlist)) {
@@ -2037,14 +1987,12 @@ for (i in 1:length(datlist)) {
   }
 }</code></pre>
 <p>Now we need to remove the elements of the list that are NULL</p>
-
 <pre class="r"><code>newList &lt;- newList[!sapply(newList, is.null)]
 length(newList)</code></pre>
-<pre><code>[1] 64</code></pre>
+<pre><code>## [1] 64</code></pre>
 <p>Now make a function that takes as input the data sets in a list format, the name of the <code>gender</code> variable and the name of the <code>male</code> category<br />
 This function returns only the data sets, where more than 49% of the patients are <code>males</code><br />
 The output should be a list</p>
-
 <pre class="r"><code>subset_data &lt;- function(dataset = x, sex_var = &quot;sex&quot;, male_cat = &quot;male&quot;){
   newList &lt;- list()
   for (i in 1:length(dataset)) {
@@ -2059,38 +2007,34 @@ The output should be a list</p>
 res &lt;- subset_data(dataset = datlist, sex_var = &quot;sex&quot;, male_cat = &quot;male&quot;)
 
 length(res)</code></pre>
-<pre><code>[1] 64</code></pre>
+<pre><code>## [1] 64</code></pre>
 <p>Make a function that takes as input a data set, the name of a continuous variable and the name of a categorical variable This function calculates the mean and standard deviation of the continuous variable for each group in the categorical variable</p>
-
 <pre class="r"><code>des &lt;- function(data = x, cont = &quot;age&quot;, cat = &quot;group&quot;){
   print(tapply(data[[cont]], data[[cat]], mean))
   print(tapply(data[[cont]], data[[cat]], sd))
 }</code></pre>
 <p>Apply the function to the <code>pbc</code> data set Use <code>age</code> and <code>gender</code> as continuous and categorical variables</p>
-
 <pre class="r"><code>des(data = pbc, cont = &quot;age&quot;, cat = &quot;sex&quot;)</code></pre>
-<pre><code>       m        f 
-55.71072 50.15694 
-       m        f 
-10.97780 10.24065 </code></pre>
+<pre><code>##        m        f 
+## 55.71072 50.15694 
+##        m        f 
+## 10.97780 10.24065</code></pre>
 <p>Be careful! If we remove the function <code>print(...)</code>, then only the last task will be presented</p>
-
 <pre class="r"><code>des &lt;- function(data = x, cont = &quot;age&quot;, cat = &quot;group&quot;){
   tapply(data[[cont]], data[[cat]], mean)
   tapply(data[[cont]], data[[cat]], sd)
 }
 des(data = pbc, cont = &quot;age&quot;, cat = &quot;sex&quot;)</code></pre>
-<pre><code>       m        f 
-10.97780 10.24065 </code></pre>
+<pre><code>##        m        f 
+## 10.97780 10.24065</code></pre>
 <p>Now change the <code>des</code> function so that the user would specify the function applied to the data</p>
-
 <pre class="r"><code>des &lt;- function(data = x, cont = &quot;age&quot;, cat = &quot;group&quot;, fun = mean){
   tapply(data[[cont]], data[[cat]], fun)
 }
 
 des(data = pbc, cont = &quot;age&quot;, cat = &quot;sex&quot;, fun = function(x) { sum(x) } )</code></pre>
-<pre><code>        m         f 
- 2451.272 18758.697 </code></pre>
+<pre><code>##         m         f 
+##  2451.272 18758.697</code></pre>
 </div>
 
 

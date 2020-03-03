@@ -2952,7 +2952,6 @@ div.tocify {
 </div>
 
 
-
 <div id="preface" class="section level2" data-progressive="FALSE">
 <h2>Preface</h2>
 <div id="r-packages" class="section level3">
@@ -2976,32 +2975,27 @@ div.tocify {
 <h3>Set-up run</h3>
 <p>Imputation needs to be tailored to the dataset at hand and, hence, using the function <code>mice()</code> well requires several arguments to be specified. To make the specification easier it is useful to do a dry-run which will create the default versions of everything that needs to be specified.</p>
 <p>These default settings can then be adapted to our data.</p>
-
 <div id="task" class="section level4">
 <h4>Task</h4>
-
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Do the set-up run of <code>mice()</code> with the NHANES2 data without any iterations (<code>maxit = 0</code>).</p>
 </div>
 </div>
 <div id="solution" class="section level4">
 <h4>Solution</h4>
-
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Note: This command will not produce any output.</span></a></code></pre></div>
 </div>
 </div>
 </div>
 <div id="a-first-function" class="section level2">
 <h2>A first function</h2>
-
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">hello &lt;-<span class="st"> </span><span class="cf">function</span>(name) {</a>
 <a class="sourceLine" id="cb2-2" title="2">  <span class="kw">paste0</span>(<span class="st">&quot;Hello &quot;</span>, name, <span class="st">&quot;, how are you?&quot;</span>)</a>
 <a class="sourceLine" id="cb2-3" title="3">}</a>
 <a class="sourceLine" id="cb2-4" title="4"></a>
 <a class="sourceLine" id="cb2-5" title="5"><span class="kw">hello</span>(<span class="st">&quot;Nicole&quot;</span>)</a></code></pre></div>
-<pre><code>[1] &quot;Hello Nicole, how are you?&quot;</code></pre>
+<pre><code>## [1] &quot;Hello Nicole, how are you?&quot;</code></pre>
 <p>The function <code>paste()</code> seems to concatenate / combine strings. Let’s check out the help file for <code>paste()</code>:</p>
-
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">?paste</a></code></pre></div>
 <p><code>paste()</code> has arguments</p>
 <ul>
@@ -3012,39 +3006,38 @@ div.tocify {
 <p>The help file also tells us that <code>paste0(..., collapse)</code> is equivalent to <code>paste(..., sep = &quot;&quot;, collapse)</code>.</p>
 <div id="lets-experiment-with-this-a-bit" class="section level3">
 <h3>Let’s experiment with this a bit</h3>
-<p>Note: to experiment with the content of our own function it can be convenient to set the arguments of our function to a value: </p>
+<p>Note: to experiment with the content of our own function it can be convenient to set the arguments of our function to a value:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">name &lt;-<span class="st"> &quot;Nicole&quot;</span></a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw">paste0</span>(<span class="st">&quot;Hello &quot;</span>, name, <span class="st">&quot;, how are you?&quot;</span>) <span class="co"># same as above</span></a></code></pre></div>
-<pre><code>[1] &quot;Hello Nicole, how are you?&quot;</code></pre>
+<pre><code>## [1] &quot;Hello Nicole, how are you?&quot;</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">paste</span>(<span class="st">&quot;Hello &quot;</span>, name, <span class="st">&quot;, how are you?&quot;</span>) <span class="co"># use paste instead of paste0 </span></a></code></pre></div>
-<pre><code>[1] &quot;Hello  Nicole , how are you?&quot;</code></pre>
+<pre><code>## [1] &quot;Hello  Nicole , how are you?&quot;</code></pre>
 <p>Notice the extra spaces between the text and <code>name</code>?</p>
-
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">paste</span>(<span class="st">&quot;Hello &quot;</span>, name, <span class="st">&quot;, how are you?&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
-<pre><code>[1] &quot;Hello Nicole, how are you?&quot;</code></pre>
+<pre><code>## [1] &quot;Hello Nicole, how are you?&quot;</code></pre>
 <p>Setting <code>sep = &quot;&quot;</code> indeed gives us is the same as <code>paste0</code>!</p>
-<p>We can also <code>paste</code> vectors. Note the difference: </p>
+<p>We can also <code>paste</code> vectors. Note the difference:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;am&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;vector&quot;</span>, <span class="st">&quot;of&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;strings&quot;</span>)) <span class="co"># (sentence 1)</span></a></code></pre></div>
-<pre><code>[1] &quot;I&quot;         &quot;am&quot;        &quot;a&quot;         &quot;vector&quot;    &quot;of&quot;        &quot;character&quot; &quot;strings&quot;  </code></pre>
+<pre><code>## [1] &quot;I&quot;         &quot;am&quot;        &quot;a&quot;         &quot;vector&quot;    &quot;of&quot;        &quot;character&quot; &quot;strings&quot;</code></pre>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">paste</span>(<span class="st">&quot;We&quot;</span>, <span class="st">&quot;are&quot;</span>, <span class="st">&quot;several&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;strings&quot;</span>)            <span class="co"># (sentence 2)</span></a></code></pre></div>
-<pre><code>[1] &quot;We are several character strings&quot;</code></pre>
-<p>We can use this to explore the effect of the arguments <code>sep</code> and <code>collapse</code>: </p>
+<pre><code>## [1] &quot;We are several character strings&quot;</code></pre>
+<p>We can use this to explore the effect of the arguments <code>sep</code> and <code>collapse</code>:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;am&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;vector&quot;</span>, <span class="st">&quot;of&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;strings&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;+++&quot;</span>)</a></code></pre></div>
-<pre><code>[1] &quot;I&quot;         &quot;am&quot;        &quot;a&quot;         &quot;vector&quot;    &quot;of&quot;        &quot;character&quot; &quot;strings&quot;  </code></pre>
+<pre><code>## [1] &quot;I&quot;         &quot;am&quot;        &quot;a&quot;         &quot;vector&quot;    &quot;of&quot;        &quot;character&quot; &quot;strings&quot;</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;am&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;vector&quot;</span>, <span class="st">&quot;of&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;strings&quot;</span>), <span class="dt">collapse =</span> <span class="st">&quot;---&quot;</span>)</a></code></pre></div>
-<pre><code>[1] &quot;I---am---a---vector---of---character---strings&quot;</code></pre>
+<pre><code>## [1] &quot;I---am---a---vector---of---character---strings&quot;</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">paste</span>(<span class="st">&quot;We&quot;</span>, <span class="st">&quot;are&quot;</span>, <span class="st">&quot;several&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;strings&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;+++&quot;</span>)</a></code></pre></div>
-<pre><code>[1] &quot;We+++are+++several+++character+++strings&quot;</code></pre>
+<pre><code>## [1] &quot;We+++are+++several+++character+++strings&quot;</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">paste</span>(<span class="st">&quot;We&quot;</span>, <span class="st">&quot;are&quot;</span>, <span class="st">&quot;several&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;strings&quot;</span>, <span class="dt">collapse =</span> <span class="st">&quot;---&quot;</span>)</a></code></pre></div>
-<pre><code>[1] &quot;We are several character strings&quot;</code></pre>
+<pre><code>## [1] &quot;We are several character strings&quot;</code></pre>
 <ul>
 <li><code>sep</code> separates the different objects. Because the vector <code>c(...)</code> is one object it didn’t have effect in sentence 1, Sentence 2 has multiple objects (each word is a separate object).</li>
 <li><code>collapse</code> separates the terms (elements) of an object. This is why it has an effect in sentence 1 (each word is an element of the vector) but not in sentence 2 (each word is only one object).</li>
 </ul>
 <p>This is what was written in the help file!</p>
-<p>BTW: <code>paste()</code> does not only work for character strings: </p>
+<p>BTW: <code>paste()</code> does not only work for character strings:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">paste</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;abc&quot;</span>), <span class="dv">345</span>, <span class="dt">sep =</span> <span class="st">&quot; a word &quot;</span>, <span class="dt">collapse =</span> <span class="st">&quot; / &quot;</span>)</a></code></pre></div>
-<pre><code>[1] &quot;1 a word 345 / 2 a word 345 / abc a word 345&quot;</code></pre>
+<pre><code>## [1] &quot;1 a word 345 / 2 a word 345 / abc a word 345&quot;</code></pre>
 <p><strong>What should I have learned from this?</strong></p>
 <ul>
 <li>Read the help files! They (usually) explain how things work!</li>
@@ -3054,14 +3047,13 @@ div.tocify {
 <div id="write-your-own-function" class="section level3">
 <h3>Write your own function</h3>
 <p>Now that we understand <code>sep</code> and <code>collapse</code>, can you write a function that can greet two people at the same time?</p>
-
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">hello2 &lt;-<span class="st"> </span><span class="cf">function</span>(name1, name2) {</a>
 <a class="sourceLine" id="cb25-2" title="2">  <span class="kw">paste0</span>(<span class="st">&quot;Hello &quot;</span>, name1, <span class="st">&quot; and &quot;</span>, name2, <span class="st">&quot;, how are you?&quot;</span>)</a>
 <a class="sourceLine" id="cb25-3" title="3">}</a>
 <a class="sourceLine" id="cb25-4" title="4"></a>
 <a class="sourceLine" id="cb25-5" title="5"><span class="kw">hello2</span>(<span class="st">&quot;Elrozy&quot;</span>, <span class="st">&quot;Nicole&quot;</span>)</a></code></pre></div>
-<pre><code>[1] &quot;Hello Elrozy and Nicole, how are you?&quot;</code></pre>
-<p>What about a function that can greet any number of people? </p>
+<pre><code>## [1] &quot;Hello Elrozy and Nicole, how are you?&quot;</code></pre>
+<p>What about a function that can greet any number of people?</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">hello_any &lt;-<span class="st"> </span><span class="cf">function</span>(names) {</a>
 <a class="sourceLine" id="cb27-2" title="2">  <span class="kw">paste0</span>(<span class="st">&quot;Hello &quot;</span>, </a>
 <a class="sourceLine" id="cb27-3" title="3">         <span class="kw">paste</span>(names, <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>),</a>
@@ -3069,20 +3061,20 @@ div.tocify {
 <a class="sourceLine" id="cb27-5" title="5">}</a>
 <a class="sourceLine" id="cb27-6" title="6"></a>
 <a class="sourceLine" id="cb27-7" title="7"><span class="kw">hello_any</span>(<span class="kw">c</span>(<span class="st">&quot;Elrozy&quot;</span>, <span class="st">&quot;Nicole&quot;</span>))</a></code></pre></div>
-<pre><code>[1] &quot;Hello Elrozy, Nicole, how are you?&quot;</code></pre>
+<pre><code>## [1] &quot;Hello Elrozy, Nicole, how are you?&quot;</code></pre>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">hello_any</span>(<span class="kw">c</span>(<span class="st">&quot;Elrozy&quot;</span>, <span class="st">&quot;Nicole&quot;</span>, <span class="st">&quot;Anton&quot;</span>, <span class="st">&#39;Daniel&#39;</span>))</a></code></pre></div>
-<pre><code>[1] &quot;Hello Elrozy, Nicole, Anton, Daniel, how are you?&quot;</code></pre>
+<pre><code>## [1] &quot;Hello Elrozy, Nicole, Anton, Daniel, how are you?&quot;</code></pre>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">hello_any</span>(<span class="st">&quot;Elrozy&quot;</span>)</a></code></pre></div>
-<pre><code>[1] &quot;Hello Elrozy, how are you?&quot;</code></pre>
+<pre><code>## [1] &quot;Hello Elrozy, how are you?&quot;</code></pre>
 <p><strong>What happens when we give this input to our previous functions?</strong></p>
-<p>#+ error = TRUE </p>
+<p>#+ error = TRUE</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">hello</span>(<span class="kw">c</span>(<span class="st">&quot;Elrozy&quot;</span>, <span class="st">&quot;Nicole&quot;</span>, <span class="st">&quot;Anton&quot;</span>, <span class="st">&#39;Daniel&#39;</span>))</a></code></pre></div>
-<pre><code>[1] &quot;Hello Elrozy, how are you?&quot; &quot;Hello Nicole, how are you?&quot; &quot;Hello Anton, how are you?&quot; 
-[4] &quot;Hello Daniel, how are you?&quot;</code></pre>
+<pre><code>## [1] &quot;Hello Elrozy, how are you?&quot; &quot;Hello Nicole, how are you?&quot; &quot;Hello Anton, how are you?&quot; 
+## [4] &quot;Hello Daniel, how are you?&quot;</code></pre>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">hello2</span>(<span class="st">&quot;Elrozy&quot;</span>)</a></code></pre></div>
-<pre><code>Error in paste0(&quot;Hello &quot;, name1, &quot; and &quot;, name2, &quot;, how are you?&quot;): argument &quot;name2&quot; is missing, with no default</code></pre>
+<pre><code>## Error in paste0(&quot;Hello &quot;, name1, &quot; and &quot;, name2, &quot;, how are you?&quot;): argument &quot;name2&quot; is missing, with no default</code></pre>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">hello2</span>(<span class="kw">c</span>(<span class="st">&quot;Elrozy&quot;</span>, <span class="st">&quot;Nicole&quot;</span>, <span class="st">&quot;Anton&quot;</span>, <span class="st">&#39;Daniel&#39;</span>))</a></code></pre></div>
-<pre><code>Error in paste0(&quot;Hello &quot;, name1, &quot; and &quot;, name2, &quot;, how are you?&quot;): argument &quot;name2&quot; is missing, with no default</code></pre>
+<pre><code>## Error in paste0(&quot;Hello &quot;, name1, &quot; and &quot;, name2, &quot;, how are you?&quot;): argument &quot;name2&quot; is missing, with no default</code></pre>
 <p><strong>What should I have learned from this?</strong></p>
 <ul>
 <li>Better knowledge of the use of <code>paste()</code>, of course.</li>

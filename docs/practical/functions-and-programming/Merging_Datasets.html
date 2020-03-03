@@ -2962,7 +2962,7 @@ div.tocify {
 
 <div id="data" class="section level2">
 <h2>Data</h2>
-<p>In this practical, we will work with example datasets that are created by the following syntax: </p>
+<p>In this practical, we will work with example datasets that are created by the following syntax:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">basedat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</a>
 <a class="sourceLine" id="cb1-2" title="2">                      <span class="dt">age =</span> <span class="kw">c</span>(<span class="fl">37.9</span>, <span class="fl">22.6</span>, <span class="fl">26.9</span>, <span class="fl">37.3</span>, <span class="fl">49.2</span>),</a>
 <a class="sourceLine" id="cb1-3" title="3">                      <span class="dt">sex =</span> <span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&#39;male&#39;</span>, <span class="st">&#39;female&#39;</span>, <span class="st">&#39;female&#39;</span>, <span class="st">&#39;male&#39;</span>, <span class="st">&#39;male&#39;</span>)),</a>
@@ -2985,7 +2985,7 @@ div.tocify {
 <a class="sourceLine" id="cb1-20" title="20">                     <span class="dt">center =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&#39;EMC&#39;</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&#39;VUMC&#39;</span>, <span class="dv">4</span>), <span class="kw">rep</span>(<span class="st">&#39;LUMC&#39;</span>, <span class="dv">3</span>))</a>
 <a class="sourceLine" id="cb1-21" title="21">)</a></code></pre></div>
 <p>The resulting datasets are:</p>
-<strong>basedat</strong> 
+<strong>basedat</strong>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -3076,7 +3076,7 @@ LUMC
 </tr>
 </tbody>
 </table>
-<strong>FUdat</strong> 
+<strong>FUdat</strong>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -3237,7 +3237,7 @@ weight
 </tr>
 </tbody>
 </table>
-<strong>labdat</strong> 
+<strong>labdat</strong>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -3472,7 +3472,10 @@ LUMC
 <h3>Task 1</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <p>Run the syntax given above to create the datasets <code>basedat</code> which contains “baseline” information on each patient and <code>FUdat</code>, which contains repeated measurements of a variable <code>weight</code>.</p>
-Merge <code>basedat</code> and <code>FUdat</code> by the variable <code>id</code>.  <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4879487297">Hint</button>
+<p>Merge <code>basedat</code> and <code>FUdat</code> by the variable <code>id</code>.</p>
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4879487297">
+Hint
+</button>
 <div id="hint_4879487297" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the function <code>merge()</code>.
 </div>
@@ -3480,29 +3483,30 @@ Use the function <code>merge()</code>.
 </div>
 <div id="solution-1" class="section level3">
 <h3>Solution 1</h3>
-
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">dat1 &lt;-<span class="st"> </span><span class="kw">merge</span>(basedat, FUdat)</a>
 <a class="sourceLine" id="cb2-2" title="2">dat1</a></code></pre></div>
-
-<pre><code>   id  age    sex center time weight
-1   1 37.9   male    EMC  3.6  136.7
-2   1 37.9   male    EMC  5.3  131.5
-3   1 37.9   male    EMC  7.8  135.0
-4   2 22.6 female    EMC  4.3  113.7
-5   2 22.6 female    EMC  8.2  128.9
-6   3 26.9 female   LUMC  5.3   97.1
-7   4 37.3   male   VUMC  3.5  168.1
-8   4 37.3   male   VUMC  4.9  147.7
-9   4 37.3   male   VUMC  6.4  153.1
-10  4 37.3   male   VUMC  8.1  149.6
-11  5 49.2   male   LUMC  2.2  152.6
-12  5 49.2   male   LUMC  6.4  137.7
-13  5 49.2   male   LUMC  7.0  133.1</code></pre>
+<pre><code>##    id  age    sex center time weight
+## 1   1 37.9   male    EMC  3.6  136.7
+## 2   1 37.9   male    EMC  5.3  131.5
+## 3   1 37.9   male    EMC  7.8  135.0
+## 4   2 22.6 female    EMC  4.3  113.7
+## 5   2 22.6 female    EMC  8.2  128.9
+## 6   3 26.9 female   LUMC  5.3   97.1
+## 7   4 37.3   male   VUMC  3.5  168.1
+## 8   4 37.3   male   VUMC  4.9  147.7
+## 9   4 37.3   male   VUMC  6.4  153.1
+## 10  4 37.3   male   VUMC  8.1  149.6
+## 11  5 49.2   male   LUMC  2.2  152.6
+## 12  5 49.2   male   LUMC  6.4  137.7
+## 13  5 49.2   male   LUMC  7.0  133.1</code></pre>
 </div>
 <div id="task-2" class="section level3">
 <h3>Task 2</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-Check for two of the subjects that the merged data are correct.  <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1688404138">Hint</button>
+<p>Check for two of the subjects that the merged data are correct.</p>
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_1688404138">
+Hint
+</button>
 <div id="hint_1688404138" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 The function <code>subset()</code> could be used here.
 </div>
@@ -3510,59 +3514,50 @@ The function <code>subset()</code> could be used here.
 </div>
 <div id="solution-2" class="section level3">
 <h3>Solution 2</h3>
-
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># for subject 1</span></a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="kw">subset</span>(basedat, id <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
-
-<pre><code>  id  age  sex center
-1  1 37.9 male    EMC</code></pre>
-
+<pre><code>##   id  age  sex center
+## 1  1 37.9 male    EMC</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">subset</span>(FUdat, id <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
-
-<pre><code>  id time weight
-1  1  3.6  136.7
-2  1  5.3  131.5
-3  1  7.8  135.0</code></pre>
-
+<pre><code>##   id time weight
+## 1  1  3.6  136.7
+## 2  1  5.3  131.5
+## 3  1  7.8  135.0</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">subset</span>(dat1, id <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
-
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">cat</span>(<span class="kw">paste0</span>(<span class="kw">capture.output</span>(<span class="kw">subset</span>(dat1, id <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</a></code></pre></div>
-<pre><code>  id  age  sex center time weight
-1  1 37.9 male    EMC  3.6  136.7
-2  1 37.9 male    EMC  5.3  131.5
-3  1 37.9 male    EMC  7.8  135.0</code></pre>
-
+<pre><code>##   id  age  sex center time weight
+## 1  1 37.9 male    EMC  3.6  136.7
+## 2  1 37.9 male    EMC  5.3  131.5
+## 3  1 37.9 male    EMC  7.8  135.0</code></pre>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># for subject 4, using a different method of subsetting (just as a reminder how that worked)</span></a>
 <a class="sourceLine" id="cb11-2" title="2">basedat[basedat<span class="op">$</span>id <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, ]</a></code></pre></div>
-
-<pre><code>  id  age  sex center
-4  4 37.3 male   VUMC</code></pre>
-
+<pre><code>##   id  age  sex center
+## 4  4 37.3 male   VUMC</code></pre>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">FUdat[FUdat<span class="op">$</span>id <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, ]</a></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["time"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["weight"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"4","2":"3.5","3":"168.1","_rn_":"7"},{"1":"4","2":"4.9","3":"147.7","_rn_":"8"},{"1":"4","2":"6.4","3":"153.1","_rn_":"9"},{"1":"4","2":"8.1","3":"149.6","_rn_":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-
-<pre><code>   id time weight
-7   4  3.5  168.1
-8   4  4.9  147.7
-9   4  6.4  153.1
-10  4  8.1  149.6</code></pre>
-
+<pre><code>##    id time weight
+## 7   4  3.5  168.1
+## 8   4  4.9  147.7
+## 9   4  6.4  153.1
+## 10  4  8.1  149.6</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">dat1[dat1<span class="op">$</span>id <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, ]</a></code></pre></div>
-
-<pre><code>   id  age  sex center time weight
-7   4 37.3 male   VUMC  3.5  168.1
-8   4 37.3 male   VUMC  4.9  147.7
-9   4 37.3 male   VUMC  6.4  153.1
-10  4 37.3 male   VUMC  8.1  149.6</code></pre>
+<pre><code>##    id  age  sex center time weight
+## 7   4 37.3 male   VUMC  3.5  168.1
+## 8   4 37.3 male   VUMC  4.9  147.7
+## 9   4 37.3 male   VUMC  6.4  153.1
+## 10  4 37.3 male   VUMC  8.1  149.6</code></pre>
 </div>
 <div id="task-3" class="section level3">
 <h3>Task 3</h3>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-Check that the resulting <code>dat1</code> has the correct dimensions.  <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_7578107501">Hint</button>
+<p>Check that the resulting <code>dat1</code> has the correct dimensions.</p>
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_7578107501">
+Hint
+</button>
 <div id="hint_7578107501" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 The function <code>dim()</code> could be used here.
 </div>
@@ -3570,13 +3565,12 @@ The function <code>dim()</code> could be used here.
 </div>
 <div id="solution-3" class="section level3">
 <h3>Solution 3</h3>
-
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">dim</span>(dat1)</a></code></pre></div>
-<pre><code>[1] 13  6</code></pre>
+<pre><code>## [1] 13  6</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">dim</span>(FUdat)</a></code></pre></div>
-<pre><code>[1] 13  3</code></pre>
+<pre><code>## [1] 13  3</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">dim</span>(basedat)</a></code></pre></div>
-<pre><code>[1] 5 4</code></pre>
+<pre><code>## [1] 5 4</code></pre>
 <p><code>FUdat</code> and <code>basedat</code> contain data on the exact same set of subjects and only the <code>id</code> variable is overlapping between the two datasets. Therefore, the resulting <code>dat1</code> should have the same number of rows as the data containing the repeated measurements (<code>FUdat</code>) and has one column less than the sum of the number of columns of both input datasets (6 = 3 + 4 - 1).</p>
 </div>
 </div>
@@ -3591,7 +3585,10 @@ The function <code>dim()</code> could be used here.
 <li><code>ID</code>: patient identifier</li>
 </ul>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
-Merge <code>dat1</code> and <code>labdat</code> by patient identifier.  <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8421222224">Hint</button>
+<p>Merge <code>dat1</code> and <code>labdat</code> by patient identifier.</p>
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_8421222224">
+Hint
+</button>
 <div id="hint_8421222224" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the arguments <code>by.x</code> and <code>by.y</code>.
 </div>
@@ -3599,45 +3596,43 @@ Use the arguments <code>by.x</code> and <code>by.y</code>.
 </div>
 <div id="solution-1-1" class="section level3">
 <h3>Solution 1</h3>
-
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">dat2 &lt;-<span class="st"> </span><span class="kw">merge</span>(dat1, labdat, <span class="dt">by.x =</span> <span class="st">&#39;id&#39;</span>, <span class="dt">by.y =</span> <span class="st">&#39;ID&#39;</span>)</a>
 <a class="sourceLine" id="cb23-2" title="2">dat2</a></code></pre></div>
-
-<pre><code>   id  age    sex center.x time weight id.y labtime chol center.y
-1   1 37.9   male      EMC  3.6  136.7    1     3.1  347      EMC
-2   1 37.9   male      EMC  3.6  136.7    2     6.0  309      EMC
-3   1 37.9   male      EMC  7.8  135.0    1     3.1  347      EMC
-4   1 37.9   male      EMC  7.8  135.0    2     6.0  309      EMC
-5   1 37.9   male      EMC  5.3  131.5    1     3.1  347      EMC
-6   1 37.9   male      EMC  5.3  131.5    2     6.0  309      EMC
-7   2 22.6 female      EMC  4.3  113.7    3     4.3  215      EMC
-8   2 22.6 female      EMC  4.3  113.7    5     8.2  360      EMC
-9   2 22.6 female      EMC  4.3  113.7    4     5.8  436      EMC
-10  2 22.6 female      EMC  8.2  128.9    3     4.3  215      EMC
-11  2 22.6 female      EMC  8.2  128.9    5     8.2  360      EMC
-12  2 22.6 female      EMC  8.2  128.9    4     5.8  436      EMC
-13  4 37.3   male     VUMC  3.5  168.1    6     3.5  335     VUMC
-14  4 37.3   male     VUMC  3.5  168.1    7     4.9 1002     VUMC
-15  4 37.3   male     VUMC  3.5  168.1    9     8.1  615     VUMC
-16  4 37.3   male     VUMC  3.5  168.1    8     6.4  808     VUMC
-17  4 37.3   male     VUMC  4.9  147.7    6     3.5  335     VUMC
-18  4 37.3   male     VUMC  4.9  147.7    7     4.9 1002     VUMC
-19  4 37.3   male     VUMC  4.9  147.7    9     8.1  615     VUMC
-20  4 37.3   male     VUMC  4.9  147.7    8     6.4  808     VUMC
-21  4 37.3   male     VUMC  6.4  153.1    6     3.5  335     VUMC
-22  4 37.3   male     VUMC  6.4  153.1    7     4.9 1002     VUMC
-23  4 37.3   male     VUMC  6.4  153.1    9     8.1  615     VUMC
-24  4 37.3   male     VUMC  6.4  153.1    8     6.4  808     VUMC
-25  4 37.3   male     VUMC  8.1  149.6    6     3.5  335     VUMC
-26  4 37.3   male     VUMC  8.1  149.6    7     4.9 1002     VUMC
-27  4 37.3   male     VUMC  8.1  149.6    9     8.1  615     VUMC
-28  4 37.3   male     VUMC  8.1  149.6    8     6.4  808     VUMC
-29  5 49.2   male     LUMC  2.2  152.6   10     2.2  932     LUMC
-30  5 49.2   male     LUMC  2.2  152.6   11     6.4  413     LUMC
-31  5 49.2   male     LUMC  6.4  137.7   10     2.2  932     LUMC
-32  5 49.2   male     LUMC  6.4  137.7   11     6.4  413     LUMC
-33  5 49.2   male     LUMC  7.0  133.1   10     2.2  932     LUMC
-34  5 49.2   male     LUMC  7.0  133.1   11     6.4  413     LUMC</code></pre>
+<pre><code>##    id  age    sex center.x time weight id.y labtime chol center.y
+## 1   1 37.9   male      EMC  3.6  136.7    1     3.1  347      EMC
+## 2   1 37.9   male      EMC  3.6  136.7    2     6.0  309      EMC
+## 3   1 37.9   male      EMC  7.8  135.0    1     3.1  347      EMC
+## 4   1 37.9   male      EMC  7.8  135.0    2     6.0  309      EMC
+## 5   1 37.9   male      EMC  5.3  131.5    1     3.1  347      EMC
+## 6   1 37.9   male      EMC  5.3  131.5    2     6.0  309      EMC
+## 7   2 22.6 female      EMC  4.3  113.7    3     4.3  215      EMC
+## 8   2 22.6 female      EMC  4.3  113.7    5     8.2  360      EMC
+## 9   2 22.6 female      EMC  4.3  113.7    4     5.8  436      EMC
+## 10  2 22.6 female      EMC  8.2  128.9    3     4.3  215      EMC
+## 11  2 22.6 female      EMC  8.2  128.9    5     8.2  360      EMC
+## 12  2 22.6 female      EMC  8.2  128.9    4     5.8  436      EMC
+## 13  4 37.3   male     VUMC  3.5  168.1    6     3.5  335     VUMC
+## 14  4 37.3   male     VUMC  3.5  168.1    7     4.9 1002     VUMC
+## 15  4 37.3   male     VUMC  3.5  168.1    9     8.1  615     VUMC
+## 16  4 37.3   male     VUMC  3.5  168.1    8     6.4  808     VUMC
+## 17  4 37.3   male     VUMC  4.9  147.7    6     3.5  335     VUMC
+## 18  4 37.3   male     VUMC  4.9  147.7    7     4.9 1002     VUMC
+## 19  4 37.3   male     VUMC  4.9  147.7    9     8.1  615     VUMC
+## 20  4 37.3   male     VUMC  4.9  147.7    8     6.4  808     VUMC
+## 21  4 37.3   male     VUMC  6.4  153.1    6     3.5  335     VUMC
+## 22  4 37.3   male     VUMC  6.4  153.1    7     4.9 1002     VUMC
+## 23  4 37.3   male     VUMC  6.4  153.1    9     8.1  615     VUMC
+## 24  4 37.3   male     VUMC  6.4  153.1    8     6.4  808     VUMC
+## 25  4 37.3   male     VUMC  8.1  149.6    6     3.5  335     VUMC
+## 26  4 37.3   male     VUMC  8.1  149.6    7     4.9 1002     VUMC
+## 27  4 37.3   male     VUMC  8.1  149.6    9     8.1  615     VUMC
+## 28  4 37.3   male     VUMC  8.1  149.6    8     6.4  808     VUMC
+## 29  5 49.2   male     LUMC  2.2  152.6   10     2.2  932     LUMC
+## 30  5 49.2   male     LUMC  2.2  152.6   11     6.4  413     LUMC
+## 31  5 49.2   male     LUMC  6.4  137.7   10     2.2  932     LUMC
+## 32  5 49.2   male     LUMC  6.4  137.7   11     6.4  413     LUMC
+## 33  5 49.2   male     LUMC  7.0  133.1   10     2.2  932     LUMC
+## 34  5 49.2   male     LUMC  7.0  133.1   11     6.4  413     LUMC</code></pre>
 </div>
 <div id="task-2-1" class="section level3">
 <h3>Task 2</h3>
@@ -3648,7 +3643,11 @@ Use the arguments <code>by.x</code> and <code>by.y</code>.
 <ul>
 <li>merge by patient identifier and time of measurement</li>
 <li>make sure there is only one “center” variable</li>
-<li>give the sample number (<code>id.y</code>) a more informative suffix  <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_5437665890">Hint</button>
+<li>give the sample number (<code>id.y</code>) a more informative suffix</li>
+</ul>
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_5437665890">
+Hint
+</button>
 <div id="hint_5437665890" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the arguments <code>by.x</code> and <code>by.y</code>.
 </div>
@@ -3657,29 +3656,25 @@ Hint
 </button>
 <div id="hint_712465128" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 Use the argument <code>suffixes</code>.
-</div></li>
-</ul>
+</div>
 </div>
 </div>
 <div id="solution-2-1" class="section level3">
 <h3>Solution 2</h3>
-
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">dat3 &lt;-<span class="st"> </span><span class="kw">merge</span>(dat1, labdat, </a>
 <a class="sourceLine" id="cb25-2" title="2">              <span class="dt">by.x =</span> <span class="kw">c</span>(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;center&#39;</span>, <span class="st">&#39;time&#39;</span>),</a>
 <a class="sourceLine" id="cb25-3" title="3">              <span class="dt">by.y =</span> <span class="kw">c</span>(<span class="st">&#39;ID&#39;</span>, <span class="st">&#39;center&#39;</span>, <span class="st">&#39;labtime&#39;</span>),</a>
 <a class="sourceLine" id="cb25-4" title="4">              <span class="dt">suffixes =</span> <span class="kw">c</span>(<span class="st">&#39;_base_FU&#39;</span>, <span class="st">&#39;_lab&#39;</span>))</a></code></pre></div>
-
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">dat3</a></code></pre></div>
-
-<pre><code>  id center time  age    sex weight id_lab chol
-1  2    EMC  4.3 22.6 female  113.7      3  215
-2  2    EMC  8.2 22.6 female  128.9      5  360
-3  4   VUMC  3.5 37.3   male  168.1      6  335
-4  4   VUMC  4.9 37.3   male  147.7      7 1002
-5  4   VUMC  6.4 37.3   male  153.1      8  808
-6  4   VUMC  8.1 37.3   male  149.6      9  615
-7  5   LUMC  2.2 49.2   male  152.6     10  932
-8  5   LUMC  6.4 49.2   male  137.7     11  413</code></pre>
+<pre><code>##   id center time  age    sex weight id_lab chol
+## 1  2    EMC  4.3 22.6 female  113.7      3  215
+## 2  2    EMC  8.2 22.6 female  128.9      5  360
+## 3  4   VUMC  3.5 37.3   male  168.1      6  335
+## 4  4   VUMC  4.9 37.3   male  147.7      7 1002
+## 5  4   VUMC  6.4 37.3   male  153.1      8  808
+## 6  4   VUMC  8.1 37.3   male  149.6      9  615
+## 7  5   LUMC  2.2 49.2   male  152.6     10  932
+## 8  5   LUMC  6.4 49.2   male  137.7     11  413</code></pre>
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#009B8F">
 <p style="color:#009B8F; font-weight:bold;">
 Note:
@@ -3693,42 +3688,43 @@ Note:
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 <ul>
 <li>Can you explain what happened?</li>
-<li>Re-do the last merge so that the resulting dataset has the maximal number of rows.  <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4601935024">Hint</button>
+<li>Re-do the last merge so that the resulting dataset has the maximal number of rows.</li>
+</ul>
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#hint_4601935024">
+Hint
+</button>
 <div id="hint_4601935024" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
 You need to use the argument <code>all</code>.
-</div></li>
-</ul>
+</div>
 </div>
 </div>
 <div id="solution-3-1" class="section level3">
 <h3>Solution 3</h3>
 <p>By default, the argument <code>all</code> is set to <code>FALSE</code>. This means that only those rows are kept that have identical entries for all merging variables in both datasets. Only a few values of <code>time</code> and <code>labtime</code> are identical.</p>
-<p>When we set <code>all = TRUE</code> all rows will be kept. Where <code>time</code> and <code>labtime</code> do not match, two rows are created and <code>NA</code> is filled in. </p>
+<p>When we set <code>all = TRUE</code> all rows will be kept. Where <code>time</code> and <code>labtime</code> do not match, two rows are created and <code>NA</code> is filled in.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">dat4 &lt;-<span class="st"> </span><span class="kw">merge</span>(dat1, labdat, </a>
 <a class="sourceLine" id="cb28-2" title="2">              <span class="dt">by.x =</span> <span class="kw">c</span>(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;center&#39;</span>, <span class="st">&#39;time&#39;</span>),</a>
 <a class="sourceLine" id="cb28-3" title="3">              <span class="dt">by.y =</span> <span class="kw">c</span>(<span class="st">&#39;ID&#39;</span>, <span class="st">&#39;center&#39;</span>, <span class="st">&#39;labtime&#39;</span>),</a>
 <a class="sourceLine" id="cb28-4" title="4">              <span class="dt">suffixes =</span> <span class="kw">c</span>(<span class="st">&#39;_base_FU&#39;</span>, <span class="st">&#39;_lab&#39;</span>), <span class="dt">all =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">dat4</a></code></pre></div>
-
-<pre><code>   id center time  age    sex weight id_lab chol
-1   1    EMC  3.1   NA   &lt;NA&gt;     NA      1  347
-2   1    EMC  3.6 37.9   male  136.7     NA   NA
-3   1    EMC  5.3 37.9   male  131.5     NA   NA
-4   1    EMC  6.0   NA   &lt;NA&gt;     NA      2  309
-5   1    EMC  7.8 37.9   male  135.0     NA   NA
-6   2    EMC  4.3 22.6 female  113.7      3  215
-7   2    EMC  5.8   NA   &lt;NA&gt;     NA      4  436
-8   2    EMC  8.2 22.6 female  128.9      5  360
-9   3   LUMC  5.3 26.9 female   97.1     NA   NA
-10  4   VUMC  3.5 37.3   male  168.1      6  335
-11  4   VUMC  4.9 37.3   male  147.7      7 1002
-12  4   VUMC  6.4 37.3   male  153.1      8  808
-13  4   VUMC  8.1 37.3   male  149.6      9  615
-14  5   LUMC  2.2 49.2   male  152.6     10  932
-15  5   LUMC  6.4 49.2   male  137.7     11  413
-16  5   LUMC  7.0 49.2   male  133.1     NA   NA
-17  6   LUMC  4.7   NA   &lt;NA&gt;     NA     12  337</code></pre>
+<pre><code>##    id center time  age    sex weight id_lab chol
+## 1   1    EMC  3.1   NA   &lt;NA&gt;     NA      1  347
+## 2   1    EMC  3.6 37.9   male  136.7     NA   NA
+## 3   1    EMC  5.3 37.9   male  131.5     NA   NA
+## 4   1    EMC  6.0   NA   &lt;NA&gt;     NA      2  309
+## 5   1    EMC  7.8 37.9   male  135.0     NA   NA
+## 6   2    EMC  4.3 22.6 female  113.7      3  215
+## 7   2    EMC  5.8   NA   &lt;NA&gt;     NA      4  436
+## 8   2    EMC  8.2 22.6 female  128.9      5  360
+## 9   3   LUMC  5.3 26.9 female   97.1     NA   NA
+## 10  4   VUMC  3.5 37.3   male  168.1      6  335
+## 11  4   VUMC  4.9 37.3   male  147.7      7 1002
+## 12  4   VUMC  6.4 37.3   male  153.1      8  808
+## 13  4   VUMC  8.1 37.3   male  149.6      9  615
+## 14  5   LUMC  2.2 49.2   male  152.6     10  932
+## 15  5   LUMC  6.4 49.2   male  137.7     11  413
+## 16  5   LUMC  7.0 49.2   male  133.1     NA   NA
+## 17  6   LUMC  4.7   NA   &lt;NA&gt;     NA     12  337</code></pre>
 </div>
 </div>
 
