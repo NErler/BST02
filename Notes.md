@@ -7,17 +7,25 @@
 * Maybe useful: https://stat.ethz.ch/R-manual/R-devel/doc/html/packages.html
 * List of datasets: https://vincentarelbundock.github.io/Rdatasets/datasets.html
 
+# Slides
+
+## Part A
+* add a part explaining how to run syntax in R and Rstudio (explain also Refresh and change the setting)
+
 ## Part B
 ### Data Structures
-* add `factor` and `ordered`? (Elrozy add factor, Nicole ordered in statistical models)
-* arrays?
-* operator `^`? It is there.
+* arrays: we do not present them
+* matrix: has as elements scalars. Make it clear.
+
 
 ### Data Transformations
 * maybe we shouldn't refer to "outliers" but "extreme values" or "values in a range of interest" (Elrozy: change outliers to a range of values)
 
 ### Data Exploration
 * `percent()` is not a function (add package as note)
+
+#### General
+* Consider moving indexing before data manipulation
 
 ## Part C: Functions
 ### Functions for exploring data
@@ -32,5 +40,18 @@
 
 * Link to [https://rstudio.com/resources/cheatsheets/](https://rstudio.com/resources/cheatsheets/)?
 
+### The apply family
+* Page 38: change the summary. Maybe give an overview per apply function.
+
 ## Part D: Regression
 ## * need recap of C / day 3
+
+## Part E: Markdown
+* add explanation on how to run a Markdown report (where to click)
+
+# Demos
+* Maybe remove some Demos in extra programming -> it is too much for the students, it goes fast
+
+# Website
+* for some reason the slides render (from the copyFiles) stops after the C_slides. Works if I reun:
+`for (i in 1:length(Rmdfiles)) { rmarkdown::render(Rmdfiles[i]) }`
