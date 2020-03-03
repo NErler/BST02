@@ -38,7 +38,7 @@ z <- x + y
 #' Which code (1 or 2) would you prefer? \
 #' 
 #' * Always check if you can make your code faster
-marks = sample(0:100, 200, replace = TRUE)
+marks = sample(0:100, 150, replace = TRUE)
 system.time({ifelse(marks >= 40, "pass", "fail")})
 
 system.time({
@@ -64,10 +64,11 @@ head(apply(A, 1, sum))
 res1 <- replicate(100, z <- apply(A, 1, sum))
 res2 <- replicate(100, z <- rowSums(A)) # Use specialized functions
 
-#' Compute the cumulative sum
+#' Compute the cumulative sum \
+#' Cumulative sum of 1, 2, 3, 4 is 1, 3, 6, 10
 x <- rnorm(1000000, 10, 10)
 
-cSum <- 0
+cSum <- 0 # cumulative sum in the beginning is 0
 z <- numeric() # empty vector
 for (k in 1:length(x)){
   cSum <- cSum + x[k]
@@ -88,7 +89,7 @@ res <- cumsum(x)
 tail(res)
 
 #' Explore the timing of the code
-cSum <- 0
+cSum <- 0 # cumulative sum in the beginning is 0
 z <- numeric() # empty vector
 system.time({
   cSum <- 0
@@ -186,29 +187,31 @@ means
 
 #' Select the data sets, where more than 39% of the patients are `females`
 newList <- list()
-k <- 1
 
 for (i in 1:length(datlist)) {
   dat <- datlist[[i]]
   if (sum(dat$sex == "female")/20 > 0.39) {
-    newList[[k]] <- dat
-    k <- k + 1
+    newList[[i]] <- dat
   }
 }
 
+#' Now we need to remove the elements of the list that are NULL
+newList <- newList[!sapply(newList, is.null)]
 length(newList)
 
 #' Select the data sets, where more than 49% of the patients are `males`
 newList <- list()
-k <- 1
 
 for (i in 1:length(datlist)) {
   dat <- datlist[[i]]
   if (sum(dat$sex == "male")/20 > 0.49) {
-    newList[[k]] <- dat
-    k <- k + 1
+    newList[[i]] <- dat
   }
 }
+
+#' Now we need to remove the elements of the list that are NULL
+newList <- newList[!sapply(newList, is.null)]
+length(newList)
 
 
 #' Now make a function that takes as input the data sets in a list format, the name of the `gender` variable and the name of the `male` category \
@@ -216,15 +219,13 @@ for (i in 1:length(datlist)) {
 #' The output should be a list
 subset_data <- function(dataset = x, sex_var = "sex", male_cat = "male"){
   newList <- list()
-  k <- 1
   for (i in 1:length(dataset)) {
     dat <- dataset[[i]]
     if (sum(dat[[sex_var]] == male_cat)/20 > 0.49) {
-      newList[[k]] <- dat
-      k <- k + 1
+      newList[[i]] <- dat
     }
   }
-  newList
+  print(newList[!sapply(newList, is.null)])
 }
 
 res <- subset_data(dataset = datlist, sex_var = "sex", male_cat = "male")
@@ -241,6 +242,13 @@ des <- function(data = x, cont = "age", cat = "group"){
 
 #' Apply the function to the `pbc` data set
 #' Use `age` and `gender` as continuous and categorical variables
+des(data = pbc, cont = "age", cat = "sex")
+
+#' Be careful! If we remove the function `print(...)`, then only the last task will be presented
+des <- function(data = x, cont = "age", cat = "group"){
+  tapply(data[[cont]], data[[cat]], mean)
+  tapply(data[[cont]], data[[cat]], sd)
+}
 des(data = pbc, cont = "age", cat = "sex")
 
 #' Now change the `des` function so that the user would specify the function applied to the data
