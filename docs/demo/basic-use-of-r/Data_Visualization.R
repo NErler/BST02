@@ -40,10 +40,32 @@ plot(pbc$age, pbc$bili)
 plot(pbc$age, pbc$bili, ylab = "Serum bilirubin", xlab = "Age")
 
 #' Basic plot with 2 variables - add axis labels - change size of axis and labels
-plot(pbc$age, pbc$bili, ylab = "Serum bilirubin", xlab = "Age", cex.axis = 1.5, cex.lab = 1.9)
+plot(pbc$age, pbc$bili, ylab = "Serum bilirubin", xlab = "Age",
+     cex.axis = 1.2, cex.lab = 1.4)
+
+#' Basic plot with 2 variables - add axis labels - change the size and type of points
+plot(pbc$age, pbc$bili, ylab = "Serum bilirubin", xlab = "Age",
+     cex.axis = 1.2, cex.lab = 1.4,
+     cex = 2, pch = 16)
+
+
+#' Basic plot with 2 variables - add axis labels - change size of axis and labels - change the colour \
+#' Note that can set the colours in different ways:\
+#' * using numbers that correspond to a colour \
+#' * using the name of the colour \
+#' * using the RGB colour specification (Red Green Blue) `?rgb` \
+#' * using the HEX colour code
+plot(pbc$age, pbc$bili, ylab = "Serum bilirubin", xlab = "Age", cex.axis = 1.2, cex.lab = 1.4,
+     col = 2)
+plot(pbc$age, pbc$bili, ylab = "Serum bilirubin", xlab = "Age", cex.axis = 1.2, cex.lab = 1.4,
+     col = "red")
+plot(pbc$age, pbc$bili, ylab = "Serum bilirubin", xlab = "Age", cex.axis = 1.2, cex.lab = 1.4,
+     col = rgb(1,0,0))
+plot(pbc$age, pbc$bili, ylab = "Serum bilirubin", xlab = "Age", cex.axis = 1.2, cex.lab = 1.4,
+     col = "#FF0000")
 
 #' Basic plot with 3 variables - xaxis represents `age`, yaxis represents `serum bilirubin` and colours represent `sex`
-plot(pbc$age, pbc$bili, ylab = "Serum bilirubin", xlab = "Age", cex.axis = 1.5, cex.lab = 1.9, col = pbc$sex, pch = 16)
+plot(pbc$age, pbc$bili, ylab = "Serum bilirubin", xlab = "Age", cex.axis = 1.5, cex.lab = 1.4, col = pbc$sex, pch = 16)
 legend(30, 25, legend = c("male", "female"), col = c(1,2), pch = 16)
 
 #' Histogram for continuous variables - checking the distribution of `bili`
@@ -56,11 +78,13 @@ hist(pbc$bili, prob=T)
 hist(pbc$chol, prob=T)
 hist(pbc$albumin, prob=T)
 hist(pbc$alk.phos, prob=T)
+#' Note that sometimes you will have to clear all plots in order to get 1 panel again (brush icon in `Plots` tab)
 
 #' Barchart for categorical variables - checking the frequency of `males` and `females`
-barchart(pbc$sex)
-
 plot(pbc$sex)
+
+#' Piechart for categorical variables - checking the frequency of `males` and `females`
+pie(table(pbc$sex))
 
 #' Boxplot for investigating the distribution of a continuous variable per group - cheking the distribution of `age` per `sex` group
 boxplot(pbc$age ~ pbc$sex, ylab = "Age", xlab = "Gender")
@@ -68,7 +92,7 @@ boxplot(pbc$age ~ pbc$sex, ylab = "Age", xlab = "Gender")
 #' Multivariate plot
 pairs(cbind(pbc$bili, pbc$chol, pbc$albumin))
 
-#' Density plots of `serum bilirubin` per `sex` group to investigate the distribution
+#' Density plots of `serum bilirubin` per `sex` group to investigate the distribution \
 pbc_male_bili <- pbc$bili[pbc$sex == "m"]
 pbc_female_bili <- pbc$bili[pbc$sex == "f"]
 plot(density(pbc_male_bili), col = rgb(0,0,1,0.5), ylim = c(0,0.40),
@@ -114,6 +138,12 @@ pbcseq$status <- factor(pbcseq$status, levels = c(0, 1, 2), labels = c("censored
 xyplot(bili ~ day | status, group = id, data = pbcseq, type ="l", col = "black", layout = c(3,1),
        grid = TRUE, xlab = "Days", ylab = "Serum bilirubin")
 
+#' Barchart for categorical variables - checking the frequency of `males` and `females`
+barchart(pbc$sex)
+
+#' Correlation between `serum bilirubin` per `sex` group
+bwplot(pbc$bili ~ pbc$sex)
+
 
 #' ## Ggplot family 
 #' Correlation between `age` with `serum bilirubin` \
@@ -138,12 +168,13 @@ ggplot(pbc, aes(stage, bili, group = stage)) +
 geom_boxplot() +
 labs(y = "Serum bilirubin", x = "Stage")
 
-#' Density plot of `serum bilirubin` per `sex` to investigate the distribution
+#' Density plot of `serum bilirubin` per `sex` to investigate the distribution \
+#' Be aware that a plot is an object in R, so you can save it
 p <- ggplot(pbc, aes(bili, fill = sex)) +
 geom_density(alpha = 0.25) 
 p
 
-p + scale_fill_manual(values=c("#999999", "#E69F00"))
+p + scale_fill_manual(values = c("#999999", "#E69F00"))
 
                      
 #' ## Let's have some fun
@@ -152,17 +183,19 @@ x1 <- rnorm(10)
 y1 <- rnorm(10)
 x2 <- rnorm(10)
 y2 <- rnorm(10)
-plot(x1, y1, cex=0)
-text(x1, y1, labels=emoji('heartbeat'), cex=1.5, col='red', family='EmojiOne')
-text(x2, y2, labels=emoji('cow'), cex=1.5, col='steelblue', family='EmojiOne')
+plot(x1, y1, cex = 0)
+text(x1, y1, cex = 1.5, col='red')
+plot(x1, y1, cex = 0)
+text(x1, y1, labels = emoji('heartbeat'), cex = 1.5, col = 'red', family = 'EmojiOne')
+text(x2, y2, labels = emoji('cow'), cex = 1.5, col = 'steelblue', family = 'EmojiOne')
 
 search_emoji('face')
 
 plot(x1, y1, cex=0)
-text(x1, y1, labels=emoji('nerd_face'), cex=1.5, col='red', family='EmojiOne')
+text(x1, y1, labels = emoji('nerd_face'), cex=1.5, col='red', family = 'EmojiOne')
 
 plot(x1, y1, cex=0)
-text(x1, y1, labels=emoji('face_with_head_bandage'), cex=1.5, col='blue', family='EmojiOne')
+text(x1, y1, labels = emoji('face_with_head_bandage'), cex=1.5, col='blue', family='EmojiOne')
 
 
 #' Using google data

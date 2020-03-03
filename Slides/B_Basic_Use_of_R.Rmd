@@ -30,6 +30,9 @@ library(survival)
 library(knitr)
 library(kableExtra)
 library(dplyr)
+
+pbc <- survival::pbc
+pbcseq <- survival::pbcseq
 ```
 
 ## In this Section
@@ -126,8 +129,7 @@ More details: https://stat.ethz.ch/R-manual/R-devel/library/survival/html/pbc.ht
 * What is a \blue{scalar}/vector/matrix
 
 ```{r example data b, include=TRUE}
-
-dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
+dt <- as.data.frame(pbc[1:5, c(1:6,11,12)])
 dt <- format(dt, digits = 7)
 dt %>%
  mutate(
@@ -142,7 +144,7 @@ dt %>%
    bili = cell_spec(bili, "latex", align = c("c", rep("c", 4))),
    chol = cell_spec(chol, "latex", align = c("c", rep("c", 4))),
    )%>%
-select(id, time, status, trt, age, sex, bili, chol) %>%
+#select(c(id, time, status, trt, age, sex, bili, chol)) %>%
 kable("latex", escape = F, booktabs = T, align = "c")  %>%
 kable_styling(position = "center", full_width = F)
 ```

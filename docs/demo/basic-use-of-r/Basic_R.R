@@ -36,15 +36,14 @@ mean(pbc$age)
 mean(pbc$bili)
 
 #' What is the average `serum cholesterol`?
+mean(pbc$chol)
+
+#' The previous code would not work because we have missing data
 mean(pbc$chol, na.rm = TRUE)
 
 #' What is the percentage of `females`? \
 #' In order to use the function `percent()`, the package `memisc` should be loaded first
 percent(pbc$sex)
-
-#' What is the average `serum bilirubin` and `serum cholesterol`?
-mean(pbc$chol, na.rm = TRUE)
-mean(pbc$bili, na.rm = TRUE)
 
 #' We obtained a lot of information in R but we did not save anything \
 "Hello"
