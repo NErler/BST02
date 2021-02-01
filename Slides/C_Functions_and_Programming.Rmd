@@ -3,7 +3,6 @@ title: "BST02: Using R for Statistics\\ in Medical Research"
 subtitle: "Part C: Functions and Programming"
 author: ["Nicole Erler", "Eleni-Rosalina Andrinopoulou"]
 institute: "Department of Biostatistics, Erasmus Medical Center"
-date: "24 - 28 February 2020"
 email: ["n.erler@erasmusmc.nl", "e.andrinopoulou@erasmusmc.nl"]
 output:
   beamer_presentation: 
@@ -261,7 +260,7 @@ class(class)
 \end{column}
 \end{columns}
 
-## Useful functions for Data Manipulation
+## Useful Functions for Data Manipulation
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.47\linewidth}
@@ -281,7 +280,7 @@ class(class)
 \end{columns}
 
 
-## Useful functions for Data Manipulation
+## Useful Functions for Data Manipulation
 \begin{columns}[onlytextwidth,T]
 \begin{column}{0.4\linewidth}
 \blue{Transformations}
