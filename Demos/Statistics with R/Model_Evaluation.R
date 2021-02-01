@@ -14,6 +14,7 @@
 # This is not part of the demo. 
 # It just allows the output to be wider (to make the html look nicer)
 options(width = 105)
+set.seed(2021)
 
 
 # ------------------------------------------------------------------------------
@@ -30,7 +31,8 @@ plot(mod)
 
 #' We can re-create some of these plots ourselves.
 
-#' Residuals and fitted values can be obtained from a linear regression model in two ways:
+#' Residuals and fitted values can be obtained from a linear regression model in
+#' two ways:
 mod$residuals
 residuals(mod)
 
@@ -50,14 +52,15 @@ abline(a = 0, b = 1, lty = 1, col = 'grey')
 
 #' #### Histogram of the residuals
 hist(mod$residuals)
-hist(mod$residuals, nclass = 50)
+hist(mod$residuals, breaks = 50)
 
 
 #' ### Comparing Models
 #' To check if `education` is needed in the model, we can use a likelihood ratio
 #' test to compare the models with and without `education`.
 #' This is implemented in the function `anova()`.
-mod2 <- glm(case ~ age + education + spontaneous, data = infert, family = binomial())
+mod2 <- glm(case ~ age + education + spontaneous, data = infert,
+            family = binomial())
 summary(mod2)
 
 
