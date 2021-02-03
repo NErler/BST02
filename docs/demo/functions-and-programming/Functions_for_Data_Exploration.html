@@ -1568,38 +1568,63 @@ div.tocify {
 <h2>How does the dataset look like?</h2>
 <p>Names of all the variables in the data:</p>
 <pre class="r"><code>names(swiss)</code></pre>
-<pre><code>## [1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;      &quot;Education&quot;        &quot;Catholic&quot;        
-## [6] &quot;Infant.Mortality&quot;</code></pre>
+<pre><code>## [1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;     
+## [4] &quot;Education&quot;        &quot;Catholic&quot;         &quot;Infant.Mortality&quot;</code></pre>
 <p>Show me the first and last few rows:</p>
 <pre class="r"><code>head(swiss)</code></pre>
-<pre><code>##              Fertility Agriculture Examination Education Catholic Infant.Mortality
-## Courtelary        80.2        17.0          15        12     9.96             22.2
-## Delemont          83.1        45.1           6         9    84.84             22.2
-## Franches-Mnt      92.5        39.7           5         5    93.40             20.2
-## Moutier           85.8        36.5          12         7    33.77             20.3
-## Neuveville        76.9        43.5          17        15     5.16             20.6
-## Porrentruy        76.1        35.3           9         7    90.57             26.6</code></pre>
+<pre><code>##              Fertility Agriculture Examination Education Catholic
+## Courtelary        80.2        17.0          15        12     9.96
+## Delemont          83.1        45.1           6         9    84.84
+## Franches-Mnt      92.5        39.7           5         5    93.40
+## Moutier           85.8        36.5          12         7    33.77
+## Neuveville        76.9        43.5          17        15     5.16
+## Porrentruy        76.1        35.3           9         7    90.57
+##              Infant.Mortality
+## Courtelary               22.2
+## Delemont                 22.2
+## Franches-Mnt             20.2
+## Moutier                  20.3
+## Neuveville               20.6
+## Porrentruy               26.6</code></pre>
 <pre class="r"><code>tail(swiss)</code></pre>
-<pre><code>##              Fertility Agriculture Examination Education Catholic Infant.Mortality
-## Neuchatel         64.4        17.6          35        32    16.92             23.0
-## Val de Ruz        77.6        37.6          15         7     4.97             20.0
-## ValdeTravers      67.6        18.7          25         7     8.65             19.5
-## V. De Geneve      35.0         1.2          37        53    42.34             18.0
-## Rive Droite       44.7        46.6          16        29    50.43             18.2
-## Rive Gauche       42.8        27.7          22        29    58.33             19.3</code></pre>
+<pre><code>##              Fertility Agriculture Examination Education Catholic
+## Neuchatel         64.4        17.6          35        32    16.92
+## Val de Ruz        77.6        37.6          15         7     4.97
+## ValdeTravers      67.6        18.7          25         7     8.65
+## V. De Geneve      35.0         1.2          37        53    42.34
+## Rive Droite       44.7        46.6          16        29    50.43
+## Rive Gauche       42.8        27.7          22        29    58.33
+##              Infant.Mortality
+## Neuchatel                23.0
+## Val de Ruz               20.0
+## ValdeTravers             19.5
+## V. De Geneve             18.0
+## Rive Droite              18.2
+## Rive Gauche              19.3</code></pre>
 <p>We can adjust how many rows are shown:</p>
 <pre class="r"><code>head(swiss, n = 10)</code></pre>
-<pre><code>##              Fertility Agriculture Examination Education Catholic Infant.Mortality
-## Courtelary        80.2        17.0          15        12     9.96             22.2
-## Delemont          83.1        45.1           6         9    84.84             22.2
-## Franches-Mnt      92.5        39.7           5         5    93.40             20.2
-## Moutier           85.8        36.5          12         7    33.77             20.3
-## Neuveville        76.9        43.5          17        15     5.16             20.6
-## Porrentruy        76.1        35.3           9         7    90.57             26.6
-## Broye             83.8        70.2          16         7    92.85             23.6
-## Glane             92.4        67.8          14         8    97.16             24.9
-## Gruyere           82.4        53.3          12         7    97.67             21.0
-## Sarine            82.9        45.2          16        13    91.38             24.4</code></pre>
+<pre><code>##              Fertility Agriculture Examination Education Catholic
+## Courtelary        80.2        17.0          15        12     9.96
+## Delemont          83.1        45.1           6         9    84.84
+## Franches-Mnt      92.5        39.7           5         5    93.40
+## Moutier           85.8        36.5          12         7    33.77
+## Neuveville        76.9        43.5          17        15     5.16
+## Porrentruy        76.1        35.3           9         7    90.57
+## Broye             83.8        70.2          16         7    92.85
+## Glane             92.4        67.8          14         8    97.16
+## Gruyere           82.4        53.3          12         7    97.67
+## Sarine            82.9        45.2          16        13    91.38
+##              Infant.Mortality
+## Courtelary               22.2
+## Delemont                 22.2
+## Franches-Mnt             20.2
+## Moutier                  20.3
+## Neuveville               20.6
+## Porrentruy               26.6
+## Broye                    23.6
+## Glane                    24.9
+## Gruyere                  21.0
+## Sarine                   24.4</code></pre>
 <pre class="r"><code># Structure of the dataset:
 str(swiss)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    47 obs. of  6 variables:
@@ -1616,20 +1641,20 @@ str(swiss)</code></pre>
 <div id="summary-of-a-data.frame-or-matrix" class="section level3">
 <h3>Summary of a <code>data.frame</code> or <code>matrix</code></h3>
 <pre class="r"><code>summary(esoph)</code></pre>
-<pre><code>##    agegp          alcgp         tobgp        ncases         ncontrols     av_case_by_age   
-##  25-34:15   0-39g/day:23   0-9g/day:24   Min.   : 0.000   Min.   : 1.00   Min.   :0.06667  
-##  35-44:15   40-79    :23   10-19   :24   1st Qu.: 0.000   1st Qu.: 3.00   1st Qu.:0.60000  
-##  45-54:16   80-119   :21   20-29   :20   Median : 1.000   Median : 6.00   Median :2.87500  
-##  55-64:16   120+     :21   30+     :20   Mean   : 2.273   Mean   :11.08   Mean   :2.27273  
-##  65-74:15                                3rd Qu.: 4.000   3rd Qu.:14.00   3rd Qu.:3.66667  
-##  75+  :11                                Max.   :17.000   Max.   :60.00   Max.   :4.75000  
-##  med_case_by_age
-##  Min.   :0.000  
-##  1st Qu.:0.000  
-##  Median :3.000  
-##  Mean   :1.909  
-##  3rd Qu.:3.000  
-##  Max.   :4.000</code></pre>
+<pre><code>##    agegp          alcgp         tobgp        ncases      
+##  25-34:15   0-39g/day:23   0-9g/day:24   Min.   : 0.000  
+##  35-44:15   40-79    :23   10-19   :24   1st Qu.: 0.000  
+##  45-54:16   80-119   :21   20-29   :20   Median : 1.000  
+##  55-64:16   120+     :21   30+     :20   Mean   : 2.273  
+##  65-74:15                                3rd Qu.: 4.000  
+##  75+  :11                                Max.   :17.000  
+##    ncontrols     av_case_by_age    med_case_by_age
+##  Min.   : 1.00   Min.   :0.06667   Min.   :0.000  
+##  1st Qu.: 3.00   1st Qu.:0.60000   1st Qu.:0.000  
+##  Median : 6.00   Median :2.87500   Median :3.000  
+##  Mean   :11.08   Mean   :2.27273   Mean   :1.909  
+##  3rd Qu.:14.00   3rd Qu.:3.66667   3rd Qu.:3.000  
+##  Max.   :60.00   Max.   :4.75000   Max.   :4.000</code></pre>
 </div>
 <div id="summaries-per-variable" class="section level3">
 <h3>Summaries per variable</h3>
@@ -1670,37 +1695,61 @@ str(swiss)</code></pre>
 <p>Another helpful function to summarize continuous data is <code>ave()</code>. It calculates a summary measure of a continuous variable per group, that are defined by one or more categorical variables:</p>
 <pre class="r"><code>esoph$av_case_by_age &lt;- ave(esoph$ncases, esoph$agegp)
 esoph[12:22, ]</code></pre>
-<pre><code>##    agegp     alcgp    tobgp ncases ncontrols av_case_by_age med_case_by_age
-## 12 25-34      120+ 0-9g/day      0         1     0.06666667               0
-## 13 25-34      120+    10-19      1         1     0.06666667               0
-## 14 25-34      120+    20-29      0         1     0.06666667               0
-## 15 25-34      120+      30+      0         2     0.06666667               0
-## 16 35-44 0-39g/day 0-9g/day      0        60     0.60000000               0
-## 17 35-44 0-39g/day    10-19      1        14     0.60000000               0
-## 18 35-44 0-39g/day    20-29      0         7     0.60000000               0
-## 19 35-44 0-39g/day      30+      0         8     0.60000000               0
-## 20 35-44     40-79 0-9g/day      0        35     0.60000000               0
-## 21 35-44     40-79    10-19      3        23     0.60000000               0
-## 22 35-44     40-79    20-29      1        14     0.60000000               0</code></pre>
+<pre><code>##    agegp     alcgp    tobgp ncases ncontrols av_case_by_age
+## 12 25-34      120+ 0-9g/day      0         1     0.06666667
+## 13 25-34      120+    10-19      1         1     0.06666667
+## 14 25-34      120+    20-29      0         1     0.06666667
+## 15 25-34      120+      30+      0         2     0.06666667
+## 16 35-44 0-39g/day 0-9g/day      0        60     0.60000000
+## 17 35-44 0-39g/day    10-19      1        14     0.60000000
+## 18 35-44 0-39g/day    20-29      0         7     0.60000000
+## 19 35-44 0-39g/day      30+      0         8     0.60000000
+## 20 35-44     40-79 0-9g/day      0        35     0.60000000
+## 21 35-44     40-79    10-19      3        23     0.60000000
+## 22 35-44     40-79    20-29      1        14     0.60000000
+##    med_case_by_age
+## 12               0
+## 13               0
+## 14               0
+## 15               0
+## 16               0
+## 17               0
+## 18               0
+## 19               0
+## 20               0
+## 21               0
+## 22               0</code></pre>
 <p><code>ave()</code> also works with other functions than the mean:</p>
 <pre class="r"><code>esoph$med_case_by_age &lt;- ave(esoph$ncases, esoph$agegp, FUN = median)
 esoph[28:36, ]</code></pre>
-<pre><code>##    agegp     alcgp    tobgp ncases ncontrols av_case_by_age med_case_by_age
-## 28 35-44      120+ 0-9g/day      2         3          0.600               0
-## 29 35-44      120+    10-19      0         3          0.600               0
-## 30 35-44      120+    20-29      2         4          0.600               0
-## 31 45-54 0-39g/day 0-9g/day      1        46          2.875               3
-## 32 45-54 0-39g/day    10-19      0        18          2.875               3
-## 33 45-54 0-39g/day    20-29      0        10          2.875               3
-## 34 45-54 0-39g/day      30+      0         4          2.875               3
-## 35 45-54     40-79 0-9g/day      6        38          2.875               3
-## 36 45-54     40-79    10-19      4        21          2.875               3</code></pre>
+<pre><code>##    agegp     alcgp    tobgp ncases ncontrols av_case_by_age
+## 28 35-44      120+ 0-9g/day      2         3          0.600
+## 29 35-44      120+    10-19      0         3          0.600
+## 30 35-44      120+    20-29      2         4          0.600
+## 31 45-54 0-39g/day 0-9g/day      1        46          2.875
+## 32 45-54 0-39g/day    10-19      0        18          2.875
+## 33 45-54 0-39g/day    20-29      0        10          2.875
+## 34 45-54 0-39g/day      30+      0         4          2.875
+## 35 45-54     40-79 0-9g/day      6        38          2.875
+## 36 45-54     40-79    10-19      4        21          2.875
+##    med_case_by_age
+## 28               0
+## 29               0
+## 30               0
+## 31               3
+## 32               3
+## 33               3
+## 34               3
+## 35               3
+## 36               3</code></pre>
 <p>And we can split the data by multiple categorical variables:</p>
 <pre class="r"><code>ave(esoph$ncases, esoph$agegp, esoph$alcgp, FUN = median)</code></pre>
-<pre><code>##  [1] 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.5 0.5 0.5 0.5 0.0 0.0
-## [26] 0.0 0.0 2.0 2.0 2.0 0.0 0.0 0.0 0.0 5.0 5.0 5.0 5.0 2.5 2.5 2.5 2.5 3.5 3.5 3.5 3.5 3.0 3.0 3.0 3.0
-## [51] 5.0 5.0 5.0 5.0 6.0 6.0 6.0 6.0 5.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 1.0 1.0
-## [76] 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.5 1.5</code></pre>
+<pre><code>##  [1] 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+## [17] 0.0 0.0 0.0 0.5 0.5 0.5 0.5 0.0 0.0 0.0 0.0 2.0 2.0 2.0 0.0 0.0
+## [33] 0.0 0.0 5.0 5.0 5.0 5.0 2.5 2.5 2.5 2.5 3.5 3.5 3.5 3.5 3.0 3.0
+## [49] 3.0 3.0 5.0 5.0 5.0 5.0 6.0 6.0 6.0 6.0 5.0 5.0 5.0 5.0 3.0 3.0
+## [65] 3.0 3.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+## [81] 1.0 1.0 1.0 1.0 1.0 1.0 1.5 1.5</code></pre>
 </div>
 </div>
 <div id="tables" class="section level2">
@@ -1934,74 +1983,109 @@ addmargins(tab)</code></pre>
 <h3>Sums and Means</h3>
 <p>The function <code>colMeans()</code> allows us to calculate the mean for each column in a <code>matrix</code> or <code>data.frame</code>:</p>
 <pre class="r"><code>colMeans(swiss)</code></pre>
-<pre><code>##        Fertility      Agriculture      Examination        Education         Catholic Infant.Mortality 
-##         70.14255         50.65957         16.48936         10.97872         41.14383         19.94255</code></pre>
+<pre><code>##        Fertility      Agriculture      Examination        Education 
+##         70.14255         50.65957         16.48936         10.97872 
+##         Catholic Infant.Mortality 
+##         41.14383         19.94255</code></pre>
 <p>We can’t use <code>colMeans()</code> on the <code>esoph</code> data because there not all variables are numeric:</p>
 <pre class="r"><code>colMeans(esoph)</code></pre>
 <pre><code>## Error in colMeans(esoph): &#39;x&#39; must be numeric</code></pre>
 <p>The functions <code>colSums()</code>, <code>rowMeans()</code> and <code>rowSums()</code> work correspondingly, but are usually less useful to summarize a whole dataset.</p>
 <pre class="r"><code>colSums(swiss)</code></pre>
-<pre><code>##        Fertility      Agriculture      Examination        Education         Catholic Infant.Mortality 
-##          3296.70          2381.00           775.00           516.00          1933.76           937.30</code></pre>
+<pre><code>##        Fertility      Agriculture      Examination        Education 
+##          3296.70          2381.00           775.00           516.00 
+##         Catholic Infant.Mortality 
+##          1933.76           937.30</code></pre>
 <pre class="r"><code>rowMeans(swiss)</code></pre>
-<pre><code>##   Courtelary     Delemont Franches-Mnt      Moutier   Neuveville   Porrentruy        Broye        Glane 
-##     26.06000     41.70667     42.63333     32.56167     29.69333     40.76167     48.90833     50.71000 
-##      Gruyere       Sarine      Veveyse        Aigle      Aubonne     Avenches     Cossonay    Echallens 
-##     45.56167     45.48000     49.11833     30.68667     29.46167     31.28833     29.92000     34.38333 
-##     Grandson     Lausanne    La Vallee       Lavaux       Morges       Moudon        Nyone         Orbe 
-##     25.66667     26.90167     22.24167     31.49000     30.08833     27.33667     28.89000     26.16667 
-##         Oron      Payerne Paysd&#39;enhaut        Rolle        Vevey      Yverdon      Conthey    Entremont 
-##     30.01667     30.55500     27.51000     28.55333     28.07667     27.75000     46.86833     47.78000 
-##       Herens     Martigwy      Monthey   St Maurice       Sierre         Sion       Boudry La Chauxdfnd 
-##     48.71667     47.51000     45.45333     45.96000     49.76000     47.22167     28.78667     24.61500 
-##     Le Locle    Neuchatel   Val de Ruz ValdeTravers V. De Geneve  Rive Droite  Rive Gauche 
-##     25.75333     31.48667     27.02833     24.40833     31.09000     34.15500     33.18833</code></pre>
+<pre><code>##   Courtelary     Delemont Franches-Mnt      Moutier   Neuveville 
+##     26.06000     41.70667     42.63333     32.56167     29.69333 
+##   Porrentruy        Broye        Glane      Gruyere       Sarine 
+##     40.76167     48.90833     50.71000     45.56167     45.48000 
+##      Veveyse        Aigle      Aubonne     Avenches     Cossonay 
+##     49.11833     30.68667     29.46167     31.28833     29.92000 
+##    Echallens     Grandson     Lausanne    La Vallee       Lavaux 
+##     34.38333     25.66667     26.90167     22.24167     31.49000 
+##       Morges       Moudon        Nyone         Orbe         Oron 
+##     30.08833     27.33667     28.89000     26.16667     30.01667 
+##      Payerne Paysd&#39;enhaut        Rolle        Vevey      Yverdon 
+##     30.55500     27.51000     28.55333     28.07667     27.75000 
+##      Conthey    Entremont       Herens     Martigwy      Monthey 
+##     46.86833     47.78000     48.71667     47.51000     45.45333 
+##   St Maurice       Sierre         Sion       Boudry La Chauxdfnd 
+##     45.96000     49.76000     47.22167     28.78667     24.61500 
+##     Le Locle    Neuchatel   Val de Ruz ValdeTravers V. De Geneve 
+##     25.75333     31.48667     27.02833     24.40833     31.09000 
+##  Rive Droite  Rive Gauche 
+##     34.15500     33.18833</code></pre>
 <p>To use other functions (like <code>min</code>, <code>max</code>, <code>median</code>, <code>sd</code>, …) on a whole <code>matrix</code> or <code>data.frame</code> we need some more programming and the help of <code>if (...)</code>, <code>for (...)</code> and/or <code>apply()</code> (will be covered later).</p>
 </div>
 <div id="variance-covariance-and-correlation" class="section level3">
 <h3>Variance, Covariance and Correlation</h3>
 <p>The functions <code>var</code>, and <code>cov</code> return the variance-covariance matrix when used on a <code>matrix</code> or <code>data.frame</code>:</p>
 <pre class="r"><code>var(swiss)</code></pre>
-<pre><code>##                  Fertility Agriculture Examination   Education   Catholic Infant.Mortality
-## Fertility        156.04250  100.169149  -64.366929  -79.729510  241.56320        15.156193
-## Agriculture      100.16915  515.799417 -124.392831 -139.657401  379.90438        -4.025851
-## Examination      -64.36693 -124.392831   63.646623   53.575856 -190.56061        -2.649537
-## Education        -79.72951 -139.657401   53.575856   92.456059  -61.69883        -2.781684
-## Catholic         241.56320  379.904376 -190.560611  -61.698830 1739.29454        21.318116
-## Infant.Mortality  15.15619   -4.025851   -2.649537   -2.781684   21.31812         8.483802</code></pre>
+<pre><code>##                  Fertility Agriculture Examination   Education
+## Fertility        156.04250  100.169149  -64.366929  -79.729510
+## Agriculture      100.16915  515.799417 -124.392831 -139.657401
+## Examination      -64.36693 -124.392831   63.646623   53.575856
+## Education        -79.72951 -139.657401   53.575856   92.456059
+## Catholic         241.56320  379.904376 -190.560611  -61.698830
+## Infant.Mortality  15.15619   -4.025851   -2.649537   -2.781684
+##                    Catholic Infant.Mortality
+## Fertility         241.56320        15.156193
+## Agriculture       379.90438        -4.025851
+## Examination      -190.56061        -2.649537
+## Education         -61.69883        -2.781684
+## Catholic         1739.29454        21.318116
+## Infant.Mortality   21.31812         8.483802</code></pre>
 <p>This of course only gives meaningful resuls when the data are continuous:</p>
 <pre class="r"><code>cov(esoph)</code></pre>
 <pre><code>## Error in cov(esoph): is.numeric(x) || is.logical(x) is not TRUE</code></pre>
 <p>When there are missing values in the data: Specify the argument <code>use = &quot;pairs&quot;</code> to exclude missing values (which would otherwise result in a <code>NA</code> value for the (co)variance) A (co)variance matrix can be converted to a (pearson) correlation matrix with the help of the function <code>cov2cor()</code>:</p>
 <pre class="r"><code>cov2cor(var(swiss))</code></pre>
-<pre><code>##                   Fertility Agriculture Examination   Education   Catholic Infant.Mortality
-## Fertility         1.0000000  0.35307918  -0.6458827 -0.66378886  0.4636847       0.41655603
-## Agriculture       0.3530792  1.00000000  -0.6865422 -0.63952252  0.4010951      -0.06085861
-## Examination      -0.6458827 -0.68654221   1.0000000  0.69841530 -0.5727418      -0.11402160
-## Education        -0.6637889 -0.63952252   0.6984153  1.00000000 -0.1538589      -0.09932185
-## Catholic          0.4636847  0.40109505  -0.5727418 -0.15385892  1.0000000       0.17549591
-## Infant.Mortality  0.4165560 -0.06085861  -0.1140216 -0.09932185  0.1754959       1.00000000</code></pre>
+<pre><code>##                   Fertility Agriculture Examination   Education
+## Fertility         1.0000000  0.35307918  -0.6458827 -0.66378886
+## Agriculture       0.3530792  1.00000000  -0.6865422 -0.63952252
+## Examination      -0.6458827 -0.68654221   1.0000000  0.69841530
+## Education        -0.6637889 -0.63952252   0.6984153  1.00000000
+## Catholic          0.4636847  0.40109505  -0.5727418 -0.15385892
+## Infant.Mortality  0.4165560 -0.06085861  -0.1140216 -0.09932185
+##                    Catholic Infant.Mortality
+## Fertility         0.4636847       0.41655603
+## Agriculture       0.4010951      -0.06085861
+## Examination      -0.5727418      -0.11402160
+## Education        -0.1538589      -0.09932185
+## Catholic          1.0000000       0.17549591
+## Infant.Mortality  0.1754959       1.00000000</code></pre>
 <p>The correlation matrix can be obtained directly using <code>cor()</code>. The argument <code>method</code> allows the choice of pearson“,”kendall&quot; or “spearman” correlation.</p>
 <pre class="r"><code>cor(swiss, method = &#39;kendall&#39;)</code></pre>
-<pre><code>##                   Fertility Agriculture Examination    Education    Catholic Infant.Mortality
-## Fertility         1.0000000  0.17954653 -0.47624374 -0.330611161  0.24537037      0.315647384
-## Agriculture       0.1795465  1.00000000 -0.45052216 -0.476164563  0.20546046     -0.080038691
-## Examination      -0.4762437 -0.45052216  1.00000000  0.528943684 -0.32127554     -0.031357320
-## Education        -0.3306112 -0.47616456  0.52894368  1.000000000 -0.08479652     -0.002874323
-## Catholic          0.2453704  0.20546046 -0.32127554 -0.084796523  1.00000000      0.054935680
-## Infant.Mortality  0.3156474 -0.08003869 -0.03135732 -0.002874323  0.05493568      1.000000000</code></pre>
+<pre><code>##                   Fertility Agriculture Examination    Education
+## Fertility         1.0000000  0.17954653 -0.47624374 -0.330611161
+## Agriculture       0.1795465  1.00000000 -0.45052216 -0.476164563
+## Examination      -0.4762437 -0.45052216  1.00000000  0.528943684
+## Education        -0.3306112 -0.47616456  0.52894368  1.000000000
+## Catholic          0.2453704  0.20546046 -0.32127554 -0.084796523
+## Infant.Mortality  0.3156474 -0.08003869 -0.03135732 -0.002874323
+##                     Catholic Infant.Mortality
+## Fertility         0.24537037      0.315647384
+## Agriculture       0.20546046     -0.080038691
+## Examination      -0.32127554     -0.031357320
+## Education        -0.08479652     -0.002874323
+## Catholic          1.00000000      0.054935680
+## Infant.Mortality  0.05493568      1.000000000</code></pre>
 </div>
 </div>
 <div id="duplicates-and-comparison" class="section level2">
 <h2>Duplicates and Comparison</h2>
 <p>To find duplicates in a <code>data.frame</code>, <code>matrix</code> or a <code>vector</code> we can use the function <code>duplicated()</code>:</p>
 <pre class="r"><code>duplicated(esoph)</code></pre>
-<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [17] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [33] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [65] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [81] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [12] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [23] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [34] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [56] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [67] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [78] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 <pre class="r"><code>(x &lt;- sample(LETTERS[1:5], 10, replace = TRUE))</code></pre>
 <pre><code>##  [1] &quot;B&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;E&quot; &quot;B&quot; &quot;A&quot; &quot;C&quot; &quot;E&quot;</code></pre>
 <pre class="r"><code>duplicated(x)</code></pre>
