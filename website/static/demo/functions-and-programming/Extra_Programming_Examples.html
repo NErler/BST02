@@ -11,7 +11,7 @@
 
 <meta name="author" content="Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-03-03" />
+<meta name="date" content="2021-02-03" />
 
 <title>Demo: Extra Programming Examples</title>
 
@@ -1519,7 +1519,7 @@ div.tocify {
 <h1 class="title toc-ignore">Demo: Extra Programming Examples</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Eleni-Rosalina Andrinopoulou, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">03 March 2020</h4>
+<h4 class="date">03 February 2021</h4>
 
 </div>
 
@@ -1720,23 +1720,34 @@ system.time({ifelse(marks &gt;= 40, &quot;pass&quot;, &quot;fail&quot;)})</code>
 ## [1] &quot;pass&quot;
 ## [1] &quot;fail&quot;</code></pre>
 <pre><code>##    user  system elapsed 
-##       0       0       0</code></pre>
+##    0.02    0.00    0.02</code></pre>
 <p>Other example<br />
 Create a matrix<br />
 </p>
 <pre class="r"><code>A &lt;- matrix(rnorm(1e06), 1000, 1000)
 A[1:10 , 1:10]</code></pre>
-<pre><code>##              [,1]        [,2]       [,3]       [,4]        [,5]        [,6]        [,7]        [,8]        [,9]       [,10]
-##  [1,] -0.28400139  1.01912548 -1.9096331  1.6605347  0.78847580  0.83510847 -1.16827543  1.52102530 -3.48780266 -0.72728659
-##  [2,]  1.09185644  0.67567316 -0.3404026 -0.6766292 -1.47549050  0.81295544 -0.04711955 -0.41894263 -0.27702174  0.19855085
-##  [3,]  0.16021636 -0.27749805 -2.0663715 -0.4024120 -0.34753348  1.55808734  1.00112216  0.11719544 -0.24250630 -0.46717427
-##  [4,]  2.70816828  0.65390914 -1.0042945  1.0447024 -1.59333095  0.73181289  0.83345499  0.88144661 -0.08711148 -0.53944327
-##  [5,]  0.28628993  0.08035019  0.5645607  0.8099777 -0.50955080 -0.02576341  0.41991932 -1.26216381  1.50971943  1.04842492
-##  [6,] -0.03251025  0.45590261 -1.9408074 -0.4525268  1.02319903 -1.91159625  0.17136595 -0.15805455  0.90728315 -0.04375297
-##  [7,] -0.98967802  0.83453206  0.7889533 -1.5929838 -0.04047933  0.10423875  0.47309774 -0.04985447  1.21674772 -0.59494136
-##  [8,]  0.21180993 -0.69272397 -1.1304727 -0.4720390 -0.32472180 -1.52315331  0.13158853  2.36926362 -0.06473489 -0.06513549
-##  [9,] -0.97201753 -1.57178773  0.5733813  0.3123988  1.31259258  1.06376340 -0.45046780 -0.19420518 -0.50473036 -1.62140741
-## [10,]  0.54922401  0.96750738 -0.9349319  1.1008419  1.40025676 -1.06399579  0.80677315  0.25421034  0.69125555  1.74385911</code></pre>
+<pre><code>##              [,1]        [,2]       [,3]       [,4]        [,5]        [,6]        [,7]
+##  [1,] -0.28400139  1.01912548 -1.9096331  1.6605347  0.78847580  0.83510847 -1.16827543
+##  [2,]  1.09185644  0.67567316 -0.3404026 -0.6766292 -1.47549050  0.81295544 -0.04711955
+##  [3,]  0.16021636 -0.27749805 -2.0663715 -0.4024120 -0.34753348  1.55808734  1.00112216
+##  [4,]  2.70816828  0.65390914 -1.0042945  1.0447024 -1.59333095  0.73181289  0.83345499
+##  [5,]  0.28628993  0.08035019  0.5645607  0.8099777 -0.50955080 -0.02576341  0.41991932
+##  [6,] -0.03251025  0.45590261 -1.9408074 -0.4525268  1.02319903 -1.91159625  0.17136595
+##  [7,] -0.98967802  0.83453206  0.7889533 -1.5929838 -0.04047933  0.10423875  0.47309774
+##  [8,]  0.21180993 -0.69272397 -1.1304727 -0.4720390 -0.32472180 -1.52315331  0.13158853
+##  [9,] -0.97201753 -1.57178773  0.5733813  0.3123988  1.31259258  1.06376340 -0.45046780
+## [10,]  0.54922401  0.96750738 -0.9349319  1.1008419  1.40025676 -1.06399579  0.80677315
+##              [,8]        [,9]       [,10]
+##  [1,]  1.52102530 -3.48780266 -0.72728659
+##  [2,] -0.41894263 -0.27702174  0.19855085
+##  [3,]  0.11719544 -0.24250630 -0.46717427
+##  [4,]  0.88144661 -0.08711148 -0.53944327
+##  [5,] -1.26216381  1.50971943  1.04842492
+##  [6,] -0.15805455  0.90728315 -0.04375297
+##  [7,] -0.04985447  1.21674772 -0.59494136
+##  [8,]  2.36926362 -0.06473489 -0.06513549
+##  [9,] -0.19420518 -0.50473036 -1.62140741
+## [10,]  0.25421034  0.69125555  1.74385911</code></pre>
 <p>Calculate the sum per row</p>
 <pre class="r"><code>head(apply(A, 1, sum))</code></pre>
 <pre><code>## [1] -11.80121  32.44390 -19.99763  15.95648 -28.03451 -21.92083</code></pre>
@@ -1778,12 +1789,12 @@ system.time({
   }
 })</code></pre>
 <pre><code>##    user  system elapsed 
-##    0.37    0.03    0.43</code></pre>
+##    0.22    0.05    0.27</code></pre>
 <pre class="r"><code>system.time({
   cumsum(x)
 }) # better</code></pre>
 <pre><code>##    user  system elapsed 
-##    0.00    0.01    0.02</code></pre>
+##       0       0       0</code></pre>
 <p>Other example<br />
 Create a dichotomous variable for <code>age</code> (assume as cut-off point the value 42)</p>
 <pre class="r"><code>for (i in 1:dim(pbc)[1]) {
@@ -1795,16 +1806,25 @@ This will help you later create more complicated loops</p>
 pbc$ageCat[i] &lt;- as.numeric(pbc$age[i] &gt; 42)
 
 head(pbc)</code></pre>
-<pre><code>##   id time status trt      age sex ascites hepato spiders edema bili chol albumin copper alk.phos    ast trig platelet protime stage ageCat
-## 1  1  400      2   1 58.76523   f       1      1       1   1.0 14.5  261    2.60    156   1718.0 137.95  172      190    12.2     4      1
-## 2  2 4500      0   1 56.44627   f       0      1       1   0.0  1.1  302    4.14     54   7394.8 113.52   88      221    10.6     3      1
-## 3  3 1012      2   1 70.07255   m       0      0       0   0.5  1.4  176    3.48    210    516.0  96.10   55      151    12.0     4      1
-## 4  4 1925      2   1 54.74059   f       0      1       1   0.5  1.8  244    2.54     64   6121.8  60.63   92      183    10.3     4      1
-## 5  5 1504      1   2 38.10541   f       0      1       1   0.0  3.4  279    3.53    143    671.0 113.15   72      136    10.9     3      0
-## 6  6 2503      2   2 66.25873   f       0      1       0   0.0  0.8  248    3.98     50    944.0  93.00   63       NA    11.0     3      1</code></pre>
+<pre><code>##   id time status trt      age sex ascites hepato spiders edema bili chol albumin copper
+## 1  1  400      2   1 58.76523   f       1      1       1   1.0 14.5  261    2.60    156
+## 2  2 4500      0   1 56.44627   f       0      1       1   0.0  1.1  302    4.14     54
+## 3  3 1012      2   1 70.07255   m       0      0       0   0.5  1.4  176    3.48    210
+## 4  4 1925      2   1 54.74059   f       0      1       1   0.5  1.8  244    2.54     64
+## 5  5 1504      1   2 38.10541   f       0      1       1   0.0  3.4  279    3.53    143
+## 6  6 2503      2   2 66.25873   f       0      1       0   0.0  0.8  248    3.98     50
+##   alk.phos    ast trig platelet protime stage ageCat
+## 1   1718.0 137.95  172      190    12.2     4      1
+## 2   7394.8 113.52   88      221    10.6     3      1
+## 3    516.0  96.10   55      151    12.0     4      1
+## 4   6121.8  60.63   92      183    10.3     4      1
+## 5    671.0 113.15   72      136    10.9     3      0
+## 6    944.0  93.00   63       NA    11.0     3      1</code></pre>
 <pre class="r"><code>pbc[i, ]</code></pre>
-<pre><code>##   id time status trt      age sex ascites hepato spiders edema bili chol albumin copper alk.phos    ast trig platelet protime stage ageCat
-## 1  1  400      2   1 58.76523   f       1      1       1     1 14.5  261     2.6    156     1718 137.95  172      190    12.2     4      1</code></pre>
+<pre><code>##   id time status trt      age sex ascites hepato spiders edema bili chol albumin copper
+## 1  1  400      2   1 58.76523   f       1      1       1     1 14.5  261     2.6    156
+##   alk.phos    ast trig platelet protime stage ageCat
+## 1     1718 137.95  172      190    12.2     4      1</code></pre>
 <p>Do the same thing without a loop</p>
 <pre class="r"><code>pbc$ageCat &lt;- as.numeric(pbc$age &gt; 42)</code></pre>
 <p>More than one ways exist to code something in R!<br />
@@ -2087,7 +2107,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

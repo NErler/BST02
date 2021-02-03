@@ -11,7 +11,7 @@
 
 <meta name="author" content="Nicole Erler, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-03-03" />
+<meta name="date" content="2021-02-03" />
 
 <title>Demo: Statistical Tests for Continuous Data</title>
 
@@ -1519,7 +1519,7 @@ div.tocify {
 <h1 class="title toc-ignore">Demo: Statistical Tests for Continuous Data</h1>
 <h3 class="subtitle">NIHES BST02</h3>
 <h4 class="author">Nicole Erler, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">03 March 2020</h4>
+<h4 class="date">03 February 2021</h4>
 
 </div>
 
@@ -1651,12 +1651,12 @@ names(testres)</code></pre>
                   group  = rep(c(&#39;x&#39;, &#39;y&#39;), c(length(x), length(y))))
 
 summary(dat)</code></pre>
-<pre><code>##      value        group  
-##  Min.   : 8.273   x:250  
-##  1st Qu.:18.259   y:250  
-##  Median :19.977          
-##  Mean   :20.148          
-##  3rd Qu.:22.009          
+<pre><code>##      value           group          
+##  Min.   : 8.273   Length:500        
+##  1st Qu.:18.259   Class :character  
+##  Median :19.977   Mode  :character  
+##  Mean   :20.148                     
+##  3rd Qu.:22.009                     
 ##  Max.   :33.307</code></pre>
 <pre class="r"><code>t.test(value ~ group, data = dat)</code></pre>
 <pre><code>## 
@@ -1712,7 +1712,7 @@ summary(dat)</code></pre>
 <p>The additional argument <code>exact</code> controls if exact p-values and confidence intervals are calculated or if the normal approximation is used. In the latter case, the argument <code>correct</code> determins if a continuity correction is applied.</p>
 <pre class="r"><code>wilcox.test(x, conf.int = TRUE, exact = TRUE, mu = 20) </code></pre>
 <pre><code>## 
-##  Wilcoxon signed rank test
+##  Wilcoxon signed rank exact test
 ## 
 ## data:  x
 ## V = 17954, p-value = 0.04759
@@ -1923,7 +1923,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

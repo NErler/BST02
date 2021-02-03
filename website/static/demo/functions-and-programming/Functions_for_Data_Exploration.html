@@ -11,7 +11,7 @@
 
 <meta name="author" content="Nicole Erler, Department of Biostatistics, Erasmus Medical Center" />
 
-<meta name="date" content="2020-03-03" />
+<meta name="date" content="2021-02-03" />
 
 <title>Demo: Functions for exploring data</title>
 
@@ -1518,7 +1518,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Demo: Functions for exploring data</h1>
 <h4 class="author">Nicole Erler, Department of Biostatistics, Erasmus Medical Center</h4>
-<h4 class="date">03 March 2020</h4>
+<h4 class="date">03 February 2021</h4>
 
 </div>
 
@@ -1558,7 +1558,8 @@ div.tocify {
 <h2>How does the dataset look like?</h2>
 <p>Names of all the variables in the data:</p>
 <pre class="r"><code>names(swiss)</code></pre>
-<pre><code>## [1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;      &quot;Education&quot;        &quot;Catholic&quot;         &quot;Infant.Mortality&quot;</code></pre>
+<pre><code>## [1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;      &quot;Education&quot;       
+## [5] &quot;Catholic&quot;         &quot;Infant.Mortality&quot;</code></pre>
 <p>Show me the first and last few rows:</p>
 <pre class="r"><code>head(swiss)</code></pre>
 <pre><code>##              Fertility Agriculture Examination Education Catholic Infant.Mortality
@@ -1605,13 +1606,20 @@ str(swiss)</code></pre>
 <div id="summary-of-a-data.frame-or-matrix" class="section level3">
 <h3>Summary of a <code>data.frame</code> or <code>matrix</code></h3>
 <pre class="r"><code>summary(esoph)</code></pre>
-<pre><code>##    agegp          alcgp         tobgp        ncases         ncontrols    
-##  25-34:15   0-39g/day:23   0-9g/day:24   Min.   : 0.000   Min.   : 1.00  
-##  35-44:15   40-79    :23   10-19   :24   1st Qu.: 0.000   1st Qu.: 3.00  
-##  45-54:16   80-119   :21   20-29   :20   Median : 1.000   Median : 6.00  
-##  55-64:16   120+     :21   30+     :20   Mean   : 2.273   Mean   :11.08  
-##  65-74:15                                3rd Qu.: 4.000   3rd Qu.:14.00  
-##  75+  :11                                Max.   :17.000   Max.   :60.00</code></pre>
+<pre><code>##    agegp          alcgp         tobgp        ncases         ncontrols     av_case_by_age   
+##  25-34:15   0-39g/day:23   0-9g/day:24   Min.   : 0.000   Min.   : 1.00   Min.   :0.06667  
+##  35-44:15   40-79    :23   10-19   :24   1st Qu.: 0.000   1st Qu.: 3.00   1st Qu.:0.60000  
+##  45-54:16   80-119   :21   20-29   :20   Median : 1.000   Median : 6.00   Median :2.87500  
+##  55-64:16   120+     :21   30+     :20   Mean   : 2.273   Mean   :11.08   Mean   :2.27273  
+##  65-74:15                                3rd Qu.: 4.000   3rd Qu.:14.00   3rd Qu.:3.66667  
+##  75+  :11                                Max.   :17.000   Max.   :60.00   Max.   :4.75000  
+##  med_case_by_age
+##  Min.   :0.000  
+##  1st Qu.:0.000  
+##  Median :3.000  
+##  Mean   :1.909  
+##  3rd Qu.:3.000  
+##  Max.   :4.000</code></pre>
 </div>
 <div id="summaries-per-variable" class="section level3">
 <h3>Summaries per variable</h3>
@@ -1652,18 +1660,18 @@ str(swiss)</code></pre>
 <p>Another helpful function to summarize continuous data is <code>ave()</code>. It calculates a summary measure of a continuous variable per group, that are defined by one or more categorical variables:</p>
 <pre class="r"><code>esoph$av_case_by_age &lt;- ave(esoph$ncases, esoph$agegp)
 esoph[12:22, ]</code></pre>
-<pre><code>##    agegp     alcgp    tobgp ncases ncontrols av_case_by_age
-## 12 25-34      120+ 0-9g/day      0         1     0.06666667
-## 13 25-34      120+    10-19      1         1     0.06666667
-## 14 25-34      120+    20-29      0         1     0.06666667
-## 15 25-34      120+      30+      0         2     0.06666667
-## 16 35-44 0-39g/day 0-9g/day      0        60     0.60000000
-## 17 35-44 0-39g/day    10-19      1        14     0.60000000
-## 18 35-44 0-39g/day    20-29      0         7     0.60000000
-## 19 35-44 0-39g/day      30+      0         8     0.60000000
-## 20 35-44     40-79 0-9g/day      0        35     0.60000000
-## 21 35-44     40-79    10-19      3        23     0.60000000
-## 22 35-44     40-79    20-29      1        14     0.60000000</code></pre>
+<pre><code>##    agegp     alcgp    tobgp ncases ncontrols av_case_by_age med_case_by_age
+## 12 25-34      120+ 0-9g/day      0         1     0.06666667               0
+## 13 25-34      120+    10-19      1         1     0.06666667               0
+## 14 25-34      120+    20-29      0         1     0.06666667               0
+## 15 25-34      120+      30+      0         2     0.06666667               0
+## 16 35-44 0-39g/day 0-9g/day      0        60     0.60000000               0
+## 17 35-44 0-39g/day    10-19      1        14     0.60000000               0
+## 18 35-44 0-39g/day    20-29      0         7     0.60000000               0
+## 19 35-44 0-39g/day      30+      0         8     0.60000000               0
+## 20 35-44     40-79 0-9g/day      0        35     0.60000000               0
+## 21 35-44     40-79    10-19      3        23     0.60000000               0
+## 22 35-44     40-79    20-29      1        14     0.60000000               0</code></pre>
 <p><code>ave()</code> also works with other functions than the mean:</p>
 <pre class="r"><code>esoph$med_case_by_age &lt;- ave(esoph$ncases, esoph$agegp, FUN = median)
 esoph[28:36, ]</code></pre>
@@ -1679,9 +1687,10 @@ esoph[28:36, ]</code></pre>
 ## 36 45-54     40-79    10-19      4        21          2.875               3</code></pre>
 <p>And we can split the data by multiple categorical variables:</p>
 <pre class="r"><code>ave(esoph$ncases, esoph$agegp, esoph$alcgp, FUN = median)</code></pre>
-<pre><code>##  [1] 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.5 0.5 0.5 0.5 0.0 0.0 0.0 0.0 2.0 2.0 2.0 0.0 0.0 0.0 0.0 5.0
-## [36] 5.0 5.0 5.0 2.5 2.5 2.5 2.5 3.5 3.5 3.5 3.5 3.0 3.0 3.0 3.0 5.0 5.0 5.0 5.0 6.0 6.0 6.0 6.0 5.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0 5.0 5.0 5.0 3.0
-## [71] 3.0 3.0 3.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.5 1.5</code></pre>
+<pre><code>##  [1] 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.5 0.5 0.5
+## [23] 0.5 0.0 0.0 0.0 0.0 2.0 2.0 2.0 0.0 0.0 0.0 0.0 5.0 5.0 5.0 5.0 2.5 2.5 2.5 2.5 3.5 3.5
+## [45] 3.5 3.5 3.0 3.0 3.0 3.0 5.0 5.0 5.0 5.0 6.0 6.0 6.0 6.0 5.0 5.0 5.0 5.0 3.0 3.0 3.0 3.0
+## [67] 5.0 5.0 5.0 3.0 3.0 3.0 3.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.5 1.5</code></pre>
 </div>
 </div>
 <div id="tables" class="section level2">
@@ -1915,26 +1924,34 @@ addmargins(tab)</code></pre>
 <h3>Sums and Means</h3>
 <p>The function <code>colMeans()</code> allows us to calculate the mean for each column in a <code>matrix</code> or <code>data.frame</code>:</p>
 <pre class="r"><code>colMeans(swiss)</code></pre>
-<pre><code>##        Fertility      Agriculture      Examination        Education         Catholic Infant.Mortality 
-##         70.14255         50.65957         16.48936         10.97872         41.14383         19.94255</code></pre>
+<pre><code>##        Fertility      Agriculture      Examination        Education         Catholic 
+##         70.14255         50.65957         16.48936         10.97872         41.14383 
+## Infant.Mortality 
+##         19.94255</code></pre>
 <p>We can’t use <code>colMeans()</code> on the <code>esoph</code> data because there not all variables are numeric:</p>
 <pre class="r"><code>colMeans(esoph)</code></pre>
 <pre><code>## Error in colMeans(esoph): &#39;x&#39; must be numeric</code></pre>
 <p>The functions <code>colSums()</code>, <code>rowMeans()</code> and <code>rowSums()</code> work correspondingly, but are usually less useful to summarize a whole dataset.</p>
 <pre class="r"><code>colSums(swiss)</code></pre>
-<pre><code>##        Fertility      Agriculture      Examination        Education         Catholic Infant.Mortality 
-##          3296.70          2381.00           775.00           516.00          1933.76           937.30</code></pre>
+<pre><code>##        Fertility      Agriculture      Examination        Education         Catholic 
+##          3296.70          2381.00           775.00           516.00          1933.76 
+## Infant.Mortality 
+##           937.30</code></pre>
 <pre class="r"><code>rowMeans(swiss)</code></pre>
-<pre><code>##   Courtelary     Delemont Franches-Mnt      Moutier   Neuveville   Porrentruy        Broye        Glane      Gruyere       Sarine      Veveyse 
-##     26.06000     41.70667     42.63333     32.56167     29.69333     40.76167     48.90833     50.71000     45.56167     45.48000     49.11833 
-##        Aigle      Aubonne     Avenches     Cossonay    Echallens     Grandson     Lausanne    La Vallee       Lavaux       Morges       Moudon 
-##     30.68667     29.46167     31.28833     29.92000     34.38333     25.66667     26.90167     22.24167     31.49000     30.08833     27.33667 
-##        Nyone         Orbe         Oron      Payerne Paysd&#39;enhaut        Rolle        Vevey      Yverdon      Conthey    Entremont       Herens 
-##     28.89000     26.16667     30.01667     30.55500     27.51000     28.55333     28.07667     27.75000     46.86833     47.78000     48.71667 
-##     Martigwy      Monthey   St Maurice       Sierre         Sion       Boudry La Chauxdfnd     Le Locle    Neuchatel   Val de Ruz ValdeTravers 
-##     47.51000     45.45333     45.96000     49.76000     47.22167     28.78667     24.61500     25.75333     31.48667     27.02833     24.40833 
-## V. De Geneve  Rive Droite  Rive Gauche 
-##     31.09000     34.15500     33.18833</code></pre>
+<pre><code>##   Courtelary     Delemont Franches-Mnt      Moutier   Neuveville   Porrentruy        Broye 
+##     26.06000     41.70667     42.63333     32.56167     29.69333     40.76167     48.90833 
+##        Glane      Gruyere       Sarine      Veveyse        Aigle      Aubonne     Avenches 
+##     50.71000     45.56167     45.48000     49.11833     30.68667     29.46167     31.28833 
+##     Cossonay    Echallens     Grandson     Lausanne    La Vallee       Lavaux       Morges 
+##     29.92000     34.38333     25.66667     26.90167     22.24167     31.49000     30.08833 
+##       Moudon        Nyone         Orbe         Oron      Payerne Paysd&#39;enhaut        Rolle 
+##     27.33667     28.89000     26.16667     30.01667     30.55500     27.51000     28.55333 
+##        Vevey      Yverdon      Conthey    Entremont       Herens     Martigwy      Monthey 
+##     28.07667     27.75000     46.86833     47.78000     48.71667     47.51000     45.45333 
+##   St Maurice       Sierre         Sion       Boudry La Chauxdfnd     Le Locle    Neuchatel 
+##     45.96000     49.76000     47.22167     28.78667     24.61500     25.75333     31.48667 
+##   Val de Ruz ValdeTravers V. De Geneve  Rive Droite  Rive Gauche 
+##     27.02833     24.40833     31.09000     34.15500     33.18833</code></pre>
 <p>To use other functions (like <code>min</code>, <code>max</code>, <code>median</code>, <code>sd</code>, …) on a whole <code>matrix</code> or <code>data.frame</code> we need some more programming and the help of <code>if (...)</code>, <code>for (...)</code> and/or <code>apply()</code> (will be covered later).</p>
 </div>
 <div id="variance-covariance-and-correlation" class="section level3">
@@ -1975,10 +1992,12 @@ addmargins(tab)</code></pre>
 <h2>Duplicates and Comparison</h2>
 <p>To find duplicates in a <code>data.frame</code>, <code>matrix</code> or a <code>vector</code> we can use the function <code>duplicated()</code>:</p>
 <pre class="r"><code>duplicated(esoph)</code></pre>
-<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [24] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [47] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [70] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [16] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [31] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [46] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [76] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 <pre class="r"><code>(x &lt;- sample(LETTERS[1:5], 10, replace = TRUE))</code></pre>
 <pre><code>##  [1] &quot;B&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;E&quot; &quot;B&quot; &quot;A&quot; &quot;C&quot; &quot;E&quot;</code></pre>
 <pre class="r"><code>duplicated(x)</code></pre>
@@ -2108,7 +2127,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
