@@ -3,7 +3,7 @@ title: "BST02: Using R for Statistics\\ in Medical Research"
 subtitle: "Part D: Statistics with R"
 author: "Nicole Erler"
 institute: "Department of Biostatistics, Erasmus Medical Center"
-date: "24 - 28 February 2020"
+# date: "24 - 28 February 2020"
 email: "n.erler@erasmusmc.nl"
 output:
   beamer_presentation: 
@@ -100,7 +100,7 @@ See also [BBR Sections 7.2 & 7.3 (http://hbiostat.org/doc/bbr.pdf)](http://hbios
 \item the \blue{Wilcoxon rank sum test is a special case} of the Kruskal-Wallis rank sum test
 \end{itemize}
 
-## Other tests for continuous data
+## Other Tests for Continuous Data
 
 \begin{itemize}\itemsep5mm
 \item \blue{Kolmogorov-Smirnov Test:} \texttt{ks.test()}\newline
@@ -256,8 +256,8 @@ where
   \item $\beta_0$ is the intercept
   \item $\beta_1, \ldots, \beta_p$ estimate the effects of the covariates
   \end{itemize}
-\item \blue{$\varepsilon$} is a vector of \blue{residuals}, which we assume to be
-  (approximately) normally distributed.
+\item \blue{$\varepsilon$} is a vector of \blue{error terms}, which we assume
+      to be (approximately) normally distributed.
 \end{itemize}
 
 
@@ -344,7 +344,7 @@ y ~ (x1 + x2 + x3)^2
 y ~ x1 + x2 + x3 + x1:x2 + x1:x3 + x2:x3
 ```
 
-## Model Formula: Removing terms
+## Model Formula: Removing Terms
 The "\blue{\texttt{-}}" sign can be used to remove terms from a model formula.
 
 For example
@@ -456,7 +456,7 @@ Evaluate the \blue{assumptions} of a linear regression model visually, for examp
 
 * Histogram of residuals
 * Normal QQ-plot of residuals
-* Scatterplot residuals vs fitted values
+* Scatter plot residuals vs fitted values
 
 ```{r, fig.width = 8, fig.height = 2, echo = FALSE, out.width = "100%"}
 set.seed(2020)
@@ -480,7 +480,8 @@ temp <- list(theme(panel.grid = element_blank(),
 
 ggpubr::ggarrange(
   ggplot(plotDF, aes(x = resid)) +
-    geom_histogram(bins = 50, fill = EMCdark, alpha = 0.5, color = EMCdark, size = 0.1) +
+    geom_histogram(bins = 50, fill = EMCdark, alpha = 0.5,
+                   color = EMCdark, size = 0.1) +
     xlab('Residuals') +
     temp,
   
@@ -498,7 +499,8 @@ ggpubr::ggarrange(
   
     ggplot(plotDF, aes(x = fitted, y = resid)) +
     geom_point(color = EMCdark, alpha = 0.3, size = 1) +
-    geom_smooth(method = 'loess', se = FALSE, color = drkred) +
+    geom_smooth(method = 'loess', se = FALSE, color = drkred,
+                formula = y ~ x) +
     temp +
     xlab('fitted values') +
     ylab('residuals'),
@@ -574,43 +576,58 @@ p0list <- list(
     ggtemp +
     xlab(expression(x)) +
     geom_point(alpha = 0.2) +
-    theme(plot.title = element_text(margin = margin(t = 6, b = -20), hjust = 0.05)),
+    theme(plot.title = element_text(margin = margin(t = 6, b = -20),
+                                    hjust = 0.05)),
   
   ggplot(dat, aes(x = x, y = z)) +
     ggtemp +
     xlab(expression(x)) +
     geom_point(alpha = 0.2) +
     ylab('y') +
-    theme(plot.title = element_text(margin = margin(t = 6, b = -20), hjust = 0.05))
+    theme(plot.title = element_text(margin = margin(t = 6, b = -20),
+                                    hjust = 0.05))
 )
 
 p3list <- list(
     p0list[[1]] +
-    geom_line(data = cbind(dat, fit = m1b$fit), aes(x = x, y = fit), size = 1, lty = 1, color = EMCdark) +
-    geom_segment(aes(x = 0, xend = 1, y = coef(m1b) %*% c(1, 0, 0), yend = coef(m1b) %*% c(1, 0, 0)),
+    geom_line(data = cbind(dat, fit = m1b$fit), aes(x = x, y = fit), size = 1,
+              lty = 1, color = EMCdark) +
+    geom_segment(aes(x = 0, xend = 1, y = coef(m1b) %*% c(1, 0, 0),
+                     yend = coef(m1b) %*% c(1, 0, 0)),
                  lty = 2) +
     geom_segment(aes(x = 1, xend = 1,
-                     y = coef(m1b) %*% c(1, 0, 0), yend = coef(m1b) %*% c(1, 1, 1)),
-                 arrow = arrow(ends = 'both', type = 'closed', length = unit(0.02, "npc"))) +
-    geom_segment(aes(x = 5, xend = 6, y = coef(m1b) %*% c(1, 5, 5^2), yend = coef(m1b) %*% c(1, 5, 5^2)),
+                     y = coef(m1b) %*% c(1, 0, 0),
+                     yend = coef(m1b) %*% c(1, 1, 1)),
+                 arrow = arrow(ends = 'both', type = 'closed',
+                               length = unit(0.02, "npc"))) +
+    geom_segment(aes(x = 5, xend = 6, y = coef(m1b) %*% c(1, 5, 5^2),
+                     yend = coef(m1b) %*% c(1, 5, 5^2)),
                  lty = 2) +
     geom_segment(aes(x = 6, xend = 6,
-                     y = coef(m1b) %*% c(1, 5, 5^2), yend = coef(m1b) %*% c(1, 6, 6^2)),
-                 arrow = arrow(ends = 'both', type = 'closed', length = unit(0.02, "npc"))),
+                     y = coef(m1b) %*% c(1, 5, 5^2),
+                     yend = coef(m1b) %*% c(1, 6, 6^2)),
+                 arrow = arrow(ends = 'both', type = 'closed',
+                               length = unit(0.02, "npc"))),
   
   p0list[[2]] +
-    geom_line(data = cbind(dat, fit = m2b$fit), aes(x = x, y = fit), size = 1, lty = 1, color = EMCdark) +
+    geom_line(data = cbind(dat, fit = m2b$fit), aes(x = x, y = fit),
+              size = 1, lty = 1, color = EMCdark) +
     geom_segment(aes(x = 0.05, xend = 1.05, y = coef(m2b) %*% c(1, log(0.05)), 
                      yend = coef(m2b) %*% c(1, log(0.05))),
                  lty = 2) +
     geom_segment(aes(x = 1.05, xend = 1.05,
-                     y = coef(m2b) %*% c(1, log(0.05)), yend = coef(m2b) %*% c(1, log(1.05))),
-                 arrow = arrow(ends = 'both', type = 'closed', length = unit(0.02, "npc"))) +
-    geom_segment(aes(x = 5, xend = 6, y = coef(m2b) %*% c(1, log(5)), yend = coef(m2b) %*% c(1, log(5))),
+                     y = coef(m2b) %*% c(1, log(0.05)),
+                     yend = coef(m2b) %*% c(1, log(1.05))),
+                 arrow = arrow(ends = 'both', type = 'closed', 
+                               length = unit(0.02, "npc"))) +
+    geom_segment(aes(x = 5, xend = 6, y = coef(m2b) %*% c(1, log(5)), 
+                     yend = coef(m2b) %*% c(1, log(5))),
                  lty = 2) +
     geom_segment(aes(x = 6, xend = 6,
-                     y = coef(m2b) %*% c(1, log(5)), yend = coef(m2b) %*% c(1, log(6))),
-                 arrow = arrow(ends = 'both', type = 'closed', length = unit(0.02, "npc")))
+                     y = coef(m2b) %*% c(1, log(5)), 
+                     yend = coef(m2b) %*% c(1, log(6))),
+                 arrow = arrow(ends = 'both', type = 'closed',
+                               length = unit(0.02, "npc")))
 )
 ```
 
@@ -848,6 +865,22 @@ p0 +
 ```
 
 
+## B-Splines
+\addtocounter{framenumber}{-1}
+Instead of \quad $y \sim \beta_0  + \beta_1 x + \ldots$ \quad we assume \quad
+$\displaystyle y \sim \beta_0 + {\color{darkred}\sum_{\ell = 1}^d} \beta_\ell B_\ell (x) + \ldots$
+
+```{r, echo = FALSE, fig.width = 8, fig.height = 4, out.width = "90%"}
+p0 + 
+  geom_line(data = dat3, aes(y = value, group = variable)) +
+  geom_line(aes(y = fit), size = 1, col = drkred) +
+  geom_point(data = subset(dat3, x == unique(dat3$x)[30]),
+             aes(x = x, y = value), size = 2,color = EMCdark) +
+  geom_point(data = subset(dat3, x == unique(dat3$x)[30]),
+             aes(x = x, y = fit), size = 2, pch = 1, color = drkred, stroke = 1)
+```
+
+
 ## B-Splines: \texttt{degree}
 ```{r, echo = FALSE, fig.width = 8, fig.height = 4.5}
 plist <- list()
@@ -1007,18 +1040,9 @@ survival::pbc
 
 
 ## Non-linear Effects
-
-\begin{columns}[T,onlytextwidth]
-\begin{column}{0.37\linewidth}
-\begin{block}{Demo}
-\begin{itemize}
-\item Splines \button{https://nerler.github.io/BST02/demo/statistics-with-r/}{R}
-\button{https://nerler.github.io/BST02/demo/statistics-with-r/}{html}
-\end{itemize}
-\end{block}
-\end{column}
-
-\begin{column}{0.57\linewidth}
+\begin{center}
+\begin{columns}
+\begin{column}{0.65\linewidth}
 \begin{block}{Practicals}
 \begin{itemize}
 \item Logistic Regression \& More \button{https://nerler.github.io/BST02/practical/statistics-with-r/Logistic_Regression_and_More.html}{html}
@@ -1028,6 +1052,7 @@ survival::pbc
 \end{block}
 \end{column}
 \end{columns}
+\end{center}
 
 ## Regression
 \begin{columns}[onlytextwidth,T]
