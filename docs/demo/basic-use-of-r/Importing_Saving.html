@@ -2555,6 +2555,15 @@ window.onload = function() {
 };
 </script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
   pre:not([class]) {
@@ -2599,6 +2608,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -2812,55 +2822,38 @@ You can use the double colon symbol (:), to return the pbc object from the packa
 <pre class="r"><code>pbc &lt;- survival::pbc</code></pre>
 <p>List all your R objects</p>
 <pre class="r"><code>ls()</code></pre>
-<pre><code>##   [1] &quot;a&quot;                   &quot;A&quot;                   &quot;Age&quot;                 &quot;age_time&quot;           
-##   [5] &quot;age_time_sex&quot;        &quot;AgeCat&quot;              &quot;b&quot;                   &quot;B&quot;                  
-##   [9] &quot;basedat&quot;             &quot;birthwt&quot;             &quot;C&quot;                   &quot;cal_sd&quot;             
-##  [13] &quot;cal_var&quot;             &quot;Columns_com&quot;         &quot;cSum&quot;                &quot;dat&quot;                
-##  [17] &quot;dat1&quot;                &quot;dat2&quot;                &quot;dat3&quot;                &quot;dat4&quot;               
-##  [21] &quot;dataset1&quot;            &quot;dataset2&quot;            &quot;datlist&quot;             &quot;DerivativeFunction&quot; 
-##  [25] &quot;DF&quot;                  &quot;df_test&quot;             &quot;df1_test&quot;            &quot;df2_test&quot;           
-##  [29] &quot;dice&quot;                &quot;die&quot;                 &quot;dt&quot;                  &quot;dt_events&quot;          
-##  [33] &quot;esoph&quot;               &quot;files&quot;               &quot;FUdat&quot;               &quot;Function2&quot;          
-##  [37] &quot;google.trends1&quot;      &quot;h&quot;                   &quot;heart&quot;               &quot;hello&quot;              
-##  [41] &quot;hello_any&quot;           &quot;hello2&quot;              &quot;hi&quot;                  &quot;hint&quot;               
-##  [45] &quot;html_files&quot;          &quot;htmlfiles&quot;           &quot;i&quot;                   &quot;img&quot;                
-##  [49] &quot;j&quot;                   &quot;k&quot;                   &quot;labdat&quot;              &quot;let&quot;                
-##  [53] &quot;list_pbc&quot;            &quot;list_test&quot;           &quot;list1&quot;               &quot;list2&quot;              
-##  [57] &quot;lung&quot;                &quot;M&quot;                   &quot;mat&quot;                 &quot;Mat&quot;                
-##  [61] &quot;mat_test&quot;            &quot;mdat&quot;                &quot;mdat_all&quot;            &quot;mdat_x&quot;             
-##  [65] &quot;mdat_y&quot;              &quot;mdat3&quot;               &quot;means&quot;               &quot;MHtest&quot;             
-##  [69] &quot;mod&quot;                 &quot;mod1&quot;                &quot;mod2&quot;                &quot;mod2b&quot;              
-##  [73] &quot;mod3&quot;                &quot;my_list&quot;             &quot;mylist&quot;              &quot;myList&quot;             
-##  [77] &quot;MyList&quot;              &quot;mysummary&quot;           &quot;name&quot;                &quot;new_pbc&quot;            
-##  [81] &quot;newData&quot;             &quot;newList&quot;             &quot;nrj&quot;                 &quot;number&quot;             
-##  [85] &quot;otherlist&quot;           &quot;out&quot;                 &quot;output&quot;              &quot;p&quot;                  
-##  [89] &quot;p_adj_BH&quot;            &quot;p_adj_Bonf&quot;          &quot;padj&quot;                &quot;patient&quot;            
-##  [93] &quot;pbc&quot;                 &quot;pbc_chol_na&quot;         &quot;pbc_female_bili&quot;     &quot;pbc_male_bili&quot;      
-##  [97] &quot;pbc_males&quot;           &quot;pbc_out_bili&quot;        &quot;pbcLong&quot;             &quot;pbcseq&quot;             
-## [101] &quot;pbcseq.idNEW2&quot;       &quot;pbcseq.idNEW3&quot;       &quot;pbcseqWide&quot;          &quot;pdfs&quot;               
-## [105] &quot;plot_summary&quot;        &quot;props&quot;               &quot;pval1&quot;               &quot;pval2&quot;              
-## [109] &quot;pval3&quot;               &quot;pvals&quot;               &quot;res&quot;                 &quot;res1&quot;               
-## [113] &quot;res2&quot;                &quot;retinopathy&quot;         &quot;Rfiles&quot;              &quot;Rmd_files&quot;          
-## [117] &quot;Rmdfiles&quot;            &quot;scalar_test&quot;         &quot;sex&quot;                 &quot;Sex&quot;                
-## [121] &quot;shinyFiles&quot;          &quot;smod1&quot;               &quot;smod2&quot;               &quot;static&quot;             
-## [125] &quot;std_num&quot;             &quot;stratum&quot;             &quot;subset_data&quot;         &quot;summary_categorical&quot;
-## [129] &quot;summary_continuous&quot;  &quot;summary_df&quot;          &quot;summary_list&quot;        &quot;survey&quot;             
-## [133] &quot;tab&quot;                 &quot;testres&quot;             &quot;Treatment&quot;           &quot;ttest1&quot;             
-## [137] &quot;ttest2&quot;              &quot;u&quot;                   &quot;vec&quot;                 &quot;vec_test&quot;           
-## [141] &quot;vec1&quot;                &quot;vec1_test&quot;           &quot;vec2&quot;                &quot;vec2_test&quot;          
-## [145] &quot;vec3&quot;                &quot;vec4&quot;                &quot;weight&quot;              &quot;Weight&quot;             
-## [149] &quot;weight_columns&quot;      &quot;weight_Rows&quot;         &quot;write_Demos_md&quot;      &quot;write_Practicals_md&quot;
-## [153] &quot;write_Slides_md&quot;     &quot;wtest&quot;               &quot;x&quot;                   &quot;X&quot;                  
-## [157] &quot;x1&quot;                  &quot;x2&quot;                  &quot;xnew&quot;                &quot;xvec&quot;               
-## [161] &quot;xxx&quot;                 &quot;y&quot;                   &quot;Y&quot;                   &quot;y1&quot;                 
-## [165] &quot;y2&quot;                  &quot;z&quot;</code></pre>
+<pre><code>##  [1] &quot;a&quot;                   &quot;A&quot;                   &quot;age_time&quot;            &quot;age_time_sex&quot;       
+##  [5] &quot;ar&quot;                  &quot;b&quot;                   &quot;B&quot;                   &quot;C&quot;                  
+##  [9] &quot;Columns_com&quot;         &quot;cSum&quot;                &quot;dat&quot;                 &quot;dat1&quot;               
+## [13] &quot;dat2&quot;                &quot;datlist&quot;             &quot;demos&quot;               &quot;des&quot;                
+## [17] &quot;DF&quot;                  &quot;dt&quot;                  &quot;esoph&quot;               &quot;files&quot;              
+## [21] &quot;google.trends1&quot;      &quot;hi&quot;                  &quot;html_files&quot;          &quot;htmlfiles&quot;          
+## [25] &quot;i&quot;                   &quot;img&quot;                 &quot;j&quot;                   &quot;k&quot;                  
+## [29] &quot;list_pbc&quot;            &quot;list1&quot;               &quot;M&quot;                   &quot;marks&quot;              
+## [33] &quot;mat&quot;                 &quot;Mat&quot;                 &quot;mdat&quot;                &quot;mdat_all&quot;           
+## [37] &quot;mdat_x&quot;              &quot;mdat_y&quot;              &quot;mdat3&quot;               &quot;means&quot;              
+## [41] &quot;mylist&quot;              &quot;myList&quot;              &quot;MyList&quot;              &quot;newData&quot;            
+## [45] &quot;newList&quot;             &quot;number&quot;              &quot;numbers&quot;             &quot;numbers_2&quot;          
+## [49] &quot;otherlist&quot;           &quot;output&quot;              &quot;p&quot;                   &quot;patient&quot;            
+## [53] &quot;pbc&quot;                 &quot;pbc_chol_na&quot;         &quot;pbc_female_bili&quot;     &quot;pbc_male_bili&quot;      
+## [57] &quot;pbc_males&quot;           &quot;pbc_out_bili&quot;        &quot;pbcLong&quot;             &quot;pbcseq&quot;             
+## [61] &quot;pbcseq.idNEW2&quot;       &quot;pbcseq.idNEW3&quot;       &quot;pbcseqWide&quot;          &quot;pdfs&quot;               
+## [65] &quot;practicals&quot;          &quot;res&quot;                 &quot;res1&quot;                &quot;res2&quot;               
+## [69] &quot;Rfiles&quot;              &quot;Rmd_files&quot;           &quot;Rmdfiles&quot;            &quot;sex&quot;                
+## [73] &quot;shinyFiles&quot;          &quot;slides&quot;              &quot;static&quot;              &quot;subset_data&quot;        
+## [77] &quot;tab&quot;                 &quot;treatment&quot;           &quot;vec&quot;                 &quot;vec1&quot;               
+## [81] &quot;vec2&quot;                &quot;vec3&quot;                &quot;vec4&quot;                &quot;weight&quot;             
+## [85] &quot;write_Demos_md&quot;      &quot;write_Practicals_md&quot; &quot;write_Slides_md&quot;     &quot;x&quot;                  
+## [89] &quot;X&quot;                   &quot;x1&quot;                  &quot;x2&quot;                  &quot;xnew&quot;               
+## [93] &quot;xvec&quot;                &quot;xxx&quot;                 &quot;y&quot;                   &quot;Y&quot;                  
+## [97] &quot;y1&quot;                  &quot;y2&quot;                  &quot;z&quot;</code></pre>
 </div>
 <div id="save-your-work" class="section level2">
 <h2>Save your work</h2>
 <p>Take care: first you need to set your working directory (Rstudio: Session -&gt; Set Working Directory -&gt; Choose Directory…). Otherwise you do not know where your R workspace is saved.<br />
 You can also the function <code>setwd(...)</code> to set the working directory</p>
 <pre class="r"><code>getwd()</code></pre>
-<pre><code>## [1] &quot;Z:/Courses/Using R for Statistics in Medical Research (BST02)/BST02/Demos/Basic use of R&quot;</code></pre>
+<pre><code>## [1] &quot;O:/Users/015004 ( Andrinopoulou )/Courses/Using R for Statistics in Medical Research (BST02)/BST02/Demos/Basic use of R&quot;</code></pre>
 <pre class="r"><code>dt &lt;- pbc[1:6, c(&quot;id&quot;, &quot;sex&quot;, &quot;bili&quot;, &quot;chol&quot;)]
 p &lt;- 1
 
@@ -2890,7 +2883,7 @@ p &lt;- 1
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

@@ -1303,6 +1303,15 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
@@ -1424,6 +1433,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 <style type="text/css">h2, .h2 {margin-top: 80px;}.gist {overflow:auto;}.gist .blob-wrapper.data {max-height:300px;overflow:auto;}</style>
 
@@ -1739,7 +1749,8 @@ Note:
 ## z 3 2</code></pre>
 <p>Moreover, the “missing” effect for <code>chol</code> in <code>mod1</code> will just be filled in with the first value of the vector.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">cbind</span>(<span class="kw">coef</span>(mod1), <span class="kw">coef</span>(mod_chol))</span></code></pre></div>
-<pre><code>## Warning in base::cbind(...): number of rows of result is not a multiple of vector length (arg 1)</code></pre>
+<pre><code>## Warning in cbind(coef(mod1), coef(mod_chol)): number of rows of result is not a multiple of vector
+## length (arg 1)</code></pre>
 <pre><code>##                    [,1]          [,2]
 ## (Intercept) -2.93568220 -1.811631e+01
 ## age         -0.02050837 -1.148978e-02
@@ -2028,7 +2039,7 @@ Note:
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

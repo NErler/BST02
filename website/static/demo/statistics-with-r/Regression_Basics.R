@@ -15,7 +15,6 @@
 # It just allows the output to be wider (to make the html look nicer)
 options(width = 105)
 
-
 # ------------------------------------------------------------------------------
 
 #' ## Linear Regression
@@ -27,14 +26,15 @@ mod <- lm(Infant.Mortality ~ Fertility + Agriculture + Education + Catholic,
 #' ## Model Formula
 #' We can extract the model formula using the `formula()` function:
 formula(mod)
- 
+
 #' Add an interaction term:
 fmla1 <- Infant.Mortality ~ Fertility * Agriculture + Education + Catholic
 fmla1
 
 
-#' Within `lm()` a `model.matrix` is generated from the model `formula` and the `data`.
-#' We can do the same to see how a `formula` is translated into variables:
+#' Within `lm()` a `model.matrix` is generated from the model `formula` and the
+#' `data`. We can do the same to see how a `formula` is translated into
+#' variables:
 
 X <- model.matrix(fmla1, data = swiss)
 head(X)
@@ -53,7 +53,8 @@ head(model.matrix(fmla4, data = swiss))
 
 
 #' Use all 2-way interactions except for one:
-fmla5 <- Infant.Mortality ~ (Fertility + Agriculture + Education + Catholic)^2 - Agriculture:Education
+fmla5 <- Infant.Mortality ~ (Fertility + Agriculture + Education + 
+                               Catholic)^2 - Agriculture:Education
 head(model.matrix(fmla5, data = swiss))
 
 
@@ -65,11 +66,15 @@ summary(mod_sub)
 
 # ------------------------------------------------------------------------------
 #' ## Logistic Regression
-mod2 <- glm(case ~ age + education + spontaneous, data = infert, family = binomial())
+mod2 <- glm(case ~ age + education + spontaneous, data = infert,
+            family = binomial())
 
-mod2a <- glm(case ~ age + education + spontaneous, data = infert, family = binomial)
-mod2b <- glm(case ~ age + education + spontaneous, data = infert, family = 'binomial')
-mod2c <- glm(case ~ age + education + spontaneous, data = infert, family = binomial(link = 'probit'))
+mod2a <- glm(case ~ age + education + spontaneous, data = infert,
+             family = binomial)
+mod2b <- glm(case ~ age + education + spontaneous, data = infert,
+             family = 'binomial')
+mod2c <- glm(case ~ age + education + spontaneous, data = infert,
+             family = binomial(link = 'probit'))
 
 mod2
 mod2a
