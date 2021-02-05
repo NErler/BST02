@@ -1160,7 +1160,7 @@ In order to run the app you will need to install the packages:
 
 ##
 
-\blue{\Huge{{Data Manipulation}}}
+\blue{\Huge{{Data Transformation Exploration Visualization}}}
 
 
 ## In this Section
