@@ -334,6 +334,70 @@ data.frame(id = retinopathy$id, type = retinopathy$type, trt = retinopathy$trt)
 
 
 
+### Arrays {.tabset .tabset-fade .tabset-pills}
+
+Let's investigate some arrays.
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 1\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Create an array that consists of 2 matrices. Matrix 1 will consist of the values 1:4 and matrix 2 will consist of the values 5:8. Both matrices will have 2 columns and 2 rows.
+
+```{r ar1_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#ar1">Hint</button>
+<div id = "ar1" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use the function array(...).
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 1\\n")
+```
+
+```{r ar-solution-1, solution = TRUE}
+array(data = 1:8, dim = c(2, 2, 2))
+```
+
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("#### Task 2\\n")
+```
+
+```{r, eval = static, echo = FALSE}
+asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
+```
+
+Give the name `ar1` to the previous array. Furthermore, investigate the argument dimnames and change the names of the rows, columns and matrices.
+
+```{r ar2_hint, eval = static, results = 'asis', echo = FALSE}
+cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#ar2">Hint</button>
+<div id = "ar2" class="collapse" style="border:1px; border-style:solid; padding: 1em; border-color:#1F78B4">
+Use the function array(...). Check the help page for the dimnames argument. Note that this must be in a list format.
+</div>')
+```
+
+
+```{r, eval = static, echo = FALSE}
+asis_output("</div>")
+
+asis_output("#### Solution 2\\n")
+```
+
+```{r ar-solution-2, solution = TRUE}
+ar1 <- array(data = 1:8, dim = c(2, 2, 2), 
+             dimnames = list(c("Row1", "Row2"), c("Col1", "Col2"), c("Mat1", "Mat2")))
+```
+
+
 ### Lists {.tabset .tabset-fade .tabset-pills}
 
 Let's investigate some lists.
