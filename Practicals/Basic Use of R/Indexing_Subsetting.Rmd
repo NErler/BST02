@@ -75,7 +75,7 @@ Sometimes we want to obtain a subset of the data sets before investigating the d
 ### Indexing {.tabset .tabset-fade .tabset-pills}
 
 ```{r, eval = static, echo = FALSE}
-asis_output("#### Task 1\\n")
+asis_output("#### Task\\n")
 ```
 
 ```{r, eval = static, echo = FALSE}
@@ -92,7 +92,7 @@ Using the **heart** data set: \
 ```{r, eval = static, echo = FALSE}
 asis_output("</div>")
 
-asis_output("#### Solution 1\\n")
+asis_output("#### Solution\\n")
 ```
 
 ```{r ind1-solution, solution = TRUE}
@@ -101,54 +101,6 @@ heart[, 1]
 heart["surgery"]
 heart[["surgery"]]
 heart[, "surgery"]
-```
-
-
-
-```{r, eval = static, echo = FALSE}
-asis_output("#### Task 2\\n")
-```
-
-```{r, eval = static, echo = FALSE}
-asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
-```
-
-Create a matrix that takes the values 1:4 and has 2 rows and 2 columns. You can name this object `mat`. Select the second row of all columns.
-
-
-```{r, eval = static, echo = FALSE}
-asis_output("</div>")
-
-asis_output("#### Solution 2\\n")
-```
-
-```{r ind2-solution, solution = TRUE}
-mat <- matrix(1:4, 2, 2)
-mat[2, ]
-```
-
-
-
-```{r, eval = static, echo = FALSE}
-asis_output("#### Task 3\\n")
-```
-
-```{r, eval = static, echo = FALSE}
-asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
-```
-
-Create an array that consists of 2 matrices. Matrix 1 will consist of the values 1:4 and matrix 2 will consist of the values 5:8. Both matrices will have 2 columns and 2 rows. Give the name `ar1` to the this array. Select the 2nd row of all columns from each matrix.
-
-
-```{r, eval = static, echo = FALSE}
-asis_output("</div>")
-
-asis_output("#### Solution 3\\n")
-```
-
-```{r ind3-solution, solution = TRUE}
-ar1 <- array(data = 1:8, dim = c(2, 2, 2))
-ar1[2, , ]
 ```
 
 
