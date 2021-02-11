@@ -915,7 +915,7 @@ ar
 ```  
 \endcol
 \begincol{0.5\linewidth}
-```{r, eval = TRUE, include = TRUE, echo = TRUE, size = 0.5}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
 ar[1, 1, ]
 ```  
 
