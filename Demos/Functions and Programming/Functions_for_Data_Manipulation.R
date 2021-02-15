@@ -13,22 +13,24 @@
 # This is not part of the demo. 
 # It just allows the output to be wider (to make the html look nicer)
 options(width = 105)
-
+set.seed(1234)
 
 #' ## Dataset
-#' We will work with the datasets `swiss` and `esoph` (both automatically available in R).
+#' We will work with the datasets `swiss` and `esoph` (both automatically
+#' available in R).
 #' 
 
 #' ## Transformations
 #' ### The logarithm
-#' In R, `log()` by default calculates the natural logarithm, i.e., the following
-#' two commands are equal:
+#' In R, `log()` by default calculates the natural logarithm, i.e., the
+#' following two commands are equal:
 log(swiss$Fertility)
 log(swiss$Fertility, base = exp(1))
 
 #' For other commonly used bases we can use separate functions, e.g. `log2()` or
 #' `log10()`.
-#' The argument `base` allows us to change the base of the logarithm to any value:
+#' The argument `base` allows us to change the base of the logarithm to any
+#' value:
 log(swiss$Fertility, base = 2)
 log2(swiss$Fertility)
 
@@ -51,7 +53,7 @@ x
 abs(x)
 
 #' Distribution function of the logistic distribution:
-#' this function is for instance useful to convert the linear predictor of a 
+#' this function is for instance useful to convert the linear predictor of a
 #' logistic model to the probability scale.
 plogis(x)
 
@@ -60,27 +62,27 @@ plogis(x)
 #' ## Splitting & Combining
 
 #' ### Dividing a (continuous) variable into a `factor`
-#' The function `cut()` allows us to convert a numeric variable to a factor.
-#' The arguments `breaks` is used to specify the cutoffs for the
-#' categories.
+#' The function `cut()` allows us to convert a numeric variable to a factor. The
+#' arguments `breaks` is used to specify the cut-offs for the categories.
 (x <- rnorm(20))
 cut(x, breaks = c(-1, 0, 1))
 #' Note that values outside the smallest and largest "break" are set to `NA`.
 #' To prevent that we can include `-Inf` and `Inf`:
 cut(x, breaks = c(-Inf, -1, 0, 1, Inf))
 
-#' By default, the lower bound of each interval is excluded, the upper bound is included.
-#' We can include the lowest bound by setting `include.lowest = TRUE`.
+#' By default, the lower bound of each interval is excluded, the upper bound is
+#' included. We can include the lowest bound by setting `include.lowest = TRUE`.
 cut(x, breaks = c(-Inf, -1, 0, 1, Inf), include.lowest = TRUE)
 
 #' Note that this only changes the lower bound of the lowest interval.
-#' The argument `right` specifies that the right bound of each interval is included,
-#' this chan be changed by setting `right = FALSE`.
-#' By default, the resulting factor is unordered. With the argument 
+#' The argument `right` specifies that the right bound of each interval is
+#' included, this can be changed by setting `right = FALSE`.
+#' By default, the resulting factor is unordered. With the argument
 #' `ordered_result = TRUE` we can change this. (More on ordered factors later.)
 #' 
 #' To set custom labels for the categories, the argument `labels` can be used:
-cut(x, breaks = c(-Inf, -1, 0, 1, Inf), labels = c('lowest', 'low', 'high', 'highest'))
+cut(x, breaks = c(-Inf, -1, 0, 1, Inf),
+    labels = c('lowest', 'low', 'high', 'highest'))
 #' 
  
 
@@ -93,8 +95,8 @@ split(swiss, f = swiss$Education > 10)
  
 #' When the splitting factor has more categories, the list has more elements:
 split(swiss, f = cut(swiss$Education, c(0, 5, 10, 15, 20)))
-#' Note that cases with Education > 20 are now excluded (because we set the highest
-#' breakpoint in `cut()` to 20).
+#' Note that cases with Education > 20 are now excluded (because we set the
+#' highest breakpoint in `cut()` to 20).
 
 #' To include the "category" `NA`, we can use the function `addNA()`:
 split(swiss, f = addNA(cut(swiss$Education, c(0, 5, 10, 15, 20))))
@@ -172,8 +174,8 @@ mdat <- merge(dat1, dat2)
 head(mdat)
 dim(mdat)
 
-#' The arguments `all`, `all.x` and `all.y` allow us to specify what happens with
-#' cases that are only found in one of the two datasets:
+#' The arguments `all`, `all.x` and `all.y` allow us to specify what happens
+#' with cases that are only found in one of the two datasets:
 mdat_all <- merge(dat1, dat2, all = TRUE)
 mdat_x <- merge(dat1, dat2, all.x = TRUE)
 mdat_y <- merge(dat1, dat2, all.y = TRUE)
@@ -188,7 +190,9 @@ dim(mdat_y)
 #' Arguments `by.x` and `by.y` allow us to specify the names of variables
 #' in each of the datasets to use for merging. This is also possible when 
 #' variable names differ:
-dat2$z <- sample(1:10, size = nrow(dat2), replace = TRUE) # we add a new variable to the data
+
+# we add a new variable to the data:
+dat2$z <- sample(1:10, size = nrow(dat2), replace = TRUE)
 dat2$Examination <- dat1$Examination[match(dat2$id, dat1$id)]
 
 mdat3 <- merge(dat1, dat2, by.x = c('id', 'Education'), by.y = c('id', 'z'),

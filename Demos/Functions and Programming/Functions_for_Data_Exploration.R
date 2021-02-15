@@ -11,7 +11,8 @@
 #' 
 
 #' ## Dataset
-#' We will explore the datasets `swiss` and `esoph` (both automatically available in R).
+#' We will explore the datasets `swiss` and `esoph` (both automatically
+#' available in R).
 #' 
 
 # ------------------------------------------------------------------------------
@@ -109,8 +110,8 @@ ave(esoph$ncases, esoph$agegp, esoph$alcgp, FUN = median)
 # ------------------------------------------------------------------------------
 #' ## Tables
 #' The above summaries were all for continuous variables. 
-#' For categorical variables we may be interested to see the different categories
-#' and how many observations there are per category:
+#' For categorical variables we may be interested to see the different
+#' categories and how many observations there are per category:
 levels(esoph$agegp)
 table(esoph$agegp)
 
@@ -203,8 +204,8 @@ cov(esoph)
 #' Specify the argument `use = "pairs"` to exclude missing values (which would 
 #' otherwise result in a `NA` value for the (co)variance)
 
-#' A (co)variance matrix can be converted to a (pearson) correlation matrix with the help
-#' of the function `cov2cor()`:
+#' A (co)variance matrix can be converted to a (pearson) correlation matrix with
+#' the help of the function `cov2cor()`:
 cov2cor(var(swiss))
 
 #' The correlation matrix can be obtained directly using `cor()`. The argument 
