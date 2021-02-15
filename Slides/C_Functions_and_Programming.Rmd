@@ -176,6 +176,7 @@ Even `class()` is a function:
 class(class)
 ```
 
+
 ## Useful Functions for Data Exploration
 
 \begin{columns}[T,onlytextwidth]
@@ -417,6 +418,7 @@ multiply(x = 3)
 \end{columns}
 \end{center}
 
+
 ## Control-flow Constructs: `if()`
 Sometimes, we may want to execute code only \blue{if a certain condition is fulfilled}.
 
@@ -612,6 +614,7 @@ knitr::opts_chunk$set(echo = FALSE, comment = NA)
 
 library(survival)
 ```
+
 
 
 ##  What is the apply Family

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://nerler.github.io/BST02/</loc>
+    <lastmod>2020-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://nerler.github.io/BST02/home/</loc>
     <lastmod>2020-01-02T00:00:00+00:00</lastmod>
   </url>
@@ -26,10 +31,6 @@
   
   <url>
     <loc>https://nerler.github.io/BST02/demo/basic-use-of-r/</loc>
-  </url>
-  
-  <url>
-    <loc>https://nerler.github.io/BST02/</loc>
   </url>
   
   <url>
