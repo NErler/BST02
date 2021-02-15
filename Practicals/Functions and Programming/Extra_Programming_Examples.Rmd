@@ -238,7 +238,7 @@ asis_output("#### Task 1\\n")
 asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">')
 ```
 
-Extend the previous function `mysummary` to take again one parameter (let’s call it `x`) but to return also some descriptive statistics. We therefore modify the function in such a way that a frequency table is given for factors and the mean and standard deviation are given for numeric data.
+Extend the previous function `mysummary` to take again one parameter (let’s call it `x`) but to return also some descriptive statistics. We therefore modify the function in such a way that a frequency table is given for factors and the mean and standard deviation are given for numeric data. For a data frame, return only an extra message that indicates that this is not implemented yet.
 
 ```{r fun4_hint, eval = static, results = 'asis', echo = FALSE}
 cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#fun4">Hint</button>
@@ -257,13 +257,13 @@ asis_output("#### Solution 1\\n")
 ```{r fun4-solution, solution = TRUE}
 mysummary <- function(x){
   if(is.data.frame(x)){
-    print('A data.frame')
+    print('This is a data.frame')
     print('Not yet implemented')
   }else if(is.factor(x)){
     print('This is a factor')
     print(table(x))
   }else if(is.numeric(x)){
-    print('This variabele is numeric')
+    print('This is numeric')
     print('mean')
     print(mean(x))
     print('sd')
@@ -307,16 +307,16 @@ asis_output("#### Solution 2\\n")
 ```{r fun5-solution, solution = TRUE}
 mysummary <- function(x){
   if(is.data.frame(x)){
-    print('A data.frame')
+    print('This is a data.frame')
     for(i in 1:ncol(x)){
       print(names(x)[i])
       mysummary(x[,i])
     }     
   }else if(is.factor(x)){
-    print('A factor')
+    print('This is a factor')
     print(table(x))
   }else if(is.numeric(x)){
-    print('This variabele is numeric')
+    print('This is numeric')
     print('mean')
     print(mean(x))
     print('sd')
@@ -350,6 +350,8 @@ cat('<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" da
 Use an if statement and a for loop. Note that you will have to transform some variables to factors first.
 </div>')
 ```
+
+
 
 
 ```{r, eval = static, echo = FALSE}
@@ -665,7 +667,7 @@ asis_output('<div style="border:2px; border-style:solid; padding: 1em; border-co
 ```
 
 
-Extend the previous function to include the mean as input argument (let's call it `calc`). Therefore, the user can decide which function to use.
+Extend the previous by including an extra input argument (let’s call it `calc`) which will indicate each time the measure that we want to calculate e.g, the mean. So that the user can decide which function to use.
 
 
 ```{r, eval = static, echo = FALSE}

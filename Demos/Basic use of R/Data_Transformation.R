@@ -8,71 +8,97 @@
 #'     toc: true
 #'     toc_float:
 #'       collapsed: false
+#'     df_print: paged
 #' ---
 #' 
 
+
 #' ## Load packages 
-#' If you are using the package for the first time, you will have to first install it 
+#' If you are using the package for the first time, you will first have to install it. \ 
 # install.packages("survival") 
 # install.packages("reshape2")
+#' If you have already downloaded this package in the current version of R, you will only have to load the package.
 library(survival)
 library(reshape2)
 
-#' ## Get data
-#' Load data set from package
+#' ## Get the data
+#' Load a data set from a package.\
+#' You can use the double colon symbol (:), to return the pbc and pbcseq objects from the package survival. We store these data sets to new objects with the names pbc and pbcseq.
 pbc <- survival::pbc
 pbcseq <- survival::pbcseq
 
-#' ## Round continuous variables
+#' ## Round continuous variables. For that we can use the function `round()`.
 pbc$ast <- round(pbc$ast, digits = 1)
 pbc$age <- round(pbc$age, digits = 2)
-head(pbc)
+pbc
 
 #' ## Create factors
-#' Set `sex` as factor with labels `m` for `male` and `f` for `female`
-factor(pbc$sex, levels = c("m", "f"),
-       labels = c("male","female"))
+#' Set `status` as factor with labels `alive`, `transplant` and `dead`.
+factor(pbc$status, levels = c(0, 1, 2),
+       labels = c("alive","transplant", "dead"))
 
 #' ## Transform continuous variables \
-#' Categorize `age` (take as cut off value 40) 
+#' Categorize the variable `age` of the pbc data set (take as cut off value 40).
 #' 
-#' * Step 1: Check whether the age variable of each patient is above 40
+#' * Step 1: Check whether the `age` variable of each patient is above 40
 pbc$age40higher <- pbc$age > 40
+#' This will give us a logical vector, where TRUE indicates that a patient is older than 40.
 
-#' * Step 2: Transform a logical variable into a numeric
+#' * Step 2: Transform a logical variable into a numeric.
 pbc$age40higher <- as.numeric(pbc$age40higher)
-head(pbc)
+pbc
 
-#' * Step 3: Transform a numeric variable into a factor
+#' * Step 3: Transform a numeric variable into a factor.
 pbc$age40higher <- factor(pbc$age40higher, levels = c(0:1),
                               labels = c("young","old"))
-head(pbc)
+pbc
 
-#' Standardize `age`
+#' Standardize `age` of the pbc data set.
 pbc$ageST <- (pbc$age-mean(pbc$age))/(sd(pbc$age))
-head(pbc)
+pbc
+
+
+#' ## Order the data set by specific variables \
+#' Using the function `sort()`
+sort(pbc$protime)
+#' This obviously is not doing what we want.
+#' A more useful function is the function `order()`.
+#' Let's sort the pbc data set by the variable `protime`.
+pbc[order(pbc$protime), ]
+#' Note that if there is only one variable to be sorted on, the cases with tied values are left in their original order.  
+#' If the data frame is sorted on multiple variables, the values of later variables will be used to "break the tie".
+#' For example:
+pbc[order(pbc$protime, pbc$age), ]
+#' Check the variable age in the two first cases.\
+#' \
+#' We can also sort in reverse order by using a minus sign ( - ) in front of the variable that we want sorted in reverse order.
+#' For example, the data will be sorted on protime, and within each category of protime, the variable age is sorted in reverse order.
+pbc[order(pbc$protime, -pbc$age), ]
 
 
 #' ## Wide/long format \
-#' ### Long to wide data set
-head(pbcseq)
+#' ### Long to wide data set \
+#' The data set `pbcseq` is in long format.
+pbcseq
 
 #' Select the first (or last) row of each patient  \ \
-#' We will remove a lot of information by using the following way
-head(pbcseq[!duplicated(pbcseq[c("id")]), ])
-head(pbcseq[!duplicated(pbcseq[c("id")], fromLast = TRUE), ])
+#' Let's assume that we only want to keep the first or last value and remove the rest. \
+#' We will select the first or last measurement by using the following code.
+pbcseq[!duplicated(pbcseq[, "id"]), ]
+pbcseq[!duplicated(pbcseq[, "id"], fromLast = TRUE), ]
 
 #' Step by step
-head(duplicated(pbcseq[c("id")]))
-head(!duplicated(pbcseq[c("id")]))
+duplicated(pbcseq[, "id"])
+!duplicated(pbcseq[, "id"])
 
-head(duplicated(pbcseq[c("id")]))
-head(duplicated(pbcseq[c("id")], fromLast = TRUE))
-head(!duplicated(pbcseq[c("id")], fromLast = TRUE))
+duplicated(pbcseq[, "id"])
+duplicated(pbcseq[, "id"], fromLast = TRUE)
+!duplicated(pbcseq[, "id"], fromLast = TRUE)
 
 
 
-#' We will keep all the observations by using the following way \
+#' Let's assume that we want to have our data in wide format while keeping all measurements. 
+#' We will have to create new columns to include this information.
 #' 
 #' * Step 1: Obtain how many repeated measurements we have per patient
 vec <- table(pbcseq$id)
@@ -89,7 +115,7 @@ pbcseqWide <- reshape(pbcseq, idvar = c("id"),
                              "ast", "platelet", "protime", "stage"),
                     timevar = "visits", direction = "wide")
 
-head(pbcseqWide)
+pbcseqWide
 
 
 #' ### Wide to long data set  \
@@ -97,10 +123,10 @@ head(pbcseqWide)
 pbcLong <- reshape(pbcseqWide, idvar = c("id"), timevar = "time", 
                     varying = list(names(pbcseqWide)[2:17]),
                     v.names = "bili", direction = "long", times = 1:16)
-head(pbcLong)
+pbcLong
 
 #' Extra step: Order the data set by `id` number
 pbcLong <- pbcLong[order(pbcLong$id),]
-head(pbcLong)
+pbcLong
 
 

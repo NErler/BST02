@@ -14,7 +14,7 @@
 # This is not part of the demo. 
 # It just allows the output to be wider (to make the html look nicer)
 options(width = 105)
-
+set.seed(1234)
 
 
 #-------------------------------------------------------------------------------
@@ -26,10 +26,10 @@ options(width = 105)
 #' successes (`x`) and the number of trials (`n`)
 prop.test(x = sum(x), n = length(x), p = 0.4)
 
-#' or as a matrix containing the number of sucesses and failures:
+#' or as a matrix containing the number of successes and failures:
 M <- matrix(data = c(sum(x), sum(1 - x)),
-             nrow = 1, ncol = 2, 
-             dimnames = list(c(), c('success', 'failure'))
+            nrow = 1, ncol = 2, 
+            dimnames = list(c(), c('success', 'failure'))
 )
 M
 
@@ -38,7 +38,8 @@ prop.test(M, p = 0.4)
 #' If the argument `p` is unspecified, `p = 0.5` is used.
 
 #' Like in the `t.test()` we can choose a one- or two-sided null hypothesis
-#' using the argument `alternative`, and the confidence level using `conf.level`.
+#' using the argument `alternative`, and the confidence level using
+#' `conf.level`.
 
 #' When `correct = TRUE` Yate's continuity correction is used.
 #' 
@@ -53,7 +54,7 @@ binom.test(x = sum(x), n = length(x), p = 0.4)
 
 #-------------------------------------------------------------------------------
 #' ## Pearson's $\chi^2$-Test
-#' Categorical data in mutiple categories are usually displayed in a table:
+#' Categorical data in multiple categories are usually displayed in a table:
 X <- matrix(data = sample(5:50, size = 6),
             nrow = 2, ncol = 3,
             dimnames = list(c('exposed', 'non-exposed'),
@@ -62,21 +63,21 @@ X <- matrix(data = sample(5:50, size = 6),
 X
 
 #' The function `chisq.test()` performs **Pearson's Chi-squared test**.
-#' For this test (or for **Fisher's Exact test**) it does not matter which variable
-#' goes into the rows and which into the columns:
+#' For this test (or for **Fisher's Exact test**) it does not matter which
+#' variable goes into the rows and which into the columns:
 chisq.test(X)
 chisq.test(t(X))
 
-#' * By default, p-values are calculated from the **asymptotic chi-squared distribution**
-#'   of the test statistic.
-#'* This can be changed to calculation via **Monte Carlo simuation**
+#' * By default, p-values are calculated from the **asymptotic chi-squared
+#'   distribution** of the test statistic.
+#' * This can be changed to calculation via **Monte Carlo simulation**
 #'   when `simulate.p.value = TRUE`. 
-#'   Then, the argument `B` specifies the number of simulations used to calculate
-#'   the p-value.
+#'   Then, the argument `B` specifies the number of simulations used to
+#'   calculate the p-value.
 chisq.test(X, simulate.p.value = TRUE, B = 1e5)
 
-#' **Note** that simulation can result in different p-values every time, especially 
-#' when `B` is small:
+#' **Note** that simulation can result in different p-values every time,
+#' especially when `B` is small:
 set.seed(1234)
 chisq.test(X, simulate.p.value = TRUE, B = 200)
 chisq.test(X, simulate.p.value = TRUE, B = 200)
@@ -101,8 +102,8 @@ X
 fisher.test(X)
 
 #' * Arguments `simulate.p.value` and `B` work like for `chisq.test()`.
-#' * Confidence intervals for the odds ratio and the specification of an `alternative`
-#'   are only available for 2x2 tables:
+#' * Confidence intervals for the odds ratio and the specification of an
+#'   `alternative` are only available for 2x2 tables:
 fisher.test(X[, -3], conf.int = TRUE, alternative = 'less')
 
 
@@ -127,8 +128,8 @@ x <- factor(sample(c('yes', 'no'), size = 100, replace = TRUE))
 y <- factor(sample(c('yes', 'no'), size = 100, replace = TRUE,
                    prob = c(0.3, 0.7)))
 
-#' **Note** that in this example the data are independent, but in a real case we would
-#' have **paired observations**.
+#' **Note** that in this example the data are independent, but in a real case we
+#' would have **paired observations**.
 
 mcnemar.test(x, y)
 
@@ -149,4 +150,5 @@ mantelhaen.test(x = x, y = y, z = stratum)
 mantelhaen.test(table(x, y, stratum))
 
 #' The arguments `alternative`, `correct`, `exact` and `conf.level` can be used
-#' like for the tests before, but only in the case of a $2 \times 2 \times K$ table.
+#' like for the tests before, but only in the case of a $2 \times 2 \times K$
+#' table.

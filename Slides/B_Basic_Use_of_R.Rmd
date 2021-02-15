@@ -3,7 +3,6 @@ title: "BST02: Using R for Statistics\\ in Medical Research"
 subtitle: "Part B: Basic use of **R**"
 author: "Eleni-Rosalina Andrinopoulou"
 institute: "Department of Biostatistics, Erasmus Medical Center"
-date: "24 - 28 February 2020"
 email: "e.andrinopoulou@erasmusmc.nl"
 output:
   beamer_presentation: 
@@ -14,8 +13,14 @@ output:
     incremental: false
 classoption: aspectratio=169
 ---
-
+  
 ```{r setup, include=FALSE}
+def.chunk.hook  <- knitr::knit_hooks$get("chunk")
+knitr::knit_hooks$set(chunk = function(x, options) {
+  x <- def.chunk.hook(x, options)
+  ifelse(options$size != "normalsize", paste0("\n \\", options$size,"\n\n", x, "\n\n \\normalsize"), x)
+})
+
 knitr::knit_hooks$set(
   nospace = function(before, options, envir) {
     if (before) {
@@ -35,27 +40,23 @@ pbc <- survival::pbc
 pbcseq <- survival::pbcseq
 ```
 
+
+##
+
+\blue{\Huge{{Basic Use of R}}}
+
 ## In this Section
 
 * Using R
 
-* In practice examples
+* Examples with Data
 
-* Basics in R
-
-* Common R objects
+* Getting Familiar with R
 
 * Importing data and saving your work
 
-* Data transformation
+* A lot of practice
 
-* Data exploration
-
-* Data visualization 
-
-* Indexing/Subsetting
-
-* Lots of practising
 
 ## Using R
 
@@ -88,6 +89,7 @@ pbcseq <- survival::pbcseq
   - free
   - works fine in Windows, MacOS and Linux
   - helpful with errors
+  - alternative output options
   
   
 ##  Using R  
@@ -101,7 +103,7 @@ pbcseq <- survival::pbcseq
 
 ## Practical Examples
 
-* **Package \textcolor{blue}{survival} - pbc data set**
+* **Package \texttt{\blue{survival}} - pbc data set**
 
 ```{r example data, include=TRUE}
 dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
@@ -115,7 +117,7 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 * \textbf{\textcolor{red}{id}}:	case number
 * \textbf{\textcolor{red}{time}}:	number of days between registration and the earlier of death, transplantation, or study analysis in July, 1986
 * \textbf{\textcolor{red}{status}}:	status at endpoint, 0/1/2 for censored, transplant, dead
-* \textbf{\textcolor{red}{trt}}:	1/2/NA for D-penicillmain, placebo, not randomised
+* \textbf{\textcolor{red}{trt}}:	1/2/NA for D-penicillamine, placebo, not randomised
 * \textbf{\textcolor{red}{age}}:	in years
 * \textbf{\textcolor{red}{sex}}:	m/f
 * \textbf{\textcolor{red}{bili}}:	serum bilirunbin (mg/dl)
@@ -211,16 +213,17 @@ kable(dt, "latex", booktabs = T, align = "c") %>%
 
 \blue{All these questions can be answered using R!}
 
-## Basics in R
 
-* Elementary commands: \textbf{\textcolor{red}{expressions}} and \textbf{\textcolor{blue}{assignments}}
+## Getting Familiar with R
+
+* Elementary commands: \textbf{\textcolor{red}{expressions}} and \textbf{\blue{assignments}}
 
 * An \textbf{\textcolor{red}{expression}} given as command is evaluated printed and discarded
 
-* An \textbf{\textcolor{blue}{assignment}} evaluates an expression and passes the value to a variable - the result is not automatically printed
+* An \textbf{\blue{assignment}} evaluates an expression and passes the value to a variable - the result is not automatically printed
 
 
-## Basics in R  
+## Getting Familiar with R  
 
 Expression is given as a command,
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -243,7 +246,7 @@ x
 ```
 
 
-## Basics in R  
+## Getting Familiar with R  
 
 \blue{You can use R as a calculator!}
 
@@ -260,67 +263,181 @@ y
 * Complicated arithmetics
 
 
-## Basics in R  
+## Getting Familiar with R  
 
 \blue{Tips:}
 
 * R is case sensitive, e.g.,
-  - \textbf{\textcolor{blue}{"sex"}} is different than \textbf{\textcolor{blue}{"Sex"}}
+  - \textbf{\blue{"sex"}} is different than \textbf{\blue{"Sex"}}
 * Commands are separated by a semi-colon or by a newline
-* Comments can be put anywhere, starting with a hashmark \textbf{\textcolor{blue}{\#}}: everything to the end of the line is a comment
-* Assign a value to an object by \textbf{\textcolor{blue}{<-}} or \textbf{\textcolor{blue}{=}}
+* Comments can be put anywhere, starting with a hashmark \textbf{\blue{\#}}: everything to the end of the line is a comment
+* Assign a value to an object by \textbf{\blue{<-}} or \textbf{\blue{=}}
+* Working directory: get with \textbf{\blue{getwd()}} and set with \textbf{\blue{setwd()}} 
 
 
-## Basics in R  
+## Getting Familiar with R  
 
 * Missing values
-  - are coded as \textbf{\textcolor{blue}{NA}} (i.e., not available) \textbf{\textcolor{blue}{is.na()}}
+  - are coded as \textbf{\blue{NA}} (i.e., not available) \textbf{\blue{is.na()}}
 * Infinity
-  - is coded as \textbf{\textcolor{blue}{Inf}} (plus infinity) or \textbf{\textcolor{blue}{-Inf}} (minus infinity) \textbf{\textcolor{blue}{is.finite()}}
+  - is coded as \textbf{\blue{Inf}} (plus infinity) or \textbf{\blue{-Inf}} (minus infinity) \textbf{\blue{is.finite()}}
 * The Null objects
-  - are coded as \textbf{\textcolor{blue}{NULL}}
+  - are coded as \textbf{\blue{NULL}} (undefined) \textbf{\blue{is.null()}}
 * Not a number
-  - is coded as \textbf{\textcolor{blue}{NaN}} (Not a Number). Example: 
+  - is coded as \textbf{\blue{NaN}} (Not a Number). Example: 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 0/0
 ```
 
 
-## Basics in R  
+## Importing Data 
 
 
-\begin{columns}[T,onlytextwidth]
-\begin{column}{0.47\linewidth}
-\begin{block}{Demos}
+* function: \textbf{\blue{read.table()}}, \textbf{\blue{read.csv()}} and its variants
+  - note: use forward slashes or double backward slashes in the file names, e.g., \
+    "`C:/Documents and Settings/User/Data/file.txt`" or \
+    "`C:\\Documents and Settings\\User\\Data\\file.txt`"
+    
+\vspace*{3ex}    
+    
+* Specialized functions for importing data from other programs
+  - package: \textbf{\blue{foreign}}, function: \textbf{\blue{read.spss()}}, \textbf{\blue{read.dta()}}
+  - package: \textbf{\blue{Hmisc}}, function: \textbf{\blue{sas.get()}}
+  - package: \textbf{\blue{openxlsx}}, function: \textbf{\blue{read.xlsx()}}  
+  - package: \textbf{\blue{readxl}}, function: \textbf{\blue{read\_excel()}}
+  - package: \textbf{\blue{haven}}, function: \textbf{\blue{read\_spss()}}
+  - \textit{etc}
+
+
+## Exporting Data 
+
+* Specialized functions for exporting data to other programs
+  - function: \textbf{\blue{write.table()}}, \textbf{\blue{write.csv()}}
+  - package: \textbf{\blue{foreign}}, function: \textbf{\blue{write.spss()}}, \textbf{\blue{write.dta()}}
+  - package: \textbf{\blue{openxlsx}}, function: \textbf{\blue{write.xlsx()}}
+  - \textit{etc}
+
+
+## Saving and Loading your Work  
+
+\textit{\textbf{\blue{Multiple objects:}}}
+
+* You can save your R objects using \textbf{\blue{save()}}
+  - be careful about overwriting 
+* You can load your saved R objects using \textbf{\blue{load()}}
+
+  
+\textit{\textbf{\blue{Single object:}}}
+
+* Using \textbf{\blue{saveRDS()}} you can save a single R object 
+* Using \textbf{\blue{readRDS()}} you can load a single R object
+  - we will need an assignment statement to store the results
+
+\vspace*{0.7cm}
+
+\textbf{\blue{Save your code by using the tab File in Rstudio!}}
+  
+  
+## Saving and Loading your Work  
+
+\textbf{\blue{Tips:}}
+
+* Short names are preferred over longer names
+* Try to avoid using names that contain symbols
+* Avoid spaces in names
+* Remove any comments in your data set
+* Make sure that any missing values in your data set are indicated with the same value (or no value)
+
+
+
+
+
+## Summary
+
+\begin{columns}[onlytextwidth,T]
+\begin{column}{0.30\linewidth}
+
+
+\blue{Basic functions}
 \begin{itemize}
-\item Basic R 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Basic_R.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Basic_R.html}{html}
+\item \texttt{getwd()}, \texttt{setwd()}, 
+\item \texttt{is.na()}, \texttt{is.finite()}, \texttt{is.null()}
 \end{itemize}
-\end{block}
+
 \end{column}
 
-\begin{column}{0.47\linewidth}
+\begin{column}{0.58\linewidth}
+
+
+\blue{Import/Export}
+\begin{itemize}
+\item \texttt{read.csv()}, \texttt{write.csv()}
+\item \texttt{read.xlsx()}, \texttt{write.xlsx()}
+\item \texttt{read.table()}, \texttt{write.table()}
+\end{itemize}
+
+\bigskip
+
+\blue{Save/Load}
+\begin{itemize}
+\item \texttt{save()}, \texttt{saveRDS()}
+\item \texttt{load()}, \texttt{readRDS()}
+\end{itemize}
+
+
 \end{column}
+
+
 \end{columns}
 
 
 
-## Common R Objects
+## Practice  
 
-* There are different kinds of variables
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.50\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Basic R 
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Basic_R.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Basic_R.html}{html}
+\item Importing and Saving 
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Importing_Saving.R}{R} 
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Importing_Saving.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
 
-\vspace*{3ex}
+\begin{column}{0.45\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Importing and Saving 
+\button{https://nerler.github.io/BST02/practical/basic-use-of-r/Importing_and_Saving_data.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
 
-```{r example data g, include=TRUE}
-dt <- as.data.frame(pbc[1:5,c(1:6,11,12)])
-kable(dt, "latex", booktabs = T, digits = 2) %>%
- kable_styling(full_width = F) 
-```
+
+##
+
+\blue{\Huge{{Common Objects in R}}}
 
 
-## Common R Objects  
+## In this Section
 
-* in R Everything (data, results, ...) is an object
+* Objects in R
+
+* Data types
+
+* Data structures
+
+* A lot of practice
+
+
+
+## Objects in R
+
+* In R Everything (data, results, ...) is an object
 
 * In order to list the created objects use the following functions
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
@@ -332,12 +449,12 @@ ls()
 
   - In order to remove objects
 ```{r, eval = FALSE, include = TRUE, echo = TRUE}
-rm(...)
+rm()
 rm(list=ls(all=TRUE))
 ```
 
 
-## Common R Objects  
+## Objects in R  
 
 * To investigate a specific object (e.g. pbc)
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -345,64 +462,100 @@ str(pbc[,c("id", "time", "status", "trt", "age", "sex", "bili", "chol")])
 ```
 
 
-## Common R Objects  
+## Data Types
 
-The simplest data structures are:
+The simplest data types are:
 
-* \textbf{\textcolor{red}{numeric}} : quantitative data
-* \textbf{\textcolor{red}{character}} : qualitative data
-* \textbf{\textcolor{red}{integer}} : whole numbers
-* \textbf{\textcolor{red}{logical}} : TRUE or FALSE
-* \textbf{\textcolor{red}{factors}} : qualitative data (levels)
+* \textbf{\blue{numeric}} : quantitative data
+* \textbf{\blue{character}} : qualitative data
+* \textbf{\blue{integer}} : whole numbers
+* \textbf{\blue{logical}} : TRUE or FALSE
+* \textbf{\blue{factors}} : qualitative data (levels)
+
+
+## Data Types in R
 
 To find out what type of object you have, you can use the following function
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mode(pbc$age)
 ```
 
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+str(pbc$age)
+```
 
-## Common R Objects  
+## Data Structures  
 
-* Data structure:
+The most important data structures are:
 
-  - \textbf{\textcolor{red}{Vectors}} have the same type of elements
-  - \textbf{\textcolor{red}{Matrices}} have the same type of elements with the same length 
-  - \textbf{\textcolor{red}{Data.frames}} have elements of different type with the same length 
-  - \textbf{\textcolor{red}{Lists}} have elements of different type and length 
+  - \textbf{\blue{Scalar}} a single element
+  - \textbf{\blue{Vectors}} have the same type of elements
+  - \textbf{\blue{Matrices}} have the same type of elements with the same length 
+  - \textbf{\blue{Arrays}} have the same type of elements with the same length but can store the data in more than two dimensions
+  - \textbf{\blue{Data frames}} have elements of different type with the same length 
+  - \textbf{\blue{Lists}} have elements of different type and length 
 
 
-## Common R Objects  
+## Data Structures  
 
-* Differences between \blue{vector}, matrix, data.frame and list
+\textbf{\blue{How do these data structures look like?}}
+
+
+## Data Structures  
+
+* Differences between \blue{vector}, matrix, array, data.frame and list
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbc[1:6, c("age")]
 ```
 
-## Common R Objects  
+## Data Structures  
 
-* Differences between vector, \blue{matrix}, data.frame and list
+* Differences between vector, \blue{matrix}, array, data.frame and list
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbc[1:6, c("age", "bili", "chol")]
 ```
 
 
-## Common R Objects  
+## Data Structures  
 
-* Differences between vector, matrix, \blue{data.frame} and list
+* Differences between vector, matrix, \blue{array}, data.frame and list
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+pbc[1:3, c("age", "bili", "chol")]
+pbc[4:6, c("age", "bili", "chol")]
+```
+
+## Data Structures  
+
+* Differences between vector, matrix, \blue{array}, data.frame and list
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+pbc[1:2, c("protime", "time")]
+pbc[3:4, c("protime", "time")]
+```
+
+## Data Structures  
+
+* Differences between vector, matrix, array, \blue{data.frame} and list
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 pbc[1:6, c("id", "sex", "bili", "chol")]
 ```
 
 
-## Common R Objects  
+## Data Structures  
 
-* Differences between vector, matrix, data.frame and \blue{list}
+* Differences between vector, matrix, array, data.frame and \blue{list}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-list(pbc[1:6, c("sex")], pbc[1:2, c("sex", "bili")], pbc$age[1:4])
+pbc[1:6, c("sex")]
+pbc[1:2, c("sex", "bili")]
+pbc[1:4, c("age")]
 ```
 
 
-## Common R Objects  
+## Data Structures in R 
+
+\textbf{\blue{Let's now create different data structure in R!}}
+
+
+## Data Structures in R  
 \blue{Create a vector}
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -414,14 +567,15 @@ vec
 
 
 
-## Common R Objects  
+## Data Structures in R  
 \blue{Create a matrix}
 
 \begincols[t]
 \begincol{0.5\linewidth}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 vec <- c(1, 2, 3, 4, 5, 6, 7, 8, 9)
-mat <- matrix(vec, 3, 3)
+mat <- matrix(data = vec, 
+              nrow = 3, ncol = 3)
 mat 
 ```
 
@@ -431,7 +585,8 @@ mat
 \begincol{0.5\linewidth}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 vec <- c(1, 2, 3, 4, 5, 6, 7, 8, 9)
-mat <- matrix(vec, 3, 3, 
+mat <- matrix(data = vec, 
+              nrow = 3, ncol = 3, 
               byrow = TRUE)
 mat
 ```
@@ -439,24 +594,40 @@ mat
 \endcols\vspace*{3ex}
 
 
+## Data Structures in R  
+\blue{Create an array}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+ar <- array(data = c(1, 2, 3, 4, 5, 6, 7, 8), dim = c(2, 2, 2))
+ar
+```
 
-## Common R Objects  
+
+## Data Structures in R  
+\blue{Create an array}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+ar <- array(data = c(1, 2, 3, 4), dim = c(2, 2, 1))
+ar
+```
+
+
+## Data Structures in R  
 \blue{Create a data frame}
 
 \begincols[t]
-\begincol{0.5\linewidth}
+\begincol{0.45\linewidth}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-dtf <- data.frame(pbc$sex, pbc$age)
+dtf <- data.frame(pbc[, "sex"], 
+                  pbc[, "age"])
 dtf[1:3,]
 ```
 
 \pause
 
 \endcol
-\begincol{0.5\linewidth}
+\begincol{0.58\linewidth}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-dtf <- data.frame(Gender = pbc$sex, 
-                  Age = pbc$age)
+dtf <- data.frame(Gender = pbc[, "sex"], 
+            Age = pbc[, "age"])
 dtf[1:3,]
 ```
 \endcol
@@ -464,7 +635,7 @@ dtf[1:3,]
 
 
 
-## Common R Objects  
+## Data Structures in R  
 \blue{Create a list}
 
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
@@ -474,7 +645,49 @@ list1
 
 
 
-## Common R Objects  
+## Summary
+
+\begin{columns}[onlytextwidth,T]
+\begin{column}{0.30\linewidth}
+
+\bigskip
+
+\blue{Data types}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{numeric}
+\item \texttt{character}
+\item \texttt{integer}
+\item \texttt{logical}
+\item \texttt{factors}
+\item \texttt{str()}, \texttt{mode()}
+\end{itemize}
+
+\end{column}
+
+\begin{column}{0.58\linewidth}
+
+\blue{Data structures}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{c()}
+\item \texttt{matrix()}
+\item \texttt{array()}
+\item \texttt{data.frame()}
+\item \texttt{list()}
+\end{itemize}
+
+\bigskip
+
+\blue{Other}
+\begin{itemize}
+\item \texttt{ls()}, \texttt{objects()}
+\end{itemize}
+
+\end{column}
+\end{columns}
+
+
+
+## Practice  
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.47\linewidth}
@@ -497,469 +710,47 @@ list1
 \end{columns}
 
 
+##
 
-## Importing Data and Saving your Work
+\blue{\Huge{{Indexing and Subsetting}}}
 
 
-* function: \textbf{\textcolor{red}{read.table()}}, \textbf{\textcolor{red}{read.csv()}} and its variants
-  - note: use forward slashes or double backward slashes in the file names, e.g., \
-    "`C:/Documents and Settings/User/Data/file.txt`" or \
-    "`C:\\Documents and Settings\\User\\Data\\file.txt`"
-    
-\vspace*{3ex}    
-    
-* Specialized functions for importing data from other programs
-  - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{read.spss()}}, \textbf{\textcolor{red}{read.dta()}}
-  - package: \textbf{\textcolor{red}{Hmisc}}, function: \textbf{\textcolor{red}{sas.get()}}
-  - package: \textbf{\textcolor{red}{openxlsx}}, function: \textbf{\textcolor{red}{read.xlsx()}}  
-  - package: \textbf{\textcolor{red}{readxl}}, function: \textbf{\textcolor{red}{read\_excel()}}
-  - package: \textbf{\textcolor{red}{haven}}, function: \textbf{\textcolor{red}{read\_spss()}}
-  - \textit{etc}
+## In this Section
 
+* Indexing
 
-## Importing Data and Saving your Work  
+* Subsetting
 
-\blue{Tips:}
-* Short names are prefered over longer names
-* Try to avoid using names that contain symbols
-* Avoid spaces in names
-* Remove any comments in your data set
-* Make sure that any missing values in your data set are indicated with the same value (or no value)
-
-
-## Importing Data and Saving your Work  
-
-* \textbf{\textcolor{red}{save()}}
-  - can be used to save a list of R objects
-  - a binary file with all the objects available in your last R session
-* You can load your saved R objects using \textbf{\textcolor{red}{load()}}
-  - be careful about overwriting
-* Using \textbf{\textcolor{red}{saveRDS}} and \textbf{\textcolor{red}{readRDS}} you can save and read a single R object
-  - The result has to be assigned to a variable
-
-  
-
-\vspace*{3ex}
-
-* Specialized functions for exporting data to other programs
-  - function: \textbf{\textcolor{red}{write.table()}}, \textbf{\textcolor{red}{write.csv()}}
-  - package: \textbf{\textcolor{red}{foreign}}, function: \textbf{\textcolor{red}{write.spss()}}, \textbf{\textcolor{red}{write.dta()}}
-  - package: \textbf{\textcolor{red}{openxlsx}}, function: \textbf{\textcolor{red}{write.xlsx()}}
-  - \textit{etc}
-
-
-## Importing Data and Saving your Work  
-
-\begin{columns}[T,onlytextwidth]
-\begin{column}{0.50\linewidth}
-\begin{block}{Demos}
-\begin{itemize}
-\item Importing and Saving 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Importing_Saving.R}{R} 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Importing_Saving.html}{html}
-\end{itemize}
-\end{block}
-\end{column}
-
-\begin{column}{0.45\linewidth}
-\begin{block}{Practicals}
-\begin{itemize}
-\item Importing and Saving 
-\button{https://nerler.github.io/BST02/practical/basic-use-of-r/Importing_and_Saving_data.html}{html}
-\end{itemize}
-\end{block}
-\end{column}
-\end{columns}
-
-## Data Transformation
-
-\blue{You will never receive the perfect data set!}
-
-* \textbf{\textcolor{red}{Round}} continuous variables
-* Convert \textbf{\textcolor{red}{numeric}} variables to \textbf{\textcolor{red}{factors}}
-* Compute \textbf{\textcolor{red}{new variables}}
-  - transform variables
-* Data sets of \textbf{\textcolor{red}{wide}} $\Longleftrightarrow$ \textbf{\textcolor{red}{long}} format
-
-
-## Data Transformation  
-
-* \textbf{\textcolor{red}{Round}} continuous variables
-```{r, eval = TRUE, include = TRUE, echo = TRUE}
-pbc[1:3, c("time", "age", "bili", "chol")]
-round(pbc[1:3, c("time", "age", "bili", "chol")], digits = 2)
-```
-
-
-## Data Transformation  
-
-* Convert \textbf{\textcolor{red}{numeric}} variables to \textbf{\textcolor{red}{factors}}
-```{r, eval = TRUE, include = TRUE, echo = TRUE}
-DF <- pbc[,c("id", "time", "status", "trt", "age", 
-                    "sex", "bili", "chol")]
-DF$trt <- factor(DF$trt, levels = c(1, 2), 
-                 labels = c("D-penicillmain", "placebo"))
-head(DF)
-```
-
-
-## Data Transformation  
-
-* Compute \textbf{\textcolor{red}{new variables}}
-  - transform variables
-```{r, eval = TRUE, include = TRUE, echo = TRUE}
-DF <- pbc[,c("id", "time", "status", "trt", "age", 
-                    "sex", "bili", "chol")]
-DF$time <- DF$time/30
-DF$time_years <- DF$time/12
-head(DF)
-``` 
-  
-  
-## Data Transformation  
-
-* Data sets of \textbf{\textcolor{red}{wide}} $\Longleftrightarrow$ long format  
-```{r, eval = TRUE, include = TRUE, echo = TRUE}
-head(pbc[,c("id", "time", "status", "trt", "age", 
-                    "sex", "bili", "chol")])
-```  
-  
-  
-## Data Transformation  
-
-* Data sets of wide $\Longleftrightarrow$ \textbf{\textcolor{red}{long}} format  
-```{r, eval = TRUE, include = TRUE, echo = TRUE}
-head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
-                    "sex", "bili", "chol")])
-```  
-  
-
-## Data Transformation  
-
-\begin{columns}[T,onlytextwidth]
-\begin{column}{0.47\linewidth}
-\begin{block}{Demos}
-\begin{itemize}
-\item Data Transformation 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Transformation.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Transformation.html}{html}
-\end{itemize}
-\end{block}
-\end{column}
-
-\begin{column}{0.47\linewidth}
-\end{column}
-\end{columns}
-
-
-## Data Exploration
-
-* Common questions
-  - What is the mean and standard deviation for age?
-  - What is the mean and standard deviation for time?
-  - What is the median and interquartile range for age?
-  - What is the percentage of placebo patients?
-  - What is the percentage of females?
-  - What is the mean and standard deviation for age in males?
-  - What is the mean and standard deviation for baseline serum bilirubin?
-  - What is the percentage of missings in serum bilirubin?
-  
-\vspace*{0.3cm}
-
-\blue{All these questions can be answered using R!}
-
-
-## Data Exploration  
-
-* \blue{Hints}
-
-\vspace*{3ex}  
-    - Check functions: \textbf{\textcolor{blue}{mean(...)}}, \textbf{\textcolor{blue}{sd(...)}}, \textbf{\textcolor{blue}{percent(...)}}, \textbf{\textcolor{blue}{median(...)}}, \textbf{\textcolor{blue}{IQR(...)}}
-
-\pause
-\vspace*{3ex} 
-
-What is the mean value for age?
-```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mean(pbc$age)
-```  
- 
-
-## Data Exploration  
-
-\begin{columns}[T,onlytextwidth]
-\begin{column}{0.47\linewidth}
-\begin{block}{Demos}
-\begin{itemize}
-\item Data Exploration 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Exploration.R}{R} 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Exploration.html}{html}
-\end{itemize}
-\end{block}
-\end{column}
-
-\begin{column}{0.47\linewidth}
-\end{column}
-\end{columns}
-
-
-## Data Visualization
-
-* It is important to investigate each variable in our data set using plots
-  - Descriptive statistics for continuous and categorical variables
-  - Distributions of variables
-  - Distributions of variables per group
-  - Extreme values
-  - Linear/nonlinear evolutions
-  
-  
-## Data Visualization  
-
-* R has very powerful graphics capabilities
-* Some good references are
-  - Murrel, P. (2005) R Graphics. Boca Raton: Chapman & Hall/CRC.
-  - Sarkar, D. (2008) Lattice Multivariate Data Visualization with R. New York: Springer-Verlag.
-
-
-## Data Visualization  
-
-* Traditional graphics system
-  - package \textbf{\textcolor{blue}{graphics}}
-* Trellis graphics system
-  - package \textbf{\textcolor{blue}{lattice}} (which is based on package grid)
-* Grammar of Graphics implementation (i.e., Wilkinson, L. (1999) The Grammar of Graphics. New York: Springer-Verlag)
-  - packages \textbf{\textcolor{blue}{ggplot}} & \textbf{\textcolor{blue}{ggplot2}}
-
-
-## Data Visualization  
-
-Important plotting basic functions
-
-* \textbf{\textcolor{blue}{plot()}}: scatter plot (and others)
-* \textbf{\textcolor{blue}{barplot()}}: bar plots
-* \textbf{\textcolor{blue}{boxplot()}}: box-and-whisker plots
-* \textbf{\textcolor{blue}{dotchart()}}: dot plots
-* \textbf{\textcolor{blue}{hist()}}: histograms
-* \textbf{\textcolor{blue}{pie()}}: pie charts
-* \textbf{\textcolor{blue}{qqnorm()}}, \textbf{\textcolor{blue}{qqline()}}, \textbf{\textcolor{blue}{qqplot()}}: distribution plots
-* \textbf{\textcolor{blue}{pairs()}}: for multivariate data
-
-
-## Data Visualization  
-
-Continuous variables
-```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
-plot(pbc$age, pbc$bili)
-```
-
-
-## Data Visualization  
-
-Continuous variables
-```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
-plot(pbc$age, pbc$bili, xlab = "age", ylab = "bili", 
-     cex.lab = 1.9, cex.axis = 1.5)
-```  
-
-
-## Data Visualization  
-
-Continuous variables
-```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
-plot(pbc$age, pbc$bili, xlab = "age", ylab = "bili", 
-     cex.lab = 1.9, cex.axis = 1.5, col = "red")
-```  
-
-
-## Data Visualization  
-
-* For more options check 
-```{r, eval = FALSE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
-?plot
-```  
-
-
-## Data Visualization  
-
-Continuous variables per group
-```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
-plot(pbc$age, pbc$bili, xlab = "age", ylab = "bili", 
-     cex.lab = 1.9, cex.axis = 1.5, col = pbc$sex)
-```  
-
-
-## Data Visualization  
-
-Continuous variables per group
-```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
-boxplot(pbc$age ~ pbc$sex, xlab = "sex", ylab = "age", 
-     cex.lab = 1.9, cex.axis = 1.5)
-```  
-
-
-## Data Visualization  
-
-Continuous variables per group
-```{r, eval = FALSE, include = TRUE, echo = TRUE, fig.height = 3.5, fig.width = 15}
-pbc_male_bili <- pbc$bili[pbc$sex == "m"]
-pbc_female_bili <- pbc$bili[pbc$sex == "f"]
-plot(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
-     main = "Density plots", xlab = "bili", ylab = "")
-polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
-        border = "blue")
-lines(density(pbc_female_bili), col = rgb(1,0,0,0.5))
-polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), 
-        border = "red")
-legend(8,0.2, c("male", "female"), 
-       col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)
-```  
-
-
-## Data Visualization  
-
-Continuous variables per group
-```{r, eval = TRUE, include = TRUE, echo = FALSE, fig.height = 6, fig.width = 15}
-pbc_male_bili <- pbc$bili[pbc$sex == "m"]
-pbc_female_bili <- pbc$bili[pbc$sex == "f"]
-plot(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
-     main = "Density plots", xlab = "bili", ylab = "", ylim = c(0,0.4))
-polygon(density(pbc_male_bili), col = rgb(0,0,1,0.5), 
-        border = "blue")
-lines(density(pbc_female_bili), col = rgb(1,0,0,0.5))
-polygon(density(pbc_female_bili), col = rgb(1,0,0,0.5), 
-        border = "red")
-legend(8,0.2, c("male", "female"), 
-       col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)
-``` 
-
-
-## Data Visualization  
-
-Categorical variables 
-```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 5, fig.width = 15}
-pbc$status <- factor(pbc$status, levels = c(0, 1, 2), 
-                     labels = c("censored", "transplant", "dead"))
-pie(table(pbc$status), col = c("green", "blue", "red"), cex = 2)
-``` 
-
-
-## Data Visualization  
-
-\begin{columns}[T,onlytextwidth]
-\begin{column}{0.47\linewidth}
-\begin{block}{Demos}
-\begin{itemize}
-\item Data Visualization 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Visualization.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Visualization.html}{html}
-\end{itemize}
-\end{block}
-\end{column}
-
-\begin{column}{0.47\linewidth}
-\begin{block}{Practicals}
-\begin{itemize}
-\item Data Manipulation 
-\button{https://nerler.github.io/BST02/practical/basic-use-of-r/Data_Transformation_Exploration_Visualization.html}{html}
-\end{itemize}
-\end{block}
-\end{column}
-\end{columns}
-
-
-## Useful Summary: Data manipulation
-
-\begin{columns}[onlytextwidth,T]
-\begin{column}{0.30\linewidth}
-\blue{Common R objects}
-\begin{itemize}\vspace*{-0.5ex}
-\item \texttt{c()}
-\item \texttt{matrix()}
-\item \texttt{data.frame()}
-\item \texttt{list()}
-\item \texttt{cbind()}, \texttt{rbind()}
-\end{itemize}
-
-\bigskip
-
-\blue{Transformation}
-\begin{itemize}\vspace*{-0.5ex}
-\item \texttt{factor()}
-\item \texttt{reshape()}
-\item \texttt{order()}
-\item \texttt{complete.cases()}
-\end{itemize}
-\end{column}
-
-\begin{column}{0.30\linewidth}
-\blue{Exploration}
-\begin{itemize}\vspace*{-0.5ex}
-\item \texttt{is.na()}
-\item \texttt{dim()}
-\item \texttt{mean()}, \texttt{sd()}
-\item \texttt{median()}, \texttt{IQR()}
-\item \texttt{percent()}
-\end{itemize}
-
-\bigskip
-
-\blue{Visualization}
-\begin{itemize}
-\item \texttt{plot()}, \texttt{legend()}
-\item \texttt{hist()}
-\item \texttt{barchart()}
-\item \texttt{boxplot()}
-\item \texttt{xyplot()}, \texttt{ggplot()}
-\item \texttt{par()}
-\end{itemize}
-\end{column}
-
-\begin{column}{0.38\linewidth}
-\blue{Import/Save/Present}
-\begin{itemize}
-\item \texttt{head()}
-\item \texttt{save()}, \texttt{saveRDS()}
-\item \texttt{load()}, \texttt{readRDS()}
-\item \texttt{read.csv()}, \texttt{write.csv()}, \texttt{read.xlsx()}, \texttt{write.xlsx()}, \texttt{read.table()}, \texttt{write.table()}
-\end{itemize}
-
-\bigskip
-
-\blue{Other}
-\begin{itemize}
-\item \texttt{install.packages()}, \texttt{library()}
-\item \texttt{ls()}, \texttt{objects()}, \texttt{getwd()}
-\end{itemize}
-
-\end{column}
-\end{columns}
+* A lot of practice
 
 
 ## Indexing/Subsetting
 
 * When transforming and analyzing data we often need to select specific observations or variables
   - Examples: Select ...
-      * the 3rd element for vector age
+      * the 3rd element of vector age
       * the 3rd column of the pbc data set
       * the sex of the 10th patient
-      * the baseline details of the 5th patient
+      * all information of the 5th patient
       * the serum cholesterol for all males
-      * the age for male patients or patients that have serum bilirubin more than 3
+      * the age for male patients or patients that have serum bilirubin > 3
       * the first measurement per patient
     
 
 ## Indexing/Subsetting  
 
-* This can be done using square bracket (\textbf{\textcolor{blue}{[ ]}}) notation and indices.
+* This can be done using square bracket (\textbf{\blue{[ ]}}) notation and indices.
 * Three basic types
   - position indexing
   - logical indexing
   - name indexing
   
   
-## Indexing/Subsetting  
+## Vectors  
 
 \blue{Indexing with \blue{\texttt{vector}}}
 
-* For position indexing, use a \textbf{\textcolor{red}{positive}} value to select an element
+* For position indexing, use a \textbf{\blue{positive}} value to select an element
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(6:17)
 x
@@ -972,11 +763,11 @@ x[c(2,3,4)]
 ```
 
 
-## Indexing/Subsetting  
+## Vectors  
 
 \blue{Indexing with \blue{\texttt{vector}}}
 
-* For position indexing, use dublicated \textbf{\textcolor{red}{positive}} values to select the same elements
+* For position indexing, use duplicated \textbf{\blue{positive}} values to select the same elements
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(6:17)
 x
@@ -984,11 +775,11 @@ x[c(2,2,2)]
 ```
 
 
-## Indexing/Subsetting  
+## Vectors  
 
 \blue{Indexing with \blue{\texttt{vector}}}
 
-* For position indexing, use a \textbf{\textcolor{red}{negative}} value to remove an element
+* For position indexing, use a \textbf{\blue{negative}} value to remove an element
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(6:17)
 x
@@ -997,14 +788,14 @@ x[-5]
 
 \vspace*{3ex}  
 
-* \textbf{Positive and negative indices cannot be combined}
+* \textbf{\blue{Positive and negative indices cannot be combined}}
 
 
-## Indexing/Subsetting  
+## Vectors  
 
 \blue{Indexing with \blue{\texttt{vector}}}
 
-* Use logical index of the same length to select elements where the value is \textbf{\textcolor{red}{TRUE}}
+* Use logical index of the same length to select elements where the value is \textbf{\blue{TRUE}}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 x <- c(6:10)
 y <- c(TRUE, FALSE, FALSE, FALSE, FALSE)
@@ -1012,7 +803,7 @@ x[y]
 ```
 
 
-## Indexing/Subsetting  
+## Vectors  
 
 \blue{Indexing with \blue{\texttt{vector}}}
 
@@ -1025,7 +816,7 @@ x[x > 7 | x > 9]
 ```
 
 
-## Indexing/Subsetting  
+## Vectors  
 
 \blue{Indexing with \blue{\texttt{vector}}}
 
@@ -1038,11 +829,11 @@ x[c('foo', 'one')]
 * Use the function `names` to obtain the names
 
 
-## Indexing/Subsetting  
+## Matrices  
 
 \blue{Indexing with \blue{\texttt{matrix}}}
 
-* Indexing matrices are similar to indexing vectors but with double index
+* Indexing matrices is similar to indexing vectors but with double index
 
   - The first position denotes the rows \blue{["index", ]}
   - The first position denotes the columns \blue{[, "index"]}
@@ -1052,7 +843,8 @@ x[c('foo', 'one')]
 \begincols[t]
 \begincol{0.5\linewidth}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mat <- matrix(1:4, 2, 2)
+mat <- matrix(data = 1:4, 
+              nrow = 2, ncol = 2)
 mat
 ```  
   
@@ -1060,14 +852,15 @@ mat
 \begincol{0.5\linewidth}
 * Use position indexing as:
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mat <- matrix(1:4, 2, 2)
+mat <- matrix(data = 1:4, 
+              nrow = 2, ncol = 2)
 mat[2, 2]
 ```  
 \endcol
 \endcols
 
 
-## Indexing/Subsetting  
+## Matrices  
 
 \blue{Indexing with \blue{\texttt{matrix}}}
 
@@ -1076,9 +869,10 @@ mat[2, 2]
 \begincols[t]
 \begincol{0.5\linewidth}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mat <- matrix(1:4, 2, 2)
-mat[[2]]
+mat <- matrix(data = 1:4, 
+              nrow = 2, ncol = 2)
 mat[2]
+mat[[2]]
 ```  
   
 \endcol
@@ -1086,36 +880,67 @@ mat[2]
 \endcol
 \endcols
   
-## Indexing/Subsetting  
+## Matrices  
 
 \blue{Indexing with \blue{\texttt{matrix}}}
 
+\begincols[t]
+\begincol{0.5\linewidth}
 * When we leave a position blank all elements are selected
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-mat <- matrix(1:4, 2, 2)
+mat <- matrix(data = 1:4, 
+              nrow = 2, ncol = 2)
 mat
 mat[2, ]
 ```  
 
+\endcol
+\begincol{0.5\linewidth}
+\endcol
+\endcols
 
-## Indexing/Subsetting  
+
+
+## Arrays 
+
+\blue{Indexing with \blue{\texttt{array}}}
+
+\begincols[t]
+\begincol{0.5\linewidth}
+
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+ar <- array(data = 1:4, 
+            dim = c(1,2,2))
+ar
+```  
+\endcol
+\begincol{0.5\linewidth}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+ar[1, 1, ]
+```  
+
+\endcol
+\endcols
+
+
+## Data Frames  
 
 \blue{Indexing with \blue{\texttt{data.frame}}}
 * Works with single and double index
 
 \begincols[t]
-\begincol{0.5\linewidth}
+\begincol{0.55\linewidth}
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF <- data.frame(x = 1:3, 
-          y = c(35, 23, 14))
+      y = c("male", "male", "female"))
 DF
 ```  
 
 \pause
 
 \endcol
-\begincol{0.5\linewidth}
-* Use position indexing as:
+\begincol{0.45\linewidth}
+* Use position single indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF[2]
 DF[[2]]
@@ -1124,79 +949,78 @@ DF[[2]]
 \endcols
 
 
-## Indexing/Subsetting  
 
-\blue{Indexing with \blue{\texttt{data.frame}}}
-
-* \textcolor{blue}{\$} provides a convinient notation to extract an element by name
-```{r, eval = TRUE, include = TRUE, echo = TRUE}
-head(pbc$time)
-```  
-
-
-## Indexing/Subsetting  
+## Data Frames  
 
 \blue{Indexing with \blue{\texttt{data.frame}}}
 
 \begincols[t]
-\begincol{0.5\linewidth}
-* When using a double index, indexing works like a matrix
+\begincol{0.55\linewidth}
+* When using double index, indexing works like a matrix
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF <- data.frame(x = 1:3, 
-          y = c(35, 23, 14))
+      y = c("male", "male", "female"))
 DF
 ```  
 
-\pause
 
 \endcol
-\begincol{0.5\linewidth}
+\begincol{0.45\linewidth}
 * Use position indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 DF[2, ]
 ```  
 * Use logical indexing
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-DF[DF$y < 30, ]
+DF[DF$x < 2, ]
 ```  
 \endcol
 \endcols
 
+## Data Frames  
 
-## Indexing/Subsetting  
+\blue{Indexing with \blue{\texttt{data.frame}}}
+
+* \blue{\$} provides a convenient notation to extract an element by name
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+head(pbc$time)
+head(pbc[ ,"time"])
+```  
+
+
+
+
+## Data Frames  
 
 \blue{Indexing with \blue{\texttt{data.frame}}}
 
 * Combine logical and position indexing in data frame
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-pbcDF <- data.frame(pbc)
 head(pbc[pbc$sex == "m", 1:7])
 ```  
 
 
-## Indexing/Subsetting  
+## Data Frames  
 
 \blue{Indexing with \blue{\texttt{data.frame}}}
 
 * Combine logical and position indexing in data frame
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-pbcDF <- data.frame(pbc)
 head(pbc[pbc$age > 30 | pbc$sex == "f", 1:7])
 ```  
 
 
-## Indexing/Subsetting  
+## Data Frames  
 
 \blue{Indexing with \blue{\texttt{data.frame}}}
 
 * Combine logical and position indexing in data frame
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
-pbcDF <- data.frame(pbc)
 head(pbc[pbc$age > 30 & pbc$sex == "f", 1:7])
 ``` 
 
 
-## Indexing/Subsetting  
+## Lists  
 
 \blue{Indexing with \blue{\texttt{list}}}
 
@@ -1211,7 +1035,7 @@ mylist[2]
 ```  
 
 
-## Indexing/Subsetting  
+## Lists  
 
 \blue{Indexing with \blue{\texttt{list}}}
 
@@ -1226,11 +1050,11 @@ mylist[[2]]
 ```  
 
 
-## Indexing/Subsetting  
+## Lists  
 
 \blue{Indexing with \blue{\texttt{list}}}
 
-* \textcolor{blue}{\$} provides a convinient notation to extract an element by name - Note that the output is a vector
+* \blue{\$} provides a convenient notation to extract an element by name - Note that the output is a vector
 ```{r, eval = TRUE, include = TRUE, echo = TRUE}
 mylist <- list(y = c(14, 45), z = c("m", "f", "f"))
 mylist
@@ -1238,51 +1062,8 @@ mylist$y
 ```  
 
 
-## Indexing/Subsetting  
 
-* Use the following webpage to further investigate indexing and subsetting \
-https://emcbiostatistics.shinyapps.io/indexing/
-
-\begin{center}
-\begin{columns}
-\begin{column}{0.52\linewidth}
-\begin{block}{Demos}
-\begin{itemize}
-\item Shiny app indexing subsetting \button{https://nerler.github.io/BST02/demo/basic-use-of-r/shiny_app_indexing.R}{R} 
-\end{itemize}
-\end{block}
-\end{column}
-\end{columns}
-\end{center}
-
-In order to run the app you will need to install the packages:
-
-   * `survival`
-   * `shiny`
-
-## Useful Summary: Indexing/Subsetting  
-
-\begin{columns}[T,onlytextwidth]
-\begin{column}{0.47\linewidth}
-\begin{block}{Demos}
-\begin{itemize}
-\item Indexing/Subsetting 
-\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Indexing_Subsetting.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Indexing_Subsetting.html}{html}
-\end{itemize}
-\end{block}
-\end{column}
-
-\begin{column}{0.47\linewidth}
-\begin{block}{Practicals}
-\begin{itemize}
-\item Indexing/Subsetting  \button{https://nerler.github.io/BST02/practical/basic-use-of-r/Indexing_Subsetting.html}{html}
-\end{itemize}
-\end{block}
-\end{column}
-\end{columns}
-
-
-## Useful Summary: Indexing/Subsetting
+## Summary
 
 \begin{columns}[onlytextwidth,T]
 \begin{column}{0.5\linewidth}
@@ -1298,6 +1079,13 @@ In order to run the app you will need to install the packages:
 \begin{itemize}
 \item \texttt{[,]}
 \item \texttt{[[]]}, \texttt{[]}
+\end{itemize}
+
+\bigskip
+
+\blue{Arrays}
+\begin{itemize}
+\item \texttt{[ , , ]}
 \end{itemize}
 \end{column}
 
@@ -1323,6 +1111,540 @@ In order to run the app you will need to install the packages:
 \end{column}
 
 \end{columns}
+
+
+## Practice  
+
+* Use the following webpage to further investigate indexing and subsetting \
+https://emcbiostatistics.shinyapps.io/indexing/
+
+\begin{center}
+\begin{columns}
+\begin{column}{0.52\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Shiny app indexing subsetting \button{https://nerler.github.io/BST02/demo/basic-use-of-r/shiny_app_indexing.R}{R} 
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\end{center}
+
+In order to run the app you will need to install the packages:
+
+   * `survival`
+   * `shiny`
+
+
+## Practice   
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Indexing/Subsetting 
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Indexing_Subsetting.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Indexing_Subsetting.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.47\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Indexing/Subsetting  \button{https://nerler.github.io/BST02/practical/basic-use-of-r/Indexing_Subsetting.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
+
+##
+
+\blue{\Huge{{Data Transformation Exploration Visualization}}}
+
+
+## In this Section
+
+* Data transformation
+
+* Data exploration
+
+* Data visualization 
+
+* A lot of practice
+
+
+## Data Transformation
+
+\blue{You will never receive the perfect data set!}
+
+* \blue{Round} continuous variables
+* Convert \blue{numeric} variables to \blue{factors}
+* Compute \blue{new variables}
+  - transform variables
+* \blue{Sort} the data set
+* Data sets of \blue{wide} $\Longleftrightarrow$ \blue{long} format
+
+
+## Data Transformation  
+
+* \blue{Round} continuous variables
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+pbc[1:3, c("time", "age", "bili", "chol")]
+round(pbc[1:3, c("time", "age", "bili", "chol")], digits = 2)
+```
+
+
+## Data Transformation  
+
+* Convert \blue{numeric} variables to \blue{factors}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+DF <- pbc[,c("id", "time", "status", "trt", "age", 
+                    "sex", "bili", "chol")]
+head(DF)
+```
+
+
+## Data Transformation  
+
+* Convert \blue{numeric} variables to \blue{factors}
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+DF <- pbc[,c("id", "time", "status", "trt", "age", 
+                    "sex", "bili", "chol")]
+DF$trt <- factor(x = DF$trt, levels = c(1, 2), 
+                 labels = c("D-penicillmain", "placebo"))
+head(DF)
+```
+
+
+## Data Transformation  
+
+* Compute \blue{new variables}
+  - transform variables
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+DF <- pbc[,c("id", "time", "status", "trt", "age", 
+                    "sex", "bili", "chol")]
+head(DF)
+``` 
+
+
+## Data Transformation  
+
+* Compute \blue{new variables}
+  - transform variables
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+DF <- pbc[,c("id", "time", "status", "trt", "age", 
+                    "sex", "bili", "chol")]
+DF$time <- DF$time/30
+DF$time_years <- DF$time/12
+head(DF)
+``` 
+  
+  
+## Data Transformation  
+
+* \blue{Sort} the data set in either ascending or descending order
+  * The variable by which we sort can be a numeric, string or factor 
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+head(sort(pbc$bili))
+``` 
+
+
+## Data Transformation  
+
+* \blue{Sort} the data set in either ascending or descending order
+  * The variable by which we sort can be a numeric, string or factor 
+```{r, eval = TRUE, include = TRUE, echo = TRUE, size = "footnotesize"}
+head(pbc[order(pbc$bili), ])
+``` 
+
+
+## Data Transformation  
+
+* \blue{Sort} the data set in either ascending or descending order
+  * The variable by which we sort can be a numeric, string or factor 
+```{r, eval = TRUE, include = TRUE, echo = TRUE, size = "footnotesize"}
+head(pbc[order(pbc$bili, pbc$age), ])
+```
+
+
+## Data Transformation  
+
+* Data sets of \blue{wide} $\Longleftrightarrow$ long format  
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+head(pbc[,c("id", "time", "status", "trt", "age", 
+                    "sex", "bili", "chol")])
+```  
+  
+  
+## Data Transformation  
+
+* Data sets of wide $\Longleftrightarrow$ \blue{long} format  
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+head(pbcseq[, c("id", "futime", "status", "trt", "age", "day",
+                    "sex", "bili", "chol")])
+```  
+  
+
+## Data Transformation  
+
+* Data sets of \blue{wide} $\Longleftrightarrow$ \blue{long} format  
+```{r, eval = FALSE, include = TRUE, echo = TRUE}
+?reshape
+```
+
+
+
+## Data Exploration
+
+* Common questions for the pbc data set
+  - What is the mean and standard deviation for age?
+  - What is the mean and standard deviation for time?
+  - What is the median and interquartile range for age?
+  - What is the percentage of placebo patients?
+  - What is the percentage of females?
+  - What is the mean and standard deviation for age in males?
+  - What is the mean and standard deviation for baseline serum bilirubin?
+  - What is the percentage of missings in serum bilirubin?
+  
+\vspace*{0.3cm}
+
+\blue{All these questions can be answered using R!}
+
+
+## Data Exploration  
+
+* \blue{Hints}
+
+\vspace*{3ex}  
+    - Check functions: \blue{mean(...)}, \blue{sd(...)}, \blue{percent(...)}, \blue{median(...)}, \blue{IQR(...)}, \blue{table(...)}
+
+\pause
+\vspace*{3ex} 
+
+What is the mean value for age?
+```{r, eval = TRUE, include = TRUE, echo = TRUE}
+mean(pbc$age)
+```  
+ 
+
+
+## Data Visualization
+
+* It is important to investigate each variable in our data set using plots
+  - Descriptive statistics for continuous and categorical variables
+  - Distributions of variables
+  - Distributions of variables per group
+  - Extreme values
+  - Linear/nonlinear evolutions
+
+<!-- https://genomicsclass.github.io/book/pages/plots_to_avoid.html -->
+  
+## Data Visualization
+\blue{Take care!}
+```{r, eval = TRUE, include = TRUE, echo = FALSE, fig.height = 10, fig.width = 15}
+pie(table(pbc$bili), cex = 0.8, main = "Serum bilirubin")
+```
+
+
+## Data Visualization
+\blue{Take care!}
+```{r, eval = TRUE, include = TRUE, echo = FALSE, fig.height = 7, fig.width = 15}
+pbcseq.id <- pbcseq[tapply(row.names(pbcseq), pbcseq$id, tail, 1), ]
+pbcseq.idBase <- pbcseq[tapply(row.names(pbcseq), pbcseq$id, head, 1), ]
+
+pbcseq.id$BA <- "Last"
+pbcseq.idBase$BA <- "First"
+
+pbcFL <- rbind(pbcseq.idBase, pbcseq.id)
+pbcFL <- pbcFL[order(pbcFL$id, pbcFL$day),]
+library(lattice)
+p1 <- xyplot(bili ~ as.factor(BA), group = id, data = pbcFL[pbcFL$id %in% c(1, 24, 25, 6, 34, 17, 45, 23), ], 
+             type = c("p", "l"), pch = 16,
+             xlab = "", ylab = list("Serum bilirubin", cex = 1.3), col = "#C443AF",
+       scales = list(x = list(limits = c(0.9,2.1), at = c(1,2), cex = 1.2, 
+                          labels = c("First", "Last")), y = list(cex = 1.2) ))
+p2 <- bwplot(bili ~ as.factor(BA), data = pbcFL[pbcFL$id %in% c(1, 24, 25, 6, 34, 17, 45, 23), ],
+            ylab = list("Serum bilirubin", cex = 1.3), xlab = "", 
+            scales = list(x = list(cex = 1.2), y = list(cex = 1.2)),
+            par.settings = list(box.umbrella = list(col= c("#C443AF")), 
+                                    box.dot = list(col= c("#C443AF")), 
+                                    box.rectangle = list(col= c("#C443AF"))))
+
+print(p1, split = c(1,1,2,1), more = TRUE)
+print(p2, split = c(2,1,2,1))
+```
+
+
+## Data Visualization
+
+\blue{Take care!}
+```{r, eval = TRUE, include = TRUE, echo = FALSE, fig.width = 4, fig.height = 3}
+library(lattice)
+xyplot(bili ~ as.factor(BA), group = id, data = pbcFL[pbcFL$id %in% c(45, 6), ], 
+       type = c("p", "l"), pch = 16, 
+       xlab = "", ylab = list("Serum bilirubin", cex = 0.9), col = "#C443AF",
+       scales = list(x = list(limits = c(0.9,2.1), at = c(1,2), cex = 0.8, 
+                          labels = c("First", "Last")), y = list(cex = 0.8, draw = FALSE) ))
+```
+
+## Data Visualization
+
+\blue{Take care!}
+```{r, eval = TRUE, include = TRUE, echo = FALSE, fig.width = 4, fig.height = 3}
+library(lattice)
+xyplot(bili ~ as.factor(BA), group = id, data = pbcFL[pbcFL$id %in% c(45, 6), ], 
+       type = c("p", "l"), pch = 16, 
+       xlab = "", ylab = list("Serum bilirubin", cex = 0.9), col = "#C443AF",
+       scales = list(x = list(limits = c(0.9,2.1), at = c(1,2), cex = 0.8, 
+                          labels = c("First", "Last")), y = list(cex = 0.8) ))
+```
+
+
+## Data Visualization
+
+\blue{Take care!}
+```{r, eval = TRUE, include = TRUE, echo = FALSE, fig.width = 4, fig.height = 3}
+library(lattice)
+xyplot(bili ~ as.factor(BA), group = id, data = pbcFL[pbcFL$id %in% c(45, 6), ], 
+       type = c("p", "l"), pch = 16, 
+       xlab = "", ylab = list("Serum bilirubin", cex = 0.9), col = "#C443AF",
+       ylim = c(0, 28), 
+       scales = list(x = list(limits = c(0.9,2.1), at = c(1,2), cex = 0.8, 
+                          labels = c("First", "Last")), y = list(cex = 0.8, limits = c(0, 28)) ))
+```
+
+
+## Data Visualization  
+
+* R has very powerful graphics capabilities
+* Some good references are
+  - Murrel, P. (2005) R Graphics. Boca Raton: Chapman & Hall/CRC.
+  - Sarkar, D. (2008) Lattice Multivariate Data Visualization with R. New York: Springer-Verlag.
+
+
+## Data Visualization  
+
+* Traditional graphics system
+  - package \blue{graphics}
+* Trellis graphics system
+  - package \blue{lattice} (which is based on package grid)
+* Grammar of Graphics implementation (i.e., Wilkinson, L. (1999) The Grammar of Graphics. New York: Springer-Verlag)
+  - packages \blue{ggplot} & \blue{ggplot2}
+
+
+## Data Visualization  
+
+Important plotting basic functions
+
+* \blue{plot()}: scatter plot (and others)
+* \blue{barplot()}: bar plots
+* \blue{boxplot()}: box-and-whisker plots
+* \blue{hist()}: histograms
+* \blue{dotchart()}: dot plots
+* \blue{pie()}: pie charts
+* \blue{qqnorm()}, \blue{qqline()}, \blue{qqplot()}: distribution plots
+* \blue{pairs()}: for multivariate data
+
+
+## Data Visualization  
+
+Continuous variables
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+plot(x = pbc$age, y = pbc$bili)
+```
+
+
+## Data Visualization  
+
+Continuous variables
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+plot(x = pbc$age, y = pbc$bili, xlab = "age", ylab = "bili", 
+     cex.lab = 1.9, cex.axis = 1.5)
+```  
+
+
+## Data Visualization  
+
+Continuous variables
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+plot(x = pbc$age, y = pbc$bili, xlab = "age", ylab = "bili", 
+     cex.lab = 1.9, cex.axis = 1.5, col = "red")
+```  
+
+
+## Data Visualization  
+
+* For more options check 
+```{r, eval = FALSE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+?plot
+```  
+
+
+## Data Visualization  
+
+Continuous variables per group
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+plot(x = pbc$age, y = pbc$bili, xlab = "age", ylab = "bili", 
+     cex.lab = 1.9, cex.axis = 1.5, col = pbc$sex)
+```  
+
+
+## Data Visualization  
+
+Continuous variables per group
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 6, fig.width = 15}
+boxplot(formula = pbc$age ~ pbc$sex, xlab = "sex", ylab = "age", 
+     cex.lab = 1.9, cex.axis = 1.5)
+```  
+
+## Data Visualization  
+
+Continuous variables per group
+```{r, eval = FALSE, include = TRUE, echo = TRUE, fig.height = 3.5, fig.width = 15}
+pbc_male_bili <- pbc$bili[pbc$sex == "m"]
+pbc_female_bili <- pbc$bili[pbc$sex == "f"]
+plot(density(x = pbc_male_bili), col = rgb(0,0,1,0.5), 
+     main = "Density plots", xlab = "bili", ylab = "")
+lines(density(x = pbc_female_bili), col = rgb(1,0,0,0.5))
+legend(x = 8, y = 0.2, legend = c("male", "female"), 
+       col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)
+```  
+
+
+## Data Visualization  
+
+Continuous variables per group
+```{r, eval = TRUE, include = TRUE, echo = FALSE, fig.height = 6, fig.width = 15}
+pbc_male_bili <- pbc$bili[pbc$sex == "m"]
+pbc_female_bili <- pbc$bili[pbc$sex == "f"]
+plot(density(x = pbc_male_bili), col = rgb(0,0,1,0.5), 
+     main = "Density plots", xlab = "bili", ylab = "")
+lines(density(x = pbc_female_bili), col = rgb(1,0,0,0.5))
+legend(x = 8, y = 0.2, legend = c("male", "female"), 
+       col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)
+```
+
+## Data Visualization  
+
+Continuous variables per group
+```{r, eval = FALSE, include = TRUE, echo = TRUE, fig.height = 3.5, fig.width = 15}
+pbc_male_bili <- pbc$bili[pbc$sex == "m"]
+pbc_female_bili <- pbc$bili[pbc$sex == "f"]
+plot(density(x = pbc_male_bili), col = rgb(0,0,1,0.5), 
+     main = "Density plots", xlab = "bili", ylab = "")
+polygon(density(x = pbc_male_bili), col = rgb(0,0,1,0.5), 
+        border = "blue")
+lines(density(x = pbc_female_bili), col = rgb(1,0,0,0.5))
+polygon(density(x = pbc_female_bili), col = rgb(1,0,0,0.5), 
+        border = "red")
+legend(x = 8, y = 0.2, legend = c("male", "female"), 
+       col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)
+```  
+
+
+## Data Visualization  
+
+Continuous variables per group
+```{r, eval = TRUE, include = TRUE, echo = FALSE, fig.height = 6, fig.width = 15}
+pbc_male_bili <- pbc$bili[pbc$sex == "m"]
+pbc_female_bili <- pbc$bili[pbc$sex == "f"]
+plot(density(x = pbc_male_bili), col = rgb(0,0,1,0.5), 
+     main = "Density plots", xlab = "bili", ylab = "")
+polygon(density(x = pbc_male_bili), col = rgb(0,0,1,0.5), 
+        border = "blue")
+lines(density(x = pbc_female_bili), col = rgb(1,0,0,0.5))
+polygon(density(x = pbc_female_bili), col = rgb(1,0,0,0.5), 
+        border = "red")
+legend(x = 8, y = 0.2, legend = c("male", "female"), 
+       col = c(rgb(0,0,1,0.5), rgb(1,0,0,0.5)), lty = 1)
+``` 
+
+
+## Data Visualization  
+
+Categorical variables 
+```{r, eval = TRUE, include = TRUE, echo = TRUE, fig.height = 5, fig.width = 15}
+pbc$status <- factor(x = pbc$status, levels = c(0, 1, 2), 
+                     labels = c("censored", "transplant", "dead"))
+pie(table(pbc$status), col = c("green", "blue", "red"), cex = 2)
+``` 
+
+
+
+
+## Summary
+
+\begin{columns}[onlytextwidth,T]
+\begin{column}{0.30\linewidth}
+
+
+\blue{Transformation}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{round()}
+\item \texttt{factor()}
+\item \texttt{order()}
+\item \texttt{reshape()}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.30\linewidth}
+\blue{Exploration}
+\begin{itemize}\vspace*{-0.5ex}
+\item \texttt{mean()}, \texttt{sd()}
+\item \texttt{median()}, \texttt{IQR()}
+\item \texttt{table()}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.30\linewidth}
+\blue{Visualization}
+\begin{itemize}
+\item \texttt{plot()}, \texttt{legend()}
+\item \texttt{hist()}
+\item \texttt{barchart()}
+\item \texttt{boxplot()}
+\item \texttt{xyplot()}, \texttt{ggplot()}
+\item \texttt{par()}
+\end{itemize}
+\end{column}
+
+\end{columns}
+
+
+
+## Practice   
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.47\linewidth}
+\begin{block}{Demos}
+\begin{itemize}
+\item Data Transformation 
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Transformation.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Transformation.html}{html}
+\item Data Exploration 
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Exploration.R}{R} 
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Exploration.html}{html}
+\item Data Visualization 
+\button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Visualization.R}{R} \button{https://nerler.github.io/BST02/demo/basic-use-of-r/Data_Visualization.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+
+\begin{column}{0.47\linewidth}
+\begin{block}{Practicals}
+\begin{itemize}
+\item Data Manipulation 
+\button{https://nerler.github.io/BST02/practical/basic-use-of-r/Data_Transformation_Exploration_Visualization.html}{html}
+\end{itemize}
+\end{block}
+\end{column}
+
+\end{columns}
+
+
+
+
 
 
 

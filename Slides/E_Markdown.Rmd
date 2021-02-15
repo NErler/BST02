@@ -3,7 +3,6 @@ title: "BST02: Using R for Statistics\\ in Medical Research"
 subtitle: "Part E: Markdown"
 author: "Eleni-Rosalina Andrinopoulou"
 institute: "Department of Biostatistics, Erasmus Medical Center"
-date: "24 - 28 February 2020"
 email: "e.andrinopoulou@erasmusmc.nl"
 output:
   beamer_presentation: 

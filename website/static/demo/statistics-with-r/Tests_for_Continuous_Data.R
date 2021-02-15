@@ -14,7 +14,7 @@
 # This is not part of the demo. 
 # It just allows the output to be wider (to make the html look nicer)
 options(width = 105)
-set.seed(2020)
+set.seed(1234)
 
 #-------------------------------------------------------------------------------
 #' ## t-test
@@ -28,9 +28,10 @@ t.test(x)
 #' Test if the mean of `x` is equal to 21:
 t.test(x, mu = 21)
 
-#' By default, a two-sided test is performed. To do a one-sided test, the argument
-#' `alternative` can be set to `less` or `greater`:
+#' By default, a two-sided test is performed. To do a one-sided test, the
+#' argument `alternative` can be set to `less` or `greater`:
 t.test(x, mu = 21, alternative = 'less')
+
 #' Note that the lower limit of the confidence interval became `-Inf`, because
 #' we look at a one-sided test, and that the upper bound reduced compared to the
 #' two sided-test.
@@ -64,7 +65,7 @@ t.test(x, y, paired = TRUE)
 #' Again, we can change `mean` to test if the difference is different from that
 #' value instead of testing for a difference equal to zero.
 
-#' This is equivalent to performing a one-sampe t-test of the differences 
+#' This is equivalent to performing a one-sample t-test of the differences 
 #' `x - y`:
 t.test(x - y)
 
@@ -90,12 +91,12 @@ wilcox.test(x, mu = 20)
 #' The function `wilcox.test()` has similar arguments as `t.test()`
 #' (`x`, `y`, `alternative`, `mu`, `paired`, `conf.level`).
 
-#' Note that conidence intervals are only returned if `conf.int = TRUE`:
+#' Note that confidence intervals are only returned if `conf.int = TRUE`:
 wilcox.test(x, conf.int = TRUE, mu = 20)
 
 #' The additional argument `exact` controls if exact p-values and confidence
-#' intervals are calculated or if the normal approximation is used. 
-#' In the latter case, the argument `correct` determins if a continuity 
+#' intervals are calculated or if the normal approximation is used.
+#' In the latter case, the argument `correct` determines if a continuity
 #' correction is applied.
 wilcox.test(x, conf.int = TRUE, exact = TRUE, mu = 20) 
 
@@ -110,9 +111,10 @@ wilcox.test(x, y, correct = TRUE, conf.int = TRUE)
 
 #-------------------------------------------------------------------------------
 #' ## Kruskal-Wallis Rank Sum Test
-#' This test is an extension to the Wilcoxon rank sum test to more than two groups
+#' This test is an extension to the Wilcoxon rank sum test to more than two
+#' groups
 
-#' We can povide the data as a `list()`:
+#' We can provide the data as a `list()`:
 x <- list(x1 = rnorm(100, mean = 12, sd = 1.5),
           x2 = rnorm(100, mean = 11, sd = 2),
           x3 = rnorm(100, mean = 11.5, sd = 1.8))
@@ -160,7 +162,8 @@ cor.test(x = swiss$Fertility, y = swiss$Agriculture, method = "kendall",
 cor.test(~ Fertility + Agriculture, data = swiss)
 
 #' This allows us to use the argument `subset` to select only part of the data:
-cor.test(~ Fertility + Agriculture, data = swiss, subset = Infant.Mortality > 18)
+cor.test(~ Fertility + Agriculture, data = swiss,
+         subset = Infant.Mortality > 18)
 
 
 #' ## Multiple Testing Adjustment
@@ -186,5 +189,6 @@ p_adj_BH <- p.adjust(pvals, method = "BH")
 
 cbind(pvals, p_adj_Bonf, p_adj_BH)
 
-#' The available correction methods are available in the vector `p.adjust.methods`:
+#' The available correction methods are available in the vector
+#' `p.adjust.methods`:
 p.adjust.methods
