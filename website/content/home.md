@@ -32,7 +32,7 @@ This website contains materials for the NIHES course [Using R for Statistics in 
 * demos of R functions and syntax
 * practicals
 
-Download a .zip file with all materials: <a href="/slide/BST02_2020.zip">
+Download a .zip file with all materials: <a href="/slide/BST02_2021.zip">
 <button class="btn"><i class="fa fa-download"></i></button>
 </a>
 
