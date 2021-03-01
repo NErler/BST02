@@ -296,8 +296,8 @@ We also want to practice writing our own functions.
 <div style="border:2px; border-style:solid; padding: 1em; border-color:#446E9B">
 Write two functions:
 
-* one that creates the summary string for a continuous variable,
-* one that creates the output for a categorical variable.
+* one that creates the summary string for a continuous variable (mean and sd),
+* one that creates the output (proportion of subjects per category) for a categorical variable.
 
 Assume that the input will be a vector, such as `nrj$kcal` or `nrj$sports`.<br>
 Note that when we work with these vectors, they do not contain the variable
