@@ -136,7 +136,7 @@ cat(paste0(capture.output(subset(FUdat, id == 1)), collapse = "\n"))
 ```{r, eval = FALSE}
 subset(dat1, id == 1)
 ```
-```{r}
+```{r, echo = FALSE}
 cat(paste0(capture.output(subset(dat1, id == 1)), collapse = "\n"))
 ```
 
@@ -149,7 +149,7 @@ basedat[basedat$id == 4, ]
 cat(paste0(capture.output(basedat[basedat$id == 4, ]), collapse = "\n"))
 ```
 
-```{r}
+```{r, eval = FALSE}
 FUdat[FUdat$id == 4, ]
 ```
 ```{r, echo = FALSE}
